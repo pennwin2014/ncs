@@ -1,0 +1,460 @@
+#ifndef __UTOCOMDEF__
+#define __UTOCOMDEF__
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <stdarg.h>
+/* Data in Share Memory Link */
+#define UT_LNK_CONF        0      /* ÅäÖÃÐÅÏ¢   */
+#define UT_LNK_RECV        1      /* UDP½ø³Ì    */
+#define UT_LNK_PROCESS     2      /* Tcp½ø³Ì    */
+#define UT_LNK_ROLEINFO    3      /* ½ÇÉ«ÐÅÏ¢   */
+#define UT_LNK_CONFIRM     4      /* ÒªÈ·ÈÏµÄÐÅÏ¢       */
+#define UT_LNK_SHARE       5      /* ¹²ÏíÊý¾Ý           */
+#define UT_LNK_DSCLIENTS   6      /* Ó¦ÓÃ·þÎñÆ÷´æ·ÅµÄÁ´±í, Ó¦ÓÃ·þÎñÆ÷±£´æÔÚÒ»¸ö¾²Ì¬Êý×éÖÐ  */
+#define UT_LNK_MYSTATUS    7      /* ·þÎñÆ÷±¾ÉíµÄ×´Ì¬    */
+#define UT_LNK_TCPFUNLIST  8      /* Tcp¹¦ÄÜ´úÂë         */
+#define UT_LNK_UDPFUNLIST  9      /* Udp¹¦ÄÜ´úÂë         */
+#define UT_LNK_DSSRVUSERINFO    10     /* ÓÃ»§ÐÅÏ¢(Ä¿Â¼·þÎñÆ÷)    */
+#define UT_LNK_USERATTR      11     /* ÓÃ»§ÐÅÏ¢(·þÎñÆ÷¶Ë)  */
+#define UT_LNK_PROXYSRVINFO  11     /* pas proxy ·þÎñÆ÷¹²ÏíÄÚ´æ */
+#define UT_LNK_PROXYCLTINFO  12     /* pas proxy ¿Í»§¶Ë¹²ÏíÄÚ´æ */
+#define UT_LNK_NETCONFIG   12     /* ÍøÂçÅäÖÃ            */
+#define UT_LNK_DICTIONARY  13     /* Êý¾Ý×Öµä            */
+#define UT_LNK_MYSRVFRIEND 14     /* ¿Í»§¶ËµÄ¹ØÁª·þÎñÆ÷(¿Í»§¶Ë)  */
+#define UT_LNK_MYFRIEND    15     /* ÎÒµÄÍøÓÑ            */
+#define UT_LNK_SYNCCLIENT  16     /* Í¬²½·þÎñÆ÷ÖÐÍ¬²½µÄ¿Í»§¶ËÐÅÏ¢    */
+#define UT_LNK_SYNCSERVER  17     /* Í¬²½¿Í»§»úÖÐÍ¬²½µÄ·þÎñÆ÷ÐÅÏ¢    */
+#define UT_LNK_SESSIONVALUE 18    /* SessionµÄÄÚÈÝ£¬ºÍÓÃ»§ÐÅÏ¢Ïà¶ÔÓ¦  */
+#define UT_LNK_SIDTABLE     19
+
+/* Default Configurate Data */
+#define UT_COM_TCPACCEPT       8
+#define UT_COM_TCPCONNECT      5
+#define UT_COM_TCPDOPROCESS    4
+
+#define UT_COM_TIMEOUT       60
+#define UT_COM_TCPPORT       8089
+#define UT_COM_MAXPROCESS    100
+#define UT_COM_UDPACCEPT     4
+#define UT_COM_UDPDOPROCESS  4
+#define UT_COM_MAXSHARE      10
+#define UT_COM_MAXUDPFUNCODE 100
+#define UT_COM_MAXTCPFUNCODE 100
+#define UT_COM_BUSY         1
+#define UT_COM_FREE         0
+/* Process Type */
+#define UT_COM_DOACCEPTTCP     1
+#define UT_COM_DOACCEPTUDP     2
+#define UT_COM_DOTCPREQUEST    3
+#define UT_COM_DOUDPREQUEST    4
+#define UT_COM_AUTOSTATUS      5
+#define UT_COM_DOCHECK         6
+#define UT_COM_DOTIMEOUT       7
+#define UT_COM_PROCESSMGR      8     /* ½ø³Ì¹ÜÀí  */
+#define UT_COM_FASTCGI         9     /* Fast Cgi  */
+#define UT_COM_TCP          1
+#define UT_COM_UDP          2
+
+#define UT_TCP_CONFIRMMSG   113
+#define UT_TCP_STOPMSG      111
+
+/* ²ÎÊý±£´æ  */
+#define UT_SHA_TCPPROCESS   0      /* TCPÖ÷½ø³Ì     */
+#define UT_SHA_UDPPROCESS   1      /* UDPÖ÷½ø³Ì     */
+#define UT_SHA_TIMEPROCESS  2      /* ¶¨Ê±´¦Àí½ø³Ì  */
+#define UT_SHA_LASTTIME     3      /* ×îºóÒ»´ÎÊÕµ½ÏûÏ¢Ê±¼ä Ä¿Ç°²»ÓÃ  */
+#define UT_SHA_UDPPORT      4
+#define UT_SHA_TCPPORT      5
+#define UT_SHA_DEBUG        6      /* Debug ÐÅÏ¢  0--²»  1--´¦ÔÚDebug×´Ì¬  */
+#define UT_SHA_BASETIME     7      /* Ê±¼ä»ùÊý                             */
+#define UT_SHA_CURUID       8      /* Éú³ÉµÄIDÖµ                           */
+
+#define UT_TRAN_SHM         0
+#define UT_TRAN_TCP         1
+#define UT_TRAN_FILE        2
+#define UT_FUN_TEST         1      /* ²âÊÔÃüÁî  */
+#define UT_COM_MAXSOCKET    100
+/* Udp Accept Buffer */
+#define UT_COM_MAXBUFFER    4096
+#define UT_COM_TCPBUFFER    4096
+#define UT_COM_TCPTIMEOUT   30
+
+typedef struct {
+    unsigned short   nPort;    /* ¶Ë¿ÚºÅ  */
+    short            nSum;     /* ×ÜÊý    */
+    long             lOffset;  /* Æ«ÒÆÁ¿  */
+} utTcpSockTable;
+
+
+typedef struct {
+    long  lPid;
+    long  lStartTime;
+    long  lLastTime;
+    long  lCount;
+    long  nStatus;   /* 0 Free   1 Busy */
+    long  nFun;
+} utComProcess;
+
+/* ÓÃÓÚÊý¾Ý´«µÝµÄ½Ó¿Ú  */
+typedef struct {
+    short nStatus;   /* 1 ---Êý¾Ý´æ·ÅÓÚ¹²ÏíÄÚ´æÖÐ
+                        2 ---Êý¾Ý´æ·ÅÓÚÎÄ¼þÖÐ,ÎÄ¼þÃ÷´æ·ÅÔÚ¹²ÏíÄÚ´æÖÐ
+                        3 ---Êý¾ÝÍ¨¹ýTcp´«µÝ, nPageNoÎª¶Ë¿ÚºÅ lOffsetÎªIpµØ·
+                      */
+    short nPageNo;
+    long  lOffset;
+} utComShm;
+
+typedef struct {
+    int      iResend;
+    int      iUdpSock;
+    unsigned long lTimeOut;
+    int      iSumNum;    /* »ØÊÕµÄÊýÁ¿  */
+    int      iMaxNum;    /* ×î´óÊýÁ¿    */
+    long     *lMsgId;    /* MsgId       */
+    utShmHead *psShmHead;
+} utUdpCheck;
+
+typedef struct {
+    uint4   lSIp;      /* Server Ip   */
+    uint2   nSPort;    /* Server Port */
+    uint2   nCPort;    /* Client Port */
+} utComIpAddr;
+
+
+
+typedef struct  {
+    int iSock;
+} utComSock;
+
+typedef struct  {
+    long        lMaxSock;
+    utComSock   *psComSock;
+} utComSockHead;
+
+
+typedef struct  {
+    struct sockaddr_in  sSin;
+} utComSockAddr;
+
+/* ³¬Ê±´¦Àíº¯Êý  */
+
+typedef struct  {
+    int iSum;   /* ×Ü¹²ÊýÁ¿  */
+    int iMax;   /* ×î´óÔÊÐíÊýÁ¿  */
+    struct utComTime_S {
+        long lTimeOut;    /* ³¬Ê±¼ä¸ô      */
+        long lLastTime;   /* ÉÏ´Î·ÃÎÊÊ±¼ä  */
+        char *pData;      /* ´«µÝ²ÎÊý      */
+        int   (*fFunName)(char *pData);   /* ³¬Ê±´¦Àíº¯Êý  */
+    } *psTime;
+} utComTimeOutFun; 
+
+  
+ 
+
+
+
+typedef struct  {
+    long  nFunCode;      /* ¹¦ÄÜ´úÂë                       */
+    char  caFunName[32]; /* FunName                        */
+    short nCheckFlags;   /* 0--Pass 1--Auth  2--CheckRight */
+    short nUseFlags;     /* 0 -- Normal   1--Can't Use     */
+    int   (*fFunName)(utShmHead *,int,utMsgHead *);
+} utComTcpFunList;
+
+    
+typedef struct  {
+    short nMaxFun;
+    short nNumFun;
+    utComTcpFunList *psFunList;
+} utComTcpFun;
+
+typedef struct  {
+    long   nFunCode;
+    int   (*fFunName)(utShmHead *,utComSockAddr *,utMsgHead *);
+} utComUdpFunList;
+    
+typedef struct  {
+    short nMaxFun;
+    short nNumFun;
+    utComUdpFunList *psFunList;
+} utComUdpFun;
+
+
+typedef struct pasConfList_s {
+    int  iFlags;            /* 0--Î´ÐÞ¸Ä  1--ÒÑÐÞ¸Ä  */
+    char *pVar;             /* ±äÁ¿Ãû                */
+    char *pValue;           /* ±äÁ¿µÄÄÚÈÝ            */
+    struct pasConfList_s *psNext;
+} pasConfList;    
+    
+/* The Value of nActiob */
+#define UTCOM_ACT_RETURNCLOSE      16  /* 10000   ·µ»ØÔ­Ïà¹ØÁ¬½Ó, ¹Ø±ÕËùÓÐÁ¬½Ó    */
+#define UTCOM_ACT_RETURNKEEPA       6  /*  0110   ·µ»ØÔ­Ïà¹ØÁ¬½Ó, ±£ÁôÔ­,ÄÚ²¿Á¬½Ó */
+#define UTCOM_ACT_RETURNKEEPI       4  /*  0100   ·µ»ØÔ­Ïà¹ØÁ¬½Ó, ±£ÁôÔ­Á¬½Ó    */
+#define UTCOM_ACT_REDIRCLOSEA       8  /*  1000   ÖØ¶¨Ïò, ¹Ø±ÕËùÓÐÁ¬½Ó  */
+#define UTCOM_ACT_REDIRKEEPFO       13 /*  1101   ÖØ¶¨Ïò, ±£ÁôÔ­,Ä¿±ê   */
+#define UTCOM_ACT_REDIRKEEPIO       11 /*  1011   ÖØ¶¨Ïò, ±£ÁôÄÚ²¿,Ä¿±ê */
+#define UTCOM_ACT_REDIRKEEPF        12 /*  1100   ÖØ¶¨Ïò, ±£ÁôÔ­        */
+#define UTCOM_ACT_ENDPROCESS       999 /*  ÖÕÖ¹½ø³Ì           */
+
+
+
+
+
+
+/* Tcp BufferÏûÏ¢ºóµÄÄÚÈÝ  */
+typedef struct {
+    short    nNum;            /* ¶ÓÁÐÖÐµÄÐòºÅ       */
+    unsigned short    nPort;  /* ÄÚ²¿½ø³Ì¶Ë¿ÚºÅ     */
+    long     lConnectId;      /* Á¬½Ó±êÖ¾           */
+    long     lReserve;        /* ±£Áô                */
+} utTcpSInfo;
+
+
+
+/* ×ª·¢µÄTcpµØÖ·  */
+typedef struct {
+    unsigned long  lAddress; /* IPµØÖ·, ÍøÂç×Ö½ÚË³Ðò  */
+    unsigned short nPort;    /* ¶Ë¿ÚºÅ, ÍøÂç×Ö½ÚË³Ðò  */
+    unsigned short nFlags;   /* ±£Áô */
+} utTcpAddress;
+
+typedef struct {
+    int      iSock;     /* Sock Id                                  */
+    unsigned char    cKind;     /* 0--Íâ²¿  1--ÄÚ²¿                */
+    unsigned char    cReserve;  /* ±£Áô                            */
+    unsigned char    cFlags;    /* 0--Õý³£  ÕýÔÚµÈ´ýÓ¦´ð           */
+    unsigned char    cType;  /* 0 Õý³£  1 ´óÊý¾Ý°ü  2 ¶àÊý¾Ý°ü     */
+    long     lTime;       /* ×îºó²Ù×÷Ê±¼ä   */
+    long     lIpAddress;  /* IPµØÖ·         */
+    char     *pData;      /* Êý¾ÝÖ¸Õë       */
+    long     lConnectId;  /* Á¬½ÓId, ÔÚÁ¬½Ó½¨Á¢Ê±²úÉú  */
+} utSockQuen;
+
+#define UT_QUEN_OUTSOCK        0
+#define UT_QUEN_INSOCK         1     
+/* cReserve */
+#define UT_COM_MULTPKG    2
+#define UT_COM_BIGPKG     1
+
+/* cFlags */
+#define UT_COM_WAITCONFIRM  1
+
+
+
+/* utocom01.c */
+int  utComSetIpAddr(utComSockAddr *psSin,
+                 const char *pHost,const char *pService,int iFlags);
+int utComSetAddr0(utComSockAddr *psSockAddr,
+                long lIpAddr,short nPort);
+int utComSetPort0(utComSockAddr *psSockAddr,
+                  short nPort);
+int  utComTcpConnect(const char *host,
+                     const char *service);
+int utComConnect(int iSock, utComSockAddr *psSock);
+int utComTcpServer(const char *service, int iQlen);
+int utComUdpServer(const char *service);
+int utComTcpSock();
+int utComUdpSock();
+int utComClose(int iSock);
+int utComTcpWrite(int iSock,char *pBuffer,int iLen);
+int utComTcpRead(int iSock,char *pBuffer,int iLen);
+int utComUdpRecvFrom(int iSock,char *pBuffer,int iLen,utComSockAddr *psSin);
+int utComUdpSendTo(int iSock,char *pBuffer,int iLen,utComSockAddr *psSin);
+int utComTcpAccept(int iSock, utComSockAddr *psSockAddr);
+long  utComHostAddress(const char *pHost);
+short utComServicePort(const char *pServices,int iFlags);
+char *utComHostIp(long lIp);
+int utComGetCurAddr(utComSockAddr *psSin);
+/* utocom02.c */
+int utComStartUdpServer(utShmHead *psShmHead);
+int utComUdpSetTimeOut
+    (int   (*utTimeOutFun)(utShmHead *,utComSockAddr *,utMsgHead *));
+int utComUdpCheck(char *pHead,char *pValue);
+int utComStartUdpAccept(utShmHead *psShmHead,int iSock,int iNumber);
+int utComStartSomeUdpDo(utShmHead *psShmHead,int iNumber,
+    int utComUdpInit(utShmHead *psShmHead),
+    int utComUdpEnd(utShmHead *psShmHead));
+int utComStartUdpDo(utShmHead *psShmHead,
+    int utComUdpInit(utShmHead *psShmHead),
+    int utComUdpEnd(utShmHead *psShmHead));
+int utComUdpSend0(utShmHead *psShmHead,
+        unsigned long lIpAddr,unsigned short nPort, 
+        utMsgHead *psMsgHead);
+int utComUdpSend(utShmHead *psShmHead, utComSockAddr *psSockAddr,
+                utMsgHead *psMsgHead);
+int utComCompConfirmKey(char *pSource,char *pKey);
+int utComCompConfirmKey1(char *pSource,char *pKey);
+int utComUdpResend(char *pData);
+int utComUdpResponse1(utShmHead *psShmHead,utComSockAddr *psSockAddr,
+        utMsgHead *psMsgHead0,int iConfirm,short nVarNum,...);
+int utComUdpRequest1(utShmHead *psShmHead, utComSockAddr *psSockAddr, 
+        long lMsgCode,long nFunCode,long lMsgId,int iConfirm,short nVarNum,...);
+        
+       
+int utComInit(utShmHead *psShmHead,char *pConfFile);
+
+int  utComSetSValue(utShmHead *psShmHead,int iNumber,long lValue);
+long utComGetSValue(utShmHead *psShmHead,int iNumber);
+utShmHead *utComShmOpen(char *caConfFile);  
+int utComSetVar_l(utShmHead *psShmHead,
+                  char *pVarName,long lValue);
+int utComSetVar_s(char *pHead,char *pVarName,
+                    char *pVarValue);
+char *utComGetVar_s(utShmHead *psShmHead,
+                   char *pVarName);
+long utComGetVar_l(utShmHead *psShmHead,char *pVarName);
+
+int  utComCompareCnfKey(char *pSource,char *pKey);
+
+void utComReaper(int iSig);
+long utComGetVar_ld(utShmHead *psShmHead,char *pVarName,long lValue);
+char *utComGetVar_sd(utShmHead *psShmHead,char *pVarName,char *pDefault);
+/* utocom04.c  */
+int utComSetMaxTcpBuf(long lMaxTcpBuf);
+int utComTcpMsgSend(int iSock,utMsgHead *psMsgHead);
+int utComTcpRequest(int iSock,long lMsgCode,
+            long nFunCode,long lMsgId,short nVarNum,...);
+int utComTcpResponse(int iSock,utMsgHead *psMsgHead0,short nVarNum,...);
+int utComTcpMsgRead(int iSock,utMsgHead *psMsgHead);
+int utComTcpMsgReadT(int iFd,utMsgHead *psMsgHead,long lTime);
+
+int utComTcpMsgHeadRead(int iFd,utMsgHead *psMsgHead);
+int utComTcpMsgHeadReadT(int iFd,utMsgHead *psMsgHead,long lTime);
+int utComTcpSendControlMsg(int iSock,long nFunCode);
+
+int utComUdpMsgSendTo(int iSock,utComSockAddr *psSockAddr,
+                        utMsgHead *psMsgHead);
+int utUdpMsgSendTo(long lIpAddress,unsigned short nUdpPort,utMsgHead *psMsgHead);
+                        
+int utComUdpMsgRecvFrom(int iSock,utComSockAddr *psSockAddr,
+                        utMsgHead *psMsgHead);
+int utComUdpRequest(int iSock, utComSockAddr *psSockAddr, 
+        long lMsgCode,long  nFunCode,long lMsgId,short nVarNum,...);
+int utComUdpResponse(int iSock,utComSockAddr *psSockAddr,
+        utMsgHead *psMsgHead0,short nVarNum,...);
+int utComTcpResponse1(int iSock,utMsgHead *psMsgHead0,
+    int iFlags,short nVarNum,...);
+utMsgHead *utComTcpReadMsgT(int iFd,long lTime);
+int utComTcpMsgReadT000(int iFd,utMsgHead **psMsgHead0,long lTime);    
+/*
+    iFlags: */
+#define UT_TCP_ALLCLOSE      0
+#define UT_TCP_NOCLOSE       5
+    
+
+utMsgHead *utComTcpReadMsg(int iFd);
+int utComTcpReadVar(int iSock,utMsgVar *psMsgVar);
+int utComTcpReadValue(int iSock,utMsgVar *psMsgVar,void *pVar);
+#define UTTCP_ERR_INVALIDMSG        409101      /* Êý¾Ý°ü²»ÕýÈ·        */
+#define UTTCP_ERR_INVALIDCODE       409102      /* Message Code²»ÕýÈ·  */
+#define UTTCP_ERR_INVALIDMEM        409103      /* ÄÚ´æ·ÖÅä³ö´í        */
+#define UTTCP_ERR_EXCEEDLEN         409104      /* Êý¾Ý°ü³¬³ö×î´ó³¤¶È  */
+int  utTcpConnect(const char *host,
+                     const char *service);
+int utTcpConnect0(unsigned long lIpAddress,unsigned short nPort);
+int utTcpServer(const char *service, int iQlen);
+int utUdpServer(const char *service);
+int utTcpSock();
+int utUdpSock();
+int utTcpAccept(int iSock, utComSockAddr *psSockAddr);
+int utUdpRecvFrom(int iSock,char *pBuffer,int iLen,utComSockAddr *psSin);
+int utUdpSendTo(int iSock,char *pBuffer,int iLen,utComSockAddr *psSin);
+int utTcpRead(int iSock,char *pBuffer,int iLen);
+int utTcpWrite(int iSock,char *pBuffer,int iLen);
+int utTcpReadMsg0(int iSock,utMsgHead *psMsgHead,unsigned long lMsxBytes);
+
+#define UTCOM_ERR_TCPNOTDEFINE          410101     /* TCPPORÃ»ÓÐ¶¨Òå      */
+#define UTCOM_ERR_SOCKCREATERROR        410102     /* Sock½¨Á¢³ö´í        */ 
+#define UTCOM_ERR_FORKERROR             410102     /* ×Ó½ø³Ì´´½¨³ö´í      */
+#define UTCOM_ERR_PROCESSEXCEED         410103     /* ½ø³Ì³¬¹ý×î´óÊýÁ¿    */
+#define UTCOM_ERR_MEMERROR              410104     /* ÄÚ´æ·ÖÅä³ö´í        */
+#define UTCOM_ERR_NOTDEFINE             410105     /* ÅäÖÃÎÄ¼þÖÐÄ³Ð©±äÁ¿Ã»¶¨Òå  */
+#define UTCOM_ERR_SHMERROR              410105     /* ¹²ÏíÄÚ´æ·ÖÅä³ö´í    */
+#define UTCOM_ERR_SYNIDERROR            410106     /* Í¬²½ÐÅºÅ³õÊ¼»¯³ö´í  */
+
+                                       
+/* utocom05.c  */
+
+int utComTimeControl1(utShmHead *psShmHead,
+        int utComTimeInit(utShmHead *psShmHead),
+        int utComTimeEnd(utShmHead *psShmHead));
+int utComContinue(utShmHead *psShmHead);        
+/* utocom06.c */
+void utTcpSetReturnFlags(int iFlags);
+int utTcpGetIntSockId(int iPort);
+int utTcpClsIntSockId(int iPort);
+int utComInitTcpFun(int nMaxFun);
+int utComSetTcpFun(int  nFunCode, int utComTcpDoFun(utShmHead *,int,utMsgHead *));
+int utComSetDefaultTcpFun(int utComTcpDoFun(utShmHead *,int,utMsgHead *));
+int utComFreeTcpFun();
+
+/* utocom07.c */
+int utComUdpFrame0(utShmHead *psShmHead,short nMaxFunCode,
+    int utComUdpInit(utShmHead *psShmHead),
+    int utComUdpEnd(utShmHead *psShmHead));
+int utComUdpDoRequest(utShmHead *psShmHead, utComSockAddr *psComSockAddr,
+            utMsgHead *psMsgHead);
+int utComSetUdpStaFun(int utComUdpDoFun(utShmHead *,utComSockAddr *,utMsgHead *));
+/* utocom08.c */
+int utComTcpFrame(char *pConfFile,short nMaxFunCode,
+    int utComTcpInit(utShmHead *psShmHead),
+    int utComTcpEnd(utShmHead *psShmHead));
+int utComTcpFrame1(long lShmKey,short nMaxFunCode,
+    int utComTcpInit(utShmHead *psShmHead),
+    int utComTcpEnd(utShmHead *psShmHead));
+
+int utComUdpFrame1(long lShmKey,short nMaxFunCode,
+    int utComUdpInit(utShmHead *psShmHead),
+    int utComUdpEnd(utShmHead *psShmHead));
+int utComUdpFrame(char *pConFile,short nMaxFunCode,
+    int utComUdpInit(utShmHead *psShmHead),
+    int utComUdpEnd(utShmHead *psShmHead));
+         
+/* utocom09.c */
+void utComDoTimeOut();
+int utComSetTimeOut( int (*fFunName)(char *pData), long lTimeOut,char *pData);
+int utComTimeControl(utShmHead *psShmHead);
+int utComTimeControl1(utShmHead *psShmHead,
+        int utComTimeInit(utShmHead *psShmHead),
+        int utComTimeEnd(utShmHead *psShmHead));
+int utComContinue(utShmHead *psShmHead);
+int utComCheckPqOnline();
+void utComCheckUdpTcp();
+int utComRestartOnline(char *pConfFile);      
+int utComSetConfFile(char *pConfFile);
+char *utComGetConfFile();
+int utFunUdpTest(utShmHead *psShmHead, 
+            utComSockAddr *psSockAddr,utMsgHead *psMsgHead);
+void utComSignal_fatal(int sig);
+void utComSignal_hup(int sig);
+
+
+/* utocom10.c */
+int utComStartTcpServer(utShmHead *psShmHead);
+int utComStartSomeTcpServer(utShmHead *psShmHead,int iSock1,int iNumber);
+int utTcpStartDo(utShmHead *psShmHead,int utComTcpInit(utShmHead *psShmHead),
+            int utComTcpEnd(utShmHead *psShmHead));
+int utTcpStartSomeDo(utShmHead *psShmHead,int iNumber,
+        int utComTcpInit(utShmHead *psShmHead),
+        int utComTcpEnd(utShmHead *psShmHead));
+int utTcpSetReturn(short nSsock,unsigned short nPort,long lConnectId,long lReserve);
+int utTcpWriteReturn(int iSock);
+int utTcpGetReturn(utTcpSInfo *psInfo);
+int utTcpSendMultMsg(int iFd,utMsgHead *psMsgHead);
+int utTcpMultMsgSend(int iFd,utMsgHead *psMsgHead);
+int utTcpSendStopMsg(int iFd);
+int utTcpSockIsActive(utShmHead *psShmHead,int iPort,int iNum);
+void utTcpSetGlobalSock(int iSock);
+int utTcpGetCurSockInfo(utTcpSInfo *psInfo);
+int utTcpSendMsgToA(utTcpSInfo *pInfo,utMsgHead *psMsgHead,int iFlags);
+int utTcpSendMsgBack(int iFd,utMsgHead *psMsgHead,int iFlags);
+
+#define utTcpReadMsg(x,y,z)  utComTcpReadMsg(x,y,x)
+
+#endif
+

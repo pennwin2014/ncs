@@ -1,0 +1,135 @@
+#ifndef __UTOSTRHEAD_
+#define __UTOSTRHEAD_
+#define UT_STR_LEFTHANZI   0
+#define UT_STR_RIGHTHANZI  1
+#define UT_STR_ISASCII     2
+
+#define PAS_SYS_SHUTDOWN   0
+#define PAS_SYS_RESTART    6
+/* ´íÎó´úÂë  */
+#define UT_STR_ERRMSG01    02100
+#define UT_STR_ERRMSG02    02200
+#define UT_STR_ERRMSG03    02300
+#define UT_STR_ERRMSG04    02400       
+#define utStrBitIs(x,y) ( (x>>(y-1))&1 )
+
+typedef struct {
+    long lRand;
+    long lNumber;
+} utStrRandNumber;
+
+struct utStrCnfList_S {
+    char caVar1[32];
+    char caVar2[32];
+    struct utStrCnfList_S *psNext;
+};
+    
+typedef struct utStrCnfList_S utStrCnfList;
+
+struct utStrCnfList3_S {
+    char caVar1[32];
+    char caVar2[32];
+    char caVar3[32];
+    struct utStrCnfList3_S *psNext;
+};
+    
+typedef struct utStrCnfList3_S utStrCnfList3;
+
+struct utStrCnfList4_S {
+    char caVar1[32];
+    char caVar2[32];
+    char caVar3[32];
+    char caVar4[32];
+    struct utStrCnfList4_S *psNext;
+};
+    
+typedef struct utStrCnfList4_S utStrCnfList4;
+
+
+#ifndef _WIN32  /* -- added by client */
+#include "utoshm01.h"
+int utCnfReadConfig(char *pHand,char *caConfigFile,
+      int utCnfSaveConf(char *p1,char *pVar,char *pVal));
+int utCnfGetValue_l(char *pFile,char *pVarName);
+int utCnfGetValue_s(char *pFile,char *pVarName,char *pVarValue);
+int utCnfLookVar(char *pHand,char *pVarName,char *pVarValue);
+char *utCnfGetConfig(utShmHead *psShmHead,short nLnkNo,
+                   char *pVarName);
+long utCnfGetConfig_l(utShmHead *psShmHead,short nLnkNo,
+                   char *pVarName);
+int utCnfSetDebug(utShmHead *psShmHead);
+char *utStrDelSpaces(char *pInstr);
+int utStrToUpper(char *pInstr);
+int utStrToLower(char *pInstr);
+char *utStrUpper(char *pInstr);
+char *utStrGetWord(char *p,char *pOut,
+       short nMaxLen,char *pTerm);
+int utStrCharIsIn(char *pTerm,char c);
+int utStrIsSpaces(char *pIn);
+char *utStrSkipSpaces(char *pIn);
+int utStrIsSpaces1(char *pIn);
+char *utStrSkipSpaces1(char *pIn);
+char *utStrGetWord1(char *p,char *pOut,
+       short nMaxLen,char *pTerm);
+
+int utStrHanZi(char *pInstr,int iPos);
+int utStrRand(long iNumber,utStrRandNumber *psStrRand);
+int utStrCompare_001(const void *p1,const void *p2);
+char *utStrAddOneStr(char *pOutStr,char *pInStr,int iLen);
+char *utStrncpy(char *pOutstr,char *pInstr,int iLen);
+long utStrGetId();
+/* -- added by client */
+#endif /* ! _WIN32 */
+
+/* utostr02.c */
+
+char *utTimFormat(char *pFormat,long lTime);
+long utTimTime();
+long utTimStrToLong(char *fmt,char *instr);
+
+/* utostr03.c */
+char *pasDbRecordValue(char *caRecord,int iRow,int iSumField,...);
+int  utStrAddRecordValue(char *caRecord,int iSumField,...);
+int  utStrSetRecordValue(char *caRecord,int iSumField,...);
+char *utStrGetRecordValue(char *caRecord,int iSumField,...);
+
+/* utostr04.c */
+utStrCnfList *utStrReadCnfFile(char *pConfFile);
+void utStrFreeCnfList(utStrCnfList *psStrCnfList);
+utStrCnfList3 *utStrReadCnfFile3(char *pConfFile);
+void utStrFreeCnfList3(utStrCnfList3 *psStrCnfList);
+utStrCnfList4 *utStrReadCnfFile4(char *pConfFile);
+void utStrFreeCnfList4(utStrCnfList4 *psStrCnfList);
+
+
+/* utodes01.c  */
+int utDesInit(char *key);
+int utDesEncrypt(char *in,int iLen,char *out,char *key);
+int utDesDecrypt(char *in,int in_len,char *out,char *key);
+int utDesCvtAsc(unsigned char  *pBin,int iLen,unsigned char  *pAsc);
+int utDesCvtBin(unsigned char  *pAsc, int iLen,unsigned char  *pBin);
+int utDesGetData(unsigned char  *in,unsigned char  *out,unsigned int iLen);
+/* utomd501.c */
+void utStrMd5(unsigned char *output, unsigned char *input, unsigned int inlen);
+
+#ifdef	__cplusplus /* added by client */
+extern "C" {
+#endif	/* __cplusplus */ 
+
+#ifdef _WIN32
+#include	"picqcnet.h"
+PICQCNET_API int utDesEncryptA(unsigned char  *in,unsigned char  *out,unsigned char  *key);
+PICQCNET_API int utDesDecryptA(unsigned char  *in,unsigned char  *out,unsigned char  *key);
+PICQCNET_API unsigned char *utMd5Encrypt(unsigned char *pInput, int iInLen,unsigned char *pOutput);
+#else
+int utDesEncryptA(unsigned char  *in,unsigned char  *out,unsigned char  *key);
+int utDesDecryptA(unsigned char  *in,unsigned char  *out,unsigned char  *key);
+char *utMd5Encrypt(unsigned char *pInput, int iInLen,unsigned char *pOutput);
+char  *utMd5Encrypto(unsigned char  *pInput, int iInLen,unsigned char  *pOutput);
+#endif
+
+#ifdef	__cplusplus /* added by client */
+}
+#endif	/* __cplusplus */
+
+#endif

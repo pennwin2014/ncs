@@ -1,0 +1,1439 @@
+/*
+     Modify 2015/8/4   by zyn*/
+#define PAS_SRCFILE      9888     
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/stat.h>
+#include <string.h>
+#include <locale.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <netdb.h>
+#include <sys/time.h>
+#include "utoall.h"
+#include "utoplt01.h"
+#include "pasdb.h"
+#include "dsutl.h"
+#include "dsclt.h"
+#include "ncsdef.h"
+#include"dlfcn.h"
+#include <time.h>
+
+//查询  合规热点管理
+int  ncsSysoperation(utShmHead *psShmHead, int iFd, utMsgHead *psMsgHead){
+	long lCount=0;
+	long lTime, lstime, letime;
+	char sql[1024] = "";
+	char add[32]="";
+	//定义字符数组(装查询的数据)
+	char  servicetype[128]="";
+	char servicequlity[128]="";
+	char ISPphone[128] = "";
+	char ISPemail[128] = "";
+    char security[128]="";
+	char authflag[128]="";
+	char ssid[128] = "";
+	char ISPname[128] = "";
+	char mac[32] = "";
+	char   caTemp_d[128]="";
+	char  caCid[1024];
+    char   caTemp[1024];
+	//用于判断游标状态
+	int iReturn = 0;
+	 //用于判断行数
+	int iNum = 0; 
+	char del[32]="";
+	char keyword[128]="";
+	char export2[12]="";
+	 FILE *fp=NULL;
+	char caFilename[100]="";
+	char caFile[240]="";
+	char caPath[240]="";
+	
+	pasDbCursor *psCur = NULL;
+	utPltDbHead *psDbHead = utPltInitDb();  // 初始化数据模板
+	 utMsgPrintMsg(psMsgHead);
+	//接收数据
+	//注意个数对应
+	iReturn = utMsgGetSomeNVar(psMsgHead,12,
+           "add", UT_TYPE_STRING, 30, add,
+           "ssid", UT_TYPE_STRING, 125,ssid,
+           "security", UT_TYPE_STRING, 30, security,
+		    "servicetype", UT_TYPE_STRING, 60, servicetype,
+           "servicequlity", UT_TYPE_STRING, 60, servicequlity,
+		   "ISPname",UT_TYPE_STRING,30,ISPname,
+		   "ISPphone",UT_TYPE_STRING,127,ISPphone,
+		    "ISPemail",UT_TYPE_STRING,127,ISPemail,
+			"del",UT_TYPE_STRING,30,del,
+			"keyword",UT_TYPE_STRING,127,keyword,
+			"export2",UT_TYPE_STRING,10,export2,
+			"MAC",UT_TYPE_STRING,30,mac
+           );
+		   
+	 printf("export2====[%s]\n",export2);
+	 
+	 if(strlen(ssid)>0)
+		{
+			strcpy(caTemp_d,  pasCvtGBK(2,ssid,caTemp,129)); 
+			strcpy(ssid,caTemp_d);
+	    }
+		char strCondition[1024] = "";
+		
+		//执行条件查询
+		if(strlen(keyword)>0)
+		{
+			strcpy(caTemp_d,  pasCvtGBK(2,keyword,caTemp,129)); 
+			strcpy(keyword,caTemp_d);
+			sprintf(strCondition+strlen(strCondition)," and nchotspotinfo.ssid  like '%c%s%c' ",'%',keyword,'%');
+			sprintf(strCondition+strlen(strCondition)," and ISPname like '%c%s%c' ",'%',keyword,'%');
+			sprintf(strCondition+strlen(strCondition)," and ISPphone like '%c%s%c' ",'%',keyword,'%');
+			sprintf(strCondition+strlen(strCondition)," and ISPemail like '%c%s%c' ",'%',keyword,'%');
+						
+			
+	    }
+		
+	 
+	 
+	 if(strlen(del)>0)
+	 {
+			memset(sql, 0, sizeof(sql));
+			sprintf(sql,"delete from nchotspotinfo where ssid  in(%s) ",ssid);		
+			printf("sql=%s\n",sql);
+			pasDbExecSqlF(sql); 		 
+	 }
+	 
+	 
+	 
+	 
+	if(strlen(add)>0)
+	{
+		printf("add=[%s]\n", add);
+		if(strlen(ssid)>0)
+		{
+			strcpy(caTemp_d,  pasCvtGBK(2,ssid,caTemp,129)); 
+			strcpy(ssid,caTemp_d);
+	    }
+		
+	    if(strlen(security)>0)
+		{
+			strcpy(caTemp_d,  pasCvtGBK(2,security,caTemp,129)); 
+			strcpy(security,caTemp_d);
+		}
+		
+		if(strlen(servicequlity)>0)
+		{
+			strcpy(caTemp_d,  pasCvtGBK(2,servicequlity,caTemp,129)); 
+			strcpy(servicequlity,caTemp_d);
+	    }
+	   
+		if(strlen(ISPname)>0)
+		{
+			strcpy(caTemp_d,  pasCvtGBK(2,ISPname,caTemp,129)); 
+			strcpy(ISPname,caTemp_d);
+	    }
+	 
+		if(strlen(ISPemail)>0)
+		{
+			strcpy(caTemp_d,  pasCvtGBK(2,ISPemail,caTemp,129)); 
+			strcpy(ISPemail,caTemp_d);
+		}
+		
+	    if(strlen(ISPphone)>0){
+			strcpy(caTemp_d,  pasCvtGBK(2,ISPphone,caTemp,129)); 
+			strcpy(ISPphone,caTemp_d);
+		}
+	 
+	    sprintf(sql,"select count(*) from nchotspotinfo where ssid=\'%s\' ",ssid);
+	     printf("sql11111=%s\n",sql);
+		//iReturn = pasDbFetchInto( psCur,UT_TYPE_LONG,  sizeof(lCount),  &lCount);
+		iReturn = pasDbOneRecord(sql, 0, UT_TYPE_LONG, 4, &lCount);
+          printf("lCountyyyyyylCount=%d\n",lCount);	
+		
+		if(lCount>0)
+		{			  
+			memset(sql, 0, sizeof(sql));
+			sprintf(sql,"update nchotspotinfo set security='%s',servicequlity='%s',ISPname='%s',ISPphone='%s',ISPemail='%s',servicetype=\'%s\' where ssid=\'%s\'",security,servicequlity,ISPname,ISPphone,ISPemail,servicetype,ssid);            
+			pasDbExecSqlF(sql);	
+			sprintf(sql,"select count(*) from nchotmacgroup where ssid=\'%s\' ",ssid);
+			printf("sq162=%s\n",sql);
+			//iReturn = pasDbFetchInto( psCur,UT_TYPE_LONG,  sizeof(lCount),  &lCount);
+			iReturn = pasDbOneRecord(sql, 0, UT_TYPE_LONG, 4,&lCount);
+            if(lCount>0)
+			{
+				sprintf(sql,"update nchotmacgroup set mac=\'%s\' where ssid=\'%s\'",mac,ssid); 
+			printf("sq168=[%s]\n",sql);				
+				pasDbExecSqlF(sql);		
+			}else
+			{		
+				sprintf(sql," insert into nchotmacgroup(ssid,mac)VALUES(\'%s\',\'%s\')",ssid,mac);
+				pasDbExecSqlF(sql);
+				printf("sq174=[%s]\n",sql);
+			}		
+        }
+		else
+		{
+			memset(sql, 0, sizeof(sql));
+			sprintf(sql," insert into nchotspotinfo(ssid,security,servicequlity,ISPname,ISPphone,ISPemail,servicetype)VALUES(\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\')",ssid,security,servicequlity,ISPname,ISPphone,ISPemail,servicetype);
+			pasDbExecSqlF(sql);
+			
+			sprintf(sql,"select count(*) from nchotmacgroup where ssid=\'%s\' ",ssid);
+			printf("sql11111=%s\n",sql);
+			//iReturn = pasDbFetchInto( psCur,UT_TYPE_LONG,  sizeof(lCount),  &lCount);
+			iReturn = pasDbOneRecord(sql, 0, UT_TYPE_LONG, 4, &lCount);
+            if(lCount>0)
+			{
+				sprintf(sql,"update nchotmacgroup set mac=\'%s\' where ssid=\'%s\'",mac,ssid);            
+				pasDbExecSqlF(sql);		
+			}else
+			{		
+				sprintf(sql," insert into nchotmacgroup(ssid,mac)VALUES(\'%s\',\'%s\')",ssid,mac);
+				pasDbExecSqlF(sql);
+			}	
+	   }
+	   printf("sql = [%s]\n", sql);
+	}
+	
+	//查询全部数据
+	sprintf(sql, "select security,authflag,nchotspotinfo.ssid,ISPname,servicetype,servicequlity,ISPphone,ISPemail,mac from nchotspotinfo,nchotmacgroup where  nchotspotinfo.ssid=nchotmacgroup.ssid  ");
+	printf("sql = %s\n", sql);
+	if(strlen(strCondition)>0){
+		sprintf(sql+ strlen(sql), " %s ", strCondition);
+	}
+	printf("174 my  sql=%s\n",sql);
+	 //执行sql语句
+	psCur = pasDbOpenSql(sql, 0);
+	printf("177 my  sql=%s\n",sql);
+	if(strlen(export2)>0)
+	{
+		printf("file export===============");
+		sprintf(caFilename, "wifi%d.csv",utStrGetId());
+        sprintf(caPath,"%s/html","/home/ncmysql/ncs");
+        sprintf(caFile,"%s/%s",caPath, caFilename);
+        fp = fopen(caFile,"w");
+        if(fp == NULL)
+        {
+          printf("fp error \n");
+          return 0;
+        }
+		else
+		{
+			fprintf(fp,"热点管理\n");
+			ncUtlPrintCsv(fp, 9,
+				UT_TYPE_STRING,"热点加密类型",
+                UT_TYPE_STRING,"是否合规",
+                UT_TYPE_STRING,"热点SSID",
+                UT_TYPE_STRING,"联系人",
+				UT_TYPE_STRING,"场所服务类型",
+				UT_TYPE_STRING,"场所经营性质",
+				UT_TYPE_STRING,"联系电话",
+				UT_TYPE_STRING,"运营机构邮箱",
+				UT_TYPE_STRING,"热点mac"
+				);
+		}		 
+	}
+	 //把数据从游标中取出,返回值是1405时，还有数据，要继续取出
+	iReturn = pasDbFetchInto(psCur, UT_TYPE_STRING,  sizeof(security)-1,      security,
+	                            UT_TYPE_STRING,  sizeof(authflag)-1,      authflag,
+	                            UT_TYPE_STRING,  sizeof(ssid)-1,          ssid,
+						        UT_TYPE_STRING, sizeof(ISPname)-1,      ISPname,
+								 UT_TYPE_STRING, sizeof(servicetype)-1,      servicetype,
+								 UT_TYPE_STRING, sizeof(servicequlity)-1,    servicequlity,
+								 UT_TYPE_STRING, sizeof(ISPphone)-1,    ISPphone,
+								 UT_TYPE_STRING, sizeof(ISPemail)-1,    ISPemail,
+								 UT_TYPE_STRING, sizeof(mac)-1,    mac
+								);
+			//		
+printf("218 my  sql=%s\n",sql);			
+	while(0 == iReturn || 1405 == iReturn)
+	{
+		iNum++;
+		if(strlen(export2)>0)
+        {
+          
+            ncUtlPrintCsv(fp,9, UT_TYPE_STRING,security,
+                                UT_TYPE_STRING,authflag,
+                                UT_TYPE_STRING,ssid,                                
+                                UT_TYPE_STRING,ISPname,
+							    UT_TYPE_STRING,servicetype,
+							    UT_TYPE_STRING,servicequlity,
+							    UT_TYPE_STRING,ISPphone,
+                                UT_TYPE_STRING,ISPemail,
+								UT_TYPE_STRING,mac
+								);
+        }
+		
+		if(iNum > 1)
+		{
+			 //当循环到第二行，增加一个逗号
+			utPltPutLoopVar(psDbHead,"dh",iNum,","); // utPltPutLoopVar输出一个循环变量的值。
+		}
+		utPltPutLoopVar(psDbHead,"security",iNum,security);
+		utPltPutLoopVar(psDbHead,"authflag",iNum,authflag);
+		utPltPutLoopVar(psDbHead,"ssid",iNum,ssid);
+		utPltPutLoopVar(psDbHead,"ISPname",iNum,ISPname);
+		utPltPutLoopVar(psDbHead,"servicetype",iNum,servicetype);
+		utPltPutLoopVar(psDbHead,"servicequlity",iNum,servicequlity);
+		utPltPutLoopVar(psDbHead,"ISPphone",iNum,ISPphone);
+		utPltPutLoopVar(psDbHead,"ISPemail",iNum,ISPemail);
+	    utPltPutLoopVar(psDbHead,"mac",iNum,mac);
+		
+		iReturn= pasDbFetchInto(psCur, UT_TYPE_STRING,  sizeof(security)-1,      security,
+	                                   UT_TYPE_STRING,  sizeof(authflag)-1,      authflag,
+	                                    UT_TYPE_STRING,  sizeof(ssid)-1,          ssid,
+						                UT_TYPE_STRING, sizeof(ISPname)-1,      ISPname,
+								        UT_TYPE_STRING, sizeof(servicetype)-1,      servicetype,
+								        UT_TYPE_STRING, sizeof(servicequlity)-1,    servicequlity,
+								        UT_TYPE_STRING, sizeof(ISPphone)-1,    ISPphone,
+								        UT_TYPE_STRING, sizeof(ISPemail)-1,    ISPemail,
+								        UT_TYPE_STRING, sizeof(mac)-1,    mac
+								);
+							
+	}
+	  //关闭游标
+	pasDbCloseCursor(psCur);
+	printf("after close cursor export2=[%s]",export2);
+	if(strlen(export2)>0)	
+	{
+        fclose(fp);
+        utPltFileDownload(iFd,"application/text",caPath,caFilename,caFilename);
+        remove(caFile);
+        utPltFreeDb(psDbHead);
+		printf("...............==============");
+        return 0;
+	}
+	 //把数据以json
+	utPltOutToHtml(iFd,psMsgHead,psDbHead,"/normally/proauth_Sysoperation.htm");
+					
+	return 0;
+}
+	
+	
+//查询布控管理数据	
+int ncsSys_controlmanage(utShmHead *psShmHead, int iFd, utMsgHead *psMsgHead)
+{   
+  int lCount=0;  
+   char caUpdate[16]="";
+  char caDel[16];
+	char caSesid[1024];
+	char sql[2024] = "";
+	char  sid[128]="";
+	char caPage[12], caLimit[16], caSort[16], caDir[16];  
+	long lCurPg, lRowNum, lStartRec;
+	char casecode[128]="";
+	char casename[128] = "";
+	char  casetype[128]="";
+	char caseclass[128]="";
+	char groupid[128]="";
+	char casedept[128]="";
+	char casedate[128]="";
+	char addby[128]="";
+	char cmemo[128]="";
+	char  lasttime[128]="";
+	char  expiretime[128]="";
+	char   flags[128]="";
+	char caKeyword[64]="";
+	char caObjids[1024];
+	unsigned long lExpiretime,lLasttime,lFlags,lCasetype,lGroupid,lCaseclass,lCasedate;
+	 //用于判断游标状态
+	 int ireturn = 0;
+	 //用于判断行数
+	 int iNum = 0; 
+	 char   caTemp_d[128]="";
+	  char   caTemp[1024]="";
+	  
+	  
+	    unsigned long lSid;
+	
+		   char wcount[128]="";
+		    char wdate[128]="";
+			 char insert[128]="";
+  char caSid[20];
+  unsigned sids[100];
+  long iReturn;
+  long i;	 
+	utMsgPrintMsg(psMsgHead);
+	pasDbCursor *psCur = NULL;
+	utPltDbHead *psDbHead = utPltInitDb();  // 初始化数据模板
+	
+	 ireturn = utMsgGetSomeNVar(psMsgHead,20,          
+   	                "del",UT_TYPE_STRING, 10,caDel,           	              
+   	                "selsid",UT_TYPE_STRING,1000,caSesid,
+					 "update",UT_TYPE_STRING,10,caUpdate,
+					 "keyword",UT_TYPE_STRING,64,caKeyword,					 
+					  "sid",UT_TYPE_STRING,64,sid,
+					  "flags",UT_TYPE_STRING,64,flags,
+					  "filed1",UT_TYPE_STRING,64,casename,
+					  "casedate",UT_TYPE_STRING,64,casedate,
+					   "filed2",UT_TYPE_STRING,64,expiretime,
+					    "groupid",UT_TYPE_STRING,64,groupid,
+						 "filed4",UT_TYPE_STRING,64,cmemo,
+						 "filed5",UT_TYPE_STRING,1000,caObjids,
+						 "filed6",UT_TYPE_STRING,10,caSid,
+						  "wcount",UT_TYPE_STRING,64,wcount,
+						   "wdate",UT_TYPE_STRING,64,wdate,
+						   "insert",UT_TYPE_STRING,64,insert,
+						    "page", UT_TYPE_STRING, 10, caPage,
+                 "limit", UT_TYPE_STRING, 10, caLimit,
+                 "sort", UT_TYPE_STRING, 15, caSort,
+                  "dir", UT_TYPE_STRING, 8,  caDir);
+   	               
+		lRowNum=atol(caLimit);
+		   lCurPg = atol(caPage);
+      if(lCurPg <= 0) lCurPg = 1;
+		  lStartRec = (lCurPg - 1) * lRowNum;    	
+			 
+		if(strlen(sid)>0){
+      	 strcpy(caTemp_d,pasCvtGBK(2,sid,caTemp,60));
+    	   strcpy(sid,caTemp_d);
+      }	
+	  if(strlen(flags)>0){
+      	 strcpy(caTemp_d,pasCvtGBK(2,flags,caTemp,60));
+    	   strcpy(flags,caTemp_d);
+      }	
+	  if(strlen(casename)>0){
+      	 strcpy(caTemp_d,pasCvtGBK(2,casename,caTemp,60));
+    	   strcpy(casename,caTemp_d);
+      }	
+	  if(strlen(casedate)>0){
+      	 strcpy(caTemp_d,pasCvtGBK(2,casedate,caTemp,60));
+    	   strcpy(casedate,caTemp_d);
+      }
+	  if(strlen(groupid)>0){
+      	 strcpy(caTemp_d,pasCvtGBK(2,groupid,caTemp,60));
+    	   strcpy(groupid,caTemp_d);
+      }	
+          if(strlen(cmemo)>0){
+      	 strcpy(caTemp_d,pasCvtGBK(2,cmemo,caTemp,60));
+    	   strcpy(cmemo,caTemp_d);
+      }	
+            if(strlen(wcount)>0){
+      	 strcpy(caTemp_d,pasCvtGBK(2,wcount,caTemp,60));
+    	   strcpy(wcount,caTemp_d);
+      }	
+              if(strlen(wdate)>0){
+      	 strcpy(caTemp_d,pasCvtGBK(2,wdate,caTemp,60));
+    	   strcpy(wdate,caTemp_d);
+      }	
+         if(strlen(expiretime)>0){
+      	 sprintf(caTemp_d,"%s 23:59:59",expiretime);
+    	   strcpy(expiretime,caTemp_d);
+      }	
+                if(strlen(insert)>0){
+      	 strcpy(caTemp_d,pasCvtGBK(2,insert,caTemp,60));
+    	   strcpy(insert,caTemp_d);
+      }		  
+					
+					
+	
+      if(strlen(caKeyword)>0){
+      	 strcpy(caTemp_d,pasCvtGBK(2,caKeyword,caTemp,60));
+    	   strcpy(caKeyword,caTemp_d);
+      }		
+	  
+	
+	 
+	  //更新
+      if(strlen(caUpdate)>0)
+      {
+      	if(strlen(caSid)>0){
+      		sprintf(sql,"update ncscaseinfo set casename='%s',cmemo='%s',lasttime=%d,expiretime=%d where sid=%s",casename,cmemo,time(0),utTimStrToLong("%Y/%m/%d %H:%M:%S", expiretime),caSid);
+      		 iReturn=pasDbExecSqlF(sql);
+      	}
+        else{
+        	sprintf(sql,"insert into ncscaseinfo (casecode,casename,casetype,caseclass,groupid,casedept,casedate,addby,cmemo,lasttime,expiretime,flags) \
+        	 values('','%s',0,0,0,'',%d,'','%s',%d,%d,1) ",
+        	 casename,time(0),cmemo,time(0),utTimStrToLong("%Y/%m/%d %H:%M:%S", expiretime));
+        	  iReturn=pasDbExecSqlF(sql);
+        	  lSid=0;
+        	  pasDbOneRecord("select max(sid) from ncscaseinfo ",0,UT_TYPE_ULONG,4,&lSid);
+        	  sprintf(caSid,"%lu",lSid);
+        	}
+        
+         printf("sql = %s\n", sql);
+         if(iReturn==0){
+ //添加布控区域
+             char caOut[200][256];
+             char caType[12],caId[20];
+                pasDbExecSqlF("delete from ncscaseobj where cid=%s ",caSid);
+              if(strstr(caObjids,"all")){
+              	pasDbExecSqlF("insert into ncscaseobj(cid,ctype,did,lasttime,flags) values(%s,0,0,%d,0) ",caSid,time(0));
+              }
+              else{
+              	     memset(caOut,0,200*256);
+              	     lCount=sepcharbydh(caObjids,caOut);
+                     for(i=0;i<lCount;i++){
+                     	utStrGetSomeWordBy(caOut[i],"_",2,UT_TYPE_STRING,3,caType,
+                     	                                  UT_TYPE_STRING,10,caId);
+                     	 printf("caType=%s,caId=%s\n",caType,caId);
+                     	 if(strlen(caId)>0){
+                     	 	printf("insert into ncscaseobj(cid,ctype,did,lasttime,flags) values(%s,%d,%s,%d,0) \n",
+                     	 	  caSid,atol(caType),caId,time(0));
+                     	 	pasDbExecSqlF("insert into ncscaseobj(cid,ctype,did,lasttime,flags) values(%s,%d,%s,%d,0) ",
+                     	 	  caSid,atol(caType),caId,time(0));
+                     }
+                   }
+              }
+         }
+      }				
+					
+		
+					
+		//删除			
+		if(strlen(caDel)>0){
+		printf("del start");
+	memset(sql, 0, sizeof(sql));	
+	   iReturn=pasDbExecSqlF("delete from ncscaseobj where cid in (%s) ",caSesid);
+	   
+	   ireturn = pasDbExecSqlF("delete from ncscaseinfo where sid in(%s)",caSesid);
+;	 
+	 printf("del sql%s",sql);
+	 printf("sql = %s", sql);
+	}			
+					
+
+//统计布控记录数
+    sprintf(sql,"select count(*) from ncscaseinfo where flags!=8 ");
+    if(strlen(caKeyword)>0){
+   	  sprintf(sql+strlen(sql)," and (casename like '%c%s%c')",'%',caKeyword,'%');
+	
+   } 
+   pasDbOneRecord(sql,0,UT_TYPE_LONG,4,&lCount);
+   
+   utPltPutVarF(psDbHead,"TotRec","%d",lCount);
+					
+	sprintf(sql,"select  sid,casecode,casename,casetype,caseclass,groupid,casedept,casedate,addby,cmemo,lasttime,expiretime,flags  from ncscaseinfo  where flags!=8");
+	 if(strlen(caKeyword)>0){
+   	  sprintf(sql+strlen(sql)," and (casename like '%c%s%c')",'%',caKeyword,'%');
+	  printf("chaxunsql%s\n",sql);
+   } 
+   sprintf(sql+strlen(sql)," order by %s %s limit %d,%d",caSort,caDir,lStartRec,lRowNum);
+	  printf("chaxunsql%s\n",sql);
+	 //执行sql语句
+	 psCur = pasDbOpenSql(sql, 0);
+	 
+	printf("sql%s\n",sql);
+	lExpiretime=0;
+	lLasttime=0;
+	lFlags=0;
+	lSid=0;
+	lCasetype=0;
+	lGroupid=0;
+	lCaseclass=0;
+	 ireturn = pasDbFetchInto(
+	                psCur,UT_TYPE_ULONG,  4,      &lSid,
+					         UT_TYPE_STRING,  sizeof(casecode)-1,      casecode,
+	                 UT_TYPE_STRING,  sizeof(casename)-1,      casename,
+	                 UT_TYPE_ULONG,  4,     &lCasetype,
+							     UT_TYPE_ULONG,  4,    &lCaseclass,
+							     UT_TYPE_ULONG, 4,  &lGroupid,
+							     UT_TYPE_STRING,  sizeof(casedept)-1,   casedept,
+								   UT_TYPE_ULONG,  4,  &lCasedate,
+								   UT_TYPE_STRING,  sizeof(addby)-1,  addby,
+								   UT_TYPE_STRING,  sizeof(cmemo)-1,  cmemo,
+								   UT_TYPE_ULONG,  4,&lLasttime,
+								   UT_TYPE_ULONG,  4,&lExpiretime,
+								   UT_TYPE_ULONG, 4,&lFlags);
+								   
+								  
+								   
+							   
+			while(0 == ireturn || 1405 == ireturn){
+				sids[iNum]=lSid;
+				iNum++;
+				 if(iNum > 1)
+			 {
+				 //当循环到第二行，增加一个逗号
+				 utPltPutLoopVar(psDbHead,"dh",iNum,","); // utPltPutLoopVar输出一个循环变量的值。
+			 }
+			 utPltPutLoopVarF(psDbHead,"sid",iNum,"%lu",lSid);	
+			 utPltPutLoopVar(psDbHead,"casecode",iNum,casecode);	
+			  utPltPutLoopVar(psDbHead,"casename",iNum,casename);
+      //         utPltPutLoopVar(psDbHead,"casetype",iNum,casetype);	
+      //          utPltPutLoopVar(psDbHead,"caseclass",iNum,caseclass);	
+     //               utPltPutLoopVar(psDbHead,"groupid",iNum,groupid);	
+       //            utPltPutLoopVar(psDbHead,"casedept",iNum,casedept);	
+			//	   utPltPutLoopVar(psDbHead,"casedate",iNum,casedate);	
+                      utPltPutLoopVar(psDbHead,"addby",iNum,addby);	
+                      utPltPutLoopVar(psDbHead,"cmemo",iNum,cmemo);	
+                      if(lLasttime>0){
+                      utPltPutLoopVar(psDbHead,"lasttime",iNum,utTimFormat("%y/%m/%d %H:%M",lLasttime));
+                    }
+                      if(lExpiretime>0){
+                       utPltPutLoopVar(psDbHead,"expiretime",iNum,utTimFormat("%Y/%m/%d",lExpiretime));
+                     }
+                       utPltPutLoopVarF(psDbHead,"flags",iNum,"%lu",lFlags);	
+  
+	lExpiretime=0;
+	lLasttime=0;
+	lFlags=0;
+	lSid=0;
+	lCasetype=0;
+	lGroupid=0;
+	lCaseclass=0;
+	 ireturn = pasDbFetchInto(
+	                psCur,UT_TYPE_ULONG,  4,      &lSid,
+					         UT_TYPE_STRING,  sizeof(casecode)-1,      casecode,
+	                 UT_TYPE_STRING,  sizeof(casename)-1,      casename,
+	                 UT_TYPE_ULONG,  4,     &lCasetype,
+							     UT_TYPE_ULONG,  4,    &lCaseclass,
+							     UT_TYPE_ULONG, 4,  &lGroupid,
+							     UT_TYPE_STRING,  sizeof(casedept)-1,   casedept,
+								   UT_TYPE_ULONG,  4,  &lCasedate,
+								   UT_TYPE_STRING,  sizeof(addby)-1,  addby,
+								   UT_TYPE_STRING,  sizeof(cmemo)-1,  cmemo,
+								   UT_TYPE_ULONG,  4,&lLasttime,
+								   UT_TYPE_ULONG,  4,&lExpiretime,
+								   UT_TYPE_ULONG, 4,&lFlags); 
+							    
+			}	
+         //关闭游标			
+       pasDbCloseCursor(psCur);		
+    char objids[1024];
+    char objname[2048];
+    unsigned long lCtype=0;
+    unsigned lDid=0;
+    long iNum2;
+    for(i=0;i<iNum;i++){
+    	//布控区域
+    	memset(objids,0,sizeof(objids));
+    	memset(objname,0,sizeof(objname));
+    	sprintf(sql,"select ctype,did from ncscaseobj where cid=%lu group by ctype,did order by ctype limit 0,100",sids[i]);
+    	printf("sql=%s\n",sql);
+    	 psCur = pasDbOpenSql(sql, 0);
+    	 if(psCur){
+    	 lCtype=0;
+    	 lDid=0;
+    	 iNum2=0;
+    	 iReturn= pasDbFetchInto(psCur,
+    	                          UT_TYPE_ULONG,  4,&lCtype,
+    	                          UT_TYPE_ULONG,4,&lDid);	                  
+					while(0 == iReturn || 1405 == iReturn){
+						if(lDid==0){
+							strcpy(objname,"全部");
+							strcpy(objids,"0_0");
+							break;
+						}
+						if(iNum2==0){
+							sprintf(objids,"%lu_%lu",lCtype,lDid);
+							if(lCtype==0){
+							    sprintf(objname,"%s",ncsUtlGetClientNameById(psShmHead,lDid,"\0"));
+						  }
+						  else if(lCtype==2){
+						  	 sprintf(objname,"%s",ncsUtlGetGroupNameById(psShmHead,lDid,"\0"));
+						  }
+						}
+						else{
+							sprintf(objids+strlen(objids),",%lu_%lu",lCtype,lDid);
+							if(lCtype==0){
+							  sprintf(objname+strlen(objname),",%s",ncsUtlGetClientNameById(psShmHead,lDid,"\0"));
+							}
+							else if(lCtype==2){
+								 sprintf(objname+strlen(objname),",%s",ncsUtlGetGroupNameById(psShmHead,lDid,"\0"));
+							}
+						}
+						iNum2++;
+						   lCtype=0;
+				    	 lDid=0;
+				    	 iReturn= pasDbFetchInto(psCur,
+				    	                          UT_TYPE_ULONG,  4,&lCtype,
+				    	                          UT_TYPE_ULONG,4,&lDid);	 
+					}	
+						pasDbCloseCursor(psCur);
+						
+						utPltPutLoopVar(psDbHead,"cobjid",i+1,objids);
+						utPltPutLoopVar(psDbHead,"cobj",i+1,objname);
+								                     
+    	}
+    }  
+      
+       
+       
+  utPltOutToHtml(iFd,psMsgHead,psDbHead,"/normally/proauth_controlmanage.htm");	   
+	return 0;												
+}	
+	
+//统计数据表 接警人员
+
+int ncsSys_stafinfo(utShmHead *psShmHead, int iFd, utMsgHead *psMsgHead)
+{
+		long  lCount;
+		char sql[1024] ="";
+		char add[30]="";
+		char del[10]="";
+		char caKeyword[64]="";
+	  
+		char  sid[1024]="";
+		char  name[128]=""; 
+		char  department[128]="";
+		char   phone[128]="";
+		char  email[128]="";
+		char   caTemp_d[128]="";
+		char  caCid[1024];
+		char   caTemp[1024];
+	    char  caPage[11]="";
+     	char   caLimit[11]="";
+		int capage=0;
+		int ilimit=0;
+        int castart = 0;
+        long iCount = 0;  		 
+		int iReturn = 0;
+		char export2[12]="";
+		 FILE *fp=NULL;
+	     char caFilename[100]="";
+		char caFile[240]="";
+	    char caPath[240]="";
+		
+		pasDbCursor *psCur = NULL;
+		utPltDbHead *psDbHead = utPltInitDb();  // 初始化数据模板
+		utMsgPrintMsg(psMsgHead);
+	 //用于判断行数
+	 int iNum = 0; 
+	 printf("ncsSys_stafinfo  start..............");
+		iReturn = utMsgGetSomeNVar(psMsgHead,11,
+           "add", UT_TYPE_STRING, 30, add,
+           "name", UT_TYPE_STRING, 128, name,
+           "department", UT_TYPE_STRING, 30, department,
+           "phone", UT_TYPE_STRING, 60, phone,
+		   "email", UT_TYPE_STRING, 60, email,
+		   "del",UT_TYPE_STRING,30,del,
+		   "sid",UT_TYPE_STRING,1024,sid,
+		   "keyword",UT_TYPE_STRING,64,caKeyword,
+		   "limit", UT_TYPE_STRING, 10, caLimit,
+           "page", UT_TYPE_STRING, 10, caPage,
+		   "export2",UT_TYPE_STRING,10,export2  
+           );
+		  
+		  printf("export2=[%s]\n",export2);
+	 ilimit=atoi(caLimit);
+	 printf("111 ilimit=[%d]\n",ilimit);
+	  capage=atoi(caPage);
+	   printf("capage=[%d]\n",capage);
+	 if(strlen(caKeyword)>0){
+      	 strcpy(caTemp_d,pasCvtGBK(2,caKeyword,caTemp,60));
+    	   strcpy(caKeyword,caTemp_d);
+      }			   
+	if(strlen(add)>0)
+	{
+		if(strlen(name)>0)
+		{
+			strcpy(caTemp_d,  pasCvtGBK(2,name,caTemp,129)); 
+			strcpy(name,caTemp_d);
+		}
+		if(strlen(department)>0)
+		{
+			strcpy(caTemp_d,  pasCvtGBK(2,department,caTemp,129)); 
+			strcpy(department,caTemp_d);
+		}
+		if(strlen(phone)>0)
+		{
+			strcpy(caTemp_d,  pasCvtGBK(2,phone,caTemp,129)); 
+			strcpy(phone,caTemp_d);
+		}	  
+		 lCount=0;
+	  
+		memset(sql, 0, sizeof(sql));
+	    sprintf(sql,"select count(*) from stafinfo where sid=\'%s\' ",sid);	 
+      		
+			
+			iReturn = pasDbOneRecord(sql, 0, UT_TYPE_LONG, 4, &lCount);
+             printf("lCount============ =========== %d\n",lCount);	
+		if(lCount>0)
+		 {
+			memset(sql, 0, sizeof(sql));
+			sprintf(sql,"update stafinfo   set name=\'%s\',  department=\'%s\', phone=\'%s\', email=\'%s\' where sid=\'%s\'",name,department,phone,email,sid);	  
+			printf("update sql =========== %s\n", sql);	
+			pasDbExecSqlF(sql);   
+		 }
+		else
+		{
+			memset(sql, 0, sizeof(sql));
+			sprintf(sql," insert into stafinfo(name,department,phone,email)VALUE('%s','%s','%s','%s')",name,department,phone,email);		
+             printf("insert  sql ====== %s\n", sql);	
+             pasDbExecSqlF(sql);
+        }	
+		printf("iReturn=%d\n",iReturn); 
+	}
+	//删除
+	printf("del=%s\n",del);
+	printf("del.........\n");
+	printf("sid=%s\n",sid);
+    if(strlen(del)>0){
+		printf("del start");
+	memset(sql, 0, sizeof(sql));	
+	 sprintf(sql, "delete from stafinfo where sid in (%s)", sid);
+     pasDbExecSqlF(sql);	 
+	 printf("del sql%s",sql);
+	 printf("sql = %s", sql);
+	}
+	//导出，创建打开文件
+	
+	 if(strlen(export2)>0)
+		{
+			printf("file export===============\n");
+			sprintf(caFilename, "wifi%d.csv",utStrGetId());
+			sprintf(caPath,"%s/html","/home/ncmysql/ncs");
+			sprintf(caFile,"%s/%s",caPath, caFilename);
+			//打开文件
+			fp = fopen(caFile,"w");
+			//创建表头
+			if(fp == NULL)
+			{
+				printf("fp error \n");
+				return 0;
+			}
+			else
+			{
+				fprintf(fp,"接警人管理\n");
+				ncUtlPrintCsv(fp, 5,
+				UT_TYPE_STRING,"姓名",
+				UT_TYPE_STRING,"所属部门",
+				UT_TYPE_STRING,"联系电话",
+				UT_TYPE_STRING,"联系邮箱",
+                UT_TYPE_STRING,"sid"				
+					);
+			}		 
+		}	
+	
+	//查询记录总数
+	 if(1)
+    {
+			memset(sql, 0, sizeof(sql));
+			sprintf(sql, "select count(sid) from  stafinfo where 1=1 ");
+		
+		 if(strlen(caKeyword)>0)
+		{
+   	        sprintf(sql+strlen(sql)," and (name like '%c%s%c') or (department like '%c%s%c') or (phone like '%c%s%c')",'%',caKeyword,'%','%',caKeyword,'%','%',caKeyword,'%');
+	        printf("chaxunsql%s\n",sql);
+            printf("sql = %s\n", sql);
+        } 
+		 iReturn = pasDbOneRecord(sql, 0, UT_TYPE_LONG, 4, &iCount);
+           
+            utPltPutVarF(psDbHead, "TotRec", "%d", iCount);
+			
+    }
+	
+	    sprintf(sql,"select name,department,phone,email,sid from  stafinfo where 1=1");
+    if(strlen(caKeyword)>0)
+	{
+   	  sprintf(sql+strlen(sql)," and (name like '%c%s%c') or (department like '%c%s%c') or (phone like '%c%s%c')",'%',caKeyword,'%','%',caKeyword,'%','%',caKeyword,'%');
+	} 
+    //分页功能的实现
+		castart = (capage - 1) * ilimit;		
+       // ilimit = ilimit < (iCount - castart) ?  (capage * ilimit) : iCount;	
+        sprintf(sql + strlen(sql), " order by  sid  desc limit %d,%d", castart,ilimit);
+
+    printf("000000000sql=[%s]",sql);		
+	//执行sql语句
+	 psCur = pasDbOpenSql(sql, 0);
+	 
+	 
+	 iReturn = pasDbFetchInto(
+	                psCur, UT_TYPE_STRING,  sizeof(name)-1,      name,
+                           UT_TYPE_STRING,  sizeof(department)-1,  department,
+                           UT_TYPE_STRING,  sizeof(phone)-1,      phone,
+                           UT_TYPE_STRING,  sizeof(email)-1,      email,
+                           UT_TYPE_STRING,  sizeof(sid)-1,     	sid 							   
+	                                                );
+													
+	printf("iReturn=[%d]\n",iReturn);											
+	while(0 == iReturn || 1405 == iReturn)
+	{
+		printf("export2=[%s]\n",export2);
+				iNum++;
+		printf("iNum=[%d]\n",iNum);		
+		//把需要导出的数据放入Csv文件中
+		if(strlen(export2)>0)
+        {
+			printf("input data into sssss");
+            ncUtlPrintCsv(fp,5,UT_TYPE_STRING,name,
+                                UT_TYPE_STRING,department,
+                                UT_TYPE_STRING,phone,                                
+                                UT_TYPE_STRING,email,
+							    UT_TYPE_STRING,sid
+								);
+        }	
+		
+		if(iNum > 1)
+			{
+				 //当循环到第二行，增加一个逗号
+				 utPltPutLoopVar(psDbHead,"dh",iNum,","); // utPltPutLoopVar输出一个循环变量的值。
+			}
+			 utPltPutLoopVar(psDbHead,"name",iNum,name);
+             utPltPutLoopVar(psDbHead,"department",iNum,department);
+             utPltPutLoopVar(psDbHead,"phone",iNum,phone);
+             utPltPutLoopVar(psDbHead,"email",iNum,email);
+             utPltPutLoopVar(psDbHead,"sid",iNum,sid);	
+				 
+			iReturn = pasDbFetchInto(
+	                            psCur,  UT_TYPE_STRING,  sizeof(name)-1,      name,
+                                        UT_TYPE_STRING,  sizeof(department)-1,      department,
+                                        UT_TYPE_STRING,  sizeof(phone)-1,      phone,
+                                        UT_TYPE_STRING,  sizeof(email)-1,      email,	
+                                        UT_TYPE_STRING,  sizeof(sid)-1,     sid 										
+	                                                );	
+												
+    }	
+		printf("export2export2======[%s]\n",export2);
+		//关闭游标
+		pasDbCloseCursor(psCur);
+		printf("after close cursor export2=[%s]\n",export2);	 
+		if(strlen(export2)>0)	
+	{
+        fclose(fp);
+        utPltFileDownload(iFd,"application/text",caPath,caFilename,caFilename);
+        remove(caFile);
+        utPltFreeDb(psDbHead);
+        return 0;
+	}
+	 
+  utPltOutToHtml(iFd,psMsgHead,psDbHead,"/normally/proauth_stafinfo.htm");	   
+        return 0;
+  }
+
+
+//查询终端信息分组
+int   ncsSys_terminal(utShmHead *psShmHead, int iFd, utMsgHead *psMsgHead)
+{   
+		char sql[1024] = "";
+		char keyword[128]="";  
+		char mac[128]="";
+		char caGroupid[128]="";
+		char del[128]="";
+		char add[128]="";
+		char caUpdate[16]="";
+		char caTemp[256] = "";
+		char caTemp_d[256] = "";
+		char strCondition[1024] = "";
+		char strCondition_2[1024] = "";
+		char groupname[128] = "";
+		char groupdesc[128] = "";
+		char caMAC[128]="";
+		long groupid=0;
+		int  iReturn=0;
+		char  caPage[11]="";
+     	char   caLimit[11]="";
+		int capage=0;
+		int ilimit=0;
+        int castart = 0;
+		long lCount=0;
+        long iCount = 0;	
+		char Icid[64] ="";
+		int icid=0;//分组id
+		int iNum = 0;
+        char  caSid[16]="";	
+        int sid=0;		
+	
+	pasDbCursor   *psCur = NULL;
+	utPltDbHead *psDbHead = utPltInitDb();  // 初始化数据模板
+	utMsgPrintMsg(psMsgHead);
+	 
+	
+	 //一点要对应的个数
+	iReturn = utMsgGetSomeNVar(psMsgHead,12,
+	                            "groupid", UT_TYPE_STRING, 30, caGroupid,
+								"del", UT_TYPE_STRING, 30, del,
+								"add", UT_TYPE_STRING, 30, add,
+								"keyword",UT_TYPE_STRING, 100,keyword,
+								"groupname",UT_TYPE_STRING, 100,groupname,
+								"groupdesc",UT_TYPE_STRING, 100,groupdesc,
+								"limit", UT_TYPE_STRING, 10, caLimit,
+								"page", UT_TYPE_STRING, 10, caPage,
+								"cid",UT_TYPE_STRING, 60,Icid,
+								"sid",UT_TYPE_STRING, 15,caSid,
+								"update",UT_TYPE_STRING, 15,caUpdate,
+								"mac",UT_TYPE_STRING,60,caMAC
+								
+								 );
+								 
+	      if(strlen(caLimit)>0){
+			  	ilimit=atoi(caLimit);
+		  }
+		   if(strlen(caPage)>0){
+			  	capage=atoi(caPage);
+		  }
+		   if(strlen(Icid)>0){
+			  icid=atoi(Icid);
+		  }
+		   if(strlen(caSid)>0){
+			 sid=atoi(caSid);
+		  }
+		   if(strlen(caGroupid)>0){
+			  	groupid=atoi(caGroupid);
+		  }
+		//用id对表格进行选择
+		if(strlen(Icid)>0)
+		{
+			printf("870icid=[%d]\n",icid);
+			sprintf(strCondition+strlen(strCondition)," and nctermmacgroupinfo.groupid  =%d ",icid);
+	    }
+		
+		
+		if(strlen(caUpdate)>0)
+		{   
+	       
+			if(strlen(caMAC)>0)
+			{				
+			strcpy(caTemp_d,  pasCvtGBK(2,caMAC,caTemp,129)); 
+			strcpy(caMAC,caTemp_d);	
+			}
+			 printf("882caUpdate=%s\n",caUpdate);
+			lCount=0;
+			memset(sql, 0, sizeof(sql));
+			sprintf(sql,"select count(*) from nctermmacgroupinfo where sid=%d ",sid);			
+			iReturn = pasDbOneRecord(sql, 0, UT_TYPE_LONG, 4, &lCount);
+			 printf("886caUpdate=%s\n",caUpdate);
+				printf("885lCount============ =========== %d\n",lCount);	
+				
+			if(lCount>0)
+			{
+				memset(sql, 0, sizeof(sql));
+				sprintf(sql,"update nctermmacgroupinfo   set mac=\'%s\',groupid=%d  where sid=%d",caMAC,groupid,sid);	  
+				printf("update sql =========== %s\n", sql);	
+				
+				pasDbExecSqlF(sql);   
+			}
+			else
+			{
+				memset(sql, 0, sizeof(sql));
+				sprintf(sql," insert into nctermmacgroupinfo(mac,groupid)VALUES('%s','%d')",caMAC,groupid);		
+				printf("insert  sql ====== %s\n", sql);	
+				pasDbExecSqlF(sql);
+			}	
+			sprintf(strCondition+strlen(strCondition)," and nctermmacgroupinfo.groupid  =%d ",groupid);
+			printf("iReturn=%d\n",iReturn); 
+	
+		}
+		
+		
+		
+		
+		
+	
+		if(strlen(add)>0)
+		{
+			if(strlen(groupname)>0)
+			{
+				strcpy(caTemp_d,  pasCvtGBK(2,groupname,caTemp,129)); 
+				strcpy(groupname,caTemp_d);
+			}
+			if(strlen(groupdesc)>0)
+			{
+				strcpy(caTemp_d,  pasCvtGBK(2,groupdesc,caTemp,129)); 
+				strcpy(groupdesc,caTemp_d);
+			}
+
+			memset(sql, 0, sizeof(sql));
+			sprintf(sql," insert into nctermmacgroup(groupname,groupdesc)VALUES('%s','%s')",groupname,groupdesc);		
+			iReturn = pasDbExecSqlF(sql);		
+			
+		}
+	
+
+		if(strlen(del)>0)
+		{
+			memset(sql, 0, sizeof(sql));	
+			sprintf(sql, "delete from nctermmacgroupinfo  where sid in (%s)", caSid);
+			pasDbExecSqlF(sql);
+		}
+		//执行条件查询
+		if(strlen(keyword)>0)
+		{
+			strcpy(caTemp_d,  pasCvtGBK(2,keyword,caTemp,129)); 
+			strcpy(keyword,caTemp_d);
+			sprintf(strCondition+strlen(strCondition)," and groupname like '%c%s%c' ",'%',keyword,'%');
+			sprintf(strCondition+strlen(strCondition)," and groupdesc like '%c%s%c' ",'%',keyword,'%');
+			sprintf(strCondition+strlen(strCondition)," and mac like '%c%s%c' ",'%',keyword,'%');
+		}
+	
+		//查询记录总数
+		if(1)
+		{
+			memset(sql, 0, sizeof(sql));
+			sprintf(sql, "select count(nctermmacgroup.groupid) from  nctermmacgroup,nctermmacgroupinfo   WHERE  nctermmacgroup.groupid=nctermmacgroupinfo.groupid ");
+			
+			printf("sql==[%s]\n",sql);
+			sprintf(sql+ strlen(sql), " %s ", strCondition);
+			iReturn = pasDbOneRecord(sql, 0, UT_TYPE_LONG, 4, &iCount);
+			utPltPutVarF(psDbHead, "TotRec", "%d", iCount);
+			memset(sql,0,sizeof(sql));
+		}
+		
+		
+			sprintf(sql,"SELECT     sid,groupname,groupdesc,mac,nctermmacgroup.groupid  FROM   nctermmacgroup,nctermmacgroupinfo   WHERE  nctermmacgroup.groupid=nctermmacgroupinfo.groupid  ");
+	
+            printf("974sql==[%s]\n",sql);
+		if(strlen(strCondition)>0)
+			{
+			
+			sprintf(sql+ strlen(sql), " %s ", strCondition);
+			
+			}
+	
+		//分页功能的实现
+		castart = (capage - 1) * ilimit;
+       // ilimit = ilimit < (iCount - castart) ?  (capage * ilimit) : iCount;
+        sprintf(sql + strlen(sql)," order by nctermmacgroup.groupid  desc limit %d,%d", castart,ilimit);
+		//执行sql语句
+		psCur = pasDbOpenSql(sql, 0);
+		iReturn = pasDbFetchInto(
+	                    psCur, 	UT_TYPE_LONG,  4,      &sid,
+						        UT_TYPE_STRING,  sizeof(groupname)-1,      groupname,
+								UT_TYPE_STRING,  sizeof(groupdesc)-1,    groupdesc,
+								UT_TYPE_STRING,  sizeof(mac)-1,      mac,
+								UT_TYPE_LONG,  		4,     			&groupid 							   
+	                                                );	
+            printf("sql==[%s]\n",sql);													
+		while(0 == iReturn || 1405 == iReturn)
+		{
+			iNum++;
+			printf("1034iNum=%d",iNum);
+			if(iNum > 1)
+			{
+				 //当循环到第二行，增加一个逗号
+				utPltPutLoopVar(psDbHead,"dh",iNum,","); // utPltPutLoopVar输出一个循环变量的值。
+			}
+			utPltPutLoopVarF(psDbHead,"sid",iNum,"%ld",sid);
+			utPltPutLoopVar(psDbHead,"groupname",iNum,groupname);
+			utPltPutLoopVar(psDbHead,"groupdesc",iNum,groupdesc);
+			utPltPutLoopVar(psDbHead,"mac",iNum,mac);
+			utPltPutLoopVarF(psDbHead,"groupid",iNum,"%ld",groupid);
+            	
+			iReturn = pasDbFetchInto(
+	                            psCur,   UT_TYPE_LONG,  4,      &sid,
+								         UT_TYPE_STRING,  sizeof(groupname)-1,      groupname,
+                                        UT_TYPE_STRING,  sizeof(groupdesc)-1,      groupdesc,
+                                        UT_TYPE_STRING,  sizeof(mac)-1,      		mac,
+										UT_TYPE_LONG,  4, &groupid 													
+	                                                );	  
+		}       
+		pasDbCloseCursor(psCur);		
+		utPltOutToHtml(iFd,psMsgHead,psDbHead,"/normally/proauth_terminal.htm");
+	
+		return 0;	
+}
+
+
+
+//关键字组树
+int ncsSys_terminal_group(utShmHead *psShmHead, int iFd,utMsgHead *psMsgHead)
+{
+    pasDbCursor *psCur;
+    char sql[1024];
+   	char caTemp[1024];
+   	char sqlbuf[1024];
+   	long lFlag,lKid;
+   	int  iNum;
+    char *pHash;
+    typedef struct ncsKeywordStat_s {
+            long id;
+            long sum;                //总记录数
+            long csum;               //已处理记录数
+   } ncsKeywordStat;
+   ncsKeywordStat *psData;
+    utPltDbHead *psDbHead;
+   	int iReturn,i;   
+    long lCount;
+    char caName[64];
+	 char groupdesc[64];
+    long lId,lSid;
+    char caPlate[128];
+    char caPid[16];
+    char caPid1[16];
+    long lPid;
+	int isid=0;
+    long lSumRec=0;
+    char caDel[16],caUpdate[16],caSelsid[1024],caKeyname[64],caSid[16],caTemp_d[64];
+#ifdef LDEBUG1 
+    utMsgPrintMsg(psMsgHead);
+#endif  	
+    utMsgPrintMsg(psMsgHead);
+	  iReturn = utMsgGetSomeNVar(psMsgHead,9,
+			             "del",           UT_TYPE_STRING,8,caDel,
+			             "keyname",       UT_TYPE_STRING,30,caKeyname,
+			             "selsid",UT_TYPE_STRING,1000,caSelsid,
+			             "update",UT_TYPE_STRING,10,caUpdate,
+			             "sid",UT_TYPE_STRING,10,caSid,
+			             "del",UT_TYPE_STRING,10,caDel,
+			             "plate",UT_TYPE_STRING,100,caPlate,
+			             "pid",  UT_TYPE_STRING,10,caPid,
+			             "node",UT_TYPE_STRING,10,caPid1
+						 );
+			             
+    	pHash=(unsigned char *)pasLHashInit(1000,1000,sizeof(struct ncsKeywordStat_s),0,4); 
+    	if(pHash==NULL)
+		{
+    		return -1;
+    	}
+    if(strlen(caPlate)>0)
+	{
+
+			sprintf(sqlbuf,"select count(*),flag,kid from ncskeywordlog group by kid,flag ");
+
+			psCur=pasDbOpenSql(sqlbuf,0);
+			if(psCur==NULL)
+			{
+				free(pHash);
+				return 0;
+			}
+			lCount=0;
+			lFlag=0;
+			lKid=0;
+				iReturn=pasDbFetchInto(psCur,UT_TYPE_LONG,4,&lCount,
+									UT_TYPE_LONG,4,&lFlag,
+									UT_TYPE_LONG,4,&lKid);
+                       
+		while(iReturn==0||iReturn==1405)
+		{
+
+			psData = (struct ncsKeywordStat_s *)pasLHashLookA(pHash,&lKid);  
+			if(psData)
+			{
+				if(lFlag>0)
+				{
+					psData->csum=psData->csum+lCount;
+				}
+					psData->sum=psData->sum+lCount;
+			}
+     	  
+     	  
+			lCount=0;
+			lFlag=0;
+			lKid=0;
+    	    iReturn=pasDbFetchInto(psCur,UT_TYPE_LONG,4,&lCount,
+                                 UT_TYPE_LONG,4,&lFlag,
+                                 UT_TYPE_LONG,4,&lKid);
+		}
+				pasDbCloseCursor(psCur); 
+    	
+    	
+    }
+    else{
+    	
+			sprintf(sqlbuf,"select count(*),tid from ncskeycont,ncskeyindex where tid=id and pid=%d group by tid ",atol(caPid1));
+ //   		sprintf(sqlbuf,"select pid from ncskeyindex limit 0,999 ");
+
+			psCur=pasDbOpenSql(sqlbuf,0);
+    	if(psCur==NULL)
+		{
+    		free(pHash);
+    		return 0;
+    	}
+
+    	  lKid=0;
+    	  lCount=0;
+    	  iReturn=pasDbFetchInto(psCur,
+    	                       UT_TYPE_LONG,4,&lCount,
+    	                       UT_TYPE_LONG,4,&lKid);
+
+                       
+			     while(iReturn==0||iReturn==1405)
+			     {
+			
+			     	  psData = (struct ncsKeywordStat_s *)pasLHashLookA(pHash,&lKid);  
+			     	 	if(psData){
+			     	 		psData->sum=psData->sum+lCount;
+			     	 		lSumRec=lSumRec+lCount;
+			     	 		}     	  
+			    	  lKid=0;
+			    	  lCount=0;
+			    	  iReturn=pasDbFetchInto(psCur,
+			    	                       UT_TYPE_LONG,4,&lCount,
+			    	                       UT_TYPE_LONG,4,&lKid);
+			     }
+			     pasDbCloseCursor(psCur); 
+    	
+    	
+    	
+    }
+	  if(strlen(caKeyname)>0)
+	  {
+	  	strcpy(caTemp_d,pasCvtGBK(2,caKeyname,caTemp,63));
+	  	strcpy(caKeyname,caTemp_d);
+	  } 
+ 
+ 
+ 	  if(strcmp(caUpdate,"update")==0)
+	  {
+			if(strlen(caSid)==0)
+			{
+				sprintf(caTemp,"select count(*) from ncskeyindex where name='%s' ",caKeyname);
+				lCount=0;
+				pasDbOneRecord(caTemp,0,UT_TYPE_LONG,4,&lCount);
+				if(lCount==0)
+				{
+					lSid = ncsUtlGenId(psShmHead);
+					pasDbExecSqlF("insert into ncskeyindex(id,name,lasttime,flags,pid) values (%lu,'%s',%lu,8,%d)",
+                                             lSid,caKeyname,time(0),atol(caPid));
+				}
+			}
+			else
+			{
+				sprintf(caTemp,"select count(*) from ncskeyindex where name='%s' and id!=%s ",caKeyname,caSid);
+				lCount=0;
+				pasDbOneRecord(caTemp,0,UT_TYPE_LONG,4,&lCount);
+				if(lCount==0)
+				{
+	  					  			pasDbExecSqlF("update ncskeyindex set name='%s',lasttime=%d,pid=%d where id=%s ",caKeyname,time(0),atol(caPid),caSid);
+				}
+			}
+	  	
+		}
+		if(strcmp(caDel,"del")==0&&strlen(caSelsid)>0)
+		{
+			
+			sprintf(sql,"delete from nctermmacgroup where groupid in (%s)",caSelsid);
+	        iReturn=pasDbExecSqlF(sql);
+		    printf("  delete sql=%s",sql);
+   	             if(iReturn==0)
+				 {
+					sprintf(sql,"delete from nctermmacgroupinfo where groupid in (%s)",caSelsid);
+	            iReturn=pasDbExecSqlF(sql);
+				}
+
+	  	
+		}
+ 
+ 
+ 
+ 
+ 
+		iNum = 0;
+		
+		psDbHead = utPltInitDb();
+
+    
+        sprintf(sql,"SELECT   groupname,nctermmacgroup.groupid,groupdesc  FROM   nctermmacgroup  WHERE  1=1 ");
+		psCur = pasDbOpenSqlF(sql);
+
+		  //	 psCur = pasDbOpenSqlF("select name,id,pid from ncskeyindex where pid=%d order by name limit 0,1000",atol(caPid1));
+		  	 
+ //    psCur = pasDbOpenSqlF("select name,id,pid from ncskeyindex  order by name limit 0,1000");
+		  	 
+		    if(psCur == NULL)
+				{
+					utWebDispMsg(iFd,psMsgHead,"ncs/ncmsg_back.htm","部门查询","数据库出错");
+			//    		  free(pHash);
+					return 0;
+				}
+		   
+			memset(caName,0,sizeof(caName));
+			lId=0;
+			lPid=0;
+			iReturn = pasDbFetchInto(psCur,UT_TYPE_STRING,31,caName,
+		                                   UT_TYPE_LONG,4,&lId,
+										   UT_TYPE_STRING,63,groupdesc
+		                                  // UT_TYPE_LONG,4,&lPid
+										   );
+		                                
+		
+		 
+		    while(iReturn == 0||iReturn==1405)
+				{
+		        
+					if(iNum>0)
+					{
+						utPltPutLoopVar(psDbHead,"dh",iNum+1,",");
+					}
+					iNum++;
+					utPltSetCvtHtml(1);  
+					if(strlen(caPlate)>0)
+					{
+						psData = (struct ncsKeywordStat_s *)pasLHashLook(pHash,&lId);  
+						if(psData)
+						{
+							utPltPutLoopVarF(psDbHead,"groupname",iNum,"%s_(%d/%d)",caName,psData->csum,psData->sum);
+					    }
+					    else
+						{
+					    	utPltPutLoopVarF(psDbHead,"groupname",iNum,"%s_(%d/%d)",caName,0,0);
+					    }
+					}
+		          else
+				  {
+		          	
+		          		psData = (struct ncsKeywordStat_s *)pasLHashLook(pHash,&lId);  
+					     	  if(psData)
+								{
+									utPltPutLoopVarF(psDbHead,"groupname",iNum,"%s_(%d)",caName,psData->sum);
+							    }
+									else
+								{
+							    	utPltPutLoopVarF(psDbHead,"groupname",iNum,"%s_(%d)",caName,0);
+							    }
+		          	
+		             
+		          }
+		         utPltSetCvtHtml(0);  
+		      //   utPltPutLoopVarF(psDbHead,"pid",iNum,"%ld",lPid);
+		         utPltPutLoopVarF(psDbHead,"groupid",   iNum,"%ld",lId);
+		         
+		           psData = (struct stData *)pasLHashLook(pHash,&lId);       
+		         
+  //       	if(psData){
+  //       		printf("id=%d,lcount=%d\n",psData->id,psData->count);
+ //         	utPltPutLoopVar(psDbHead,"leaf", iNum,"false");
+ //        		utPltPutLoopVar(psDbHead,"cls", iNum,"folder");
+//         	}
+ //         else{
+          	utPltPutLoopVar(psDbHead,"leaf", iNum,"true");
+         		utPltPutLoopVar(psDbHead,"cls", iNum,"file");
+          	
+
+ //         }
+		         	
+	    		 memset(caName,0,sizeof(caName));
+	     		 lId=0;
+			    // lPid=0;
+				   iReturn = pasDbFetchInto(psCur,UT_TYPE_STRING,31,caName,
+				                                   UT_TYPE_LONG,4,&lId,
+												    UT_TYPE_STRING,63,groupdesc
+				                                 //  UT_TYPE_LONG,4,&lPid
+												   );
+		    }
+		    pasDbCloseCursor(psCur);
+		
+    
+    	
+    	free(pHash);
+// utPltShowDb(psDbHead);
+      if(strlen(caPlate)>0)
+      {
+      	
+      	utPltOutToHtml(iFd,psMsgHead,psDbHead,caPlate);
+      	
+      }
+      else{
+      	utPltPutVarF(psDbHead,"sum","%d",lSumRec);
+    	  utPltOutToHtml(iFd,psMsgHead,psDbHead,"normally/ncs_keyword_checktree.htm");
+    	}
+    
+
+    return 0;
+}
+
+
+
+
+
+//
+int procapAlarmSetFun(utShmHead *psShmHead){
+	pasSetTcpFunName("ncsSys_terminal_group_1",ncsSys_terminal_group,0);
+	pasSetTcpFunName("ncsSys_terminal_group",ncsSys_terminal_group,0);
+	pasSetTcpFunName("ncsSysoperation",ncsSysoperation,0);
+	pasSetTcpFunName("ncsSys_controlmanage",ncsSys_controlmanage,0);
+	pasSetTcpFunName("ncsSys_stafinfo",ncsSys_stafinfo,0);
+	pasSetTcpFunName("ncsSys_terminal",ncsSys_terminal,0);
+}
+
+
+
+
+
+
+
+
+

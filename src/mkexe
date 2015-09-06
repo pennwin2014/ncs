@@ -1,0 +1,12 @@
+killall -9 $1
+killall -9 $1
+gcc -g  -DPAS_MYSQL -o $1  -I$PAS_HOME/include  \
+ -I$MYSQL_HOME/include \
+ -I/usr/include/libxml2/ -L/usr/lib/ -I/usr/include/ \
+ $1.c ncs.a tnef.a ncsweb.a ncrtf.a libcifsauth.a libwbscallback.a libuniversalchardet.a $PAS_HOME/lib/maillib.a  $PAS_HOME/lib/pasmysql.a $PAS_HOME/lib/libpasv40_x32.a \
+ `xml2-config --cflags --libs` -lpthread -lxml2  -lrt \
+-DWITH_OPENSSL -lssl -lcrypto \
+ $PAS_HOME/lib/pasmysql.a \
+ $MYSQL_HOME/lib/libmysqlclient.a libcurl.a libz.a libpdf.a libgd.a /usr/lib/libpng12.so.0 libftp.a libgnokii.a libpcsclite.a libglib-2.0.a -liconv -lpthread libhtml2text.a -lstdc++ \
+  -lz -lm -lpthread -lresolv /usr/lib/libscws.so.0.1.0 -lfreetype -lstdc++
+cp $1 ../bin/$1

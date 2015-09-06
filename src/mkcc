@@ -1,0 +1,4 @@
+rm $1.o
+gcc   -c -g  -DPAS_MYSQL -I/usr/local/include/libxml2 -I$PAS_HOME/include -I$MYSQL_HOME/include -I/usr/include/libxml2/ -I../include -I/usr/local/scws/include \
+  -o $1.o  $1.c 
+ar rv ncsweb.a  $1.o

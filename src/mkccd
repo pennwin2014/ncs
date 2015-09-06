@@ -1,0 +1,4 @@
+rm $1.o
+gcc   -c -g  -DLDEBUG1 -DPAS_MYSQL -I$PAS_HOME/include -I$MYSQL_HOME/include \
+  -o $1.o  $1.c 
+ar rv ncs.a  $1.o
