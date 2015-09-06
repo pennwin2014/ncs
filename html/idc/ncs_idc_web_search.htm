@@ -1,0 +1,177 @@
+<html>
+<head>
+<title>IDC Test</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<style>
+.conts{visibility:hidden}
+
+</style>
+<script language="javascript">
+var ll=0;
+var yy=1;
+
+</script>
+<script LANGUAGE="JavaScript">
+//this is the tab switching function
+
+function init()
+{
+//	form1.idcdomain.value="";
+
+		form1.idc_type.value=24;
+//	form1.sid.value="";
+//	form1.idcname.value="";
+//	form1.password.value="";
+//	form1.email.value="";
+//	form1.ip.value="";
+//	form1.startdate.value="";
+//	form1.enddate.value="";
+
+
+
+//	form1.keyword.value="";
+//	form1.idcindex.value=0;
+//	form1.num.value=10;
+//	form1.idcid.value="";
+//	form1.city.value="";
+	//form1.FunName.value="/pronline/Msg?FunName@ncs_idc_net_show&domain@"+form1.idcdomain.value+"&id@"+form1.sid.value+"&name@"+form1.idcname.value+"&password@"+form1.password.value+"&email@"+form1.email.value+"&ip@"+form1.ip.value+"&startdate@"+form1.startdate.value+"&enddate@"+form1.enddate.value+"&index@"+form1.idcindex.value+"&num@"+form1.num.value+"&city@"+form1.city.value;
+	//alert(form1.FunName.value);
+	document.getElementById("list").src="/pronline/Msg?FunName@ncsIdcSearch&domain@"+form1.idcdomain.value+"&keyword@"+form1.keyword.value+"&index@"+form1.idcindex.value+"&num@"+form1.num.value+"&city@"+form1.city.value+"&idcid="+form1.idcid.value+"&type="+form1.idc_type.value;
+	//document.getElementById("list").src="/pronline/Msg?FunName@ncs_idc_webpage_search&domain@"+form1.idcdomain.value+"&id@"+form1.sid.value+"&name@"+form1.idcname.value+"&password@"+form1.password.value+"&email@"+form1.email.value+"&ip@"+form1.ip.value+"&startdate@"+form1.startdate.value+"&enddate@"+form1.enddate.value+"&index@"+form1.idcindex.value+"&num@"+form1.num.value+"&city@"+form1.city.value+"&idcid="+form1.idcid.value;
+	//pronline/Msg?FunName@ncs_idc_net_show&domain@&id@&name@&password@&email@&ip@&startdate@&enddate@&index@0&num@10&city@
+	//form1.submit();
+}
+
+function idc_del()
+{
+	form1.idc_type.value=24;
+	
+	if(form1.idcdomain.value==''&&form1.keyword.value==''){
+			alert("域名和关键字不能同时为空");
+			return;	
+	}	
+
+	document.getElementById("list").src="/pronline/Msg?FunName@ncsIdcSearch&delflag@1&domain@"+form1.idcdomain.value+"&keyword@"+form1.keyword.value+"&index@"+form1.idcindex.value+"&num@"+form1.num.value+"&city@"+form1.city.value+"&idcid="+form1.idcid.value+"&type="+form1.idc_type.value;
+	
+}
+
+
+var dfd1="0"
+
+</script>
+<style>
+.conts  {visibility:hidden}
+
+table {  font-size: 9pt}
+ .style2 {
+	font-size: 20px;
+	font-weight: bold;
+	font-style: italic;
+	color: #0000ff;
+}
+</style>
+
+<style type="text/css">
+
+<!--
+body {  font-size: 9pt}
+.tas {  border-color: black #FFFFFF; border-style: solid; border-top-width: 0px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 1px}
+table {  font-size: 9pt}
+.gray1 { filter:gray }
+.ttbbd {  cursor: default}
+.nobordertext{border-width:1px;border-color:blue;background-color:#d0e1fa;width:138;}
+
+-->
+</style>
+<link REL=stylesheet HREF="/css/listdatetable.css" TYPE="text/css">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<body bgcolor="#8cb4e8" leftmargin="1" topmargin="0" onload="init()"  style="overflow:hidden" >
+<form name="form1" id="form1" method="post" action="/pronline/Msg" target="main">
+<input type="hidden" name="FunName" value="">
+<input type="hidden" name="did" value="">
+<input type="hidden" name="uid" value="">
+
+<input type="hidden" name="idc_type" value="">
+<!--
+<input type="hidden" name="idcdomain" value="">
+<input type="hidden" name="sid" value="">
+<input type="hidden" name="idcname" value="">
+<input type="hidden" name="password" value="">
+<input type="hidden" name="email" value="">
+<input type="hidden" name="ip" value="">
+<input type="hidden" name="startdate" value="">
+<input type="hidden" name="enddate" value="">
+
+<input type="hidden" name="idcindex" value="">
+<input type="hidden" name="num" value="">
+<input type="hidden" name="idcid" value="">
+<input type="hidden" name="keyword" value="">
+<input type="hidden" name="city" value="">
+-->
+    <table border="0"  bordercolorlight=#aaaaaa bordercolordark=#ffffff  CELLPADDING="0" CELLSPACING="0" bgcolor=#8cb4e8 STYLE="width:100%; height:100%">
+  
+  
+  	<tr>
+	      <td height="505"  valign="top" width="60%">
+	       <iframe  height="505" name="list" id="list" width="100%"  border="0" frameborder="0" src="" scrolling="yes"> </iframe>      
+	      </td>
+	      
+	      	      
+      </tr>
+  
+  
+    <tr >
+   			<td>
+   			<table width="100%" class="bordnr">
+   				 <tr><td>&nbsp;</td></tr>
+   <tr>
+   			<td>
+   				<table>
+   					<tr>
+   						<td >&nbsp;&nbsp;&nbsp;&nbsp;域名：<input name="idcdomain" size="12" type="text" /></td>
+   						<td>keyword：<input name="keyword" size="12" type="text" /></td>
+   				<!--		<td>&nbsp;&nbsp;类型：<input name="idc_type" size="12" type="text" /></td> -->
+   						<td>&nbsp;&nbsp;区域：<input name="city" size="12" type="text" /></td>
+   						<td><input type="button" class="an3"  name="search" value="搜 索"  onclick="init();"  /></td>
+   						
+   					</tr>	
+   				</table>
+   			</td>
+   		</tr>
+   		
+   		<tr>
+   			<td>
+   				<table>
+   					<tr>
+   						<td>起始记录：<input name="idcindex" size="12" type="text" /></td>
+   						<td>&nbsp;记录数：<input name="num" size="12" type="text" /></td>
+   						<td>机房Id：<input name="idcid" size="12" type="text" /></td>
+   						<td><input type="button" class="an3"  name="idel" value="删 除"  onclick="idc_del();"  /></td>
+   						
+   					</tr>	
+   				</table>
+   			</td>
+   		</tr> 
+  
+   <tr><td>&nbsp;</td></tr>
+</table>
+   	</td>
+   	</tr>
+</form>	
+	
+		
+
+
+
+</table>
+
+	
+
+
+</body>
+</html>

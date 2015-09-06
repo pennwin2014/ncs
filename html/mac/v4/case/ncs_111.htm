@@ -1,0 +1,357 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>终端信息分组</title>
+    <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" />
+
+    <script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+
+    <style type="text/css">
+        .add {
+            background-image:url(/newver/resources/themes/images/share/add.gif) !important;
+        }
+        .remove {
+            background-image:url(/newver/resources/themes/images/share/delete.gif) !important;
+        }
+        .accept {
+            background-image:url(/newver/resources/themes/images/share/accept.png) !important;
+        }
+        .exp {
+            background-image:url(/newver/resources/themes/images/share/application_go.png) !important;
+        }
+    </style>
+    
+ <script type="text/javascript">     
+
+    
+    
+    Ext.Loader.setConfig({
+    enabled: true
+});
+Ext.Loader.setPath('Ext.ux', '/newver/ux/');
+
+Ext.require([
+    'Ext.grid.*',
+    'Ext.data.*',
+    'Ext.panel.*',
+    'Ext.tree.*',
+    'Ext.window.*',
+     'Ext.util.*',
+    'Ext.tip.*',
+    'Ext.tab.*',
+    'Ext.layout.container.Border'
+]);
+
+
+
+Ext.onReady(function(){
+    Ext.define('Book',{
+        extend: 'Ext.data.Model',
+        fields: [
+            // set up the fields mapping into the xml doc
+            // The first needs mapping, the others are very basic
+            {name: 'Author', mapping: 'ItemAttributes > Author'},
+            'Title',
+            'Manufacturer',
+            'ProductGroup',
+            'DetailPageURL'
+        ]
+    });
+
+
+
+    Ext.define('treedata', {
+        extend: 'Ext.data.Model',
+        fields: [
+            {name: 'id',     type: 'string'},
+            {name: 'text',type:'string'},
+            {name: 'pid', type: 'string'},
+            {name: 'groupdesc', type: 'string'} 			
+        ]
+    });
+
+    var store_tree = Ext.create('Ext.data.TreeStore', {
+    	  model: 'treedata',
+        proxy: {
+            type: 'ajax',
+			url: '/pronline/Msg?FunName@ncsSys_terminal_group'
+            //url: '/pronline/Msg?FunName@ncsTreeKeyword_v4'
+        },
+        root: {
+            text:'终端分组',
+            id: '',
+			groupdesc:'',
+            pid:'',
+//            checked:false,
+            expanded: true
+        },
+        folderSort: true,
+        sorters: [{
+            property: 'text',
+            direction: 'ASC'
+        }]
+    });
+    
+     Ext.define('State', {
+        extend: 'Ext.data.Model',
+        fields: [
+            {type: 'string', name: 'groupid'},
+            {type: 'string', name: 'groupname'}
+        ]
+    });
+      var store_pid = Ext.create('Ext.data.Store', {
+        model: 'State',
+        remoteSort: true,
+         proxy: {
+            type: 'ajax',
+            url: '/pronline/Msg?FunName@ncsWebKeywordComp',
+            reader: {
+                type:'json',
+                root: 'corpclassdata'              
+            },         
+            simpleSortMode: true
+        }
+    });
+    store_pid.load();  
+
+
+
+    var tree = Ext.create('Ext.tree.Panel', {
+        store: store_tree,
+
+ //       renderTo: 'tree-div',
+        height: 950,
+        width: 230,
+       region: 'west',
+        containerScroll: true,
+        useArrows: false,       
+          dockedItems: [
+          {
+            xtype: 'toolbar',
+            items: [{
+             text: '添加分组',
+                iconCls:'add',
+                 handler: function(){
+                 opaddedit('');
+   
+                }               
+            },
+            {
+            	text:'删除',
+            
+            	iconCls:'remove',
+            	handler:function(){
+            		var records=tree.getView().getChecked();
+            		var temps='';
+            		var iNum='';
+           		Ext.Array.each(records,function(rec){
+           			     if(iNum==0){
+                    temps=rec.get('id');
+                    }
+                    else{
+                    temps=temps+','+rec.get('id');
+                    }
+                    iNum++;
+           		  }
+           		  )
+           		  
+				
+           		  if(temps==''){
+           		  	alert('请选择删除的分组名');
+           		  	return;
+           		  }
+           		  if(confirm('您真的要删除此分组吗？')){ 
+                    // alert(temps);				  
+           		  	store_tree.load({params: {del: "del",selsid:temps}});
+					eval("keydet").reflash();
+           		  }
+           		  
+            	}
+            	
+            }]
+        }]
+
+    });
+    
+
+    
+    function opaddedit(rcd)
+    {  	
+    	        var preCombo = Ext.create('Ext.form.field.ComboBox', 
+				{
+       								   fieldLabel: '分组',
+								        valueField:'groupid',								       
+								        displayField: 'groupname',
+								        name : 'pid',      
+								        value:'0',
+								        allowBlank: true,
+    						            store: store_pid,
+								        queryMode: 'local',
+								        typeAhead: true
+                });
+    	
+    	
+    	             var winadd;
+                   var addform=Ext.create('Ext.FormPanel', {         
+						        frame: true,
+			              fieldDefaults: {
+					          	labelWidth: 85  ,                      
+			              	    xtype: 'textfield' 
+					        	},
+						        bodyPadding: 10,
+                    items: [                  
+								      //preCombo,
+								   
+                    {                        
+                        fieldLabel:'终端分组名称',
+                        xtype: 'textfield',
+                        name:'text'
+                    },{                        
+                        fieldLabel:'分组描述',
+                        xtype: 'textfield',
+                        name:'groupdesc'
+                    },
+                    {
+                    	 xtype: 'hidden', 
+						name: 'id'
+											
+                    },
+                    {
+                        xtype: 'button',
+                        anchor: 'right',
+                         style : 'margin-left:80px',
+                        text:'保&nbsp;&nbsp;存',
+                         handler: function(){
+                         	var keyname=addform.getForm().getValues().text;
+                         	var sid=addform.getForm().getValues().id;
+                         	var groupdesc=addform.getForm().getValues().groupdesc;
+                         if(keyname==''){
+                         	alert('请填写分组名');
+                        }
+                        else{   
+                       //alert(groupdesc);				
+                         store_tree.load({params: {update:"update",keyname:keyname,sid:sid,groupdesc:groupdesc}});
+                           Ext.getCmp('winadd').close();
+                        }
+                          keydet.reflash();
+                         }
+                       
+                    },
+                    {
+                    	xtype: 'button',
+                    	 style : 'margin-left:10px',
+                    	text:'关&nbsp;&nbsp;闭',
+                    	handler: function(){
+          //          		alert(addform.getForm().getValues().id);
+                    		Ext.getCmp('winadd').close();
+                    	}
+                    }
+                    
+                    
+                    ]
+         });
+                                    
+                   addform.loadRecord(rcd);
+                   winadd=new Ext.Window ({
+                             id:"winadd",
+                             title:"添加/修改分组",
+                             x:100,
+                             y:30,
+                             width:300,
+                             height:160,
+                             bodyPadding: 10,
+                             modal:true,
+                             resizable:true,
+                             closable : true,
+                //             draggable:true,
+                          
+                             items: addform
+                                                
+                  }
+        );  
+
+           winadd.show();
+    	
+    	
+    }
+//给数增加点击和双击事件
+    tree.on({  
+   //单击是对应的表格改变   
+	       'itemclick' : function(view, rcd, item, idx, event, eOpts) {   
+	       	var active = tabs.getActiveTab();
+	       	if(rcd.get('text')=='关键字组'){
+	       		active.tab.setText('关键字查询');
+	       	}
+	      else{
+          active.tab.setText('组成员:'+rcd.get('text'));
+        }
+          keydet.cid=rcd.get('id');
+          keydet.cname=rcd.get('text');
+           keydet.clearkeyword(); 
+          keydet.cxxm();
+//      keydet.getCmp('addKey').setDisabled(0);
+          keydet.reflash();
+          
+     //    alert(keydet.cid);
+               
+	       	  },       
+	     //目录树双击击事件          
+	       'itemdblclick' : function(view, rcd, item, idx, event, eOpts) {
+	        opaddedit(rcd);
+	         },              
+	         scope : this        });
+
+
+    var tabs = Ext.createWidget('tabpanel', {
+       
+        height:950,
+        region: 'center',
+        margins: '0 0 0 5',
+        forceFit: true,
+        scrollOffset: 0,
+        activeTab: 0,
+        
+         defaults :{
+ 
+            bodyPadding: 0
+ 
+        },
+ 
+        items: [{
+            title: '组成员',              
+            html: '<iframe  id="keydet" name="keydet" src="/mac/v4/case/ncs_keyword_det.htm" scrolling="no" width=100% height=950  FrameBorder=0 ></iframe>'
+ 
+            
+ 
+        }]
+ 
+    });
+    Ext.create('Ext.Panel', {
+        renderTo: 'editor-grid',
+        frame: true,
+ //       title: 'Book List',
+        forceFit: true,
+  //      width: 999,
+        height: 950,
+        layout: 'border',
+        margins: '12 15 10 15',
+
+        items: [tabs,tree]
+    });
+    
+
+           //store_tree.load();
+    //store.load();
+});
+</script>
+    
+    
+</head>
+<body>
+		<form name="form1" id="form1" action="/pronline/Msg">
+			<input type="hidden" name="groupid" value="">
+		<input type="hidden" name="did" value="">
+	</form>
+    <div id="editor-grid"></div>
+</body>
+</html>

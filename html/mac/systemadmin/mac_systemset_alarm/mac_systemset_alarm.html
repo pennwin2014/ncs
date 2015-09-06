@@ -1,0 +1,87 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+  <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css">
+  <script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+	<script type="text/javascript" src="/newver/resources/locale/ext-lang-zh_CN.js"></script>
+
+  <script type="text/javascript" src="app.js"></script>
+  <script type="text/javascript" src="/js/treecomp_corp.js"></script>
+  
+    <style type="text/css">
+        .icon-grid {
+            background-image:url(/newver/resources/themes/images/share/grid.png) !important;
+        }
+		.affirm{
+            background-image:url(/newver/resources/themes/images/share/queren.png) !important;
+        }
+        .add {
+            background-image:url(/newver/resources/themes/images/share/add.gif) !important;
+        }
+        .option {
+            background-image:url(/newver/resources/themes/images/share/plugin.gif) !important;
+        }
+        .remove {
+            background-image:url(/newver/resources/themes/images/share/delete.gif) !important;
+        }
+        .exp {
+            background-image:url(/newver/resources/themes/images/share/application_go.png) !important;
+        }
+        .accept {
+            background-image:url(/newver/resources/themes/images/share/accept.png) !important;
+        }
+		.all_accept{
+            background-image:url(/newver/resources/themes/images/share/all_accept.png) !important;
+        }
+     .x-tab-default-top button, .x-tab-default-top.x-tab-inner {
+		  height: 16px !important;
+		  line-height: 16px;
+	    }
+
+    </style>
+<style type="text/css">   
+   .x-selectable, .x-selectable * {   
+    -moz-user-select: text!important;   
+    -khtml-user-select: text!important;   
+}   
+</style>
+  
+  
+  <script>
+  
+    function SetPage(){
+    	proauthApset.controller.Procy.SetPage(1);
+    }
+	function status_change(sid)
+	{
+		if(confirm('是否确认?')){
+			var store= proauthApset.controller.Procy.getStore();
+			store.load({params:{status:1,sid:sid}});
+			reflash();
+		}	 
+	}
+    function reflash(){
+	/*
+       proauthApset.controller.Procy.loadProcyListStore();
+       proauthApset.controller.Procy.setTitle(parent.dxtitle);
+	   */
+	   var TTstore= proauthApset.controller.Procy.getStore();
+	   var TTtime_flag=document.getElementById("form1").time_flag.value;
+	    var TTAlarm_reason=document.getElementById("form1").Alarm_reason.value;
+		 var TTisAlarm=document.getElementById("form1").isAlarm.value;
+		 var TTkeyword=document.getElementById("form1").keyword.value;
+		 //alert(time_flag+Alarm_reason+isAlarm);
+		TTstore.load({params:{time_flag:TTtime_flag,Alarm_reason:TTAlarm_reason,isAlarm:TTisAlarm,keyword:TTkeyword}});
+    }
+  </script>
+</head>
+<body>
+<form name="form1" id="form1" action="/pronline/Msg">
+<input type="hidden" name="FunName" value="ncsSysystem_alarm">
+		<input type="hidden" name="time_flag" value="">
+		<input type="hidden" name="Alarm_reason" value="">
+		<input type="hidden" name="isAlarm" value="">
+		<input type="hidden" name="keyword" value="">
+</form>
+</body>
+</html>

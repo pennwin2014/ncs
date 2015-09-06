@@ -1,0 +1,772 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>单位组管理</title>
+    <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" />
+    <script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+    <style type="text/css">
+        .add 
+        {
+            background-image:url(/newver/resources/themes/images/share/add.gif) !important;
+        }
+        .remove 
+        {
+            background-image:url(/newver/resources/themes/images/share/delete.gif) !important;
+        }
+    </style>
+ <script type="text/javascript">     
+    	Ext.Loader.setConfig({enabled: true});
+	Ext.Loader.setPath('Ext.ux', '/newver/ux/');
+	Ext.require([
+    	'Ext.grid.*',
+    	'Ext.data.*',
+    	'Ext.util.*',
+    	'Ext.state.*',
+    	'Ext.form.*',
+    	'Ext.ux.CheckColumn',
+    	'Ext.tree.*',
+    	'Ext.tip.*',
+    	'Ext.*'
+	]);
+
+	var store;
+	var preid="";
+ 	function reflash()
+ 	{
+ 		var gid=document.getElementById("form1").groupid.value;
+ 		store.load({params: {groupid: gid}});
+	}
+
+	function clicknode(id)
+	{
+	}
+
+	Ext.onReady(function(){
+
+Ext.define('TreeCombox', {  
+    extend: 'Ext.form.field.Picker',  
+    xtype: 'treecombox',  
+    triggerCls: Ext.baseCSSPrefix + 'form-arrow-trigger',  
+    config: {  
+        displayField: null,  
+        columns: null,  
+        rootVisible: false,  
+        selectOnTab: true,  
+        firstSelected: false,  
+        maxPickerWidth: 479,  
+        maxPickerHeight: 360,  
+        minPickerHeight: 100  
+    },  
+    editable: false,  
+    initComponent: function() {  
+        var me = this;  
+        me.callParent(arguments);  
+        this.addEvents('select');  
+        me.store.on('load', me.onLoad, me);  
+          
+    },  
+    createPicker: function() {  
+        var me = this,  
+            picker = Ext.create('Ext.tree.Panel', {  
+                store: me.store,  
+                floating: true,  
+                hidden: true,  
+                width: me.maxPickerWidth,  
+                displayField: me.displayField,  
+                columns: me.columns,  
+                maxHeight: me.maxTreeHeight,  
+                shadow: false,  
+                rootVisible: me.rootVisible,  
+                manageHeight: false,  
+                listeners: {  
+                    itemclick: Ext.bind(me.onItemClick, me)  
+                },  
+                viewConfig: {  
+                    listeners: {  
+                        render: function(view) {  
+                            view.getEl().on('keypress', me.onPickerKeypress, me);  
+                        }  
+                    }  
+                }  
+            }),  
+            view = picker.getView();  
+  
+        view.on('render', me.setPickerViewStyles, me);  
+        if (Ext.isIE9 && Ext.isStrict) {  
+            view.on('highlightitem', me.repaintPickerView, me);  
+            view.on('unhighlightitem', me.repaintPickerView, me);  
+            view.on('afteritemexpand', me.repaintPickerView, me);  
+            view.on('afteritemcollapse', me.repaintPickerView, me);  
+        }  
+        return picker;  
+    },  
+    setPickerViewStyles: function(view) {  
+        view.getEl().setStyle({  
+            'min-height': this.minPickerHeight + 'px',  
+            'max-height': this.maxPickerHeight + 'px'  
+        });  
+    },  
+    repaintPickerView: function() {  
+        var style = this.picker.getView().getEl().dom.style;  
+        style.display = style.display;  
+    },  
+    alignPicker: function() {  
+        var me = this,  
+            picker;  
+  
+        if (me.isExpanded) {  
+            picker = me.getPicker();  
+            if (me.matchFieldWidth) {  
+                picker.setWidth(this.picker.getWidth());  
+            }  
+            if (picker.isFloating()) {  
+                me.doAlign();  
+            }  
+        }  
+    },  
+    onItemClick: function(view, record, node, rowIndex, e) {  
+        this.selectItem(record);  
+    },  
+    onPickerKeypress: function(e, el) {  
+        var key = e.getKey();  
+  
+        if(key === e.ENTER || (key === e.TAB && this.selectOnTab)) {  
+            this.selectItem(this.picker.getSelectionModel().getSelection()[0]);  
+        }  
+    },  
+    selectItem: function(record) {  
+        var me = this;  
+        me.setValue(record.get(this.valueField || 'id'));  
+        me.picker.hide();  
+        me.inputEl.focus();  
+        me.fireEvent('select', me, record)  
+    },  
+    onExpand: function() {  
+        var me = this,  
+            picker = me.picker,  
+            store = picker.store,  
+            value = me.value;  
+        if(value) {  
+            var node = store.getNodeById(value);  
+            if(node)  
+                picker.selectPath(node.getPath());  
+        } else {  
+            var hasOwnProp = me.store.hasOwnProperty('getRootNode');  
+            if(hasOwnProp)  
+                picker.getSelectionModel().select(store.getRootNode());  
+        }  
+  
+        Ext.defer(function() {  
+            picker.getView().focus();  
+        }, 1);  
+    },  
+    setValue: function(value) {  
+        var me = this,record;  
+        me.value = value;  
+        if (me.store.loading) {  
+            return me;  
+        }  
+        try{  
+            //var hasOwnProp = me.store.hasOwnProperty('getRootNode');  
+            //record = value ? me.store.getNodeById(value) : (hasOwnProp ? me.store.getRootNode() : null);  
+            //me.setRawValue(record ? record.get(this.displayField) : '');  
+            var i = value.indexOf(">");
+            var j = value.indexOf("</");
+            if(i != -1 && j != -1)
+            {
+            		me.setRawValue(value.substring(i+1,j));
+            }
+            else 
+            {
+            		me.setRawValue(value);
+            }
+        }catch(e){  
+            me.setRawValue('');  
+        }  
+  
+        return me;  
+    },  
+    getValue: function() {  
+        return this.value;  
+    },  
+    onLoad: function(store,node,records) {  
+        var value = this.value;  
+        if (value) {  
+            this.setValue(value);  
+        }else{  
+            if(this.firstSelected){  
+                if(records && records.length > 0){  
+                    var record = records[0];  
+                    this.setValue(record.get(this.valueField));  
+                }  
+            }  
+        }  
+    },  
+    getSubmitData: function() {  
+        var me = this,  
+            data = null;  
+        if (!me.disabled && me.submitValue) {  
+            data = {};  
+            data[me.getName()] = '' + me.getValue();  
+        }  
+        return data;  
+    },  
+    onTriggerClick: function() {  
+        var me = this;  
+        //me.store.load();  
+        if (!me.readOnly && !me.disabled) {  
+            if (me.isExpanded) {  
+                me.collapse();  
+            } else {  
+                me.expand();  
+            }  
+            me.inputEl.focus();  
+        }  
+    }  
+});  
+
+ 
+Ext.define('Ext.ux.grid.plugin.RowEditing', {   
+   extend: 'Ext.grid.plugin.RowEditing',   
+   alias: 'plugin.ux.rowediting',    
+      
+   /**  
+    * 是否添加记录在当前位置<br/>  
+    * whether add record at current rowIndex.<br/>  
+    * see {@link #cfg-addPosition}  
+    * @cfg {Boolean}  
+    */  
+   addInPlace: false,   
+      
+   addPosition: 0,   
+      
+   /**  
+    * 是否点击触发事件,0代表不触发,1代表单击,2代表双击,默认为双击.<br/>  
+    * The number of clicks on a grid required to display the editor (disable:0,click:1,dblclick:2)  
+    * @cfg {Number}  
+    */  
+   clicksToEdit:2,   
+      
+   /**  
+    * 是否在取消编辑的时候自动删除添加的记录  
+    * if true, auto remove phantom record on cancel,default is true.  
+    * @cfg {Boolean}  
+    */  
+   autoRecoverOnCancel: true,   
+      
+   /**  
+    * adding flag  
+    * @private  
+    * @type Boolean  
+    */  
+   adding: false,   
+      
+   autoCancel:true,   
+      
+   /**  
+    * when add record, hide error tooltip for the first time  
+    * @private  
+    * @type Boolean  
+    */  
+   hideTooltipOnAdd: true,   
+      
+   /**  
+    * register canceledit event && relay canceledit event to grid  
+    * @param {Ext.grid.Panel} grid  
+    * @override  
+    * @private  
+    */  
+   init:function(grid){   
+       var me = this;   
+       /**  
+        * 取消编辑事件.<br/>  
+        * Fires canceledit event.And will be relayEvents to Grid.<br/>  
+        * @see {@link Ext.ux.grid.RowActions#event-beforeaction} <br/>  
+        * @event canceledit  
+        * @param {Object} context  
+        */  
+       me.addEvents('canceledit');   
+       me.callParent(arguments);   
+       grid.addEvents('canceledit');   
+       grid.relayEvents(me, ['canceledit']);   
+   },   
+      
+   /**  
+    * 提供默认的Editor配置  
+    *      @example  
+    *      {header:'手机',dataIndex:'phone',fieldType:'numberfield',field:{allowBlank:true}}  
+    * provide default field config  
+    * @param {String} fieldType 可选值:numberfield,checkboxfield,passwordField  
+    * @return {Object}   
+    * @protected  
+    */  
+   getFieldCfg: function(fieldType){   
+        switch(fieldType){   
+            case 'passwordField':   
+                return {   
+                    xtype: 'textfield',   
+                    inputType: 'password',   
+                    allowBlank:false  
+                }   
+            case 'numberfield':   
+                return {   
+                    xtype: 'numberfield',   
+                    hideTrigger: true,   
+                    keyNavEnabled: false,   
+                    mouseWheelEnabled: false,   
+                    allowBlank:false  
+                }   
+                   
+            case 'checkboxfield':   
+                return {   
+                    xtype: 'checkboxfield',   
+                    inputValue: 'true',   
+                    uncheckedValue: 'false'  
+                }   
+            }   
+    },   
+       
+    /**  
+     * Help to config field,just giving a fieldType and field as additional cfg.  
+     * see {@link #getFieldCfg}  
+     * @private  
+     * @override  
+     */  
+    getEditor: function() {   
+        var me = this;   
+  
+        if (!me.editor) {   
+            Ext.each(me.grid.headerCt.getGridColumns(),function(item,index,allItems){   
+                if(item.fieldType){   
+                    item.field = Ext.applyIf(item.field||{},this.getFieldCfg(item.fieldType))   
+                }   
+            },this)   
+            // keep a reference for custom editor..   
+            me.editor = me.initEditor();   
+        }   
+        me.editor.editingPlugin = me   
+        return me.editor;   
+    },   
+       
+    /**  
+     * if clicksToEdit===0 then mun the click/dblclick event  
+     * @private  
+     * @override  
+     */  
+    initEditTriggers: function(){   
+        var me = this    
+        var clickEvent = me.clicksToEdit === 1 ? 'click' : 'dblclick'  
+        me.callParent(arguments);    
+        if(me.clicksToEdit === 0){   
+            me.mun(me.view, 'cell' + clickEvent, me.startEditByClick, me);    
+        }   
+    },   
+       
+    /**  
+     * 添加记录  
+     * add a record and start edit it (will not sync store)  
+     * @param {Model/Object} data Data to initialize the Model's fields with <br/>  
+     * @param {Object} config see {@link #cfg-addPosition}.   
+     */  
+    startAdd: function(data,config){   
+        var me = this;   
+        var cfg = Ext.apply({   
+            addInPlace: this.addInPlace,   
+            addPosition: this.addPosition,   
+            colIndex: 0   
+        },config)   
+           
+        //find the position   
+        var position;   
+        if(cfg.addInPlace){   
+            var selected = me.grid.getSelectionModel().getSelection()   
+            if(selected && selected.length>0){   
+                position = me.grid.store.indexOf(selected[0])    
+                console.log('a',position)   
+                position += (cfg.addPosition<=0) ? 0: 1   
+            }else{   
+                position = 0   
+            }   
+        }else{   
+            position = (cfg.addPosition==-1 ? me.grid.store.getCount() : cfg.addPosition) || 0   
+        }   
+           
+        var record = data.isModel ? data : me.grid.store.model.create(data);   
+        var autoSync = me.grid.store.autoSync;   
+        me.grid.store.autoSync = false;   
+        me.grid.store.insert(position, record);   
+        me.grid.store.autoSync = autoSync;   
+          
+        me.adding = true  
+        me.startEdit(position,cfg.colIndex);   
+           
+        //since autoCancel:true dont work for me   
+        if(me.hideTooltipOnAdd && me.getEditor().hideToolTip){   
+            me.getEditor().hideToolTip()   
+        }   
+    },   
+       
+    /**  
+     * 编辑之前,自动取消编辑  
+     * Modify: if is editing, cancel first.  
+     * @private  
+     * @override  
+     */  
+    startEdit: function(record, columnHeader) {   
+        var me = this;   
+        if(me.editing){   
+            me.cancelEdit();    
+        }  
+  
+        me.callParent(arguments);   
+	var oObj =  Ext.getCmp('pid');
+	//alert(record.get('pid'));
+        //Ext.getCmp('pid').setValue(record.get('pid')); 
+    },   
+       
+    /**  
+     * 修改adding的状态值  
+     * Modify: set adding=false  
+     * @private  
+     * @override  
+     */  
+    completeEdit: function() {   
+        var me = this;   
+        if (me.editing && me.validateEdit()) {   
+            me.editing = false;   
+            me.fireEvent('edit', me.context);   
+        }   
+        me.adding = false 
+
+        var gname=me.context.record.data.groupname;
+        
+        var gcode=me.context.record.data.groupcode;
+        var pid=me.context.record.data.pname;
+        var gid=me.context.record.data.groupid;
+       var gid2=document.getElementById("form1").groupid.value;
+       preid=pid;
+ //   alert(gname);
+
+  //    alert(gcode);
+        if(gname==''||gname=='请输入组名'){
+        	alert('单位组名不能为空');
+        	reflash();
+        	return ;
+        }
+
+  //      alert(me.context.record.data.groupname);
+  
+      store.load({params: {groupid2: gid,groupid:gid2,pid:pid,groupname:gname,groupcode:gcode,update:'update'}});
+  
+  //      reflash();
+        
+         
+    },   
+       
+    /**  
+     * 取消编辑  
+     * 1.fireEvent 'canceledit'  
+     * 2.when autoRecoverOnCancel is true, if record is phantom then remove it  
+     * @private  
+     * @override  
+     */  
+    cancelEdit: function(){
+    
+        var me = this; 
+        if (me.editing) {   
+            me.getEditor().cancelEdit();   
+            me.editing = false;   
+            me.fireEvent('canceledit', me.context);    
+            if (me.autoRecoverOnCancel){ 
+     var temp=me.context.record.data.groupname;  
+                if((me.adding)||(temp=='请输入组名')||(temp=='')){   
+                    me.context.record.store.remove(me.context.record);   
+                    me.adding = false  
+                }else{   
+                    //不需要reject,因为Editor没有更改record.   
+                    //me.context.record.reject()   
+                }   
+            }   
+        }  
+
+
+         
+    }   
+})   
+  
+//ext-lang-zh_CN   
+if (Ext.grid.RowEditor) {   
+    Ext.apply(Ext.grid.RowEditor.prototype, {   
+        saveBtnText: '保存',   
+        cancelBtnText: '取消',   
+        errorsText: '错误信息',   
+        dirtyText: '已修改,你需要提交或取消变更'  
+    });   
+}  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   Ext.define('EimData', {
+        extend: 'Ext.data.Model',
+        fields: [
+            'groupname', 'pname', 'groupid', 'groupcode','pid','count'
+        ],
+        idProperty: 'groupid'
+    });
+
+        store = Ext.create('Ext.data.Store', {
+        pageSize: 225,
+        model: 'EimData',
+        remoteSort: true,
+        proxy: {
+            type: 'ajax',
+            url: '/pronline/Msg?FunName@ncsWebClientClassList_v4',
+            reader: {
+                type:'json',
+                root: 'eimdata',
+                totalProperty: 'totalCount'
+            },         
+            simpleSortMode: true
+        },
+        sorters: [{
+            property: 'pid',
+            direction: 'DESC'
+        }]
+    });
+    store.load();
+
+	/*
+        store2 = Ext.create('Ext.data.Store', {
+        pageSize: 225,
+        model: 'EimData',
+        remoteSort: true,
+        autoLoad:true,
+        proxy: {
+            type: 'ajax',
+            url: '/pronline/Msg?FunName@ncsWebClientClassList_v4',
+            reader: {
+                type:'json',
+                root: 'eimdata',
+                totalProperty: 'totalCount'
+            },         
+            simpleSortMode: true
+        },
+        sorters: [{
+            property: 'pid',
+            direction: 'DESC'
+        }],
+        listeners: {
+            load: function() {
+   // 	        var combo = Ext.getCmp('pid');
+    	     
+  //              combo.setValue(combo.getValue());
+            }
+        }
+    });
+    */
+ //   store.load();
+
+
+  
+    var rowEditing = Ext.create('Ext.ux.grid.plugin.RowEditing', {
+    	      pluginId:'rowEditing', 
+            saveBtnText: "保存", 
+            cancelBtnText: "取消", 
+            autoRecoverOnCancel:true,
+            autoCancel: true
+ //       clicksToMoveEditor: 1,
+ //       autoCancel: false
+    });
+
+    var sm = Ext.create('Ext.selection.CheckboxModel',{
+        listeners: {
+            selectionchange: function(sm, selections) {
+           
+  //          grid.down('#removeButton').setDisabled(selections.length == 0);
+                
+            }
+        }
+    
+    });
+
+    // create the grid and specify what field you want
+    // to use for the editor at each column.
+      var aaa=screen.width;
+      aaa=aaa-265;
+    
+    var grid = Ext.create('Ext.grid.Panel', {
+        store: store,
+        selModel: sm,
+        viewConfig: {
+        preserveScrollOnRefresh: true
+    },
+        columns: [{
+            header: '上一级组名',
+  //          id: 'pid',
+            dataIndex: 'pname',
+            sortable: false,
+            flex: 1,
+           editor: {
+           	/*
+          		xtype: 'combo',
+          		id: 'pid',          
+           		store:store2,
+           		displayField: 'groupname',
+           		valueField:'groupid',
+           		name:'pname',
+           		value:'',
+            		queryMode: 'local',
+			valueField: 'groupid',				    				    
+           		allowBlank:true
+           	*/
+           			id: 'pid',   
+           			name: 'pname',  
+				fieldLabel: '',  
+				xtype: 'treecombox', 
+				width:480,
+				value:'',
+				valueField: 'text',  
+				displayField: 'text',  
+				store: Ext.create('Ext.data.TreeStore', 
+				{   
+						fields: ['text'],
+						autoLoad : true,
+						proxy: 
+						{   
+							type: 'ajax',   
+							url: '/pronline/Msg?FunName@ncsTreeGroup_v4'  
+						}  
+				})
+           	}
+        }, {
+            header: '组名',
+            dataIndex: 'groupname',
+            flex: 1,
+           sortable: false,
+            editor: {
+            	   listeners: {
+			          'focus':function(){
+
+			          	 if(this.value=='请输入组名'){
+			                this.setValue('');
+			               }
+			            }
+			        },
+                allowBlank: true
+//                vtype: 'textfield'
+            }
+        }, {
+
+            header: '区域代码',
+            dataIndex: 'groupcode',
+            width: 90,
+            sortable: false,
+            editor: {
+   //             xtype: 'textfield',
+
+                allowBlank: true
+    
+            }
+        },{
+        	  header: '单位数量',
+            dataIndex: 'count',
+            sortable: false,
+             align: 'right',
+            width: 90
+        }],
+        renderTo: 'editor-grid',
+        width: aaa,
+        height: 980,
+        title: '单位组管理',
+        frame: true,
+        tbar: [{
+            text: '添加单位组',
+            iconCls: 'add',
+            handler : function() {
+                rowEditing.cancelEdit();
+
+                // Create a model instance
+                
+                var r = Ext.create('EimData', {
+   //             	  groupid:this.value,
+   //            	  pname:this.value,
+  
+                    groupname: '请输入组名',
+                    groupcode: this.value
+                    
+                });
+                if(preid!=''){
+                	r.data.pid=preid;
+                }
+              else{
+                r.data.pid=document.getElementById("form1").groupid.value;
+              }
+
+                store.insert(0, r);
+ //               rowEditing.startAdd(0,0);
+           
+              rowEditing.startEdit(0, 0);
+            }
+        }, {
+            itemId: 'removeEmployee',
+            text: '删除单位组',
+            iconCls: 'remove',
+
+                handler:function(){
+             
+							   if(confirm('您真的要执行删除操作吗？')){                  
+                 var selsid;  
+                 var rows=sm.getSelection();
+                   selsid='';
+                  for(var i=0;i<rows.length;i++){
+                  	if(i==0){
+                  	 selsid=rows[i].getId();
+                  	}
+                  	else{
+                       selsid=selsid+","+rows[i].getId();
+                    }
+                   
+                   }
+  //               alert(selsid);
+                      store.load({params: {del: "del",selsid:selsid}});
+                  
+                
+              }
+                
+            },
+            disabled: true
+        }],
+        plugins: [rowEditing],
+        listeners: {
+            'selectionchange': function(view, records) {
+                grid.down('#removeEmployee').setDisabled(!records.length);
+            }
+        }
+    });
+});
+</script>
+    
+    
+</head>
+<body>
+		<form name="form1" id="form1" action="/pronline/Msg">
+			<input type="hidden" name="groupid" value="">
+		<input type="hidden" name="did" value="">
+	</form>
+    <div id="editor-grid"></div>
+</body>
+</html>

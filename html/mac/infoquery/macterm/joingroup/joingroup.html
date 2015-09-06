@@ -1,0 +1,272 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+  
+<!-- 导入Extjs框架 -->
+<!-- <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css">
+<script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+ -->
+ 
+<link rel = "stylesheet" type = "text/css" href = "/newver/resources/js/ext-3.3.1/resources/css/ext-all.css"/>
+<script type = "text/javascript" src = "/newver/resources/js/ext-3.3.1/adapter/ext/ext-base.js"></script>
+<script type = "text/javascript" src = "/newver/resources/js/ext-3.3.1/ext-all.js"></script> 
+ 
+  
+<script type="text/javascript"> 
+
+var g_macInfo = [];
+var g_macGroupInfo = [];
+
+/* 函数：获取后台数据--MAC组标签、MAC组描述 */
+function getMacGroupInfo(){
+
+	//获取 parent 对象中输入框的内容(mac地址)
+	var macValue = parent.Ext.getCmp('keyword_mobileaccount').value;	 
+		
+	Ext.Ajax.request({			
+		url: '/pronline/Msg?FunName@ncsMacLog_ChosenMac_GetMacGroupInfo', 
+		method: 'GET',		
+		success: function(resp, opts){			
+			var respText = resp.responseText; 			//获取整个 JSON 数据的字符串
+			try{
+				var respRecord = eval("("+respText+")");	//字符串转成结构体
+				
+				var macGroupid;
+				var macGroupname;
+				var macGroupdesc;
+				if(parseInt(respRecord.result) > 0)
+				{
+				
+					for(var i = 0;i < respRecord.data.length;i++){
+						
+						macGroupid = respRecord.data[i].groupid;
+						macGroupname = respRecord.data[i].groupname;
+						macGroupdesc = respRecord.data[i].groupdesc;																
+						
+						g_macGroupInfo.push([macGroupid, macGroupname, macGroupdesc]);	
+					}				
+				}
+				else
+				{
+					g_macGroupInfo.push(["当前终端MAC组信息为空！",""]);
+				}
+				
+				selectMacGroup();
+			}
+			catch(e){
+				alert(e.message);
+			}
+							
+		},
+		failure: function(resp, opts){
+			var resqText = eval("(" + resqText + ")");
+			alert('错误', resqText.error);
+		} 
+		
+	});		
+}
+
+/* 函数：创建表单，获取用户选择mac、mac分组、分组描述 */
+function selectMacGroup(){
+	
+	/* 获取用户在mac日志查询下选择框内容 */	
+	var rows = parent.Ext.getCmp('id_maclogtable').getSelectionModel(); //获取所有选中行，
+	var str = '';
+	for(var i = 0; i <rows.selected.items.length;i++){		
+		g_macInfo.push([rows.selected.items[i].data.mac + ',']);
+	}
+	
+	
+	/* MAC分组 */
+	var labelgroup = new Ext.form.Label({
+		text: 'MAC分组：',
+		style: 'font-size: 20px',
+    x: 80,
+		y: 20  
+	});
+
+	/* 获取mac组标签 */
+	var datalabel = [];
+	for(var i = 0;i < g_macGroupInfo.length;i++){
+		datalabel.push(["value" + i, g_macGroupInfo[i][1]]);
+	}
+   
+  /*  步骤2 －－－－ 把二维数组交给 */
+  var storelabel = new Ext.data.SimpleStore({            
+  	fields: ["value", "text"],
+    data: datalabel
+	});
+   
+	var textgroup = new Ext.form.ComboBox({  
+		x: 220,
+		y: 20,
+		editable : false,
+		style: 'font-size: 15px',
+		id : 'grouplabel',
+    store: storelabel,
+    mode: "local",
+    displayField: "text",
+    valueField: "value",
+    triggerAction: "all",
+    emptyText: "请选择",
+    value: "",		
+		listeners: {
+			select: function(cmb, rec, idx){
+				
+				//得到另一个combox
+				modelsCbx = Ext.getCmp('groupdescribe');
+				modelsCbx.clearValue();
+				modelsCbx.setValue(this.getValue());
+				Ext.getCmp('id_btnsubmit').setDisabled(false);			
+			}
+		}
+  });
+		 
+		 		 
+	/* MAC组描述 */
+	var labeldescribe = new Ext.form.Label({
+		text: '分组描述：',
+		style: 'font-size: 20px',
+    x: 80,
+		y: 140  
+	});
+	
+	/* 获取mac组描述 */
+	var datadescribe = [];
+	for(var i = 0;i < g_macGroupInfo.length;i++){
+		datadescribe.push(["value" + i, g_macGroupInfo[i][2]]);
+	}
+	
+   
+  /*  步骤2 －－－－ 把二维数组交给 */
+  var storedescribe = new Ext.data.SimpleStore({            
+  	fields:["value", "text"],
+    data: datadescribe
+	});
+   
+	var textdescribe = new Ext.form.ComboBox({  
+		x: 220,
+		y: 140,		
+		editable : false,
+		style: 'font-size: 15px',
+		id : 'groupdescribe',
+    store: storedescribe,
+    mode: "local",
+    displayField: "text",
+    valueField: "value",
+    triggerAction: "all",
+    emptyText: "请选择",
+    value: "",		
+		listeners: {
+			select: function(cmb, rec, idx){
+				
+				//得到另一个combox
+				modelsCbx = Ext.getCmp('grouplabel');
+				modelsCbx.clearValue();
+				modelsCbx.setValue(this.getValue());	
+				Ext.getCmp('id_btnsubmit').setDisabled(false);			
+			}
+		}
+  });
+		 
+	//提交按钮
+	var btnsubmit = new Ext.Button({
+		text:'<font style="font-size: 25px; color: black;">提交</font>',
+		scale:'large',				
+		disabled: true,
+		id:'id_btnsubmit',
+		width:80,
+		height:40,
+		x:330,
+		y:250,
+		listeners :{
+			click : function(){
+				joinMacGroup();
+			}
+		}		
+	})
+	
+	//创建表单
+	var form = new Ext.form.FormPanel({		
+		renderTo:"grid",
+		layout:'absolute',
+		frame:true,
+		width:800,
+		height:500,		
+		autoScroll:true,
+		maximizable:true,					
+		items:[labelgroup, textgroup, labeldescribe, 
+			   textdescribe, btnsubmit]
+	});	
+		
+}
+	
+/* 函数：将用户选择mac信息写入后台 */
+function joinMacGroup(){	
+	var macInfo = [];
+	var macGroupId = [];
+	for(var i = 0; i < g_macInfo.length; i++){
+				
+		macInfo += g_macInfo[i]; 
+		
+	}
+	//alert(macInfo);
+				
+	macGroupId += g_macGroupInfo[0][0];		
+				
+	//alert(macGroupId);
+	
+	//return;
+	Ext.Ajax.request({			
+		url: '/pronline/Msg?FunName@ncsMacLog_ChosenMac_JoinMacGroup&mac@' 
+					+ macInfo + '&groupid@' + macGroupId, 
+		
+		method: 'GET',		
+		success: function(resp, opts){			
+			var respText = resp.responseText; 			//获取整个 JSON 数据的字符串
+			try{
+				var respRecord = eval("("+respText+")");	//字符串转成结构体
+				
+				var result = respRecord.result;
+				var message = respRecord.message;
+				
+				if(result)
+				{
+									
+					alert(message);																					
+				}
+				else
+				{
+					alert("加入分组失败");
+				}
+				
+			}
+			catch(e){
+				alert(e.message);
+			}
+							
+		},
+		failure: function(resp, opts){
+			var resqText = eval("(" + resqText + ")");
+			alert('错误', resqText.error);
+		} 
+		
+	}); 
+}	
+	
+Ext.onReady(function(){
+	getMacGroupInfo();	
+		
+});  
+	  
+</script>
+  
+</head>
+<body>
+
+  <div   id="grid"></div>
+  
+</body>
+</html>

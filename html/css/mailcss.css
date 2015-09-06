@@ -1,0 +1,84 @@
+ body{font-family: "Verdana", "Arial", "Helvetica", "sans-serif", "ËÎÌå"; font-size: 12px
+background-color: #FFFFFF; 
+SCROLLBAR-HIGHLIGHT-COLOR: #ffffff;
+SCROLLBAR-FACE-COLOR: #FFF4D0; 
+SCROLLBAR-SHADOW-COLOR: #EAD28A;
+SCROLLBAR-3DLIGHT-COLOR: #F4DBAC;
+SCROLLBAR-DARKSHADOW-COLOR:#FFF4D0;
+SCROLLBAR-ARROW-COLOR: #E4C667;
+}
+table {  font-size: 12px}
+.font15 {  font-family: "Arial", "Helvetica", "sans-serif"; font-size: 14px}
+.3line {  line-height: 3px; height: 3px}
+.4line {  line-height: 4px; height: 4px}
+.2line {  line-height: 2px; height: 2px}
+.7line {  line-height: 7px; height: 7px}
+.w2line {  width: 2px}
+.10line {  line-height: 10px; height: 10px}
+.6line {  line-height: 6px; height: 6px}
+.1line {  line-height: 1px; height: 1px}
+.25line {  line-height: 2.5px; height: 2.5px}
+.15line {  line-height: 1.5px; height: 1.5px}
+.65line {  line-height: 6.5px; height: 6.5px}
+ .anniu01 {
+	background-color: #FFE3B5;
+	width: 43px;
+	cursor: hand;
+	vertical-align: middle;
+	border-top: 1px  solid  #F78D00;
+	BORDER-right:   1px  solid  #F78D00;
+	border-bottom: 1px  solid  #F78D00;
+	border-left: 1px  solid  #F78D00;
+	height: 18px;
+	color: #A85800;
+}
+ .anniu01_long {
+	background-color: #FFE3B5;
+	width: 60px;
+	cursor: hand;
+	vertical-align: middle;
+	border-top: 1px  solid  #F78D00;
+	BORDER-right: 
+  1px  solid  #F78D00;
+	border-bottom: 1px  solid  #F78D00;
+	border-left: 1px  solid  #F78D00;
+	height: 18px;
+	color: #A85800;
+}
+
+ .anniu02 { background-color: #FFE3B5; width: 90px; 
+  cursor: hand; vertical-align: middle; border-top: 1px  solid  #F78D00; BORDER-right: 
+  1px  solid  #F78D00; border-bottom: 1px  solid  #F78D00; border-left: 1px  solid  #F78D00; height: 18px£»	color: #A85800;}
+
+ .anniu03 { font-size: 9pt; background-color: #E4E4E4; 
+   height: 20px; width: 45px; border-top-width: 1px; border-right-width: 
+  1px; border-bottom-width: 1px; border-left-width: 1px; cursor: hand£»	color: #A85800;} 
+
+  A.link1:link {text decoration:none;color:#794300;}
+ A.link1:active   {text-decoration:none; color:#794300;} 
+ A.link1:visited {text-decoration:none; color:#794300;} 
+ A.link1:hover {text-decoration:none;color:#D97700;} 
+
+  A.link2:link {text decoration:none;color:#2452BD;}
+ A.link2:active   {text-decoration:none; color:#2452BD;} 
+ A.link2:visited {text-decoration:none; color:#2452BD;} 
+ A.link2:hover {text-decoration:none;color:#FF9900;} 
+
+
+.bord0 {	border-top: 1px solid #E9BD8D;
+	border-right: 1px solid #E9BD8D;
+	border-bottom: 1px  solid #E9BD8D;
+	border-left: 1px  solid  #E9BD8D;}
+.bord0_1 {	border-top: 1px none #E9BD8D;
+	border-right: 1px solid #E9BD8D;
+	border-bottom: 1px solid #E9BD8D;
+	border-left: 1px  solid  #E9BD8D;}
+
+.bord1 {	border-top: 1px solid #E9BD8D;
+	border-right: 1px solid #E9BD8D;
+	border-bottom: 1px solid #E9BD8D;
+	border-left: 1px  none #FFFFFF;}
+.bord1_1 {	border-top: 1px none #E9BD8D;
+	border-right: 1px solid #E9BD8D;
+	border-bottom: 1px solid #E9BD8D;
+	border-left: 1px  none #FFFFFF;}

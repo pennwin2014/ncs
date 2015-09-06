@@ -1,0 +1,91 @@
+
+        .icon-grid {
+            background-image:url(/newver/resources/themes/images/share/grid.png) !important;
+        }
+        .add {
+            background-image:url(/newver/resources/themes/images/share/add.gif) !important;
+        }
+        .option {
+            background-image:url(/newver/resources/themes/images/share/plugin.gif) !important;
+        }
+        .remove {
+            background-image:url(/newver/resources/themes/images/share/delete.gif) !important;
+        }
+        .exp {
+            background-image:url(/newver/resources/themes/images/share/application_go.png) !important;
+        }
+        .accept {
+            background-image:url(/newver/resources/themes/images/share/accept.png) !important;
+        }
+        .book {
+            background-image:url(/newver/resources/themes/images/share/add.gif) !important;
+        }
+        .viewlist {
+            background-image:url(/newver/resources/themes/images/share/application_view_list.png) !important;
+        }
+                .add16 {
+            background-image:url(/newver/resources/themes/images/share/user_add.png) !important;
+        }
+        .fadd {
+            background-image:url(/newver/resources/themes/images/share/feed_add.png) !important;
+        }
+        .iadd {
+            background-image:url(/newver/resources/themes/images/share/image_add.png) !important;
+        }
+        
+        .refresh {
+            background-image:url(/newver/resources/themes/images/share/table_refresh.png) !important;
+        }
+        .close {
+            background-image:url(/newver/resources/themes/images/share/cross.gif) !important;
+        }
+        .useradd {
+            background-image:url(/newver/resources/themes/images/share/user_female.gif) !important;
+        }
+        .info {
+            background-image:url(/newver/resources/themes/images/share/information.png) !important;
+        }
+        .usc {
+            background-image:url(/newver/resources/themes/images/share/user_comment.png) !important;
+        }
+        
+.btn-panel td {
+    padding-left:5px;
+}
+
+h2 {
+    color:#083772 !important;
+    margin: 20px 0 0 !important;
+    padding: 5px;
+    background:#eee;
+    width:400px;
+}
+
+h3 {
+    font-weight:normal !important;
+}
+
+.company {
+  float: left;
+  width: 179px;
+  height: 30px;
+  margin: 5px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.company h3 {
+  font-weight: bold !important;
+}
+
+.company .up {
+    color: green;
+}
+
+.company .down {
+    color: red;
+}
+
+.company.x-view-selected {
+    background-color: #efefef;
+}

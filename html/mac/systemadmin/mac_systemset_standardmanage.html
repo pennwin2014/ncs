@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>合规热点管理</title>
+<script type="text/javascript"  src="/newver/ext/adapter/ext/ext-base.js"></script>
+<script type="text/javascript"  src="/newver/ext/ext-all.js"></script>
+<link rel="stylesheet" type="text/css" href="/newver/ext/resources/css/ext-all.css"/>
+<style type="text/css">
+        .icon-grid {
+            background-image:url(/newver/resources/themes/images/share/grid.png) !important;
+        }
+        .add {
+            background-image:url(/newver/resources/themes/images/share/add.gif) !important;
+        }
+        .option {
+            background-image:url(/newver/resources/themes/images/share/plugin.gif) !important;
+        }
+        .remove {
+            background-image:url(/newver/resources/themes/images/share/delete.gif) !important;
+        }
+        .exp {
+            background-image:url(/newver/resources/themes/images/share/application_go.png) !important;
+        }
+        .accept {
+            background-image:url(/newver/resources/themes/images/share/accept.png) !important;
+        }
+     .x-tab-default-top button, .x-tab-default-top.x-tab-inner {
+		  height: 16px !important;
+		  line-height: 16px;
+	    }
+    </style>
+
+
+<script type="text/javascript" >
+/*
+               
+			MAC扫描日志
+
+*/
+
+//
+//表格数据
+  Ext.onReady(function(){
+        
+var cm=new Ext.grid.ColumnModel([
+{header:'热点SSID',dataIndex:'SSID',width:120,sortable:false,hidden:false},
+{header:'热点状态',dataIndex:'mac_status',width:120,sortable:false,hidden:false},
+{header:'加密类型',dataIndex:'encrypted',width:120,sortable:false,hidden:false},
+{header:'热点厂商',dataIndex:'mac_producer',width:120,sortable:false,hidden:false},
+{header:'联系方式',dataIndex:'phone',width:120,sortable:false,hidden:false},
+{header:'是否采集到',dataIndex:'is_collection',width:120,sortable:false,hidden:false}
+]);
+
+var data=[
+['38:bc:1a:ae:le:50','合规','wap','新网程','5665951','是'],
+['38:bc:1a:ae:le:50','不合规','hash','新世纪','07558666564','是'],
+['38:bc:1a:ae:le:50','合规','set','微软','07998685451','是'],
+['38:bc:1a:ae:le:50','合规','wap','危机管理','07315475845','是'],
+['38:bc:1a:ae:le:50','合规','hsah','人人网','07639568532','是'],
+['38:bc:1a:ae:le:50','不合规','gite','华为','0788956322','是'],
+['38:bc:1a:ae:le:50','合规','无','爱乐士','18121457584','否'],
+['38:bc:1a:ae:le:50','不合规','app','奔腾','18566586451','是']
+];
+
+var  ds=new Ext.data.Store({
+proxy:new Ext.data.MemoryProxy(data),
+reader:new Ext.data.ArrayReader({},[
+{name:'SSID'},
+{name:'mac_status'},
+{name:'encrypted'},
+{name:'mac_producer'},
+{name:'phone'},
+{name:'is_collection'}
+])
+});
+ds.load();
+//头部工具
+/*
+ var Tooldata = new Ext.data.Store({
+					        fields:['name','value'],
+							data:[{name:'今天',value:'1'},{name:'最近三天',value:'2'}]
+					
+					});
+					*/
+ var  pagingTool=new   Ext.PagingToolbar({
+	              //  store:store,
+				   frame:true,
+                    pageSize:5,
+                    displayInfo:true,
+                    displayMsg:'当前记录数: {0} - {1} 总记录数  共{2}条记录',   
+                    emptyMsg:'没有符合条件的记录',
+		            items:[{
+					fieldLabel:'&nbsp;时间',
+					labelWidth:50,
+					width:180,
+					//mode:'local',
+					xtype:'combo',
+					//value:'1',
+					triggerAction:'all',
+					foreSelection:true,
+					editable:true,
+					name:'time_flag',
+					displayField:'name',
+					//valueField:'value'
+					queryMode:'local',
+					//store:Toooldata,
+			
+					listeners:{
+					'change':function(){
+					}
+					},
+					},{
+					   xtype:'textfield',
+					   id:'keyword_dwgl',
+					   width:200,
+					   name:'keyword5',
+					   style:'color:#7aad5',
+					   emptyText:'MAC/场所名称/APMAC/SSID',
+					   enableKeyEvents:true,
+					   listeners:{
+					   }
+					
+					
+					},{
+					    xtype:'button',
+					    text:'查询',
+						iconCls:'accept',
+						action:'keycx',
+						textAlign:'center'
+					},'-',{
+					text:'高级',
+					anchor:'right',
+					action:'advancecx',
+					iconCls:'option'
+					},'-'
+					]					
+                });
+
+//创建表格
+var grid=new Ext.grid.EditorGridPanel({
+frame:true,
+renderTo:"grid",
+store:ds,
+height:900,
+width:2000,
+border:false,
+baseCls: 'my-panel-no-border',
+cm:cm,
+//buttonAlign:right,
+tbar:[ pagingTool]
+});
+    
+}); 
+
+
+</script>
+<script type="text/javascript">
+</script>
+</head>
+<body>
+<div   id="grid"></div>
+</body>
+</html>

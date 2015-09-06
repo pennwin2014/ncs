@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="CenterService"
+ targetNamespace="http://www.pronetway.com"
+ xmlns:tns="http://www.pronetway.com"
+ xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+ xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+ xmlns:ns1="http://www.pronetway.com"
+ xmlns:SOAP="http://schemas.xmlsoap.org/wsdl/soap/"
+ xmlns:MIME="http://schemas.xmlsoap.org/wsdl/mime/"
+ xmlns:DIME="http://schemas.xmlsoap.org/ws/2002/04/dime/wsdl/"
+ xmlns:WSDL="http://schemas.xmlsoap.org/wsdl/"
+ xmlns="http://schemas.xmlsoap.org/wsdl/">
+
+<types>
+
+ <schema targetNamespace="http://www.pronetway.com"
+  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+  xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:ns1="http://www.pronetway.com"
+  xmlns="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="unqualified"
+  attributeFormDefault="unqualified">
+  <import namespace="http://schemas.xmlsoap.org/soap/encoding/" schemaLocation="http://schemas.xmlsoap.org/soap/encoding/"/>
+ </schema>
+
+</types>
+
+<message name="RegistRequest">
+ <part name="RegInfo" type="xsd:string"/><!-- ns1__Regist::RegInfo -->
+</message>
+
+<message name="RegistResponse">
+ <part name="RegistResult" type="xsd:string"/><!-- ns1__Regist::RegistResult -->
+</message>
+
+<message name="SendStatusRequest">
+ <part name="UnitNo" type="xsd:string"/><!-- ns1__SendStatus::UnitNo -->
+ <part name="SessionID" type="xsd:string"/><!-- ns1__SendStatus::SessionID -->
+ <part name="XML" type="xsd:string"/><!-- ns1__SendStatus::XML -->
+</message>
+
+<message name="SendStatusResponse">
+ <part name="SendStatusResult" type="xsd:string"/><!-- ns1__SendStatus::SendStatusResult -->
+</message>
+
+<message name="SendClueInfoRequest">
+ <part name="UnitNo" type="xsd:string"/><!-- ns1__SendClueInfo::UnitNo -->
+ <part name="SessionID" type="xsd:string"/><!-- ns1__SendClueInfo::SessionID -->
+ <part name="XML" type="xsd:string"/><!-- ns1__SendClueInfo::XML -->
+</message>
+
+<message name="SendClueInfoResponse">
+ <part name="SendClueInfoResult" type="xsd:string"/><!-- ns1__SendClueInfo::SendClueInfoResult -->
+</message>
+
+<message name="ClueReturnRequest">
+ <part name="UnitNo" type="xsd:string"/><!-- ns1__ClueReturn::UnitNo -->
+ <part name="SessionID" type="xsd:string"/><!-- ns1__ClueReturn::SessionID -->
+ <part name="XML" type="xsd:string"/><!-- ns1__ClueReturn::XML -->
+</message>
+
+<message name="ClueReturnResponse">
+ <part name="ClueReturnResult" type="xsd:string"/><!-- ns1__ClueReturn::ClueReturnResult -->
+</message>
+
+<message name="SendLogsRequest">
+ <part name="UnitNo" type="xsd:string"/><!-- ns1__SendLogs::UnitNo -->
+ <part name="SessionID" type="xsd:string"/><!-- ns1__SendLogs::SessionID -->
+ <part name="XML" type="xsd:string"/><!-- ns1__SendLogs::XML -->
+</message>
+
+<message name="SendLogsResponse">
+ <part name="SendLogsResult" type="xsd:string"/><!-- ns1__SendLogs::SendLogsResult -->
+</message>
+
+<message name="FileSendResultRequest">
+ <part name="UnitNo" type="xsd:string"/><!-- ns1__FileSendResult::UnitNo -->
+ <part name="SessionID" type="xsd:string"/><!-- ns1__FileSendResult::SessionID -->
+ <part name="XML" type="xsd:string"/><!-- ns1__FileSendResult::XML -->
+</message>
+
+<message name="FileSendResultResponse">
+ <part name="FileSendResultResult" type="xsd:string"/><!-- ns1__FileSendResult::FileSendResultResult -->
+</message>
+
+<message name="SetStatusRequest">
+ <part name="UnitNo" type="xsd:string"/><!-- ns1__SetStatus::UnitNo -->
+ <part name="SessionID" type="xsd:string"/><!-- ns1__SetStatus::SessionID -->
+ <part name="XML" type="xsd:string"/><!-- ns1__SetStatus::XML -->
+</message>
+
+<message name="SetStatusResponse">
+ <part name="SetStatusResult" type="xsd:string"/><!-- ns1__SetStatus::SetStatusResult -->
+</message>
+
+<message name="RequestUploadFileRequest">
+ <part name="UnitNo" type="xsd:string"/><!-- ns1__RequestUploadFile::UnitNo -->
+ <part name="SessionID" type="xsd:string"/><!-- ns1__RequestUploadFile::SessionID -->
+ <part name="XML" type="xsd:string"/><!-- ns1__RequestUploadFile::XML -->
+</message>
+
+<message name="RequestUploadFileResponse">
+ <part name="RequestUploadFileResult" type="xsd:string"/><!-- ns1__RequestUploadFile::RequestUploadFileResult -->
+</message>
+
+<message name="UploadFileReportRequest">
+ <part name="UnitNo" type="xsd:string"/><!-- ns1__UploadFileReport::UnitNo -->
+ <part name="SessionID" type="xsd:string"/><!-- ns1__UploadFileReport::SessionID -->
+ <part name="XML" type="xsd:string"/><!-- ns1__UploadFileReport::XML -->
+</message>
+
+<message name="UploadFileReportResponse">
+ <part name="UploadFileReportResult" type="xsd:string"/><!-- ns1__UploadFileReport::UploadFileReportResult -->
+</message>
+
+<message name="RequestSendFileRequest">
+ <part name="UnitNo" type="xsd:string"/><!-- ns1__RequestSendFile::UnitNo -->
+ <part name="SessionID" type="xsd:string"/><!-- ns1__RequestSendFile::SessionID -->
+ <part name="XML" type="xsd:string"/><!-- ns1__RequestSendFile::XML -->
+</message>
+
+<message name="RequestSendFileResponse">
+ <part name="RequestSendFileResult" type="xsd:string"/><!-- ns1__RequestSendFile::RequestSendFileResult -->
+</message>
+
+<portType name="CenterServicePortType">
+ <operation name="Regist">
+  <documentation>Service definition of function ns1__Regist</documentation>
+  <input message="tns:RegistRequest"/>
+  <output message="tns:RegistResponse"/>
+ </operation>
+ <operation name="SendStatus">
+  <documentation>Service definition of function ns1__SendStatus</documentation>
+  <input message="tns:SendStatusRequest"/>
+  <output message="tns:SendStatusResponse"/>
+ </operation>
+ <operation name="SendClueInfo">
+  <documentation>Service definition of function ns1__SendClueInfo</documentation>
+  <input message="tns:SendClueInfoRequest"/>
+  <output message="tns:SendClueInfoResponse"/>
+ </operation>
+ <operation name="ClueReturn">
+  <documentation>Service definition of function ns1__ClueReturn</documentation>
+  <input message="tns:ClueReturnRequest"/>
+  <output message="tns:ClueReturnResponse"/>
+ </operation>
+ <operation name="SendLogs">
+  <documentation>Service definition of function ns1__SendLogs</documentation>
+  <input message="tns:SendLogsRequest"/>
+  <output message="tns:SendLogsResponse"/>
+ </operation>
+ <operation name="FileSendResult">
+  <documentation>Service definition of function ns1__FileSendResult</documentation>
+  <input message="tns:FileSendResultRequest"/>
+  <output message="tns:FileSendResultResponse"/>
+ </operation>
+ <operation name="SetStatus">
+  <documentation>Service definition of function ns1__SetStatus</documentation>
+  <input message="tns:SetStatusRequest"/>
+  <output message="tns:SetStatusResponse"/>
+ </operation>
+ <operation name="RequestUploadFile">
+  <documentation>Service definition of function ns1__RequestUploadFile</documentation>
+  <input message="tns:RequestUploadFileRequest"/>
+  <output message="tns:RequestUploadFileResponse"/>
+ </operation>
+ <operation name="UploadFileReport">
+  <documentation>Service definition of function ns1__UploadFileReport</documentation>
+  <input message="tns:UploadFileReportRequest"/>
+  <output message="tns:UploadFileReportResponse"/>
+ </operation>
+ <operation name="RequestSendFile">
+  <documentation>Service definition of function ns1__RequestSendFile</documentation>
+  <input message="tns:RequestSendFileRequest"/>
+  <output message="tns:RequestSendFileResponse"/>
+ </operation>
+</portType>
+
+<binding name="CenterService" type="tns:CenterServicePortType">
+ <SOAP:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+ <operation name="Regist">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="http://www.pronetway.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="http://www.pronetway.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="SendStatus">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="http://www.pronetway.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="http://www.pronetway.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="SendClueInfo">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="http://www.pronetway.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="http://www.pronetway.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="ClueReturn">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="http://www.pronetway.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="http://www.pronetway.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="SendLogs">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="http://www.pronetway.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="http://www.pronetway.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="FileSendResult">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="http://www.pronetway.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="http://www.pronetway.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="SetStatus">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="http://www.pronetway.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="http://www.pronetway.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="RequestUploadFile">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="http://www.pronetway.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="http://www.pronetway.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="UploadFileReport">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="http://www.pronetway.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="http://www.pronetway.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="RequestSendFile">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="http://www.pronetway.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="http://www.pronetway.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+</binding>
+
+<service name="CenterService">
+ <documentation>gSOAP 2.8.2 generated service definition</documentation>
+ <port name="CenterService" binding="tns:CenterService">
+  <SOAP:address location="https://192.168.20.51:8001"/>
+ </port>
+</service>
+
+</definitions>

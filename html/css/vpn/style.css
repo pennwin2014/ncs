@@ -1,0 +1,1333 @@
+/* 全局样式 */
+html, body, div, p, ul, ol, li, dl, dt, dd, h1, h2, h3, h4, h5, h6, object, iframe, form, blockquote, fieldset, input, textarea, code, address, caption, cite, code, em, i, ins {margin: 0px;
+	padding: 0px;font-style: normal;font-size: 12px;font-weight: normal;}
+body {background: #FFF;color: #666;font-size: 12px;font-family:"宋体", Times New Romar;;
+      line-height: 180%;  }
+fieldset, img {border: 0;}
+table, td, tr, th {font-size: 12px;}
+table {border-collapse: collapse;border-spacing: 0px;}preview
+caption,th {text-align: left;}
+li{list-style-type: none;}
+ul,ol {list-style: none;}
+select, input, img {vertical-align: middle;}
+h1, h2, h3, h4, h5, h6 {font-size: 12px;font-weight: normal;}
+q:before, q:after {content: '';}
+abbr, acronym {border: 0;}
+a:link {text-decoration: none;color: #666666;}
+a:visited {text-decoration: none;color: #666666;}
+a:hover {color: #003399!important;}
+a:active {color: #666666;}
+/* 通用样式 */
+container {height: auto;width: 1003px;}
+#container {height: auto;width: 947px;margin-right: auto;margin-left: auto;}
+#container #header {height: 126px;width: 947px;}
+#container #flash {
+	height: 268px;
+	width: 947px;
+	margin-bottom: 10px;
+	clear: both;
+	margin-top: 10px;
+}
+#container #header .logo {background-image: url(/images/vpn/index_03.gif);background-repeat: no-repeat;
+	float: left;height: 60px;width: 530px;margin-top: 20px;margin-left: 10px;}
+#container #header .tell {
+	background-image: url(/images/vpn/index_06.gif);
+	background-repeat: no-repeat;
+	float: right;
+	height: 49px;
+	width: 215px;
+	margin-top: 25px;
+	margin-right: 15px;
+}
+
+
+.nav {background-image: url;background-repeat: no-repeat;
+	clear: both;height: 35px;width: 947px;margin-top: 0px;margin-bottom: 0px;}
+#container #header .nav ul {list-style-type: none;}
+#container #header .nav li {
+	float: left;
+	height: 30px;
+	width: 110px;
+	color: #FFFFFF;
+	text-align: center;
+	padding-top: 10px;
+	font-weight: bold;
+	display: block;
+}
+#warrper #mcenter {
+	WIDTH: 658px; _WIDTH: 655px; FLOAT: left; HEIGHT: 440px
+}
+#warrper #conting11 {
+	WIDTH: 658px; _WIDTH: 655px; HEIGHT: 210px
+}
+#warrper #conting12 
+{
+	margin-top:10px;
+	WIDTH: 658px; _WIDTH: 655px; HEIGHT: 210px
+}
+#container #header .nav a {color: #FFFFFF;text-decoration: none;}
+#container #header .nav .time {text-align: center;float: right;height: 40px;width: 185px;
+	display: block;font-size: 12px;font-weight: normal;}
+#container #warrper {
+	height: auto;
+	width: 947px;
+	clear: both;
+	margin-top: 10px;
+}
+#container #warrper #left {
+	float: left;
+	height: 450px;
+	width: 289px;
+}
+#warrper_contian {font-size: 10px;}
+
+#left .news {background-image: url(/images/vpn/index-title2.gif);background-repeat: no-repeat;height: 31px;
+	width: 289px;}
+.news .news_li_tittle {float: left;padding-top: 6px;padding-left: 15px;color:white;letter-spacing:1px;
+}
+.news .news_li_more {float: right;padding-top: 8px;padding-right: 20px;}
+.news .news_li_more a {color: #FFFFFF;}
+#left .list_contain {height: 396px;width: 287px;background-color: #f0f0f0;border-right-width: 1px;
+	border-bottom-width: 1px;border-left-width: 1px;border-right-style: solid;border-bottom-style:    solid;border-left-style: solid;border-right-color: #c2b9b9;border-bottom-color: #c2b9b9;
+	border-left-color: #c2b9b9;}
+.Introduction_container .problme {
+	height: 420px;
+	width: 650px;
+	margin-left: 25px;
+	margin-bottom: 15px;
+}
+
+
+
+
+#left .list_contain .list_up {height: 200px;width: 277px;padding-top: 10px;padding-left: 10px;}
+#left .list_contain .list_up li {width: 250px;line-height: 24px;
+	background-image: url(/images/vpn/index1_10.gif);
+	background-repeat: no-repeat;
+	background-position: left center;
+	float: left;
+	padding-left: 15px;
+}
+#left .list_contain .list_img {height: 26px;width: 260px;margin-left: 15px;
+	background-image: url(/images/vpn/index3_03.gif);background-repeat: no-repeat;}
+#left .list_contain .list_down {
+	height: 220px;
+	width: 277px;
+	padding-top: 3px;
+	padding-left: 10px;
+}
+#left .list_contain .list_down li {line-height: 26px;background-image: url(/images/vpn/index1_10.gif);
+	background-repeat: no-repeat;background-position: left center;width: 250px;padding-left: 15px;
+	float: left;}
+#container #warrper #middle {
+	float: left;
+	height: 210px;
+	width: 318px;
+	padding-left: 10px;
+}
+#warrper #conting {height: 392px;width: 658px;float: left;}
+#warrper #middle .name {background-image: url(/images/vpn/index-title1.gif);background-repeat: no-repeat;
+	height: 31px;width: 318px;}
+#middle .name .title_name {float: left;padding-top: 6px;padding-left: 15px;color:white;letter-spacing:1px;}
+#middle .name .title_more {float: right;padding-top: 8px;padding-right: 20px;}
+#middle .name .title_more a {color: #FFFFFF;}
+#middle .lise_name1 {background-color: #f0f0f0;height: 175px;width: 316px;border: 1px solid #c2b9b9;}
+.bodyer{
+	width:316px;
+	margin:0;
+	height: 175px;
+	background-color: #f0f0f0;
+}	
+.t_rt{text-align:right;}
+h1,h2,h3,h4,h5,h6{font-weight:bold;margin:0px;padding:0px;font-size:12px;}
+ul,li{margin:0px;padding:0px;}
+li{list-style-type:none;}
+h1{margin:10px;padding-right:10px;padding-bottom:5px;border-bottom:1px dotted #ccc;}
+.preview{
+	margin:0px;
+	padding:0px;
+	overflow:hidden;
+	height: 172px;
+	width: 314px;
+}
+.cont{
+	padding-top: 10px;
+	padding-right: 0px;
+	padding-bottom: 10px;
+	padding-left: 0px;
+}
+.cls{clear:both;}
+.hidden{display:none;}
+#sourse{border:1px dotted #ccc;width:314px;height:300px;margin:0px;}
+.textDiv{margin:0px;text-align:center;}
+h2{
+	background:#ccc;
+	padding:5px;
+	margin-top: 0px;
+	margin-right: 10px;
+	margin-bottom: 0px;
+	margin-left: 10px;
+}
+.example{margin:10px;background:#FFF;border:1px dotted #ccc;padding:10px;}
+.scrolldoorFrame{
+	width:312px;
+	overflow:hidden;
+	height: 172px;
+	margin: 0px;
+}
+.scrollUl{width:312px;border-bottom:1px solid #CCC;overflow:hidden;height:30px;}
+.scrollUl li{
+	float:left;
+	height:30px;
+	width:26px;
+}
+.bor03{
+	height: 108px;
+	width: 285px;
+	margin-left: 10px;
+}
+.sd01{
+	cursor:pointer;
+	border:1px solid #CCC;
+	background:#FFF;
+	padding:2px;
+	font-weight:normal;
+	margin: 2px;
+}
+.sd02{cursor:pointer;border:0px solid #CCC;margin:2px;padding:2px;}
+.nav_continer {
+	height: 95px;
+	width: 300px;
+	padding-bottom: 1px;
+	clear: both;
+}
+.tittle {
+	font-size: 12px;
+	font-weight: bold;
+	color: #000066;
+	margin-left: 35px;
+}
+
+.nav_continer .picture {
+	height: 89px;
+	width: 129px;
+	float: left;
+	margin-left: 0px;
+}
+.nav_continer .intrudus {
+	width: 160px;
+	margin-left: 8px;
+	height: 89px;
+	float: left;
+	line-height: 18px;
+}
+#left1 {height: 175px;
+	   width: 290px;}
+ 
+ #right1 {float: left;height: 209px;width: 289px;}
+.body{height: auto;width: 947px; background-color:#e8f0fa;}
+#container #warrper #right {float: right;height: 209px;width: 318px;}
+#right .right_tittle {height: 31px;width: 318px;background-image: url(/images/vpn/index-title1.gif);
+	background-repeat: no-repeat;}
+.right_tittle .tittle_name_bc {float: left;padding-top: 6px;padding-left: 15px;color:white;letter-spacing:1px;}
+.right_tittle .tittle_more_bc {float: right;padding-top: 8px;padding-right: 20px;}
+.right_tittle .tittle_more_bc a {color: #FFFFFF;}
+#right .list3 {
+	height: 167px;
+	width: 306px;
+	background-color: #f0f0f0;
+	padding-left: 10px;
+	padding-top: 10px;
+	border-right: 1px solid #c2b9b9;
+	border-bottom: 1px solid #c2b9b9;
+	border-left: 1px solid #c2b9b9;
+}
+#right .list4 {
+	height: 175px;
+	width: 316px;
+	background-color: #f0f0f0;
+	padding-left: 10px;
+	padding-top: 10px;
+	border-right: 1px solid #c2b9b9;
+	border-bottom: 1px solid #c2b9b9;
+	border-left: 1px solid #c2b9b9;
+}
+#right .list3 li {line-height: 24px;float: left;width: 288px;
+	padding-left: 17px;}
+.conting #conbut {
+	float: left;
+	height: 174px;
+	width: 646px;
+	margin-top: 8px;
+	padding-left: 10px;
+}
+.conting #conbut .bj_title {background-image: url(/images/vpn/index_1_03.gif);background-repeat: no-repeat;height: 22px;width: 616px;font-size: 14px;font-weight: bold;color: #254592;padding-top: 8px;padding-left: 30px;}
+.conting #conbut .puduct {height: 120px;width: 604px;border-right-width: 1px;border-bottom-width: 1px;border-left-width: 1px;border-right-style: solid;border-bottom-style: solid;border-left-style: solid;border-right-color: #c2b9b9;border-bottom-color: #c2b9b9;border-left-color: #c2b9b9;padding-top: 18px;padding-left: 20px;padding-right: 20px;}
+#conbut .puduct li {float: left;width: 189px;padding-right: 17px;}
+#container #footer {
+	margin-top: 5px;
+	line-height: 31px;
+	clear: both;
+	height: 31px;
+	width: 947px;
+}
+#container #footer .foot_left {padding-left: 30px;float: left;}
+#footer .foot_left a {color:#666;}
+#container #footer .foot_right {padding-right: 290px;float: right;line-height: 20px;font-size: 12px;}
+#warrper .products_left205 {float: left;height: autopx;width: 161px; margin-left:0px;
+
+	border-bottom-width: 1px;
+	
+	
+	
+	border-bottom-style: solid;
+	
+	
+	
+	border-bottom-color: #b3caed;
+	
+	}
+	
+	
+.products_left205 .jianjie {height: 29px;width: 130px;margin-bottom: 1px; background-image: url(/images/vpn/jianjie.png)}
+.jianjie .top1 {font-size: 12px;line-height: 30px;font-weight: bold;color:#1576c2;
+	height: 30px;width: 140px; margin-left:30px}
+.jianjie .topzms {font-weight: bold;color:#069;
+	text-indent: 25px;height: 30px;width: 205px;}
+.jianjie .top_zms {background-image: url(/images/vpn/daohang2.png);font-size: 12px;line-height: 27px;font-weight: bold;color:#069;
+	text-indent: 25px;height: 27px;width: 205px;}
+.top1_1{font-size: 12px;color:#069;
+	height: 30px;width: 100px; margin-left: 45px;}
+.top1_2{font-size: 12px;color:#069;
+	height: 30px;width: 100px; margin-left: 80px;}
+.jianjie .bk {background-image: url(/images/vpn/products2.gif);background-repeat: repeat-x;
+	padding: 10px;height: autopx;width: 183px;border-right-width: 1px;border-bottom-width: 1px;
+	border-left-width: 1px;border-right-style: solid;border-bottom-style: solid;
+	border-left-style: solid;border-right-color: #CCC;border-bottom-color: #CCC;
+	border-left-color:#CCC;}
+.jianjie .bk_c {;background-repeat: repeat-x;
+	padding: 10px;height: autopx;width: 183px;border-right-width: 1px;border-bottom-width: 1px;
+	border-left-width: 1px;border-right-style: solid;border-bottom-style: solid;
+	border-left-style: solid;border-right-color: #CCC;border-bottom-color: #CCC;
+	border-left-color: #CCC;}
+.jianjie .bk_zms {width: 183px;border-right-width: 1px;border-bottom-width: 1px;
+	border-left-width: 1px;border-right-style: solid;border-bottom-style: solid;
+	border-left-style: solid;border-right-color: #CCC;border-bottom-color: #CCC;
+	border-left-color: #CCC;}
+.jianjie .bk_c li {line-height:20px;background-image: url(/images/vpn/products4.gif);background-repeat: no-repeat;background-position: left;float: left;width: 420px;height: 24px;padding-left: 0px;}			
+.jianjie .bk_e {background-image: url(/images/vpn/service1.gif);background-repeat: repeat-x;
+	padding: 10px;height: autopx;width: 183px;border-right-width: 1px;border-bottom-width: 1px;
+	border-left-width: 1px;border-right-style: solid;border-bottom-style: solid;
+	border-left-style: solid;border-right-color: #578fc8;border-bottom-color: #578fc8;
+	border-left-color: #578fc8;}
+.jianjie .bk_us {background-image: url(/images/vpn/about-us5.gif);background-repeat: repeat-x;
+	padding: 10px;height: 249px;width: 183px;border-right-width: 1px;border-bottom-width: 1px;
+	border-left-width: 1px;border-right-style: solid;border-bottom-style: solid;
+	border-left-style: solid;border-right-color: #578fc8;border-bottom-color: #578fc8;
+	border-left-color: #578fc8;}
+.jianjie .bk_us  li {line-height: 28px;background-image: url(/images/vpn/products4.gif);background-repeat: no-repeat;background-position: left;float: left;width: 163px;border-bottom-width: 1px;border-bottom-style: dashed;border-bottom-color: #b2b2b2;height: 28px;padding-left: 20px;}			
+.jianjie .bk_e  li {line-height: 28px;background-image: url(/images/vpn/products4.gif);background-repeat: no-repeat;background-position: left;float: left;width: 163px;border-bottom-width: 1px;border-bottom-style: dashed;border-bottom-color: #b2b2b2;height: 28px;padding-left: 20px;}		
+.jianjie .bk_s {background-image: url(/images/vpn/solutions.gif);background-repeat: repeat-x;
+	padding: 10px;height: autopx;width: 183px;border-right-width: 1px;border-bottom-width: 1px;
+	border-left-width: 1px;border-right-style: solid;border-bottom-style: solid;
+	border-left-style: solid;border-right-color: #578fc8;border-bottom-color: #578fc8;
+	border-left-color: #578fc8;}
+.jianjie .bk_s li {line-height: 28px;background-image: url(/images/vpn/products4.gif);background-repeat: no-repeat;background-position: left;float: left;width: 163px;border-bottom-width: 1px;border-bottom-style: dashed;border-bottom-color: #b2b2b2;height: 28px;padding-left: 20px;}		
+.lines {
+	background-image: url(/images/vpn/solutions6.gif);
+	background-repeat: no-repeat;
+	height: 1px;
+	width: 648px;
+	line-height: 1px;
+	margin-bottom: 10px;
+	
+}
+.lines-1 {
+	background-image: url(/images/vpn/join us-1.gif);
+	background-repeat: no-repeat;
+	height: 1px;
+	width: 648px;
+	line-height: 1px;
+	margin-bottom: 10px;
+	
+}
+.jianjie .bk li {line-height: 28px;background-image: url(/images/vpn/products4.gif);background-repeat: no-repeat;background-position: left;float: left;width: 163px;border-bottom-width: 1px;border-bottom-style: dashed;border-bottom-color: #b2b2b2;height: 28px;padding-left: 20px;}
+.jianjie .bk a {color: #00107a;}
+.products_left205 .yanshi {height: 98px;width: 205px;background-image: url(/images/vpn/products6.gif);
+	background-repeat: no-repeat;background-position: left center;padding-top: 10px;}
+.yanshi .btn_124 {background-image: url(/images/vpn/products_03.gif);background-repeat: no-repeat;height: 31px;width: 124px;line-height: 31px;border-top-width: 0px;border-right-width: 0px;
+	border-bottom-width: 0px;border-left-width: 0px;float: right;}
+.yanshi .btn_c {
+	background-image: url(/images/vpn/cooperation3.gif);
+	background-repeat: no-repeat;
+	height: 32px;
+	width: 124px;
+	line-height: 31px;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+	float: right;
+}	
+.form_ti {
+	background-color:#f3f3f3;
+	height: autopx;
+	width: 650px;
+	
+	padding-top: 14px;
+	padding-right: 15px;
+	padding-bottom: 14px;
+	padding-left: 20px;
+	line-height: 28px;
+	margin-left: 20px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+#warrper .products_right730 {float: right;height: auto;width: 730px;margin-left: 12px;}
+.products_right730 .nav_now {
+	line-height: 14px;
+	background-image: url(/images/vpn/products1.gif);
+	background-repeat: no-repeat;
+	background-position: left center;
+	height: 14px;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	padding-left: 20px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #064;
+	width: 710px;
+}
+#warrper .products_right730_boer {
+	float: right;
+	height: auto;
+	width: 768px;
+	margin-right:0px;
+	background-color:#FFF;
+	margin-bottom:20px;
+	
+	
+	
+	
+}
+#warrper .yvqingbaogao_enter {
+	
+	height: 400px;
+	width: 947px;
+	
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-width: 1px;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-style: solid;
+	border-right-color: #CCC;
+	border-bottom-color: #CCC;
+	border-left-color: #CCC;
+	border-top-color: #CCC;
+	
+	
+}
+
+#warrper .fmyq_top {
+	float: right;
+	height: 350px;
+	width: 725px;
+	margin-left: 11px; 
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-width: 1px;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-style: solid;
+	border-right-color: #CCC;
+	border-bottom-color: #CCC;
+	border-left-color: #CCC;
+	border-top-color: #CCC;
+	
+ 
+	
+}
+
+.fmyq_top_1 {
+	
+	height: 310px;
+	width: 620px;
+	margin-left: 50px; 
+	margin-top: 25px; 
+	
+	background-image: url(/images/vpn/fmyq-1.png)
+ 
+	
+}
+.fmyq_top_2 {
+	
+	height: 30px;
+	width: 90px;
+	margin-left: 260px; 
+	margin-top: 10px; 
+	color:#069;
+	font-size:14px;
+	
+	
+ 
+	
+}
+.fmyq_top_3 {
+	
+	height: 243px;
+	width: 466px;
+	margin-left: 70px; 
+	margin-top: 5px; 
+	
+	
+}
+.fmyq_top_4 {
+	
+	height: 150px;
+	width: 650px;
+	margin-left: 39px; 
+	margin-top: 5px; 
+	
+	
+}
+.fmyq_top_5 {
+	
+	height: 91px;
+	width: 549px;
+	margin-left: 50px; 
+	margin-top: 5px; 
+	
+	
+}
+
+.yqss3_1
+{
+	float:left;
+	
+	height: 260px;
+	width: 217px;
+	
+}	
+.yqss3_2
+{
+	
+	float:right;
+
+	height: 260px;
+	width: 217px;
+	
+}	
+
+.yqss3_3{
+	
+	float:right;
+
+	height: 23px;
+	width: 150px;
+	
+}	
+.yvqingbaogao_enter_1 {
+	
+	height: 40px;
+	width: 110px;
+	margin-left:420px;
+	margin-top:40px;
+	
+	
+	
+	
+	
+}
+.yvqingbaogao_enter_2 {
+	
+	height: 30px;
+	width: 70px;
+	margin-left:60px;
+	margin-top:30px;
+	
+}
+.yvqingbaogao_enter_3 {
+	
+	height: 30px;
+	width: 700px;
+	margin-left:120px;
+	margin-top:50px;
+	background-image: url(/images/vpn/yqbg-2.png)
+	
+}
+.yvqingbaogao_enter_4 {
+	
+	height: 30px;
+	width: 700px;
+	margin-left:120px;
+	margin-top:30px;
+	background-image: url(/images/vpn/yqbg-1.png)
+	
+}
+.yvqingbaogao_enter_5 {
+	
+	height: 30px;
+	width: 85px;
+	margin-left:90px;
+	margin-top:0px;
+	color:#FFF;
+	font-size:14px;
+	padding-top:3px;
+	
+	
+}
+.yvqingbaogao_enter_5 {
+	
+	height: 30px;
+	width: 85px;
+	margin-left:90px;
+	margin-top:0px;
+	color:#FFF;
+	font-size:14px;
+	padding-top:3px;
+	
+	
+}
+
+.yqss_enter_1{
+	
+	height: autopx;
+	width: 580px;
+	margin-left:100px;
+	margin-top:120px;
+	padding-left:40px;
+	
+	}
+.yqss_enter_2{
+	
+	height: autopx;
+	width: 580px;
+	margin-left:220px;
+	margin-top:20px;
+	padding-left:40px;
+	
+	}
+
+	
+	
+	
+.line4 {width:440px;height:200px;margin:0;padding:0;list-style:none;}
+.line4 li {width:100px;height:200px; float:left; background:#f5f5f5; margin:0 9px; border:1px solid #ccc;}
+
+.products_m{
+	line-height: 14px;
+	height: 14px;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	padding-left: 20px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #e8e8e8;
+}
+.banner1 {background-image: url(/images/vpn/products3.gif);background-repeat: no-repeat;height: 193px;width: 730px;margin-top: 10px;}
+.banner2 {background-image: url(/images/vpn/solutions2.gif);background-repeat: no-repeat;height: 150px;width: 730px;margin-top: 10px;}	
+.Introduction {height: auto;width: 730px;margin-top: 10px;}
+.Introduction_tittle {
+	background-image: url(/images/vpn/products7.gif);
+	background-repeat: no-repeat;
+	height: 24px;
+	width: 700px;
+	padding-left: 30px;
+	padding-top: 6px;
+	font-size: 14px;
+	line-height: 24px;
+	clear: both;
+}
+.Introduction_container {height: auto;width: 700px;border-right-width: 1px;border-bottom-width: 1px;
+border-left-width: 1px;border-right-style: solid;border-bottom-style: solid;border-left-style: solid;border-right-color: #CCCCCC;border-bottom-color: #CCCCCC;border-left-color: #CCCCCC;padding-top: 20px;padding-right: 13px;padding-left: 15px;line-height: 24px;padding-bottom: 20px;}
+.Introduction_container_g {text-align: center;height: 40px;width: 700px;line-height: 40px;
+	font-size: 14px;font-weight: bold;color: #fe7028;margin-top: 10px;}
+.Introduction_container_gcont {height: 490px;width: 648px;background-color: #f1f1f1;
+	margin-left: 15px;padding-top: 10px;padding-left: 15px;padding-right: 15px;}
+.Introduction_container_gcont2 {height: 624px;width: 648px;background-color: #f1f1f1;
+	margin-left: 15px;padding-top: 10px;padding-left: 15px;padding-right: 15px;}
+.Introduction_container_gcont3 {height: 1070px;width: 648px;background-color: #f1f1f1;
+	margin-left: 15px;padding-top: 10px;padding-left: 15px;padding-right: 15px;}
+.Introduction_container_t {height: 174px;width: 615px;margin-top: 10px;margin-right: 40px;
+	margin-bottom: 10px;margin-left: 45px;}
+.Introduction_container_t li {float: left;width: 195px;text-align: center;line-height: 20px;}
+.Introduction_container_m {height: 195px;width: 615px;margin-top: 15px;margin-right: 40px;
+	margin-bottom: 10px;margin-left: 45px;_margin-left:22px;}
+.Introduction_container_m li {line-height: 20px;width: 195px;text-align: center;float: left;}
+.Introduction_container .Products {
+	line-height: 30px;
+	background-image: url(/images/vpn/index7.gif);
+	background-repeat: no-repeat;
+	background-position: left center;
+	height: 30px;
+	width: 680px;
+	padding-left: 20px;
+}
+.Introduction_container .lines {
+	background-image: url(/images/vpn/proauct_3_12.gif);
+	background-repeat: no-repeat;
+	height: 1px;
+	width: 688px;
+}
+.Introduction_container .contains {
+	line-height: 24px;
+	margin-top: 10px;
+	text-indent: 25px;
+	width: 690px;
+	padding-left: 10px;
+}
+.Introduction_container .contains1 {
+	height: 100px;
+	margin-top: 10px;
+	width: 600px;
+	margin-left: 10px;
+	background-color: #FFF;
+}
+
+.fenleimingdan_1{
+	
+	margin-top: 10px;
+	width: 690px;
+	margin-left:10px;
+	height:120px;
+	
+}
+.Introduction_container .contains2 {
+	line-height: 16px;
+	margin-top: 10px;
+	width: 690px;
+	padding-left: 10px;
+	height: 240px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	
+}
+
+.Introduction_container .contains_t {
+	line-height: 24px;
+	margin-top: 10px;
+	width: 680px;
+	padding-left: 20px;
+}
+.contains_r {
+	line-height: 24px;
+	margin-top: 10px;
+	width: 690px;
+	padding-left: 10px;
+}
+.contains_r-1{
+	line-height: 24px;
+	margin-top: 20px;
+	width: 120px;
+	height: 150px;
+	padding-left: 0px;
+}
+.contains_r-2{
+	line-height: 24px;
+	margin-top: 20px;
+	width: 100px;
+	height: 150px;
+	padding-right: 0px;
+}
+.contains_j{
+	line-height: 24px;
+	margin-top: 20px;
+	width: 680px;
+	padding-left: 10px;
+}
+.Superiority {
+	height: 164px;
+	width: 644px;
+	margin-left: 36px;
+	background-color: #efefef;
+	border: 1px solid #a49f9f;
+	margin-top: 15px;
+}
+.picture1 {
+	width: 140px;
+	height: 34px;
+	margin-top: 10px;
+	margin-left: 6px;
+}
+.bottom_line {
+	width: 947px;
+	border-bottom-width: 4px;
+	border-bottom-style: solid;
+	border-bottom-color: #2b98ee;
+	height: 1px;
+}
+#container #bottom_line_news {
+	width: 947px;
+	margin-top: 10px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #abcbe4;
+	float: left;
+	clear: both;
+}
+.products_n {
+	height: auto;
+	width: 680px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 10px;
+}
+.products_n .tittle {
+	height: 30px;
+}
+.products_n .tiper {
+	height: 55px;
+}
+.products_n .tiper1 {
+	height: 70px;
+}
+.products_n .tiper_left {
+	padding: 10px;
+	width: 185px;
+	float: left;
+}
+.products_n .tiper_left1 {
+	padding: 10px;
+	height:78px;
+	width: 185px;
+	float: left;
+}
+.products_n .tiper_right {
+	float: right;
+	width: 450px;
+}
+.products_n .from {
+	height: 120px;
+	width: 635px;
+	margin-bottom: 10px;
+}
+.products_n .from1 {
+	height: 144px;
+	width: 635px;
+	margin-bottom: 10px;
+}
+.coopertions_p {
+	width: 650px;
+	margin-left: 25px;
+	height: 136px;
+	margin-bottom: 20px;
+}
+.coopertions_p ul {
+	list-style-type: none;
+}
+.coopertions_p li {
+	float: left;
+	height: 116px;
+	width: 188px;
+	margin-top: 10px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	margin-left: 10px;
+}
+.con_right {
+	float: right;
+	height: 235px;
+	width: 290px;
+	text-align: center;
+}
+.con_left {
+	float: left;
+	height: 235px;
+	width: 340px;
+	border-right-width: 1px;
+	border-right-style: dashed;
+	border-right-color: #b3afaf;
+}
+.news_banner {
+	height: 81px;
+	width: 947px;
+	
+	background-image: url(/images/vpn/banner.png);
+	background-repeat: no-repeat;
+	clear: both;
+}
+
+.news_hotel {
+	height: 81px;
+	width: 947px;
+	
+	background-image: url(/images/vpn/hotelbaner.jpg);
+	background-repeat: no-repeat;
+	clear: both;
+	
+	
+}
+
+
+.news_banner_1 {
+	height: 12px;
+	width: 120px;
+	margin-top: 70px;
+	margin-left: 820px;
+	color:#FFF;
+
+}
+.products_right730_boer .tittle_news {
+	line-height: 29px;
+	background-repeat: no-repeat;
+	background-position: left center;
+	height: 29px;
+	width: 768px;
+	background-image: url(/images/vpn/top3.png);
+	
+}
+
+.tittle_news_1{
+	
+	height: 18px;
+	width: 400px;
+	margin-top:3px;
+	margin-left:20px;
+	font-size:14px;
+	color:#069;
+	
+}
+.tittle_news_3{
+	
+	height: 28px;
+	width: 728px;
+	margin-top:1px;
+	
+	font-size:12px;
+	color:#069;
+	
+}
+.tittle_news_4{
+	
+	height: 22px;
+	width: 678px;
+	margin-left:15px;
+	margin-top:10px;
+	
+	
+	
+	font-size:12px;
+	color:#069;
+	
+}
+.tittle_news_5{
+	
+	height: 442px;
+	width: 698px;
+	margin-left:15px;
+	margin-top:15px;
+	margin-bottom:15px;
+	background-color:#edf3fb;
+	
+	font-size:12px;
+	color:#069;
+	
+}
+.products_right730_boer .tittle_news_2 {
+	
+	height: 320px;
+	width: 650px;
+	padding-left: 50px;
+	padding-top: 20px;
+	margin-left: 10px;
+	
+}
+.news_inside_page {
+	background-color: #f7f5f5;
+	height: auto;
+	width: 690px;
+	padding-top: 20px;
+	padding-right: 20px;
+	padding-bottom: 40px;
+	padding-left: 20px;
+	line-height: 26px;
+	border-top-width: 1px;
+	border-bottom-width: 1px;
+	border-top-style: solid;
+	border-bottom-style: solid;
+	border-top-color: #e6e4e4;
+	border-bottom-color: #e6e4e4;
+	margin-bottom: 20px;
+}
+
+.news_container {
+	height: auto;
+	width: 766px;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: #b3caed;
+	border-right-color: #b3caed;
+	border-bottom-color: #b3caed;
+	border-left-color: #b3caed;
+	
+	
+	
+	
+	
+}
+
+.news_container_1{
+	height: 100px;
+	width: 695px;
+	background-color: #edf3fb;
+	margin-left:15px;
+	margin-top:15px;
+}
+.news_container_2{
+	height: 80px;
+	width: 640px;
+	margin-left:30px;
+	margin-top:10px;
+   
+}
+	
+.news_container_text {
+	width: 695px;
+	margin-left: 10px;
+	line-height: 26px;
+	margin-top: 10px;
+	margin-right: 10px;
+	margin-bottom: 20px;
+}
+.news_container_text img {
+	float: left;
+	height: 302px;
+	width: 250px;
+	margin-left: 10px;
+	margin-right: 15px;
+	margin-top: 5px;
+}
+.bottom_border {
+	border-bottom-width: 1px;
+	border-bottom-style: dashed;
+	border-bottom-color: #dcdcdc;
+}
+.news_container .Page {
+	text-align: center;
+	height: 20px;
+	width: 719px;
+	padding-top: 10px;
+}
+.border_left {
+	border-left-width: 1px;
+	border-left-style: solid;
+	border-left-color: #999999;
+}
+.border_tow {
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-right-color: #999999;
+	border-bottom-color: #999999;
+}
+.bottom_down {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #999999;
+}
+
+.news_nav {
+	
+	
+	background-repeat: no-repeat;
+	background-position: left center;
+	height: 50px;
+	
+	
+	margin-bottom: 0px;
+	
+	padding-top: 8px; 
+	width: 947px;
+	
+}
+.news_nav_1 {
+	
+	height: 25px;
+	
+	margin-top: 5px;
+	
+	
+	width: 947px;
+	clear: both;
+}
+.news_nav_2 {
+	height: 227px;
+	width: 947px;
+	margin-top: 10px; 
+	
+	background: url(/images/vpn/tubiaoquyv.png)
+}
+.news_nav_2_1 {
+	height: 30px;
+	width: 140px;
+	margin-left: 400px; 
+	margin-right: 20px; 
+	padding-top: 7px;
+	color:#069;
+	font-size:14px;	
+	
+	
+	
+	
+}
+.news_nav_2_2 {
+	height: 172px;
+	width: 890px;
+	margin-left: 30px; 
+	margin-right: 20px; 
+	padding-top: 12px;
+	
+	
+	
+	
+	
+}
+.picture_left {
+	background-image: url(/images/vpn/about-us2.gif);
+	background-repeat: no-repeat;
+	height: 69px;
+	width: 205px;
+}
+.news_container .tittles {
+	line-height: 14px;
+	background-image: url(/images/vpn/index7.gif);
+	background-repeat: no-repeat;
+	background-position: left center;
+	height: 27px;
+	width: 670px;
+	padding-top: 5px;
+	padding-left: 20px;
+	border-bottom-width: 1px;
+	border-bottom-style: dashed;
+	border-bottom-color: #c1bbba;
+	padding-bottom: 3px;
+	margin-bottom: 10px;
+}
+.Honor {
+	height: 450px;
+	width: 705px;
+	padding-left: 5px;
+	margin-top: 10px;
+	border-bottom-width: 1px;
+	border-bottom-style: dashed;
+	border-bottom-color: #c1bbba;
+	margin-bottom: 10px;
+}
+.Honor ul {
+	list-style-type: none;
+	padding-left: 25px;
+}
+.Honor li {
+	float: left;
+	height: 110px;
+	width: 158px;
+	padding: 20px;
+}
+.Marketing {
+	height: 792px;
+	width: 705px;
+	padding-left: 5px;
+	margin-top: 10px;
+	border-bottom-width: 1px;
+	border-bottom-style: dashed;
+	border-bottom-color: #c1bbba;
+	margin-bottom: 10px;
+}
+.Marketing ul {
+	list-style-type: none;
+	padding-left: 10px;
+}
+.Marketing li {
+	float: left;
+	height: 168px;
+	width: 205px;
+	padding-top: 10px;
+	padding-right: 20px;
+	padding-bottom: 20px;
+	padding-left: 5px;
+	display: block;
+}
+.Years {
+	height: 24px;
+	width: 708px;
+	border: 1px solid #efecec;
+	clear: both;
+	line-height: 24px;
+	padding-top: 6px;
+	font-size: 14px;
+	font-weight: bold;
+	color: #000000;
+	background-color: #f2fbfb;
+}
+.Years img {
+	height: 9px;
+	padding-left: 15px;
+	margin-right: 6px;
+}
+.news_container p {
+	line-height: 24px;
+	width: 698px;
+	text-indent: 25px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.bule {color: #069;}
+.bottom_tittle {
+	line-height: 26px;
+	text-align: left;
+	width: 150px;
+	padding-left: 550px;
+}
+.bule_12fb {
+	font-weight: bold;
+	color: #003399;
+}
+.fb {
+	font-weight: bold;
+	color: #666;
+}
+.bule_12fb a {
+	font-weight: bold;
+	color: #003399;
+}
+.bule_14 {font-size: 14px;color: #00107a;line-height: 35px;}
+.bule_14center {
+	font-size: 14px;
+	line-height: 30px;
+	color: #003399;
+	text-align: center;
+	display: block;
+}
+.bule_12center {
+	font-size: 12px;
+	line-height: 30px;
+	color: #003399;
+	text-align: center;
+	display: block;
+	font-weight: bold;
+}
+.bule_12center_t {
+	font-size: 12px;
+	line-height: 30px;
+	color: #666666;
+	text-align: center;
+	display: block;
+	font-weight: bold;
+}
+.bule_12center_m {
+	font-size: 12px;
+	line-height: 30px;
+	color: #003399;
+	text-align: center;
+	display: block;
+	font-weight: bold;
+}
+.bule_14centers {
+	font-size: 14px;
+	line-height: 30px;
+	color: #003399;
+	text-align: center;
+	display: block;
+}
+.yellow {font-size: 14px;color: #fe7028;}
+.q_more {
+	font-size: 12px;
+	font-weight: bold;
+	padding-left: 210px;
+}
+.q_more a{ color:ac4511;}
+.center {
+	font-size: 14px;
+	line-height: 30px;
+	font-weight: bold;
+	color: #003399;
+	padding-left: 260px;
+}
+.right_bom {
+	line-height: 26px;
+	padding-left: 350px;
+}
+.right_bom1 {
+	line-height: 26px;
+	padding-left: 435px;
+}
+.nat_img {
+	float: right;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+.mm {
+	background-image: url(/images/vpn/xiao1.gif);
+	background-repeat: no-repeat;
+	background-position: left center;
+}
+t center;{
+}
+.img_m {
+	float: right;
+	margin-right: 20px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 20px;
+}
+.newsDynamic {
+	height: 90px;
+	background-image: url(/images/vpn/newsDy.gif);
+	background-repeat: no-repeat;
+	padding-top: 10px;
+	padding-left: 136px;
+}
+.center_newsd {
+	text-align: center;
+	display: block;
+}
+.Introduction_container_gcontm {height:1060px;width: 648px;background-color: #f1f1f1;
+	margin-left: 15px;padding-top: 10px;padding-left: 15px;padding-right: 15px;}
+
+#list3-img {
+	height: 167px;
+	width: 306px;
+	padding-left: 0px;
+	padding-top: 0px;
+	border-right: 1px solid #c2b9b9;
+	border-bottom: 1px solid #c2b9b9;
+	border-left: 1px solid #c2b9b9;}
+
+
+.mycontains_r{}
+.mycontains_r ul{ display:inline; list-style:none;  padding:3px; margin-left:3px; margin-top:3px;}
+.mycontains_r ul li{}
+#r1left{
+	width:140px; 
+	height:120px;
+	border:solid 1p #ebebeb;
+	padding:2px;
+	float:left;
+	}
+#r1right{
+ width:700px; 
+	height:130px;
+ float:left;
+ display:inline;
+ margin-right:10px;
+}
+#r1right h3{
+	font-size:12px;
+	font-weight:550px;
+	border-bottom:dashed 1px #ccc;
+	width:100%;
+	}
+#r1left img {width:124px;height:120px;	border:solid 1p #ebebeb;
+	padding:2px;}

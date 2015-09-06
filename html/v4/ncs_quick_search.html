@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <title>快乐查询</title>
+     <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css">
+    <script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+	  <script type="text/javascript" src="/newver/resources/locale/ext-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="/v4/tree_netid.js"></script>
+    
+    <style type="text/css">	
+    		.accept {
+
+            background-image:url(/newver/resources/themes/images/share/accept.png) !important;
+
+        }
+
+		body{
+			margin:0;
+			height:100;
+			width:100%;
+			position:absolute;
+		}
+	
+		#mapleft{
+			position: absolute;
+			top:0;
+			width:230px;
+			left:0;
+			z-index:2;
+			bottom:0;
+		}
+		#mapContainer{
+			position: absolute;
+			top:0;
+			left: 230px;
+		
+		  overflow: scroll;  
+      height:650px;
+	    font-size:13px;
+	    text-indent: 2em;
+	    line-height:18px;
+	    font-weight: normal;
+	    
+		}
+		
+tip2{
+	  background:url(/ssxx/images/tip.png) no-repeat fixed; 
+	  width:130px;height:95px;
+		}
+    </style>	
+</head>
+<script>
+	Ext.Loader.setConfig({enabled: true});
+Ext.Loader.setPath('Ext.ux', '/newver/ux/');
+Ext.require([
+    'Ext.form.*',
+    'Ext.window.*',
+    'Ext.grid.*',
+    'Ext.data.*',
+    'Ext.util.*',
+    'Ext.window.MessageBox',
+    'Ext.toolbar.Paging',
+    'Ext.ux.PreviewPlugin',
+    'Ext.tree.*',
+    'Ext.ux.*'
+
+]);
+	var store;
+	var store_netflow;
+	function showgrapy(title,way){
+
+	        store_netflow=Ext.create('Ext.data.Store', 
+       		{
+        		pageSize: 40,
+        		id:"store_netflow",
+            fields: ['sdate', 'xname',{name:'采集时间',mapping:'lCount'}],
+        		autoLoad:true,
+        		remoteSort: true,
+        		proxy: 
+        		{
+            			type: 'ajax',
+            			url: '/pronline/Msg?FunName@proauth_pepole_bytime&way@'+way+'&title@'+title,
+//                    url: '/ssxx/app_people/people_data.htm',
+            			reader: {
+                			type:'json',
+                			root: 'eimdata',
+                			totalProperty: 'totalCount'
+            			},         
+            			simpleSortMode: true
+        		},
+        		sorters: 
+        		[{
+            			property: 'stime',
+            			direction: 'DESC'
+        		}]
+    		});
+	    store_netflow.load(
+	    {
+	    	  callback:function(records, options, success){
+	//    	 	alert(records[0].get('sdate'));
+	 //   	 	var stime_t=Ext.Date.format(records[0].get('sdate'), 'H:i:15');
+	//    	 	 Ext.getCmp('stime').setValue(stime_t);          
+	    	  }
+	    	}
+	    
+	    );
+	  
+	
+
+	
+
+    
+	}
+
+	
+	
+	
+		function reflash(){
+	var stemp='';
+	   var way=Ext.getCmp('way').value;
+	   store.load({params: {way:way},
+     callback:function(records, options, success){
+     
+     for(var i=0;i<store.getCount();i++){
+     		stemp=stemp+drawtip(store.getAt(i).get('longitude'),store.getAt(i).get('latitude'),store.getAt(i).get('apid'),store.getAt(i).get('count'),store.getAt(i).get('way'),store.getAt(i).get('color')); 
+     	}
+	//alert(stemp);
+     	document.getElementById("maptip").innerHTML=stemp; 
+     }
+    }
+	);
+	}
+	
+	
+	Ext.onReady(function(){
+    Ext.tip.QuickTipManager.init();
+    Ext.define('EimData', {
+        extend: 'Ext.data.Model',
+        fields: [
+            'apid', 'count', 'longitude', 'latitude','way','servicename','apname','apmac','mark','color'
+        ]
+ //       ,
+ //       idProperty: 'id'
+    });
+        // create the Data Store
+    //重写排序函数，解决远程条件查询问题
+    Ext.data.Store.prototype.doSort = function() {
+    	reflash();
+    }
+    
+       store = Ext.create('Ext.data.Store', {
+        pageSize: 40,
+        model: 'EimData',
+        remoteSort: true,
+        proxy: {
+            type: 'ajax',
+             url: '/pronline/Msg?FunName@ncSrvShowOnlineRlStat',
+            reader: {
+                type:'json',
+                root: 'eimdata',
+                totalProperty: 'totalCount'
+            },         
+            simpleSortMode: true
+        },
+        sorters: [{
+      //      property: 'id',
+     //       direction: 'DESC'
+        }]
+    });
+    
+  
+    var pluginExpanded = true;
+ 
+     //查询  
+ 
+     Ext.define('State', {
+        extend: 'Ext.data.Model',
+        fields: [
+            {type: 'string', name: 'groupid'},
+            {type: 'string', name: 'groupname'}
+        ]
+    });
+ 
+  
+  
+     var cxform = Ext.create('Ext.form.Panel', {
+        scrollOffset: 0,
+        height: 950,        
+        frame:true,    
+       items:[
+       {
+  	     xtype: 'fieldcontainer',                          
+         layout: 'vbox',
+          items:[
+               {
+                  xtype: 'fieldset',
+                  collapsible: false,
+                  collapsed:false,
+                  title:'查询时间',
+                   margin: '0 0 0 0',
+  	              defaultType: 'textfield',
+  	              items: [
+                  {
+          	       xtype: 'fieldcontainer',
+                   layout: 'vbox',
+                    items:[
+                    { 
+                      fieldLabel: '时间段',
+			                labelWidth: 40,
+			                width:195, xtype:'combo',mode:'local',value:'1',triggerAction:  'all',forceSelection: true,editable:false,                                
+                      id:'time_flag',name: 'time_flag', displayField:'name',valueField:'value', queryMode: 'local',
+                      store: Ext.create('Ext.data.Store', {
+                                    fields : ['name', 'value'],
+                                    data   : [{name : '今天',   value: '1'},{name : '三天以内',value: '2'},{name : '最近一周',value: '3'},{name : '最近一月',value: '4'},{name : '最近三月',value: '5'},{name : '最近半年',value: '6'},{name : '自定义时间',value: '9'}
+                                    ]
+                      }),
+                      listeners:{
+			                 'change':function(){
+			                 	if(Ext.getCmp('time_flag').value==9){
+			                     Ext.getCmp('containersdate').setVisible(true);
+			                     Ext.getCmp('containeredate').setVisible(true);
+			                  }
+			                  else{
+			                  	 Ext.getCmp('containersdate').setVisible(false);
+			                     Ext.getCmp('containeredate').setVisible(false);
+			                  }
+			                
+                      }
+                      }		                
+			              },
+			             { xtype: 'fieldcontainer',layout: 'hbox',hidden:true,id:'containersdate',
+                   items:[{xtype: 'datefield',id:'sdate',format: "Y/m/d",fieldLabel: '起始',labelWidth: 40,emptyText:'',width:135,name: 'sdate',value:''},	{                        
+                        fieldLabel:'',
+                        width:60,
+                        format: "H:i",
+                        xtype: 'timefield',
+                        value:Ext.Date.add(new Date(), Ext.Date.HOUR, -1),
+                        id:'stime',
+                        name:'stime'
+                     }]
+			             }
+			              ,
+			           { xtype: 'fieldcontainer',layout: 'hbox',hidden:true,id:'containeredate',
+                  items:[{xtype: 'datefield',id:'edate',format: "Y/m/d",fieldLabel: '终止',labelWidth: 40,emptyText:'',width:135,name: 'edate',value:''},	{                        
+                        fieldLabel:'',
+                        width:60,
+                        format: "H:i",
+                        xtype: 'timefield',
+                        value:Ext.Date.add(new Date(), Ext.Date.HOUR, -1),
+                        id:'etime',
+                        name:'etime'
+                     }]
+			             }
+			              
+			              
+			              
+			              
+			              ]
+			            }
+			            ]
+			          }
+			          ,
+			          {
+                  xtype: 'fieldset',
+                  collapsible: false,
+                  collapsed:false,
+                  title:'用户信息',
+                   margin: '0 0 0 0',
+  	              defaultType: 'textfield',
+  	              items: [
+  	               {xtype:'textfield',fieldLabel: '登录名',labelWidth: 52,emptyText: '',width:195,name: 'username'},
+  	               {xtype:'textfield',fieldLabel: '姓名',labelWidth: 52,emptyText: '',width:195,name: 'dispname'},
+  	               {xtype:'textfield',fieldLabel: '证件号',labelWidth: 52,emptyText: '',width:195,name: 'idno'},
+  	               {xtype:'textfield',fieldLabel: 'MAC地址',labelWidth: 52,emptyText: '',width:195,name: 'mac'}
+  	              ]
+  	            }
+			          
+			         ,
+			          {
+                  xtype: 'fieldset',
+                  collapsible: false,
+                  collapsed:false,
+                  title:'虚拟身份',
+                   margin: '0 0 0 0',
+  	              defaultType: 'textfield',
+  	              items: [
+  	               {xtype:'textfield',fieldLabel: '虚拟帐号',labelWidth: 52,emptyText: '',width:195,name: 'netid'},
+  	                  { 
+        	                        width:          195,
+        	                        fieldLabel: '虚拟类别',labelWidth: 52,
+                                	xtype:          'treecombox',
+                                	mode:           'local',
+                                	value:          '',
+                                	name:           'nettype',
+                                	displayField:   'text',
+                                	valueField:     'id',
+                                	queryMode: 	'local',
+                               	 	store:   store_classtree
+	                
+			              }
+  	              ]
+  	            }
+			          ,
+			          {
+                  xtype: 'fieldset',
+                  collapsible: false,
+                  collapsed:false,
+                  title:'内容关键字',
+                   margin: '0 0 0 0',
+  	              defaultType: 'textfield',
+  	              items: [
+  	               {xtype:'textfield',fieldLabel: '关键字',labelWidth: 52,emptyText: '',width:195,name: 'keyword'}
+  	             
+  	              ]
+  	            }
+  	            ,
+  	             { xtype: 'fieldcontainer',layout: 'hbox',
+                items:[
+			          {
+                  xtype: 'button',text:'查&nbsp;&nbsp;询',
+                  style : 'margin-top:10px;margin-left:50px',
+                  handler:function(){
+                  	alert('ggg');
+                  }
+        
+  	            },{
+                  xtype: 'button',text:'清除条件',
+                  style : 'margin-top:10px;margin-left:10px',
+                  handler:function(){
+                  	alert('ggg');
+                  }
+        
+  	            }]
+			             }
+			          
+			          ]
+			        }
+			        ]       
+      ,      
+        renderTo: 'mapleft'
+    });  
+   
+   
+         var resultTpl = Ext.create('Ext.XTemplate',
+        '<tpl for=".">',
+        '<div class="search-item">',
+        	 '<table cellSpacing=0 cellPadding=0 width="100%" style="word-break:break-all" border=0>',
+        	 	'<tr><td valign="top">',
+        	 	'<h4> <font color=blue>主题：</font><a href="{url}" target="_blank">{subject:this.formatDate}</a></h4>',
+        	 	'<p>{content:this.formatDate}</p>',
+        	
+        	 	'<p>作者:{author:this.formatDate}&nbsp;&nbsp;发帖时间:{stime}',
+        	 	'<p>论坛名称:{bname:this.formatDate}&nbsp;&nbsp;<a href="{url}" target="_blank"><font color="green">{url:this.formatDate}</font></a></p>',
+        	 	'</td>',
+        	 	'<td valign="top"  width="250">',
+            '<p>姓名:<a href="#xxm" onclick=_show_enduser("{did}","{uid}")>{dispname}</a></p>',
+            '<p>上网单位:{corpname}</p>',
+            '<p>记录时间:{stime}</p>',
+            '<p>MAC地址:{mac}</p>',
+            '<p>源IP地址:{sip:this.formatDate}</p>',
+            '<p>上网位置:{position}</p>',
+            '<p>目标IP地址:{dip}</p>',
+            '<p>目标IP所属地:{iplocal}</p>',
+           '<td></tr>',
+          '</table>',
+        '</div></tpl>',
+        {
+        formatDate: function(value){
+             var re=/&lt;/g;
+             var dre="<";             
+             var  aaaa=value.replace(re,dre);
+             var re=/&gt;/g;
+             var dre=">";  
+             value=aaaa.replace(re,dre);  
+             return value;
+          }
+        }
+        
+        );
+
+     var panel = Ext.create('Ext.panel.Panel', {
+        height: 980,
+        title:'用户上下线日志',
+        width:1800,
+        layout: 'fit',
+        items: {
+            autoScroll: true,
+            xtype: 'dataview',
+            tpl: resultTpl,
+            store: store,
+            itemSelector: 'div.search-item'
+        },
+        	tbar: Ext.create('Ext.PagingToolbar', 
+        	{
+            		store: store_netflow,
+            		displayInfo: true,
+            		displayMsg: '显示{0} - {1}条记录 共{2}条记录',
+            		emptyMsg: "没有记录可显示",
+            		items: [
+            	'-']
+                                       
+
+        	})
+        });
+
+
+
+    var cxform = Ext.create(Ext.container.Viewport, {
+    	autoHeight: true,
+    	layout: 'hbox',
+    	items :[
+    	panel
+    	],
+    	 renderTo: 'mapContainer'
+    }
+   );
+
+
+
+	
+	 
+    });
+   
+	
+	</script>
+<body>
+	<div id="mapleft"></div>
+	<div id="mapContainer" style="z-index:0" >		
+	
+	</div>
+
+
+</body>
+</html>

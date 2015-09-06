@@ -1,0 +1,231 @@
+<!-- saved from url=(0022)http://internet.e-mail -->
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script language="JavaScript">
+<!--
+var ll=[#CurPg#]
+var yy=[#TotPg#]
+function checkme(p)
+{
+	var tt=p.value
+	if (tt>yy)
+	{
+		MM_changeProp('browsdopage','','value',yy,'INPUT/TEXT')
+	}
+	if (tt==0)
+	{
+		MM_changeProp('browsdopage','','value','1','INPUT/TEXT')
+	}
+}
+
+function MM_findObj(n, d) 
+{ //v4.0
+  	var p,i,x;
+  	if(!d) d=document;
+  	if((p=n.indexOf("?"))>0&&parent.frames.length)
+  	{
+    	d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);
+    }
+  	if(!(x=d[n])&&d.all) x=d.all[n];
+  	for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  	for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  	if(!x && document.getElementById) x=document.getElementById(n); return x;
+}
+
+function MM_changeProp(objName,x,theProp,theValue)
+{ //v3.0
+  	var obj = MM_findObj(objName);
+  	if (obj && (theProp.indexOf("style.")==-1 || obj.style)) eval("obj."+theProp+"='"+theValue+"'");
+}
+
+function goto(a)
+{
+	window.open(a,"_self","")
+}
+
+function MM_reloadPage(init)
+{  //reloads the window if Nav4 resized
+  	if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+
+function mouseovertr2 (o)
+{
+	var i;
+	df=o.style.backgroundColor
+	o.style.backgroundColor= "#F2F2F2";
+	o.style.borderColor= "#3399ff";
+		
+	for(i=0; i<o.cells.length; i++)
+	{
+		o.cells(i).style.color="#000000";
+	}	
+}
+
+function mouseouttr2(o)
+{
+	o.style.backgroundColor=df
+	for(i=0; i<o.cells.length; i++)
+	{
+		o.cells(i).style.color="#000000";
+	}
+}
+
+function mouseovertd2(o)
+{
+	o.style.borderStyle="solid"
+	o.style.borderColor="#000000"
+	o.style.color="#ffffff"	
+}
+
+function mouseouttd2(o)
+{
+	o.style.color="#003366"
+	o.style.borderColor="#cccccc"
+}
+
+function gotoPage(pagenum)
+{
+    form1.CurPg.value = pagenum;
+}
+// -->
+</script>
+<style type="text/css">
+<!--
+body {  font-size: 9pt}
+.tas {  border-color: black #FFFFFF; border-style: solid; border-top-width: 0px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 1px}
+table {  font-size: 9pt}
+.hand {  cursor: hand}
+.gray1{filter:gray}
+-->
+</style>
+<link rel="stylesheet" href="/publiccss/css.css" type="text/css">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" leftmargin="1" topmargin="0">
+<form name="form1" id="form1" method="post" action="/pronline/Msg">
+<input type="hidden" name="FunName" value="WmsWmmWhoQuy">
+<input type="hidden" name="CurPg" value="[#CurPg#]">
+<input type="hidden" name="Row" value="[#Row#]">
+<input type="hidden" name="Col" value="[#Col#]">
+<table width="100%" border="0">
+    <tr> 
+      <td width="26%"> 
+        <div align="left"><font color="#999999">仓库基本信息维护</font></div>
+      </td>
+      <td width="31%"> 
+        <div align="right">第[#CurPg#]页 共[#TotPg#]页 共[#TotRec#]条记录&nbsp;&nbsp;&nbsp;</div>
+      </td>
+      <td width="25%"> 
+        <div align="right">
+          <table align=left border=0 cellpadding=0 cellspacing=0 
+                        class=main width=111>
+            <tbody> 
+            <tr> 
+              <td width="10%"><script>
+if (ll==1)
+{
+	document.write("<img src='/images/buyer-06.gif' border=0 height=17 width=35 class='gray1'>")
+}
+else
+{
+	document.write("<img src='/images/buyer-06.gif' border=0 height=17 width=35 onClick='gotoPage(1);form1.submit()' class='hand'>")
+}
+</script></td>
+              <td width="10%"><script>
+if (ll==1)
+{
+	document.write("<img src='/images/buyer-03.gif' border=0 height=17 width=20 class='gray1'>")
+}
+else
+{
+	document.write("<img src='/images/buyer-03.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]-1);form1.submit()' class='hand'>")
+}
+</script></td>
+              <td width="20%"><img src="/images/buyer-08.gif" border=0 height=17 width=32></td>
+              <td align=middle background="" width=92> 
+                <input class=Main id=browsdopage maxlength=3  name=browsdopage size=3 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 30px" value=[#CurPg#] onKeyPress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" onBlur="checkme(this)">
+              </td>
+              <td width="10%"><img src="/images/buyer-09.gif" border=0 height=17 width=16></td>
+              <td width="10%"><img align=middle border=0 height=17 src="/images/buyer-10.gif" width=17 onClick="gotoPage(form1.browsdopage.value);form1.submit()" class="hand"><img align=middle height=17 src="/images/buyer-11.gif" width=3></td>
+              <td width="10%"><script>
+if (ll==yy)
+{
+	document.write("<img src='/images/buyer-04.gif' border=0 height=17 width=20 class='gray1'>")
+}
+else
+{
+	document.write("<img src='/images/buyer-04.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]+1);form1.submit()' class='hand'>")
+}
+</script></td>
+              <td width="10%"><script>
+if (ll==yy)
+{
+	document.write("<img src='/images/buyer-05.gif' border=0 height=17 width=36 class='gray1'>")
+}
+else
+{
+	document.write("<img src='/images/buyer-05.gif' border=0 height=17 width=36 onClick='gotoPage([#TotPg#]);form1.submit()' class='hand'>")
+}
+</script></td>
+            </tr>
+            </tbody> 
+          </table>
+        </div>
+      </td>
+      <td width="18%"> 
+        <div align="right"> 
+          <input type="button" name="Button" value="新建仓库" class="anniuadd2" onClick="goto('/Wms/Wms_Wmm/add.htm')">
+          <input type="button" name="Button2" value="删除仓库" class="anniudel2" onClick="form1.FunName.value='WmsWmmWhoDel';form1.submit()">
+        </div>
+      </td>
+    </tr>
+    <tr> 
+      <td colspan="4"> 
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tr> 
+            <td> 
+              <table width="100%" cellspacing="0" class="tas" border="1" bordercolor="#FFFFFF" height="20">
+                <tr bgcolor="#CCCCCC"> 
+                  <td width="3%">&nbsp;</td>
+                  <td width="13%">仓库名称</td>
+                  <td width="15%">仓库地址</td>
+                  <td width="15%">仓库类别</td>
+                  <td width="13%">联系人</td>
+                  <td width="12%">联系电话</td>
+                  <td width="19%">传真</td>
+                  <td width="10%">修改</td>
+                </tr>
+              </table>
+              <table width="100%" border="1" cellspacing="0" cellpadding="0" bordercolor="#CCCCCC">
+                [#SLPB100#] 
+                <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)"> 
+                  <td width="3%" onMouseOver="mouseovertd2(this)" onMouseOut="mouseouttd2(this)"> 
+                    <input type="checkbox" name="checka[#i#]" value="[#wms_whu_id#]">
+                  </td>
+                  <td width="13%" onMouseOver="mouseovertd2(this)" onMouseOut="mouseouttd2(this)" >[#wms_whu_nam#]</td>
+                  <td width="15%" onMouseOver="mouseovertd2(this)" onMouseOut="mouseouttd2(this)" >[#wms_whu_add#]</td>
+                  <td width="15%"  onMouseOver="mouseovertd2(this)" onMouseOut="mouseouttd2(this)" >[#wms_whu_cla_id#]</td>
+                  <td width="13%"  onMouseOver="mouseovertd2(this)" onMouseOut="mouseouttd2(this)" >[#wms_whu_pri#]</td>
+                  <td width="12%"  onMouseOver="mouseovertd2(this)" onMouseOut="mouseouttd2(this)" >[#wms_whu_tel#]</td>
+                  <td width="19%"  onMouseOver="mouseovertd2(this)" onMouseOut="mouseouttd2(this)">[#wms_whu_fax#]</td>
+                  <td width="10%"  onMouseOver="mouseovertd2(this)" onMouseOut="mouseouttd2(this)"> 
+                    <input type="button" name="Button" value="修改" class="anniu100" onclick="goto('/pronline/Msg?FunName@WmsWmmWhoEdi+wms_whu_id@[#wms_whu_id#]')">
+                  </td>
+                </tr>
+                [#SLPE#] 
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+<br>
+</form>
+</body>
+</html>

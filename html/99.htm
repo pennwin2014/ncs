@@ -1,0 +1,262 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<title>Web地址列表</title>
+
+<script language="JavaScript1.2">
+    scores = new Array(20);
+    var numTotal=0;
+    NS4 = (document.layers) ? 1 : 0;
+    IE4 = (document.all) ? 1 : 0;
+    ver4 = (NS4 || IE4) ? 1 : 0;
+    if (ver4) {
+        with (document) {
+             write("<STYLE TYPE='text/css'>");
+             if (NS4) {
+                 write(".parent {position:absolute; visibility:visible}");
+                 write(".child {position:absolute; visibility:visible}");
+                 write(".regular {position:absolute; visibility:visible}")
+             }
+             else {
+                 write(".child {display:none}")
+             }
+             write("</STYLE>");
+         }
+     }
+     
+     function getIndex(el)
+     {    
+         ind = null;
+         for (i=0; i<document.layers.length; i++) {        
+             whichEl = document.layers[i];
+             if (whichEl.id == el) {
+                 ind = i;
+                 break;
+             }
+         }
+         return ind;
+      }
+      
+      function arrange() 
+      {    
+          nextY = document.layers[firstInd].pageY +document.layers[firstInd].document.height;
+          for (i=firstInd+1; i<document.layers.length; i++) {
+              whichEl = document.layers[i];
+              if (whichEl.visibility != "hide") {
+                  whichEl.pageY = nextY;
+                  nextY += whichEl.document.height;
+              }
+          }
+      }
+      
+      function initIt(){
+          if (!ver4) return;
+          if (NS4) {
+              for (i=0; i<document.layers.length; i++) {
+                 whichEl = document.layers[i];
+                 if (whichEl.id.indexOf("Child") != -1) 
+                         whichEl.visibility = "hide";
+              }
+              arrange();
+          }
+          else {
+              divColl = document.all.tags("DIV");
+              for (i=0; i<divColl.length; i++) {
+                  whichEl = divColl(i);
+                  if (whichEl.className == "child")
+                      whichEl.style.display = "none";
+              }
+          }
+      }
+      
+      function expandIt(el) 
+      {	
+          if (!ver4) return;
+          if (IE4) {
+             whichEl1 = eval(el + "Child");
+             for(i=1;i<=numTotal;i++) {
+               	 whichEl = eval(scores[i] + "Child");
+               	 if(whichEl!=whichEl1) {
+               	 	whichEl.style.display = "none";
+               	 }
+             }
+             whichEl1 = eval(el + "Child");
+             if (whichEl1.style.display == "none") {
+                whichEl1.style.display = "block";
+             }
+             else {
+                whichEl1.style.display = "none";
+             }
+         }
+         else {
+             whichEl = eval("document." + el + "Child");
+             for(i=1;i<=numTotal;i++){
+             	whichEl = eval("document." + scores[i] + "Child");
+             	if(whichEl!=whichEl1) {
+             		whichEl.visibility = "hide";
+             	}
+             }
+             if (whichEl.visibility == "hide") {
+                whichEl.visibility = "show";
+             }
+             else {
+                whichEl.visibility = "hide";
+             }
+             arrange();
+         }
+     }
+     onload = initIt;
+</script>
+
+<body marginheight=0 leftmargin=0 marginwidth=0 topMargin="0" BGCOLOR="Menu">
+
+<form name="form1" method="post" action="/pronline/Msg"> 
+<div id='KB1Parent' class='parent'><a href="#" onClick="expandIt('KB1'); return false">
+<IMG SRC='/images/plus.gif' BORDER=0><input type="checkbox" name="checkbox" value="checkbox">时间日期类</a></div><div id='KB1Child' class='parent'>
+<a href='time1.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0><input type="checkbox" name="c1" value="checkbox">任意位置显示时钟</a><br>
+<a href='time2.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0><input type="checkbox" name="c2" value="checkbox">倒计时代码生成器</a><br>
+<a href='time3.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>八种风格时间显示</a><br>
+<a href='time4.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>显示登陆时间</a><br>
+<a href='time5.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>日历生成器</a><br>
+<a href='time6.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>退出显示访问时间</a><br>
+<a href='time7.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>一款特酷的时钟</a><br>
+<a href='time8.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>全中文日期显示</a></div>
+<div id='KB2Parent' class='parent'><a href="#" onClick="expandIt('KB2'); return false">
+<IMG SRC='/images/plus.gif' BORDER=0>页面导航类</a></div><div id='KB2Child' class='child'>
+<a href='dao1.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>显示站点信息导航</a><br>
+<a href='dao2.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>任意显示导航信息</a><br>
+<a href='dao3.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>动态导航脚本</a><br>
+<a href='dao4.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>下拉式导航菜单</a><br>
+<a href='dao5.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>静止导航菜单</a><br>
+<a href='dao6.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>静止图片脚本</a><br>
+<a href='dao7.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>文本静止不动</a><br>
+<a href='dao8.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>信息框显示链接</a><br>
+<a href='dao9.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>友情链接导航框</a><br>
+<a href='dao10.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>目录式导航菜单</a><br>
+<a href='dao11.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>重要信息说明脚本</a>
+</div>
+<div id='KB3Parent' class='parent'><a href="#" onClick="expandIt('KB3'); return false">
+<IMG SRC='/images/plus.gif' BORDER=0>页面背景类</a></div><div id='KB3Child' class='child'>
+<a href='back1.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>背景向下移动</a><br>
+<a href='back2.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>背景不停变换色彩</a><br>
+<a href='back3.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>使页面产生百叶窗</a><br>
+<a href='back4.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>颜色代码英文集</a><br>
+<a href='back5.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>自已选择背景颜色</a><br>
+<a href='back6.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>背景颜色安全测试</a><br>
+<a href='back7.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>颜色选择器</a><br>
+<a href='back8.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>背景图片居中</a><br>
+<a href='back9.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>页面转换特效</a></div>
+<div id='KB4Parent' class='parent'><a href="#" onClick="expandIt('KB4'); return false">
+<IMG SRC='/images/plus.gif' BORDER=0>页面特效类</a></div><div id='KB4Child' class='child'>
+<a href='ye1.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>字符从空中掉下来</a><br>
+<a href='ye2.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>打字机式输出文字</a><br>
+<a href='ye4.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>滚动显示的LOGO</a><br>
+<a href='ye6.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>文本自动滚屏</a><br>
+<a href='ye7.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>控制别人输入字数</a><br>
+<a href='ye10.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>文本上下弹跳</a><br>
+<a href='ye11.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>特酷消隐字体</a><br>
+<a href='ye12.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>文本框栏目介绍</a><br>
+<a href='ye13.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>旋转变换文字</a><br>
+<a href='ye14.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>特酷的文本输出</a><br>
+<a href='ye18.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>页面自动滚屏效果</a><br>
+<a href='ye16.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>炽热的文字特效</a><br>
+<a href='ye17.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>鼠标响应文字变色</a>
+</div>
+<div id='KB5Parent' class='parent'><a href="#" onClick="expandIt('KB5'); return false">
+<IMG SRC='/images/plus.gif' BORDER=0>图形图象类</a></div><div id='KB5Child' class='child'>
+<a href='picture1.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>禁止图片下载</a><br>
+<a href='picture2.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>图片隐现效果</a><br>
+<a href='picture3.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>随机显示图片</a><br>
+<a href='picture4.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>图片变形扭曲</a><br>
+<a href='picture5.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>雪景</a><br>
+<a href='picture7.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>图片渐渐出现</a><br>
+<a href='picture8.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>相片选择器</a><br>
+<a href='picture9.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>图形循环渐显</a><br>
+<a href='picture10.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>图形左右晃动</a><br>
+<a href='picture11.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>图形选择脚本</a><br>
+<a href='picture12.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>图片翻滚导航</a><br>
+<a href='picture13.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>图片翻滚导航</a>
+</div>
+<div id='KB6Parent' class='parent'><a href="#" onClick="expandIt('KB6'); return false">
+<IMG SRC='/images/plus.gif' BORDER=0>按钮特效类</a></div><div id='KB6Child' class='child'>
+<a href='an2.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>跑马灯式链接说明</a><br>
+<a href='an3.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>窗口打开关闭</a><br>
+<a href='an4.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>浮动的链接说明</a><br>
+<a href='an5.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>链接处变换色彩</a><br>
+<a href='an6.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>变换链接色和底色</a><br>
+<a href='an7.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>按顺序点击链接</a></div>
+<div id='KB7Parent' class='parent'><a href="#" onClick="expandIt('KB7'); return false">
+<IMG SRC='/images/plus.gif' BORDER=0>鼠标事件类</a></div><div id='KB7Child' class='child'>
+<a href='shu1.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>图片跟随鼠标</a><br>
+<a href='shu2.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>鼠标响应新页面</a><br>
+<a href='shu3.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>禁用鼠标左右键</a><br>
+<a href='shu4.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>鼠标控制窗口开关</a><br>
+<a href='picture6.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>鼠标点击效果</a><br>
+<a href='shu5.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>禁用右键自动导航</a><br>
+<a href='shu6.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>鼠标激活警告框</a>
+</div>
+<div id='KB8Parent' class='parent'><a href="#" onClick="expandIt('KB8'); return false">
+<IMG SRC='/images/plus.gif' BORDER=0>Cookie脚本</a></div><div id='KB8Child' class='child'>
+<a href='cook1.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>随登陆次数变提示</a><br>
+<a href='cook2.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>集成Cookies</a><br>
+<a href='cook3.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>使窗口仅弹出一次</a><br>
+<a href='cook4.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>签名提示程序</a><br>
+<a href='cook5.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>记录上次登录时间</a><br>
+<a href='cook6.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>自由控制打开窗口</a><br>
+<a href='cook7.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>记录页面修改时间</a><br>
+<a href='cook8.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>检测IE去过站点</a><br>
+<a href='cook9.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>离开时显示信息</a><br>
+<a href='cook10.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>弹出窗口自动关闭</a><br>
+<a href='cook11.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>离开页面弹出窗口</a><br>
+<a href='cook12.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>进入时显示信息</a></div>
+<div id='KB9Parent' class='parent'><a href="#" onClick="expandIt('KB9'); return false">
+<IMG SRC='/images/plus.gif' BORDER=0>文本特效类</a></div><div id='KB9Child' class='child'>
+<a href='text1.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>随机信息显示</a><br>
+<a href='text2.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>随机文本链接</a><br>
+<a href='text3.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>所有链接不停变色</a><br>
+<a href='text4.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>鼠标经过文字变色</a><br>
+<a href='text5.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>随日期变换文本</a><br>
+<a href='ye9.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>文字颜色渐变脚本</a><br>
+<a href='ye5.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>文本自动输出</a></div>
+<div id='KB10Parent' class='parent'><a href="#" onClick="expandIt('KB10'); return false">
+<IMG SRC='/images/plus.gif' BORDER=0>状态栏特效</a></div><div id='KB10Child' class='child'>
+<a href='ye8.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>状态栏跑马灯脚本</a><br>
+<a href='zhuang1.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>文字从右弹出</a><br>
+<a href='zhuang2.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>文字从左依次弹出</a><br>
+<a href='zhuang3.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>文字从右到左移动</a><br>
+<a href='zhuang4.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>文字快速依次弹出</a><br>
+<a href='zhuang5.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>文字组合弹出</a><br>
+<a href='zhuang6.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>文字不停闪烁</a><br>
+<a href='zhuang7.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>状态栏显示链接</a><br>
+<a href='time9.htm' target='_blank'> <IMG SRC='/images/blank.gif' BORDER=0>title显示日期</a><br>
+<a href='zhuang8.htm' target='_blank'> <IMG SRC='/images/blank.gif' BORDER=0>title变化弹出</a></div>
+<div id='KB11Parent' class='parent'><a href="#" onClick="expandIt('KB11'); return false">
+<IMG SRC='/images/plus.gif' BORDER=0>密  码  类</a></div><div id='KB11Child' class='child'>
+<a href='password1.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>控制他人进入页面</a><br>
+<a href='password3.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>用来实现会员制度</a><br>
+<a href='password4.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>密码保护相应页面</a><br><a href='password5.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>自己编制密码表</a></div>
+<div id='KB12Parent' class='parent'><a href="#" onClick="expandIt('KB12'); return false">
+<IMG SRC='/images/plus.gif' BORDER=0>综  合  类</a></div><div id='KB12Child' class='child'>
+<a href='zh1.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>加密页面源代码</a><br>
+<a href='zh2.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>访问时间限制</a><br>
+<a href='zh3.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>给页面加“热键”</a><br>
+<a href='zh4.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>两个脚本同时调用</a><br>
+<a href='zh5.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>浏览器毁灭者</a><br>
+<a href='zh6.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>文本中首字母大写</a><br>
+<a href='zh7.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>查看某网址源代码</a><br>
+<a href='zh8.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>文本中首字母大写</a><br>
+<a href='zh9.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>加快图片显示</a><br>
+<a href='zh10.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>综合的搜索引擎</a><br>
+<a href='zh11.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>搜索引擎登记</a><br>
+<a href='zh12.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>下载记时器脚本</a>
+</div>
+<div id='KB13Parent' class='parent'><a href="#" onClick="expandIt('KB13'); return false">
+<IMG SRC='/images/plus.gif' BORDER=0>游  戏  类</a></div><div id='KB13Child' class='child'>
+<a href='you1.htm' target='_target'> <IMG SRC='/images/blank.gif' BORDER=0>一款流行游戏</a></div>
+  <SCRIPT>numTotal=14;scores[1]='KB1';scores[2]='KB1';scores[3]='KB2';scores[4]='KB3';scores[5]='KB4';scores[6]='KB5';scores[7]='KB6';scores[8]='KB7';scores[9]='KB8';scores[10]='KB9';scores[11]='KB10';scores[12]='KB11';scores[13]='KB12';scores[14]='KB13';</SCRIPT>
+  </form>
+</body>
+</html>

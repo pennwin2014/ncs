@@ -1,0 +1,183 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <title>Tabs Example</title>
+    <style type="text/css">
+    	
+ .x-tab-default-top button, .x-tab-default-top.x-tab-inner {
+		height: 16px !important;
+		line-height: 16px;
+	}
+    	
+    
+      *{font-size:12px!important;}
+    .page{margin:0 auto;width:[#swidth#]px;background-color:#E9F2FC;overflow:hidden; border:1px solid #D4E0F5;}
+  </style>
+    <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" />
+
+    <script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+        <script type="text/javascript">
+        	var tabs_gdrz;
+        	function clicknode(id,did,fcod,lb){
+					parent.passid(id,did);
+					if(fcod!=''||lb!=''){
+						parent.passcode(fcod,lb);
+				  }
+					parent.doreflashTab();				
+					
+					}
+        	
+        	Ext.require('Ext.tab.*');
+
+    Ext.onReady(function(){
+
+
+    var store_group = Ext.create('Ext.data.TreeStore', {
+        proxy: {
+            type: 'ajax',
+            url: '/pronline/Msg?FunName@ncsTreeGroup_v4'
+        },
+        root: {
+            text: '全部单位组',
+            id: '',
+            expanded: true
+        },
+        folderSort: true,
+        sorters: [{
+            property: 'text',
+            direction: 'ASC'
+        }
+        
+        ]
+    });
+    var tree_group = Ext.create('Ext.tree.Panel', {
+    	  title: '单位组',
+    	  id:'tree_group',
+        store: store_group,
+        height: 980,
+        width: 350,
+        useArrows: false
+        ,
+         listeners:{itemclick:function(view, rcd, item, idx, event, eOpts){
+         	var sid=rcd.get('id');
+         	  clicknode(sid,'','','');
+         }
+        }  
+    });
+
+    var store_fac = Ext.create('Ext.data.TreeStore', {
+        proxy: {
+            type: 'ajax',
+            url: '/pronline/Msg?FunName@ncsTreeFac_v4'
+        },
+        root: {
+            text: '全部厂商',
+            id: '',
+            expanded: true
+        },
+        folderSort: true,
+        sorters: [{
+            property: 'text',
+            direction: 'ASC'
+        }]
+    });
+
+    var tree_fac = Ext.create('Ext.tree.Panel', {
+    	  title: '接入厂商',
+    	  id:'tree_fac',
+        store: store_fac,
+        height: 980,
+        width: 350,
+        useArrows: false,
+        listeners:{itemclick:function(view, rcd, item, idx, event, eOpts){
+         	var sid=rcd.get('id');
+         	  clicknode('','',sid,'');
+         }
+        }  
+
+    });
+    
+        var store_lb = Ext.create('Ext.data.TreeStore', {
+        proxy: {
+            type: 'ajax',
+             url: '/pronline/Msg?FunName@ncsTreeLb_v4'
+ //           url: '/v4/ncs_treeuserlb_list.htm'
+        },
+        root: {
+            text: '全部类别',
+            id: '',
+            expanded: true
+        },
+        folderSort: true,
+        sorters: [{
+           property: 'text',
+           direction: 'ASC'
+        }]
+    });
+    
+     var tree_lb = Ext.create('Ext.tree.Panel', {
+    	  title: '单位类别',
+    	  id:'tree_lb',
+        store: store_lb,
+        height: 980,
+        width: 350,
+        useArrows: false,
+         listeners:{itemclick:function(view, rcd, item, idx, event, eOpts){
+         	var sid=rcd.get('id');
+        
+         	  clicknode('','','',sid);
+         }
+        }                                  
+
+    });
+    
+    
+     tabs_gdrz = Ext.createWidget('tabpanel', {
+        renderTo: 'keytree',
+        forceFit: true,
+   //     scrollOffset: 0,
+        width: 240,
+        height:970,
+        activeTab: 0,
+         defaults :{
+            bodyPadding: 1
+        },
+        items: [
+        tree_group,tree_fac,tree_lb],
+       
+                listeners:{
+                    tabchange:function(tp,p){
+                       var index=tabs_gdrz.getActiveTab();
+                    	
+                    		if(index.title=='单位组'){
+                    			store_group.load();
+                    			
+                    		}
+                    		else if(index.title=='接入厂商'){
+                    			store_fac.load();
+                    			
+                    		}
+                    		else if(index.title=='单位类别'){
+                    			store_lb.load();
+                    			
+                    		}
+                    	  else{
+                    		  store_fac.load();
+                    	  }
+                    	}
+                    }
+      });
+});
+
+        </script> 
+</head>
+<body>
+    <div id="keytree">
+
+    </div>
+    	    
+  
+   
+</body>
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+
+<!-- <script type="text/javascript" src="http://cdn.hcharts.cn/jquery/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
+
+
+<!-- <script type="text/javascript" src="http://cdn.hcharts.cn/highcharts/exporting.js"></script> -->
+
+
+
+<script type="text/javascript" src="/newver/jquery/jquery-1.7.2.js"></script>
+
+<!--添加会导致图表 <script type="text/javascript" src="/newver/chart/highcharts.js"></script> -->
+
+  
+<!-- 导入Extjs框架 -->
+<link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css">
+<script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+
+ 
+<style type="text/css">
+${demo.css}
+</style> 
+<script type="text/javascript"> 
+
+var chart;
+var g_chart = [];	
+var gnum = 0;
+	
+/* 函数：绘制图表 */	
+function drawchart(macValue){
+	chart = new Highcharts.Chart({
+		chart: {
+            type: 'gauge',
+            renderTo: 'container',
+            alignTicks: false,
+            plotBackgroundColor: null,
+            plotBackgroundImage: null,
+            plotBorderWidth: 0,
+            plotShadow: false
+        },
+		credits: {
+			enabled: false
+		},
+    title: {
+    	text: '当前所有场所mac总数'
+    },
+		legend: {
+			enabled: false
+		},
+		exporting:{
+    	enabled:false
+    },
+    pane: {
+    	startAngle: -150,
+      endAngle: 150,
+      background: [{
+     		backgroundColor: {
+        linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+        	stops: [
+          					[0, '#FFF'],
+                    [1, '#333']
+                 ]
+        },
+        borderWidth: 0,
+        	outerRadius: '109%'
+        },{
+        	
+        	backgroundColor: {
+          	linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+          	stops: [
+                        [0, '#333'],
+                        [1, '#FFF']
+                    ]
+          },
+            borderWidth: 1,
+            outerRadius: '107%'
+        },{
+            //default background
+        },{
+            backgroundColor: '#DDD',
+            borderWidth: 0,
+            outerRadius: '105%',
+            innerRadius: '103%'
+        }]
+   	},
+   	
+   	plotOptions: {
+            gauge: {
+                dataLabels: {
+                    enabled: false
+                },
+                dial: {
+                    radius: '100%'
+                }
+            }
+        },
+
+		yAxis: {
+            min: 0,
+            //max: 200,
+
+            minorTickInterval: 'auto',
+            minorTickWidth: 1,
+            minorTickLength: 10,
+            minorTickPosition: 'inside',
+            minorTickColor: '#666',
+
+            tickPixelInterval: 30,
+            tickWidth: 2,
+            tickPosition: 'inside',
+            tickLength: 10,
+            tickColor: '#666',
+            labels: {
+                step: 2,
+                rotation: 'auto'
+            },
+            title: {
+                text: '当前mac数'+ gnum + "个"
+            },
+            plotBands: [{
+                from: 0,
+                to: 120,
+                color: '#55BF3B' // green
+            }, {
+                from: 120,
+                to: 160,
+                color: '#DDDF0D' // yellow
+            }, {
+                from: 160,
+                to: 20000,
+                color: '#DF5353' // red
+            }]
+        },
+
+        series: [{
+            name: '当前mac总数',
+            data: [],
+            tooltip: {
+                valueSuffix: ' 个',
+                formatter: function() { 
+									var s = '<b>'+ this.point.name +'</b>'+'<br/> '+this.point.y +'个<br/>' 
+									return s; 
+								}
+            }
+        }]
+    
+    
+  });
+        
+	setInterval("GetDrawData()", 3000);
+}
+
+/* 函数：获取后台数据  */
+function GetDrawData(){
+
+	//获取 parent 对象中输入框的内容(mac地址)
+	var macValue = parent.Ext.getCmp('keyword_mobileaccount').value;	 
+		
+	Ext.Ajax.request({			
+		url: '/pronline/Msg?FunName@ncsCurrent_FromRAM', 
+		method: 'GET',		
+		success: function(resp, opts){
+			var respText = resp.responseText; 			//获取整个 JSON 数据的字符串
+			var respRecord = eval("("+respText+")");	//字符串转成结构体
+									
+			var macCount;			
+			g_chart = [];						
+			if(parseInt(respRecord.result) > 0)
+			{												
+							
+				macCount = parseInt(respRecord.maccount);
+				g_chart.push({y: macCount});		
+				gnum = macCount;
+						
+								
+			}
+			else
+			{
+				g_chart.push({name: "当前查询没有数据"});
+			}
+			
+			chart.series[0].setData(g_chart);
+			chart.axes[1].setTitle("13"+gnum, true);				
+		},
+		failure: function(resp, opts){
+			var resqText = eval("(" + resqText + ")");
+			alert('错误', resqText.error);
+		}
+		 
+	});		
+}
+	
+
+
+
+      
+Ext.onReady(function(){
+
+	try{
+		drawchart();
+	}
+	catch(e){
+		alert(e.message);
+	}	
+	GetDrawData();
+	
+});	  
+	  
+</script>
+  
+</head>
+<body>
+
+  <script src="/mac/infoquery/currentinfo/checkgraph/js/highcharts.js"></script>
+  <script src="/mac/infoquery/currentinfo/checkgraph/js/highcharts-more.js"></script>
+  <script src="/mac/infoquery/currentinfo/checkgraph/js/modules/exporting.js"></script>
+
+  <div id="container" style="width:750px;height:450px"></div>
+</body>
+</html>

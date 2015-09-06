@@ -1,0 +1,437 @@
+ 
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gbk" />  
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">  
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <title>轨迹图</title>
+     <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css">
+    <script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+    <script type="text/javascript" src="/newver/jquery/jquery-1.7.2.js"></script>
+    <style>
+.label{position:relative;}
+.label span{background-color:#0D9BF2;}
+</style>
+
+    <style type="text/css">	
+    .accept {
+            background-image:url(/newver/resources/themes/images/share/accept.png) !important;
+    }
+    .exp {
+            background-image:url(/newver/resources/themes/images/share/exportimg.png) !important;
+    }
+		body{
+			margin:0;
+			height:80%;
+			width:100%;
+			position:absolute;
+		}
+		 #main {
+                height: 100%;
+            }
+		#mapleft{
+			position: absolute;
+			top:0;
+			width:100%;
+			left:0;			
+			bottom:0;
+		}
+		#mapContainer{
+			position: absolute;
+			top:40px;		
+		  left:0;
+		  right:0;
+			bottom:40px;
+		}
+		#tip{
+			height:45px;
+			background-color:#fff;
+			padding-left:10px;
+			padding-right:10px;
+			border:1px solid #969696;
+			position:absolute;
+			font-size:12px;
+			right:10px;
+			bottom:30px;
+			border-radius:3px;
+			line-height:45px;
+		}
+		
+		#tip input[type='button']{
+			height:28px;
+			line-height:28px;
+			outline:none;
+			text-align:center;
+			padding-left:5px;
+			padding-right:5px;
+			color:#FFF;
+			background-color:#0D9BF2;
+			border:0;
+			border-radius: 3px;
+			margin-top:8px;
+			margin-left:5px;
+			cursor:pointer;
+			margin-right:10px;
+		}
+		
+		.markspan{
+			display: block;
+			height: 40px;
+			width:180px;
+			text-align:center;
+			padding-left:10px;
+			padding-right:10px;
+			line-height:40px;
+			background-color:#fff;
+			border:1px solid #ccc;
+			color:#FF6BBB;
+			font-size:12px;
+			border-radius:3px;
+		}
+		
+    </style>	
+</head>
+<script>
+
+Ext.Loader.setConfig({enabled: true});
+Ext.Loader.setPath('Ext.ux', '/newver/ux/');
+Ext.require([
+    'Ext.form.*',
+    'Ext.window.*',
+    'Ext.grid.*',
+    'Ext.data.*',
+    'Ext.util.*',
+    'Ext.window.MessageBox',
+    'Ext.toolbar.Paging',
+    'Ext.ux.PreviewPlugin',
+    'Ext.tree.*',
+    'Ext.ux.*'
+ 
+]);
+var inputflag;
+var imac;
+var store;
+
+function  setSearchValue (typename,params) {
+    Ext.getCmp('keyword').setValue(params);
+    inputflag = typename;
+    if (typename == '0') {
+
+        try {
+
+            imac = parent.getGlobalGroupId();
+
+            	
+        }
+        catch (e) {
+            alert(e.message);
+        }
+
+    }
+    else {
+
+        try {
+
+            imac = parent.getGlobalUserName();
+
+            //alert(g_usernamequery);
+        }
+        catch (e) {
+            alert(e.message);
+        }
+
+    }
+
+}
+var mygeo = {};
+var tmpdataBig1=[];
+var tmpdata1=[];
+var tmpdata2 = [];
+
+
+	function reflash(){
+
+	   var mac = Ext.getCmp('keyword').value;
+	   
+      
+	   store.load({params:{mac:imac, inputflag:inputflag},
+     callback:function(records, options, success)
+     {
+       
+     	    tmpdataBig1=[];
+          tmpdata1=[];
+          tmpdata2=[];
+          for (var i in records) {
+                    
+              if (records[i].raw[0].name == records[i].raw[1].name) {
+                  tmpdata2.push(records[i].raw[1]);
+            
+                  tmpdata1.push(records[i].raw[0]);
+                  tmpdata1.push(records[i].raw[1]);
+                  tmpdataBig1.push(tmpdata1);
+                  tmpdata1 = [];
+                  //tmpdata1.push(records[i].raw[0]);
+                  
+              }
+     		  }
+     	    option = {
+             color: ['gold','aqua','lime'],
+          
+            tooltip : {
+                trigger: 'item',
+                formatter: function (v) {
+                    return v[1].replace(':', ' > ');
+    
+                   
+                }
+            },
+            
+            toolbox: {
+                show : false,
+                orient : 'vertical',
+                x: 'right',
+                y: 'center',
+                feature : {
+                    mark : {show: true},
+                    dataView : {show: true, readOnly: false},
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                }
+            },
+            dataRange: {
+                min : 0,
+                max : 200,
+               range: {
+                   start: 10,
+                   end:100
+                },
+                x: 'right',
+                calculable : true,
+                color: ['#ff3333', 'orange', 'yellow','lime','aqua'],
+                textStyle:{
+                    color:'#fff'
+                }
+            }, credits: {
+                enabled: false
+            },
+
+
+            series : [
+                {
+                    name:'11',
+                    type:'map',
+                    mapType: 'none',
+                    data:[],
+                    geoCoord: mygeo,
+                    markLine: {
+                        symbol: ['none', 'none'],
+                        smooth:true,
+                        effect : {
+                            show: true,
+                            scaleSize: 1,
+                            period: 30,
+                            color: '#fff',
+                            shadowBlur: 10
+                        },
+                        itemStyle : {
+                            normal: {
+                                borderWidth: 1,
+                                label: {
+                                    show: true
+                                },
+                                lineStyle: {
+                                    type: 'solid',
+                                    shadowBlur: 10
+                                }
+                            }
+                        },
+                        data :tmpdataBig1
+                        /*[
+                            [{name:'金声有约KTV'},{name:'test_zone',value:80}],
+                            [{name:'test_zone'},{name:'金声有约KTV',value:80}]
+                          
+                        ]*/
+                    },
+                    markPoint : {
+                        symbol:'emptyCircle',
+                        symbolSize : function (v){
+                            return 10 + v/100
+                        },
+                        effect : {
+                            show: true,
+                            shadowBlur : 0
+                        },
+                        itemStyle:{
+                            normal:{
+                                label:{show:false}
+                            }
+                        },
+                        data : 
+                        tmpdata2 
+                        /*[
+                            {name:'test_zone',value:80}                           
+                        ]*/
+                    }
+                }
+            ]
+        }; 
+        BMapExt.refresh();
+        
+        BMapExt.setOption(option,true);
+       
+        
+        
+        }
+  }
+	);
+	
+ }
+	
+	Ext.onReady(function(){
+    Ext.tip.QuickTipManager.init();
+    Ext.define('EimData', {
+        extend: 'Ext.data.Model',
+        fields: [
+            'name', 'value'
+        ]
+        //idProperty: 'sdate'
+    });
+   
+  
+   
+    
+       store = Ext.create('Ext.data.Store', {
+        pageSize: 40,
+        model: 'EimData',
+        remoteSort: true,
+        proxy: {
+            type: 'ajax',
+            url: '/pronline/Msg?FunName@dm_crowd',
+//              url:'/data/ncs_pelope_gj.htm',
+            reader: {
+                type:'json',
+                root: 'data',
+                totalProperty: 'totalCount'
+            },         
+            simpleSortMode: true
+        },
+        sorters: [{
+      //      property: 'id',
+     //       direction: 'DESC'
+        }]
+       });
+       Ext.Ajax.request({
+           url: '/pronline/Msg?FunName@dm_place',
+           method: 'GET',
+           success: function (resp, opts) {
+               try {
+                   
+                   var respText = resp.responseText;
+                   var respRecord = eval("(" + respText + ")");
+                   for (var i in respRecord.data) {
+                     
+                       mygeo[respRecord.data[i].servicename] = [respRecord.data[i].longitude, respRecord.data[i].latitude];
+                   }
+
+               }
+               catch (e) { }
+           },
+           failure: function (resp, opts) {
+               var respText = eval("(" + respText + ")");
+               alert('错误', respText.error);
+           }
+       });
+       var serviceValue = parent.Ext.getCmp('keyword_mobileaccount').value;
+       
+        var tbar = Ext.create('Ext.Toolbar',{
+            
+            items:[
+           
+                { 
+                	 fieldLabel:'指定场所',
+                	 labelWidth: 60,
+                    xtype:'textfield',
+                    id:'keyword',
+                    width:240,
+                    name:'keyword',
+                    value: serviceValue,         
+                    emptyText:'请在左侧选择场所范围',
+                    enableKeyEvents:true,
+                    listeners:{
+                        'focus':function(){
+                        },           
+                        'keydown' : function(i,e){
+                             var aae=e.getKey() ; 
+                             if(aae==13){
+                             }
+                         }
+                    }
+                },'  ',
+                {
+                    text:'查询',
+                    iconCls:'accept',
+                    handler:function()
+                    {
+                    
+                    	reflash();
+                    	//setInterval("reflash()", 10000);
+                    	
+                    }
+                },
+                '-',
+               
+             {
+			     	 	text:'导出',
+			     	 	itemId: 'expbutton',
+			     	 	iconCls:'exp',
+			     	 	handler:function() {
+			     	 		
+			     	 		var form1 = document.getElementById('form1');
+        
+                      form1.mac.value =  Ext.getCmp('keyword').value;
+                     
+                      
+
+                    form1.exp.value='exp';
+                        form1.submit();
+                      form1.exp.value=""; 
+			     	 	}
+			     	 },
+                {xtype:'label', html:'<span id="titledx"></span>'}
+            ]
+        });
+
+       var panel = Ext.create('Ext.form.FormPanel', {
+        title: '',
+        margins: '0 0 0 0',
+        id:'myform',
+        name:'myform',
+        autoScroll: false,
+        renderTo: 'mapleft',
+        frame: true,
+        tbar:tbar
+ 
+    }); 
+});
+	
+	
+	
+	
+	</script>
+<body>
+	<div id="mapleft"></div>
+	 <div id="main"></div>
+        <script src="/js/echarts/doc/example/www/js/echarts.js"></script>
+        <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+        <script src="/js/echarts/doc/asset/js/jquery.min.js"></script>
+        <script src="./example.js"></script>
+	
+<form name="form1" id="form1" action="/pronline/Msg">
+        <input type="hidden" name="FunName" value="dm_crowd">       
+        <input type="hidden" name="mac" value="">
+        <input type="hidden" name="exp" value="">
+     
+	</form>
+</body >
+</html>						

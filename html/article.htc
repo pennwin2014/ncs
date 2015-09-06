@@ -1,0 +1,26 @@
+<PROPERTY NAME="hintLayer" />
+<ATTACH EVENT="onmouseover" ONEVENT="onit()" />
+<ATTACH EVENT="onmousemove" ONEVENT="onit()" />
+<ATTACH EVENT="onmouseout" ONEVENT="noit()" />
+
+<SCRIPT>
+
+function onit()
+{
+  window.document.all(hintLayer).innerHTML = alt;
+  window.document.all(hintLayer).style.pixelLeft = window.event.clientX + window.document.body.scrollLeft + 15;
+  iTop = window.event.clientY + 8;
+  if(hintLayer == "hint") iHeight = 17;
+  else if(hintLayer == "hint2") iHeight = 50;
+  else iHeight = 60;
+  if(iTop + iHeight > window.document.body.clientHeight) iTop -= iHeight;
+  window.document.all(hintLayer).style.pixelTop = window.document.body.scrollTop + iTop-10;
+  window.document.all(hintLayer).style.display = "block";
+}
+function noit()
+{
+  window.document.all(hintLayer).style.display = "none";
+//clearTimeout(wwwww)
+}
+
+</SCRIPT>

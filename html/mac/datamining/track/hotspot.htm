@@ -1,0 +1,134 @@
+ 
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <title>轨迹图</title>
+     <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css">
+    <script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+
+    <style type="text/css">	
+		body{
+			margin:0;
+			height:100%;
+			width:100%;
+			position:absolute;
+		}
+		#mapContainer{
+			position: absolute;
+			top:0px;		
+		  left:0;
+		  right:0;
+			bottom:40px;
+		}
+	
+    </style>	
+</head>
+<script>
+    var tmpposition = {};
+Ext.Loader.setConfig({enabled: true});
+Ext.Loader.setPath('Ext.ux', '/newver/ux/');
+Ext.require([
+    'Ext.form.*',
+    'Ext.window.*',
+    'Ext.grid.*',
+    'Ext.data.*',
+    'Ext.util.*',
+    'Ext.window.MessageBox',
+    'Ext.toolbar.Paging',
+    'Ext.ux.PreviewPlugin',
+    'Ext.tree.*',
+    'Ext.ux.*'
+ 
+]);
+var flag=0;
+var markers=[];
+var polyline;
+var store;
+var sssmarker;
+
+var contents = {};
+
+  function addMarker(name, lnt, lat){ 
+ 
+      iconstr = '/newver/resources/themes/images/map/past.png';
+      var markerContent = document.createElement("div");
+      markerContent.className = "markerContentStyle";
+	    
+      //点标记中的图标
+      var markerImg = document.createElement("img");
+      markerImg.className = "markerlnglat";
+      markerImg.src = iconstr;	
+      markerContent.appendChild(markerImg);
+		 
+      //点标记中的文本
+      var markerSpan = document.createElement("span");
+      markerSpan.innerHTML ='<b><font size=3 color="blue">'+ name+ '</font></b>';
+      markerContent.appendChild(markerSpan);
+
+          var marker = new AMap.Marker({
+              map: map, //将点添加到地图                  
+              position: new AMap.LngLat(lnt,lat),
+                           
+              offset: new AMap.Pixel(-10, -12), //相对于基点的位置 
+              content: markerContent
+          });
+      
+          markers.push(marker);
+
+  }
+  Ext.onReady(function () {
+      Ext.tip.QuickTipManager.init();
+      Ext.Ajax.request({
+          url: '/pronline/Msg?FunName@dm_hotspot',
+          method: 'GET',
+          success: function (resp, opts) {
+              try {
+
+                  var respText = resp.responseText;
+                  var respRecord = eval("(" + respText + ")");
+                  for (var i in respRecord.data) {
+
+                      addMarker(respRecord.data[i].servicename, respRecord.data[i].longitude, respRecord.data[i].latitude);
+                  }
+                  map.setFitView();
+
+              }
+              catch (e) { }
+          },
+          failure: function (resp, opts) {
+              var respText = eval("(" + respText + ")");
+              alert('错误', respText.error);
+          }
+      });
+      
+  });
+
+	</script>
+<body>
+
+	<div id="mapContainer"></div>
+	<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=9ac2d10856d92017d2d8d82ce004a820"></script>
+	
+	<script type="text/javascript">
+
+		//初始化地图对象，加载地图
+	
+var map = new AMap.Map('mapContainer',{
+			resizeEnable: true,
+			//二维地图显示视口
+	        //设置地图中心点
+	        //设置地图显示的缩放级别
+			view: new AMap.View2D({
+				center: new AMap.LngLat(121.48, 31.22),
+				zoom: 10
+			})
+		});	
+		map.setFitView(); 
+		  
+	</script>
+</body >
+</html>						
+ 
+

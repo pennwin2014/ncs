@@ -1,0 +1,17 @@
+#菜单定义
+#
+#     #---注释    1--主菜单   2--二级菜单   H--竖线    L--横线    0--快捷键
+#     Title       Left        Right                    ICON                  Hidle    Allowed  
+1     设置
+2     网络设置    /no.htm     /nc_networkset.htm       /images/blank.gif      0          1
+2     网络设置    /no.htm     /nc_networkset.htm       /images/blank.gif      0          1
+2     网络设置    /no.htm     /nc_networkset.htm       /images/blank.gif      0          1
+2     网络设置    /no.htm     /nc_networkset.htm       /images/blank.gif      0          1
+L     横线
+1     视图
+2
+2
+2
+2
+2
+0     

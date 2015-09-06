@@ -1,0 +1,1087 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<title></title>
+<link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" /> 
+<style type="text/css">
+	.icon-grid 
+	{
+		background-image:url(/newver/resources/themes/images/share/grid.png) !important;
+	}
+	.add 
+	{
+ 		background-image:url(/newver/resources/themes/images/share/add.gif) !important;
+	}
+	.option 
+	{
+        	background-image:url(/newver/resources/themes/images/share/plugin.gif) !important;
+	}
+	.remove 
+	{
+		background-image:url(/newver/resources/themes/images/share/delete.gif) !important;
+	}
+	.exp 
+	{
+		background-image:url(/newver/resources/themes/images/share/application_go.png) !important;
+	}
+	.accept 
+	{
+		background-image:url(/newver/resources/themes/images/share/accept.png) !important;
+	}
+	.x-form-clear-trigger 
+	{
+        	background-image: url(/newver/resources/themes/images/default/form/clear-trigger.gif);
+	}
+	.x-form-search-trigger 
+	{
+        	background-image: url(/newver/resources/themes/images/default/form/search-trigger.gif);
+	}
+	.x-selectable, .x-selectable * 
+	{   
+    		-moz-user-select: text!important;   
+		-khtml-user-select: text!important;   
+	}   
+</style>
+<script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+<script>  
+  		
+	Ext.Loader.setConfig({enabled: true});
+	Ext.Loader.setPath('Ext.ux', '/newver/ux/');
+	Ext.require([
+    		'Ext.form.*',
+    		'Ext.window.*',
+    		'Ext.grid.*',
+    		'Ext.data.*',
+    		'Ext.util.*',
+    		'Ext.window.MessageBox',
+    		'Ext.toolbar.Paging',
+    		'Ext.ux.PreviewPlugin'
+	]);
+	
+	var store;
+	var adv = "0";//标记
+	function reflash1()
+	{
+	  var groupid = parent.document.getElementById("form1").groupid.value;
+ 		var did = parent.document.getElementById("form1").did.value;
+
+ 		var corpname=document.getElementById("form1").corpname.value = "";//单位名称
+ 		var sip = document.getElementById("form1").sip.value = "";
+ 		var dip = document.getElementById("form1").dip.value = "";
+ 		var dispname=document.getElementById("form1").dispname.value = "";//单位名称
+  		var keyword=Ext.getCmp('keyword').value;//用户名
+  		var sdate=document.getElementById("form1").sdate.value = "";
+  		var edate=document.getElementById("form1").edate.value = "";
+  		var stime=document.getElementById("form1").stime.value = "";
+  		var etime=document.getElementById("form1").etime.value = "";
+  		
+  		var idno=document.getElementById("form1").idno.value = "";
+  		var nettype=document.getElementById("form1").nettype.value = "";
+  		var time_flag=parent.document.getElementById("form1").time_flag.value;
+
+  		store.load({params: {groupid:groupid,did:did,idno:idno, corpname:corpname, sip:sip, dip:dip, dispname:dispname, keyword:keyword, sdate:sdate, edate:edate, time_flag:time_flag, nettype:nettype}});  
+  	}
+  	
+ 	function reflash2()
+ 	{
+ 		var groupid = parent.document.getElementById("form1").groupid.value;
+ 		var did = parent.document.getElementById("form1").did.value;
+
+ 		var corpname=document.getElementById("form1").corpname.value;//单位名称
+ 		var sip = document.getElementById("form1").sip.value;
+ 		var dip = document.getElementById("form1").dip.value;
+ 		var dispname=document.getElementById("form1").dispname.value;//单位名称
+  		var nname=document.getElementById("form1").nname.value;
+  		var sdate=document.getElementById("form1").sdate.value;
+  		var edate=document.getElementById("form1").edate.value;
+  		var stime=document.getElementById("form1").stime.value;
+  		var etime=document.getElementById("form1").etime.value ;
+  		
+  		var idno=document.getElementById("form1").idno.value;
+  		var nettype=document.getElementById("form1").nettype.value;
+  		var time_flag="";
+  		store.load({params: {idno:idno,groupid:groupid, did:did, corpname:corpname, sip:sip, dip:dip, dispname:dispname, nname:nname, sdate:sdate, edate:edate, time_flag:time_flag, nettype:nettype,stime:stime,etime:etime}});  
+  	}
+  	function pastime(){
+  		parent.document.getElementById("form1").time_flag.value=document.getElementById("time_flag").value;
+  	  document.getElementById("form1").time_flag.value=document.getElementById("time_flag").value;
+  	}
+  	function gettime(){
+  	var aa=parent.document.getElementById('form1').time_flag.value;
+  	document.getElementById('time_flag').value=aa;
+  	document.getElementById('form1').time_flag.value=aa;
+  	}
+  	function reflash()
+  	{
+ 	  
+  		if(adv == "1")
+  		{
+  			reflash2();
+  		}
+  		else 
+  		{
+  			reflash1();
+  		}
+  		
+  	}
+  	
+  	
+	function _show_enduser(did, uid)
+	{
+	      var aa=parent.document.getElementById('form1').time_flag.value;
+         var htmlvar='<iframe src="/pronline/Msg?FunName@ncsWebShowUserBh&did@'+did+'+uid@'+uid+'&time_flag@'+aa+' " scrolling="no" name="moduleIframe" frameborder="no" style="width:100%;height:100%;"></iframe>'; 
+ // alert(htmlvar); 
+ 
+        parent.parent.show_enduserinfo(htmlvar);
+ /*       
+         var win = new Ext.Window ({
+                             id:"userwindow",
+                             title:"用户上网行为统计报告",
+                             x:0,
+                             y:0,
+                             width:760,
+                             height:700,
+                             bodyPadding: 0,
+                             modal:false,
+                             resizable:true,
+                             draggable:true,
+                             html:htmlvar
+                                               
+         }
+        )
+        win.show();
+*/
+    	}
+	
+	function  show_enduser(value,p,record)
+	{
+		 var oArr = record.data.dispname.split("_");
+       		 return Ext.String.format( '<a href="#xxm" onclick=_show_enduser("{0}","{1}")>{2}</a>',oArr[1], oArr[2], oArr[0]);
+    	}
+    	
+    	function _show_corpinfo(did)
+    	{
+    		var htmlvar='<iframe src="/pronline/Msg?FunName@ncsWebDispClientAddForm_v4&plate@v4/nc_form_clientinfo.htm&userid@'+did+'" scrolling="no" name="moduleIframe" frameborder="no" style="width:100%;height:100%;"></iframe>';  
+  //  		alert(htmlvar);            
+         	 var win = new Ext.Window ({
+ //                            id:"addwindow",
+                             title:"联网单位信息",
+                             x:0,
+                             y:0,
+                             width:670,
+                             height:600,
+                             bodyPadding: 0,
+                             modal:false,
+                             resizable:true,
+                             draggable:true,
+                     	     html:htmlvar})
+        	 win.show();
+    	}
+    	
+    	function show_corpinfo(value, p, record)
+    	{
+    		var oArr = record.data.corpname.split("_");
+    		return Ext.String.format( '<a href="#xxm" onclick=_show_corpinfo("{0}")>{1}</a>',oArr[1],oArr[0]);
+    	}
+	
+	function _show_othlog(sdate,edate, did, uid)
+    	{
+    		 var width1 = screen.width;
+    		 var htmlvar='<iframe src="/pronline/Msg?FunName@ncupWebReplace&plate@v4/ncs_yjcx_tab.html&tab@1&sdate@'+sdate + '&edate@' + edate + '&did@' + did + '&uid@' + uid + '" scrolling="no" name="moduleIframe" frameborder="no" style="width:100%;height:100%;"></iframe>';              
+         	 var win = new Ext.Window ({
+                             id:"addwindow3",
+                             title:"其他日志",
+                             x:0,
+                             y:0,
+                             width:width1,
+                             height:580,
+                             bodyPadding: 0,
+                             modal:false,
+                             resizable:true,
+                             draggable:true,
+                     	     html:htmlvar})
+        	  win.show();
+    		
+    	}
+    	
+    	function show_othlog(value, p, record)
+    	{
+    		var oArr = record.data.othlog_param.split("_");
+    		return Ext.String.format( '<a href="#xxm" onclick=_show_othlog("{0}","{1}","{2}","{3}")>其他日志</a>', oArr[0], oArr[1], oArr[2],oArr[3]);
+    	}
+	
+	
+	  	var fp2;
+  	  		//高级查询
+  		var win2 = null;
+       		function showCxForm() 
+       		{
+        		if (!win2) 
+        		{
+            			win2 = Ext.widget('window', 
+            			{
+                			title: '高级查询',
+                			closeAction: 'hide',
+                			x:380,
+                			y:32,
+                			width: 250,
+                			height: 320,
+                			minHeight: 320,
+                			resizable: true,
+                			modal: false,
+                			items: fp2
+            			});
+        		}
+        		win2.on("beforeclose", function() {
+            document.getElementById("time_flag").value=document.getElementById("form1").time_flag.value;
+          	
+         });
+        		
+        		win2.show();
+    		}
+	
+	
+	
+	Ext.onReady(function()
+	{
+	var temp_id='';
+	
+	   Ext.define('TreeCombox', {  
+    extend: 'Ext.form.field.Picker',  
+    xtype: 'treecombox',  
+    triggerCls: Ext.baseCSSPrefix + 'form-arrow-trigger',  
+    config: {  
+        displayField: null,  
+        columns: null,  
+        rootVisible: false,  
+        selectOnTab: true,  
+        firstSelected: false,  
+        maxPickerWidth: 150,  
+        maxPickerHeight: 150,  
+        minPickerHeight: 100  
+    },  
+    editable: false,  
+    initComponent: function() {  
+        var me = this;  
+        me.callParent(arguments);  
+        this.addEvents('select');  
+        me.store.on('load', me.onLoad, me);  
+          
+    },  
+    createPicker: function() {  
+        var me = this,  
+            picker = Ext.create('Ext.tree.Panel', {  
+                store: me.store,  
+                floating: true,  
+                hidden: true,  
+                width: me.maxPickerWidth,  
+                displayField: me.displayField,  
+                columns: me.columns,  
+                maxHeight: me.maxTreeHeight,  
+                shadow: false, 
+                rootVisible:false,  
+                manageHeight: false,  
+                listeners: {  
+                    itemclick: Ext.bind(me.onItemClick, me)  
+                },  
+                viewConfig: {  
+                    listeners: {  
+                        render: function(view) {  
+                            view.getEl().on('keypress', me.onPickerKeypress, me);  
+                        }  
+                    }  
+                }  
+            }),  
+            view = picker.getView();  
+  
+        view.on('render', me.setPickerViewStyles, me);  
+        if (Ext.isIE9 && Ext.isStrict) {  
+            view.on('highlightitem', me.repaintPickerView, me);  
+            view.on('unhighlightitem', me.repaintPickerView, me);  
+            view.on('afteritemexpand', me.repaintPickerView, me);  
+            view.on('afteritemcollapse', me.repaintPickerView, me);  
+        }  
+        return picker;  
+    },  
+    setPickerViewStyles: function(view) {  
+        view.getEl().setStyle({  
+            'min-height': this.minPickerHeight + 'px',  
+            'max-height': this.maxPickerHeight + 'px'  
+        });  
+    },  
+    repaintPickerView: function() {  
+        var style = this.picker.getView().getEl().dom.style;  
+        style.display = style.display;  
+    },  
+    alignPicker: function() {  
+        var me = this,  
+            picker;  
+  
+        if (me.isExpanded) {  
+            picker = me.getPicker();  
+            if (me.matchFieldWidth) {  
+                picker.setWidth(this.picker.getWidth());  
+            }  
+            if (picker.isFloating()) {  
+                me.doAlign();  
+            }  
+        }  
+    },  
+    onItemClick: function(view, record, node, rowIndex, e) {  
+ 
+  
+//    	alert(record.data.id);
+        this.selectItem(record);  
+    },  
+    onPickerKeypress: function(e, el) {  
+        var key = e.getKey();  
+  
+        if(key === e.ENTER || (key === e.TAB && this.selectOnTab)) {  
+            this.selectItem(this.picker.getSelectionModel().getSelection()[0]);  
+        }  
+    },  
+    selectItem: function(record) {  
+        var me = this; 
+ //    document.getElementById("form1").mid.value=record.get('id');
+    temp_id=record.get('id');
+    me.setValue(record.get('text'));
+  
+        me.picker.hide();  
+        me.inputEl.focus();  
+        me.fireEvent('select', me, record);
+ 
+    },  
+    onExpand: function() {  
+        var me = this,  
+            picker = me.picker,  
+            store = picker.store,  
+            value = me.value;  
+        if(value) {  
+            var node = store.getNodeById(value);  
+            if(node)  
+                picker.selectPath(node.getPath());  
+        } else {  
+            var hasOwnProp = me.store.hasOwnProperty('getRootNode');  
+            if(hasOwnProp)  
+                picker.getSelectionModel().select(store.getRootNode());  
+        }  
+  
+        Ext.defer(function() {  
+            picker.getView().focus();  
+        }, 1);  
+    },  
+    setValue: function(value) {  
+        var me = this,record;  
+        me.value = value;  
+        if (me.store.loading) {  
+            return me;  
+        }  
+        try{  
+            //var hasOwnProp = me.store.hasOwnProperty('getRootNode');  
+            //record = value ? me.store.getNodeById(value) : (hasOwnProp ? me.store.getRootNode() : null);  
+            //me.setRawValue(record ? record.get(this.displayField) : '');  
+            var i = value.indexOf(">");
+            var j = value.indexOf("</");
+            if(i != -1 && j != -1)
+            {
+            		me.setRawValue(value.substring(i+1,j));
+            }
+            else 
+            {
+            		me.setRawValue(value);
+            }
+        }catch(e){  
+            me.setRawValue('');  
+        }  
+  
+        return me;  
+    },  
+    getValue: function() {  
+        return this.value;  
+    },  
+    onLoad: function(store,node,records) {  
+        var value = this.value;  
+        if (value) {  
+            this.setValue(value);  
+        }else{  
+            if(this.firstSelected){  
+                if(records && records.length > 0){  
+                    var record = records[0];  
+                    this.setValue(record.get(this.valueField));  
+                }  
+            }  
+        }  
+    },  
+    getSubmitData: function() {  
+        var me = this,  
+            data = null;  
+        if (!me.disabled && me.submitValue) {  
+            data = {};  
+            data[me.getName()] = '' + me.getValue();  
+        }  
+        return data;  
+    },  
+    onTriggerClick: function() {  
+        var me = this;  
+        //me.store.load();  
+        if (!me.readOnly && !me.disabled) {  
+            if (me.isExpanded) {  
+                me.collapse();  
+            } else {  
+                me.expand();  
+            }  
+            me.inputEl.focus();  
+        }  
+    }  
+});
+      store_classtree=Ext.create('Ext.data.TreeStore', 
+				{   
+						fields: ['text'],
+						autoLoad : true,
+						proxy: 
+						{   
+							type: 'ajax',   
+ 
+						url: '/pronline/Msg?FunName@ncsTreeNettype_comp_v4'  
+						}  
+				}
+			);		
+    		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		Ext.define("Corp", 
+    		{
+        		extend: 'Ext.data.Model',
+        		proxy: 
+        		{
+        			type: 'ajax',
+        			url: '/pronline/Msg?FunName@ncsSearchCorp_v4',
+        			reader: new Ext.data.JsonReader(
+        			{
+               				type:'json',
+                			root: 'eimdata1',
+                			totalProperty: 'totalCount'
+            			}),        
+            			simpleSortMode: true
+        		},
+        		fields: [
+            			{name: 'username', mapping: 'username'},
+            			{name: 'dispname', mapping: 'dispname'}
+        		]
+    		});
+    		
+    		store1 = Ext.create('Ext.data.Store', {
+        		pageSize: 10000,
+        		model: 'Corp'
+    		});
+		
+    		Ext.define('EimData', 
+    		{
+        		extend: 'Ext.data.Model',
+        		fields: 
+        		[
+            			'nname', 'ntype', 'stime', 'etime', 'sip', 'dip', 'action','corpname','dispname', 'othlog_param','iplocal'
+        		]
+        	});
+        	
+       		store = Ext.create('Ext.data.Store', 
+       		{
+        		pageSize: 37,
+        		model: 'EimData',
+        		remoteSort: true,
+        		proxy: 
+        		{
+            			type: 'ajax',
+            			url: '/pronline/Msg?FunName@ncsNetidSearch_v4',
+            			reader: new Ext.data.JsonReader({
+                			type:'json',
+                			root: 'eimdata1',
+                			totalProperty: 'totalCount'
+            			}),        
+            			simpleSortMode: true
+        		},
+        		sorters: 
+        		[{
+            			property: 'stime',
+            			direction: 'DESC'
+        		}]
+    		});
+    		var handleAction = function(action)
+    		{
+       			if(action=='cx')
+       			{
+       			}
+    		};
+		
+  		var myDate = new Date();
+  		var yy = ( myDate.getYear() < 1900 ) ? ( 1900 + myDate.getYear() ) : myDate.getYear();
+  		var mm=myDate.getMonth()+1;
+  		if(mm<10)
+  		{
+  			mm='0'+mm;
+  		}
+  		var dd=myDate.getDate();
+  		if(dd<10)
+  		{
+  			dd='0'+dd;
+  		}
+  		var today=yy+'/'+mm+'/'+dd;
+  		var startday=yy+'/'+mm+'/'+'01';
+ 		
+    fp2=Ext.create('Ext.FormPanel', 
+            	{         
+			frame: true,
+			fieldDefaults: 
+			{
+				labelWidth: 65,                        
+			 	xtype: 'textfield' 
+			},
+              		bodyPadding: 4,
+                  	items: [
+                  	{       
+                  		  xtype: 'fieldcontainer',         
+				                layout: 'hbox',
+				                defaults: {
+		//		                  flex: 1,
+				                    labelWidth: 65,
+				                    hideLabel: false
+				                },
+                       items: [
+                       {              
+                        	fieldLabel:'起始时间',
+                        	xtype: 'datefield',
+                        	format: "Y/m/d",
+                        	width:160,
+                        	value:startday,
+                        	name:'sdate'
+                    	},                    
+                    	{xtype: 'textfield',fieldLabel: '', name: 'stime', value:'00:00:00', width: 60},
+                    ]},
+                     {       
+                  		  xtype: 'fieldcontainer',         
+				                layout: 'hbox',
+				                defaults: {
+		//		                  flex: 1,
+				                    labelWidth: 65,
+				                    hideLabel: false
+				                },
+                       items: [
+                       {              
+                        	fieldLabel:'结束时间',
+                        	xtype: 'datefield',
+                        	format: "Y/m/d",
+                        	width:160,
+                        	value:today,
+                        	name:'edate'
+                    	},                    
+                    	{xtype: 'textfield',fieldLabel: '', name: 'etime', value:'23:59:59', width: 60},
+                    ]},
+                    	{
+            			xtype: 'combo',
+            			fieldLabel: '单位名称',
+            			name: 'corpname',
+            			store: store1,
+            			displayField: 'dispname',
+            			typeAhead: false,
+            			hideTrigger:true,
+            			anchor: '100%',
+            			minChars: 1,
+            			listConfig: 
+            			{
+                			loadingText: 'Searching...',
+                			emptyText: 'No matching found.'
+            			}
+        		},
+                    	{
+                        	fieldLabel:'证件号码',
+                        	xtype: 'textfield',
+                        	name:'idno'
+                    	},
+                    	{
+                        	fieldLabel:'源IP地址',
+                        	xtype: 'textfield',
+                        	name:'sip'
+                    	},
+                    	{
+                        	fieldLabel:'目标IP地址',
+                        	xtype: 'textfield',
+                        	name:'dip'
+                    	},
+                    	{
+                        	fieldLabel:'用户名包含',
+                        	xtype: 'textfield',
+                        	name:'dispname'
+                    	},
+                    	{
+                    		xtype : 'fieldcontainer',
+                        	combineErrors: true,
+                        	msgTarget: 'side',
+                        	fieldLabel: '账号类型',
+                        	defaults: {
+                            		hideLabel: true
+                        	},
+                        	items : [
+                            	{
+                               
+                                	width:          150,
+                                	xtype:          'treecombox',
+                                	mode:           'local',
+                                	value:          '',
+                                	name:           'nettype',
+                                	displayField:   'text',
+                                	valueField:     'id',
+                                	queryMode: 	'local',
+                               	 	store:   store_classtree
+                            	}]
+                    	},
+                    	{
+                        	fieldLabel:'虚拟账号',
+                        	xtype: 'textfield',
+                        	name:'nname'
+                    	},
+                    	{
+                        	xtype: 'button',
+                        	anchor: 'right',
+                         	style : 'margin-left:80px',
+                        	text:'查询',
+                         	handler: function()
+                         	{
+                         		//依据虚拟账号查询
+                         		adv = "1";
+                         		document.getElementById("form1").groupid.value = "";
+                         		document.getElementById("form1").did.value = "";
+                         		
+                         		document.getElementById("form1").sip.value=fp2.getForm().getValues().sip;  
+                         		document.getElementById("form1").dip.value=fp2.getForm().getValues().dip;  
+                         		document.getElementById("form1").dispname.value=fp2.getForm().getValues().dispname; 
+                         		if(fp2.getForm().getValues().corpname == undefined) 
+                         		{
+                         			document.getElementById("form1").corpname.value = "";
+                         		}
+                         		else 
+                         		{
+                         			document.getElementById("form1").corpname.value=fp2.getForm().getValues().corpname;  
+                         		}
+                         		
+                         		document.getElementById("form1").nname.value=fp2.getForm().getValues().nname;  
+                         		document.getElementById("form1").sdate.value=fp2.getForm().getValues().sdate;  
+                         		document.getElementById("form1").edate.value=fp2.getForm().getValues().edate; 
+                         		
+                         	  document.getElementById("form1").stime.value=fp2.getForm().getValues().stime;  
+                         		document.getElementById("form1").etime.value=fp2.getForm().getValues().etime;
+ 
+                  //       		document.getElementById("form1").nettype.value=fp2.getForm().getValues().nettype;  
+                            document.getElementById("form1").nettype.value=temp_id;
+                         		store.currentPage=1;
+                         		if (fp2.getForm().getValues().sdate == undefined || fp2.getForm().getValues().edate == undefined )
+                         		{
+                         		}
+                         		else 
+                         		{
+                         			reflash();
+                         		}
+                         		win2.close();
+                         	}
+                    	},
+                    	{
+				text: '清&nbsp;&nbsp;除',
+				style : 'margin-left:10px',
+				xtype: 'button',
+				handler: function()
+				{
+					fp2.getForm().reset();
+				}
+			}]
+                  });
+                  
+  		//高级查询
+
+
+
+    		
+    		//自动完成类
+		Ext.AutoComplete = Ext.extend(Ext.form.ComboBox,
+		{
+			typeAhead:false,
+			loadingText:'载入中...',
+			displayField:'account',
+			hideTrigger:true,
+			minChars:1,
+			simple:false,
+			valueField:'account',
+			multi:false,
+			store:
+			{
+				xtype:'jsonstore',
+				url:'index.php/mail/auto_user',
+				autoDestroy:true,
+				idProperty:'id',
+				totalProperty:'total',
+				root:'records',
+				fields:['id','username','realname']
+			},
+			tpl:new Ext.XTemplate(
+				'<div class="auto-item">',
+				'<h3>{id}<a class="auto-fld1">{username}</a>({realname})</h3>',
+				'</div>'
+			),
+			itemSelector:'div.auto-item',
+
+			initComponent:function()
+			{
+				if(this.simple)
+				{
+					this.tpl = new Ext.XTemplate(
+						'<div class="auto-item">',
+						'<h3>{id}<a class="auto-fld1">{username}</a>({realname})</h3>',
+						'</div>'
+					);
+				}
+				Ext.ux.AutoComplete.superclass.initComponent.call(this);
+			},
+			onSelect : function(record, index)
+			{
+				var value = this.getElValue();
+				if (this.multi) 
+				{//多个输入
+					value += record.data['username']+'@'+record.data['realname'] + ';';
+				}
+				else
+				{
+					value = record.data['username']+'@'+record.data['realname'];
+				}
+				if(this.fireEvent('beforeselect', this, record, index) !== false)
+				{
+            				this.setValue(value);
+            				this.collapse();
+            				this.fireEvent('select', this, record, index);
+        			}
+			},
+			// private
+			getElValue:function()
+			{
+				var v = this.el.dom.value;
+				if(typeof(v)=='string' && v.length>0)
+				{
+					var result = /\w+\@[^;,\s]+/ig.exec(v);
+					if(result)
+						return result.join(';')+';';
+				}
+				return '';
+			}
+		});
+		//Ext.reg('xauto',Ext.ux.AutoComplete);
+		
+    		
+    		
+
+    		
+    		
+    		
+    		
+    		
+    		
+  
+		//对翻页工具条重新构建，替换翻页函数    
+  		Ext.PagingToolbar1 = Ext.extend(Ext.PagingToolbar, 
+  		{
+     			doRefresh:function()
+     			{
+     				reflash();
+    			},
+    			onPagingKeyDown:function(i,h)
+    			{
+     				var d=this,b=h.getKey(),c=d.getPageData(),a=h.shiftKey?10:1,g;
+     				if(b==h.RETURN)
+     				{
+     					h.stopEvent();
+     					g=d.readPageFromInput(c);
+        				if(g!==false)
+        				{
+         					g=Math.min(Math.max(1,g),c.pageCount);
+         					if(d.fireEvent("beforechange",d,g)!==false)
+         					{
+         						d.store.currentPage=g;
+         						reflash();
+        					}        
+      					}
+    				}
+    				else
+    				{
+       					if(b==h.HOME||b==h.END)
+       					{
+    						h.stopEvent();
+    						g=b==h.HOME?1:c.pageCount;i.setValue(g)
+       					}
+       					else
+       					{
+         					if(b==h.UP||b==h.PAGEUP||b==h.DOWN||b==h.PAGEDOWN)
+         					{
+          						h.stopEvent();
+          						g=d.readPageFromInput(c);
+           						if(g)
+           						{
+             							if(b==h.DOWN||b==h.PAGEDOWN)
+             							{
+             								a*=-1
+             							}
+             							g+=a;
+             							if(g>=1&&g<=c.pages)
+             							{
+             								i.setValue(g)
+             							}
+             						}
+            					}
+           				}
+         			}  
+      			},
+    			moveLast:function()
+    			{
+    				var b=this;
+    				var a=b.getPageData().pageCount;
+    				if(b.fireEvent("beforechange",b,a)!==false)
+    				{
+    					store.currentPage=a;
+    					reflash();
+       				}
+       			},
+     			moveFirst:function()
+     			{
+      				if(this.fireEvent("beforechange",this,1)!==false)
+      				{
+      					store.currentPage=1;
+      					reflash();
+      				}
+      			}, 
+     			movePrevious:function()
+     			{
+     				var b=this;
+     				var a=b.store.currentPage-1;
+     				if(a>0)
+     				{
+     					if(b.fireEvent("beforechange",b,a)!==false)
+     					{
+     						store.currentPage=a;
+     						reflash();
+     					}
+     				}
+     			},
+     			moveNext:function()
+     			{
+     				var c=this;
+     				var b=c.getPageData().pageCount;
+     				var a=c.store.currentPage+1;
+     				if(a<=b)
+     				{
+     					if(c.fireEvent("beforechange",c,a)!==false)
+     					{
+     						store.currentPage=a;
+     						reflash();
+     					}
+     				}
+     			}
+		});
+
+    		var width1=screen.width;
+    		var height1 = screen.height;
+    		var grid = Ext.create('Ext.grid.Panel', 
+    		{
+    //    		width: width1,
+        		height: 980,
+        		store: store,
+        		frame:true,
+       
+        		columns:[
+        		{
+            			text: "单位名称",
+            			dataIndex: 'corpname',
+            			hidden: false,
+            			width: 100,
+            			sortable: false,
+            			renderer: show_corpinfo
+        		},
+        		{
+            			text: "用户名",
+            			dataIndex: 'dispname',
+            			width: 100,
+            			sortable: false,
+            			renderer: show_enduser
+        		},
+        		{
+            			text: "虚拟账号",
+            			dataIndex: 'nname',
+            			width: 100,
+            			flex: 1,
+            			sortable: false
+        		},
+        		{
+           			text: "类别",
+            			dataIndex: 'ntype', 
+           			width: 50,
+            			flex: 1,
+            			sortable: false
+        		},
+        		{
+            			text: "上线时间",
+            			dataIndex: 'stime',           
+            			width: 100,
+            			flex: 1,
+            			sortable: false
+        		},
+        		{
+            			text: "离线时间",
+            			dataIndex: 'etime',           
+            			width: 100,
+            			flex: 1,
+            			sortable: false
+        		},
+        		{
+            			text: "上网IP",
+            			dataIndex: 'sip',
+            			hidden: false,
+            			width: 100,
+            			sortable: false
+        		},
+        		{
+            			text: "目的IP",
+            			dataIndex: 'dip',
+            			hidden: false,
+            			width: 100,
+            			sortable: false
+        		},
+        		{
+            			text: "目标IP所属地",
+            			dataIndex: 'iplocal',           
+            			width: 250,
+            			flex: 1,
+            			sortable: false
+        		},
+        		{
+            			text: "动作类型",
+            			dataIndex: 'action',
+            			hidden: false,
+            			width: 50,
+            			sortable: false
+        		}
+ //       		,
+ //       		{
+ //           			text: "其他日志",
+ //           			dataIndex: 'othlog_param',           
+ //           			width: 100,
+//            			flex: 1,
+//            			sortable: false,
+//            			renderer: show_othlog
+//        		}
+        	],
+        	columnLines: true,
+        	tbar: Ext.create('Ext.PagingToolbar1', 
+        	{
+            		store: store,
+            		displayInfo: true,
+            		displayMsg: '显示{0} - {1}条记录 共{2}条记录',
+            		emptyMsg: "没有记录可显示",
+                                       
+            	items: [
+            	'-',
+           	{
+           		xtype:'label',
+            		html:'&nbsp;<select name="time_flag" id="time_flag"  onchange="if(this.value==9){showCxForm();return;}document.getElementById(\'form1\').time_flag.value=this.value;adv = \'0\';store.currentPage=1;pastime();reflash();"><option value="1">今天</option><option value="2">最近三天</option><option value="3">最近一周</option><option value="4">最近一月</option><option value="5">最近三月</option><option value="6">最近半年</option><option value="9">自定义时间</option></select>关键字包含'
+             	},
+             	{
+               		xtype:'textfield',
+               		id:'keyword',
+               		name:'keyword',
+               		width:'120',
+               		enableKeyEvents:true,
+               		style:'color:#7aa7d5',
+               		value:' ',
+               		listeners:
+               		{
+                 		'focus':function()
+                 		{
+                 			if(this.value==' ')
+                 			{                
+                    				this.setValue('');
+                  			}
+                 		},
+                 		'keydown' : function(i,e){
+                var aae=e.getKey() ; 
+                if(aae==13){
+                 		store.currentPage=1;
+                 		adv = "0";
+                 		reflash();
+                }
+               }
+                 		
+                 		
+               		}
+             	},
+             	{
+                	text:'确认',
+                	iconCls:'accept',
+                	handler: function()
+                	{
+                 		store.currentPage=1;
+                 		adv = "0";
+                 		reflash();
+                	}
+            	},
+            	'-',
+            	{
+                	text:'高级',
+                	anchor: 'right',
+               		handler: showCxForm,
+                	iconCls:'option'
+            	},
+            	'-',{
+                text:'导出',
+                iconCls:'exp',
+                handler:function(){
+                document.getElementById('form1').FunName.value='ncsNetidSearch_v4';
+                document.getElementById('form1').exp.value='exp';
+               document.getElementById("form1").submit();
+               document.getElementById("form1").exp.value="";
+               
+              
+                }
+            } 
+            	]
+        	}),
+        	renderTo: 'grid-corp'
+    		});//
+    		reflash();
+	});
+</script>
+</head>
+<body onload="gettime()">
+	<form name="form1" id="form1" action="/pronline/Msg">
+		<input type="hidden" name="FunName" value="ncsNetidSearch_v4">
+		<input type="hidden" name="nname" value="">
+		<input type="hidden" name="sdate" value="">
+		<input type="hidden" name="edate" value="">
+		<input type="hidden" name="stime" value="">
+		<input type="hidden" name="etime" value="">
+		
+		<input type="hidden" name="sip" value="">
+		<input type="hidden" name="dip" value="">
+		<input type="hidden" name="dispname" value="">
+		<input type="hidden" name="corpname" value="">
+		<input type="hidden" name="nettype" value="">
+		<input type="hidden" name="time_flag" value="">
+		<input type="hidden" name="groupid" value="">
+		<input type="hidden" name="did" value="">
+		<input type="hidden" name="idno" value="">
+		<input type="hidden" name="exp" value="">
+	</form>
+    	<div id="grid-corp"></div>
+</body>
+</html>

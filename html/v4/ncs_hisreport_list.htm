@@ -1,0 +1,405 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<title>单位管理</title>
+    <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" /> 
+        <style type="text/css">
+        .icon-grid {
+            background-image:url(/newver/resources/themes/images/share/grid.png) !important;
+        }
+        .add {
+            background-image:url(/newver/resources/themes/images/share/add.gif) !important;
+        }
+        .option {
+            background-image:url(/newver/resources/themes/images/share/plugin.gif) !important;
+        }
+        .remove {
+            background-image:url(/newver/resources/themes/images/share/delete.gif) !important;
+        }
+        .exp {
+            background-image:url(/newver/resources/themes/images/share/application_go.png) !important;
+        }
+        .accept {
+            background-image:url(/newver/resources/themes/images/share/accept.png) !important;
+        }
+        .x-form-clear-trigger {
+            background-image: url(/newver/resources/themes/images/default/form/clear-trigger.gif);
+        }
+        
+        .x-form-search-trigger {
+            background-image: url(/newver/resources/themes/images/default/form/search-trigger.gif);
+        }
+
+	.x-selectable, .x-selectable * 
+	{   
+    		-moz-user-select: text!important;   
+		-khtml-user-select: text!important;   
+	}   
+
+    </style>
+
+      
+    <script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+    
+  <script>  
+
+
+Ext.Loader.setConfig({enabled: true});
+Ext.Loader.setPath('Ext.ux', '/newver/ux/');
+Ext.require([
+    'Ext.form.*',
+    'Ext.window.*',
+    'Ext.grid.*',
+    'Ext.data.*',
+    'Ext.util.*',
+    'Ext.window.MessageBox',
+    'Ext.toolbar.Paging',
+    'Ext.ux.PreviewPlugin',
+//    'Ext.ModelManager',
+//    'Ext.tip.QuickTipManager'
+]);
+var store;
+ function reflash(){
+
+  var keyword=document.getElementById('form1').keyword.value;
+  var sdate=document.getElementById('form1').sdate.value;
+
+  if(sdate=='undefined'){
+  		sdate='';
+  }
+  var edate=document.getElementById('form1').edate.value;
+  if(edate=='undefined'){
+  edate='';
+  }
+
+
+  store.load({params: {keyword:keyword,sdate:sdate,edate:edate}});  
+  }
+
+   
+ function gotoDown(sid)
+ {
+ 	  temp_html="/pronline/Msg?FunName@ncXzReportHis&sid@"+sid;
+		  
+	
+		  document.getElementById("ifhide").src=temp_html;
+ //  document.getElementById('form1').sid.value=sid;
+//   document.getElementById('form1').rand.value=Math.random()*999;
+ //  document.getElementById('form1').submit();
+//       document.getElementById('form1').FunName.value="ncXzReportHis";
+ }
+
+
+
+
+Ext.onReady(function(){
+
+//    Ext.tip.QuickTipManager.init();
+
+    Ext.define('EimData', {
+        extend: 'Ext.data.Model',
+        fields: [
+            'stime', 'reportname', 'file', 'sid'
+        ],
+         idProperty: 'sid'
+    });
+
+
+
+
+
+    // create the Data Store
+//重写排序函数，解决远程条件查询问题
+    Ext.data.Store.prototype.doSort = function() {
+    reflash();
+    }
+ 
+       store = Ext.create('Ext.data.Store', {
+        pageSize: 38,
+        model: 'EimData',
+        remoteSort: true,
+ //       autoLoad :{params:{aaad:0,dddd:2}},
+        proxy: {
+            type: 'ajax',
+            url: '/pronline/Msg?FunName@ncReportHis_v4',
+            reader: {
+                type:'json',
+                root: 'eimdata',
+                totalProperty: 'totalCount'
+            },         
+            simpleSortMode: true
+
+        },
+        sorters: [{
+            property: 'sid',
+            direction: 'DESC'
+        }]
+    });
+
+
+
+    // pluggable renders
+
+
+    var pluginExpanded = true;
+    
+    
+    
+
+
+       function download(value,p,record){
+        var temp_id=record.data.sid;
+       return Ext.String.format( '<a href="#xxm" onclick=gotoDown("{0}")>下载</a>',temp_id);
+      
+    }
+    
+    var sm = Ext.create('Ext.selection.CheckboxModel',{
+        listeners: {
+            selectionchange: function(sm, selections) {
+          
+          grid.down('#removeEmployee').setDisabled(selections.length == 0);
+              
+            }
+        }
+    
+    });
+ 
+ 
+    
+
+  var myDate = new Date();
+
+  var yy = ( myDate.getYear() < 1900 ) ? ( 1900 + myDate.getYear() ) : myDate.getYear();
+
+  var mm=myDate.getMonth()+1;
+  
+  if(mm<10){
+  	mm='0'+mm;
+  	}
+  	var dd=myDate.getDate();
+  	if(dd<10){
+  		dd='0'+dd;
+  	}
+  		
+  		var today=yy+'/'+mm+'/'+dd;
+  		var startday=yy+'/'+mm+'/'+'01';
+
+
+  
+  
+//对翻页工具条重新构建，替换翻页函数    
+  Ext.PagingToolbar1 = Ext.extend(Ext.PagingToolbar, {
+     doRefresh:function(){
+    
+     reflash();
+    },
+    moveLast:function(){
+    	var b=this,a=b.getPageData().pageCount;
+    	if(b.fireEvent("beforechange",b,a)!==false){
+    	store.currentPage=a;
+    	reflash();
+       }},
+     moveFirst:function(){
+      if(this.fireEvent("beforechange",this,1)!==false){
+      store.currentPage=1;
+      reflash();}}, 
+     movePrevious:function(){var b=this,a=b.store.currentPage-1;if(a>0){if(b.fireEvent("beforechange",b,a)!==false){store.currentPage=a;reflash();}}},
+     moveNext:function(){var c=this,b=c.getPageData().pageCount,a=c.store.currentPage+1;if(a<=b){if(c.fireEvent("beforechange",c,a)!==false){store.currentPage=a;reflash();}}}
+       
+});
+
+    var grid = Ext.create('Ext.grid.Panel', {
+
+        height: 980,
+  //      forceFit: true,
+        scrollOffset: 0,
+        store: store,
+        selModel: sm,
+        frame:true,
+       
+        // grid columns
+        columns:[{
+            id: 'reportname',
+            text: "报表名称",
+            dataIndex: 'reportname',
+            hidden: false,
+            width: 420,
+            sortable: false
+        },{
+            text: "生成时间",
+            dataIndex: 'stime', 
+           width: 150,
+ //           flex: 1,
+            sortable: false
+        }
+      ,
+        {
+            text: "下载",
+            dataIndex: 'sid',
+            hidden: false,
+            renderer: download,
+            width: 60
+           
+        }
+        ,
+        {
+          width:40,
+           flex:1,
+            sortable: false
+        }
+       
+        ],
+        
+        columnLines: true,
+                                        
+        // paging bar on the bottom
+ 
+        tbar: Ext.create('Ext.PagingToolbar1', {
+            store: store,
+            
+            displayInfo: true,
+            displayMsg: '显示{0} - {1}条记录 共{2}条记录',
+            emptyMsg: "没有记录可显示",
+                                       
+            items: [
+ //          '->',
+            '-',
+            {                        
+              fieldLabel:'起始日期',
+                        	xtype: 'datefield',
+                        	format: "Y/m/d",
+                        	labelWidth: 65,
+                        	width:170,
+                          value:'',
+                        	name:'sdate',
+                        	id:'sdate'
+                        	
+                    	},
+                    	{
+                        	fieldLabel:'结束日期',
+                        	labelWidth: 65,
+                        	xtype: 'datefield',
+                        	width:170,
+                        	id:'edate',
+                        	format: "Y/m/d",
+                        	value:'',
+                        	name:'edate'
+                    	}
+             ,
+             {
+               xtype:'textfield',
+               id:'keyword1',
+               name:'keyword1',
+               width:'120px',
+               style:'color:#7aa7d5',
+               value:'请输入查询内容',
+               listeners:{
+                 'focus':function(){
+                 if(this.value=='请输入查询内容'){                
+                    this.setValue('');
+                  }
+                 }
+               }
+             },
+             {
+                text:'确认',
+                iconCls:'accept',
+                handler: function(){
+                 var aa=Ext.getCmp('keyword1').value;
+                
+                if(aa!='请输入查询内容'){
+                  	document.getElementById("form1").keyword.value=aa;
+                 }
+           	        var sdate=Ext.getCmp('sdate').value; 
+                	        if(sdate){
+                          var sdate_t=Ext.Date.format(sdate, 'Y/m/d');
+                          document.getElementById("form1").sdate.value =sdate_t;
+                          }
+                          else{
+                          document.getElementById("form1").sdate.value ='';
+                          }
+                          var edate=Ext.getCmp('edate').value;
+                          if(edate){
+                          var edate_t=Ext.Date.format(edate, 'Y/m/d');
+                          document.getElementById("form1").edate.value =edate_t;
+                          }
+                          else{
+                          document.getElementById("form1").edate.value ='';
+                          }      
+               
+                 store.currentPage=1;
+                 reflash();
+              
+                }
+            },
+            '-',
+            {
+            itemId: 'removeEmployee',
+            text: '删除',
+            iconCls: 'remove',
+                handler:function(){
+             	
+							   if(confirm('您真的要执行删除操作吗？')){                  
+                 var selsid;  
+        
+                 var rows=sm.getSelection();
+                   selsid='';
+                  for(var i=0;i<rows.length;i++){
+                  	if(i==0){
+                  	 selsid=rows[i].getId();
+                  	}
+                  	else{
+                       selsid=selsid+","+rows[i].getId();
+                    }
+                   
+                   }
+   
+                store.load({params: {del: "del",selsid:selsid}});     
+              
+    
+                
+              }
+                
+            },
+            disabled: true
+        }]
+       
+
+        })
+      ,
+        renderTo: 'grid-corp'
+    });
+
+
+
+
+    // trigger the data store load
+    reflash();
+    
+    
+
+});
+
+
+</script>
+    
+    
+</head>
+<body>
+	<form name="form1" id="form1" action="/pronline/Msg?">
+	  <input type="hidden" name="FunName" value="ncXzReportHis">
+	  <input type="hidden" name="exp" value="exp">
+	  <input type="hidden" name="sid" value="">
+	  <input type="hidden" name="rand" value="">
+		<input type="hidden" name="keyword" value="">	
+		<input type="hidden" name="sdate" value="">
+		<input type="hidden" name="edate" value="">
+	
+
+	</form>
+    <div id="grid-corp"></div>
+<iframe style="display:none;" id="ifhide" name="ifhide" src="" scrolling="no" width=0 height=0  FrameBorder=0></iframe>
+
+</body>
+</html>

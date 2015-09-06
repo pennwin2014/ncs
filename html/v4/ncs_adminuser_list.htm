@@ -1,0 +1,505 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<title>单位管理</title>
+    <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" /> 
+        <style type="text/css">
+        .icon-grid {
+            background-image:url(/newver/resources/themes/images/share/grid.png) !important;
+        }
+        .add {
+            background-image:url(/newver/resources/themes/images/share/add.gif) !important;
+        }
+        .option {
+            background-image:url(/newver/resources/themes/images/share/plugin.gif) !important;
+        }
+        .remove {
+            background-image:url(/newver/resources/themes/images/share/delete.gif) !important;
+        }
+        .exp {
+            background-image:url(/newver/resources/themes/images/share/application_go.png) !important;
+        }
+        .accept {
+            background-image:url(/newver/resources/themes/images/share/accept.png) !important;
+        }
+     .x-tab-default-top button, .x-tab-default-top.x-tab-inner {
+		  height: 16px !important;
+		  line-height: 16px;
+	    }
+
+    </style>
+<style type="text/css">   
+   .x-selectable, .x-selectable * {   
+    -moz-user-select: text!important;   
+    -khtml-user-select: text!important;   
+}   
+</style>
+      
+    <script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+    
+  <script>  
+
+
+Ext.Loader.setConfig({enabled: true});
+Ext.Loader.setPath('Ext.ux', '/newver/ux/');
+Ext.require([
+    'Ext.form.*',
+    'Ext.window.*',
+    'Ext.grid.*',
+    'Ext.data.*',
+    'Ext.util.*',
+    'Ext.window.MessageBox',
+    'Ext.toolbar.Paging',
+    'Ext.ux.PreviewPlugin',
+    'Ext.tree.*',
+    'Ext.ux.*'
+//    'Ext.ModelManager',
+//    'Ext.tip.QuickTipManager'
+]);
+
+var temp_id='';
+var preid='';
+ function gbck(){
+
+   Ext.getCmp('addwindow').close();
+   reflash();
+ }
+var store;
+ function reflash(){
+ 
+  var gid=document.getElementById("form1").groupid.value;
+ 
+  var keyword1=Ext.getCmp('keyword1').value;;
+  if(keyword1=='输入登录名/姓名查询'){
+    keyword1='';
+  }
+  store.load({params: {groupid: gid,keyword:keyword1}});  
+  }
+
+
+
+    function gotoedit1(id){
+         var htmlvar='<iframe src="/pronline/Msg?FunName@ncsWebAdminDispUserForm&userid@'+id+'&groupid@'+document.getElementById("form1").groupid.value+' scrolling="no" name="moduleIframe" frameborder="no" style="width:100%;height:600px"></iframe>';        
+         var win2 = new Ext.Window ({
+                             id:"addwindow",
+                             title:"增加或修改",
+                             x:0,
+                             y:0,
+                             width:630,
+                             height:600,
+                             bodyPadding: 10,
+                             modal:true,
+                             resizable:true,
+ //                            draggable:false,
+                             html:htmlvar
+                                               
+         }
+        )
+        win2.show();
+    }
+
+
+
+
+
+
+Ext.onReady(function(){
+    Ext.tip.QuickTipManager.init();
+    Ext.define('EimData', {
+        extend: 'Ext.data.Model',
+        fields: [
+            'username', 'dispname', 'email', 'addtime', 'level','telphone','handphone','userid','opt','groupname','role','syjm','groupid','fac'
+        ],
+        idProperty: 'id'
+    });
+        // create the Data Store
+    //重写排序函数，解决远程条件查询问题
+    Ext.data.Store.prototype.doSort = function() {
+    	reflash();
+    }
+    
+       store = Ext.create('Ext.data.Store', {
+        pageSize: 40,
+        model: 'EimData',
+        remoteSort: true,
+        proxy: {
+            type: 'ajax',
+            url: '/pronline/Msg?FunName@ncsSysUserlist_v4',
+            reader: {
+                type:'json',
+                root: 'eimdata',
+                totalProperty: 'totalCount'
+            },         
+            simpleSortMode: true
+        },
+        sorters: [{
+            property: 'id',
+            direction: 'DESC'
+        }]
+    });
+    
+     var handleAction = function(action){
+       if(action=='add'){
+       var htmlvar='<iframe src="/pronline/Msg?FunName@ncsWebDispClientAddForm_v4&groupid@'+document.getElementById("form1").groupid.value+' " scrolling="no" name="moduleIframe" frameborder="no" style="width:100%;height:100%;"></iframe>';      
+       var win = new Ext.Window ({
+                             id:"addwindow",
+                             title:"增加或修改",
+                             x:0,
+                             y:0,
+                             width:630,
+                             height:560,
+                             bodyPadding: 10,
+                             modal:true,
+  //                         headerPosition: 'bottom',
+                             resizable:true,
+                             draggable:true,
+                             html:htmlvar
+                                                
+         }
+        )
+        win.show();
+
+       }
+    
+    };
+     //修改公司信息
+    function editcorp(value,p,record){
+            return Ext.String.format('<a href="#xxm" onclick="gotoedit1({0})">修改</a>',record.getId());
+                
+    }
+    function ipgj(value,p,record){
+        var temp_disp=record.data.dispname;
+       return Ext.String.format( '<a href="#xxm" onclick=gotoIP("{0}","{1}")>IP轨迹</a>',record.getId(),temp_disp);
+      
+    }
+    var pluginExpanded = true;
+    
+    var sm = Ext.create('Ext.selection.CheckboxModel',{
+        listeners: {
+            selectionchange: function(sm, selections) {
+           
+            grid.down('#removeButton').setDisabled(selections.length == 0);
+          
+                
+            }
+        }
+    
+    });
+     //查询  
+ 
+     Ext.define('State', {
+        extend: 'Ext.data.Model',
+        fields: [
+            {type: 'string', name: 'groupid'},
+            {type: 'string', name: 'groupname'}
+        ]
+    });
+     var store_group = Ext.create('Ext.data.Store', {
+        model: 'State',
+        remoteSort: true,
+         proxy: {
+            type: 'ajax',
+            url: '/pronline/Msg?FunName@ncsWebGroupComp',
+            reader: {
+                type:'json',
+                root: 'corpclassdata'              
+            },         
+            simpleSortMode: true
+        }
+    });
+     store_group.load();     
+       var groupCombo = Ext.create('Ext.form.field.ComboBox', {
+        fieldLabel: '单位属组',
+        valueField:'groupid',
+        value:'',
+        displayField: 'groupname',
+        name : 'groupid1',      
+        allowBlank: true,
+        forceSelection: true,
+        store: store_group,
+        triggerAction: 'all',
+//      queryMode:'remote',
+         queryMode: 'local',
+         typeAhead: true
+    });
+     //对翻页工具条重新构建，替换翻页函数    
+  Ext.PagingToolbar1 = Ext.extend(Ext.PagingToolbar, {
+     doRefresh:function(){  
+     reflash();
+    },
+    moveLast:function(){
+    	var b=this,a=b.getPageData().pageCount;
+    	if(b.fireEvent("beforechange",b,a)!==false){
+    	store.currentPage=a;
+    	reflash();
+       }},
+     moveFirst:function(){
+      if(this.fireEvent("beforechange",this,1)!==false){
+      store.currentPage=1;
+      reflash();}}, 
+     movePrevious:function(){var b=this,a=b.store.currentPage-1;if(a>0){if(b.fireEvent("beforechange",b,a)!==false){store.currentPage=a;reflash();}}},
+     moveNext:function(){var c=this,b=c.getPageData().pageCount,a=c.store.currentPage+1;if(a<=b){if(c.fireEvent("beforechange",c,a)!==false){store.currentPage=a;reflash();}}},
+      
+      
+      onPagingKeyDown:function(i,h){
+     var d=this,b=h.getKey(),c=d.getPageData(),a=h.shiftKey?10:1,g;
+     if(b==h.RETURN){h.stopEvent();g=d.readPageFromInput(c);
+        if(g!==false){
+         g=Math.min(Math.max(1,g),c.pageCount);
+         if(d.fireEvent("beforechange",d,g)!==false){
+        //d.store.loadPage(g)
+         d.store.currentPage=g;
+         reflash();
+        }        
+      }
+    }
+    else{
+       if(b==h.HOME||b==h.END){
+    			h.stopEvent();g=b==h.HOME?1:c.pageCount;i.setValue(g)
+       }
+       else{
+         if(b==h.UP||b==h.PAGEUP||b==h.DOWN||b==h.PAGEDOWN){
+          h.stopEvent();g=d.readPageFromInput(c);
+           if(g){
+             if(b==h.DOWN||b==h.PAGEDOWN){a*=-1}
+             g+=a;
+             if(g>=1&&g<=c.pages){i.setValue(g)}
+             }
+            }
+           }
+         }  
+      }
+
+      
+      
+       
+});
+
+     var grid = Ext.create('Ext.grid.Panel', {
+       
+//        forceFit: true,
+        scrollOffset: 0,
+        height: 1000,        
+        store: store,
+        selModel: sm,
+        id:"grid",
+        frame:true,    
+       
+        // grid columns
+        columns:[{
+            id: 'username',
+            text: "登录名",
+            dataIndex: 'username',
+            hidden: false,
+            width: 80,
+            sortable: true
+        },{
+            text: "姓名",
+            dataIndex: 'dispname', 
+           width: 100,
+ //           flex: 1,
+            sortable: true
+        },{
+            text: "行政区划",
+            dataIndex: 'groupname',           
+            width: 60,
+//            flex: 1,
+            sortable: true
+        },
+        {
+            text: "管理区域",
+            dataIndex: 'opt',
+            hidden: false,
+            width: 150,
+            sortable: false
+        },
+        {
+            text: "管理接入厂商",
+            dataIndex: 'fac',
+            hidden: false,
+            width: 150,
+            sortable: false
+        },
+        {
+            text: "权限角色",
+            dataIndex: 'role',
+            hidden: false,
+            width: 150,
+            sortable: false
+        },
+        {
+            text: "联系电话",
+            dataIndex: 'telphone',
+            hidden: false,
+            width: 100,
+            sortable: false
+        }
+        ,{
+            text: "首页界面",
+            dataIndex: 'level',
+            width: 90,
+ //          flex: 1,
+            sortable: false
+        }
+      ,
+        {
+        //    text: "编辑",
+          header: '编辑',
+            xtype: 'actioncolumn',
+            dataIndex: 'userid',
+             icon: '/v4/images/edit_task.png',
+            tooltip: '点击该图标进入修改系统用户界面。',
+            width: 40,
+            align: 'center',
+            sortable: false,
+            handler: function(grid, rowIndex, colIndex, actionItem, event, record, row) {
+      //          alert( record.get('userid'));
+                gotoedit1(record.get('userid'));
+            }
+ //           renderer: editcorp
+        },
+         {
+            flex: 1
+        }
+        ],
+        
+        columnLines: true,
+                                        
+        // paging bar on the bottom
+        tbar: Ext.create('Ext.PagingToolbar1', {
+            store: store,
+            displayInfo: true,
+            displayMsg: '显示{0} - {1}条记录 共{2}条记录',
+            emptyMsg: "没有记录可显示",
+                                       
+            items: [  
+             {
+               xtype:'textfield',
+               id:'keyword1',
+               name:'keyword1',
+               style:'color:#7aa7d5',
+               width:'120px',
+               value:'输入登录名/姓名查询',
+               enableKeyEvents:true,
+               listeners:{
+                 'focus':function(){
+                 if(this.value=='输入登录名/姓名查询'){                
+                    this.setValue('');
+                  }
+                 },
+         
+                 'keydown' : function(i,e){
+                var aae=e.getKey() ; 
+                if(aae==13){
+                    var aa=Ext.getCmp('keyword1').value;
+       
+		                  document.getElementById("form1").groupid.value='';
+		                  store.currentPage=1;      		                  
+		                   reflash();
+                }
+               }
+               }
+             },
+             {
+                text:'确认',
+                iconCls:'accept',
+                handler: function(){
+                 var aa=Ext.getCmp('keyword1').value;
+                if(aa!='输入登录名/姓名查询'){
+                   document.getElementById("form1").groupid.value='';
+                   store.currentPage=1;         
+                   reflash();
+                }
+                }
+            },
+            '-',
+            {
+                text:'增加',
+                iconCls:'add',
+               handler : function() {
+               gotoedit1();
+       
+               }
+            }, '-', {
+                text:'删除',
+                itemId: 'removeButton',
+                iconCls:'remove',
+              disabled: true,
+                handler:function(){
+
+							   if(confirm('您真的要执行删除操作吗？')){                  
+                 var selsid;  
+                 var rows=sm.getSelection();
+                   selsid='';
+                  for(var i=0;i<rows.length;i++){
+                  	
+                  	if(i==0){
+                  	 selsid=rows[i].getId();
+                  	}
+                  	else{
+                       selsid=selsid+","+rows[i].getId();
+                    }
+                   
+                   }
+                   var keyword=Ext.getCmp('keyword1').value;
+                   if(keyword=='输入登录名/姓名查询'){
+                      keyword='';
+                   }
+                   store.load({params:{del:"del",selsid:selsid,keyword:keyword}});
+            
+                 }  
+                 
+                }
+                
+
+ 
+                
+            }
+                        
+        ]
+       
+
+        }),
+       
+        
+        renderTo: 'grid-corp'
+    });  
+     
+     reflash();
+     
+    
+
+});
+
+
+
+
+
+
+
+
+</script>
+    
+    
+</head>
+<body>
+	<form name="form1" id="form1" action="/pronline/Msg">
+		<input type="hidden" name="FunName" value="ncsWebClientSearch_v4">
+		<input type="hidden" name="groupid" value="">
+		<input type="hidden" name="did" value="">
+		<input type="hidden" name="ip1" value="">
+		<input type="hidden" name="dispname1" value="">
+		<input type="hidden" name="servicecode1" value="">
+		<input type="hidden" name="groupid1" value="">		
+	  <input type="hidden" name="address1" value="">
+		<input type="hidden" name="area1" value="">
+		<input type="hidden" name="export2" value="">
+		<input type="hidden" name="lxstate" value="">
+		<input type="hidden" name="keyword" value="">
+		<input type="hidden" name="mid" value="">
+	</form>
+    <div id="grid-corp"></div>
+
+</body>
+</html>

@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="ProInfoMan"
+ targetNamespace="http://www.pronetway.com"
+ xmlns:tns="http://www.pronetway.com"
+ xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+ xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+ xmlns:ns2="urn:ProInfoMan"
+ xmlns:SOAP="http://schemas.xmlsoap.org/wsdl/soap/"
+ xmlns:MIME="http://schemas.xmlsoap.org/wsdl/mime/"
+ xmlns:DIME="http://schemas.xmlsoap.org/ws/2002/04/dime/wsdl/"
+ xmlns:WSDL="http://schemas.xmlsoap.org/wsdl/"
+ xmlns="http://schemas.xmlsoap.org/wsdl/">
+
+<types>
+
+ <schema targetNamespace="urn:ProInfoMan"
+  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+  xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:ns2="urn:ProInfoMan"
+  xmlns="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="unqualified"
+  attributeFormDefault="unqualified">
+  <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+ </schema>
+
+</types>
+
+<message name="HelloRequest">
+ <part name="name" type="xsd:string"/>
+</message>
+
+<message name="HelloResponse">
+ <part name="result" type="xsd:string"/>
+</message>
+
+<message name="GetDateTimeRequest">
+ <part name="session" type="xsd:string"/>
+</message>
+
+<message name="GetDateTimeResponse">
+ <part name="result" type="xsd:string"/>
+</message>
+
+<message name="SetDateTimeRequest">
+ <part name="session" type="xsd:string"/>
+ <part name="xml" type="xsd:string"/>
+</message>
+
+<message name="SetDateTimeResponse">
+ <part name="result" type="xsd:string"/>
+</message>
+
+<message name="SetUpStatusPropertyRequest">
+ <part name="session" type="xsd:string"/>
+ <part name="xml" type="xsd:string"/>
+</message>
+
+<message name="SetUpStatusPropertyResponse">
+ <part name="result" type="xsd:string"/>
+</message>
+
+<message name="QueryStatusRequest">
+ <part name="session" type="xsd:string"/>
+ <part name="xml" type="xsd:string"/>
+</message>
+
+<message name="QueryStatusResponse">
+ <part name="result" type="xsd:string"/>
+</message>
+
+<message name="CommitMessageRequest">
+ <part name="session" type="xsd:string"/>
+ <part name="xml" type="xsd:string"/>
+</message>
+
+<message name="CommitMessageResponse">
+ <part name="result" type="xsd:string"/>
+</message>
+
+<message name="SelectMessageRequest">
+ <part name="session" type="xsd:string"/>
+ <part name="xml" type="xsd:string"/>
+</message>
+
+<message name="SelectMessageResponse">
+ <part name="result" type="xsd:string"/>
+</message>
+
+<message name="SelectDailyStatRequest">
+ <part name="session" type="xsd:string"/>
+ <part name="xml" type="xsd:string"/>
+</message>
+
+<message name="SelectDailyStatResponse">
+ <part name="result" type="xsd:string"/>
+</message>
+
+<message name="SelectStatRequest">
+ <part name="session" type="xsd:string"/>
+ <part name="xml" type="xsd:string"/>
+</message>
+
+<message name="SelectStatResponse">
+ <part name="result" type="xsd:string"/>
+</message>
+
+<message name="UpdateDataRequest">
+ <part name="session" type="xsd:string"/>
+ <part name="xml" type="xsd:string"/>
+</message>
+
+<message name="UpdateDataResponse">
+ <part name="result" type="xsd:string"/>
+</message>
+
+<message name="SelectDataRequest">
+ <part name="session" type="xsd:string"/>
+ <part name="xml" type="xsd:string"/>
+</message>
+
+<message name="SelectDataResponse">
+ <part name="result" type="xsd:string"/>
+</message>
+
+<message name="DeleteDataRequest">
+ <part name="session" type="xsd:string"/>
+ <part name="xml" type="xsd:string"/>
+</message>
+
+<message name="DeleteDataResponse">
+ <part name="result" type="xsd:string"/>
+</message>
+
+<message name="GetVersionRequest">
+</message>
+
+<message name="GetVersionResponse">
+ <part name="result" type="xsd:string"/>
+</message>
+
+<portType name="ProInfoManPortType">
+ <operation name="Hello">
+  <documentation>Service definition of function ns2__Hello</documentation>
+  <input message="tns:HelloRequest"/>
+  <output message="tns:HelloResponse"/>
+ </operation>
+ <operation name="GetDateTime">
+  <documentation>Service definition of function ns2__GetDateTime</documentation>
+  <input message="tns:GetDateTimeRequest"/>
+  <output message="tns:GetDateTimeResponse"/>
+ </operation>
+ <operation name="SetDateTime">
+  <documentation>Service definition of function ns2__SetDateTime</documentation>
+  <input message="tns:SetDateTimeRequest"/>
+  <output message="tns:SetDateTimeResponse"/>
+ </operation>
+ <operation name="SetUpStatusProperty">
+  <documentation>Service definition of function ns2__SetUpStatusProperty</documentation>
+  <input message="tns:SetUpStatusPropertyRequest"/>
+  <output message="tns:SetUpStatusPropertyResponse"/>
+ </operation>
+ <operation name="QueryStatus">
+  <documentation>Service definition of function ns2__QueryStatus</documentation>
+  <input message="tns:QueryStatusRequest"/>
+  <output message="tns:QueryStatusResponse"/>
+ </operation>
+ <operation name="CommitMessage">
+  <documentation>Service definition of function ns2__CommitMessage</documentation>
+  <input message="tns:CommitMessageRequest"/>
+  <output message="tns:CommitMessageResponse"/>
+ </operation>
+ <operation name="SelectMessage">
+  <documentation>Service definition of function ns2__SelectMessage</documentation>
+  <input message="tns:SelectMessageRequest"/>
+  <output message="tns:SelectMessageResponse"/>
+ </operation>
+ <operation name="SelectDailyStat">
+  <documentation>Service definition of function ns2__SelectDailyStat</documentation>
+  <input message="tns:SelectDailyStatRequest"/>
+  <output message="tns:SelectDailyStatResponse"/>
+ </operation>
+ <operation name="SelectStat">
+  <documentation>Service definition of function ns2__SelectStat</documentation>
+  <input message="tns:SelectStatRequest"/>
+  <output message="tns:SelectStatResponse"/>
+ </operation>
+ <operation name="UpdateData">
+  <documentation>Service definition of function ns2__UpdateData</documentation>
+  <input message="tns:UpdateDataRequest"/>
+  <output message="tns:UpdateDataResponse"/>
+ </operation>
+ <operation name="SelectData">
+  <documentation>Service definition of function ns2__SelectData</documentation>
+  <input message="tns:SelectDataRequest"/>
+  <output message="tns:SelectDataResponse"/>
+ </operation>
+ <operation name="DeleteData">
+  <documentation>Service definition of function ns2__DeleteData</documentation>
+  <input message="tns:DeleteDataRequest"/>
+  <output message="tns:DeleteDataResponse"/>
+ </operation>
+ <operation name="GetVersion">
+  <documentation>Service definition of function ns2__GetVersion</documentation>
+  <input message="tns:GetVersionRequest"/>
+  <output message="tns:GetVersionResponse"/>
+ </operation>
+</portType>
+
+<binding name="ProInfoMan" type="tns:ProInfoManPortType">
+ <SOAP:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+ <operation name="Hello">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:ProInfoMan" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:ProInfoMan" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="GetDateTime">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:ProInfoMan" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:ProInfoMan" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="SetDateTime">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:ProInfoMan" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:ProInfoMan" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="SetUpStatusProperty">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:ProInfoMan" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:ProInfoMan" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="QueryStatus">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:ProInfoMan" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:ProInfoMan" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="CommitMessage">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:ProInfoMan" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:ProInfoMan" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="SelectMessage">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:ProInfoMan" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:ProInfoMan" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="SelectDailyStat">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:ProInfoMan" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:ProInfoMan" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="SelectStat">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:ProInfoMan" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:ProInfoMan" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="UpdateData">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:ProInfoMan" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:ProInfoMan" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="SelectData">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:ProInfoMan" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:ProInfoMan" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="DeleteData">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:ProInfoMan" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:ProInfoMan" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="GetVersion">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:ProInfoMan" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:ProInfoMan" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+</binding>
+
+<service name="ProInfoMan">
+ <documentation>gSOAP 2.7.9f generated service definition</documentation>
+ <port name="ProInfoMan" binding="tns:ProInfoMan">
+  <SOAP:address location="http://192.168.0.57:8000"/>
+ </port>
+</service>
+
+</definitions>

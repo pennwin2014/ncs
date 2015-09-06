@@ -1,0 +1,87 @@
+<html>
+<head>
+<title></title>
+<link REL=stylesheet HREF="/css/runmit.css" TYPE='text/css'>
+</head>
+<script>
+function mouseovertr2 (o){
+var i;
+df=o.style.backgroundColor
+	o.style.backgroundColor= "#000066";
+	o.style.borderColor= "#cccccc";
+	o.style.cursor="hand";	
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#ffffff";
+}	
+parent.parent.clearTimeout(parent.parent.popTimer);
+}
+
+function mouseouttr2(o){
+	o.style.backgroundColor=df
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#000000";
+}
+	
+parent.parent.popOut()	
+}
+function menu_frame_onmouseover()
+{
+	parent.clearTimeout(parent.popTimer);
+	//alert('parent cleartimeout ok!');
+	document.body.className='highlight_container'}
+function menu_frame_onmouseout()
+{
+	document.body.className="menu_container";
+	parent.popOut()}
+//document.onmouseover=menu_frame_onmouseover;
+//document.onmouseout=menu_frame_onmouseout;
+function goto(t){
+
+parent.sbpm_right.location.href=t
+}
+function goto2(t){
+parent.sbpm_left.location.href=t
+}
+
+</script>
+<body topMargin=0 leftmargin=0 marginheight="0" class=menu_space style='cursor:default;border:0' fixed oncontextmenu="return false">
+<table class=3dtable_notop1 border=0 width=100% cellspacing=0 cellpadding=0 style='padding:2px' height="126">
+  <tr onmouseover="mouseovertr2(this)" onmouseout="mouseouttr2(this)" 
+      onclick="goto('/pronline/Msg?FunName@ncWebShowUserStatus');goto2('/no.htm');parent.go_hide()"> 
+    <td height="22">&nbsp;<img src="/images/blank.gif" width="21" height="21" align="absmiddle">当前用户</td>
+  </tr>
+  <tr onmouseover="mouseovertr2(this)" onmouseout="mouseouttr2(this)" 
+      onclick="goto('/pronline/Msg?FunName@ncWebReplace&plate@ncusermon_00.htm');goto2('/pronline/Msg?FunName@ncWebListUserTree&plate@nc/nc_tree_monip.htm');parent.go_show()"> 
+    <td height="22">&nbsp;<img src="/images/blank.gif" width="21" height="21" align="absmiddle">当前IP访问</td>
+  </tr>
+  <tr onmouseover="mouseovertr2(this)" onmouseout="mouseouttr2(this)" onclick="goto('/pronline/Msg?FunName@ncWebReplace&plate@ncnewweb_00.htm');goto2('/nc_monweb_left.htm');parent.go_show()"> 
+    <td height="22">&nbsp;<img src="/images/blank.gif" width="21" height="21" align="absmiddle">当前Web访问</td>
+  </tr>
+  <tr onmouseover="mouseovertr2(this)" onmouseout="mouseouttr2(this)" 
+       onclick="goto('/pronline/Msg?FunName@ncWebCountTotalFlow&unit@日&ctype@1');goto2('/no.htm');parent.go_hide()">  
+    <td height="22">&nbsp;<img src="/images/blank.gif" width="21" height="21" align="absmiddle">当前出口流量</td>
+  </tr>
+  <tr id=main > 
+    <td height="2"><img src="/images/hr.gif" width="100%" height="2"></td>
+  </tr>
+  <tr onmouseover="mouseovertr2(this)" onmouseout="mouseouttr2(this)" 
+         onclick="goto('/pronline/Msg?FunName@ncWebQyeIp&userid@0');goto2('/pronline/Msg?FunName@ncWebListUserTree&plate@nc/nc_tree_qyeip.htm');parent.go_show()">
+    <td height="22">&nbsp;<img src="/images/blank.gif" width="21" height="21" align="absmiddle">IP访问查询</td>
+  </tr>
+  <tr onmouseover="mouseovertr2(this)" onmouseout="mouseouttr2(this)" 
+           onclick="goto('/pronline/Msg?FunName@ncWebQyehttp&userid@0');goto2('/pronline/Msg?FunName@ncWebListUserTree&plate@nc/nc_tree_qyeweb.htm');parent.go_show()">
+    <td height="22">&nbsp;<img src="/images/blank.gif" width="21" height="21" align="absmiddle">网站访问查询</td>
+  </tr>
+  <tr onmouseover="mouseovertr2(this)" onmouseout="mouseouttr2(this)"
+           onclick="goto('/pronline/Msg?FunName@ncWebMailMonList&flags@0&CurPg@1');goto2('/pronline/Msg?FunName@ncWebListUserTree&plate@mail/nc_tree_mailmon.htm');parent.go_show()">
+    <td height="22">&nbsp;<img src="/images/blank.gif" width="21" height="21" align="absmiddle">邮件内容查看</td>
+  </tr>
+  <tr onmouseover="mouseovertr2(this)" onmouseout="mouseouttr2(this)"
+           onclick="goto('/pronline/Msg?FunName@ncWebUploadList&CurPg@1');goto2('/pronline/Msg?FunName@ncWebListUserTree&plate@mail/nc_tree_upload.htm');parent.go_show()">
+    <td height="22">&nbsp;<img src="/images/blank.gif" width="21" height="21" align="absmiddle">网页表单查看</td>
+  </tr>
+</table>
+</body>
+</html>

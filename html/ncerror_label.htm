@@ -1,0 +1,56 @@
+<html>
+<head>
+<title>告警信息</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<style type="text/css">
+
+<!--
+body {  font-size: 12pt}
+table {  font-size: 9pt}
+form {margin: 0px;}
+-->
+</style>
+<link rel="stylesheet" href="/css.css" type="text/css">
+<link href="/css/css.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+<!--
+.style1 {
+	font-size: 12pt;
+	font-weight: bold;
+}
+-->
+</style>
+</head>
+<body bgcolor="#12538D" topmargin="0" text="#000000" leftmargin="0">
+<table  cellspacing=0 class=listDataTable id=DataTable  cellpadding="0" bordercolor="#DFDFDF" border="0" align="center" width="100%">
+  <tr bgcolor="#E7F3FF" id> 
+    <td colspan="4" bgcolor="#E7F3FF" class="bord1"  onyes="head"> 
+      <table width="739" border="0" cellspacing="0" cellpadding="0" align="center">
+        <tr> 
+          <td width="506"><p align="center" class="style1"><font color="#333333">当前系统告警信息</font></p>          </td>
+          <td><div align="right">
+            <form name="form1" method="post" action="/pronline/Msg" target="_parent">
+		      <input name="FunName" type="hidden" value="ncWebErrNewLog">
+		      <input name="plate" type="hidden" value="nc/nc_error_listnow.htm">
+              <input type="submit" name="Submit" value="历史记录查询">
+            </form>
+          </div> </td>
+        </tr>
+      </table></td>
+  </tr>
+  <tbody>
+    <tr> 
+      <td width="8%" height=21 bgcolor="#6382BD" class="bord2"> <div align="center"><font color="#FFFFFF">用 
+          户</font></div></td>
+      <td width="12%" bgcolor="#6382BD" class="bord2"> 
+        <div align="center"><font color="#FFFFFF">时间</font></div></td>
+      <td width="8%" bgcolor="#6382BD" class="bord2"> 
+        <div align="center"><font color="#FFFFFF">服务</font></div></td>
+      <td  width="72%" bgcolor="#6382BD" class="bord2"> 
+        <div align="center"><font color="#FFFFFF">内容</font></div> 
+        <div align="center"></div>        </td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>

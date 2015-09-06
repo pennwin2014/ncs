@@ -1,0 +1,56 @@
+<html>
+<head>
+	<title>SystemSetTree</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">	
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+	<style>
+	/* Style for tree item text */
+	.t0i {
+		font-family: Tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+		font-size: 11px;
+		color: #000000;
+		background-color: #ffffff;
+		text-decoration: none;
+	}
+	/* Style for tree item image */
+	.t0im {
+		border: 0px;
+		width: 19px;
+		height: 16px;
+	}
+	</style>
+</head>
+
+<body bgcolor="#ffffff" leftmargin="1" marginheight="2" marginwidth="15" topmargin="2">
+<script>
+var TREE_ITEMS = [
+	['网络访问排行榜', '',
+         ['网络流量排行榜', '/pronline/Msg?FunName@ncWebSortUserByFlow&group@W&order@F'],
+         ['上网时间排行榜', '/pronline/Msg?FunName@ncWebSortUserByFlow&group@W&order@T'],
+         ['网站访问次数', '/pronline/Msg?FunName@ncWebSortWeb&group@W&order@C'],
+         ['网站访问时间', '/pronline/Msg?FunName@ncWebSortWeb&group@W&order@T'],
+         ['网站访问流量', '/pronline/Msg?FunName@ncWebSortWeb&group@W&order@F'],
+         ['目标IP连接时间','/pronline/Msg?FunName@ncWebSortIp&group@W&order@T'],
+         ['目标IP网络流量','/pronline/Msg?FunName@ncWebSortIp&group@W&order@F'],
+         ['Internet服务时间','/pronline/Msg?FunName@ncWebSortService&group@W&order@F&service@3'],
+         ['Internet服务流量','/pronline/Msg?FunName@ncWebSortService&group@W&order@T&service@3'],
+    ],
+];
+
+
+
+
+</script>
+
+<script language="JavaScript" src="/js/tree_tpl.js"></script>
+<script language="JavaScript" src="/js/tree.js"></script>
+<script language="JavaScript">
+	new tree (TREE_ITEMS, tree_tpl);
+</script>
+</body>
+</html>
+
+

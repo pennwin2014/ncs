@@ -1,0 +1,228 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<!--script type="text/javascript" src="/newver/jquery/jquery-1.8.2.min.js"></script-->
+<script type="text/javascript" src="/newver/jquery/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+<script type="text/javascript" src="/newver/chart/highcharts.js"></script>
+<link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" /> 
+
+<title>首页</title>
+<style>
+
+html,body{
+    -webkit-text-size-adjust:none;
+	 font-family: 微软雅黑;	 
+}
+.device_main{height:100%;}
+.main_top{position:absolute;background-color:#F0F3F8; width:100%; height:30px;border: solid 1px #00B1F1;}
+.main_content{position:absolute;overflow:auto;height:86%;width:100%;background-color:#EAEAEA;}
+.main_left{position:absolute;background-color:#EAEAEA;top:30px;width:27%;height:100%; border-top-width: 0px; border-right-width: 1px;border-left-width: 0px; border-bottom-width: 0px;border-color:#00B1F1;border-style:solid;}
+.main_center{position:absolute;background-color:#EAEAEA;top:30px;left:27%; width:73%;height:100%; border-top-width: 0px; border-right-width: 1px;border-left-width: 1px; border-bottom-width: 0px;border-color:#00B1F1;border-style:solid;}
+.main_top_left{position:absolute;left:0;width:27%;height:100%;border-width:1px;border-color:#00B1F1;border-style:solid;}
+.main_top_center{position:absolute;left:27%;width:73%;height:100%;border-width:1px;border-color:#00B1F1;border-style:solid;}
+.info_block{ position:relative; border: solid 1px #00B1F1; margin-left:5%;  width:90%; height:105px; margin-top:30px;border-radius:0px 0px 15px 15px;}
+.info_logo{position:absolute;left:6px;top:4px;width:75px;height:90px;}
+.info_title{position:absolute;left:100px;top:75px;font-size:12px; color:#143554; font-weight:bold;width:106px;text-align:center;}
+.info_text_single{ display:block;position:absolute;color:#143554;font-size:12px;left:80px;top:25px;width:65px;text-align:right;}
+.info_number_single{position:absolute;color:#EE0225;left:150px;top:19px;font-size:22px;}
+.info_text_first{ display:block;position:absolute;color:#143554;font-size:12px;left:80px;top:19px;width:65px;text-align:right;}
+.info_number_first{position:absolute;font-size:22px;left:150px;top:10px;}
+.info_text_second{display:block; position:absolute;color:#143554;font-size:12px;left:80px;top:37px;width:65px;text-align:right;}
+.info_number_second{position:absolute;font-size:22px;left:150px;top:30px;}
+
+.tab_group1{ position:absolute;left:1%; top:0px; width:49%;}
+.tab_group2{ position:absolute;left:51%; top:0px; width:49%;}
+.cls_tab_normal{ position:relative;background-color:#FFF; border: solid 1px #00B1F1;left:15px; width:95%; height:300px; margin-top:10px;border-radius:0px 0px 15px 15px;}
+.cls_tab_hide{display:none;position:relative;background-color:#FFF; border: solid 1px #00B1F1; width:98%; height:220px; margin-top:15px;border-radius:0px 0px 15px 15px;}
+.tab_top{position:absolute; top:0px;left:0px; height:28px; line-height:28px; width:100%;background-color:#D5DDF0; border-color:#00B1F1; border-style: solid; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 1px; border-left-width: 0px; font-weight:bold; color:#0D3967; text-align:left;}
+.tab_top span{margin-left:10px;}
+.tab_top img{float:right;margin:7px 10px 0 0;}
+.cls_chart_rect{position:absolute; top:29px; left:0px; height:80%; width:95%; text-align:center}
+.cls_chart_rect_with_buttons{position:absolute; top:50px; left:20px; height:80%; width:95%; text-align:center}
+
+.tab_btn_group{position:absolute; top:31px; height:20px; width:100%;}
+.tab_button_normal{cursor:pointer;display:-moz-inline-box;display:inline-block;text-align:center;background-color:#FFF;color:#0D3967;margin-left:1%;height:95%;width:50px;border-radius:3px 3px 3px 3px;}
+.tab_button_focus{cursor:pointer;display:-moz-inline-box;display:inline-block;text-align:center;background-color:#BEDCF5;color:#0D3967;margin-left:1%;height:95%;width:50px;border-radius:3px 3px 3px 3px;}
+
+
+
+.select_btn1{ width:150px; position:absolute; height:100%; left:10px; background-color:#F0F3F8;}
+.select_btn2{ width:150px; position:absolute; height:100%; left:10px; background-color:#F0F3F8;}
+
+.cls_listitem1{height:30px; line-height:30px;display:none; text-align:left; background-color:#F0F3F8;color:#000}
+.cls_listitem1 p, .cls_listitem2 p{margin-left:20px;}
+.cls_listitem2{height:30px; line-height:30px;display:none; margin-left:20px; text-align:left; background-color:#F0F3F8;color:#000}
+
+</style>
+<script>
+	var chart1;
+	var smap ={};
+	function getRandom(n){
+		return Math.floor(Math.random()*n+1);
+	}
+   
+	var current_chart_type = 'day';
+	function createChart1(){
+		smap ={};
+		var  cid = parent.Ext.getCmp('cid').value;
+		
+		var  mac = parent.Ext.getCmp('mac').value;
+	
+		chart1 = new Highcharts.Chart({ 
+			chart: { 
+				type: 'spline',
+				renderTo: 'container1'  
+			}, 
+			title: { 
+				text: '' 
+			}, 
+			exporting:{
+                enabled:false
+            },
+			credits: {
+				enabled: false
+			},
+			xAxis: { 
+				//type:'categories'
+         type: 'category'
+			
+			}, 
+			yAxis: { 
+				minRange:1,
+				title: { 
+					text: '' 
+				}, 
+				min: 0 
+			}, 
+			tooltip: { 
+			//这种模式下，每点的tooltip单独显示 
+				shared: true,
+				useHTML: true, 
+				formatter: function(){		
+					var s = '';	
+					var tmpt;	
+					var tmpi;
+					tmpi = smap[this.point.name][1]>7?7:smap[this.point.name][1];
+					tmpt = (80+tmpi*20)>150?(80+tmpi*20):150;				
+					s +='<table height='+tmpt+' cellSpacing=0 cellPadding=0 width=300>';
+					  s+= '<div style=\"left:0px;width:100%; position:absolute;top:10px; border-bottom:1px solid #7CB5EC;\"><img  align="bottom" style="width:12px; height:24px;" src="/newver/resources/themes/images/map/mac_main.png" /><b><font size="2">主MAC:</font></b><font size="1">'+mac+'</font></div>'+
+				  '<div style=\"left:210px;position:absolute;top:20px;\"><b><font size="1">'+this.point.name+'</font></b></div>';
+					
+					for(tmpi = 0; tmpi < smap[this.point.name][1];tmpi++)
+					{
+						tmpt = 60+tmpi*20;	
+						if(tmpi==7){
+						s+='<div style=\"left:150px;position:absolute;top:'+tmpt+'px;\"><b>...</b></div>';
+            break;
+          }
+						s+='<div style=\"left:150px;position:absolute;top:'+tmpt+'px;\"><img style="width:9px; height:15px;" src="/newver/resources/themes/images/map/mac_minor.png" /><font size="1">'+smap[this.point.name][tmpi+3]+'</font></div>';
+					}
+				//	tmpt = smap[this.point.name][1]>4?4:smap[this.point.name][1];
+			tmpt = smap[this.point.name][1]>7?7:smap[this.point.name][1];
+					tmpi = 45 + (tmpt-1)*20/2
+				 		  s+='<div style=\"left:50px;position:absolute;top:'+tmpi+'px;\"><img style="width:42px; height:42px;" src="/newver/resources/themes/images/map/home_blue.png" /></div>';
+				 		  tmpi+=50;
+				 		  s+='<div align="center" style=\"width:100px; left:25px;position:absolute;top:'+tmpi+'px;\"><font size="2"><b>'+smap[this.point.name][2]+'</b></font></div>';
+
+				 
+				
+
+				  
+				  s+='</table>';
+					
+				
+					return s; 
+				}  
+				/*<tr><td style="color: {series.color}">场所: </td>' +
+'<td style="text-align: right">testzone1</b></td></tr>'+'<tr><td style="color: {series.color}">主MAC: </td>' +
+'<td style="text-align: right">'+mac+'</b></td></tr>'+
+'<tr><td style="color: {series.color}">伴随MAC: </td>' +
+'<td style="text-align: right">00-11-11-11-11-13</b></td></tr>'+
+'<tr><td style="color: {series.color}"> </td>' +
+'<td style="text-align: right">00-11-11-11-11-12</b></td></tr>*/
+			}, 
+			legend: {
+				enabled: false
+			},
+			series: [{ 
+				name: '', 
+				data: [] 
+			}] 
+		});
+		getChart1Data(cid);
+	}
+	
+	$(function () {
+		createChart1();		
+	});
+      
+	
+	function getChart1Data(cid){
+		
+		Ext.Ajax.request({     
+						url: '/pronline/Msg?FunName@dm_list&cid@'+cid,  
+						method: 'GET',
+						success: function(resp,opts) {   
+							var tmpData = [];
+							try{
+							 
+								var respText = resp.responseText; 
+								var respRecord = eval("("+respText+")");
+								var colNum = 0;
+								var colTime;
+								
+								//smap['2015年7月31日'] = [1,1,'testzone1', '00-11-11-11-11-11'];
+								//smap['2015年8月31日'] = [2,4,'testzone2', '00-11-11-41-11-15','00-21-11-41-11-15','00-31-11-41-11-15','00-41-11-41-11-15'];
+								//smap['2015年9月31日'] = [3,2, 'testzone3','00-11-11-61-11-14','00-21-11-61-11-14'];
+								//smap['2015年10月31日'] = [4,3,'testzone4', '00-11-11-81-11-21','00-21-11-81-11-21','00-31-11-81-11-21'];
+								for(var i in respRecord.eimdata){
+									 
+									colTime = respRecord.eimdata[i].stime;
+									if(colTime in smap)
+									{
+										smap[colTime][1]++;
+									 smap[colTime][smap[colTime][1]+2] = respRecord.eimdata[i].mac;
+										
+									}
+									else {
+										colNum++;
+										smap[colTime] = [colNum, 1,respRecord.eimdata[i].servicename,respRecord.eimdata[i].mac];
+									}		
+								
+									
+								
+								}
+								
+								for(var key in smap)
+								{	
+									
+									tmpData.push({x:smap[key][0], y:smap[key][1], name:key});
+								}
+								
+							}catch(e){
+								//console.log(e.message);
+							}						
+							chart1.series[0].setData(tmpData); 							
+						},   
+						failure: function(resp,opts) {   
+							var respText = eval("("+respText+")");
+							alert('错误', respText.error);   
+						}   				 
+		});			
+	}
+
+</script>
+</head>
+
+<body>
+
+
+					<div id="hchart1" class="cls_tab_normal">
+						<div id="container1" class="cls_chart_rect_with_buttons"></div>
+					</div>			
+			
+	
+</body>
+</html>

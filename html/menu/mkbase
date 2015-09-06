@@ -1,0 +1,5 @@
+cp $1/layer*.* /home/ncmysql/nc/html/
+cp $1/main_header.htm /home/ncmysql/nc/html/
+cp $1/menu.js    /home/ncmysql/nc/html/js/
+cp $1/main.htm   /home/ncmysql/nc/plate/nc/main.htm
+

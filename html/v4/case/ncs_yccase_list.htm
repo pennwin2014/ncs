@@ -1,0 +1,443 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>单位组管理</title>
+    <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" />
+
+    <script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+
+    <style type="text/css">
+        .add {
+            background-image:url(/newver/resources/themes/images/share/add.gif) !important;
+        }
+        .remove {
+            background-image:url(/newver/resources/themes/images/share/delete.gif) !important;
+        }
+        .accept {
+            background-image:url(/newver/resources/themes/images/share/accept.png) !important;
+        }
+        .exp {
+            background-image:url(/newver/resources/themes/images/share/application_go.png) !important;
+        }
+    </style>
+    
+ <script type="text/javascript">     
+    
+    Ext.Loader.setConfig({
+    enabled: true
+});
+Ext.Loader.setPath('Ext.ux', '/newver/ux/');
+
+Ext.require([
+    'Ext.grid.*',
+    'Ext.data.*',
+    'Ext.util.*',
+    'Ext.state.*',
+    'Ext.form.*',
+    'Ext.ux.CheckColumn',
+    'Ext.tree.*',
+    'Ext.tip.*',
+    'Ext.tab.*',
+    'Ext.*'
+]);
+
+var store;
+var preid="";
+var  preladw="";
+var temp_id;
+var cid='';
+ function reflash(){
+ 	var gid=document.getElementById("form1").groupid.value;
+ 	store.load({params: {groupid: gid}});
+}
+
+Ext.onReady(function(){
+
+
+Ext.tip.QuickTipManager.init();
+
+ 
+
+   function bjmx(value,p,record){
+        var temp_disp=record.data.pcount;
+      if(temp_disp=='0'){
+      	       return Ext.String.format( '<img src="/v4/images/edit_task.png">&nbsp;<font color=red>(点击添加)</font>&nbsp;');
+      }
+    else{
+       return Ext.String.format( '<img src="/v4/images/edit_task.png">&nbsp;({0}条策略)&nbsp;',temp_disp);
+      }
+      
+    }
+
+
+
+
+   Ext.define('EimData', {
+        extend: 'Ext.data.Model',
+        fields: [
+            'casecode', 'groupid', 'casename', 'addby','caseclass','casedate','sid','expiretime','casedept','cmemo','sjjbid','ajzlid','casetype','groupname','sxid','pcount','wcount','xcount'
+        ],
+        idProperty: 'sid'
+    });
+
+        store = Ext.create('Ext.data.Store', {
+        pageSize: 40,
+        model: 'EimData',
+        remoteSort: true,
+        proxy: {
+            type: 'ajax',
+            url: '/pronline/Msg?FunName@ncsCaseList_v4&flags@9',
+            reader: {
+                type:'json',
+                root: 'eimdata',
+                totalProperty: 'totalCount'
+            },         
+            simpleSortMode: true
+        },
+        sorters: [{
+            property: 'pid',
+            direction: 'DESC'
+        }]
+    });
+    store.load();
+
+
+
+
+    var sm = Ext.create('Ext.selection.CheckboxModel',{
+        listeners: {
+            selectionchange: function(sm, selections) {
+           
+  //          grid.down('#removeButton').setDisabled(selections.length == 0);
+                
+            }
+        }
+    
+    });
+//对翻页工具条重新构建，替换翻页函数    
+  Ext.PagingToolbar1 = Ext.extend(Ext.PagingToolbar, {
+     doRefresh:function(){  
+     reflash();
+    },
+    moveLast:function(){
+    	var b=this,a=b.getPageData().pageCount;
+    	if(b.fireEvent("beforechange",b,a)!==false){
+    	store.currentPage=a;
+    	reflash();
+       }},
+     moveFirst:function(){
+      if(this.fireEvent("beforechange",this,1)!==false){
+      store.currentPage=1;
+      reflash();}}, 
+     movePrevious:function(){var b=this,a=b.store.currentPage-1;if(a>0){if(b.fireEvent("beforechange",b,a)!==false){store.currentPage=a;reflash();}}},
+     moveNext:function(){var c=this,b=c.getPageData().pageCount,a=c.store.currentPage+1;if(a<=b){if(c.fireEvent("beforechange",c,a)!==false){store.currentPage=a;reflash();}}},
+      
+      
+      onPagingKeyDown:function(i,h){
+     var d=this,b=h.getKey(),c=d.getPageData(),a=h.shiftKey?10:1,g;
+     if(b==h.RETURN){h.stopEvent();g=d.readPageFromInput(c);
+        if(g!==false){
+         g=Math.min(Math.max(1,g),c.pageCount);
+         if(d.fireEvent("beforechange",d,g)!==false){
+        //d.store.loadPage(g)
+         d.store.currentPage=g;
+         reflash();
+        }        
+      }
+    }
+    else{
+       if(b==h.HOME||b==h.END){
+    			h.stopEvent();g=b==h.HOME?1:c.pageCount;i.setValue(g)
+       }
+       else{
+         if(b==h.UP||b==h.PAGEUP||b==h.DOWN||b==h.PAGEDOWN){
+          h.stopEvent();g=d.readPageFromInput(c);
+           if(g){
+             if(b==h.DOWN||b==h.PAGEDOWN){a*=-1}
+             g+=a;
+             if(g>=1&&g<=c.pages){i.setValue(g)}
+             }
+            }
+           }
+         }  
+      }
+
+      
+      
+       
+});
+
+
+   
+
+    
+      var aaa=screen.width;
+      aaa=aaa-265;
+     var win2;
+    var grid = Ext.create('Ext.grid.Panel', {
+        store: store,
+        selModel: sm,
+        columns: [{
+            header: '案件编号',
+  //          id: 'pid',
+            dataIndex: 'casecode',
+            sortable: false,
+            width:100
+        }, {
+            header: '案件名称',
+            dataIndex: 'casename',
+             width:120,
+           sortable: false
+        }, {
+
+            header: '审计级别',
+            dataIndex: 'caseclass',
+            width:60,
+            sortable: false
+        },{
+        	  header: '所属区域',
+            dataIndex: 'groupname',
+            sortable: false,
+            width: 90
+            
+        },{
+        	  header: '立案单位',
+            dataIndex: 'casedept',
+            sortable: false,
+           
+            width: 100
+        },{
+        	  header: '有效时间',
+            dataIndex: 'expiretime',
+            sortable: false,
+            width: 100
+        },{
+        	  header: '案件种类',
+            dataIndex: 'casetype',
+            sortable: false,
+            width: 100
+        },{
+        	  header: '案件描述',
+            dataIndex: 'cmemo',
+            width:120,
+            sortable: false
+          },      
+        {
+        	  header: '策略明细',
+        	 width:60,
+       	  renderer: bjmx,
+//           xtype: 'actioncolumn',
+            dataIndex: 'pcount',
+            align:'left',
+            icon: '/v4/images/edit_task.png',
+            tooltip: '点击该图标添加该布控信息的具体策略。',
+            sortable: false,
+             listeners: {
+             	click:function(grid, rowIndex, colIndex, actionItem, event, record, row){
+          //   		alert(record.data.sid);
+    //      cid=record.data.sid;
+          		var htmlvar='<iframe src="/pronline/Msg?FunName@ncsWebReplace&plate@v4/ncs_caseprocy_lab.htm&cid@'+record.data.sid+'" scrolling="no" name="moduleIframe" frameborder="no" width="880" height="530" ></iframe>';     
+  
+
+ //       if (!win2) {
+             
+            win2 = Ext.widget('window', {
+                title: '案件名称-'+record.data.casename,
+                closeAction: 'hide',
+                x:30,
+                y:32,
+                width: 880,
+                height: 530,
+                minHeight: 330,
+                resizable: true,
+                modal: true,
+                html:htmlvar
+//  //              items: tabs
+            });
+ //       }
+         win2.on("beforeclose", function() {
+        	reflash();
+         }
+         );
+        
+        win2.show();	
+             		
+             		
+             	}
+            },
+       //     ,
+      //      handler: function(grid, rowIndex, colIndex, actionItem, event, record, row) {
+     //           Ext.Msg.alert('Editing' + (record.get('done') ? ' completed task' : '') , record.get('task'));
+     //       },
+   //         hidden:true,
+            width: 95
+        }
+          
+          
+          , {
+        	  header: '立案时间',
+ //       	  xtype: 'datecolumn',
+            dataIndex: 'casedate',
+            hidden:true,
+            sortable: false,
+            
+              width: 90
+ 
+        },      
+        {
+        	  header: '下发人',
+            dataIndex: 'addby',
+            sortable: false,
+            hidden:true,
+            width: 90
+        },      
+        {
+        	  header: '告警数',
+            dataIndex: 'wcount',
+            sortable: false,
+            align:'center',
+            hidden:false,
+            width: 50
+        },      
+        {
+        	  header: '下发单位数',
+            dataIndex: 'xcount',
+            sortable: false,
+             align:'center',
+            hidden:false,
+            width: 60
+        }
+        ],
+        renderTo: 'editor-grid',
+ //       width: aaa,
+        forceFit: true,
+        scrollOffset: 0,
+        height: 980,
+
+        frame: true,
+        tbar: Ext.create('Ext.PagingToolbar1', {
+            store: store,
+            displayInfo: true,
+            displayMsg: '显示{0} - {1}条记录 共{2}条记录',
+            emptyMsg: "没有记录可显示",
+                                       
+            items: 
+        ['-',{
+            itemId: 'removeEmployee',
+            text: '删除',
+            iconCls: 'remove',
+
+                handler:function(){
+             
+							   if(confirm('您真的要执行删除操作吗？')){                  
+                 var selsid;  
+                 var rows=sm.getSelection();
+                   selsid='';
+                  for(var i=0;i<rows.length;i++){
+                  	if(i==0){
+                  	 selsid=rows[i].getId();
+                  	}
+                  	else{
+                       selsid=selsid+","+rows[i].getId();
+                    }
+                   
+                   }
+ 
+                      store.load({params: {del: "del",selsid:selsid}});
+                  
+                
+              }
+                
+            },
+            disabled: true
+        }, {
+            itemId: 'ckEmployee',
+            text: '恢复',
+            iconCls: 'exp',
+
+                handler:function(){
+             
+							   if(confirm('您真的要执行恢复操作吗？')){                  
+                 var selsid;  
+                 var rows=sm.getSelection();
+                   selsid='';
+                  for(var i=0;i<rows.length;i++){
+                  	if(i==0){
+                  	 selsid=rows[i].getId();
+                  	}
+                  	else{
+                       selsid=selsid+","+rows[i].getId();
+                    }
+                   
+                   }
+ 
+                      store.load({params: {hf: "hf",selsid:selsid}});
+                  
+                
+              }
+                
+            },
+            disabled: true
+        } ,
+        '-',      
+         ,
+           {
+               xtype:'textfield',
+               id:'keyword',
+               name:'keyword',
+               style:'color:#7aa7d5',
+               value:'请输入查询内容',
+               enableKeyEvents:true,
+               listeners:{
+                 'focus':function(){
+                 if(this.value=='请输入查询内容'){                
+                    this.setValue('');
+                  }
+                 },
+                 'keydown' : function(i,e){
+                var aae=e.getKey() ; 
+                if(aae==13){
+                    var aa=Ext.getCmp('keyword').value;
+                    store.load({params:{keyword:aa}});
+                  }
+                }
+               }
+             },
+        ,
+             {
+                text:'确认',
+                iconCls:'accept',
+                handler: function(){
+                 var aa=Ext.getCmp('keyword').value;
+                
+                if(aa!='请输入查询内容'){
+                	store.load({params:{keyword:aa}});
+                  	
+                 }
+                
+              
+                }
+           }
+        ]}),
+       
+        listeners: {
+            'selectionchange': function(view, records) {
+                grid.down('#removeEmployee').setDisabled(!records.length);
+                 grid.down('#ckEmployee').setDisabled(!records.length);
+                
+            }
+        }
+    });
+});
+</script>
+    
+    
+</head>
+<body>
+		<form name="form1" id="form1" action="/pronline/Msg">
+			<input type="hidden" name="groupid" value="">
+		<input type="hidden" name="did" value="">
+	</form>
+    <div id="editor-grid"></div>
+</body>
+</html>

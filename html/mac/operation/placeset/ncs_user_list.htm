@@ -1,0 +1,2330 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<title>单位管理</title>
+    <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" /> 
+        <style type="text/css">
+		 .lamp {
+             background-image: url(/images/large/lamp.png) !important;
+           }
+        .icon-grid {
+            background-image:url(/newver/resources/themes/images/share/grid.png) !important;
+        }
+        .add {
+            background-image:url(/newver/resources/themes/images/share/add.gif) !important;
+        }
+        .option {
+            background-image:url(/newver/resources/themes/images/share/plugin.gif) !important;
+        }
+        .remove {
+            background-image:url(/newver/resources/themes/images/share/delete.gif) !important;
+        }
+        .exp {
+            background-image:url(/newver/resources/themes/images/share/application_go.png) !important;
+        }
+			.exportimg {
+            background-image:url(/newver/resources/themes/images/share/exportimg.png) !important;
+        }
+
+        .accept {
+            background-image:url(/newver/resources/themes/images/share/accept.png) !important;
+        }
+     .x-tab-default-top button, .x-tab-default-top.x-tab-inner {
+		  height: 16px !important;
+		  line-height: 16px;
+	    }
+
+    </style>
+<style type="text/css">   
+   .x-selectable, .x-selectable * {   
+    -moz-user-select: text!important;   
+    -khtml-user-select: text!important;   
+}   
+</style>
+      
+    <script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+    
+  <script>  
+
+
+Ext.Loader.setConfig({enabled: true});
+Ext.Loader.setPath('Ext.ux', '/newver/ux/');
+Ext.require([
+    'Ext.form.*',
+    'Ext.window.*',
+    'Ext.grid.*',
+    'Ext.data.*',
+    'Ext.util.*',
+    'Ext.window.MessageBox',
+    'Ext.toolbar.Paging',
+    'Ext.ux.PreviewPlugin',
+    'Ext.tree.*',
+//    'Ext.ModelManager',
+//    'Ext.tip.QuickTipManager'
+]);
+var store;
+var temp_id='';
+var preid='';
+var wireflag=parent.wireflag;
+var wjointype;
+if(wireflag=='2'){
+	wjointype='08';
+}
+else{
+	wjointype='05';
+}
+function SetPage(){
+	 store.currentPage=1;
+}
+ function reflash(){
+ 	
+ 	var qgrid=Ext.getCmp('dwgrid');
+ 	 parent.grid_height=parent.Ext.getCmp('layout_center').getHeight()-56;
+ 	 qgrid.setHeight(parent.grid_height-20);
+// 	 qgrid=Ext.getCmp('dwglpanel');
+ 
+// 	 qgrid.setHeight(parent.grid_height);
+ 	var did1;
+ 	if(parent.ncsgroupid!=''){
+ 		gid=parent.ncsgroupid;
+ 	}
+ 	else{
+ 		gid=document.getElementById("form1").groupid.value;
+ 	}
+ 	
+ 	var did1;
+ 	if(parent.corpdid!=''){
+ 		did1=parent.corpdid;
+ 	}
+ 	else{
+    did1=document.getElementById("form1").did.value;
+  }
+
+  var ip1=document.getElementById("form1").ip1.value;
+  var dispname1=document.getElementById("form1").dispname1.value;
+  var servicecode1;
+  if(parent.servicecode!=''){
+  	servicecode1=parent.servicecode;
+  }
+  else{
+     servicecode1=document.getElementById("form1").servicecode1.value;
+  }
+  var address1=document.getElementById("form1").address1.value;
+  var area1=document.getElementById("form1").area1.value;
+  var corpstate=document.getElementById('form1').lxstate.value;
+  var rqlx=document.getElementById('form1').rqlx.value;
+  var demo1=document.getElementById('form1').demo1.value;
+  var keyword1;
+//  var keyword1=Ext.getCmp('keyword').value; 
+ // if(keyword1!='单位编码/名称/备注'){
+ 		 keyword1=document.getElementById('form1').keyword.value;
+//  }
+  
+  var fcod1=document.getElementById('form1').fcode.value;
+   var servicestate1=document.getElementById('form1').servicestate1.value;
+   var clb=document.getElementById('form1').lb.value;
+   var shflag=document.getElementById('form1').shflag.value;
+   var workflag=document.getElementById('form1').workflag.value;
+   var dataflag=document.getElementById('form1').dataflag.value;
+   var yyflag=document.getElementById('form1').yyflag.value;
+   store.load({params: {rqlx:rqlx,lb:clb,fcode:fcod1,servicestate1:servicestate1,groupid: gid,ip1:ip1,dispnam1:dispname1,servicecode1:servicecode1,address1:address1,area1:area1,did:did1,lxstate:corpstate,keyword:keyword1,demo1:demo1,shflag:shflag,workflag:workflag,dataflag:dataflag,yyflag:yyflag}});  
+  }
+
+
+
+var store_classtree=Ext.create('Ext.data.TreeStore', 
+				{   
+						fields: ['text'],
+						autoLoad : true,
+						proxy: 
+						{   
+							type: 'ajax',   
+//				url: '/pronline/Msg?FunName@ncsTreeGroup_v4'  
+						url: '/pronline/Msg?FunName@ncsTreeGroup_comp_v4'  
+						}  
+				}
+			);
+
+ Ext.define('TreeCombox', {  
+    extend: 'Ext.form.field.Picker',  
+    xtype: 'treecombox',  
+    triggerCls: Ext.baseCSSPrefix + 'form-arrow-trigger',  
+    config: {  
+        displayField: null,  
+        columns: null,  
+        rootVisible: false,  
+        selectOnTab: true,  
+        firstSelected: false,  
+        maxPickerWidth: 119,  
+        maxPickerHeight: 360,  
+        minPickerHeight: 100  
+    },  
+    editable: false,  
+    initComponent: function() {  
+        var me = this;  
+        me.callParent(arguments);  
+        this.addEvents('select');  
+        me.store.on('load', me.onLoad, me);  
+          
+    },  
+    createPicker: function() {  
+        var me = this,  
+            picker = Ext.create('Ext.tree.Panel', {  
+                store: me.store,  
+                floating: true,  
+                hidden: true,  
+                width: me.maxPickerWidth,  
+                displayField: me.displayField,  
+                columns: me.columns,  
+                maxHeight: me.maxTreeHeight,  
+                shadow: false, 
+                rootVisible:false,  
+                manageHeight: false,  
+                listeners: {  
+                    itemclick: Ext.bind(me.onItemClick, me)  
+                },  
+                viewConfig: {  
+                    listeners: {  
+                        render: function(view) {  
+                            view.getEl().on('keypress', me.onPickerKeypress, me);  
+                        }  
+                    }  
+                }  
+            }),  
+            view = picker.getView();  
+  
+        view.on('render', me.setPickerViewStyles, me);  
+        if (Ext.isIE9 && Ext.isStrict) {  
+            view.on('highlightitem', me.repaintPickerView, me);  
+            view.on('unhighlightitem', me.repaintPickerView, me);  
+            view.on('afteritemexpand', me.repaintPickerView, me);  
+            view.on('afteritemcollapse', me.repaintPickerView, me);  
+        }  
+        return picker;  
+    },  
+    setPickerViewStyles: function(view) {  
+        view.getEl().setStyle({  
+            'min-height': this.minPickerHeight + 'px',  
+            'max-height': this.maxPickerHeight + 'px'  
+        });  
+    },  
+    repaintPickerView: function() {  
+        var style = this.picker.getView().getEl().dom.style;  
+        style.display = style.display;  
+    },  
+    alignPicker: function() {  
+        var me = this,  
+            picker;  
+  
+        if (me.isExpanded) {  
+            picker = me.getPicker();  
+            if (me.matchFieldWidth) {  
+                picker.setWidth(this.picker.getWidth());  
+            }  
+            if (picker.isFloating()) {  
+                me.doAlign();  
+            }  
+        }  
+    },  
+    onItemClick: function(view, record, node, rowIndex, e) {  
+
+  
+//    	alert(record.data.id);
+        this.selectItem(record);  
+    },  
+    onPickerKeypress: function(e, el) {  
+        var key = e.getKey();  
+  
+        if(key === e.ENTER || (key === e.TAB && this.selectOnTab)) {  
+            this.selectItem(this.picker.getSelectionModel().getSelection()[0]);  
+        }  
+    },  
+    selectItem: function(record) {      
+  // me.context.record.data.username=record.get('code');
+    var aaa=record.get('code');
+     var bb=Ext.getCmp('dwbm').value;
+if(aaa.length==6&&bb.length<=10){
+   
+    if(bb=='请输入单位编码'){
+       bb='';
+    }
+    var cc=bb.substring(6, 14);
+    len=aaa.length;
+     var i;
+    for(i=len;i<6;i++){
+    	aaa=aaa+'0';
+    	}
+     var ccc;
+     ccc=aaa+cc;
+    Ext.getCmp('dwbm').setValue(ccc);
+ }
+        var me = this; 
+     document.getElementById("form1").mid.value=record.get('id');
+     temp_id=record.get('id');
+     me.setValue(record.get('text'));  
+        me.picker.hide();  
+        me.inputEl.focus();  
+        me.fireEvent('select', me, record);
+
+    },  
+    onExpand: function() {  
+        var me = this,  
+            picker = me.picker,  
+            store = picker.store,  
+            value = me.value;  
+        if(value) {  
+            var node = store.getNodeById(value);  
+            if(node)  
+                picker.selectPath(node.getPath());  
+        } else {  
+            var hasOwnProp = me.store.hasOwnProperty('getRootNode');  
+            if(hasOwnProp)  
+                picker.getSelectionModel().select(store.getRootNode());  
+        }  
+  
+        Ext.defer(function() {  
+            picker.getView().focus();  
+        }, 1);  
+    },  
+    setValue: function(value) {  
+        var me = this,record;  
+        me.value = value;  
+        if (me.store.loading) {  
+            return me;  
+        }  
+        try{  
+            //var hasOwnProp = me.store.hasOwnProperty('getRootNode');  
+            //record = value ? me.store.getNodeById(value) : (hasOwnProp ? me.store.getRootNode() : null);  
+            //me.setRawValue(record ? record.get(this.displayField) : '');  
+            var i = value.indexOf(">");
+            var j = value.indexOf("</");
+            if(i != -1 && j != -1)
+            {
+            		me.setRawValue(value.substring(i+1,j));
+            }
+            else 
+            {
+            		me.setRawValue(value);
+            }
+        }catch(e){  
+            me.setRawValue('');  
+        }  
+  
+        return me;  
+    },  
+    getValue: function() {  
+        return this.value;  
+    },  
+    onLoad: function(store,node,records) {  
+        var value = this.value;  
+        if (value) {  
+            this.setValue(value);  
+        }else{  
+            if(this.firstSelected){  
+                if(records && records.length > 0){  
+                    var record = records[0];  
+                    this.setValue(record.get(this.valueField));  
+                }  
+            }  
+        }  
+    },  
+    getSubmitData: function() {  
+        var me = this,  
+            data = null;  
+        if (!me.disabled && me.submitValue) {  
+            data = {};  
+            data[me.getName()] = '' + me.getValue();  
+        }  
+        return data;  
+    },  
+    onTriggerClick: function() {  
+        var me = this;  
+        //me.store.load();  
+        if (!me.readOnly && !me.disabled) {  
+            if (me.isExpanded) {  
+                me.collapse();  
+            } else {  
+                me.expand();  
+            }  
+            me.inputEl.focus();  
+        }  
+    }  
+});
+      store_classtree=Ext.create('Ext.data.TreeStore', 
+				{   
+						fields: ['text','code'],
+						autoLoad : true,
+						proxy: 
+						{   
+							type: 'ajax',   
+
+						url: '/pronline/Msg?FunName@ncsTreeGroup_comp_v4'  
+						}  
+				}
+			);
+
+
+
+
+
+
+
+
+    function gotoedit1(id){
+    	
+    	
+         var htmlvar='<iframe src="/pronline/Msg?FunName@ncsWebDispClientAddForm_wif&userid@'+id+'&groupid@'+document.getElementById("form1").groupid.value+' scrolling="no" name="moduleIframe" frameborder="no" style="width:100%;height:640px"></iframe>';   
+              parent._showwindows(htmlvar,200,0,660,685,"","增加或修改单位信息");
+        /*
+         var win2 = new Ext.Window ({
+                             id:"addwindow",
+                             title:"增加或修改单位信息",
+                             x:0,
+                             y:0,
+                             width:660,
+                             height:685,
+                             bodyPadding: 10,
+                             modal:false,
+                             resizable:true,
+                             draggable:true,
+                             html:htmlvar
+                                               
+         }
+        )
+        win2.show();
+        */
+    }
+//查看IP轨迹
+    function gotoIP(id,cname){
+      
+         var htmlvar='<iframe src="/pronline/Msg?FunName@ncsWebReplace&plate@v4/ncs_user_iplist.htm&userid@'+id+'&cname@'+cname+'" scrolling="no" name="moduleIframe" frameborder="no" style="width:100%;height:600px;"></iframe>';              
+         var win = new Ext.Window ({
+                             id:"addwindow",
+                             title:"查看IP轨迹",
+                             x:0,
+                             y:0,
+                             width:630,
+                             height:600,
+                             bodyPadding: 10,
+                             modal:false,
+                             resizable:true,
+                             draggable:false,
+                             html:htmlvar
+                                               
+         }
+        )
+        win.show();
+    }
+	
+function openDr()
+{
+	var windr;
+    var htmlvar='<iframe src="/pronline/Msg?FunName@ncsWebReplace&title_name@关键字导入&funname@ncKeywordDrNext&plate@nc/cust_dr_first.htm'+' " scrolling="no" name="drIframe" frameborder="no" style="width:100%;height:100%;"></iframe>';      
+    var windr = new Ext.Window ({
+                             id:"windr",
+                             title:"关键字导入",
+                             x:0,
+                             y:0,
+                             width:500,
+                             height:260,
+                             bodyPadding: 0,
+                             modal:true,
+//                         headerPosition: 'bottom',
+                             resizable:true,
+                             closable : true,
+                             draggable:true,
+                             html:htmlvar
+                                                
+         })       
+
+    windr.on("beforeclose", function() {
+     //   	reflash();
+    })
+    windr.show();
+} 
+
+Ext.define('Ext.ux.grid.plugin.RowEditing', {   
+   extend: 'Ext.grid.plugin.RowEditing',   
+   alias: 'plugin.ux.rowediting',    
+      
+   /**  
+    * 是否添加记录在当前位置<br/>  
+    * whether add record at current rowIndex.<br/>  
+    * see {@link #cfg-addPosition}  
+    * @cfg {Boolean}  
+    */  
+   addInPlace: false,   
+      
+   addPosition: 0,   
+      
+   /**  
+    * 是否点击触发事件,0代表不触发,1代表单击,2代表双击,默认为双击.<br/>  
+    * The number of clicks on a grid required to display the editor (disable:0,click:1,dblclick:2)  
+    * @cfg {Number}  
+    */  
+   clicksToEdit:2,   
+      
+   /**  
+    * 是否在取消编辑的时候自动删除添加的记录  
+    * if true, auto remove phantom record on cancel,default is true.  
+    * @cfg {Boolean}  
+    */  
+   autoRecoverOnCancel: true,   
+      
+   /**  
+    * adding flag  
+    * @private  
+    * @type Boolean  
+    */  
+   adding: false,   
+      
+   autoCancel:true,   
+      
+   /**  
+    * when add record, hide error tooltip for the first time  
+    * @private  
+    * @type Boolean  
+    */  
+   hideTooltipOnAdd: true,   
+      
+   /**  
+    * register canceledit event && relay canceledit event to grid  
+    * @param {Ext.grid.Panel} grid  
+    * @override  
+    * @private  
+    */  
+   init:function(grid){   
+       var me = this;   
+       /**  
+        * 取消编辑事件.<br/>  
+        * Fires canceledit event.And will be relayEvents to Grid.<br/>  
+        * @see {@link Ext.ux.grid.RowActions#event-beforeaction} <br/>  
+        * @event canceledit  
+        * @param {Object} context  
+        */  
+       me.addEvents('canceledit');   
+       me.callParent(arguments);   
+       grid.addEvents('canceledit');   
+       grid.relayEvents(me, ['canceledit']);   
+   },   
+      
+   /**  
+    * 提供默认的Editor配置  
+    *      @example  
+    *      {header:'手机',dataIndex:'phone',fieldType:'numberfield',field:{allowBlank:true}}  
+    * provide default field config  
+    * @param {String} fieldType 可选值:numberfield,checkboxfield,passwordField  
+    * @return {Object}   
+    * @protected  
+    */  
+   getFieldCfg: function(fieldType){   
+        switch(fieldType){   
+            case 'passwordField':   
+                return {   
+                    xtype: 'textfield',   
+                    inputType: 'password',   
+                    allowBlank:false  
+                }   
+            case 'numberfield':   
+                return {   
+                    xtype: 'numberfield',   
+                    hideTrigger: true,   
+                    keyNavEnabled: false,
+                    mouseWheelEnabled: false,   
+                    allowBlank:false  
+                }   
+                   
+            case 'checkboxfield':   
+                return {   
+                    xtype: 'checkboxfield',   
+                    inputValue: 'true',   
+                    uncheckedValue: 'false'  
+                }   
+            }   
+    },   
+       
+    /**  
+     * Help to config field,just giving a fieldType and field as additional cfg.  
+     * see {@link #getFieldCfg}  
+     * @private  
+     * @override  
+     */  
+    getEditor: function() {   
+        var me = this;   
+  
+        if (!me.editor) {   
+            Ext.each(me.grid.headerCt.getGridColumns(),function(item,index,allItems){   
+                if(item.fieldType){   
+                    item.field = Ext.applyIf(item.field||{},this.getFieldCfg(item.fieldType))   
+                }   
+            },this)   
+            // keep a reference for custom editor..   
+            me.editor = me.initEditor();   
+        }   
+        me.editor.editingPlugin = me   
+        return me.editor;   
+    },   
+       
+    /**  
+     * if clicksToEdit===0 then mun the click/dblclick event  
+     * @private  
+     * @override  
+     */  
+    initEditTriggers: function(){   
+        var me = this    
+        var clickEvent = me.clicksToEdit === 1 ? 'click' : 'dblclick'  
+        me.callParent(arguments);    
+        if(me.clicksToEdit === 0){   
+            me.mun(me.view, 'cell' + clickEvent, me.startEditByClick, me);    
+        }   
+    },   
+       
+    /**  
+     * 添加记录  
+     * add a record and start edit it (will not sync store)  
+     * @param {Model/Object} data Data to initialize the Model's fields with <br/>  
+     * @param {Object} config see {@link #cfg-addPosition}.   
+     */  
+    startAdd: function(data,config){   
+        var me = this;   
+        var cfg = Ext.apply({   
+            addInPlace: this.addInPlace,   
+            addPosition: this.addPosition,   
+            colIndex: 0   
+        },config)   
+           
+        //find the position   
+        var position;   
+        if(cfg.addInPlace){   
+            var selected = me.grid.getSelectionModel().getSelection()   
+            if(selected && selected.length>0){   
+                position = me.grid.store.indexOf(selected[0])    
+                console.log('a',position)   
+                position += (cfg.addPosition<=0) ? 0: 1   
+            }else{   
+                position = 0   
+            }   
+        }else{   
+            position = (cfg.addPosition==-1 ? me.grid.store.getCount() : cfg.addPosition) || 0   
+        }   
+           
+        var record = data.isModel ? data : me.grid.store.model.create(data);   
+        var autoSync = me.grid.store.autoSync;   
+        me.grid.store.autoSync = false;   
+        me.grid.store.insert(position, record);   
+        me.grid.store.autoSync = autoSync;   
+          
+        me.adding = true  
+        me.startEdit(position,cfg.colIndex);   
+           
+        //since autoCancel:true dont work for me   
+        if(me.hideTooltipOnAdd && me.getEditor().hideToolTip){   
+            me.getEditor().hideToolTip()   
+        }   
+    },   
+       
+    /**  
+     * 编辑之前,自动取消编辑  
+     * Modify: if is editing, cancel first.  
+     * @private  
+     * @override  
+     */  
+    startEdit: function(record, columnHeader) {   
+        var me = this;   
+        if(me.editing){   
+            me.cancelEdit();    
+        }  
+ 
+        me.callParent(arguments);   
+        Ext.getCmp('gpid').setValue(record.get('groupname'));
+        temp_id=record.get('groupid');
+
+
+    },   
+       
+    /**  
+     * 修改adding的状态值  
+     * Modify: set adding=false  
+     * @private  
+     * @override  
+     */  
+    completeEdit: function() {   
+        var me = this;   
+        if (me.editing && me.validateEdit()) {   
+            me.editing = false;   
+            me.fireEvent('edit', me.context);   
+        }   
+        me.adding = false 
+
+
+        var scode=me.context.record.data.username;
+        var sname=me.context.record.data.dispname;
+        var scontact=me.context.record.data.contact;
+        var stelphone=me.context.record.data.telphone;
+        var saddress=me.context.record.data.address;
+        var userid= me.context.record.data.userid;
+        var slb= me.context.record.data.dwlb;
+        var sfac=me.context.record.data.jrcj;
+        var sjointype=me.context.record.data.jointype;
+        var gid='';
+
+//
+        if(me.context.record.data.groupname!=''){
+           gid=temp_id;
+        }
+        var gid2=document.getElementById("form1").groupid.value;
+        var corpstate=document.getElementById('form1').lxstate.value;
+        var keyword1= Ext.getCmp('keyword5').value; 
+        if(keyword1=='单位编码/名称/备注'){
+       		 keyword1='';
+        }
+      
+        if(scode==''||scode=='请输入单位编号'||sname==''||sname=='请输入单位名称'||gid==''||gid=='0'){
+        	alert('单位编码和单位名称不能为空和单位组不能为空');
+//        	reflash();
+        	return ;
+        }
+
+  //      alert(me.context.record.data.groupname);
+
+      store.load({params: {update:"update",userid:userid,groupid1: gid,groupid:gid2,lxstate:corpstate,keyword:keyword1,username:scode,dispname:sname,address:saddress,telphone:stelphone,contact:scontact,jrcs:sfac,dwlb:slb,jointype:sjointype}});
+  
+  //      reflash();
+        
+         
+    },   
+       
+    /**  
+     * 取消编辑  
+     * 1.fireEvent 'canceledit'  
+     * 2.when autoRecoverOnCancel is true, if record is phantom then remove it  
+     * @private  
+     * @override  
+     */  
+    cancelEdit: function(){
+    
+        var me = this; 
+
+        if (me.editing) {   
+            me.getEditor().cancelEdit();   
+            me.editing = false;   
+            me.fireEvent('canceledit', me.context);    
+            if (me.autoRecoverOnCancel){ 
+     var temp=me.context.record.data.groupname;  
+                if((me.adding)||(temp=='请输入案件编号')||(temp=='')){   
+                    me.context.record.store.remove(me.context.record);   
+                    me.adding = false  
+                }else{   
+                    //不需要reject,因为Editor没有更改record.   
+                    //me.context.record.reject()   
+                }   
+            }   
+        }  
+
+
+         
+    }   
+}) ; 
+
+    var rowEditing = Ext.create('Ext.ux.grid.plugin.RowEditing', {
+    	      pluginId:'rowEditing', 
+            saveBtnText: "保存", 
+            cancelBtnText: "取消", 
+            autoRecoverOnCancel:true,
+            autoCancel: true
+ //       clicksToMoveEditor: 1,
+ //       autoCancel: false
+    });
+
+
+
+
+Ext.onReady(function(){
+   Ext.tip.QuickTipManager.init();
+//    Ext.tip.QuickTipManager.init();
+
+    Ext.define('EimData', {
+        extend: 'Ext.data.Model',
+        fields: [
+            'username', 'dispname', 'ip', 'endnum', 'onuser','status','ssxx','userid','version','groupname','contact','telphone','address','groupid','jrcj','dwlb','jointype','shflag','workflag','yyflag','dataflag','jytype','area','ceoname','ceoidtype','ceocardid','handphone',
+'sdate','edate','joincode','ip','fcode',' longitude','latitude'			
+        ],
+        idProperty: 'userid'
+    });
+
+    // create the Data Store
+    //重写排序函数，解决远程条件查询问题
+    Ext.data.Store.prototype.doSort = function() {
+    	reflash();
+    }
+       store = Ext.create('Ext.data.Store', {
+        pageSize: 36,
+        model: 'EimData',
+        remoteSort: true,
+        proxy: {
+            type: 'ajax',
+            url: '/pronline/Msg?FunName@ncsWebClientSearch_wif&plate@v4/ncs_corp_list.htm',
+            reader: {
+                type:'json',
+                root: 'eimdata',
+                totalProperty: 'totalCount'
+            },         
+            simpleSortMode: true
+        },
+        sorters: [{
+            property: 'addtime',
+            direction: 'DESC'
+        }]
+    });
+    store.on('beforeload', function (store, options) {
+ // 	alert(parent.wireflag);
+    	var wireflag=parent.wireflag;
+ 	  var new_params={wireflag:wireflag};
+     Ext.apply(store.proxy.extraParams,new_params);
+       });	
+
+    var handleAction = function(action){
+       if(action=='add'){
+       var htmlvar='<iframe src="/pronline/Msg?FunName@ncsWebDispClientAddForm_wif&groupid@'+document.getElementById("form1").groupid.value+' " scrolling="no" name="moduleIframe" frameborder="no" style="width:100%;height:600px;"></iframe>';      
+       var win = new Ext.Window ({
+                             id:"addwindow",
+                             title:"增加或修改单位信息",
+                             x:0,
+                             y:0,
+                             width:670,
+                             height:600,
+                             bodyPadding: 10,
+                             modal:true,
+  //                         headerPosition: 'bottom',
+                             resizable:true,
+                             draggable:true,
+                             html:htmlvar
+                                                
+         }
+        )
+        win.show();
+
+       }
+    
+    };
+
+
+
+
+    // pluggable renders
+ //修改公司信息
+    function editcorp(value,p,record){
+            return Ext.String.format('<a href="#xxm" onclick="gotoedit1({0})">修改</a>',record.getId());
+                
+    }
+   function ipgj(value,p,record){
+        var temp_disp=record.data.dispname;
+       return Ext.String.format( '<a href="#xxm" onclick=gotoIP("{0}","{1}")>IP轨迹</a>',record.getId(),temp_disp);
+      
+    }
+    
+    
+
+
+    var pluginExpanded = true;
+    
+    var sm = Ext.create('Ext.selection.CheckboxModel',{
+        listeners: {
+            selectionchange: function(sm, selections) {
+           
+            grid.down('#removeButton').setDisabled(selections.length == 0);
+           //  grid.down('#moveButton').setDisabled(selections.length == 0);
+             grid.down('#shButton').setDisabled(selections.length == 0);
+                
+            }
+        }
+    
+    });
+    
+    
+ //查询  
+ 
+     Ext.define('State', {
+        extend: 'Ext.data.Model',
+        fields: [
+            {type: 'string', name: 'groupid'},
+            {type: 'string', name: 'groupname'}
+        ]
+    });
+   
+        Ext.define('State2', {
+        extend: 'Ext.data.Model',
+        fields: [
+            {type: 'string', name: 'id'},
+            {type: 'string', name: 'text'}
+        ]
+    });
+ 
+      var store_group = Ext.create('Ext.data.Store', {
+        model: 'State',
+        remoteSort: true,
+         proxy: {
+            type: 'ajax',
+            url: '/pronline/Msg?FunName@ncsWebGroupComp',
+            reader: {
+                type:'json',
+                root: 'corpclassdata'              
+            },         
+            simpleSortMode: true
+        }
+    });
+    store_group.load();     
+      var groupCombo = Ext.create('Ext.form.field.ComboBox', {
+        fieldLabel: '单位属组',
+        labelWidth: 60,
+        width: 160,
+        valueField:'groupid',
+        value:'',
+        displayField: 'groupname',
+        name : 'groupid1',      
+        allowBlank: true,
+//        forceSelection: true,
+        store: store_group,
+        triggerAction: 'all',
+//      queryMode:'remote',
+         queryMode: 'local',
+         typeAhead: true,
+                listeners: {
+			          'change':function(){
+			              document.getElementById('form1').groupid.value=this.value;
+                    reflash()
+			            }
+			        }
+         
+    });
+    
+    
+    var store_fac = Ext.create('Ext.data.Store', {
+        model: 'State',
+        remoteSort: true,
+         proxy: {
+            type: 'ajax',
+            url: '/pronline/Msg?FunName@ncsWebFacComp',
+            reader: {
+                type:'json',
+                root: 'corpclassdata'              
+            },         
+            simpleSortMode: true
+        }
+    });
+    store_fac.load();     
+      var facCombo = Ext.create('Ext.form.field.ComboBox', {
+        fieldLabel: '接入厂商',
+        labelWidth: 60,
+        width: 160,
+        valueField:'groupid',
+        value:'',
+        displayField: 'groupname',
+        name : 'fcode1',      
+        allowBlank: true,
+//        forceSelection: true,
+        store: store_fac,
+        triggerAction: 'all',
+//      queryMode:'remote',
+         queryMode: 'local',
+         typeAhead: true,
+              listeners: {
+			          'change':function(){
+			              document.getElementById('form1').fcode.value=this.value;
+                    reflash()
+			            }
+			        }
+    });
+
+       var rqlx = [
+        {"groupid":"","groupname":"选择人群类型"},
+        {"groupid":"1","groupname":"流动人群+大专院校+中专院校"},
+        {"groupid":"2","groupname":"流动人群"},
+        {"groupid":"3","groupname":"固定人群"}
+      
+    ];
+    var store_rqlx = Ext.create('Ext.data.Store', {
+        model: 'State',
+        data: rqlx
+    });
+    
+      var rqlxCombo = Ext.create('Ext.form.field.ComboBox', {
+        fieldLabel: '',
+         labelWidth: 60,
+         width: 100,
+        valueField:'groupid',
+        displayField: 'groupname',
+        name : 'rqlx',      
+        value:'',
+        allowBlank: true,
+        forceSelection: false,
+        store: store_rqlx,
+        queryMode: 'local',
+        typeAhead: true,
+        listeners: {
+			          'change':function(){
+			              document.getElementById('form1').rqlx.value=this.value;
+                    reflash()
+			            }
+			        }
+    });
+    
+    
+        var workCombo = Ext.create('Ext.form.field.ComboBox', {
+        fieldLabel: '工作状态',
+        labelWidth: 60,
+        width:150,
+        valueField:'value',
+        displayField: 'name',
+        name : 'workflag',      
+        value:'',
+        allowBlank: true,
+        forceSelection: false,
+                                    store: Ext.create('Ext.data.Store', {
+                                    fields : ['name', 'value'],
+                                    data   : [
+                                     {name:"选择维护状态",value:""},
+                                        {name : '正常',   value: '0'},
+                                        {name : '维护',   value: '1'}
+                                                                      
+                                    ]
+                                })
+                                ,
+        queryMode: 'local',
+        typeAhead: true,
+                listeners: {
+			          'change':function(){
+			              document.getElementById('form1').workflag.value=this.value;
+                    reflash()
+			            }
+			        }
+    });
+    
+    
+        var shCombo = Ext.create('Ext.form.field.ComboBox', {
+        fieldLabel: '工作状态',
+        labelWidth: 60,
+        width:150,
+        valueField:'value',
+        displayField: 'name',
+        name : 'shflag',      
+        value:'',
+        allowBlank: true,
+        forceSelection: false,
+                                    store: Ext.create('Ext.data.Store', {
+                                    fields : ['name', 'value'],
+                                    data   : [
+                                     {name:"选择审核状态",value:""},
+                                        {name : '未审',   value: '0'},
+                                        {name : '已审',   value: '1'}
+                                                                      
+                                    ]
+                                })
+                                ,
+        queryMode: 'local',
+        typeAhead: true,
+                listeners: {
+			          'change':function(){
+			              document.getElementById('form1').shflag.value=this.value;
+                    reflash()
+			            }
+			        }
+    });
+    
+        var yyCombo = Ext.create('Ext.form.field.ComboBox', {
+        fieldLabel: '营业状态',
+        labelWidth: 60,
+        width:150,
+        valueField:'value',
+        displayField: 'name',
+        name : 'yyflag',      
+        value:'',
+        allowBlank: true,
+        forceSelection: false,
+                                    store: Ext.create('Ext.data.Store', {
+                                    fields : ['name', 'value'],
+                                    data   : [
+                                     {name:"选择营业状态",value:""},
+                                        {name : '营业',   value: '0'},
+                                        {name : '停业',   value: '1'}
+                                                                      
+                                    ]
+                                })
+                                ,
+        queryMode: 'local',
+        typeAhead: true,
+                listeners: {
+			          'change':function(){
+			              document.getElementById('form1').yyflag.value=this.value;
+                    reflash()
+			            }
+			        }
+    });
+    
+    
+       var dataCombo = Ext.create('Ext.form.field.ComboBox', {
+        fieldLabel: '数据状态',
+        labelWidth: 60,
+        width:150,
+        valueField:'value',
+        displayField: 'name',
+        name : 'dataflag',      
+        value:'',
+        allowBlank: true,
+        forceSelection: false,
+                                    store: Ext.create('Ext.data.Store', {
+                                    fields : ['name', 'value'],
+                                    data   : [
+                                     {name:"选择数据状态",value:""},
+                                        {name : '无数据',   value: '0'},
+                                        {name : '有数据',   value: '1'}
+                                                                      
+                                    ]
+                                })
+                                ,
+        queryMode: 'local',
+        typeAhead: true,
+                listeners: {
+			          'change':function(){
+			              document.getElementById('form1').dataflag.value=this.value;
+                    reflash()
+			            }
+			        }
+    });
+    
+    
+    
+    var fuzt = [
+        {"groupid":"","groupname":"全部"},
+        {"groupid":"1","groupname":"装机营业"},
+        {"groupid":"2","groupname":"勒令停业"},
+        {"groupid":"3","groupname":"暂停营业"},
+        {"groupid":"4","groupname":"拆机"},
+        {"groupid":"5","groupname":"维护"},
+        {"groupid":"9","groupname":"其他"}
+    ];
+    var store_fuzt = Ext.create('Ext.data.Store', {
+        model: 'State',
+        data: fuzt
+    });
+
+
+   var jrfs = [
+        {"groupid":"01","groupname":"专网真实IP地址"},
+        {"groupid":"02","groupname":"专线"},
+        {"groupid":"03","groupname":"ADSL拨号"},
+        {"groupid":"04","groupname":"ISDN"},
+        {"groupid":"05","groupname":"普通拨号"},
+        {"groupid":"06","groupname":"Cable Moderm 拨号"},
+        {"groupid":"07","groupname":"电力线"},
+        {"groupid":"08","groupname":"无线上网"},
+        {"groupid":"09","groupname":"无线+有线"},
+        {"groupid":"99","groupname":"其他"}
+    ];
+
+    var store_jrfs = Ext.create('Ext.data.Store', {
+        model: 'State',
+        data: jrfs
+    });
+
+
+
+    var store_dwlb = Ext.create('Ext.data.Store', {
+        model: 'State',
+        remoteSort: true,
+         proxy: {
+            type: 'ajax',
+            url: '/pronline/Msg?FunName@ncsWebLbComp',
+            reader: {
+                type:'json',
+                root: 'corpclassdata'              
+            },         
+            simpleSortMode: true
+        }
+    });
+    store_dwlb.load(); 
+    
+    
+    
+    
+     var fwztCombo = Ext.create('Ext.form.field.ComboBox', {
+        fieldLabel: '服务状态',
+        valueField:'groupid',
+        displayField: 'groupname',
+        name : 'servicestate',      
+        value:'',
+        allowBlank: true,
+        forceSelection: false,
+        store: store_fuzt,
+        queryMode: 'local',
+        typeAhead: true
+    });
+       var dwlbCombo = Ext.create('Ext.form.field.ComboBox', {
+        fieldLabel: '单位类别',
+         labelWidth: 60,
+         width: 160,
+
+        valueField:'groupid',
+        value:'',
+        displayField: 'groupname',
+        name : 'dwlb',      
+        allowBlank: true,
+//        forceSelection: true,
+        store: store_dwlb,
+        triggerAction: 'all',
+//      queryMode:'remote',
+         queryMode: 'local',
+         typeAhead: true,
+         				listeners: {
+			          'change':function(){
+			              document.getElementById('form1').lb.value=this.value;
+                    reflash()
+			            }
+			        }
+         
+         
+    });
+  
+            fp2=Ext.create('Ext.FormPanel', {         
+			        frame: true,
+			        fieldDefaults: {
+			           labelWidth: 65,                        
+			           xtype: 'textfield' 
+			        },
+              bodyPadding: 10,
+                  items: [{                        
+                        fieldLabel:'单位代码',
+                        xtype: 'textfield',
+                        name:'servicecode1'
+                    },{
+                        fieldLabel:'单位名称',
+
+                        xtype: 'textfield',
+                        name:'dispname1'
+                    },
+                      groupCombo
+                        
+                    ,{
+                        fieldLabel:'出口IP',
+                        xtype: 'textfield',
+                        name:'ip1'
+                       
+                    },{
+                        fieldLabel:'地址',
+                        xtype: 'textfield',
+                        name:'address1'
+                       
+                    },{
+                        fieldLabel:'地区',
+                        xtype: 'textfield',
+                        name:'area1'
+                       
+                    },{
+                        fieldLabel:'备注',
+                        xtype: 'textfield',
+                        name:'demo1'
+                       
+                    },
+                    fwztCombo,
+                    facCombo,
+                    dwlbCombo
+                    
+                    ,{
+                        xtype: 'button',
+                        anchor: 'right',
+                         style : 'margin-left:80px',
+                        text:'查&nbsp;&nbsp;询',
+                         handler: function(){
+                         document.getElementById("form1").ip1.value=fp2.getForm().getValues().ip1;  
+                         document.getElementById("form1").dispname1.value=fp2.getForm().getValues().dispname1;  
+                         document.getElementById("form1").servicecode1.value=fp2.getForm().getValues().servicecode1;                         
+                         if(fp2.getForm().getValues().groupid1!='undefined'){
+                            document.getElementById("form1").groupid.value=fp2.getForm().getValues().groupid1;             
+                         }                        
+                         document.getElementById("form1").address1.value=fp2.getForm().getValues().address1;  
+                         document.getElementById("form1").area1.value=fp2.getForm().getValues().area1;  
+                         document.getElementById("form1").fcode.value=fp2.getForm().getValues().fcode1;  
+                         document.getElementById("form1").servicestate1.value=fp2.getForm().getValues().servicestate;  
+                         document.getElementById('form1').lb.value=fp2.getForm().getValues().dwlb;
+                         document.getElementById('form1').demo1.value=fp2.getForm().getValues().demo1;
+                         store.currentPage=1;
+                         reflash();
+                        
+                         
+                         }
+                       
+                    },{
+							            text: '重&nbsp;&nbsp;置',
+							            style : 'margin-left:10px',
+							            xtype: 'button',
+							            handler: function(){
+							                fp2.getForm().reset();
+							            }
+							         }]
+                  })
+ 
+  
+  var win3='';
+      function showCxForm() {
+        if (!win3) {
+
+            win3 = Ext.widget('window', {
+                title: '高级查询',
+                closeAction: 'hide',
+                x:400,
+                y:32,
+                width: 280,
+                height: 330,
+                minHeight: 330,
+        //        layout: 'fit',
+                resizable: true,
+                modal: false,
+                items: fp2
+            });
+        }
+        win3.show();
+    }
+  
+//对翻页工具条重新构建，替换翻页函数    
+  Ext.PagingToolbar1 = Ext.extend(Ext.PagingToolbar, {
+     doRefresh:function(){  
+     reflash();
+    },
+     onPagingKeyDown:function(i,h){
+var d=this,b=h.getKey(),c=d.getPageData(),a=h.shiftKey?10:1,g;
+if(b==h.RETURN){
+ h.stopEvent();g=d.readPageFromInput(c);
+ if(g!==false){
+   g=Math.min(Math.max(1,g),c.pageCount);
+   if(d.fireEvent("beforechange",d,g)!==false){
+ //  	d.store.loadPage(g)
+      d.store.currentPage=g;
+   	}
+}
+   	reflash();
+   	
+   	}
+   else{if(b==h.HOME||b==h.END){h.stopEvent();g=b==h.HOME?1:c.pageCount;i.setValue(g)}
+   else{if(b==h.UP||b==h.PAGE_UP||b==h.DOWN||b==h.PAGE_DOWN){h.stopEvent();g=d.readPageFromInput(c);
+   if(g){if(b==h.DOWN||b==h.PAGE_DOWN){a*=-1}g+=a;if(g>=1&&g<=c.pageCount){i.setValue(g)}}}}}}
+   ,    
+    moveLast:function(){
+    	var b=this,a=b.getPageData().pageCount;
+    	if(b.fireEvent("beforechange",b,a)!==false){
+    	store.currentPage=a;
+    	reflash();
+       }},
+     moveFirst:function(){
+      if(this.fireEvent("beforechange",this,1)!==false){
+      store.currentPage=1;
+      reflash();}}, 
+     movePrevious:function(){var b=this,a=b.store.currentPage-1;if(a>0){if(b.fireEvent("beforechange",b,a)!==false){store.currentPage=a;reflash();}}},
+     moveNext:function(){var c=this,b=c.getPageData().pageCount,a=c.store.currentPage+1;if(a<=b){if(c.fireEvent("beforechange",c,a)!==false){store.currentPage=a;reflash();}}},
+      
+      
+      onPagingKeyDown:function(i,h){
+     var d=this,b=h.getKey(),c=d.getPageData(),a=h.shiftKey?10:1,g;
+     if(b==h.RETURN){h.stopEvent();g=d.readPageFromInput(c);
+        if(g!==false){
+         g=Math.min(Math.max(1,g),c.pageCount);
+         if(d.fireEvent("beforechange",d,g)!==false){
+        //d.store.loadPage(g)
+         d.store.currentPage=g;
+         reflash();
+        }        
+      }
+    }
+    else{
+       if(b==h.HOME||b==h.END){
+    			h.stopEvent();g=b==h.HOME?1:c.pageCount;i.setValue(g)
+       }
+       else{
+         if(b==h.UP||b==h.PAGEUP||b==h.DOWN||b==h.PAGEDOWN){
+          h.stopEvent();g=d.readPageFromInput(c);
+           if(g){
+             if(b==h.DOWN||b==h.PAGEDOWN){a*=-1}
+             g+=a;
+             if(g>=1&&g<=c.pages){i.setValue(g)}
+             }
+            }
+           }
+         }  
+      }
+
+      
+      
+       
+});
+/*
+    var aaa=screen.width;
+    if(aaa>1440) aaa=1440;
+    if(aaa<1024) aaa=1024;
+    aaa=aaa-241;
+*/
+
+  var grid = Ext.create('Ext.grid.Panel', {
+   //      width: parent.grid_width,
+         id:'dwgrid',
+         height:parent.grid_height-20,
+        autoScroll:true,
+//        forceFit: true,1
+       scrollOffset: 0,
+//        height: 900,
+ //       title: '&nbsp;联网单位管理',
+ //       iconCls: 'icon-grid',
+         margins: '0 0 0 0',
+        store: store,
+        selModel: sm,
+        frame:true,
+       
+       
+       
+       
+        // grid columns
+        columns:[
+                {
+          header: '编辑',
+            xtype: 'actioncolumn',
+            dataIndex: 'userid',
+             icon: '/v4/images/edit_task.png',
+            tooltip: '点击该图标进入修改单位信息界面。',
+            width: 40,
+            align: 'center',
+            sortable: false,
+            handler: function(grid, rowIndex, colIndex, actionItem, event, record, row) {
+                gotoedit1(record.get('userid'));
+            }
+
+        },{
+            text: "服务状态",
+            dataIndex: 'servicestate',
+            width: 70,
+            align: 'center',
+            sortable: true,
+                renderer:function(value,metaData,record){
+                     
+                    if(value=='1'){return '<font color=green>装机开始服务</font'}
+                    else   if(value=='2') {return '<font color=blue>装机停止服务</font'}
+					 else   if(value=='3') {return '<font color=red>未装机开始服务</font'}
+					 else   {return '<font color=red>装机停止服务</font'}
+                }
+        } ,
+        {
+            text: "数据状态",
+            dataIndex: 'dataflag',
+            width: 70,
+            align: 'center',
+            sortable: true,
+               renderer:function(value,metaData,record){                    
+                    if(value=='1'){return '<font color=green>有数据</font'}
+                    else {return '<font color=red>无数据</font'}
+                }
+        },{
+            text: "设备状态",
+            dataIndex: 'workflag',
+            width: 70,
+            align: 'center',
+            sortable: true,
+             renderer:function(value,metaData,record){                    
+                    if(value=='1'){return '<font color=red>维护</font'}
+                    else {return '<font color=green>正常</font'}
+                }
+        }
+		,  {
+            text: "审核状态",
+            dataIndex: 'shflag',
+            width: 70,
+            align: 'center',
+            sortable: true,
+                renderer:function(value,metaData,record){
+                     
+                    if(value=='1'){return '<font color=green>已审</font'}
+                    else {return '<font color=red>未审</font'}
+                }
+        },
+      {
+            text: "场所名称",
+            dataIndex: 'dispname', 
+           width: 150,
+            sortable: true,
+            editor: {
+           listeners: {
+			          'focus':function(){
+			          	 if(this.value=='请输入场所名称'){
+			                this.setValue('');
+			               }
+			            }
+			        },			    
+           	allowBlank:true
+           	}
+        },{
+		<!--  -->
+            text: "所属区域",
+            dataIndex: 'area', 
+           width: 150,
+            sortable: true,
+          editor: {
+            id: 'area',   
+           	name: 'area',  
+						fieldLabel: '',  
+						xtype: 'treecombox', 
+						width:280,
+						value:'',
+						valueField: 'text',  
+						displayField: 'text',  
+						store:store_classtree
+           	}
+        },{
+            text: "场所详细地址",
+            dataIndex: 'address',
+            hidden: false,
+            width: 130,
+            sortable: false,
+            editor: {			    
+           	allowBlank:true
+           	}
+        },
+        
+        {
+            text: "厂商维护状态",
+            dataIndex: 'yyflag',
+            width: 70,
+            align: 'workflag',
+            sortable: true,
+                 renderer:function(value,metaData,record){                    
+                    if(value=='1'){return '<font color=red>正常</font'}
+                    else {return '<font color=green>维护</font'}
+                }
+        } ,{
+			text:'关联设备数量',
+            dataIndex:'servernum',
+            width: 85,
+ //          flex: 1,
+            sortable: false
+        } 
+        ,{
+            text: "场所经营性质",
+            dataIndex: 'jytype', 
+           width: 150,
+            sortable: true,
+            editor: {
+           listeners: {
+			          'focus':function(){
+			          	 if(this.value=='请输入场所经营性质'){
+			                this.setValue('');
+			               }
+			            }
+			        },			    
+           	allowBlank:true
+           	}
+        },{
+            text: "场所服务类型",
+            dataIndex: 'gtype', 
+           width: 150,
+            sortable: true,
+            editor: {
+           listeners: {
+			          'focus':function(){
+			          	 if(this.value=='请输入场所服务类型'){
+			                this.setValue('');
+			               }
+			            }
+			        },			    
+           	allowBlank:true
+           	}
+        }
+        ,{
+            id: 'username',
+            text: "上网服务场所编码",
+            dataIndex: 'username',
+            hidden: true,
+            width: 130,
+            sortable: true,
+            editor: {
+            id:'dwbm',
+           listeners: {
+			          'focus':function(){
+			          	 if(this.value=='请输入单位编码'){
+			                this.setValue('');
+			               }
+			            }
+			        },			    
+           	allowBlank:true
+           	}
+        },
+           {
+            id: 'ceoname',
+            text: "场所经营法人",
+            dataIndex: 'ceoname',
+            hidden: true,
+            width: 130,
+            sortable: true,
+            editor: {
+            id:'dwbm',
+           listeners: {
+			          'focus':function(){
+			          	 if(this.value=='请输入单位编码'){
+			                this.setValue('');
+			               }
+			            }
+			        },			    
+           	allowBlank:true
+           	}
+        }, 
+         {
+            id: 'ceoidtype',
+            text: "经营法人有效证件类型",
+            dataIndex: ' ceoidtype',
+            hidden: true,
+            width: 130,
+            sortable: true,
+            editor: {
+            id:'jyfrzj',
+           listeners: {
+			          'focus':function(){
+			          	 if(this.value=='请输入单位编码'){
+			                this.setValue('');
+			               }
+			            }
+			        },			    
+           	allowBlank:true
+           	}
+        }, {
+            id: 'ceocardid',
+            text: "经营法人有效证件号码",
+            dataIndex: 'ceocardid',
+           hidden: true,
+            width: 130,
+            sortable: true,
+            editor: {
+            id:'jyfrhm',
+           listeners: {
+			          'focus':function(){
+			          	 if(this.value=='请输入单位编码'){
+			                this.setValue('');
+			               }
+			            }
+			        },			    
+           	allowBlank:true
+           	}
+        }, {
+            id: 'handphone',
+            text: "联系方式",
+            dataIndex: 'handphone',
+           hidden: true,
+            width: 130,
+            sortable: true,
+            editor: {
+            id:'lxfs',
+           listeners: {
+			          'focus':function(){
+			          	 if(this.value=='请输入单位编码'){
+			                this.setValue('');
+			               }
+			            }
+			        },			    
+           	allowBlank:true
+           	}
+        }, {
+            id: 'sdate',
+            text: "营业开始时间",
+            dataIndex: 'sdate',
+           hidden: true,
+            width: 130,
+            sortable: true,
+            editor: {
+            id:'yykssj',
+           listeners: {
+			          'focus':function(){
+			          	 if(this.value=='请输入单位编码'){
+			                this.setValue('');
+			               }
+			            }
+			        },			    
+           	allowBlank:true
+           	}
+        }, {
+            id: 'edate',
+            text: "营业结束时间",
+            dataIndex: 'edate',
+           hidden: true,
+            width: 130,
+            sortable: true,
+            editor: {
+            id:'yyjssj',
+           listeners: {
+			          'focus':function(){
+			          	 if(this.value=='请输入单位编码'){
+			                this.setValue('');
+			               }
+			            }
+			        },			    
+           	allowBlank:true
+           	}
+        },{
+            text: "场所网络接入方式",
+            dataIndex: 'jointype',
+            width:100,
+           hidden: true,
+ //          flex: 1,
+            sortable: false,
+            editor: {			    
+              xtype: 'combo',         
+           store:store_jrfs,
+           displayField: 'groupname',
+           valueField:'groupid',  
+//           value:'09',        
+            queryMode: 'local',
+				   	     listeners: {
+			          'change':function(){
+			          var ff=this.value;
+			           var bb=Ext.getCmp('dwbm').value;
+			          if(ff.length==2&&bb.length<=10){
+			         
+			          if(bb=='请输入单位编码'){
+					        bb='';
+					      }
+			          
+			          var cc=bb.substring(0,6);
+			          var dd=bb.substring(8,10);
+			          var ee=bb.substring(10,14);
+	
+			          
+			          gg=cc+ff+dd+ee;
+			          Ext.getCmp('dwbm').setValue(gg);
+			          }
+
+			          	
+			            }
+			        },
+                allowBlank: true
+    
+            }
+        }
+        , {
+           text: "场所网络接入服务商",
+            dataIndex: 'jrcj',
+            hidden: true,
+            width: 100,
+ //          flex: 1,
+            sortable: false,
+         editor: {
+          xtype: 'combo',
+          id: 'faccode',          
+           store:store_fac,
+           displayField: 'groupname',
+           valueField:'groupid',
+           
+            queryMode: 'local',
+				         listeners: {
+			          'change':function(){
+			          var ff=this.value;
+			          var bb=Ext.getCmp('dwbm').value;
+			          if(ff.length==2&&bb.length<=10){
+			  			  
+			  			  if(bb=='请输入单位编码'){
+      					  bb='';
+    						}
+			  			  
+			          var cc=bb.substring(0,8);
+			    //      var dd=bb.substring(6,8);
+			          var ee=bb.substring(10,14);
+			          
+			          gg=cc+ff+ee;
+			          Ext.getCmp('dwbm').setValue(gg);
+			          }
+			            }
+			        },
+                allowBlank: true
+    
+            }
+            
+        },{
+            id: 'fcode',
+            text: "安全厂商组织机构代码",
+            dataIndex: 'fcode',
+           hidden: true,
+            width: 130,
+            sortable: true,
+            editor: {
+            id:'dwbm',
+           listeners: {
+			          'focus':function(){
+			          	 if(this.value=='请输入单位编码'){
+			                this.setValue('');
+			               }
+			            }
+			        },			    
+           	allowBlank:true
+           	}
+        },{
+            //text: "出口IP",
+			text:'网络接入账号或固定ip',
+			hidden: true,
+            dataIndex: 'ip',
+            width: 85,
+ //          flex: 1,
+            sortable: false
+        } 
+        ,  {
+            id: 'latitude',
+            text: "场所经度",
+            dataIndex: 'latitude',
+           hidden: true,
+            width: 130,
+            sortable: true,
+            editor: {
+            id:'csjd',
+           listeners: {
+			          'focus':function(){
+			          	 if(this.value=='请输入单位编码'){
+			                this.setValue('');
+			               }
+			            }
+			        },			    
+           	allowBlank:true
+           	}
+        }, {
+            id: 'longitude',
+            text: "场所纬度",
+            dataIndex: 'longitude',
+            hidden: true,
+            width: 130,
+            sortable: true,
+            editor: {
+            id:'cswd',
+           listeners: {
+			          'focus':function(){
+			          	 if(this.value=='请输入单位编码'){
+			                this.setValue('');
+			               }
+			            }
+			        },			    
+           	allowBlank:true
+           	}
+        },{
+            text: "营业状态",
+            dataIndex: 'yyflag',
+		//	hidden:true,
+            width: 70,
+            align: 'center',
+            sortable: true,
+                 renderer:function(value,metaData,record){                    
+                    if(value=='1'){return '<font color=red>停业</font'}
+                    else {return '<font color=green>营业</font'}
+                }
+        }
+		,
+		
+		/*
+        {
+            text: "属组",
+            dataIndex: 'groupname',           
+            width: 90,
+            sortable: true,
+            editor: {
+            id: 'gpid',   
+           	name: 'groupname',  
+						fieldLabel: '',  
+						xtype: 'treecombox', 
+						width:280,
+						value:'',
+						valueField: 'text',  
+						displayField: 'text',  
+						store:store_classtree
+           	}
+        },
+      {
+          //  text: '单位类别',
+		   text: '服务类型',
+  //          id: 'pid',
+            dataIndex: 'dwlb',
+            sortable: false,
+            width:60,
+            editor: {
+           xtype: 'combo',
+  //         id: 'dwlb',          
+           store:store_dwlb,
+           displayField: 'groupname',
+           valueField:'groupid',          
+            queryMode: 'local',
+				   	         listeners: {
+			          'change':function(){
+			          var ff=this.value;
+			           var bb=Ext.getCmp('dwbm').value;
+			          if(ff.length==2&&bb.length<=10){
+			         
+			          if(bb=='请输入单位编码'){
+					        bb='';
+					      }
+			          
+			          var cc=bb.substring(0,6);
+			          var dd=bb.substring(8,10);
+			          var ee=bb.substring(10,14);
+	
+			          
+			          gg=cc+ff+dd+ee;
+			      
+			          Ext.getCmp('dwbm').setValue(gg);
+			          }
+
+			          	
+			            }
+			        },
+                allowBlank: true
+    
+            }
+        },/*
+       
+        /*
+      {
+            text: "用户数",
+            dataIndex: 'endnum',
+            hidden: true,
+            width: 50,
+            align: 'right',
+            sortable: false
+        },
+        {
+            text: "在线用户",
+            dataIndex: 'onuser',
+            width: 50,
+            hidden:true,
+            align: 'right',
+            sortable: true
+        },
+	
+        {
+            text: "运行状态",
+            dataIndex: 'status',
+            width: 50,
+            align: 'center',
+            sortable: true
+        },
+		/*
+        {
+            text: "IP轨迹",
+            dataIndex: 'userid',
+            width: 50,
+            hidden:false,
+            align: 'center',
+            sortable: false,
+            hidden:true,
+            renderer: ipgj
+        },
+        {
+            text: "版本号",
+            dataIndex: 'version',
+            width: 80,
+            align: 'center',
+            hidden:true,
+            sortable: true
+        }
+       
+         
+        ,*/
+          {
+          	width: 50,
+            flex: 1
+        }
+        ],
+        
+        columnLines: true,
+              
+        // paging bar on the bottom
+        tbar: Ext.create('Ext.PagingToolbar1', {
+            store: store,
+            displayInfo: true,
+            displayMsg: '显示{0} - {1}条记录 共{2}条记录',
+            emptyMsg: "没有记录可显示",
+                                       
+            items: [
+                    
+             {
+               xtype:'textfield',
+               id:'keyword5',
+               width:120,
+               name:'keyword5',
+               style:'color:#7aa7d5',
+              
+               value:'单位编码/名称/备注',
+               enableKeyEvents:true,
+               listeners:{
+                 'focus':function(){
+                 if(this.value=='单位编码/名称/备注'){                
+                    this.setValue('');
+                  }
+                 },
+         
+                 'keydown' : function(i,e){
+                var aae=e.getKey() ; 
+                if(aae==13){
+                    var aa=Ext.getCmp('keyword5').value;
+                    if(aa!='单位编码/名称/备注'){
+                    
+       	          document.getElementById("form1").keyword5.value=aa;
+                     document.getElementById("form1").did.value='';
+		                  document.getElementById("form1").groupid.value='';
+                  var bb=Ext.getCmp('ip2').value;
+                  if(bb){
+         
+                  document.getElementById("form1").ip1.value=bb;
+                  }
+                  else{
+                    document.getElementById("form1").ip1.value='';
+                  }
+		                  document.getElementById("form1").dispname1.value='';
+		                  document.getElementById("form1").servicecode1.value='';
+		                  document.getElementById("form1").address1.value='';
+		                  document.getElementById("form1").area1.value='';
+		                   document.getElementById("form1").fcode.value='';
+                      document.getElementById("form1").servicestate1.value='';
+                      document.getElementById("form1").lb.value='';
+		                  store.currentPage=1;
+		                   reflash();
+		                   }
+                }
+               }
+               }
+             },
+             {
+                text:'查询',
+                iconCls:'accept',
+                handler: function(){
+
+                 var aa=Ext.getCmp('keyword5').value;
+                
+                if(aa!='单位编码/名称/备注'){
+  
+                 document.getElementById("form1").did.value='';
+         //         document.getElementById("form1").groupid.value='';
+                  var bb=Ext.getCmp('ip2').value;
+                  if(bb){         
+                   document.getElementById("form1").ip1.value=bb;
+                  }
+                  else{
+                    document.getElementById("form1").ip1.value='';
+                  }
+                  document.getElementById("form1").dispname1.value='';
+                  document.getElementById("form1").servicecode1.value='';
+                  document.getElementById("form1").address1.value='';
+                  document.getElementById("form1").area1.value='';
+                  document.getElementById("form1").keyword.value=aa;
+    //              document.getElementById("form1").fcode.value='';
+                  document.getElementById("form1").servicestate1.value='';
+   //               document.getElementById("form1").lb.value='';
+                  store.currentPage=1;         
+                   reflash();
+                }
+                }
+            },
+            
+            
+            
+            {
+                text:'高级',
+                anchor: 'right',
+  //              xtype: 'splitbutton',
+  //              menu:menu_cx,
+                handler: showCxForm,
+//                handler: Ext.Function.pass(handleAction, 'cx'),
+                iconCls:'option'
+            },
+            '-',
+            {
+                text:'增加',
+                iconCls:'add',
+               handler : function() {
+               	gotoedit1('');
+   /*
+                rowEditing.cancelEdit();
+
+                
+                var r = Ext.create('EimData', {
+               	  
+                    username: '请输入单位编码',
+                    dispname: '请输入单位名称',
+                    jointype:wjointype
+                                   
+                });
+                
+                if(document.getElementById("form1").groupid.value!=''){
+                   preid=document.getElementById("form1").groupid.value;
+              
+                }
+                temp_id=preid;
+   
+            var i,lcount;
+            lcount=store_group.getCount();
+
+            for(i=0;i<lcount;i++){
+
+            	var record=store_group.getAt(i);
+
+               if(preid==record.get('groupid')){
+            	    r.data.groupid=record.get('groupname');
+            	    break;
+               }
+            }
+         
+                
+
+       
+                store.insert(0, r);
+
+           
+              rowEditing.startEdit(0, 0);
+              */
+            }
+                
+                
+                
+    //           handler: Ext.Function.pass(handleAction, 'add')
+            }, '-', {
+                text:'删除',
+                itemId: 'removeButton',
+                iconCls:'remove',
+                disabled: true,
+                handler:function(){
+             
+							   if(confirm('您真的要执行删除操作吗？')){                  
+                 var selsid;  
+                 var rows=sm.getSelection();
+                   selsid='';
+                  for(var i=0;i<rows.length;i++){
+                  	if(i==0){
+                  	 selsid=rows[i].getId();
+                  	}
+                  	else{
+                       selsid=selsid+","+rows[i].getId();
+                    }
+                   
+                   }
+                      var gid=document.getElementById("form1").groupid.value;
+										  var ip1=document.getElementById("form1").ip1.value;
+										  var dispname1=document.getElementById("form1").dispname1.value;
+										  var servicecode1=document.getElementById("form1").servicecode1.value;
+										  var address1=document.getElementById("form1").address1.value;
+										  var area1=document.getElementById("form1").area1.value;
+                      store.load({params: {del: "del",selsid:selsid,groupid: gid,ip1:ip1,dispnam1:dispname1,servicecode1:servicecode1,address1:address1,area1:area1 }});
+                  
+                 }  
+                   
+                }
+ 
+                
+            }/*,{
+            xtype:'label',
+            html:'移到'
+            
+             },
+             {
+             xtype:'treecombox',
+             id: 'mgroupid',  
+             width:120, 
+            	name: 'mgroupname',  
+            	valueField: 'id',  
+						  displayField: 'text',  
+            	store:store_classtree
+             }, {
+                text:'确认',
+				 iconCls:'accept',
+                itemId: 'moveButton',
+                //disabled: true,
+                handler:function(){
+                
+							   if(confirm('您真的要执行移动操作吗？')){                  
+                 var selsid;  
+                 var rows=sm.getSelection();
+                   selsid='';
+                  for(var i=0;i<rows.length;i++){
+                  	if(i==0){
+                  	 selsid=rows[i].getId();
+                  	}
+                  	else{
+                       selsid=selsid+","+rows[i].getId();
+                    }
+                   
+                   }
+                      var gid=document.getElementById("form1").groupid.value;
+										  var mid=document.getElementById("form1").mid.value;
+										  if(mid==''){
+										  alert('请选择移动目标');
+										  return;
+										  }
+										  var keyword=Ext.getCmp('keyword5').value;
+										  if(keyword=='单位编码/名称/备注'){
+										  keyword='';
+										  }
+										  var lxstate=document.getElementById("form1").lxstate.value;
+										  
+                      store.load({params: {move: "move",selsid:selsid,mid:mid,keyword:keyword,lxstate:lxstate}});
+                  
+                 }  
+                   
+                }
+ 
+                
+            }*/
+            
+            
+            ,'-',{
+                text:'导出',
+             //   iconCls:'exp',
+				iconCls:'exportimg',
+                handler:function(){
+
+                document.getElementById('form1').export2.value='exp';
+                document.getElementById("form1").submit();
+               document.getElementById("form1").export2.value="";
+              
+                }
+            },'-',{
+				text:'导入',
+				id:'fffffa',
+				iconCls:'lamp',
+				handler: function(){
+					openDr();
+				}
+			}
+            
+            , {
+                text:'审核',
+                itemId: 'shButton',
+                iconCls:'add',
+                disabled: true,
+                handler:function(){
+             
+							   if(confirm('您真的要执行审核操作吗？')){                  
+                 var selsid;  
+                 var rows=sm.getSelection();
+                   selsid='';
+                  for(var i=0;i<rows.length;i++){
+                  	if(i==0){
+                  	 selsid=rows[i].getId();
+                  	}
+                  	else{
+                       selsid=selsid+","+rows[i].getId();
+                    }
+                   
+                   }
+                      var gid=document.getElementById("form1").groupid.value;
+										  var ip1=document.getElementById("form1").ip1.value;
+										  var dispname1=document.getElementById("form1").dispname1.value;
+										  var servicecode1=document.getElementById("form1").servicecode1.value;
+										  var address1=document.getElementById("form1").address1.value;
+										  var area1=document.getElementById("form1").area1.value;
+                      store.load({params: {sh: "sh",selsid:selsid,groupid: gid,ip1:ip1,dispnam1:dispname1,servicecode1:servicecode1,address1:address1,area1:area1 }});
+                  
+                 }  
+                   
+                }
+ 
+                
+            }
+            
+            
+            
+            
+            ]
+       
+
+        }),
+        plugins: [rowEditing]
+               
+//        renderTo: 'grid-corp'
+    });
+
+    // trigger the data store load
+    reflash();
+
+
+    var panel = Ext.create('Ext.panel.Panel', {
+        title: '',
+        margins: '0 0 0 0',
+        id:'dwglpanel',
+  //      width:1400,
+        height:900,
+        autoScroll: true,
+        renderTo: 'grid-corp',
+//        border:false,
+        frame: false,
+ //       layout: 'fit',
+        items:
+        grid
+		/*,
+        dockedItems: [{
+            dock: 'top',
+ //           margins: '0 0 0 0',
+            border:false,
+            xtype: 'toolbar',
+            items: [
+            {
+               xtype:'label',
+              html:'&nbsp;<select name="status" id="cstatus" onchange="document.getElementById(\'form1\').lxstate.value=this.value;reflash()" ><option value="">运行状态</option><option value="1">在线</option><option value="2">离线</option></select>'    
+            },workCombo,shCombo,yyCombo,dataCombo,dwlbCombo,facCombo,groupCombo,
+            {
+            
+            labelWidth: 50,
+            width:160,
+                        fieldLabel:'出口IP',
+                        xtype: 'textfield',
+                        hidden:true,
+                        id:'ip2',
+                        name:'ip1'                       
+             }
+             
+             
+             
+            ]
+        }]*/
+        
+    });
+
+
+
+
+});
+
+
+
+
+
+
+
+
+</script>
+    
+    
+</head>
+<body>
+	<form name="form1" id="form1" action="/pronline/Msg">
+		<input type="hidden" name="FunName" value="ncsWebClientSearch_v4">
+		<input type="hidden" name="groupid" value="">
+		<input type="hidden" name="did" value="">
+		<input type="hidden" name="ip1" value="">
+		<input type="hidden" name="dispname1" value="">
+		<input type="hidden" name="servicecode1" value="">
+		<input type="hidden" name="groupid1" value="">		
+	  <input type="hidden" name="address1" value="">
+		<input type="hidden" name="area1" value="">
+		<input type="hidden" name="export2" value="">
+		<input type="hidden" name="lxstate" value="">
+	  <input type="hidden" name="workflag" value="">
+	   <input type="hidden" name="yyflag" value="">
+	   <input type="hidden" name="shflag" value="">
+	    <input type="hidden" name="dataflag" value="">
+		<input type="hidden" name="mid" value="">
+		
+		<input type="hidden" name="fcode" value="">
+		<input type="hidden" name="servicestate1" value="">
+		<input type="hidden" name="lb" value="">
+		<input type="hidden" name="rqlx" value="">
+<input type="hidden" name="keyword" value="">
+		<input type="hidden" name="demo1" value="">
+	</form>
+    <div id="grid-corp"></div>
+
+</body>
+</html>

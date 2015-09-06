@@ -1,0 +1,531 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+
+<script type="text/javascript" src="/newver/jquery/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="/newver/chart/highcharts.js"></script>
+
+<!--
+<script type="text/javascript" src="http://cdn.hcharts.cn/jquery/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
+
+ <script type="text/javascript" src="http://cdn.hcharts.cn/highcharts/exporting.js"></script> -->
+  
+<!-- 导入Extjs框架 -->
+<link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css">
+  <script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+
+  
+<script type="text/javascript"> 
+
+/* 全局数组：存储整点时间出现的次数 */
+var data0 = new Array();
+var data1 = new Array();
+var data2 = new Array();
+var data3 = new Array();
+var data4 = new Array();
+var data5 = new Array();
+var data6 = new Array();
+var data7 = new Array();
+var data8 = new Array();
+var data9 = new Array();
+var data10 = new Array();
+
+data1 = [{name: "00:34:CB:48:3D:01", y: 14500},
+		 {name: "00:34:CB:48:3D:02", y: 13000},
+		 {name: "00:34:CB:48:3D:03", y: 1050},
+		 {name: "00:34:CB:48:3D:04", y: 12000},
+		 {name: "00:34:CB:48:3D:05", y: 19500},
+		 {name: "00:34:CB:48:3D:06", y: 8000},
+		 {name: "00:34:CB:48:3D:07", y: 6500},
+		 {name: "00:34:CB:48:3D:08", y: 15000},
+		 {name: "00:34:CB:48:3D:09", y: 13000},
+		 {name: "00:34:CB:48:3D:10", y: 10000}];
+		 
+data2 = [{name: "00:34:CB:48:3D:01", y: 1450},
+		 {name: "00:34:CB:48:3D:02", y: 1300},
+		 {name: "00:34:CB:48:3D:03", y: 1105},
+		 {name: "00:34:CB:48:3D:04", y: 1000},
+		 {name: "00:34:CB:48:3D:05", y: 1950},
+		 {name: "00:34:CB:48:3D:06", y: 8000},
+		 {name: "00:34:CB:48:3D:07", y: 650},
+		 {name: "00:34:CB:48:3D:08", y: 5000},
+		 {name: "00:34:CB:48:3D:09", y: 5300},
+		 {name: "00:34:CB:48:3D:10", y: 1000}];
+
+data3 = [{name: "00:34:CB:48:3D:01", y: 1500},
+		 {name: "00:34:CB:48:3D:02", y: 3000},
+		 {name: "00:34:CB:48:3D:03", y: 11050},
+		 {name: "00:34:CB:48:3D:04", y: 10000},
+		 {name: "00:34:CB:48:3D:05", y: 9500},
+		 {name: "00:34:CB:48:3D:06", y: 8000},
+		 {name: "00:34:CB:48:3D:07", y: 8500},
+		 {name: "00:34:CB:48:3D:08", y: 5000},
+		 {name: "00:34:CB:48:3D:09", y: 3000},
+		 {name: "00:34:CB:48:3D:10", y: 1000}];	
+
+data4 = [{name: "00:34:CB:48:3D:01", y: 4500},
+		 {name: "00:34:CB:48:3D:02", y: 3000},
+		 {name: "00:34:CB:48:3D:03", y: 1050},
+		 {name: "00:34:CB:48:3D:04", y: 4900},
+		 {name: "00:34:CB:48:3D:05", y: 500},
+		 {name: "00:34:CB:48:3D:06", y: 8180},
+		 {name: "00:34:CB:48:3D:07", y: 3500},
+		 {name: "00:34:CB:48:3D:08", y: 5000},
+		 {name: "00:34:CB:48:3D:09", y: 3000},
+		 {name: "00:34:CB:48:3D:10", y: 1000}];
+
+data5 = [{name: "00:34:CB:48:3D:01", y: 14500},
+		 {name: "00:34:CB:48:3D:02", y: 13000},
+		 {name: "00:34:CB:48:3D:03", y: 11050},
+		 {name: "00:34:CB:48:3D:04", y: 10000},
+		 {name: "00:34:CB:48:3D:05", y: 9500},
+		 {name: "00:34:CB:48:3D:06", y: 8000},
+		 {name: "00:34:CB:48:3D:07", y: 6500},
+		 {name: "00:34:CB:48:3D:08", y: 5000},
+		 {name: "00:34:CB:48:3D:09", y: 3000},
+		 {name: "00:34:CB:48:3D:10", y: 1000}];
+
+data6 = [{name: "00:34:CB:48:3D:01", y: 18500},
+		 {name: "00:34:CB:48:3D:02", y: 13800},
+		 {name: "00:34:CB:48:3D:03", y: 1050},
+		 {name: "00:34:CB:48:3D:04", y: 12000},
+		 {name: "00:34:CB:48:3D:05", y: 19500},
+		 {name: "00:34:CB:48:3D:06", y: 8000},
+		 {name: "00:34:CB:48:3D:07", y: 16500},
+		 {name: "00:34:CB:48:3D:08", y: 15000},
+		 {name: "00:34:CB:48:3D:09", y: 13000},
+		 {name: "00:34:CB:48:3D:10", y: 10000}];
+		 
+data7 = [{name: "00:34:CB:48:3D:01", y: 1450},
+		 {name: "00:34:CB:48:3D:02", y: 1300},
+		 {name: "00:34:CB:48:3D:03", y: 1105},
+		 {name: "00:34:CB:48:3D:04", y: 19000},
+		 {name: "00:34:CB:48:3D:05", y: 1950},
+		 {name: "00:34:CB:48:3D:06", y: 8000},
+		 {name: "00:34:CB:48:3D:07", y: 6500},
+		 {name: "00:34:CB:48:3D:08", y: 5000},
+		 {name: "00:34:CB:48:3D:09", y: 5300},
+		 {name: "00:34:CB:48:3D:10", y: 19000}];
+
+data8 = [{name: "00:34:CB:48:3D:01", y: 19500},
+		 {name: "00:34:CB:48:3D:02", y: 3000},
+		 {name: "00:34:CB:48:3D:03", y: 11050},
+		 {name: "00:34:CB:48:3D:04", y: 10000},
+		 {name: "00:34:CB:48:3D:05", y: 9500},
+		 {name: "00:34:CB:48:3D:06", y: 8000},
+		 {name: "00:34:CB:48:3D:07", y: 18500},
+		 {name: "00:34:CB:48:3D:08", y: 15000},
+		 {name: "00:34:CB:48:3D:09", y: 3000},
+		 {name: "00:34:CB:48:3D:10", y: 1000}];	
+
+data9 = [{name: "00:34:CB:48:3D:01", y: 4500},
+		 {name: "00:34:CB:48:3D:02", y: 3000},
+		 {name: "00:34:CB:48:3D:03", y: 1050},
+		 {name: "00:34:CB:48:3D:04", y: 4900},
+		 {name: "00:34:CB:48:3D:05", y: 500},
+		 {name: "00:34:CB:48:3D:06", y: 18180},
+		 {name: "00:34:CB:48:3D:07", y: 3500},
+		 {name: "00:34:CB:48:3D:08", y: 5000},
+		 {name: "00:34:CB:48:3D:09", y: 9000},
+		 {name: "00:34:CB:48:3D:10", y: 1000}];
+
+data10 = [{name: "00:34:CB:48:3D:01", y: 14500},
+		 {name: "00:34:CB:48:3D:02", y: 13000},
+		 {name: "00:34:CB:48:3D:03", y: 11050},
+		 {name: "00:34:CB:48:3D:04", y: 19000},
+		 {name: "00:34:CB:48:3D:05", y: 9500},
+		 {name: "00:34:CB:48:3D:06", y: 8000},
+		 {name: "00:34:CB:48:3D:07", y: 6500},
+		 {name: "00:34:CB:48:3D:08", y: 5000},
+		 {name: "00:34:CB:48:3D:09", y: 3090},
+		 {name: "00:34:CB:48:3D:10", y: 1000}];		 
+
+/* 获取随机数数据并传入图表绘制 */	
+function GetDifferentData(){
+	var randomdata = Math.round(Math.random()*9+1);;
+	if(randomdata == 1)
+		data0 = data1;
+	else if(randomdata == 2)
+		data0 = data2;
+	else if(randomdata == 3)
+		data0 = data3;
+	else if(randomdata == 4)
+		data0 = data4;
+	else if(randomdata == 5)
+		data0 = data5;
+	else if(randomdata == 6)
+		data0 = data6;
+	else if(randomdata == 7)
+		data0 = data7;	
+	else if(randomdata == 8)
+		data0 = data8;
+	else if(randomdata == 9)
+		data0 = data9;
+	else if(randomdata == 10)
+		data0 = data10;	
+	else	
+	    data0 = data5;
+}		 
+
+/* 函数：获取后台数据  */
+function GetDrawData(){
+
+	//获取 parent 对象中输入框的内容(mac地址)
+	var macValue = parent.Ext.getCmp('keyword_mobileaccount').value;	 
+		
+	Ext.Ajax.request({			
+		url: '/pronline/Msg?FunName@procapWeb001Fun_GetPlacesCount_Draw&mac@' + macValue, 
+		method: 'GET',		
+		success: function(resp, opts){
+			//alert('success OK');
+			var respText = resp.responseText; 			//获取整个 JSON 数据的字符串
+			var respRecord = eval("("+respText+")");	//字符串转成结构体
+			
+			//各个时间点被采集次数				
+			data[0] = respRecord.eimdata[0].hour5;
+			data[1] = respRecord.eimdata[0].hour6;	
+			data[2] = respRecord.eimdata[0].hour7;
+			data[3] = respRecord.eimdata[0].hour8;	
+			data[4] = respRecord.eimdata[0].hour9;
+			data[5] = respRecord.eimdata[0].hour10;
+			data[6] = respRecord.eimdata[0].hour11;
+			data[7] = respRecord.eimdata[0].hour12;	
+			data[8] = respRecord.eimdata[0].hour13;
+			data[9] = respRecord.eimdata[0].hour14;	
+			data[10] = respRecord.eimdata[0].hour15;
+			data[11] = respRecord.eimdata[0].hour16;
+			data[12] = respRecord.eimdata[0].hour17;
+			data[13] = respRecord.eimdata[0].hour18;
+			data[14] = respRecord.eimdata[0].hour19;
+			data[15] = respRecord.eimdata[0].hour20;			
+			
+			/* 调用绘制图表函数 */
+			drawchart(data, macValue);					
+		},
+		failure: function(resp, opts){
+			var resqText = eval("(" + resqText + ")");
+			alert('错误', resqText.error);
+		} 
+	});		
+}
+
+
+function showgridformpanel()
+{
+	/* 选择单位 */
+	var label_choseunit_label = new Ext.form.Label({
+		text: '选择单位',
+        x: 15,
+		y: 20
+  
+	});
+
+	// 步骤1 －－－－ 定义一组数组
+	var datalabel = [                           
+		["value1", "上海市"],
+		["value2", "北京市"],
+		["value3", "广州市"]
+	];
+   
+    // 步骤2 －－－－ 把二维数组交给
+    var storelabel = new Ext.data.SimpleStore({            
+        fields: ["value", "text"],
+        data: datalabel
+	});
+   
+	var text_choseunit = new Ext.form.ComboBox({  
+		x: 80,
+		y: 15,
+		width: 120,
+        store: storelabel,
+        mode: "local",
+        displayField: "text",
+        valueField: "value",
+        triggerAction: "all",
+        //emptyText: "请选择",
+        value: "上海市"
+    });
+	
+		 
+	/* 时间 */
+	var label_chosetime_label = new Ext.form.Label({
+		text: '时间',
+        x: 15,
+		y: 80
+  
+	});
+
+	// 步骤1 －－－－ 定义一组数组
+	var datalabel = [                           
+		["value1", "最近三天"],
+		["value2", "最近一周"],
+		["value3", "最近一月"],
+		["value1", "最近三月"],
+		["value3", "最近半年"]
+	];
+   
+    // 步骤2 －－－－ 把二维数组交给
+    var storelabel = new Ext.data.SimpleStore({            
+        fields: ["value", "text"],
+        data: datalabel
+	});
+   
+	var text_chosetimes = new Ext.form.ComboBox({  
+		x: 80,
+		y: 75,
+		width: 120,
+        store: storelabel,
+        mode: "local",
+        displayField: "text",
+        valueField: "value",
+        triggerAction: "all",
+        //emptyText: "请选择",
+        value: "当天"
+    });	 
+		
+	/* 起始次数 */
+	var label_startcount_label = new Ext.form.Label({
+		text: '次数',
+        x: 270,
+		y: 80
+	});
+	
+	var text_startcount = new Ext.form.TextField({
+		width: 30,
+        x: 295,
+		y: 75
+	});
+	
+	/* 截止次数 */
+	var label_endcount_label = new Ext.form.Label({
+		text: '到',
+        x: 330,
+		y: 80
+	});
+	
+	var text_endcount = new Ext.form.TextField({
+		width: 30,
+        x: 345,
+		y: 75
+	});
+	
+	/* 添加统计 */
+	var countbutton = new Ext.Button({
+		text: '<font style = "width:60px; height:50px; font-weight:bold; font-size:15px">统计</font>',							
+		x: 480,
+		y: 70,
+		width: 70,
+		height: 30,
+		handler:function(){
+			/* 关闭父窗口 */
+			parent.Ext.getCmp('idinfocheck').close();
+		}
+	});
+		 
+		 
+	/* 选择AP */
+	var label_choseAP_describe = new Ext.form.Label({
+		text: '选择AP',
+        x: 240,
+		y: 20
+  
+	});
+	
+	// 步骤1 －－－－ 定义一组数组
+	var datadescribe = [                           
+		["value1", "外滩广东路"],
+		["value2", "普陀中江路"],
+		["value3", "徐汇凌云路"]
+	];
+   
+    // 步骤2 －－－－ 把二维数组交给
+    var storedescribe = new Ext.data.SimpleStore({            
+        fields:["value", "text"],
+        data: datadescribe
+	});
+   
+	var text_choseAP_describe = new Ext.form.ComboBox({  
+		x: 295,
+		y: 15,
+		width: 120,
+        store: storedescribe,
+        mode: "local",
+        displayField: "text",
+        valueField: "value",
+        triggerAction: "all",
+        emptyText: "请选择",
+        value: "外滩广东路"
+    });
+	
+    
+    //创建表格	
+	var data = [['1', '00:34:CB:48:3D:01', '18800'],
+				['2', '00:34:CB:48:3D:02', '17500'],
+				['3', '00:34:CB:48:3D:03', '15700'],
+				['4', '00:34:CB:48:3D:04', '15500'],
+				['5', '00:34:CB:48:3D:05', '14000'],
+				['6', '00:34:CB:48:3D:06', '8900'],
+				['7', '00:34:CB:48:3D:07', '6500'],
+				['8', '00:34:CB:48:3D:08', '4800'],
+				['9', '00:34:CB:48:3D:09', '3500'],
+				['10', '00:34:CB:48:3D:10', '2700']];
+				
+	var vstore = new Ext.data.ArrayStore({data:data, fields:["serialnumber", "mac", "appearcount"]});
+    var mygrid = new Ext.grid.GridPanel({
+				store: vstore,
+				frame: false,
+				width: 270,
+				height: 560,
+				border:false,
+				columnLines: true,	
+				//style: 'margin-left:105px ',	/* 优先在代码中改变表格显示的位置 */
+				renderTo: 'mygrid',
+				columns:[{header: "序号", dataIndex: "serialnumber", width:40},
+						 {header: "终端MAC", dataIndex: "mac", width: 130 /* ,
+							renderer: ghostsearch*/
+						 },
+						 
+						 {header: "出现次数", dataIndex: "appearcount", width:80}
+						]			
+
+	});		
+		
+	//创建表单
+	var myform = new Ext.form.FormPanel({		
+		//renderTo:"myform",
+		layout:'absolute',
+		frame:false,
+		width:930,
+		height:140,
+		border:false,
+		autoScroll:true,
+		maximizable:true,					
+		items:[label_choseunit_label, text_choseunit, 
+		       label_chosetime_label, text_chosetimes,
+			   label_startcount_label, text_startcount,
+			   label_endcount_label, text_endcount, countbutton,
+			   label_choseAP_describe, text_choseAP_describe]
+	});
+}
+
+/* 
+function ghostsearch(value, p, record){
+	var str = Ext.String.format('<a href="#" style="color:blue" onclick="jmpPage(\'{1}\')">{0}</a>', value, value);
+	//alert(str);
+	return str;
+}
+
+
+function jmpPage(mac){
+	parent.jumpToDestPage('itm_infoquery_mac', "ncViewer.mac_infoquery_mac","MAC日志查询");
+	//mac;
+} */
+
+
+function getRandom(n){
+	return Math.floor(Math.random() * n + 1);
+}
+
+
+/* 函数：绘制图表 */	
+function drawchart(macValue){
+    $('#container').highcharts({
+	  //var chart = new Highcharts.Chart({	
+		chart: {									
+			type: 'column'						//指定图表类型，默认是拆线图(line)
+		},
+		credits: {
+				enabled: false
+		},
+        title: {
+            text: '指定场所 ' + macValue + ' 频繁出现的终端',
+            x: -20 //center
+        },
+        
+		subtitle: {
+            //text: 'Source: WorldClimate.com',
+            x: -20
+        }, 
+		
+        xAxis: {
+			type: 'category',
+            categories: ['00:34:CB:48:3D:01', '00:34:CB:48:3D:02', '00:34:CB:48:3D:03', 
+						 '00:34:CB:48:3D:04', '00:34:CB:48:3D:05', '00:34:CB:48:3D:06', 
+						 '00:34:CB:48:3D:06', '00:34:CB:48:3D:08', '00:34:CB:48:3D:09', 
+						 '00:34:CB:48:3D:10']
+					 
+        },
+        yAxis: {
+		    tickInterval:500,
+			max:20000,
+			min:0,
+            title: {
+                text: '出现次数'
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+				
+        tooltip: { 
+			//这种模式下，每点的tooltip单独显示 
+				shared: false, 
+				formatter: function() { 
+					var s = '<b>'+ this.point.name +'</b>'+'<br/> '+this.point.y +'次<br/>'; 
+					return s; 
+				} 
+		}, 
+		
+		legend: {
+            enabled: false
+        }, 
+		
+        series: [{
+			allowPointSelect: true,
+            //name: '出现次数',
+            data: data0,
+			dataLabels: {
+                enabled: true,
+                formatter: function () {
+                    return Highcharts.numberFormat(this.y / 1000, 0, ',') + 'k';
+                },
+                style: {
+                    color: '#FFFFFF',
+                    fontWeight: 'bold',
+                    textShadow: '0px 0px 3px black'
+                }
+            },
+            pointPadding: 0
+        }]		
+    });
+		
+}
+
+      
+Ext.onReady(function(){
+		var  keyword = parent.Ext.getCmp('keyword_mobileaccount').value;
+    GetDifferentData();
+	showgridformpanel();
+	drawchart(keyword);
+});	  
+	  
+</script>
+  
+</head>
+<body>
+  
+  <div id="myform"></div>
+  <div id="mygrid" style = "position:absolute; top:0px; left:900px" ></div>
+  <div id="container" style = "width:900px; height:450px" ></div>
+  
+<script src="/mac/infoquery/place/checkgraph/js/highcharts.js"></script>
+<script src="/mac/infoquery/place/checkgraph/js/highcharts-more.js"></script>
+<script src="/mac/infoquery/place/checkgraph/js/modules/exporting.js"></script>
+  
+</body>
+</html>

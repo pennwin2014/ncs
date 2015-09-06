@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+  
+<!-- 导入Extjs框架 -->
+<!-- <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css">
+<script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+ -->
+ 
+<link rel = "stylesheet" type = "text/css" href = "/newver/resources/js/ext-3.3.1/resources/css/ext-all.css"/>
+<script type = "text/javascript" src = "/newver/resources/js/ext-3.3.1/adapter/ext/ext-base.js"></script>
+<script type = "text/javascript" src = "/newver/resources/js/ext-3.3.1/ext-all.js"></script> 
+ 
+  
+<script type="text/javascript"> 
+
+
+var g_arrayData = [];
+
+function getDrawData(){	
+	
+	var mac_value = "";
+	try{
+		mac_value = parent.getGlobalInfoMac(); 
+	}catch(e){
+		mac_value = parent.parent.getGlobalInfoMac(); 
+	}
+	
+	Ext.Ajax.request({			
+		url: '/pronline/Msg?FunName@ncsMacLog_ChosenMac_IDCheck&mac@' + mac_value,		
+		method: 'GET',		
+		success: function(resp, opts){						
+			
+				var respText = resp.responseText; 			//获取整个 JSON 数据的字符串
+				var respRecord = eval('('+respText+')');
+				
+				var vtype_value;
+				var vname_value;	
+				
+				if(parseInt(respRecord.result) > 0)
+				{				
+					//for(var i in respRecord.data){
+						vtype_value = respRecord.data[0].vtype;
+						vname_value = respRecord.data[0].vname;
+						g_arrayData.push({type:vtype_value, name: vname_value});					
+					//}										
+				}
+				showMACPersonInfo();		
+															
+		},
+		failure: function(resp, opts){
+			var resqText = eval("(" + resqText + ")");
+			alert('错误', resqText.error);
+		} 
+	});		
+}
+
+// 函数：创建一个表单显示 MAC 查询到的个人信息
+function showMACPersonInfo(){	
+	//创建表格	
+	var data = [];
+	for(var i in g_arrayData){
+		data.push([g_arrayData[i].type, g_arrayData[i].name]);
+	}
+				
+	var vstore = new Ext.data.ArrayStore({data:data, fields:["idtype", "idcontent"]});
+    var mygrid = new Ext.grid.GridPanel({
+				store: vstore,
+				frame: true,
+				width: 950,
+				height: 480,								
+				//left: 200px,
+				columnLines: true,	
+				autoScroll:true,
+				//style: 'margin-left:105px ',	
+				renderTo: 'mygrid',
+				columns:[{header: "虚拟身份类型", dataIndex: "idtype", width:450},
+						 {header: "上网认证账号", dataIndex: "idcontent", width:460 
+						 }
+						]			
+
+	});	
+} 
+
+Ext.onReady(function(){	
+	
+	getDrawData();
+	
+});	
+
+
+</script>
+  
+</head>
+<body>
+
+  <div id="mygrid" style = "" ></div>	
+  
+  
+</body>
+</html>
+
+

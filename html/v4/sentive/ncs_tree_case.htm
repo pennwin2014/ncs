@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <title>Tabs Example</title>
+    <style type="text/css">
+    	
+ .x-tab-default-top button, .x-tab-default-top.x-tab-inner {
+		height: 16px !important;
+		line-height: 16px;
+	}
+    	
+    
+      *{font-size:12px!important;}
+    .page{margin:0 auto;width:[#swidth#]px;background-color:#E9F2FC;overflow:hidden; border:1px solid #D4E0F5;}
+  </style>
+    <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" />
+
+    <script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+        <script type="text/javascript">
+        	var tabs_gdrz;
+        	function clicknode(id,did){
+  
+					parent.passid(id,did);
+					parent.doreflashTab();				
+					
+					}
+        	 function clicknode_yh(id,did){
+					parent.passid(id,did);
+					parent.passflag('1');
+					parent.doreflashTab();				
+					
+					}
+        	
+        	
+        	Ext.require('Ext.tab.*');
+var store,store2;
+        	function refresh()
+        	{
+        	
+        		store.load();
+        		store2.load();
+        	}
+
+    Ext.onReady(function(){
+
+
+     store = Ext.create('Ext.data.TreeStore', {
+        proxy: {
+            type: 'ajax',
+            url: '/pronline/Msg?FunName@ncsTreeCase_v4&plate@v4/ncs_user_tree.htm'
+        },
+        root: {
+            text: '当前布控告警',
+            id: '',
+            expanded: true
+        },
+        folderSort: true,
+        sorters: [{
+            property: 'text',
+            direction: 'ASC'
+        }]
+    });
+    var tree_all = Ext.create('Ext.tree.Panel', {
+    	  title: '当前布控告警',
+    	  id:'tree_all',
+        store: store,
+        height: 980,
+        width: 350,
+        useArrows: false,
+          listeners:{itemclick:function(view, rcd, item, idx, event, eOpts){
+         	var sid=rcd.get('id');
+         	  clicknode(sid,'');
+         }
+        } 
+
+    });
+
+    store2 = Ext.create('Ext.data.TreeStore', {
+        proxy: {
+            type: 'ajax',
+            url: '/pronline/Msg?FunName@ncsTreeCase_yh_v4'
+        },
+        root: {
+            text: '布控有害信息',
+            id: '',
+            expanded: true
+        },
+        folderSort: true,
+        sorters: [{
+            property: 'text',
+            direction: 'ASC'
+        }]
+    });
+
+    var tree_yh = Ext.create('Ext.tree.Panel', {
+    	  title: '布控有害信息',
+    	  id:'tree_yh',
+        store: store2,
+        height: 980,
+        width: 350,
+        useArrows: false,
+        listeners:{itemclick:function(view, rcd, item, idx, event, eOpts){
+          var sid=rcd.get('id');
+         	var did=rcd.get('did');
+ 
+         	 clicknode_yh(sid,did);
+         }
+        } 
+
+    });
+     tabs_gdrz = Ext.createWidget('tabpanel', {
+        renderTo: 'keytree',
+        forceFit: true,
+        scrollOffset: 0,
+//        width: aaa,
+        height:970,
+        activeTab: 0,
+         defaults :{
+            bodyPadding: 1
+        },
+        items: [
+        tree_all,tree_yh],
+       
+                listeners:{
+                    tabchange:function(tp,p){
+                       var index=tabs_gdrz.getActiveTab();
+                    	
+                    		if(index.title=='全部敏感网址库'){
+                    			store.load();
+                    			
+                    		}
+                    	else{
+                    		store2.load();
+                    	}
+                    	}
+                    }
+      });
+});
+
+        </script> 
+</head>
+<body>
+    <div id="keytree">
+
+    </div>
+    	    
+  
+   
+</body>
+</html>

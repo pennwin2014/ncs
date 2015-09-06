@@ -1,0 +1,21 @@
+Ext.define('proauthMobileAccount.store.List', {
+  extend: 'Ext.data.Store',
+  pageSize: 40,
+  fields:'1',
+  model: 'proauthMobileAccount.model.List',
+ remoteSort: true,
+  proxy: {
+    type: 'ajax',
+    url : '/pronline/Msg?FunName@ncsAlarmInfoShow',
+    reader: {
+      type: 'json',
+      root: 'eimdata',
+      totalProperty: 'totalCount'
+    },
+     simpleSortMode: true
+  },
+   sorters: {
+            property: 'sid',
+            direction: 'DESC'
+        }
+});

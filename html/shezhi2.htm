@@ -1,0 +1,146 @@
+<html>
+<head>
+<title>网络设置</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<style>
+.conts{visibility:hidden}
+.tab{border-top:solid thin #E0E0E0;
+border-right:solid thin gray;
+border-left:solid thin #E0E0E0;
+font-family:Verdana;
+font-size:10pt;
+text-align:center;
+font-weight:normal}
+.selTab{border-left:solid thin white;
+border-top:solid thin white;
+border-right:solid thin black;
+font-weight:bold;
+text-align:center}
+</style>
+<script language="javascript">
+
+function goto(o){
+window.open(o,"_self","")
+}
+function ddd(t){
+    showModalDialog(t, window, "status:no;center:yes;help:no;minimize:no;maximize:no;border:thick;statusbar:no;dialogWidth:300px;scroll:auto;dialogHeight:160px");
+
+}
+</script>
+<script LANGUAGE="JavaScript">
+//this is the tab switching function
+var currentTab;
+var tabBase;
+var firstFlag = true;
+
+function changeTabs(){
+if(firstFlag == true){
+currentTab = t1;
+tabBase = t1base;
+firstFlag = false;
+}
+if(window.event.srcElement.className == "tab"){
+currentTab.className = "tab";
+tabBase.style.backgroundColor = "white";
+currentTab = window.event.srcElement;
+tabBaseID = currentTab.id + "base";
+tabContentID = currentTab.id + "Contents";
+tabBase = document.all(tabBaseID);
+tabContent = document.all(tabContentID);
+currentTab.className = "selTab";
+tabBase.style.backgroundColor = "";
+//tabContents.innerHTML = tabContent.innerHTML;
+if(tabContent.id=="t1Contents"){
+form1.all.xxx.all.as1.style.display=""
+form1.all.xxx.all.as2.style.display="none"
+form1.all.xxx.all.as3.style.display="none"
+}
+else if(tabContent.id=="t2Contents"){
+
+form1.all.xxx.all.as1.style.display="none"
+form1.all.xxx.all.as2.style.display=""
+form1.all.xxx.all.as3.style.display="none"
+
+}
+else if(tabContent.id=="t3Contents"){
+
+form1.all.xxx.all.as1.style.display="none"
+form1.all.xxx.all.as2.style.display="none"
+form1.all.xxx.all.as3.style.display=""
+
+}
+
+}
+}</script>
+<style>
+.conts  {visibility:hidden}
+.tab{border-top:solid thin #E0E0E0;
+border-right:solid thin gray;
+border-left:solid thin #E0E0E0;
+font-family:Verdana;
+font-size:10pt;
+text-align:center;
+font-weight:normal;
+cursor: default}
+.selTab{border-left:solid thin white;
+border-top:solid thin white;
+border-right:solid thin black;
+font-weight:bold;
+text-align:center;
+cursor: default}
+table {  font-size: 9pt}
+</style>
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Hide
+function killErrors() {
+return true;
+}
+window.onerror = killErrors;
+// -->
+</SCRIPT>
+
+
+<style type="text/css">
+<!--
+body {  font-size: 9pt}
+.tas {  border-color: black #FFFFFF; border-style: solid; border-top-width: 0px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 1px}
+table {  font-size: 9pt}
+.gray1 { filter:gray }
+.ttbbd {  cursor: default}
+-->
+</style>
+<script src="/js/selDia.js"></script>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<body bgcolor="#D2D2D2" text="#000000" leftmargin="1" topmargin="0" onclick="changeTabs()" onload="init()" oncontextmenu="return false">
+<table width="100%" border="0" cellpadding="0" cellspacing="0"> <tr> <td valign="top" width="22">&nbsp; 
+</td><td valign="top">&nbsp; </td></tr> </table>
+  <div id="xxx" STYLE="position:absolute; top:16px; height:94%; width:94%; left:12px; border:none thin gray; visibility: visible"> 
+    <table STYLE="width:100%; height:100%" CELLPADDING="0" CELLSPACING="0" bgcolor="dfdfdf"> 
+<tr>
+	    <td ID="t1" CLASS="selTab" HEIGHT="25" width="120"> 内部网络地址</td>
+	    <td ID="t2" CLASS="tab" width="120">外部网络地址</td>
+	    <td ID="t3" CLASS="tab" width="120">免监控网络地址</td>
+<td  width="290" bgcolor="#D2D2D2"><div align="right"></div></td></tr> 
+<tr> 
+<td ID="t1base" STYLE="height:2; border-left:solid thin white" width="29"></td>
+<td ID="t2base" STYLE="height:2; border-left:solid thin white" width="29"> </td>
+<td ID="t3base" STYLE="height:2; border-left:solid thin white" width="29"> </td>
+<td  STYLE="height:2; background-color:white;width="19 width="37""> </td>
+</tr> 
+<tr> 
+<td HEIGHT="*" COLSPAN="10" ID="tabContents" STYLE="border-left:solid thin white;border-bottom:solid thin black;border-right:solid thin black"> 
+<div id="as1" align="center" ><iframe src="/pronline/Msg?FunName@ncWebDispNetwork&flags@1" width="99%" height="98%"></iframe></div>
+<div id="as2" align="center" STYLE="display: none"><iframe src="/pronline/Msg?FunName@ncWebDispNetwork&flags@0" width="99%" height="98%"></iframe> </div>
+<div id="as3" align="center" STYLE="display: none"><iframe src="/pronline/Msg?FunName@ncWebDispNetwork&flags@9" width="99%" height="98%"></iframe> </div>
+</td></tr></table>
+</div> 
+<div CLASS="conts" ID="t1Contents"> 1 </div>
+<div CLASS="conts" ID="t2Contents"> 2 </div>
+<div CLASS="conts" ID="t3Contents"> 3 </div>
+</body>
+</html>

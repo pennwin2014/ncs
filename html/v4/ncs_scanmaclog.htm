@@ -1,0 +1,633 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<title>单位管理</title>
+    <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" /> 
+        <style type="text/css">
+        .icon-grid {
+            background-image:url(/newver/resources/themes/images/share/grid.png) !important;
+        }
+        .add {
+            background-image:url(/newver/resources/themes/images/share/add.gif) !important;
+        }
+        .option {
+            background-image:url(/newver/resources/themes/images/share/plugin.gif) !important;
+        }
+        .remove {
+            background-image:url(/newver/resources/themes/images/share/delete.gif) !important;
+        }
+        .exp {
+            background-image:url(/newver/resources/themes/images/share/application_go.png) !important;
+        }
+        .accept {
+            background-image:url(/newver/resources/themes/images/share/accept.png) !important;
+        }
+        .x-form-clear-trigger {
+            background-image: url(/newver/resources/themes/images/default/form/clear-trigger.gif);
+        }
+        
+        .x-form-search-trigger {
+            background-image: url(/newver/resources/themes/images/default/form/search-trigger.gif);
+        }
+
+	.x-selectable, .x-selectable * 
+	{   
+    		-moz-user-select: text!important;   
+		-khtml-user-select: text!important;   
+	}   
+
+    </style>
+
+      
+    <script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+    
+  <script>  
+
+
+Ext.Loader.setConfig({enabled: true});
+Ext.Loader.setPath('Ext.ux', '/newver/ux/');
+Ext.require([
+    'Ext.form.*',
+    'Ext.window.*',
+    'Ext.grid.*',
+    'Ext.data.*',
+    'Ext.util.*',
+    'Ext.window.MessageBox',
+    'Ext.toolbar.Paging',
+    'Ext.ux.PreviewPlugin',
+//    'Ext.ModelManager',
+//    'Ext.tip.QuickTipManager'
+]);
+var store;
+
+function pastime(){
+	alert("aaaaa");
+  		parent.document.getElementById("form1").time_flag.value=document.getElementById("time_flag").value;
+  	  document.getElementById("form1").time_flag.value=document.getElementById("time_flag").value;
+  	}
+  	function gettime(){
+  	var aa=parent.document.getElementById('form1').time_flag.value;
+  	document.getElementById('time_flag').value=aa;
+  	document.getElementById('form1').time_flag.value=aa;
+  	
+  	}
+
+	  	
+  	  		//高级查询
+  	
+       		function showCxForm() 
+       		{
+       				var win2 = null;
+       			  var fp2;
+       			      var myDate = new Date();
+  		var yy = ( myDate.getYear() < 1900 ) ? ( 1900 + myDate.getYear() ) : myDate.getYear();
+  		var mm=myDate.getMonth()+1;
+  		if(mm<10)
+  		{
+  			mm='0'+mm;
+  		}
+  		var dd=myDate.getDate();
+  		if(dd<10)
+  		{
+  			dd='0'+dd;
+  		}
+  		var today=yy+'/'+mm+'/'+dd;
+  		var startday=yy+'/'+mm+'/'+'01';
+     fp2=Ext.create('Ext.FormPanel', 
+     {         
+			frame: true,
+			fieldDefaults: 
+			{
+				labelWidth: 65,                        
+			 	xtype: 'textfield' 
+			},
+              		bodyPadding: 4,
+                  	items: [
+                  	{       
+                  		  xtype: 'fieldcontainer',         
+				                layout: 'hbox',
+				                defaults: {
+		//		                  flex: 1,
+				                    labelWidth: 65,
+				                    hideLabel: false
+				                },
+                       items: [
+                       {              
+                        	fieldLabel:'起始时间',
+                        	xtype: 'datefield',
+                        	format: "Y/m/d",
+                        	width:160,
+                        	value:startday,
+                        	name:'sdate'
+                    	},                    
+                    	{xtype: 'textfield',fieldLabel: '', name: 'stime', value:'00:00:00', width: 60},
+                    ]},
+                     {       
+                  		  xtype: 'fieldcontainer',         
+				                layout: 'hbox',
+				                defaults: {
+		//		                  flex: 1,
+				                    labelWidth: 65,
+				                    hideLabel: false
+				                },
+                       items: [
+                       {              
+                        	fieldLabel:'结束时间',
+                        	xtype: 'datefield',
+                        	format: "Y/m/d",
+                        	width:160,
+                        	value:today,
+                        	name:'edate'
+                    	},                    
+                    	{xtype: 'textfield',fieldLabel: '', name: 'etime', value:'23:59:59', width: 60},
+                    ]},
+                    	{
+                        	fieldLabel:'场所名称',
+                        	xtype: 'textfield',
+                        	name:'corpname'
+        		         },
+                    	{
+                        	fieldLabel:'AP MAC',
+                        	xtype: 'textfield',
+                        	name:'apmac'
+                    	},
+                    	{
+                        	fieldLabel:'MAC地址',
+                        	xtype: 'textfield',
+                        	name:'mac'
+                    	},
+                    	{
+                        	fieldLabel:'AP名称',
+                        	xtype: 'textfield',
+                        	name:'apname'
+                    	},
+                    	{
+                        	fieldLabel:'安装位置',
+                        	xtype: 'textfield',
+                        	name:'position'
+                    	}
+
+			
+			                 ],
+			                 buttons:[{
+			                 	text:'查询',
+			                 	handler: function()
+                         	{
+                         		//依据虚拟账号查询
+                         		adv = "1";
+                         		document.getElementById("form1").groupid.value = "";
+                         		document.getElementById("form1").did.value = "";
+                         		
+                         		document.getElementById("form1").apmac.value=fp2.getForm().getValues().apmac;  
+                         		document.getElementById("form1").mac.value=fp2.getForm().getValues().mac;  
+                         		document.getElementById("form1").apname.value=fp2.getForm().getValues().apname; 
+                         		if(fp2.getForm().getValues().corpname == undefined) 
+                         		{
+                         			document.getElementById("form1").corpname.value = "";
+                         		}
+                         		else 
+                         		{
+                         			document.getElementById("form1").corpname.value=fp2.getForm().getValues().corpname;  
+                         		}
+                         		
+                         		document.getElementById("form1").position.value=fp2.getForm().getValues().position;  
+                         		document.getElementById("form1").sdate.value=fp2.getForm().getValues().sdate;  
+                         		document.getElementById("form1").edate.value=fp2.getForm().getValues().edate; 
+                         		
+                         	  document.getElementById("form1").stime.value=fp2.getForm().getValues().stime;  
+                         		document.getElementById("form1").etime.value=fp2.getForm().getValues().etime;
+ 
+                  //       		document.getElementById("form1").nettype.value=fp2.getForm().getValues().nettype;  
+                          
+                         		store.currentPage=1;
+                         		if (fp2.getForm().getValues().sdate == undefined || fp2.getForm().getValues().edate == undefined )
+                         		{
+                         		}
+                         		else 
+                         		{
+                         			reflash();
+                         		}
+                         		win2.close();
+                         	}
+			                 	
+			                 	
+			                },
+			                {
+			                	text:'清除',
+			                	handler: function()
+												{
+													fp2.getForm().reset();
+												}
+			                }
+			                 ]
+                  }
+                  
+                  
+                  );
+       			
+       			
+        		if (!win2) 
+        		{
+            			win2 = Ext.widget('window', 
+            			{
+                			title: '高级查询',
+               			  closeAction: 'hide',
+                			x:380,
+                			y:32,
+                			width: 250,
+                			height: 320,
+                			minHeight: 320,
+                			draggable:true,
+                			resizable: true,
+                			modal: false,
+                		
+              			items: fp2
+            			});
+        		}
+        		win2.on("beforeclose", function() {
+            document.getElementById("time_flag").value=document.getElementById("form1").time_flag.value;
+          	
+         });
+        		
+        		win2.show();
+    		};
+
+
+
+ function reflash(){
+
+  var time_flag=document.getElementById("form1").time_flag.value;
+
+  var keyword=document.getElementById('form1').keyword.value;
+ var did=parent.document.getElementById("form1").did.value;
+ var pid=parent.document.getElementById("form1").groupid.value;
+ var sdate=document.getElementById('form1').sdate.value;
+ var edate=document.getElementById('form1').edate.value;
+ var stime=document.getElementById('form1').stime.value;
+ var etime=document.getElementById('form1').etime.value;
+ 
+ var apmac=document.getElementById('form1').apmac.value;
+ var mac=document.getElementById('form1').mac.value;
+ var apname=document.getElementById('form1').apname.value;
+ var position=document.getElementById('form1').position.value;
+ var corpname=document.getElementById('form1').corpname.value;
+ 
+ store.load({params: {time_flag:time_flag,keyword:keyword,did:did,groupid:pid,sdate:sdate,edate:edate,stime:stime,etime:etime,apmac:apmac,mac:mac,apname:apname,position:position,corpname:corpname}});  
+
+  }
+
+   
+
+
+
+
+
+Ext.onReady(function(){
+
+//    Ext.tip.QuickTipManager.init();
+
+    Ext.define('EimData', {
+        extend: 'Ext.data.Model',
+        fields: [
+            'apname', 'mac', 'apmac', 'servicename', 'starttime','address','endtime','address'
+        ]
+//        ,
+//         idProperty: 'sid'
+    });
+
+
+
+
+
+    // create the Data Store
+//重写排序函数，解决远程条件查询问题
+    Ext.data.Store.prototype.doSort = function() {
+    reflash();
+    }
+ 
+       store = Ext.create('Ext.data.Store', {
+        pageSize: 38,
+        model: 'EimData',
+        remoteSort: true,
+ //       autoLoad :{params:{aaad:0,dddd:2}},
+        proxy: {
+            type: 'ajax',
+            url: '/pronline/Msg?FunName@ncsScanMaclist_v4',
+            reader: {
+                type:'json',
+                root: 'eimdata',
+                totalProperty: 'totalCount'
+            },         
+            simpleSortMode: true
+
+        },
+        sorters: [{
+            property: 'sid',
+            direction: 'DESC'
+        }]
+    });
+
+     
+
+
+    // pluggable renders
+
+
+    var pluginExpanded = true;
+    
+
+    
+    
+ //查询  
+ 
+ 
+ 
+    
+
+  var myDate = new Date();
+
+  var yy = ( myDate.getYear() < 1900 ) ? ( 1900 + myDate.getYear() ) : myDate.getYear();
+
+  var mm=myDate.getMonth()+1;
+  
+  if(mm<10){
+  	mm='0'+mm;
+  	}
+  	var dd=myDate.getDate();
+  	if(dd<10){
+  		dd='0'+dd;
+  	}
+  		
+  		var today=yy+'/'+mm+'/'+dd;
+  		var startday=yy+'/'+mm+'/'+'01';
+
+
+  
+//对翻页工具条重新构建，替换翻页函数    
+  Ext.PagingToolbar1 = Ext.extend(Ext.PagingToolbar, {
+     doRefresh:function(){
+
+     reflash();
+    },
+    
+ onPagingKeyDown:function(i,h){
+var d=this,b=h.getKey(),c=d.getPageData(),a=h.shiftKey?10:1,g;
+if(b==h.RETURN){
+ h.stopEvent();g=d.readPageFromInput(c);
+ if(g!==false){
+   g=Math.min(Math.max(1,g),c.pageCount);
+   if(d.fireEvent("beforechange",d,g)!==false){
+ //  	d.store.loadPage(g)
+      d.store.currentPage=g;
+   	}
+}
+   	reflash();
+   	
+   	}
+   else{if(b==h.HOME||b==h.END){h.stopEvent();g=b==h.HOME?1:c.pageCount;i.setValue(g)}
+   else{if(b==h.UP||b==h.PAGE_UP||b==h.DOWN||b==h.PAGE_DOWN){h.stopEvent();g=d.readPageFromInput(c);
+   if(g){if(b==h.DOWN||b==h.PAGE_DOWN){a*=-1}g+=a;if(g>=1&&g<=c.pageCount){i.setValue(g)}}}}}}
+   ,
+    moveLast:function(){
+    	var b=this,a=b.getPageData().pageCount;
+    	if(b.fireEvent("beforechange",b,a)!==false){
+    	store.currentPage=a;
+    	reflash();
+       }},
+     moveFirst:function(){
+      if(this.fireEvent("beforechange",this,1)!==false){
+      store.currentPage=1;
+      reflash();}}, 
+     movePrevious:function(){var b=this,a=b.store.currentPage-1;if(a>0){if(b.fireEvent("beforechange",b,a)!==false){store.currentPage=a;reflash();}}},
+     moveNext:function(){var c=this,b=c.getPageData().pageCount,a=c.store.currentPage+1;if(a<=b){if(c.fireEvent("beforechange",c,a)!==false){store.currentPage=a;reflash();}}}
+       
+});
+    var sm = Ext.create('Ext.selection.CheckboxModel',{
+        listeners: {
+            selectionchange: function(sm, selections) {
+           
+         grid.down('#removeButton').setDisabled(selections.length == 0);
+                
+            }
+        }
+    
+    });
+    
+
+
+                  
+
+    
+    
+    var grid = Ext.create('Ext.grid.Panel', {
+
+        height: 980,
+  //      forceFit: true,
+        scrollOffset: 0,
+        store: store,
+        frame:true,
+        selModel: sm,
+        // grid columns
+        columns:[{
+            text: "MAC地址",
+            dataIndex: 'mac', 
+           width: 140,
+ //           flex: 1,
+            sortable: true
+        },{
+            text: "AP名称",
+            dataIndex: 'apname',
+            hidden: false,
+            width: 140,
+            sortable: true
+        },{
+            text: "接入AP MAC",
+            dataIndex: 'apmac',           
+            width: 140,
+            sortable: true
+          
+        },{
+            text: "场所名称",
+            dataIndex: 'servicename',           
+            width: 140,
+            sortable: true
+          
+        },
+        {
+            text: "安装位置",
+            dataIndex: 'address',
+            hidden: false,
+            width: 200,
+            sortable: true
+        },
+        {
+            text: "进入时间",
+            dataIndex: 'starttime',
+            hidden: false,
+            width: 140,
+            sortable: true
+        },
+        {
+            text: "离开时间",
+            dataIndex: 'endtime',
+            hidden: false,
+            width: 140,
+            sortable: true
+        }
+        ,
+        {
+          width:40,
+           flex:1,
+            sortable: false
+        }
+       
+        ],
+        
+        columnLines: true,
+                                        
+        // paging bar on the bottom
+ 
+        tbar: Ext.create('Ext.PagingToolbar1', {
+            store: store,
+            
+            displayInfo: true,
+            displayMsg: '显示{0} - {1}条记录 共{2}条记录',
+            emptyMsg: "没有记录可显示",
+                                       
+            items: [
+ //          '->',
+            '-',
+           {
+           xtype:'label',
+            html:'&nbsp;<select name="time_flag" id="time_flag"  onchange="if(this.value==9){showCxForm();return;};document.getElementById(\'form1\').time_flag.value=this.value;"><option value="1">今天</option><option value="2">最近三天</option><option value="3">最近一周</option><option value="4">最近一月</option><option value="5">最近三月</option><option value="6">最近半年</option><option value="9">自定义查询</option></select></select>&nbsp;关键字'
+           
+            
+             }
+             ,
+             {
+               xtype:'textfield',
+               id:'keyword1',
+               name:'keyword1',
+               width:'180px',
+               style:'color:#7aa7d5',
+               emptyText:'输入MAC或场所名称或APmac查询',
+  //             value:'请输入查询内容',
+               listeners:{
+                 'focus':function(){
+                 if(this.value=='请输入查询内容'){                
+                    this.setValue('');
+                  }
+                 }
+               }
+             },
+             {
+                text:'确认',
+                iconCls:'accept',
+                handler: function(){
+                 var aa=Ext.getCmp('keyword1').value;
+                
+                if(aa){
+                  	document.getElementById("form1").keyword.value=aa;
+                 }
+                 else{
+                 	document.getElementById("form1").keyword.value='';
+                }
+                 document.getElementById("form1").sdate.value='';  
+                 document.getElementById("form1").edate.value='';
+                 document.getElementById("form1").apmac.value='';
+                 document.getElementById("form1").mac.value='';
+                 document.getElementById("form1").apname.value='';
+                 document.getElementById("form1").position.value='';
+                 document.getElementById("form1").corpname.value='';
+                 store.currentPage=1;
+                 reflash();
+              
+                }
+            }
+            ,
+            	{
+                	text:'高级',
+                	anchor: 'right',
+               		handler: showCxForm,
+                	iconCls:'option'
+            	}
+   //         ,
+   //                      {
+  //          itemId: 'removeButton',
+  //          text: '同步单位信息',
+  //          iconCls: 'add',
+
+ //               handler:function(){
+             
+//							   if(confirm('执行该操作将禁用选择的key')){                  
+//                 var selsid;  
+//                 var rows=sm.getSelection();
+//                   selsid='';
+//                  for(var i=0;i<rows.length;i++){
+//                  	if(i==0){
+//                  	 selsid=rows[i].getId();
+//                  	}
+//                  	else{
+//                       selsid=selsid+","+rows[i].getId();
+//                    }
+                   
+//                   }
+ 
+//                      store.load({params: {fob: "fob",selsid:selsid}});
+                  
+                
+//              }
+                
+//            },
+ //           disabled: true
+//             }
+,
+            
+            
+            '-']
+       
+
+        })
+      ,
+        renderTo: 'grid-corp'
+    });
+
+
+
+
+    // trigger the data store load
+    reflash();
+    
+    
+
+});
+
+
+</script>
+    
+    
+</head>
+<body>
+	<form name="form1" id="form1" action="/pronline/Msg">
+	
+		<input type="hidden" name="keyword" value="">
+		<input type="hidden" name="time_flag" value="1">
+		<input type="hidden" name="sdate" value="">
+		<input type="hidden" name="edate" value="">
+		<input type="hidden" name="stime" value="">
+		<input type="hidden" name="etime" value="">
+		<input type="hidden" name="apmac" value="">
+		<input type="hidden" name="mac" value="">
+		<input type="hidden" name="apname" value="">
+	  <input type="hidden" name="position" value="">
+	  <input type="hidden" name="corpname" value="">
+
+		<input type="hidden" name="groupid" value="">
+		<input type="hidden" name="did" value="">
+
+	</form>
+    <div id="grid-corp"></div>
+
+</body>
+</html>

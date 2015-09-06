@@ -1,0 +1,212 @@
+<html>
+<head>
+<title>IDC 禁止网页关键字</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<style>
+.conts{visibility:hidden}
+
+</style>
+<script language="javascript">
+var ll=0;
+var yy=1;
+
+</script>
+<script LANGUAGE="JavaScript">
+//this is the tab switching function
+
+function init()
+{
+	form1.ntype.value=1;
+	if(form1.startdate.value=='')
+			form1.startdate.value="2011-01-01 00:00:00";
+	if(form1.enddate.value=='')
+			form1.enddate.value="2012-12-31 59:59:59";
+//	form1.idcdomain.value="";
+
+
+//	form1.sid.value="";
+//	form1.idcname.value="";
+//	form1.password.value="";
+//	form1.email.value="";
+//	form1.ip.value="";
+//	form1.startdate.value="";
+//	form1.enddate.value="";
+
+
+
+//	form1.keyword.value="";
+//	form1.idcindex.value=0;
+//	form1.num.value=10;
+//	form1.idcid.value="";
+//	form1.city.value="";
+	//form1.FunName.value="/pronline/Msg?FunName@ncs_idc_net_show&domain@"+form1.idcdomain.value+"&id@"+form1.sid.value+"&name@"+form1.idcname.value+"&password@"+form1.password.value+"&email@"+form1.email.value+"&ip@"+form1.ip.value+"&startdate@"+form1.startdate.value+"&enddate@"+form1.enddate.value+"&index@"+form1.idcindex.value+"&num@"+form1.num.value+"&city@"+form1.city.value;
+	//alert(form1.FunName.value);
+	document.getElementById("list").src="/pronline/Msg?FunName@ncsIdcSetKey&Type@"+form1.ntype.value+"&keyword@"+form1.keyword.value+"&city@"+form1.city.value+"&idcid="+form1.idcid.value+"&startdate@"+form1.startdate.value+"&enddate@"+form1.enddate.value;
+	//document.getElementById("list").src="/pronline/Msg?FunName@ncs_idc_webpage_search&domain@"+form1.idcdomain.value+"&id@"+form1.sid.value+"&name@"+form1.idcname.value+"&password@"+form1.password.value+"&email@"+form1.email.value+"&ip@"+form1.ip.value+"&startdate@"+form1.startdate.value+"&enddate@"+form1.enddate.value+"&index@"+form1.idcindex.value+"&num@"+form1.num.value+"&city@"+form1.city.value+"&idcid="+form1.idcid.value;
+	//pronline/Msg?FunName@ncs_idc_net_show&domain@&id@&name@&password@&email@&ip@&startdate@&enddate@&index@0&num@10&city@
+	//form1.submit();
+}
+function save()
+{
+	form1.ntype.value=1;
+//	form1.idcdomain.value="";
+
+
+//	form1.sid.value="";
+//	form1.idcname.value="";
+//	form1.password.value="";
+//	form1.email.value="";
+//	form1.ip.value="";
+//	form1.startdate.value="";
+//	form1.enddate.value="";
+
+
+
+//	form1.keyword.value="";
+//	form1.idcindex.value=0;
+//	form1.num.value=10;
+//	form1.idcid.value="";
+//	form1.city.value="";
+	//form1.FunName.value="/pronline/Msg?FunName@ncs_idc_net_show&domain@"+form1.idcdomain.value+"&id@"+form1.sid.value+"&name@"+form1.idcname.value+"&password@"+form1.password.value+"&email@"+form1.email.value+"&ip@"+form1.ip.value+"&startdate@"+form1.startdate.value+"&enddate@"+form1.enddate.value+"&index@"+form1.idcindex.value+"&num@"+form1.num.value+"&city@"+form1.city.value;
+	//alert(form1.FunName.value);
+	document.getElementById("list").src="/pronline/Msg?FunName@ncsIdcSetKey&Type@"+form1.ntype.value+"&keyword@"+form1.keyword.value+"&city@"+form1.city.value+"&idcid="+form1.idcid.value+"&startdate@"+form1.startdate.value+"&enddate@"+form1.enddate.value;
+	//document.getElementById("list").src="/pronline/Msg?FunName@ncs_idc_webpage_search&domain@"+form1.idcdomain.value+"&id@"+form1.sid.value+"&name@"+form1.idcname.value+"&password@"+form1.password.value+"&email@"+form1.email.value+"&ip@"+form1.ip.value+"&startdate@"+form1.startdate.value+"&enddate@"+form1.enddate.value+"&index@"+form1.idcindex.value+"&num@"+form1.num.value+"&city@"+form1.city.value+"&idcid="+form1.idcid.value;
+	//pronline/Msg?FunName@ncs_idc_net_show&domain@&id@&name@&password@&email@&ip@&startdate@&enddate@&index@0&num@10&city@
+	//form1.submit();
+}
+function idc_del()
+{
+	form1.ntype.value=1;
+	form1.delflag.value=1;
+	
+//	form1.idcdomain.value="";
+	//form1.FunName.value="/pronline/Msg?FunName@ncs_idc_net_show&domain@"+form1.idcdomain.value+"&id@"+form1.sid.value+"&name@"+form1.idcname.value+"&password@"+form1.password.value+"&email@"+form1.email.value+"&ip@"+form1.ip.value+"&startdate@"+form1.startdate.value+"&enddate@"+form1.enddate.value+"&index@"+form1.idcindex.value+"&num@"+form1.num.value+"&city@"+form1.city.value;
+	//alert(form1.FunName.value);
+	document.getElementById("list").src="/pronline/Msg?FunName@ncsIdcSetKey&Type@"+form1.ntype.value+"&keyword@"+form1.keyword.value+"&city@"+form1.city.value+"&idcid="+form1.idcid.value+"&startdate@"+form1.startdate.value+"&enddate@"+form1.enddate.value+"&delflag@"+form1.delflag.value;
+	//document.getElementById("list").src="/pronline/Msg?FunName@ncs_idc_webpage_search&domain@"+form1.idcdomain.value+"&id@"+form1.sid.value+"&name@"+form1.idcname.value+"&password@"+form1.password.value+"&email@"+form1.email.value+"&ip@"+form1.ip.value+"&startdate@"+form1.startdate.value+"&enddate@"+form1.enddate.value+"&index@"+form1.idcindex.value+"&num@"+form1.num.value+"&city@"+form1.city.value+"&idcid="+form1.idcid.value;
+	//pronline/Msg?FunName@ncs_idc_net_show&domain@&id@&name@&password@&email@&ip@&startdate@&enddate@&index@0&num@10&city@
+	//form1.submit();
+}
+
+var dfd1="0"
+
+</script>
+<style>
+.conts  {visibility:hidden}
+
+table {  font-size: 9pt}
+ .style2 {
+	font-size: 20px;
+	font-weight: bold;
+	font-style: italic;
+	color: #0000ff;
+}
+</style>
+
+<style type="text/css">
+
+<!--
+body {  font-size: 9pt}
+.tas {  border-color: black #FFFFFF; border-style: solid; border-top-width: 0px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 1px}
+table {  font-size: 9pt}
+.gray1 { filter:gray }
+.ttbbd {  cursor: default}
+.nobordertext{border-width:1px;border-color:blue;background-color:#d0e1fa;width:138;}
+
+-->
+</style>
+<link REL=stylesheet HREF="/css/listdatetable.css" TYPE="text/css">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<body bgcolor="#8cb4e8" leftmargin="1" topmargin="0" onload="init()"  style="overflow:hidden" >
+<form name="form1" id="form1" method="post" action="/pronline/Msg" target="main">
+<input type="hidden" name="FunName" value="">
+<input type="hidden" name="did" value="">
+<input type="hidden" name="uid" value="">
+<input type="hidden" name="delflag" value="">
+<input type="hidden" name="ntype" value="">
+<!--
+<input type="hidden" name="idcdomain" value="">
+<input type="hidden" name="sid" value="">
+<input type="hidden" name="idcname" value="">
+<input type="hidden" name="password" value="">
+<input type="hidden" name="email" value="">
+<input type="hidden" name="ip" value="">
+<input type="hidden" name="startdate" value="">
+<input type="hidden" name="enddate" value="">
+
+<input type="hidden" name="idcindex" value="">
+<input type="hidden" name="num" value="">
+<input type="hidden" name="idcid" value="">
+<input type="hidden" name="keyword" value="">
+<input type="hidden" name="city" value="">
+-->
+    <table border="0"  bordercolorlight=#aaaaaa bordercolordark=#ffffff  CELLPADDING="0" CELLSPACING="0" bgcolor=#8cb4e8 STYLE="width:100%; height:100%">
+  	
+  <tr >
+      <td colspan="9">
+      	
+      	<table width="100%" height="27" border="0" align="center" cellpadding="0" cellspacing="0" background="/images/table_bg1.gif">
+          <tr height="30"> 
+          	<td class="tabtitle" >禁止网页敏感关键字&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td background="/images/images2/chaxun2-1.gif" align="right"> &nbsp;
+            	
+            	</td>
+          </tr>
+        </table></td>
+    </tr>	
+   	
+   <tr >
+   			<td>
+   				<table bgcolor=#bad2f4 width="100%">
+   					<tr>
+   						<td >keyword：<input name="keyword" size="14" type="text" />
+   							起始日：<input name="startdate" size="20" type="text" />
+   							终止日：<input name="enddate" size="20" type="text"  />
+   							区域：<input name="city" size="12" type="text" />
+   							机房Id：<input name="idcid" size="8" type="text" />
+   							<input type="button"  class="an3" name="search" value="保 存"  onclick="save();"  />
+   							<input type="button" class="an3"  name="del" value="删 除"  onclick="idc_del();"  />
+   							</td>
+   						
+   					</tr>	
+   				</table>
+   			</td>
+   		</tr>
+   		<!--
+   		<tr>
+   			<td>
+   				<table>
+   					<tr>
+   						
+   						
+   					</tr>	
+   				</table>
+   			</td>
+   		</tr> 
+  -->
+   <tr><td></td></tr>
+
+</form>	
+	
+<tr>
+	      <td height="635"  valign="top" width="60%">
+	       <iframe  height="635" name="list" id="list" width="100%"  border="0" frameborder="0" src="" scrolling="yes"> </iframe>      
+	      </td>
+	      
+	      	      
+      </tr>
+
+
+
+</table>
+
+	
+
+
+</body>
+</html>

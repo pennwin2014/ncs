@@ -1,0 +1,25 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<SCRIPT LANGUAGE="JavaScript1.1">
+<!--
+var autoScrollOn = 1;var scrollOnFunction;var scrollOffFunction;
+function scrollit(){autoScrollOn=1;StartUp();return true;}
+function scrollWindow( ){if ( autoScrollOn == 1 ){this.scroll(0, 65000);parent.main.scroll(0, 65000);setTimeout('scrollWindow()',200);}}
+function scrollOn( ){autoScrollOn = 1;scrollWindow( );}
+function scrollOff( ){autoScrollOn = 0;}
+function StartUp( ){this.onblur  = scrollOnFunction;this.onfocus = scrollOffFunction;scrollWindow( );parent.main.onblur  = scrollOnFunction;parent.main.onfocus = scrollOffFunction;scrollWindow( );}
+scrollOnFunction = new Function('scrollOn( )')
+scrollOffFunction = new Function('scrollOff( )')
+StartUp();
+--></script>
+</head>
+<body bgcolor="#333333" topmargin="3" text="#33CC00">
+<table  cellspacing=0 
+   class=listDataTable id=DataTable  cellpadding="0" bordercolor="#DFDFDF" border="0" align="center">
+<form id="ff" name='ff'>
+ </form>
+</table>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+  
+<!-- 导入Extjs框架 -->
+<!-- <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css">
+<script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+ -->
+ 
+<link rel = "stylesheet" type = "text/css" href = "/newver/resources/js/ext-3.3.1/resources/css/ext-all.css"/>
+<script type = "text/javascript" src = "/newver/resources/js/ext-3.3.1/adapter/ext/ext-base.js"></script>
+<script type = "text/javascript" src = "/newver/resources/js/ext-3.3.1/ext-all.js"></script> 
+ 
+  
+<script type="text/javascript"> 
+
+
+var g_arrData = [];
+
+function getDrawData(){	
+	
+	//获取当前查询时间
+	//var time_flag = parent.Ext.getCmp('time_flag').value;
+	var time_flag = 'all';
+	//获取所有选中行
+	var macvalue = []; 
+	var rows = parent.Ext.getCmp('id_maclogtable').getSelectionModel(); 
+	for(var i = 0; i <rows.selected.items.length;i++){											
+			macvalue.push([rows.selected.items[i].data.mac]);			
+	}
+	//alert(macvalue + ' ' + time_flag);		
+	
+	parent.parent.showWaitDialog();	
+	Ext.Ajax.request({			
+		url: '/pronline/Msg?FunName@ncsMacLog_ChosenMac_DistinctSsid&mac@' 
+					+ macvalue + '&timevalue@' + time_flag, 		
+		method: 'GET',		
+		success: function(resp, opts){		
+			
+			parent.parent.closeWaitDialog();
+				
+			var respText = resp.responseText; 			//获取整个 JSON 数据的字符串
+			try{
+				
+				var respRecord = eval("("+respText+")");	//字符串转成结构体				
+				var totalCount = respRecord.totalCount;	
+				var ssidvalue;							
+				var servicevalue;
+				
+				if(totalCount > 0)
+				{
+					for(var i in respRecord.data){
+						ssidvalue = respRecord.data[i].ssid;						
+						servicevalue = respRecord.data[i].servicename;
+						g_arrData.push({ssid:ssidvalue, servicename:servicevalue});					
+					}																																						
+				}
+				else
+				{
+					//alert("当前mac对应接入热点ssid为空");
+				}		
+				showMACPersonInfo();			
+			}
+			catch(e){
+				alert(e.message);
+			}
+							
+		},
+		failure: function(resp, opts){
+			var resqText = eval("(" + resqText + ")");
+			alert('错误', resqText.error);
+		} 		
+	}); 		
+}
+
+// 函数：显示当前历史ssid列表 ssid名称、场所名称
+function showMACPersonInfo(){	
+	//创建表格	
+	var data = [];
+	for(var i in g_arrData){
+		data.push([g_arrData[i].ssid, g_arrData[i].servicename]);
+	}
+				
+	var vstore = new Ext.data.ArrayStore({data:data, fields:["idssid", "idservicename"]});
+    var mygrid = new Ext.grid.GridPanel({
+				store: vstore,
+				frame: true,
+				width: 950,
+				height: 480,								
+				//left: 200px,
+				columnLines: true,	
+				autoScroll:true,				
+				renderTo: 'mygrid',
+				columns:[{header: "接入热点ssid", dataIndex: "idssid", width:450},
+						 {header: "场所名称", dataIndex: "idservicename", width:460 
+						 }
+						]			
+
+	});	
+} 
+
+Ext.onReady(function(){	
+	
+	getDrawData();
+	
+});	
+
+
+</script>
+  
+</head>
+<body>
+
+  <div id="mygrid" style = "" ></div>	
+  
+  
+</body>
+</html>
+
+

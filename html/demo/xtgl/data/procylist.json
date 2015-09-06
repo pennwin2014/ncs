@@ -1,0 +1,17 @@
+{
+  data:[{
+    groupname:"研发部",
+    ip:"192.168.20.54",
+    timename:"工作日",
+    procytype:"文件策略",
+    levelname:"普通管理员",
+    modtime:"2014-02-24"
+  },{
+    groupname:"销售部",
+    ip:"192.168.20.58",
+    timename:"工作日",
+    procytype:"网址策略",
+    levelname:"普通管理员",
+    modtime:"2014-02-24"
+  }]
+}

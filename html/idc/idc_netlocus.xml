@@ -1,0 +1,256 @@
+    <?xml version="1.0" encoding="UTF-8"?>
+<d>
+<lcount>3746</lcount>
+<data>
+<node>
+<name>252076752</name>
+<ntype>QQ</ntype>
+<optime>2012-03-19 15:28:02</optime>
+<nip>183.60.49.80</nip>
+<operate>登录</operate>
+<cname>未知</cname>
+<uname></uname>
+<email></email>
+</node>
+<node>
+<name>953005693</name>
+<ntype>QQ</ntype>
+<optime>2012-03-19 15:26:41</optime>
+<nip>192.168.8.20</nip>
+<operate>登录</operate>
+<cname>未知</cname>
+<uname>PC-201112312211</uname>
+<email></email>
+</node>
+<node>
+<name>953005693</name>
+<ntype>QQ</ntype>
+<optime>2012-03-19 15:28:25</optime>
+<nip>192.168.8.20</nip>
+<operate>退出</operate>
+<cname>未知</cname>
+<uname>PC-201112312211</uname>
+<email></email>
+</node>
+<node>
+<name>953005693</name>
+<ntype>QQ</ntype>
+<optime>2012-03-19 15:01:42</optime>
+<nip>192.168.8.20</nip>
+<operate>退出</operate>
+<cname>未知</cname>
+<uname>PC-201112312211</uname>
+<email></email>
+</node>
+<node>
+<name>953005693</name>
+<ntype>QQ</ntype>
+<optime>2012-03-19 15:00:01</optime>
+<nip>192.168.8.20</nip>
+<operate>登录</operate>
+<cname>未知</cname>
+<uname>PC-201112312211</uname>
+<email></email>
+</node>
+<node>
+<name>252076752</name>
+<ntype>QQ</ntype>
+<optime>2012-03-19 14:59:50</optime>
+<nip>183.60.49.80</nip>
+<operate>登录</operate>
+<cname>未知</cname>
+<uname></uname>
+<email></email>
+</node>
+<node>
+<name>340621616</name>
+<ntype>QQ</ntype>
+<optime>2012-03-19 14:34:38</optime>
+<nip>183.60.49.80</nip>
+<operate>登录</operate>
+<cname>未知</cname>
+<uname></uname>
+<email></email>
+</node>
+<node>
+<name>953005693</name>
+<ntype>QQ</ntype>
+<optime>2012-03-19 14:33:11</optime>
+<nip>192.168.8.20</nip>
+<operate>登录</operate>
+<cname>未知</cname>
+<uname>PC-201112312211</uname>
+<email></email>
+</node>
+<node>
+<name>953005693</name>
+<ntype>QQ</ntype>
+<optime>2012-03-19 14:34:38</optime>
+<nip>192.168.8.20</nip>
+<operate>退出</operate>
+<cname>未知</cname>
+<uname>PC-201112312211</uname>
+<email></email>
+</node>
+<node>
+<name>953005693</name>
+<ntype>QQ</ntype>
+<optime>2012-03-19 14:19:41</optime>
+<nip>192.168.8.20</nip>
+<operate>登录</operate>
+<cname>未知</cname>
+<uname>PC-201112312211</uname>
+<email></email>
+</node>
+<node>
+<name>953005693</name>
+<ntype>QQ</ntype>
+<optime>2012-03-19 14:22:13</optime>
+<nip>192.168.8.20</nip>
+<operate>退出</operate>
+<cname>未知</cname>
+<uname>PC-201112312211</uname>
+<email></email>
+</node>
+<node>
+<name>340621616</name>
+<ntype>QQ</ntype>
+<optime>2012-03-19 14:19:31</optime>
+<nip>183.60.49.80</nip>
+<operate>登录</operate>
+<cname>未知</cname>
+<uname></uname>
+<email></email>
+</node>
+<node>
+<name>1021516500</name>
+<ntype>QQ</ntype>
+<optime>2012-03-19 13:55:33</optime>
+<nip>183.60.49.80</nip>
+<operate>登录</operate>
+<cname>未知</cname>
+<uname></uname>
+<email></email>
+</node>
+<node>
+<name>953005693</name>
+<ntype>QQ</ntype>
+<optime>2012-03-19 14:02:34</optime>
+<nip>192.168.8.20</nip>
+<operate>退出</operate>
+<cname>未知</cname>
+<uname>PC-201112312211</uname>
+<email></email>
+</node>
+<node>
+<name>953005693</name>
+<ntype>QQ</ntype>
+<optime>2012-03-19 13:42:11</optime>
+<nip>192.168.8.20</nip>
+<operate>登录</operate>
+<cname>未知</cname>
+<uname>PC-201112312211</uname>
+<email></email>
+</node>
+<node>
+<name>1021516500</name>
+<ntype>QQ</ntype>
+<optime>2012-03-19 13:42:10</optime>
+<nip>183.60.49.80</nip>
+<operate>登录</operate>
+<cname>未知</cname>
+<uname></uname>
+<email></email>
+</node>
+<node>
+<name>houxiaolong</name>
+<ntype>POP3邮件</ntype>
+<optime>2012-03-19 13:29:32</optime>
+<nip>192.168.8.20</nip>
+<operate>登录</operate>
+<cname>未知</cname>
+<uname>PC-201112312211</uname>
+<email></email>
+</node>
+<node>
+<name>houxiaolong</name>
+<ntype>POP3邮件</ntype>
+<optime>2012-03-19 13:29:32</optime>
+<nip>192.168.8.20</nip>
+<operate>退出</operate>
+<cname>未知</cname>
+<uname>PC-201112312211</uname>
+<email></email>
+</node>
+<node>
+<name>1021516500</name>
+<ntype>QQ</ntype>
+<optime>2012-03-19 13:25:57</optime>
+<nip>183.60.49.80</nip>
+<operate>登录</operate>
+<cname>未知</cname>
+<uname></uname>
+<email></email>
+</node>
+<node>
+<name>953005693@qq.com</name>
+<ntype>QQ邮箱帐号</ntype>
+<optime>2012-03-19 13:24:37</optime>
+<nip>192.168.8.20</nip>
+<operate>登录</operate>
+<cname>未知</cname>
+<uname>PC-201112312211</uname>
+<email></email>
+</node>
+<node>
+<name>953005693@qq.com</name>
+<ntype>QQ邮箱帐号</ntype>
+<optime>2012-03-19 13:24:37</optime>
+<nip>192.168.8.20</nip>
+<operate>退出</operate>
+<cname>未知</cname>
+<uname>PC-201112312211</uname>
+<email></email>
+</node>
+<node>
+<name>1641618092</name>
+<ntype>QQ</ntype>
+<optime>2012-03-19 13:19:26</optime>
+<nip>183.60.49.80</nip>
+<operate>登录</operate>
+<cname>未知</cname>
+<uname></uname>
+<email></email>
+</node>
+<node>
+<name>953005693</name>
+<ntype>QQ</ntype>
+<optime>2012-03-19 13:25:50</optime>
+<nip>192.168.8.20</nip>
+<operate>退出</operate>
+<cname>未知</cname>
+<uname>PC-201112312211</uname>
+<email></email>
+</node>
+<node>
+<name>953005693</name>
+<ntype>QQ</ntype>
+<optime>2012-03-19 13:19:15</optime>
+<nip>192.168.8.20</nip>
+<operate>登录</operate>
+<cname>未知</cname>
+<uname>PC-201112312211</uname>
+<email></email>
+</node>
+<node>
+<name>953005693</name>
+<ntype>QQ</ntype>
+<optime>2012-03-19 13:15:32</optime>
+<nip>192.168.8.20</nip>
+<operate>退出</operate>
+<cname>未知</cname>
+<uname>PC-201112312211</uname>
+<email></email>
+</node>
+</data>
+</d>

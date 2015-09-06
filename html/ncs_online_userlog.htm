@@ -1,0 +1,272 @@
+<html>
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<title>main</title>
+
+<script src="/js/ajax.js"></script>
+<script>
+var ll=0;
+var yy=0;
+function gotoPage(pagenum)
+{
+	  if(pagenum>form1.TotPg.value)
+	   pagenum=form1.TotPg.value;
+	   
+	   if(pagenum<=0)
+	     pagenum=1;
+	     
+    form1.CurPg.value = pagenum;
+}
+
+
+function mouseovertr2 (o){
+var i;
+df=o.style.backgroundColor
+	o.style.backgroundColor= "#d0e1fa";
+	o.style.borderColor= "#FFFF00";
+	o.style.cursor="hand";	
+
+}
+
+function mouseouttr2(o){
+	o.style.backgroundColor=df
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#000000";
+}
+	
+	
+}
+var xmlHttp = false;
+var xmlHttp_tw = false;
+var flesh_flag;
+//调用AJAX
+ function callServer(){ 
+
+  if( xmlHttp && xmlHttp .readyState != 0 ){
+    xmlHttp.abort();
+  }
+
+   xmlHttp = createXMLHttpRequest();
+ 
+   if( xmlHttp ){
+  
+   	var web_url='/pronline/Msg?FunName@ncsWebOnlineuserlog&userid@'+form1.userid.value+'&CurPg@'+form1.CurPg.value+'&xx@'+Math.random()*999;
+
+    //打开连接
+
+    xmlHttp.open("GET",web_url, true);
+    //设置回调函数
+    xmlHttp.onreadystatechange = updatePage;
+    xmlHttp.send(null);
+  }
+ }
+
+
+
+function initAjax(){
+	callServer();
+	setInterval('callServer()',5000);
+
+}
+
+
+	 //ajax回调处理函数
+ function updatePage(){
+
+   if (xmlHttp.readyState == 4){
+     var response = xmlHttp.responseText;
+     
+     var temp_date=getxmlbyname(response,"<content>","</content>");
+     
+     document.all.pcont.innerHTML=temp_date;
+     form1.CurPg.value=getxmlbyname(response,"<curpg>","</curpg>");
+     form1.TotPg.value=getxmlbyname(response,"<totpg>","</totpg>");
+     form1.TotRec.value=getxmlbyname(response,"<totrec>","</totrec>");
+     ll=form1.CurPg.value;
+     yy=form1.TotPg.value;
+        document.getElementById("tC").scrollTop=form1.sctop.value;
+   }
+
+ }
+function setscrollvaue()
+{
+	form1.sctop.value=document.all.tC.scrollTop;
+
+}
+
+function checkme(p)
+{
+	var tt=p.value
+
+	if (tt>yy)
+	{
+
+		MM_changeProp('TotPg','','value',yy,'INPUT/TEXT')
+	}
+	if (tt==0)
+	{
+		MM_changeProp('CurPg','','value','1','INPUT/TEXT')
+	}
+}
+
+
+// -->
+<!-- Hide
+
+function killErrors() {
+return true;
+}
+window.onerror = killErrors;
+// -->
+
+</script>
+<link REL=stylesheet HREF="/css/runmit.css" TYPE="text/css">
+
+<style type="text/css">
+<!--
+.a5:link {
+	COLOR: #339900; TEXT-DECORATION: none
+}
+.a5:visited {
+	COLOR: #339900; TEXT-DECORATION: none
+}
+.a5:hover {
+	COLOR: #33cc00; TEXT-DECORATION: none
+}
+.a6:link {
+	COLOR: #536a00; TEXT-DECORATION: none
+}
+.a6:visited {
+	COLOR: #536a00; TEXT-DECORATION: none
+}
+.a6:hover {
+	COLOR: #99c600; TEXT-DECORATION: none
+}
+.tScroll5 {
+      overflow: scroll;
+    overflow-x:hidden;
+    height:560px;
+    cursor: default;
+    }
+A:link {TEXT-DECORATION:underline;color:#990000;}
+A:visited{TEXT-DECORATION:underline;color:#990000;}
+A:hover {TEXT-DECORATION:underline;color:#999900;}
+-->
+</style>
+<link href="../css/css.css" rel="stylesheet" type="text/css">
+<link REL=stylesheet HREF="/css/listdatetable.css" TYPE="text/css">
+</head>
+<body marginheight=0 leftmargin=0 marginwidth=0 topMargin="0"  style="overflow:hidden" bgcolor="#DEE8FA" onload="initAjax();">
+<form name="form1" method="post" action="/pronline/Msg">
+<input type="hidden" name="sctop" value="0">
+   <input type="hidden" name="userid" value="">
+
+<table border="0" width=100%  cellspacing="0" cellpadding="0" align=center bgcolor='#ffffff'>
+	<tr>
+	   <td><table width="100%" cellspacing="0" cellpadding="0">
+         <tr height="30"> 
+         <td class="tabtitle" >实时上网记录&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+         <td background="/images/images2/chaxun2-1.gif" > &nbsp;</td>
+         <td background="/images/images2/chaxun2-1.gif" align="right">        	
+         	 <table align=right border=0 cellpadding=0 cellspacing=0 class=main width=111>
+                <tbody> 
+                <td width="10%"><script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-06.gif' border=0 height=17 width=35 class='gray1'>")}
+                      else{
+                        document.write("<a href='#xxm'><img src='/images/zbuyer-06.gif' border=0 height=17 width=35 onClick='gotoPage(1);callServer();' class='hand'>")}
+                   </script></td>
+                <td width="10%"><script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 class='gray1'>")}
+                      else {
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 onClick='gotoPage(parseInt(form1.CurPg.value)-1);callServer();' class='hand'>")}
+                   </script></td>
+                <td width="20%"><img src="/images/zbuyer-08.gif" border=0 height=17 width=32></td>
+                <td align=middle background="" width=92>
+                    <input class=Main id=browsdopage maxlength=3  name=CurPg size=3 style="FONT-SIZE: 12px; HEIGHT: 17px; TEXT-ALIGN: center; WIDTH: 50px" value='' onKeyPress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" onBlur="checkme(this)">
+                </td>
+                <td width="10%"><img src="/images/zbuyer-09.gif" border=0 height=17 width=16></td>
+                <td width="10%"><img align=middle border=0 height=17 src="/images/zbuyer-10.gif" width=17 onClick="gotoPage(form1.CurPg.value);callServer();" class="hand"><img align=middle height=17 src="/images/zbuyer-11.gif" width=3></td>
+                
+                
+                <td width="10%"><img border=0 height=17 src="/images/zin1.gif" width=17 ></td>
+                <td align=middle background="" width=92> 
+                  <input  class=Main id=browsdopage1 maxlength=5 name=TotPg size=3 style="FONT-SIZE: 12px; HEIGHT: 17px; TEXT-ALIGN: center; WIDTH: 50px" value=''>
+                </td>
+					    <td width="10%"><img align=middle height=17 src="/images/zbuyer-09.gif" width=16></td>
+					    <td align=middle background="" width=92> 
+					      <input  class=Main id=browsdopage1 maxlength=5 name=TotRec size=3 style="FONT-SIZE: 12px; HEIGHT: 17px; TEXT-ALIGN: center; WIDTH: 50px;" value=''>
+					    </td>
+					    <td width="10%"><img border=0 height=17 src="/images/zin3.gif" width=17 align="middle" ><img align=middle height=17  src="/images/zbuyer-11.gif" width=3></td>
+                
+                <td width="10%"><script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 onClick='gotoPage(parseInt(form1.CurPg.value)+1);callServer();' class='hand'>")}
+                    </script></td>
+                <td width="10%"><script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 onClick='gotoPage(form1.TotPg.value);callServer();' class='hand'>")}
+                    </script></td>
+              </tbody>
+            </table>  
+         	         	
+         	</td>
+         </tr>
+         
+         
+         </table>
+      </td>
+  </tr>
+  
+  <tr>
+      <td width="100%" align=center  valign=top bgcolor="#ffffff" id="pcont"> 
+      	
+      <div class="tScroll5" id="tC">	
+        <table id="DataTable"  width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+
+          <tr class="tableHead"  height="20" style="top:expression(document.getElementById('tC').scrollTop)">
+            <td width="140" align="center" bgcolor="#6382BD" class="bord2" ><font color="#FFFFFF">上网场所</font></td>
+            <td width="100" bgcolor="#6382BD" align="center" class="bord2" ><font color="#FFFFFF">姓名</font></td>
+            <td width="14%" bgcolor="#6382BD" align="center" class="bord2" ><font color="#FFFFFF"> 上线时间</font></td>
+            <td width="14%" bgcolor="#6382BD" align="center" class="bord2" ><font color="#FFFFFF"> IP地址</font></td>
+            <td width="13%" bgcolor="#6382BD" align="center" class="bord2" ><font color="#FFFFFF"> MAC地址</font></td>
+            <td width="13%" bgcolor="#6382BD" align="center" class="bord2" ><font color="#FFFFFF"> 总流量</font></td>
+
+           
+          </tr> 
+      </TABLE>
+     </div>  
+      
+          	
+          </td>
+          </tr>
+          
+          
+        </table>
+        
+      </td>
+  </tr>
+  
+
+  
+</table>
+ </form>
+
+</body>
+
+</html>

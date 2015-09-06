@@ -1,0 +1,76 @@
+<html>
+<head>
+<title>User Login</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<style type="text/css">
+
+<!--
+table {  font-size: 9pt}
+.coolButton2 {
+
+	HEIGHT: 20px; MARGIN: 1px; WIDTH: 20px
+
+}
+.gray1{filter:gray
+}
+.anniu {  background-color: #dfdfdf; height: 22px; width: 80px; margin-top: 1px; margin-right: 1px; margin-bottom: 1px; margin-left: 1px; padding-top: 1px; padding-right: 1px; padding-bottom: 1px; padding-left: 1px; font-family: "宋体"; font-size: 9pt; font-style: normal; font-weight: normal; color: #000000; top: 20px; clip:   rect(   )}
+
+-->
+
+</style>
+
+</head>
+
+<body bgcolor="menu" text="#000000" leftmargin="0" topmargin="0"  style='overflow-y:hidden;overflow-x:hidden;'>
+<table width="428" border="0" height="171"  cellspacing="0" cellpadding="0">
+  <form name="nclogin" id="nclogin" method="post" action="/pronline/Msg">
+    <tr> 
+      <td background="/images/logobbz2.gif"> 
+        <table width="100%" border="0">
+          <tr> 
+            <td width="8%">&nbsp;</td>
+            <td colspan="3"><img src="/images/loginspy.gif" width="35" height="34" align="texttop"> 
+              请输入密码 
+              <input type="hidden" name="FunName" value="ncWebAuth">
+            </td>
+          </tr>
+          <tr> 
+            <td rowspan="2" width="8%"> 
+              <div align="right"></div>
+            </td>
+            <td width="17%">用户名 
+              <input type="image" src="" width="1" height="1" tabindex=-1 name="image">
+            </td>
+            <td width="31%"> 
+              <input type="text" name="username" size="16" tabindex=1>
+            </td>
+            <td width="31%"> 
+              <input type="button" name="ok" value="确定" class="anniu" 
+                     onclick="nclogin.submit()" tabindex=4>
+            </td>
+            <td width="13%">&nbsp;</td>
+          </tr>
+          <tr> 
+            <td width="17%">密码</td>
+            <td width="31%"> 
+              <input type="password" name="password" size="16"  tabindex=2>
+            </td>
+            <td width="31%"> 
+              <input type="button" name="Submit2" value="取消登陆"  onClick="window.close()" class="anniu">
+            </td>
+            <td width="13%">&nbsp;</td>
+          </tr>
+          <tr> 
+            <td width="8%">&nbsp;</td>
+            <td width="17%">&nbsp;</td>
+            <td width="31%">&nbsp; </td>
+            <td width="31%">&nbsp; </td>
+            <td width="13%">&nbsp;</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </form>
+</table>
+</body>
+</html>

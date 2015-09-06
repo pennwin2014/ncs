@@ -1,0 +1,69 @@
+<html>
+	<head><meta http-equiv=Content-Type content="text/html;charset=gb2312">
+		<link href="../css/css.css" rel="stylesheet" type="text/css"> 
+		<title>远程日志查询</title>
+				<SCRIPT>
+			function gaoji()
+	{
+	showModalDialog("/pronline/Msg?FunName@ncsWebShowSearchAccessListPlate", window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:800px;scroll:yes;dialogHeight:350px');
+	}
+	
+	function checkWd()
+{
+	
+	if(form1.wd.value == "")
+	{
+		return false;
+	}
+	return true;
+}
+</SCRIPT>
+		</head>
+<body>
+	    <div id=u></div>
+	    <br><br><br><br><br><br>
+	    <center><table><tr > 
+          <td colspan="2" style="font-size:11pt;color:#00237e;font-weight:bold;text-align: center;">上网日志查询
+           </td>
+        </tr></table>
+	    <br><br><br><br><br>
+	    
+	    <table cellpadding=0 cellspacing=0 id=l>
+	    	<tr><td>
+	    		<div id=m><a onclick=s(this) href=/all_search.htm>全&nbsp;部</a>
+	    		&nbsp;&nbsp;&nbsp;<a onclick=s(this) href=/http_search.htm>网&nbsp;页&nbsp;浏&nbsp;览</a>
+	    		&nbsp;&nbsp;&nbsp;<a onclick=s(this) href=/r_search.htm>网&nbsp;页&nbsp;表&nbsp;单</a>
+	    		&nbsp;&nbsp;&nbsp;<a onclick=s(this) href=/im_search.htm>网&nbsp;络&nbsp;聊&nbsp;天</a>
+	    		&nbsp;&nbsp;&nbsp;<b>收&nbsp;发&nbsp;邮&nbsp;件</b>
+	    		
+	    		</div></td></tr>
+	    </table>
+	    
+<table cellpadding=0 cellspacing=0 style="margin-left:15px">
+	<tr valign=top><td style="height:62px;padding-left:92px" nowrap>
+		
+		<div style="position:relative">
+		<form method="POST" action="/pronline/Msg" name="form1" onSubmit="return checkWd()">
+			<input type="hidden" name="FunName" value="ncsWebSaveCondition">
+			<input type="hidden" name="ct" value="4">
+			<span id=in><input type=text name=wd id=kw size=60 maxlength=100>
+			<input type=submit value="开始查询" id=sb >&nbsp;</span><br>
+			
+			
+      <label for="allPic"><input type="radio" name="service_type" id=allPic checked value=0013>全部邮件</label>
+      <label for="bigPic"><input type="radio" name="service_type" id=bigPic value=0003>SMTP</label>
+      <label for="middlePic"><input type="radio" name="service_type" id=middlePic value=0004>POP3</label>
+      <label for="smallPic"><input type="radio" name="service_type" id=smallPic value=0006>Web Mail</label>
+      
+
+		</form>
+		</div>
+		
+		</td></tr>
+		
+		</table>
+
+
+
+	<script>var w=document.form1.wd;function s(o){if(w.value.length>0){var h=o.href;var q=encodeURIComponent(w.value);if(h.indexOf("q=")!=-1){o.href=h.replace(new RegExp("q=[^&$]*"),"q="+q)}else{o.href+="?q="+q}}};(function(){if(new RegExp("q=([^&]+)").test(location.search)){w.value=decodeURIComponent(RegExp.$1)}})();if(navigator.cookieEnabled && /BAIDUID=\w{30}(\w{2})([^;]*)(;|$)/.test(document.cookie) && !/:SU=0/.test(RegExp.$2)){var num = parseInt(RegExp.$1, 16);if(num<12){var i = document.createElement('INPUT');i.name='tn';i.value='baidutnta'+(num<6?'1':'0');i.type='hidden';document.form1.appendChild(i);if(num<6){var s=document.createElement('SCRIPT');s.src='http://www.baidu.com/js/bdsug.js?v=1.0.0.8';document.getElementsByTagName('HEAD')[0].appendChild(s);document.getElementById('in').innerHTML='<input type=text name=wd id=kw size=42 maxlength=100 autocomplete=off>';}}}window.onunload=function(){};document.form1.wd.focus();</script>
+	</html>

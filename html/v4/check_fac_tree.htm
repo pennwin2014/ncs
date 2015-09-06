@@ -1,0 +1,115 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=GBK"> 
+<title>选择</title> 
+    <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" /> 
+    <script type="text/javascript" src="/newver/resources/js/ext_tree_base.js"></script> 
+   <style type="text/css"> 
+   	.smartbox-ctn{border-top:1px solid #c9d8f0;padding:1px 1px 0 1px;background:#fff;height:30px;}
+   	.sb-ipt,.sb-sub{border:1;height:24px;float:left;}
+           .accept {
+            background-image:url(/newver/resources/themes/images/share/accept.png) !important;
+        }
+      .an3 { font-size: 9pt;   background-image:url(/images/images2/chaxun.gif);
+      position:relative;top:2px;
+   height: 20px; width: 52px; border-top-width: 0px; border-right-width: 
+  0px; border-bottom-width: 0px; border-left-width: 0px; cursor: hand}   
+        
+  </style> 
+ <script> 
+
+
+
+
+Ext.require([
+    'Ext.tree.*',
+    'Ext.data.*',
+    'Ext.tip.*',
+    'Ext.tab.*']
+    );
+    Ext.onReady(function() {
+
+    Ext.QuickTips.init();
+
+    store = Ext.create('Ext.data.TreeStore', {
+        proxy: {
+            type: 'ajax',
+            url: '/pronline/Msg?FunName@ncsTreeFac_v4&plate@v4/ncs_group_checktree.htm'
+        },
+        root: {
+            text: '全部',
+            id: 'all',
+            checked:false,
+            expanded: true
+        },
+        folderSort: true,
+        sorters: [{
+            property: 'text',
+            direction: 'ASC'
+        }]
+    });
+
+
+ 
+    var tree = Ext.create('Ext.tree.Panel', {
+        store: store,
+ //       viewConfig: {
+//            plugins: {
+ //               ptype: 'treeviewdragdrop'
+//            }
+ //       },
+        renderTo: 'tree-div',
+        height: 508,
+        width: 300,
+        frame:true,
+        containerScroll: true,
+        useArrows: false,
+        
+          dockedItems: [
+          {
+            xtype: 'toolbar',
+            items: [{
+             text: '确认选择',
+                iconCls:'accept',
+                handler: function(){
+                    var records = tree.getView().getChecked();
+    
+						       var temps=''; 
+						       var temp_name='';
+						       var iNum=0;            
+                    Ext.Array.each(records, function(rec){
+
+                    if(iNum==0){
+                    temps=rec.get('id');
+                 
+                    temp_name=rec.get('text');
+                    }
+                    else{
+                    temps=temps+','+rec.get('id');
+                    temp_name=temp_name+','+rec.get('text');
+                    }
+                    iNum++;
+
+                    });
+    
+          parent.document.getElementById('form1').fac_desc.value=temp_name;
+          parent.document.getElementById('form1').fac.value=temps;
+          parent.Ext.getCmp('windr4').close();
+    
+                }
+            }]
+        }]
+
+    });
+});
+
+</script>
+<body onKeyPress="return ss()"> 
+
+<div id="tabs1"> 
+    <div id="tree-div"></div> 
+</div>   
+</body> 
+</html> 

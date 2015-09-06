@@ -1,0 +1,84 @@
+ <head>
+ 	
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+ <title>联网使用单位安全监管系统</title>
+ <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" /> 
+
+ <script type="text/javascript" src="/newver/resources/js/ext-all.js"></script> 
+    <style type="text/css">
+ .x-tab-default-top button, .x-tab-default-top.x-tab-inner {
+		height: 16px !important;
+		line-height: 16px;
+	}
+    	    
+   *{font-size:12px!important;}
+  </style>
+
+
+<script type="text/javascript">
+
+Ext.Loader.setConfig({enabled: true});
+Ext.Loader.setPath('Ext.ux', '/newver/ux/');
+
+Ext.require([
+    'Ext.tip.QuickTipManager',
+    'Ext.container.Viewport'
+]);
+
+//
+// This is the main layout definition.
+//
+Ext.onReady(function(){
+    Ext.tip.QuickTipManager.init();
+
+
+    
+    
+    
+  
+ 
+    // Finally, build the main layout once all the pieces are ready.  This is also a good
+    // example of putting together a full-screen BorderLayout within a Viewport.
+    var viewport=Ext.create('Ext.Viewport', {
+        layout: 'border',
+     
+        items: [{
+           	xtype: 'panel',
+           	region:'west',
+            collapsible: true,
+            title:'单位组树',
+            width:200,
+            split:true,
+            id: 'layout-browser',
+            html: '<iframe  id="dhIframe" name="dhIframe" src="/v4/ncs_tree_group.htm" scrolling="no" width=100% height=1000  FrameBorder=0 ></iframe>',          
+         listeners: {  
+                 collapse: function() {
+    //             	  viewport.doLayout();   
+                    viewIframe.reflash();
+                          
+                 }, 
+                 expand:function(){
+               	 viewIframe.reflash();
+                } 
+          }
+        }, {
+        	xtype: 'panel',
+        
+        	region:'center',
+        	id:'layout_center',
+        	margins: '2 5 5 0',
+          layout:"fit",
+
+     	html:'<iframe  id="viewIframe" name="viewIframe" src="/v4/ncs_group_list.htm"  width=100% height=1000  FrameBorder=0 scrolling="no"></iframe>'
+ 
+        }
+ //           contentPanel
+        ],
+        renderTo: Ext.getBody()
+    });
+});
+
+</script>
+</head>
+<body>
+</body>

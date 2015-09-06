@@ -1,0 +1,326 @@
+<html>
+<head>
+<title>IDC 虚拟身份轨迹查询</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<style>
+.conts{visibility:hidden}
+
+</style>
+<script language="javascript">
+var ll=0;
+var yy=1;
+
+</script>
+<script LANGUAGE="JavaScript">
+//this is the tab switching function
+
+function init(attName2,attValue2,attName3,attValue3)
+{
+//	form1.idcdomain.value="";
+//	
+//	form1.password.value="";
+//	form1.ip.value="192.168.8.20";
+	
+	if(form1.idc_type.value=='')
+		form1.idc_type.value=21;
+	if(form1.startdate.value=='')
+			form1.startdate.value="2011-01-01 00:00:00";
+	if(form1.enddate.value=='')
+			form1.enddate.value="2012-12-31 59:59:59";
+			
+			
+	var divs = document.getElementsByTagName("div");
+	for(var i = 0; i < divs.length; i++){
+        if(divs[i].getAttribute(attName2) == attValue2)
+           divs[i].style.display = 'none';
+  }	
+	for(var i = 0; i < divs.length; i++){
+        if(divs[i].getAttribute(attName3) == attValue3)
+           divs[i].style.display = 'none';
+  }		
+			
+	/*form1.sid.value="";
+	form1.idcname.value="";
+	form1.email.value="";
+	
+	form1.startdate.value="";
+	form1.enddate.value="";
+	form1.idcindex.value=0;
+	form1.num.value=10;
+	form1.idcid.value="";
+	form1.city.value="";*/
+	//form1.FunName.value="/pronline/Msg?FunName@ncs_idc_net_show&domain@"+form1.idcdomain.value+"&id@"+form1.sid.value+"&name@"+form1.idcname.value+"&password@"+form1.password.value+"&email@"+form1.email.value+"&ip@"+form1.ip.value+"&startdate@"+form1.startdate.value+"&enddate@"+form1.enddate.value+"&index@"+form1.idcindex.value+"&num@"+form1.num.value+"&city@"+form1.city.value;
+	//alert(form1.FunName.value);
+	document.getElementById("list").src="/pronline/Msg?FunName@ncsIdcSearch&domain@"+form1.idcdomain.value+"&id@"+form1.sid.value+"&name@"+form1.idcname.value+"&password@"+form1.password.value+"&email@"+form1.email.value+"&ip@"+form1.ip.value+"&startdate@"+form1.startdate.value+"&enddate@"+form1.enddate.value+"&index@"+form1.idcindex.value+"&num@"+form1.num.value+"&city@"+form1.city.value+"&idcid="+form1.idcid.value+"&type="+form1.idc_type.value;
+	//pronline/Msg?FunName@ncs_idc_net_show&domain@&id@&name@&password@&email@&ip@&startdate@&enddate@&index@0&num@10&city@
+	//form1.submit();
+}
+function idc_search()
+{
+//	form1.idcdomain.value="";
+//	
+//	form1.password.value="";
+//	form1.ip.value="192.168.8.20";
+	if(form1.idc_type.value=='')
+		form1.idc_type.value=21;
+	/*form1.sid.value="";
+	form1.idcname.value="";
+	form1.email.value="";
+	
+	form1.startdate.value="";
+	form1.enddate.value="";
+	form1.idcindex.value=0;
+	form1.num.value=10;
+	form1.idcid.value="";
+	form1.city.value="";*/
+	//form1.FunName.value="/pronline/Msg?FunName@ncs_idc_net_show&domain@"+form1.idcdomain.value+"&id@"+form1.sid.value+"&name@"+form1.idcname.value+"&password@"+form1.password.value+"&email@"+form1.email.value+"&ip@"+form1.ip.value+"&startdate@"+form1.startdate.value+"&enddate@"+form1.enddate.value+"&index@"+form1.idcindex.value+"&num@"+form1.num.value+"&city@"+form1.city.value;
+	//alert(form1.FunName.value);
+	document.getElementById("list").src="/pronline/Msg?FunName@ncsIdcSearch&domain@"+form1.idcdomain.value+"&id@"+form1.sid.value+"&name@"+form1.idcname.value+"&password@"+form1.password.value+"&email@"+form1.email.value+"&ip@"+form1.ip.value+"&startdate@"+form1.startdate.value+"&enddate@"+form1.enddate.value+"&index@"+form1.idcindex.value+"&num@"+form1.num.value+"&city@"+form1.city.value+"&idcid="+form1.idcid.value+"&type="+form1.idc_type.value+"&idcjfname="+form1.idcjfname.value;
+	//pronline/Msg?FunName@ncs_idc_net_show&domain@&id@&name@&password@&email@&ip@&startdate@&enddate@&index@0&num@10&city@
+	//form1.submit();
+}
+function idc_del()
+{
+	if(form1.idc_type.value=='')
+		form1.idc_type.value=21;
+	if(form1.nettype.value==''){
+		alert("虚拟身份类型不能为空");
+		return;	
+	}	
+	if(form1.idcname.value==''){
+			alert("用户名不能为空");
+			return;	
+		}	
+//	if(form1.idc_type.value==21){
+//		if(form1.idcname.value==''){
+//			alert("用户名不能为空");
+//			return;	
+//		}	
+//	}else if(form1.idc_type.value==22){
+//		if(form1.sid.value==''){
+//			alert("ID不能为空");
+//			return;	
+//		}	
+//	}else if(form1.idc_type.value==23){
+//		if(form1.email.value==''){
+//			alert("邮箱不能为空");
+//			return;	
+//		}	
+//	}else{}
+	document.getElementById("list").src="/pronline/Msg?FunName@ncsIdcSearch&delflag@1&nettype@"+form1.nettype.value+"&domain@"+form1.idcdomain.value+"&id@"+form1.sid.value+"&name@"+form1.idcname.value+"&password@"+form1.password.value+"&email@"+form1.email.value+"&ip@"+form1.ip.value+"&startdate@"+form1.startdate.value+"&enddate@"+form1.enddate.value+"&index@"+form1.idcindex.value+"&num@"+form1.num.value+"&city@"+form1.city.value+"&idcid="+form1.idcid.value+"&type="+form1.idc_type.value;
+
+}
+function changemod(attName,attValue,attName2,attValue2,attName3,attValue3){
+	var divs = document.getElementsByTagName("div");
+	if(form1.idc_type.value=='21'){		
+		 for(var i = 0; i < divs.length; i++){
+        if(divs[i].getAttribute(attName) == attValue)
+           divs[i].style.display = '';
+     }
+     for(var i = 0; i < divs.length; i++){
+        if(divs[i].getAttribute(attName2) == attValue2)
+           divs[i].style.display = 'none';
+     }  
+     for(var i = 0; i < divs.length; i++){
+        if(divs[i].getAttribute(attName3) == attValue3)
+           divs[i].style.display = 'none';
+     }   
+	}else if(form1.idc_type.value=='22'){
+		for(var i = 0; i < divs.length; i++){
+        if(divs[i].getAttribute(attName) == attValue)
+           divs[i].style.display = 'none';
+     }
+    for(var i = 0; i < divs.length; i++){
+        if(divs[i].getAttribute(attName2) == attValue2)
+           divs[i].style.display = '';
+     }	
+     for(var i = 0; i < divs.length; i++){
+        if(divs[i].getAttribute(attName3) == attValue3)
+           divs[i].style.display = 'none';
+     } 			
+	}else if(form1.idc_type.value=='23'){
+		for(var i = 0; i < divs.length; i++){
+        if(divs[i].getAttribute(attName) == attValue)
+           divs[i].style.display = 'none';
+     }
+    for(var i = 0; i < divs.length; i++){
+        if(divs[i].getAttribute(attName2) == attValue2)
+           divs[i].style.display = 'none';
+     }		
+     for(var i = 0; i < divs.length; i++){
+        if(divs[i].getAttribute(attName3) == attValue3)
+           divs[i].style.display = '';
+     } 
+	}else{
+		for(var i = 0; i < divs.length; i++){
+        if(divs[i].getAttribute(attName) == attValue)
+           divs[i].style.display = '';
+     }
+    for(var i = 0; i < divs.length; i++){
+        if(divs[i].getAttribute(attName2) == attValue2)
+           divs[i].style.display = 'none';
+     }
+     for(var i = 0; i < divs.length; i++){
+        if(divs[i].getAttribute(attName3) == attValue3)
+           divs[i].style.display = 'none';
+     } 
+	}
+		
+}
+
+var dfd1="0"
+
+</script>
+<style>
+.conts  {visibility:hidden}
+
+table {  font-size: 9pt}
+ .style2 {
+	font-size: 20px;
+	font-weight: bold;
+	font-style: italic;
+	color: #0000ff;
+}
+</style>
+
+<style type="text/css">
+
+<!--
+body {  font-size: 9pt}
+.tas {  border-color: black #FFFFFF; border-style: solid; border-top-width: 0px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 1px}
+table {  font-size: 9pt}
+.gray1 { filter:gray }
+.ttbbd {  cursor: default}
+.nobordertext{border-width:1px;border-color:blue;background-color:#d0e1fa;width:138;}
+
+-->
+</style>
+<link REL=stylesheet HREF="/css/listdatetable.css" TYPE="text/css">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<body bgcolor="#8cb4e8" leftmargin="1" topmargin="0" onload="init('Sid2','hidd2','Sid3','hidd3');"  style="overflow:hidden" >
+<form name="form1" id="form1" method="post" action="/pronline/Msg" target="main">
+<input type="hidden" name="FunName" value="">
+<input type="hidden" name="did" value="">
+<input type="hidden" name="uid" value="">
+<input type="hidden" name="idcid" value="">
+<input type="hidden" name="idcdomain" value=""><input type="hidden" name="ip" value=""><input type="hidden" name="password" value="">
+<!--<input type="hidden" name="sid" value="">
+<input type="hidden" name="idcname" value="">
+
+<input type="hidden" name="email" value="">
+
+<input type="hidden" name="startdate" value="">
+<input type="hidden" name="enddate" value="">
+<input type="hidden" name="idcindex" value="">
+<input type="hidden" name="num" value="">
+<input type="hidden" name="idcid" value="">
+<input type="hidden" name="city" value="">
+-->
+    <table border="0"  bordercolorlight=#aaaaaa bordercolordark=#ffffff  CELLPADDING="0" CELLSPACING="0" bgcolor=#bad2f4 STYLE="width:100%; height:100%">
+  	<!--
+  	<tr >
+      <td colspan="9">
+      	
+      	<table width="100%" height="27" border="0" align="center" cellpadding="0" cellspacing="0" background="/images/table_bg1.gif">
+          <tr height="30"> 
+          	<td class="tabtitle" >虚拟身份轨迹查询&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td background="/images/images2/chaxun2-1.gif" align="right"> &nbsp;
+            	
+            	</td>
+          </tr>
+        </table></td>
+    </tr>
+  	-->
+  	<tr>
+	      <td height="505"  valign="top" width="60%">
+	       <iframe  height="505" name="list" id="list" width="100%"  border="0" frameborder="0" src="" scrolling="yes"> </iframe>      
+	      </td>
+	      
+	      	      
+      </tr>
+  	
+    <tr >
+   			<td>
+   			<table width="100%" class="bordnr">
+   				<tr><td>	
+   				<table >
+   					<tr>
+   						<td>起始日：<input name="startdate" size="20" type="text" /></td>
+   						<td>&nbsp;&nbsp;&nbsp;&nbsp;类型：<select name="idc_type" style="width:95px" onpropertychange="changemod('Sid','hidd','Sid2','hidd2','Sid3','hidd3');">
+   							<option value="" ></option>
+   							<option value="21" >用户名</option>
+   							<option value="22">ID</option>
+   							<option value="23">Email</option>
+   							</select>
+   							
+   		<!--					<input name="idc_type" size="12" type="text" /></td>  -->
+   						<td><div Sid="hidd" style="white-space:nowrap;">用户名：<input name="idcname" size="12" type="text" /></div></td>
+   						<td><div Sid2="hidd2" style="white-space:nowrap;">&nbsp;&nbsp;&nbsp;&nbsp;ID：<input name="sid" size="12" type="text" /></div></td>
+   						<td><div Sid3="hidd3" style="white-space:nowrap;">&nbsp;邮箱：<input name="email" size="12" type="text" /></div></td>
+   						<td>机房名：<input name="idcjfname" size="12" type="text" /></td>
+   						
+   						
+   					</tr>	
+   				</table>
+   			</td>
+   		</tr>
+   		
+   		<tr>
+   			<td>
+   				<table>
+   					<tr>
+   						
+   						<td>终止日：<input name="enddate" size="20" type="text" /></td>
+   						<td>起始记录：<input name="idcindex" size="12" type="text" /></td>
+   						<td>记录数：<input name="num" size="12" type="text" /></td>
+   						<td>&nbsp;&nbsp;&nbsp;区域：<input name="city" size="12" type="text" /></td>
+   			<!--				<td>虚拟身份类型：<input name="nettype" size="15" type="text" /></td> -->
+   						
+   						<td><input type="button"  class="an3" name="search" value="搜 索"  onclick="idc_search();"  /></td>
+   		<!--					<td><input type="button" class="an3"  name="delete_c" value="删 除"  onclick="idc_del();"  /></td>-->
+   						
+   					</tr>	
+   				</table>
+   			</td>
+   		</tr> 
+   
+   		<tr><td>&nbsp;</td></tr>
+   		
+   		</table>
+   	</td>
+   	</tr>
+   	
+  		<!--
+  		<tr>
+   			<td>
+   				<table>
+   					<tr>
+   						
+   						
+   						<td>(type值21~23，对应用户名、ID、Email查询)</td>
+   						
+   					</tr>	
+   				</table>
+   			</td>
+   		</tr> 
+  		-->
+   <tr><td></td></tr>
+
+</form>	
+	
+
+
+
+
+</table>
+
+	
+
+
+</body>
+</html>

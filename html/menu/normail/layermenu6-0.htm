@@ -1,0 +1,85 @@
+<html>
+<head>
+<title>History</title>
+<link REL=stylesheet HREF="/css/runmit.css" TYPE='text/css'>
+</head>
+<script>
+function mouseovertr2 (o){
+var i;
+df=o.style.backgroundColor
+	o.style.backgroundColor= "#000066";
+	o.style.borderColor= "#cccccc";
+	o.style.cursor="hand";	
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#ffffff";
+}	
+parent.parent.clearTimeout(parent.parent.popTimer);
+}
+function goto(t){
+  parent.sbpm_right.location.href=t
+}
+
+function goto2(t){
+parent.sbpm_left.location.href=t
+}
+
+function goto3(p) {
+    showModalDialog(p, window, 'status:no;center:yes;help:no;minimize:no;maximize:no;border:thick;statusbar:no;dialogWidth:360px;scroll:no;dialogHeight:240px');
+//  openwinflag=window.open(p,'_blank','left=100,top=100,width=240,height=360,fullscreen=0,toolbar=no,scrollbars=no,resizable=0,menubar=no,status=0');
+}
+
+function mouseouttr2(o){
+	o.style.backgroundColor=df
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#000000";
+}
+parent.parent.popOut();
+	
+}
+
+
+function menu_frame_onmouseover()
+{
+	parent.clearTimeout(parent.popTimer);
+	//alert('parent cleartimeout ok!');
+	document.body.className='highlight_container'}
+function menu_frame_onmouseout()
+{
+	document.body.className="menu_container";
+	parent.popOut()}
+//document.onmouseover=menu_frame_onmouseover;
+//document.onmouseout=menu_frame_onmouseout;
+</script>
+<body topMargin=0 leftmargin=0 marginheight="0" class=menu_space style='cursor:default;border:0' fixed oncontextmenu="return false">
+<table class=3dtable_notop1 border=0 width=100% cellspacing=0 cellpadding=0 style='padding:2px' >
+  <tr onmouseover="mouseovertr2(this)" onmouseout="mouseouttr2(this)"
+    onclick="goto('/pronline/Msg?FunName@ncWebMailDispExport');goto2('/no.htm');parent.go_hide()">
+    <td height="22">&nbsp;<img src="images/blank.gif" width="21" height="21" align="absmiddle">数据人工导出</td>
+  </tr>
+  <tr id=main > 
+    <td height="2"><img src="/images/hr.gif" width="100%" height="2"></td>
+  </tr>
+  <tr onmouseover="mouseovertr2(this)" onmouseout="mouseouttr2(this)" 
+    onclick="goto('/pronline/Msg?FunName@ncWebMailDispImport');goto2('/no.htm');parent.go_hide()">
+    <td height="22">&nbsp;<img src="images/blank.gif" width="21" height="21" align="absmiddle">历史数据导入</td>
+  </tr>
+  <tr onmouseover="mouseovertr2(this)" onmouseout="mouseouttr2(this)" 
+    onclick="goto('/pronline/Msg?FunName@ncWebReplace&plate@mail/nc_form_historydel.htm');goto2('/no.htm');parent.go_hide()">
+    <td height="22">&nbsp;<img src="images/blank.gif" width="21" height="21" align="absmiddle">历史数据删除</td>
+  </tr>
+  <tr id=main > 
+    <td height="2"><img src="/images/hr.gif" width="100%" height="2"></td>
+  </tr>
+  <tr onmouseover="mouseovertr2(this)" onmouseout="mouseouttr2(this)" 
+     onclick="goto2('/no.htm');goto('/pronline/Msg?FunName@ncWebMailMonList_h');parent.go_hide()"> 
+    <td height="22">&nbsp;<img src="images/blank.gif" width="21" height="21" align="absmiddle">导入监控邮件查询</td>
+  </tr>
+  <tr onmouseover="mouseovertr2(this)" onmouseout="mouseouttr2(this)" 
+     onclick="goto2('/no.htm');goto('/pronline/Msg?FunName@ncWebMailCtlHlist');parent.go_hide()"> 
+    <td height="22">&nbsp;<img src="images/blank.gif" width="21" height="21" align="absmiddle">导入拦截邮件查询</td>
+  </tr>
+</table>
+</body>
+</html>

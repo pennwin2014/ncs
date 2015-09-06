@@ -1,0 +1,216 @@
+<html>
+<head>
+<title>Setup WebList</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<script language="JavaScript" type="text/javascript">
+// 全部设置
+ function ClickSave()
+ {
+    var str;
+	str="";
+    for(i=0;i<document.images.length;i++) {
+	    if(document.images[i].name.search("ctl") != -1) {
+             if(document.images[i].src.search("y1") != -1) {
+			     str = str + document.images[i].name + "=y;";
+			 }
+			 else if(document.images[i].src.search("x1") != -1) {
+			     str = str + document.images[i].name + "=x;";
+			 }
+		}
+	}
+	document.form1.rtl.value=str;
+alert(document.form1.rtl.value);
+	form1.submit();
+  }
+ 
+ function Do_AllSet(ppp,ggg)
+ {
+    for(i=0;i<document.images.length;i++) {
+	    if(document.images[i].name.search(ppp) != -1) {
+             document.images[i].src = "/images/"+ggg+".gif"
+		}
+	}
+ }
+ 
+ 
+ function ClickImg(kk)  {
+    if (kk.src.search("y1.gif") != -1) {
+        kk.src = "/images/x1.gif"  
+    }
+    else if(kk.src.search("x1.gif")!= -1) {
+        kk.src = "/images/no.gif"
+    }
+    else {
+         kk.src = "/images/y1.gif"
+    }
+}
+
+function ClickImga(kk,ii)  {
+    if (kk[ii].src.search("y1.gif") != -1) {
+        kk[ii].src = "/images/x1.gif"  
+    }
+    else if(kk[ii].src.search("x1.gif")!= -1) {
+        kk[ii].src = "/images/no.gif"
+    }
+    else {
+         kk[ii].src = "/images/y1.gif"
+    }
+}
+
+function ClickImg1(indexedNum)  {
+        if (document.images[indexedNum].src.search("/images/y1.gif") != -1) {
+                document.images[indexedNum].src = "/images/x1.gif"  
+        
+        }
+        else {
+                if (document.images[indexedNum].src.search("/images/x1.gif") != -1) {
+                        document.images[indexedNum].src = "/images/y1.gif"
+                 }
+        }
+}
+
+function Do_Sub(sid)
+{
+    if(sid.style.display == 'none') {
+        sid.style.display = ''; 
+	}
+	else {
+        sid.style.display = 'none'; 
+	}
+}
+
+ </script>
+ 
+<link REL=stylesheet HREF="/css/runmit.css" TYPE="text/css">
+<style type="text/css">
+<!--
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+-->
+</style>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+<form name="form1"  method="post" action="/pronline/Msg">
+  <table width="40%" border="0">
+    <tr> 
+      <td  height="20" colspan="3">
+        <div align="center"><b>网站访问策略设置</b></div>
+      </td>
+    </tr>
+    <tr> 
+      <td  class="bord2" height="20" colspan="2"> <a href='javascript:Do_AllSet("ctla","no")'><img src="/images/setu.gif" border=0 alt="全部清除" align="middle" width="20" height="20"></a> 
+        <a href='javascript:Do_AllSet("ctla","y1")'><img src="/images/sety.gif" border=0 alt="全部允许" align="middle" width="20" height="20"></a> 
+        <a href='javascript:Do_AllSet("ctla","x1")'><img src="/images/setx.gif" border=0 alt="全部禁止" align="middle" width="20" height="20"></a> 
+      </td>
+      <td  class="bord4" width="42%" height="20"> 
+        <input type="hidden" name="rtl" >
+        <input type="hidden" name="FunName" value="ncTest0000">
+        <input type="button" name="save" value="保存" onClick="ClickSave()">
+        <input type="reset" name="reset" value="放弃">
+      </td>
+    </tr>
+    <tr> 
+      <td  class="bord2" width="12%" height="20"> <a href="javascript:ClickImg(document.ctla1)"> 
+        <img src="/images/y1.gif" border=0 alt="允许" align="middle" width="19" height="19" name="ctla1"></a> 
+      </td>
+      <td  class="bord2" width="46%" height="20"><a href="javascript:Do_Sub(sweba)"><font><b>gggggg</b></font></a></td>
+      <td  class="bord4" width="42%" height="20"> <a href='javascript:Do_AllSet("ctlb","no")'><img src="/images/setu.gif" border=0 alt="全部清除" align="middle" width="20" height="20"></a> 
+        <a href='javascript:Do_AllSet("ctlb","y1")'><img src="/images/sety.gif" border=0 alt="全部允许" align="middle" width="20" height="20"></a> 
+        <a href='javascript:Do_AllSet("ctlb","x1")'><img src="/images/setx.gif" border=0 alt="全部禁止" align="middle" width="20" height="20"></a> 
+      </td>
+    </tr>
+    <tr id=sweba style=margin-left:5;display:none;> 
+      <td   class="bord4" colspan="3" height="88" > 
+        <table width="100%" border="0">
+          <tr> 
+            <td   class="bord2" width="10%">&nbsp;</td>
+            <td  class="bord2" width="11%"><a href='javascript:ClickImg(document.ctlb1)'><img src="/images/y1.gif" border=0  align="middle" width="14" height="17" name=ctlb1></a></td>
+            <td  class="bord4" width="79%">aaaaaaaaaaaaaaaaaa</td>
+          </tr>
+          <tr> 
+            <td  class="bord2" width="10%">&nbsp;</td>
+            <td  class="bord2" width="11%"><a href='javascript:ClickImg(document.ctlb2)'><img src="/images/y1.gif" border=0  align="middle" width="14" height="17" name=ctlb2></a></td>
+            <td  class="bord4" width="79%">ssssssssssssssssss</td>
+          </tr>
+          <tr> 
+            <td  class="bord2" width="10%">&nbsp;</td>
+            <td  class="bord2" width="11%"><a href='javascript:ClickImg(document.ctlb3)'><img src="/images/y1.gif" border=0  align="middle" width="14" height="17" name=ctlb3></a></td>
+            <td  class="bord4" width="79%">ssssssssssssssssss</td>
+          </tr>
+          <tr> 
+            <td  class="bord2" width="10%">&nbsp;</td>
+            <td  class="bord2" width="11%"><a href='javascript:ClickImg(document.ctlb4)'><img src="/images/y1.gif" border=0  align="middle" width="14" height="17" name=ctlb4></a></td>
+            <td  class="bord4" width="79%">ssssssssssssssssss</td>
+          </tr>
+          <tr> 
+            <td  class="bord2" width="10%">&nbsp;</td>
+            <td  class="bord2" width="11%"><a href='javascript:ClickImg(document.ctlb5)'><img src="/images/y1.gif" border=0  align="middle" width="14" height="17" name=ctlb5></a></td>
+            <td  class="bord4" width="79%">ssssssssssssssssss</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr> 
+      <td height="20" colspan="2"> <a href="javascript:ClickImg(document.ctla2)"> 
+        <img src="/images/y1.gif" border=0 alt="允许" align="middle" width="19" height="19" name="ctla2"></a> 
+        <input type="hidden" name="weba" value="y">
+        <a href="javascript:Do_Sub(sweb2)">gggggg</a></td>
+      <td width="42%" height="20"><a href='javascript:Do_AllNoSet()'><img src="/images/setu.gif" border=0 alt="全部清除" align="middle" width="20" height="20"></a> 
+        <a href='javascript:Do_AllSet()'><img src="/images/sety.gif" border=0 alt="全部允许" align="middle" width="20" height="20"></a> 
+        <a href='javascript:Do_AllUnSet()'><img src="/images/setx.gif" border=0 alt="全部禁止" align="middle" width="20" height="20"></a> 
+      </td>
+    </tr>
+    <tr id=sweb2 style=margin-left:5;display:none;> 
+      <td colspan="3" height="88" > 
+        <table width="100%" border="0">
+          <tr> 
+            <td width="10%">&nbsp;</td>
+            <td width="11%"><a href='javascript:ClickImga(document.kkk.images,0)'><img src="/images/y1.gif" border=0 alt="ssssssss" align="middle" width="14" height="17" id=kkk></a></td>
+            <td width="79%">aaaaaaaaaaaaaaaaaa</td>
+          </tr>
+          <tr> 
+            <td width="10%">&nbsp;</td>
+            <td width="11%"><a href='javascript:ClickImga(document.kkk.images,1)'><img src="/images/y1.gif" border=0 alt="ssssssss" align="middle" width="14" height="17" id=kkk></a></td>
+            <td width="79%">ssssssssssssssssss</td>
+          </tr>
+          <tr> 
+            <td width="10%">&nbsp;</td>
+            <td width="11%"><a href='javascript:ClickImg(k3,2)'><img src="/images/y1.gif" border=0 alt="ssssssss" align="middle" width="14" height="17" id=k3></a></td>
+            <td width="79%">saaaaaaaasasassssa</td>
+          </tr>
+          <tr> 
+            <td width="10%">&nbsp;</td>
+            <td width="11%"><a href='javascript:ClickImg(0)'><img src="/images/y1.gif" border=0 alt="ssssssss" align="middle" width="14" height="17"></a></td>
+            <td width="79%">saaaaaaaaasassssss</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr> 
+      <td colspan="2">&nbsp;</td>
+      <td width="42%">&nbsp;</td>
+    </tr>
+    <tr> 
+      <td colspan="2">&nbsp;</td>
+      <td width="42%">&nbsp;</td>
+    </tr>
+    <tr> 
+      <td colspan="2">&nbsp;</td>
+      <td width="42%">&nbsp;</td>
+    </tr>
+    <tr> 
+      <td colspan="2">&nbsp; </td>
+      <td width="42%">&nbsp;</td>
+    </tr>
+    <tr> 
+      <td colspan="2">&nbsp;</td>
+      <td width="42%">&nbsp;</td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<HTML>
+<HEAD>
+<META content=0 http-equiv=Expires>
+<META content=no-cache http-equiv=Pragma>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type>
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<script>
+function goto(t){
+self.location.href=t
+}
+function mouseovertr2 (o){
+var i;
+df=o.style.backgroundColor
+	o.style.backgroundColor= "#003399";
+	o.style.borderColor= "#FFFF00";
+	o.style.cursor="hand";	
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#ffffff";
+}	
+}
+
+function mouseouttr2(o){
+	o.style.backgroundColor=df
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#000000";
+}
+	
+	
+}
+</script>
+<style type="text/css">
+<!--
+table {  font-size: 9pt}
+-->
+</style>
+<link rel="stylesheet" href="css/css.css" type="text/css">
+</HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" bgColor=Menu oncontextmenu="return false" >
+<br>
+<table width="100%" border="0">
+  <tr> 
+    <td colspan="2">限制对象:[全部]</td>
+  </tr>
+  <tr> 
+    <td>序列号 
+      <select name="select">
+        <option value="1">禁止</option>
+        <option value="2">允许</option>
+      </select>
+      <br>
+    </td>
+    <td> 
+      <select name="select2">
+        <option value="1">每天</option>
+      </select>
+    </td>
+  </tr>
+  <tr> 
+    <td> 起始时间 
+      <input type="text" name="textfield" size="16">
+    </td>
+    <td>终止时间 
+      <input type="text" name="textfield2" size="16">
+    </td>
+  </tr>
+  <tr> 
+    <td colspan="2">(注:时间格式为: HH:MM:SS , 如:12:13:30 为 12时13分30秒) </td>
+  </tr>
+  <tr>
+    <td colspan="2"> 
+      <div align="right">
+        <input type="button" name="Button" value="新增" class="an3">
+        <input type="button" name="Button2" value="修改" class="an3" disabled>
+      </div>
+    </td>
+  </tr>
+  <tr> 
+    <td colspan="2"><img src="images/hr.gif" width="100%" height="2"></td>
+  </tr>
+  <tr> 
+    <td colspan="2"> 
+      <div align="right">
+        <input type="button" name="Button3" value="新增" class="an3">
+      </div>
+    </td>
+  </tr>
+</table>
+<table width="98%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" align="center">
+  <tr> 
+    <td class="bord2" height="18" background="images/ttt.gif"><img src="images/lline.gif" width="1" height="18" align="absmiddle">&nbsp;序列号<br>
+    </td>
+    <td class="bord2" height="18" background="images/ttt.gif"><img src="images/lline.gif" width="1" height="18" align="absmiddle">&nbsp;访问</td>
+    <td class="bord2" height="18" background="images/ttt.gif"><img src="images/lline.gif" width="1" height="18" align="absmiddle">&nbsp;频度</td>
+    <td class="bord2" height="18" background="images/ttt.gif"><img src="images/lline.gif" width="1" height="18" align="absmiddle">&nbsp;起始时间</td>
+    <td class="bord2" height="18" background="images/ttt.gif"><img src="images/lline.gif" width="1" height="18" align="absmiddle">&nbsp;终止时间</td>
+    <td class="bord2" height="18" background="images/ttt.gif"><img src="images/lline.gif" width="1" height="18" align="absmiddle">&nbsp;修改</td>
+    <td class="bord4" height="18" background="images/ttt.gif"><img src="images/lline.gif" width="1" height="18" align="absmiddle">&nbsp;删除</td>
+  </tr>
+  <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" > 
+    <td class="bord1">&nbsp;192.168.0.237 </td>
+    <td class="bord1">&nbsp;</td>
+    <td class="bord1">&nbsp;</td>
+    <td class="bord1">&nbsp;</td>
+    <td class="bord1">&nbsp;</td>
+    <td class="bord1"> 
+      <input type="button" name="Button32" value="修改" class="anniu101">
+    </td>
+    <td class="bord3"> 
+      <input type="button" name="Button322" value="删除" class="anniu101">
+    </td>
+  </tr>
+  <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" > 
+    <td class="bord1">&nbsp;192.168.0.223</td>
+    <td class="bord1">&nbsp;</td>
+    <td class="bord1">&nbsp;</td>
+    <td class="bord1">&nbsp;</td>
+    <td class="bord1">&nbsp;</td>
+    <td class="bord1">
+      <input type="button" name="Button323" value="修改" class="anniu101">
+    </td>
+    <td class="bord3">
+      <input type="button" name="Button3222" value="删除" class="anniu101">
+    </td>
+  </tr>
+  <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" > 
+    <td class="bord1">&nbsp;192.168.0.238</td>
+    <td class="bord1">&nbsp;</td>
+    <td class="bord1">&nbsp;</td>
+    <td class="bord1">&nbsp;</td>
+    <td class="bord1">&nbsp;</td>
+    <td class="bord1">
+      <input type="button" name="Button324" value="修改" class="anniu101">
+    </td>
+    <td class="bord3">
+      <input type="button" name="Button3223" value="删除" class="anniu101">
+    </td>
+  </tr>
+  <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" > 
+    <td class="bord1">&nbsp;192.168.0.235</td>
+    <td class="bord1">&nbsp;</td>
+    <td class="bord1">&nbsp;</td>
+    <td class="bord1">&nbsp;</td>
+    <td class="bord1">&nbsp;</td>
+    <td class="bord1">
+      <input type="button" name="Button325" value="修改" class="anniu101">
+    </td>
+    <td class="bord3">
+      <input type="button" name="Button3224" value="删除" class="anniu101">
+    </td>
+  </tr>
+  <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" > 
+    <td class="bord1">&nbsp;192.168.0.211</td>
+    <td class="bord1">&nbsp;</td>
+    <td class="bord1">&nbsp;</td>
+    <td class="bord1">&nbsp;</td>
+    <td class="bord1">&nbsp;</td>
+    <td class="bord1">
+      <input type="button" name="Button326" value="修改" class="anniu101">
+    </td>
+    <td class="bord3">
+      <input type="button" name="Button3225" value="删除" class="anniu101">
+    </td>
+  </tr>
+</table>
+<p>&nbsp; </p>
+</BODY></HTML>

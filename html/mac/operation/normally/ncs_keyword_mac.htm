@@ -1,0 +1,140 @@
+<html>
+<head>
+     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>单位组管理</title>
+    <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" />
+
+    <script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+    
+ <script type="text/javascript">     
+ //parent.Ext.getCmp('new_ssid_mac').value;
+    Ext.Loader.setConfig({
+		enabled: true
+	});
+Ext.Loader.setPath('Ext.ux', '/newver/ux/');
+
+Ext.require([
+    'Ext.grid.*',
+    'Ext.data.*',
+    'Ext.util.*',
+    'Ext.state.*',
+    'Ext.form.*',
+    'Ext.ux.CheckColumn',
+    'Ext.tree.*',
+    'Ext.tip.*',
+    'Ext.tab.*',
+    'Ext.*'
+]);
+
+var store;
+var preid="";
+var  preladw="";
+var temp_id;
+var cid='';
+var cname='';
+var grid;
+
+var globalInfoMac = "";
+var globalInfoTime = "";
+
+function getGlobalInfoMac()
+{
+	return globalInfoMac;
+}
+function getGlobalInfoTime()
+{
+	return globalInfoTime;
+}
+function setGlobalInfoMac(mac)
+{
+	globalInfoMac = mac;
+}
+function setGlobalInfoTime(tm)
+{
+	globalInfoTime = tm;
+}
+function  mac_all_search_rr(value, p, record)
+{
+	var str = Ext.String.format('<a href="#" style="color:blue" onclick="jmpPage_mac_rr(\'{1}\')">{0}</a>', value, value);
+	return str;
+}
+function jmpPage_mac_rr(mac)
+{	
+	parent.parent.showMacWindow(mac, "");
+		
+}
+
+Ext.onReady(function(){
+
+
+Ext.tip.QuickTipManager.init();
+
+   Ext.define('EimData', {
+        extend: 'Ext.data.Model',
+        fields: [
+        'mac','sitename'
+	   ]
+    });
+
+        store = Ext.create('Ext.data.Store', {
+        pageSize: 40,
+        model: 'EimData',
+        remoteSort: true,
+        proxy: {
+            type: 'ajax',
+		    url : '/pronline/Msg?FunName@ncsSys_all_mac&ssid@'+parent.getRDMac(),
+            reader: {
+                type:'json',
+                root: 'eimdata',
+                totalProperty: 'totalCount'
+            },         
+            simpleSortMode: true
+        },
+        sorters: [{
+            property: 'flags',
+            direction: 'DESC'
+        }]
+    });
+    store.load();
+
+     var win2;
+     grid = Ext.create('Ext.grid.Panel', {
+	    columnLines: true,
+	    frame:true,
+        store: store,
+        columns: [
+        {
+            text: 'MAC地址',
+			dataIndex:'mac',
+			width:80,
+			renderer:mac_all_search_rr
+
+        },
+		{
+            text: '采集场所',
+			dataIndex:'sitename',
+			width:80
+		
+        }
+        ],
+        renderTo: 'editor-grid',
+ //       width: aaa,
+        forceFit: true,
+        scrollOffset: 0,
+        height: 980,
+        frame: true 
+    });
+});
+</script>
+    
+    
+</head>
+<body>
+		<form name="form1" id="form1" action="/pronline/Msg">
+			<input type="hidden" name="groupid" value="">
+		<input type="hidden" name="did" value="">
+	</form>
+    <div id="editor-grid"></div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<html>
+<head>
+	<title>SystemSetTree</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">	
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+	<style>
+	/* Style for tree item text */
+	.t0i {
+		font-family: Tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+		font-size: 11px;
+		color: #000000;
+		background-color: #d0e1fa;
+		text-decoration: none;
+	}
+	/* Style for tree item image */
+	.t0im {
+		border: 0px;
+		width: 19px;
+		height: 16px;
+	}
+	</style>
+</head>
+
+<body bgcolor="#d0e1fa" leftmargin="1" marginheight="2" marginwidth="15" topmargin="2">
+<form name="form1" method="post" action="/pronline/Msg">
+<input type="hidden" name="sdate1" value="">
+</form>
+<script>
+if((typeof(top.sbpm_right)!="undefined")&&(typeof(top.sbpm_right.form1)!="undefined")&&(typeof(top.sbpm_right.form1.sdate1)!="undefined")&&(typeof(top.sbpm_right.form1.sdate2)!="undefined")&&(typeof(top.sbpm_right.form1.userid)!="undefined")&&(typeof(top.sbpm_right.form1.sort2)!="undefined")&&(typeof(top.sbpm_right.form1.sort1)!="undefined")&&(typeof(top.sbpm_right.form1.udisp)!="undefined")&&(typeof(top.sbpm_right.form1.recnum)!="undefined"))
+{
+var TREE_ITEMS = [
+	['网站访问统计', '',
+         ['按单位统计', '/pronline/Msg?FunName@ncsDispWarnStaCon&flag@10+date_flag@10&sdate1@'+top.sbpm_right.form1.sdate1.value+'&sdate2@'+top.sbpm_right.form1.sdate2.value+'&userid@'+top.sbpm_right.form1.userid.value+'&sort1@'+top.sbpm_right.form1.sort1.value+'&recnum@'+top.sbpm_right.form1.recnum.value+'&opt@'+top.sbpm_right.form1.opt.value+'&sort2@'+top.sbpm_right.form1.sort2.value+'&udisp@'+top.sbpm_right.form1.udisp.value+'&aord1@'+top.sbpm_right.form1.aord1.value+'&aord2@'+top.sbpm_right.form1.aord2.value],
+         ['按用户统计', '/pronline/Msg?FunName@ncsDispWarnStaCon&flag@10+date_flag@11&sdate1@'+top.sbpm_right.form1.sdate1.value+'&sdate2@'+top.sbpm_right.form1.sdate2.value+'&userid@'+top.sbpm_right.form1.userid.value+'&sort1@'+top.sbpm_right.form1.sort1.value+'&recnum@'+top.sbpm_right.form1.recnum.value+'&opt@'+top.sbpm_right.form1.opt.value+'&sort2@'+top.sbpm_right.form1.sort2.value+'&udisp@'+top.sbpm_right.form1.udisp.value+'&aord1@'+top.sbpm_right.form1.aord1.value+'&aord2@'+top.sbpm_right.form1.aord2.value],
+         ['按网站统计', '/pronline/Msg?FunName@ncsDispWarnStaCon&flag@10+date_flag@12&sdate1@'+top.sbpm_right.form1.sdate1.value+'&sdate2@'+top.sbpm_right.form1.sdate2.value+'&userid@'+top.sbpm_right.form1.userid.value+'&sort1@'+top.sbpm_right.form1.sort1.value+'&recnum@'+top.sbpm_right.form1.recnum.value+'&opt@'+top.sbpm_right.form1.opt.value+'&sort2@'+top.sbpm_right.form1.sort2.value+'&udisp@'+top.sbpm_right.form1.udisp.value+'&aord1@'+top.sbpm_right.form1.aord1.value+'&aord2@'+top.sbpm_right.form1.aord2.value],
+         ['按月统计', '/pronline/Msg?FunName@ncsDispWarnStaCon&flag@10&date_flag@4&sdate1@'+top.sbpm_right.form1.sdate1.value+'&sdate2@'+top.sbpm_right.form1.sdate2.value+'&userid@'+top.sbpm_right.form1.userid.value+'&sort1@'+top.sbpm_right.form1.sort1.value+'&recnum@'+top.sbpm_right.form1.recnum.value+'&opt@'+top.sbpm_right.form1.opt.value+'&sort2@'+top.sbpm_right.form1.sort2.value+'&udisp@'+top.sbpm_right.form1.udisp.value+'&aord1@'+top.sbpm_right.form1.aord1.value+'&aord2@'+top.sbpm_right.form1.aord2.value],
+         ['按日统计', '/pronline/Msg?FunName@ncsDispWarnStaCon&flag@10&date_flag@5&sdate1@'+top.sbpm_right.form1.sdate1.value+'&sdate2@'+top.sbpm_right.form1.sdate2.value+'&userid@'+top.sbpm_right.form1.userid.value+'&sort1@'+top.sbpm_right.form1.sort1.value+'&recnum@'+top.sbpm_right.form1.recnum.value+'&opt@'+top.sbpm_right.form1.opt.value+'&sort2@'+top.sbpm_right.form1.sort2.value+'&udisp@'+top.sbpm_right.form1.udisp.value+'&aord1@'+top.sbpm_right.form1.aord1.value+'&aord2@'+top.sbpm_right.form1.aord2.value],
+    ],
+];
+}
+else
+{
+var TREE_ITEMS = [
+	['网站访问统计', '',
+         ['按单位统计', '/pronline/Msg?FunName@ncsDispWarnStaCon&flag@10+date_flag@10'],
+         ['按用户统计', '/pronline/Msg?FunName@ncsDispWarnStaCon&flag@10+date_flag@11'],
+         ['按网站统计', '/pronline/Msg?FunName@ncsDispWarnStaCon&flag@10+date_flag@12'],
+         ['按月统计', '/pronline/Msg?FunName@ncsDispWarnStaCon&flag@10&date_flag@4'],
+         ['按日统计', '/pronline/Msg?FunName@ncsDispWarnStaCon&flag@10&date_flag@5'],
+    ],
+];
+}
+
+
+
+</script>
+
+<script language="JavaScript" src="/js/tree_tpl.js"></script>
+<script language="JavaScript" src="/js/tree.js"></script>
+<script language="JavaScript">
+	new tree (TREE_ITEMS, tree_tpl);
+</script>
+</body>
+</html>
+
+

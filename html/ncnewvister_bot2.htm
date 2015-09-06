@@ -1,0 +1,42 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<style type="text/css">
+<!--
+body {  font-size: 9pt}
+table {  font-size: 9pt}
+-->
+</style>
+<script>
+function goto(t){
+self.location.href=t
+}
+function mouseovertr2 (o){
+var i;
+df=o.style.backgroundColor
+	o.style.backgroundColor= "#E7F3FF";
+	o.style.borderColor= "#FFFF00";
+	o.style.cursor="hand";	
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#000000";
+}	
+}
+
+function mouseouttr2(o){
+	o.style.backgroundColor=df
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#B6D8F5";
+}
+	
+	
+}
+</script>
+</head>
+<body bgcolor="#12538D" topmargin="3" text="#B6D8F5">
+<form id="ff" name='ff'>
+ </form>
+</body>
+</html>

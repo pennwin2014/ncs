@@ -1,0 +1,99 @@
+<html>
+<head>
+<title></title>
+<link REL=stylesheet HREF="/css/runmit.css" TYPE='text/css'>
+</head>
+<script>
+function mouseovertr2 (o){
+var i;
+df=o.style.backgroundColor
+	o.style.backgroundColor= "#000066";
+	o.style.borderColor= "#cccccc";
+	o.style.cursor="hand";	
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#ffffff";
+}	
+parent.parent.clearTimeout(parent.parent.popTimer);
+}
+
+function mouseouttr2(o){
+	o.style.backgroundColor=df
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#000000";
+}
+	
+parent.parent.popOut()		
+}
+
+function goto(t){
+  parent.sbpm_right.location.href=t
+}
+
+function goto2(t){
+parent.sbpm_left.location.href=t
+}
+
+
+function menu_frame_onmouseover()
+{
+	parent.clearTimeout(parent.popTimer);
+	//alert('parent cleartimeout ok!');
+	document.body.className='highlight_container'}
+function menu_frame_onmouseout()
+{
+	document.body.className="menu_container";
+	parent.popOut()
+}
+//document.onmouseover=menu_frame_onmouseover;
+//document.onmouseout=menu_frame_onmouseout;
+</script>
+<body topMargin=0 leftmargin=0 marginheight="0" class=menu_space style='cursor:default;border:0' fixed oncontextmenu="return false">
+<table class=3dtable_notop1 border=0 width=100% cellspacing=0 cellpadding=0 style='padding:2px'>
+  <tr onmouseover="mouseovertr2(this)" onmouseout="mouseouttr2(this)"
+      onclick="goto('/profire/Msg?FunName@fireWebDispBaseMenu');goto2('/no.htm');parent.go_hide()"> 
+    <td height="22">&nbsp;<img src="/images/blank.gif" width="18" height="18" align="absmiddle">基本信息</td>
+  </tr>
+  <tr onmouseover="mouseovertr2(this)" onmouseout="mouseouttr2(this)" 
+     onclick="goto('/profire/Msg?FunName@fireWebDispDefault');goto2('/no.htm');parent.go_hide()"> 
+    <td height="22">&nbsp;<img src="/images/blank.gif" width="18" height="18" align="absmiddle">默认策略</td>
+  </tr>
+  <tr > 
+    <td height="2"><img src="/images/hr.gif" width="100%" height="2"></td>
+  </tr>
+  <tr onmouseover="mouseovertr2(this)" onmouseout="mouseouttr2(this)" 
+     onclick="goto('/profire/Msg?FunName@fireWebDispTableMenu');goto2('/no.htm');parent.go_hide()"> 
+    <td height="22">&nbsp;<img src="/images/blank.gif" width="18" height="18" align="absmiddle">一般规则</td>
+  </tr>
+  <tr onmouseover="mouseovertr2(this)" onmouseout="mouseouttr2(this)" 
+     onclick="goto('/profire/Msg?FunName@fireWebDispPlateMenu');goto2('/no.htm');parent.go_hide()"> 
+    <td height="22">&nbsp;<img src="/images/blank.gif" width="18" height="18" align="absmiddle">模板规则</td>
+  </tr>
+  <tr onmouseover="mouseovertr2(this)" onmouseout="mouseouttr2(this)" 
+     onclick="goto('/profire/Msg?FunName@fireWebDispMenu&plate@firewall/fire_menu_snat.htm');goto2('/no.htm');parent.go_hide()"> 
+    <td height="22">&nbsp;<img src="/images/blank.gif" width="18" height="18" align="absmiddle">地址伪装</td>
+  </tr>
+  <tr onmouseover="mouseovertr2(this)" onmouseout="mouseouttr2(this)" 
+     onclick="goto('/profire/Msg?FunName@fireWebDispMenu&plate@firewall/fire_menu_natip.htm');goto2('/no.htm');parent.go_hide()"> 
+    <td height="22">&nbsp;<img src="/images/blank.gif" width="18" height="18" align="absmiddle">地址映射</td>
+  </tr>
+  <tr onmouseover="mouseovertr2(this)" onmouseout="mouseouttr2(this)" 
+     onclick="goto('/profire/Msg?FunName@fireWebDispMenu&plate@firewall/fire_menu_natport.htm');goto2('/no.htm');parent.go_hide()"> 
+    <td height="22">&nbsp;<img src="/images/blank.gif" width="18" height="18" align="absmiddle">端口映射</td>
+  </tr>
+  <tr > 
+    <td height="2"><img src="/images/hr.gif" width="100%" height="2"></td>
+  </tr>
+  
+  <tr onmouseover="mouseovertr2(this)" onmouseout="mouseouttr2(this)"
+     onclick="goto('/profire/Msg?FunName@fireWebSave&opt@1');goto2('/no.htm');parent.go_hide()"> 
+    <td height="22">&nbsp;<img src="/images/blank.gif" width="18" height="18" align="absmiddle">保存配置</td>
+  </tr>
+  <tr onmouseover="mouseovertr2(this)" onmouseout="mouseouttr2(this)"
+     onclick="goto('/profire/Msg?FunName@fireWebDispPlateMenu');goto2('/no.htm');parent.go_hide()"> 
+    <td height="22">&nbsp;<img src="/images/blank.gif" width="18" height="18" align="absmiddle">运行防火墙</td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,387 @@
+ 
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <title>轨迹图</title>
+     <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css">
+    <script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+
+    <style type="text/css">	
+    .accept {
+            background-image:url(/newver/resources/themes/images/share/accept.png) !important;
+    }
+    .exp {
+            background-image:url(/newver/resources/themes/images/share/exportimg.png) !important;
+    }
+		body{
+			margin:0;
+			height:100%;
+			width:100%;
+			position:absolute;
+		}
+		#mapleft{
+			position: absolute;
+			top:0;
+			width:100%;
+			left:0;			
+			bottom:0;
+		}
+		#mapContainer{
+			position: absolute;
+			top:40px;		
+		  left:0;
+		  right:0;
+			bottom:40px;
+		}
+		#tip{
+			height:45px;
+			background-color:#fff;
+			padding-left:10px;
+			padding-right:10px;
+			border:1px solid #969696;
+			position:absolute;
+			font-size:12px;
+			right:10px;
+			bottom:30px;
+			border-radius:3px;
+			line-height:45px;
+		}
+		
+		#tip input[type='button']{
+			height:28px;
+			line-height:28px;
+			outline:none;
+			text-align:center;
+			padding-left:5px;
+			padding-right:5px;
+			color:#FFF;
+			background-color:#0D9BF2;
+			border:0;
+			border-radius: 3px;
+			margin-top:8px;
+			margin-left:5px;
+			cursor:pointer;
+			margin-right:10px;
+		}
+		
+		.markspan{
+			display: block;
+			height: 40px;
+			width:180px;
+			text-align:center;
+			padding-left:10px;
+			padding-right:10px;
+			line-height:40px;
+			background-color:#fff;
+			border:1px solid #ccc;
+			color:#FF6BBB;
+			font-size:12px;
+			border-radius:3px;
+		}
+		
+    </style>	
+</head>
+<script>
+
+Ext.Loader.setConfig({enabled: true});
+Ext.Loader.setPath('Ext.ux', '/newver/ux/');
+Ext.require([
+    'Ext.form.*',
+    'Ext.window.*',
+    'Ext.grid.*',
+    'Ext.data.*',
+    'Ext.util.*',
+    'Ext.window.MessageBox',
+    'Ext.toolbar.Paging',
+    'Ext.ux.PreviewPlugin',
+    'Ext.tree.*',
+    'Ext.ux.*'
+ 
+]);
+	var markers=[];
+var polyline;
+	var store;
+function  setSearchValue (params) {
+	Ext.getCmp('keyword').setValue(params);
+}
+  function addMarker(sname1,sname2,sname3,longitude,latitude){ 
+ var iconstr;
+ iconstr = '/newver/resources/themes/images/map/pass.png';
+	var marker = new AMap.Marker({                  
+  map:map, //将点添加到地图                  
+  position:new AMap.LngLat(longitude,latitude),    
+              
+  icon:iconstr,//marker图标，直接传递地址url                  
+  offset:new AMap.Pixel(-20,-42) //相对于基点的位置   
+  }); 
+ var s = new Array();
+ s[0]=sname1;
+ s[1]=sname2;
+ s[2]=sname3;
+ var datas = new Array();
+ var tmp =Math.random(); 
+  datas[0] = tmp*10000;
+ datas[0]= Math.round(datas[0])/100;
+  tmp =Math.random(); 
+  datas[1] = tmp*10000;
+ datas[1]= Math.round(datas[1])/100;
+ 
+  //var dw=sname;
+     var poiinfo = "<table style='width:270px;cursor:pointer;'>";
+		    for(var j=0;j<2;j++){
+		        var color = j % 2 === 0 ? '#fff' : '#eee';
+		        poiinfo += "<tr  style='margin:0; padding:0;'><td>" + 
+		         datas[j] + "% 用户"+ "</td><td><img src='/newver/resources/themes/images/map/arrow.png'/></td><td>" 
+		         + s[j+1] + "</td></tr>";
+		    }
+		    poiinfo += "</table>";
+		    
+		    resultStr = "<div style=\"font-size: 12px;padding:0px 0 4px 2px; border-bottom:1px solid #C1FFC1;\">"+"<table><tr style='background-color:#FFFF00;'><td><b>场所</b>："+ s[0] +"</td><td align='right'></td></tr></table>"+ "<hr/><b>流动信息</b>：<br/>" + poiinfo +"</div>";        
+	var inforWindow = new AMap.InfoWindow({                  
+	  offset:new AMap.Pixel(0,-23),                  
+	  content:resultStr                  
+	});       
+	 //inforWindow.open(map,marker.getPosition());            
+	//AMap.event.addListener(marker,"click",function(e){                  
+	  inforWindow.open(map,marker.getPosition());      
+                 
+   // });    
+	  
+	 markers.push(marker);
+
+	}
+
+	function reflash(){
+
+	   var mac = Ext.getCmp('keyword').value;
+	   store.load({params:{mac:mac},
+     callback:function(records, options, success){
+     	var maxlong,maxlat,minlong,minlat;
+     	maxlong=0;maxlat=0;minlong=0;minlat=0;
+   
+    	if(store.getCount()==0){
+    		
+    		map = new AMap.Map('mapContainer',{
+			resizeEnable: true,
+			view: new AMap.View2D({
+				center: new AMap.LngLat(116.397428, 39.90923),
+				zoom: 13
+			})
+		});		 
+     		return;
+     	}
+     	
+     	
+     
+			for(var i=0;i<store.getCount();i++)
+			if(parseFloat(store.getAt(i).get('longitude'))&&parseFloat(store.getAt(i).get('latitude'))&&(parseFloat(store.getAt(i).get('longitude'))>73 && parseFloat(store.getAt(i).get('longitude'))<136)&&(parseFloat(store.getAt(i).get('latitude'))>3&&parseFloat(store.getAt(i).get('latitude'))<54))
+			{
+			
+				if(maxlong==0){
+					maxlong=parseFloat(store.getAt(i).get('longitude'));
+				}
+				if(minlong==0){
+					minlong=parseFloat(store.getAt(i).get('longitude'));
+				}
+				if(maxlat==0){
+					maxlat=parseFloat(store.getAt(i).get('latitude'));
+				}
+			
+				if(minlat==0){
+					minlat=parseFloat(store.getAt(i).get('latitude'));
+				}
+				if(maxlong<parseFloat(store.getAt(i).get('longitude'))){
+					maxlong=parseFloat(store.getAt(i).get('longitude'));
+				}
+			
+				if(maxlat<parseFloat(store.getAt(i).get('latitude'))){
+					maxlat=parseFloat(store.getAt(i).get('latitude'));
+				}
+				if(minlong>parseFloat(store.getAt(i).get('longitude'))){
+					minlong=parseFloat(store.getAt(i).get('longitude'));
+				}
+	
+				if(minlat>parseFloat(store.getAt(i).get('latitude'))){
+					minlat=parseFloat(store.getAt(i).get('latitude'));
+				}
+			}
+     var latitude=(parseFloat(maxlat)+parseFloat(minlat))/2;
+     var longitude=(parseFloat(maxlong)+parseFloat(minlong))/2;
+
+        map = new AMap.Map("mapContainer",{
+				resizeEnable: true,
+				//二维地图显示视口
+				view: new AMap.View2D({
+				//地图中心点
+				center:new AMap.LngLat(longitude, latitude),
+				//地图显示的缩放级别
+					zoom:13 
+				}),
+				continuousZoomEnable:false
+			});	
+
+ 
+     	for(i=0;i<markers.length;i++){
+     		markers[i].setMap(null);
+     	}
+
+     markers=[];
+     var lineArr = new Array(); 
+     for(var i=0;i<store.getCount();i++)
+     if(parseFloat(store.getAt(i).get('longitude'))&&parseFloat(store.getAt(i).get('latitude'))&&(parseFloat(store.getAt(i).get('longitude'))>73 && parseFloat(store.getAt(i).get('longitude'))<136)&&(parseFloat(store.getAt(i).get('latitude'))>3&&parseFloat(store.getAt(i).get('latitude'))<54))
+     {  		
+     	  //addMarker(store.getAt(i).get('address'),store.getAt(i).get('address'),parseFloat(store.getAt(i).get('longitude')), parseFloat(store.getAt(i).get('latitude')),i ,store.getCount()); 	   	
+     }
+   
+     map.setFitView();
+    }
+  }
+	);
+	
+ }
+	
+	Ext.onReady(function(){
+    Ext.tip.QuickTipManager.init();
+    Ext.define('EimData', {
+        extend: 'Ext.data.Model',
+        fields: [
+            'address', 'address', 'longitude', 'latitude'
+        ]
+        //idProperty: 'sdate'
+    });
+   
+  
+   
+    
+       store = Ext.create('Ext.data.Store', {
+        pageSize: 40,
+        model: 'EimData',
+        remoteSort: true,
+        proxy: {
+            type: 'ajax',
+            url: '/pronline/Msg?FunName@dm_crowd',
+//              url:'/data/ncs_pelope_gj.htm',
+            reader: {
+                type:'json',
+                root: 'eimdata',
+                totalProperty: 'totalCount'
+            },         
+            simpleSortMode: true
+        },
+        sorters: [{
+      //      property: 'id',
+     //       direction: 'DESC'
+        }]
+    });
+    
+   
+
+
+        var tbar = Ext.create('Ext.Toolbar',{
+            
+            items:[
+           
+                { 
+                	 fieldLabel:'指定场所',
+                	 labelWidth: 60,
+                    xtype:'textfield',
+                    id:'keyword',
+                    width:240,
+                    name:'keyword',
+                    value:'',         
+                    emptyText:'请在左侧选择场所范围',
+                    enableKeyEvents:true,
+                    listeners:{
+                        'focus':function(){
+                        },           
+                        'keydown' : function(i,e){
+                             var aae=e.getKey() ; 
+                             if(aae==13){
+                             }
+                         }
+                    }
+                },'  ',
+                {
+                    text:'查询',
+                    iconCls:'accept',
+                    handler:function()
+                    {
+                    	reflash();                 
+                    	
+                    }
+                },
+                '-',
+               
+             {
+			     	 	text:'导出',
+			     	 	itemId: 'expbutton',
+			     	 	iconCls:'exp',
+			     	 	handler:function() {
+			     	 		var form1 = document.getElementById('form1');
+        
+                      form1.mac.value =  Ext.getCmp('keyword').value;
+                     
+                      
+
+                    form1.exp.value='exp';
+                        form1.submit();
+                      form1.exp.value=""; 
+			     	 	}
+			     	 },
+                {xtype:'label', html:'<span id="titledx"></span>'}
+            ]
+        });
+
+       var panel = Ext.create('Ext.form.FormPanel', {
+        title: '',
+        margins: '0 0 0 0',
+        id:'myform',
+        name:'myform',
+        autoScroll: false,
+        renderTo: 'mapleft',
+        frame: true,
+        tbar:tbar
+ 
+    }); 
+});
+	
+	
+	
+	
+	</script>
+<body>
+	<div id="mapleft"></div>
+	<div id="mapContainer"></div>
+	<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=9ac2d10856d92017d2d8d82ce004a820"></script>
+	
+	<script type="text/javascript">
+		
+	
+		//初始化地图对象，加载地图
+	
+var map = new AMap.Map('mapContainer',{
+			resizeEnable: true,
+			view: new AMap.View2D({
+				center: new AMap.LngLat(121.467151,31.228183),
+				zoom: 13
+			})
+		});	
+		map.setFitView(); 
+	
+	 
+		  
+	</script>
+	
+<form name="form1" id="form1" action="/pronline/Msg">
+        <input type="hidden" name="FunName" value="dm_crowd">
+       
+        <input type="hidden" name="mac" value="">
+        <input type="hidden" name="exp" value="">
+     
+	</form>
+</body >
+</html>						
+ 
+

@@ -1,0 +1,1708 @@
+ <head>
+ 	
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+ <title>互联网安全审计系统</title>
+ <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" /> 
+ <link rel="stylesheet" type="text/css" href="/newver/resources/css/toolbars.css" />
+ <script type="text/javascript" src="/newver/resources/js/ext-all.js"></script> 
+
+    <style type="text/css">
+ .x-tab-default-top button, .x-tab-default-top.x-tab-inner {
+		height: 16px !important;
+		line-height: 16px;
+	}
+	.x-statusbar .x-status-busy {
+    padding-left: 25px !important;
+    background: transparent no-repeat 3px 0;
+}
+  .x-statusbar .x-status-busy {
+    background-image: url(/images/loading.gif);
+}
+  .add_dw {
+    background-image: url(/images/large/gman.gif) !important;
+}	 
+  .add_sf {
+    background-image: url(/images/large/customers.png) !important;
+}	
+ .dhs {
+    background-image: url(/images/large/earth.png) !important;
+}	
+ .mggd {
+    background-image: url(/images/large/info.png) !important;
+}
+ .refresh {
+    background-image: url(/images/large/refresh.png) !important;
+}
+ .unlock {
+    background-image: url(/images/large/unlock.png) !important;
+}
+
+ .search {
+    background-image: url(/images/large/search.png) !important;
+}
+ .lamp {
+    background-image: url(/images/large/lamp.png) !important;
+}
+ .bk {
+    background-image: url(/images/large/bk.png) !important;
+}
+
+ .sitemap {
+    background-image: url(/images/large/sitemap.png) !important;
+}
+ .pencil {
+    background-image: url(/images/large/pencil.png) !important;
+}
+ .address {
+    background-image: url(/images/large/address.png) !important;
+}
+ .dvd {
+    background-image: url(/images/large/dvd.png) !important;
+}
+ .edit {
+    background-image: url(/images/large/edit.png) !important;
+}
+ .static {
+    background-image: url(/images/large/pie-chart_graph.png) !important;
+}
+ .group {
+    background-image: url(/images/large/category.png) !important;
+}
+
+ .users {
+    background-image: url(/images/large/user_friend.png) !important;
+}
+ .macs {
+    background-image: url(/images/large/help_ring-buoy.png) !important;
+}
+ .calculator {
+    background-image: url(/images/large/calculator.png) !important;
+}
+ .szhtj {
+    background-image: url(/images/large/statistics.png) !important;
+}
+ .xtyh {
+    background-image: url(/images/large/add.gif) !important;
+}
+ .mark_flag {
+    background-image: url(/images/large/flag_mark_green.png) !important;
+}
+   *{font-size:12px!important;}
+  </style>
+
+
+<script type="text/javascript">
+
+
+var now=new Date();
+var number = now.getYear().toString()+now.getMonth().toString()+now.getDate().toString()+now.getHours().toString()+now.getMinutes().toString()+now.getSeconds().toString(); 
+document.write("\<script language=\"javascript\" type=\"text/javascript\" src=\"/pronline/Msg?FunName@ncsSysUserRoleConfig_v4&time@"+number+"\"><\/script\>"); 
+
+var wireflag='[#wireflag#]';
+
+var grid_height=700;
+var grid_widht=800;
+
+
+
+Ext.Loader.setConfig({enabled: true});
+Ext.Loader.setPath('Ext.ux', '/newver/ux/');
+
+Ext.require([
+    'Ext.tip.QuickTipManager',
+    'Ext.container.Viewport',
+    'Ext.layout.*',
+    'Ext.form.Panel',
+    'Ext.form.Label',
+    'Ext.grid.*',
+    'Ext.data.*',
+    'Ext.tree.*',
+     'Ext.panel.*',
+    'Ext.toolbar.*',
+    'Ext.button.*',
+    'Ext.selection.*',
+    'Ext.tab.Panel',
+    'Ext.tab.*',
+    'Ext.ux.TabCloseMenu',
+    'Ext.ux.layout.Center',
+    'Ext.ux.statusbar.StatusBar',
+    'Ext.*'  
+]);
+ 	function _viewmail(table, stime, mailfile,sid)
+    	{
+    		var htmlvar='<iframe src="/pronline/Msg?FunName@ncsShowOneMail_v4&table@' + table + "&stime@" + stime + "&mailfile@" + mailfile + "&sid@"+sid+'" scrolling="no" name="moduleIframe" frameborder="no" style="width:100%;height:100%;"></iframe>';      
+      
+         	var win = new Ext.Window ({
+    //                         id:"addwindow3",
+                             title:"显示邮件",
+                             x:200,
+                             y:0,
+                             width:500,
+                             height:600,
+                             bodyPadding: 0,
+                             modal:false,
+                             resizable:true,
+                             draggable:true,
+                            maximizable:true ,
+                     	     html:htmlvar})
+        	 win.show();
+    	}
+
+//显示上网用户信息
+function show_enduserinfo(htmlvar){
+	         var win = new Ext.Window ({
+                             id:"userwindow",
+                             title:"用户上网行为统计报告",
+                             x:230,
+                             y:20,
+                             width:760,
+                             height:700,
+                             bodyPadding: 0,
+                             modal:false,
+                             resizable:true,
+                             draggable:true,
+                             maximizable:true,
+                             html:htmlvar
+                                               
+         }
+        )
+        win.show();
+}
+
+  function ShowDet(record){
+
+        var htmlvar="<p><font color=blue>主题：</font>"+replace_str(record.data.subject)+"</p>";
+
+        htmlvar=htmlvar+"<p><font color=blue>内容：</font>"+replace_str(record.data.content);
+        htmlvar=htmlvar+"</p>";
+         var win = new Ext.Window ({
+  //                           id:"userwindow",
+                             title:"查看详细信息",
+                             x:230,
+                             y:20,
+                             width:670,
+                             height:700,
+                             bodyPadding: 10,
+                             modal:false,
+                             resizable:true,
+                             maximizable:true,
+                             draggable:true,
+                             html:htmlvar
+
+         }
+        )
+        win.show();
+
+         }
+
+
+
+
+
+
+
+
+
+
+
+//
+function refreshtree(){
+		var tabs_obj=Ext.getCmp('treetab');
+	  var index=tabs_obj.getActiveTab();
+
+	  var tabframe="dhIframe_"+index.id;
+	  eval(tabframe).refresh();
+
+}
+function dhsrc(srcurl,title,id){
+    var i=0;
+    var m=0;
+		var tabs_obj=Ext.getCmp('layout_center');
+
+		var tab_len=tabs_obj.items.length;
+     tabs_obj.items.each(function(item) { 
+
+     			if(item.id==id)
+     			{    	       
+     	             i++;
+     	    }
+           if(i==0){
+           	m++;
+          }
+                
+ 
+      });   
+     if(i>0){
+
+     	tabs_obj.setActiveTab(m);
+     	 return; 
+     	} 
+
+if(tab_len>5){
+	//删除第一个标签
+	tabs_obj.remove(1);
+}
+
+	  var tabframe="viewIframe_"+id;
+//	  document.getElementById(tabframe).src=srcurl;
+	  var htmlvar='<iframe  id=\"'+tabframe+'\" name=\"'+tabframe+'\" src=\"'+srcurl+'\"  width=100% height=950  FrameBorder=0 scrolling=\"no\"></iframe>';
+	
+	
+	  tabs_obj.add({
+            closable: true,
+            id:id,
+            html:htmlvar,
+           iconCls: 'add16',
+            title: title
+        }).show();
+}
+
+ //左边菜单增加树
+  function onAddTree_left(lefttree,srcurl,title){
+     	  var i=0;
+     	  var m=0;
+     var tabs_tree=Ext.getCmp('treetab');
+     var tab_len=tabs_tree.items.length;
+     tabs_tree.items.each(function(item) { 
+     	if(item.id==lefttree){
+     		i++;
+     	}
+	     	if(i==0){
+	     		m++;
+	     	}
+	    }
+	    );
+	    if(i>0){
+//	    	 tabs_tree.setActiveTab(m);
+	    	 return;
+	    }
+	    if(tab_len>1){
+	   //删除第一个标签
+	     tabs_tree.remove(1);
+
+      }
+	    
+		     	if(i==0){
+		     			 var tabframe="dhIframe_"+lefttree;
+
+							  var htmlvar='<iframe  id=\"'+tabframe+'\" name=\"'+tabframe+'\" src=\"'+srcurl+'\"  width=100% height=950  FrameBorder=0 scrolling=\"no\"></iframe>';
+		
+							
+							  tabs_tree.add({
+						            closable: true,
+						            id:lefttree,
+						            html:htmlvar,
+		//				            iconCls: 'add16',
+						            title: title
+						        });
+						  
+							}
+
+//							tabs_tree.setActiveTab(m); 
+						 	
+						        	
+   }
+   
+
+ //增加导航树
+    function onAddTree(lefttree,srcurl,title){
+     	  var i=0;
+     	  var m=0;
+     var tabs_tree=Ext.getCmp('treetab');
+     var tab_len=tabs_tree.items.length;
+     tabs_tree.items.each(function(item) { 
+     	if(item.id==lefttree){
+     		i++;
+     	}
+	     	if(i==0){
+	     		m++;
+	     	}
+	    }
+	    );
+	    if(i>0){
+	    	 tabs_tree.setActiveTab(m);
+	    	 return;
+	    }
+	    if(tab_len>1){
+	   //删除第一个标签
+	     tabs_tree.remove(1);
+
+      }
+	    
+		     	if(i==0){
+		     			 var tabframe="dhIframe_"+lefttree;
+
+							  var htmlvar='<iframe  id=\"'+tabframe+'\" name=\"'+tabframe+'\" src=\"'+srcurl+'\"  width=100% height=950  FrameBorder=0 scrolling=\"no\"></iframe>';
+		
+							
+							  tabs_tree.add({
+						            closable: true,
+						            id:lefttree,
+						            html:htmlvar,
+		//				            iconCls: 'add16',
+						            title: title
+						        }).show();
+						  
+							}
+
+								tabs_tree.setActiveTab(m); 
+						 	
+						        	
+   }
+
+
+
+function passcode(code,lb){
+
+		var tabs_obj=Ext.getCmp('layout_center');
+	  var index=tabs_obj.getActiveTab();
+
+	  var tabframe="viewIframe_"+index.id;
+	  if(eval(tabframe).document.getElementById("form1").fcode){
+	  	eval(tabframe).document.getElementById("form1").fcode.value=code;
+	  }
+	  if(eval(tabframe).document.getElementById("form1").lb){
+	  	eval(tabframe).document.getElementById("form1").lb.value=lb;
+	  }
+	  
+	  
+	  
+	  eval(tabframe).document.getElementById("form1").groupid.value='';
+	  eval(tabframe).document.getElementById("form1").did.value='';
+}
+function passflag(flag){
+		var tabs_obj=Ext.getCmp('layout_center');
+	  var index=tabs_obj.getActiveTab();
+	  var tabframe="viewIframe_"+index.id;
+	  eval(tabframe).document.getElementById("form1").kflag.value=flag;
+}
+
+function passid(groupid,did){
+	
+		var tabs_obj=Ext.getCmp('layout_center');
+	  var index=tabs_obj.getActiveTab();
+	  var tabframe="viewIframe_"+index.id;
+
+	  eval(tabframe).document.getElementById("form1").groupid.value=groupid;
+	  eval(tabframe).document.getElementById("form1").did.value=did;
+
+	  if(eval(tabframe).document.getElementById("form1").fcode){
+	  	eval(tabframe).document.getElementById("form1").fcode.value='';
+	  }
+
+	  if(eval(tabframe).document.getElementById("form1").lb){
+	  	eval(tabframe).document.getElementById("form1").lb.value='';
+	  }	
+}
+
+function passid_user(uid,did){
+	
+		var tabs_obj=Ext.getCmp('layout_center');
+	  var index=tabs_obj.getActiveTab();
+	  var tabframe="viewIframe_"+index.id;
+
+	  eval(tabframe).document.getElementById("form1").uid.value=uid;
+	  eval(tabframe).document.getElementById("form1").did.value=did;
+
+	  if(eval(tabframe).document.getElementById("form1").fcode){
+	  	eval(tabframe).document.getElementById("form1").fcode.value='';
+	  }
+
+	  if(eval(tabframe).document.getElementById("form1").lb){
+	  	eval(tabframe).document.getElementById("form1").lb.value='';
+	  }	
+//	  alert(did);
+}
+
+function doreflashTab(){
+	var tabs_obj=Ext.getCmp('layout_center');
+	var index=tabs_obj.getActiveTab();
+	var tabframe="viewIframe_"+index.id;
+
+   if((eval(tabframe).store)){
+
+   		eval(tabframe).store.currentPage=1;
+   		if(eval(tabframe).Ext.getCmp('keyword')){
+    			eval(tabframe).Ext.getCmp('keyword').setValue('');
+      }
+
+  }
+
+	//alert(temp);
+	eval(tabframe).reflash();
+}
+
+
+Ext.onReady(function(){
+    Ext.tip.QuickTipManager.init();
+
+    var currentItem;
+    var right_fun_s;
+    if(right_tool!=''){
+    	right_fun_s=right_tool;
+    }
+  else{
+  	right_fun_s=right_fun;
+  }
+
+  
+   
+    //删除导航树
+    function onDelTree(lefttree){
+     	  var i=0;
+     	  var m=0;
+     var tabs_tree=Ext.getCmp('treetab');
+     tabs_tree.items.each(function(item) { 
+     	if(item.id==lefttree){
+     		i++;
+     	}
+	     	if(i==0){
+	     		m++;
+	     	}
+	    }
+	    );
+		         	
+     	 if(i>0){    
+  	   	   tabs_tree.remove(m);
+     	  }
+   	
+   }
+   
+                 
+ function onCheckItem(){
+// 	  var temp_id='dhIframe_'+item.tname;
+//   	if(ch)
+//   	{   	 	 		
+ //  	 	 onAddTree(item.tname,item.srcurl,item.text);
+ //   }
+//      else{
+//      onDelTree(item.tname);
+//     }
+   	 onAddTree(this.tname,this.srcurl,this.text);	
+   	 if(this.text=='关键字树'){
+   	 	 dhsrc("/v4/ncs_mgjk_lab.htm","敏感监控","mgjkrz");
+   	 }
+     if(this.text=='敏感网址'){
+   	 	 dhsrc("/v4/sentive/ncs_senurllog_list.htm","敏感网址","mgwz");
+   	 }
+}
+
+// function onCheckItem(item,ch){
+// 	  var temp_id='dhIframe_'+item.tname;
+//   	if(ch)
+//   	{   	 	 		
+//   	 	 onAddTree(item.tname,item.srcurl,item.text);
+//    }
+//      else{
+//      onDelTree(item.tname);
+//     }
+   	 	
+   
+//}
+
+
+
+
+
+/*
+//创建敏感规则菜单
+   var menu_mggz = Ext.create('Ext.menu.Menu', {
+        id: 'mggzMenu',
+        style: {
+            overflow: 'visible'     
+        }
+        ,
+        items: [
+       
+              {
+           	    text: '关键字日志归档',
+           	    iconCls: 'viewlist',
+                itemid:'keywordgdmenu',
+                tname:'keywordgdmenu',
+                srcurl:'/v4/sentive/ncs_keywordlog_list.htm',
+                handler:onItemClick    
+           },
+            {
+           	    text: '敏感网址归档',
+           	    iconCls: 'viewlist',
+                itemid:'senwebgdmenu',
+                tname:'senwebgdmenu',
+                srcurl:'/v4/sentive/ncs_senurllog_list.htm',
+                handler:onItemClick    
+           },
+            {
+           	    text: '重点虚拟身份归档',
+           	    iconCls: 'viewlist',
+                itemid:'sennetidgdmenu',
+                tname:'sennetidgdmenu',
+                srcurl:'/v4/sentive/ncs_sennetidlog_list.htm',
+                handler:onItemClick    
+           },
+            {
+           	    text: '重点关注用户日志',
+           	    iconCls: 'viewlist',
+                itemid:'senuserlogmenu',
+                tname:'senuserlogmenu',
+                srcurl:'/v4/sentive/ncs_senuserlog_list.htm',
+                handler:onItemClick    
+           }
+            ,'-',
+          {
+                text: '关键字库维护',
+                iconCls: 'iadd',
+                itemid:'keywordmenu', 
+                tname:'keywordmenu', 
+                srcurl:'/v4/case/ncs_case_keyword.htm',  
+                handler:onItemClick    
+       
+           },
+           {
+           	    text: '重点关注用户库',
+           	    iconCls: 'iadd',
+                itemid:'zdyhmenu',
+                tname:'zdyhmenu',
+                srcurl:'/v4/sentive/ncs_sentive_user_list.htm',
+                handler:onItemClick    
+           },
+           {
+           	    text: '敏感网址库维护',
+           	    iconCls: 'iadd',
+                itemid:'mgurlmenu',
+                tname:'mgurlmenu',
+                srcurl:'/v4/sentive/ncs_sentive_url.htm',
+                handler:onItemClick    
+           },
+           {
+           	    text: '重点虚拟身份库',
+           	    iconCls: 'iadd',
+                itemid:'zdvidmenu',
+                tname:'zdvidmenu',
+                srcurl:'/v4/sentive/ncs_sentive_netid.htm',
+                handler:onItemClick    
+           },
+           {
+           	    text: 'CCIC库维护',
+           	    iconCls: 'iadd',
+                itemid:'ccicmenu',
+                tname:'ccicmenu',
+                srcurl:'/v4/sentive/ncs_sentive_ccic.htm',
+                handler:onItemClick    
+           }
+        ]
+
+                
+        
+    });
+
+*/
+
+
+ //创建统计报表菜单
+   var menu_tjpb = Ext.create('Ext.menu.Menu', {
+        id: 'tjbpMenu',
+        style: {
+            overflow: 'visible'     
+        }
+        ,
+        items: [
+          {
+                text: '当前在线率',
+                itemid:'zxtj', 
+                tname:'zxtjmenu', 
+                srcurl:'/v4/ncs_onlinestat_list.htm',  
+                handler:onItemClick    
+       
+           },
+           {
+           	    text: '综合统计',
+                itemid:'zhtjmenu',
+                tname:'zhtjmenu',
+                srcurl:'/pronline/Msg?FunName@ncsShowZhtj_v4',
+                handler:onItemClick    
+           },
+           {
+           	    text: '信息处理统计',
+                itemid:'gzqkmenu',
+                tname:'gzqkmenu',
+                srcurl:'/v4/stat/ncs_gzstat_lab.htm',
+                handler:onItemClick    
+           },
+           {
+           	    text: '虚拟身份统计',
+                itemid:'xnsftjmenu',
+                tname:'xnsftjmenu',
+                srcurl:'/v4/stat/ncs_vidstat_lab.htm',
+                handler:onItemClick    
+           },
+           {
+           	    text: '后台报表',
+                itemid:'htbbmenu',
+                tname:'htbbtjmenu',
+                srcurl:'/v4/stat/ncs_htbb_lab.htm',
+                handler:onItemClick    
+           }
+/*
+           ,
+           {
+           	    text: '烽火日志上传统计',
+                itemid:'fhlogmenu',
+                tname:'fhlogmenu',
+                srcurl:'/v4/stat/ncs_fhlog_lab.htm',
+                handler:onItemClick    
+           }
+*/        
+        ]
+
+        
+        
+        
+    });
+
+
+ //创建系统菜单
+   var menu_xtgl = Ext.create('Ext.menu.Menu', {
+        id: 'xtglMenu',
+        style: {
+            overflow: 'visible'     
+        }
+        ,
+        items: [
+          {
+                text: '权限角色',
+                itemid:'rolemenu', 
+                tname:'rolemenu', 
+                srcurl:'/v4/ncs_role_list.htm',  
+                handler:onItemClick    
+       
+           },
+           {
+           	    text: '系统用户',
+                itemid:'xtyhmenu',
+                tname:'xtyhmenu',
+                srcurl:'/v4/ncs_adminuser_list.htm',
+                handler:onItemClick    
+           },
+           {
+           	    text: '移动密保管理',
+                itemid:'ydmbmenu',
+                tname:'ydmbmenu',
+                srcurl:'/pronline/Msg?FunName@ncsWebReplace&plate@ds/ds_mbauth.htm&fname@ncWebDisplayMbManager',
+                handler:onItemClick    
+           },
+           {
+           	    text: '系统操作日志',
+                itemid:'czrimenu',
+                tname:'czrimenu',
+                srcurl:'/v4/ncs_syslog_list.htm',
+                handler:onItemClick    
+           }
+        ]
+
+        
+        
+        
+    });
+
+
+ //创建身份库菜单
+   var menu_sfkgl = Ext.create('Ext.menu.Menu', {
+        id: 'sfkglMenu',
+        style: {
+            overflow: 'visible'     
+        }
+        ,
+        items: [
+          {
+                text: '上网用户库',
+                itemid:'swyhkmenu', 
+                tname:'swyhkmenu', 
+                srcurl:'/v4/ncs_enduser_list.htm',  
+                handler:onItemClick    
+       
+           },
+           {
+           	    text: 'MAC地址库',
+                itemid:'mkdzmenu',
+                tname:'mkdzmenu',
+                srcurl:'/v4/vid/ncs_macvid_list.htm',
+                handler:onItemClick    
+           },
+           {
+           	    text: '虚拟身份库',
+                itemid:'xnsfkmenu',
+                tname:'xnsfkmenu',
+                srcurl:'/v4/vid/ncs_vid_lab.htm',
+                handler:onItemClick    
+           }
+        ]
+
+        
+        
+        
+    });
+
+
+
+
+
+ //创建导航菜单
+   var menu_dhtree = Ext.create('Ext.menu.Menu', {
+        id: 'dhMenu_tree',
+        style: {
+            overflow: 'visible'     
+        }
+        ,
+        items: [
+          {
+                text: '菜单树',
+                id:'dhmenu', 
+                tname:'dhtree', 
+                srcurl:'/v4/main_dhleft.htm',
+//                checked:false,      
+                handler:onCheckItem    
+       
+           },
+ //          {
+//           	    text: '单位组树',
+//                id:'dwzmenu',
+//                tname:'dwztree',
+//                srcurl:'/v4/ncs_tree_group.htm',
+//               checked:false, 
+//                handler:onCheckItem    
+ //          },
+            {
+           	    text: '单位分类',
+           	    srcurl:'/v4/ncs_tree_userfl.htm',
+  //              id:'sennetidgd',
+                tname:'jrcstree',
+                handler:onCheckItem
+           },
+           {
+           	    text: '单位树',
+//           	    checked:false,
+           	    srcurl:'/v4/ncs_tree_user.htm',
+                id:'dwmenu',
+                tname:'dwtree',
+                handler:onCheckItem
+           }
+/*           ,
+           {
+           	    text: '关键字树',
+           	    srcurl:'/v4/sentive/ncs_tree_keyword.htm',
+//                id:'keywordgd',
+                tname:'keywordgd',
+                handler:onCheckItem
+           },
+           {
+           	    text: '敏感网址',
+           	    srcurl:'/v4/sentive/ncs_tree_senweb.htm',
+ //               id:'senwebgd',
+                tname:'senwebgd',
+                handler:onCheckItem
+           },
+           {
+           	    text: '虚拟身份',
+           	    srcurl:'/v4/sentive/ncs_tree_sennetid.htm',
+  //              id:'sennetidgd',
+                tname:'sennetidgd',
+                handler:onCheckItem
+           }
+ */
+ //          {
+ //          	    text: '接入厂商',
+ //          	    srcurl:'/v4/ncs_tree_fac.htm',
+ //               tname:'jrcstree',
+ //               handler:onCheckItem
+ //          },
+
+        ]
+
+        
+        
+        
+    });
+
+
+ //创建单位菜单
+   var menu_dwgl = Ext.create('Ext.menu.Menu', {
+        id: 'dwglMenu',
+        style: {
+            overflow: 'visible'     
+        }
+        ,
+        items: [
+          {
+                text: '单位管理',
+                itemid:'dwgl', 
+                tname:'dwglmenu', 
+                srcurl:'/v4/ncs_user_list.htm',
+//                checked:false,      
+                handler:onItemClick    
+       
+           },
+           {
+                text: '在线单位',
+                itemid:'zxdw', 
+                tname:'zxdw', 
+                srcurl:'/v4/ncs_onlinecorp_list.htm',
+//                checked:false,      
+                handler:onItemClick    
+       
+           },
+           
+           {
+           	    text: '单位组',
+                itemid:'dwz',
+                tname:'dwz',
+                srcurl:'/v4/ncs_group_list.htm',
+//               checked:false, 
+                handler:onItemClick    
+           },           
+           {
+           	    text: '接入厂商代码维护',
+                itemid:'cswh',
+                tname:'cswh',
+                srcurl:'/v4/ncs_joinuser_list.htm',
+//               checked:false, 
+                handler:onItemClick    
+           },           
+           {
+           	    text: '场所类别维护',
+                itemid:'cslb',
+                tname:'cslb',
+                srcurl:'/v4/ncs_cslb_list.htm',
+//               checked:false, 
+                handler:onItemClick    
+           },           
+           {
+           	    text: 'AP信息维护',
+                itemid:'cslb',
+                tname:'cslb',
+                srcurl:'/dwgl/apset/proauth_apset.htm',
+//               checked:false, 
+                handler:onItemClick    
+           }
+          
+        ]
+
+        
+        
+        
+    });
+
+
+
+//  function setMenuValue(){
+
+  	  //初始或chek框      
+//      var tabs_tree=Ext.getCmp('treetab');
+//      setAllMenuCheckFalse();
+ //    tabs_tree.items.each(function(item) { 
+ //    	if(item.id=='dhtree'){
+     		
+//         setMenuCheck('dhmenu');
+//     	}
+//     else if(item.id=='dwztree'){
+//       setMenuCheck('dwzmenu');
+ //     }
+//	    else if(item.id=='dwtree'){
+
+//	    	setMenuCheck('dwmenu');
+//	    }
+   
+ 
+ //   }
+ //);
+    
+    
+//  }
+// 
+ 
+ //主显示区TAB
+ 
+    var tab_html;
+    var right_id="";
+   
+    if(right_sy=='单位管理'||right_sy=='单位管理'){
+    	right_id='dwgl';
+    	tab_html='<iframe  id="viewIframe_dwgl" name="viewIframe_dwgl" src="/v4/ncs_user_list.htm"  width=100% height=950  FrameBorder=0 ></iframe>';
+    }
+	  else if(right_sy=='单位组'){
+	  	right_id="dwz";
+	  	tab_html='<iframe  id="viewIframe_dwz" name="viewIframe_dwz" src="/v4/ncs_group_list.htm"  width=100% height=950  FrameBorder=0 scrolling="no"></iframe>';
+	  }
+	  else if(right_sy=='归档日志'){
+	  	right_id="gdrz";
+	  	tab_html='<iframe  id="viewIframe_gdrz" name="viewIframe_gdrz" src="/v4/ncs_gdrz_lab.htm"  width=100% height=950  FrameBorder=0 scrolling="no"></iframe>';
+	  }
+	  else if(right_sy=='在线单位'){
+	  	right_id="zxdw";
+	  	tab_html='<iframe  id="viewIframe_zxdw" name="viewIframe_zxdw" src="/v4/ncs_onlinecorp_list.htm"  width=100% height=950  FrameBorder=0 scrolling="no"></iframe>';
+	  }
+	  else if(right_sy=='在线率统计'){
+	  	right_id="zxtj";
+	  	tab_html='<iframe  id="viewIframe_zxtj" name="viewIframe_zxtj" src="/v4/ncs_onlinestat_list.htm"  width=100% height=950  FrameBorder=0 scrolling="no"></iframe>';
+	  }
+	  else if(right_sy=='告警信息'){
+	  	right_id="gjxx";
+	  	tab_html='<iframe  id="viewIframe_gjxx" name="viewIframe_gjxx" src="/v4/ncs_casemesg_list.htm"  width=100% height=950  FrameBorder=0 scrolling="no"></iframe>';
+	  }
+	  else if(right_sy=='布控管理'){
+	  	right_id="bkgl";
+	  	tab_html='<iframe  id="viewIframe_bkgl" name="viewIframe_bkgl" src="/v4/ncs_case_lab.htm"  width=100% height=950  FrameBorder=0 scrolling="no"></iframe>';
+	  }
+	  else if(right_sy=='权限管理'){
+	  	right_id="xtgl";
+	  	tab_html='<iframe  id="viewIframe_xtgl" name="viewIframe_xtgl" src="/v4/ncs_role_list.htm"  width=100% height=950  FrameBorder=0 scrolling="no"></iframe>';
+	  }
+	  else if(right_sy=='综合统计'){
+	  	right_id="zhtj";
+	  	tab_html='<iframe  id="viewIframe_zhtj" name="viewIframe_zhtj" src="/pronline/Msg?FunName@ncsShowZhtj_v4"  width=100% height=950  FrameBorder=0 scrolling="no"></iframe>';
+	  }
+	  else if(right_sy=='关键字归档'){
+	  	right_id="keywordgdmenu";
+	  	tab_html='<iframe  id="viewIframe_keywordgdmenu" name="viewIframe_keywordgdmenu" src="/v4/sentive/ncs_keywordlog_list.htm"  width=100% height=950  FrameBorder=0 scrolling="no"></iframe>';
+	  }
+	  else if(right_sy=='系统操作日志'){
+	  	right_id="czrimenu";
+	  	tab_html='<iframe  id="viewIframe_czrimenu" name="viewIframe_czrimenu" src="/v4/ncs_syslog_list.htm"  width=100% height=950  FrameBorder=0 scrolling="no"></iframe>';
+	  }
+	  else if(right_sy=='敏感监控'){
+	  	right_id="mgjkrz";
+	  	tab_html='<iframe  id="viewIframe_mgjkrz" name="viewIframe_mgjkrz" src="/v4/ncs_mgjk_lab.htm"  width=100% height=950  FrameBorder=0 scrolling="no"></iframe>';
+	  }
+	  else if(right_sy=='敏感规则'||right_sy=='关键字管理'){
+	  	right_id="mggz";
+	  	tab_html='<iframe  id="viewIframe_mggz" name="viewIframe_mggz" src="/v4/ncs_mggz_lab.htm"  width=100% height=950  FrameBorder=0 scrolling="no"></iframe>';
+	  }
+	  else if(right_sy=='虚拟身份库'){
+	  	right_id="xnsfkmenu";
+	  	tab_html='<iframe  id="viewIframe_xnsfkmenu" name="viewIframe_xnsfkmenu" src="/v4/vid/ncs_vid_lab.htm"  width=100% height=950  FrameBorder=0 scrolling="no"></iframe>';
+	  }
+	  else if(right_sy=='运行分析'){
+	  	right_id="yxfx";
+	  	tab_html='<iframe  id="viewIframe_yxfx" name="viewIframe_yxfx" src="/v4/ncs_yxfx_lab.htm"  width=100% height=950  FrameBorder=0 scrolling="no"></iframe>';
+	  }
+	  else{	  
+	  	right_id="zhtj";	
+	  	tab_html='<iframe  id="viewIframe_zhtj" name="viewIframe_zhtj" src="/pronline/Msg?FunName@ncsShowZhtj_v4"  width=100% height=950  FrameBorder=0 scrolling="no"></iframe>';
+	  }
+    var tabs_center = Ext.createWidget('tabpanel', {
+//        renderTo: 'tabs',
+        resizeTabs: true,
+        enableTabScroll: true,
+//        deferredRender:false,
+   //   width: 600,
+        height: 950,
+          region:'center',
+        	id:'layout_center',
+        	margins: '2 5 5 0',
+        defaults: {
+            autoScroll: true,
+       //     bodyStyle : 'overflow-y:hidden; overflow-x:scroll',
+            bodyPadding: 0
+        },
+        items: [{
+            title: right_sy,
+            id:right_id,
+           iconCls: 'add16',
+            html:tab_html,
+            closable: true
+        }],
+      plugins: Ext.create('Ext.ux.TabCloseMenu', {
+            extraItemsTail: [
+                '-',
+                {
+                    text: 'Closable',
+                    checked: true,
+                    hideOnClick: true,
+                    handler: function (item) {
+                        currentItem.tab.setClosable(item.checked);
+                    }
+                },
+                '-',
+                {
+                    text: 'Enabled',
+                    checked: true,
+                    hideOnClick: true,
+                    handler: function(item) {
+                        currentItem.tab.setDisabled(!item.checked);
+                    }
+                }
+            ],
+            listeners: {
+                aftermenu: function () {
+                    currentItem = null;
+                },
+                beforemenu: function (menu, item) {
+                    menu.child('[text="Closable"]').setChecked(item.closable);
+                    menu.child('[text="Enabled"]').setChecked(!item.tab.isDisabled());
+
+                    currentItem = item;
+                }
+            }
+        })
+        ,
+             listeners: {              
+                      tabchange:function(tp,p){
+                        if(p.title=='敏感监控'){
+                        	var tabs_obj=Ext.getCmp('layout_center');
+													var index=tabs_obj.getActiveTab();
+													var tabframe="viewIframe_"+index.id;
+
+													if(eval(tabframe).tabs_gdrz){
+													index=eval(tabframe).tabs_gdrz.getActiveTab();
+												   if(index.id=='keyword'){
+                           		onAddTree('keywordgd','/v4/sentive/ncs_tree_keyword.htm','关键字');
+                           }
+                           else if(index.id=='mgwz'){
+                           	  	onAddTree('senwebgd','/v4/sentive/ncs_tree_senweb.htm','敏感网址');
+                           }
+                           else if(index.id=='mgxnsf'){
+                             onAddTree('sennetidgd','/v4/sentive/ncs_tree_sennetid.htm','虚拟身份');
+                           }
+                           }
+                        }
+                        else if(p.title=='归档日志'){
+                          onAddTree('dwtree','/v4/ncs_tree_user.htm','单位树');
+                        }
+                        else if(p.title=='单位管理'||p.title=='单位组'||p.title=='单位组管理'){
+                         onAddTree('jrcstree','/v4/ncs_tree_userfl.htm','单位分类');
+                        }                  		
+                    	}
+            }
+        
+        
+    });
+
+ 
+//移除tab需要同步菜单上的check标记
+//function TabCloseConfirm(){
+
+//	setMenuValue(this.id);
+//	setMenuCheck('dwmenu');
+//}
+
+    
+      var tabs = Ext.createWidget('tabpanel', {
+   //     renderTo: 'tabs1',
+        width: 210,
+        height:970,
+        id:'treetab',
+        activeTab: 0,
+         defaults :{
+            bodyPadding: 0
+        },
+        items: [{
+            title: '菜单树',
+            id:'dhtree',
+            closable: false,
+//            listeners: { beforeclose:TabCloseConfirm}, 
+
+            html: '<iframe  id="dhIframe_dhtree" name="dhIframe_dhtree" src="/v4/main_dhleft.htm" scrolling="no" width=100% height=1000  FrameBorder=0 ></iframe>'
+            
+ //               listeners: {
+//                    activate: function(tab) {
+                    
+//                    	document.all.dhIframe.src='/1.htm';
+ //                        dhIframe.src='/1.htm';
+//                        tab.loader.load();
+//
+//                    }
+  //              }
+        }
+ //      ,{          
+ //          title: '单位分类',
+ //        id:'dwztree',
+ //        closable: true,
+//           html: '<iframe  id="dhIframe_jrcstree" name="dhIframe_jrcstree" src="/v4/ncs_tree_userfl.htm" scrolling="no" width=100% height=1000  FrameBorder=0 ></iframe>'           
+ //       }
+ //       ,{          
+//            title: '单位树',
+//            id:'dwtree',
+//            html: '<iframe  id="dhIframe_dws" name="dhIframe_dws" src="/v4/ncs_tree_user.htm" scrolling="no" width=100% height=1000  FrameBorder=0 ></iframe>'           
+ //       }
+        ]
+    });
+// tabs.on('tabchange', function(){
+// setMenuValue();
+// }
+//);
+ if(right_sy=='敏感监控'){
+		onAddTree('keywordgd','/v4/sentive/ncs_tree_keyword.htm','关键字');
+	}
+	else if(right_sy=='归档日志'){
+		onAddTree('dwtree','/v4/ncs_tree_user.htm','单位树');
+	}
+else if(right_sy=='单位组'){
+	onAddTree('jrcstree','/v4/ncs_tree_group.htm','单位组树');
+}
+else if(right_sy=='单位管理'||right_sy=='在线单位'||right_sy=='虚拟身份库'||right_sy=='运行分析'){
+	onAddTree('jrcstree','/v4/ncs_tree_userfl.htm','单位分类');
+}
+else{
+	tabs.setActiveTab(0);
+}
+    
+    
+  //主工具条 
+    
+  var tb = Ext.create('Ext.toolbar.Toolbar');
+   
+  function onItemClick(){
+
+     bbbb=document.all('ltitle');
+     bbbb.innerHTML='当前位置：'+this.text;
+        
+     dhsrc(this.srcurl,this.text,this.itemid);
+     
+     var active;
+     if(this.text=='首页'){
+       tabs.setActiveTab(0);
+    }
+   else if((this.text=='单位组管理')||(this.text=='单位组')||this.text=='单位管理'||this.text=='在线单位'||this.text=='运行分析'){
+//      tabs.setActiveTab(2);
+    onAddTree('jrcstree','/v4/ncs_tree_userfl.htm','单位分类');
+   
+   }
+   else if((this.text=='系统用户')){
+      onAddTree('dwztree','/v4/ncs_tree_group.htm','单位组树');
+    }
+   else if(this.text=='归档日志'||this.text=='上网用户库'||this.text=='虚拟身份库'||this.text=='MAC地址库'||this.text=='虚拟身份统计'){
+       onAddTree('dwtree','/v4/ncs_tree_user.htm','单位树');
+
+    }
+    else if(this.text=='关键字日志归档'||this.text=='敏感监控'){
+      onAddTree('keywordgd','/v4/sentive/ncs_tree_keyword.htm','关键字');
+    }    
+	  else if(this.text=='敏感网址归档'){
+	  	onAddTree('senwebgd','/v4/sentive/ncs_tree_senweb.htm','敏感网址');
+	  }
+	  else if(this.text=='重点虚拟身份归档'){
+	  	onAddTree('sennetidgd','/v4/sentive/ncs_tree_sennetid.htm','虚拟身份');
+	  }
+    else if(this.text=='在线单位'){
+      tabs.setActiveTab(2);
+    }
+    else if(this.text=='在线率统计'){
+      tabs.setActiveTab(0);
+    }
+    else if(this.text=='布控管理'){
+      tabs.setActiveTab(0);
+
+    }
+    else if(this.text=='敏感规则'||this.text=='关键字管理'){
+      tabs.setActiveTab(0);
+
+    }
+     else if(this.text=='告警信息'){
+//      tabs.setActiveTab(0);
+        onAddTree('bkgjtree','/v4/sentive/ncs_tree_case.htm','布控告警');
+    }
+    grid_height=Ext.getCmp('layout_center').getHeight()-56;
+                  
+    grid_width=Ext.getCmp('layout_center').getWidth()-56;
+    
+    
+  }
+//处理系统刷新
+    var loadFn = function(btn, statusBar){
+      statusBar = Ext.getCmp(statusBar);
+
+        statusBar.showBusy();
+
+         Ext.defer(function(){
+            statusBar.clearStatus({useDefaults:true});
+            	
+        
+        }, 6000);
+    };
+function onItemClose(){
+	self.location='/ncs/login2.htm';
+}
+
+
+ function onItemReflash(){
+   var fp=Ext.create('Ext.FormPanel');
+               fp.form.doAction('submit',{
+               url:'/pronline/Msg',
+                method:'POST',
+               params:{FunName:'ncsSysReflesh_v4'},
+                 
+                success:function(form,action){ 
+//                     this.disabled=false;
+   
+ //          					Ext.Msg.alert('操作',"系统配置已经成功重新加载");
+           					Ext.getCmp('winstatus').close();
+     //      					document.getElementById("form1").userid.value=action.result.id;
+  
+
+                 },
+             		 failure:function(form,action){        		 
+                    Ext.Msg.alert('操作',"系统正忙,稍候重试!");
+                    Ext.getCmp('winstatus').close();
+            		 }
+                }
+             )
+   
+
+    var wint = Ext.create('Ext.Window', {
+ //       title: '系统刷新',
+        id:'winstatus',
+        header:true,
+        width: 150,
+        x:600,
+        y:210,
+        height: 60,
+        closable: false,
+        modal: true,
+  //      closeAction: 'hide',
+        bodyPadding: 10,
+        bbar: Ext.create('Ext.ux.StatusBar', {
+            id: 'win-statusbar',
+            defaultText: '系统就绪'
+        })
+    });
+   
+    wint.show();
+    loadFn('win-button', 'win-statusbar');
+    
+ }
+
+
+    tb.add(
+               	{
+           		xtype:'label',
+            		html:'&nbsp;<img src="/images/large/logo_cent.png" width="196" height="60">'
+             	},
+    '-',
+        {
+            itemid:'sy',
+//            srcurl:'/v4/ncs_first_right.htm',
+            text: '导航树',
+            iconCls: 'dhs',
+            scale:'large',
+             iconAlign: 'top',
+            menu:menu_dhtree
+
+ //           handler:OpenTreeSet
+        },'-',
+        {
+            itemid:'dwgl',
+            hidden:false,
+//            srcurl:'/v4/ncs_user_list.htm',
+            text:'单位管理',
+            scale:'large',
+            iconCls: 'add_dw',
+            iconAlign: 'top',
+             menu:menu_dwgl
+ //           handler:onItemClick
+        },'-',
+        {
+            itemid:'dwz',
+            hidden:false,
+            text:'单位组管理',
+            scale:'large',
+            iconCls: 'group',
+            iconAlign: 'top',
+            srcurl:'/v4/ncs_group_list.htm',
+            handler:onItemClick
+        }, '-',
+         {text:'身份库管理',
+         	itemid:'sfkgl',
+//          srcurl:'/v4/ncs_group_list.htm',
+            scale:'large',
+            iconAlign: 'top',
+            iconCls: 'add_sf',
+          menu:menu_sfkgl
+  //        handler:onItemClick
+        },'-',
+        {
+            text: '敏感监控',
+             itemid:'mgjkrz',
+            scale:'large',
+            iconAlign: 'top',
+            iconCls: 'mggd',
+             srcurl:'/v4/ncs_mgjk_lab.htm',
+             handler:onItemClick
+        },'-',
+        {
+            text: '上网用户库',
+             itemid:'swyhkmenu',
+            scale:'large',
+            iconAlign: 'top',
+            iconCls: 'users',
+             srcurl:'/v4/ncs_enduser_list.htm',
+             handler:onItemClick
+        },'-',
+        {
+            text: 'MAC地址库',
+            itemid:'mkdzmenu',
+            scale:'large',
+            iconAlign: 'top',
+            iconCls: 'macs',
+             srcurl:'/v4/vid/ncs_macvid_list.htm',
+             handler:onItemClick
+        },'-',
+        {
+            text: '虚拟身份库',
+            itemid:'xnsfkmenu',
+            scale:'large',
+            iconAlign: 'top',
+            iconCls: 'calculator',
+             srcurl:'/v4/vid/ncs_vid_lab.htm',
+             handler:onItemClick
+        },'-',{
+            text: '在线单位',
+            itemid:'zxdw',
+            iconAlign: 'top',
+            scale:'large',
+            srcurl:'/v4/ncs_onlinecorp_list.htm',
+            iconCls: 'sitemap',
+            handler:onItemClick
+        
+       },'-',
+        
+        {
+            text: '综合统计',
+            itemid:'zhtj',
+            scale:'large',
+            iconAlign: 'top',
+            iconCls: 'szhtj',
+             srcurl:'/pronline/Msg?FunName@ncsShowZhtj_v4',
+             handler:onItemClick
+        },'-',
+        {
+            text: '权限角色',
+            itemid:'rolemenu',
+            scale:'large',
+            iconAlign: 'top',
+            iconCls: 'address',
+             srcurl:'/v4/ncs_role_list.htm',
+             handler:onItemClick
+        },'-',
+        {
+            text: '系统用户',
+            itemid:'xtyhmenu',
+            scale:'large',
+            iconAlign: 'top',
+            iconCls: 'address',
+             srcurl:'/v4/ncs_adminuser_list.htm',
+             handler:onItemClick
+        },'-',
+        {
+            text: '系统操作日志',
+            itemid:'czrimenu',
+            scale:'large',
+            iconAlign: 'top',
+            iconCls: 'mark_flag',
+             srcurl:'/v4/ncs_syslog_list.htm',
+             handler:onItemClick
+        },'-',
+        {
+            text: '关键字管理',
+             itemid:'mggz',
+            scale:'large',
+            iconAlign: 'top',
+            iconCls: 'edit',
+             srcurl:'/v4/ncs_mggz_lab.htm',
+             handler:onItemClick
+        },'-',{
+            text: '归档日志',
+            itemid:'gdrz',
+            iconAlign: 'top',
+            srcurl:'/v4/ncs_gdrz_lab.htm',
+            scale:'large',
+            iconCls: 'search',
+            handler:onItemClick
+        
+      },'-',{
+            text: '运行分析',
+            itemid:'yxfx',
+            scale:'large',
+            iconAlign: 'top',
+            srcurl:'/v4/ncs_yxfx_lab.htm',
+            iconCls: 'dvd',
+            handler:onItemClick
+        
+      },'-',{
+            text: '在线率统计',
+            itemid:'zxtj',
+            iconAlign: 'top',
+            scale:'large',
+            srcurl:'/v4/ncs_onlinestat_list.htm',
+            iconCls: 'sitemap',
+            handler:onItemClick
+        
+      },'-',{
+            text: '统计报表',
+            itemid:'统计报表',
+            iconAlign: 'top',
+            scale:'large',
+  //          srcurl:'/v4/ncs_onlinestat_list.htm',
+            iconCls: 'static',
+            menu:menu_tjpb
+        
+      },'-',{
+            text: '告警信息',
+            itemid:'gjxx',
+            iconAlign: 'top',
+            scale:'large',
+            srcurl:'/v4/ncs_casemesg_list.htm',
+            iconCls: 'lamp',
+            handler:onItemClick
+        
+      },'-', 
+         {text:'布控管理',
+         	itemid:'bkgl',
+         	iconAlign: 'top',
+         	scale:'large',
+          srcurl:'/v4/ncs_case_lab.htm',
+          iconCls: 'bk',
+          handler:onItemClick
+        },'-', 
+         {text:'控制策略',
+         	itemid:'控制策略',
+         	iconAlign: 'top',
+         	scale:'large',
+          srcurl:'/v4/ncs_procy_lab.htm',
+          iconCls: 'lamp',
+          handler:onItemClick
+        }
+ //       ,'-',{
+//            text: '全文搜索',
+//            itemid:'fulltext',
+//            iconAlign: 'top',
+//            srcurl:'/v4/ncs_fulltext_lab.htm',
+//            scale:'large',
+//            iconCls: 'search',
+//            handler:onItemClick
+        
+//      }
+
+       ,'-',{
+            text: '快速查询',
+            itemid:'fulltext',
+            iconAlign: 'top',
+            srcurl:'/v4/ncs_quick_search.html',
+            scale:'large',
+            iconCls: 'search',
+           handler:onItemClick
+        
+     }
+
+        
+        ,  '-',     
+         {text:'权限管理',
+          iconCls: 'pencil',
+          iconAlign: 'top',
+          scale:'large',
+          menu:menu_xtgl
+   //      handler:onItemClick
+        },'-'
+        ,'->','->'
+        ,{
+                text: '系统刷新',
+                itemid:'xtsx',
+                scale:'large',
+                iconAlign: 'top',
+                iconCls: 'refresh',
+                handler: onItemReflash
+            },'-',{
+                text: '重新登录',
+                scale:'large',
+                iconAlign: 'top',
+                iconCls: 'unlock',
+                handler: onItemClose
+            }
+       
+            
+        );
+    
+  //权限设置
+
+      var isep=0;
+      tb.items.each(function(item){
+      	if((right_fun_s.indexOf(item.text)!=-1)||(item.text=='系统刷新')||(item.text=='重新登录')||(!item.text)||(item.text=='关键字管理'&&right_fun_s.indexOf('敏感规则')!=-1)){
+      		if(!item.text){     			
+      			if(isep>0){
+      				item.hidden=true;
+      				isep=0;
+      			}
+      		else{
+      			isep=1;
+      			item.hidden=false;
+      		}
+      	}
+         else{
+         	  isep=0;
+      	    item.hidden=false;
+      	  }
+      	}
+      	else{
+      		item.hidden=true;
+      		isep=1;
+      	}
+      	
+     
+   
+       }
+     );  
+
+    
+  
+//创建主显示区
+    var viewport=Ext.create('Ext.Viewport', {
+        layout: 'border',
+        id:'viewportid',
+        items: [{
+  //          xtype: 'box',
+            id: 'header',
+             margins: '2 5 0 5',
+            border: true,
+            region: 'north',
+            items:[tb]
+        },{
+            layout: 'border',
+            id: 'layout-browser',
+            title:'<span id="ltitle">当前位置：'+right_sy+'</span>',
+            region:'west',
+            border: true,
+            collapsible: true,
+            split:true,
+            margins: '2 0 5 5',
+            width: 210,
+            minSize: 100,
+            maxSize: 500,
+         listeners: {  
+                 collapse: function() {
+                                 
+                 	doreflashTab();
+                 	
+   //                 tabs_center.doLayout();
+                          
+                 }, 
+                 expand:function(){
+	                 doreflashTab();
+                } 
+          },
+            items: [     
+             tabs]
+        }, 
+        tabs_center
+        
+  //      {
+  //      	xtype: 'panel',        
+  //      	region:'center',
+  //      	id:'layout_center',
+  //      	margins: '2 5 5 0',
+  //        layout:"fit",
+
+  //    	html:'<iframe  id="viewIframe" name="viewIframe" src="/v4/ncs_user_list.htm"  width=100% height=1000  FrameBorder=0 scrolling="no"></iframe>'
+ 
+   //     }
+
+        ],
+        renderTo: Ext.getBody()
+    });
+  //放在框架收缩时出现HTML代码  
+      viewport.items.each(function(item){
+  		if(item.id=='layout-browser'){
+			item.title=''; 	
+  	  }
+    }) 
+    
+    
+ //    setMenuValue();
+
+
+
+
+//权限设置
+ //    tb.items.each(function(item){
+  //   	item.hidden=true;
+   //  	alert(item.text);
+ //    }
+//     );
+  //  tb.doLayout();
+    
+    
+    
+});
+    var fptest = Ext.create('Ext.FormPanel', { 
+
+     });
+     var wintest='';
+     var timeout_count=0;
+    function testright(){
+              fptest.getForm().doAction('submit',{
+              url:'/pronline/Msg',
+               method:'post',
+               params:{FunName:'ncsTestRight_v4'},
+    
+                success:function(form,action){                
+                      timeout_count=0;
+             		     var msgaa=action.result.reason;
+             		     if(msgaa=='license'){
+             		     	 if(!wintest){
+             	           msgaa=action.result.id;
+				              wintest=Ext.create('Ext.Window', {
+										       title: '系统提示',
+										       id:'wintest',     
+										 //       header:false,
+										        width: 250,
+										        x:600,
+										        y:210,
+										        height: 90,
+										        closable: true,
+										        modal: false,
+										  //      closeAction: 'hide',
+										        bodyPadding: 10,
+										        html:msgaa
+										    });
+
+										    
+                        wintest.show();
+                       }
+             		     }
+             		     	
+                },
+             		 failure:function(form,action){
+             		 	timeout_count++;
+             		 	  if(timeout_count>5) return;
+             		      if(!wintest){
+             	
+				              wintest=Ext.create('Ext.Window', {
+										       title: '系统提示',
+										       id:'wintest',     
+										 //       header:false,
+										        width: 250,
+										        x:600,
+										        y:210,
+										        height: 90,
+										        closable: true,
+										        modal: false,
+										  //      closeAction: 'hide',
+										        bodyPadding: 10,
+										        html:'登录超时，请重新登录！'
+										    });
+										     wintest.on("beforeclose", function() {
+                             self.location='/ncs/login2.htm';
+                          });
+										    
+                        wintest.show();
+                   }
+
+          //       alert(action.result.id);
+          //        Ext.Msg.alert('操作',"保存失败");
+                 
+           		 }
+               }
+           )
+          
+}
+setInterval('testright()',60000);
+</script>
+</head>
+<body>
+</body>

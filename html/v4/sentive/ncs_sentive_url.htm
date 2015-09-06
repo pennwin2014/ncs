@@ -1,0 +1,347 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>单位组管理</title>
+    <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" />
+
+    <script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+
+    <style type="text/css">
+        .add {
+            background-image:url(/newver/resources/themes/images/share/add.gif) !important;
+        }
+        .remove {
+            background-image:url(/newver/resources/themes/images/share/delete.gif) !important;
+        }
+        .accept {
+            background-image:url(/newver/resources/themes/images/share/accept.png) !important;
+        }
+        .exp {
+            background-image:url(/newver/resources/themes/images/share/application_go.png) !important;
+        }
+    </style>
+    
+ <script type="text/javascript">     
+
+    
+    
+    Ext.Loader.setConfig({
+    enabled: true
+});
+Ext.Loader.setPath('Ext.ux', '/newver/ux/');
+
+Ext.require([
+    'Ext.grid.*',
+    'Ext.data.*',
+    'Ext.panel.*',
+    'Ext.tree.*',
+    'Ext.window.*',
+     'Ext.util.*',
+    'Ext.tip.*',
+    'Ext.tab.*',
+    'Ext.layout.container.Border'
+]);
+
+
+
+Ext.onReady(function(){
+    Ext.define('Book',{
+        extend: 'Ext.data.Model',
+        fields: [
+            // set up the fields mapping into the xml doc
+            // The first needs mapping, the others are very basic
+            {name: 'Author', mapping: 'ItemAttributes > Author'},
+            'Title',
+            'Manufacturer',
+            'ProductGroup',
+            'DetailPageURL'
+        ]
+    });
+
+
+
+    	  Ext.define('tree_field', {
+        extend: 'Ext.data.Model',
+        fields: [
+            {type: 'string', name: 'text'},
+            {type: 'string', name: 'id'},
+            {type: 'string', name: 'name'},
+            {type: 'string', name: 'status'},
+            {type: 'Boolean', name: 'checked'},
+            {type: 'Boolean', name: 'leaf'},
+            {type: 'string', name: 'cls'}
+        ]
+        });
+
+    var store_tree = Ext.create('Ext.data.TreeStore', {
+        proxy: {
+            type: 'ajax',
+            url: '/pronline/Msg?FunName@ncsTreeUrl_v4'
+        },
+        root: {
+            text: '敏感网址类别',
+            id: '',
+//            checked:false,
+            expanded: true
+        },
+        model: 'tree_field',
+        folderSort: true,
+        sorters: [{
+            property: 'text',
+            direction: 'ASC'
+        }]
+    });
+
+
+
+
+
+    var tree = Ext.create('Ext.tree.Panel', {
+        store: store_tree,
+
+ //       renderTo: 'tree-div',
+        height: 950,
+        width: 260,
+       region: 'west',
+        containerScroll: true,
+        useArrows: false,       
+          dockedItems: [
+          {
+            xtype: 'toolbar',
+            items: [{
+             text: '添加网址类别',
+                iconCls:'add',
+                 handler: function(){
+                 opaddedit('');
+   
+                }               
+            },
+            {
+            	text:'删除',
+            
+            	iconCls:'remove',
+            	handler:function(){
+            		var records=tree.getView().getChecked();
+            		var temps='';
+            		var iNum='';
+           		Ext.Array.each(records,function(rec){
+           			     if(iNum==0){
+                    temps=rec.get('id');
+                    }
+                    else{
+                    temps=temps+','+rec.get('id');
+                    }
+                    iNum++;
+           		  }
+           		  )
+           		  
+           		  if(temps==''){
+           		  	alert('请选择删除的网址类别');
+           		  	return;
+           		  }
+           		  if(confirm('您真的要执行删除操作吗？')){  
+           		  	store_tree.load({params: {del: "del",selsid:temps}});
+           		  }
+           		  
+            	}
+            	
+            }]
+        }]
+
+    });
+    
+    function opaddedit(rcd)
+    {  	
+    	  Ext.define('State', {
+        extend: 'Ext.data.Model',
+        fields: [
+            {type: 'string', name: 'classid'},
+            {type: 'string', name: 'classname'}
+        ]
+        });
+    	  var data_state = [
+        {"classid":"1","classname":"启用"},
+        {"classid":"0","classname":"停用"}
+	    ];
+	    var store_state = Ext.create('Ext.data.Store', {
+	        model: 'State',
+	        data: data_state
+	    });
+    	
+    	
+    	             var winadd;
+                   var addform=Ext.create('Ext.FormPanel', {         
+						        frame: true,
+			              fieldDefaults: {
+					          	labelWidth: 65  ,                      
+			              	xtype: 'textfield' 
+					        	},
+						        bodyPadding: 10,
+                    items: [{                        
+                        fieldLabel:'网址类别',
+                        xtype: 'textfield',
+                        name:'name'
+                    },{                        
+                        fieldLabel:'状态',
+                        xtype: 'combo',
+                        name:'status',
+                        store:store_state,
+                        displayField: 'classname',
+                        valueField:'classid',
+                        value:'1',
+                        queryMode: 'local'
+                    },
+                    {
+                    	 xtype: 'hidden', 
+											name: 'id'
+											
+                    },
+                    {
+                        xtype: 'button',
+                        anchor: 'right',
+                         style : 'margin-left:80px',
+                        text:'保&nbsp;&nbsp;存',
+                         handler: function(){
+                         	var keyname=addform.getForm().getValues().name;
+                         	var sid=addform.getForm().getValues().id;
+                         	var status=addform.getForm().getValues().status;
+                         if(keyname==''){
+                         	alert('虚拟身份组名不能空');
+                        }
+                        else{                       
+                         store_tree.load({params: {update: "update",keyname:keyname,sid:sid,status:status}});
+                           Ext.getCmp('winadd').close();
+                        }
+                         
+                         }
+                       
+                    },
+                    {
+                    	xtype: 'button',
+                    	 style : 'margin-left:10px',
+                    	text:'关&nbsp;&nbsp;闭',
+                    	handler: function(){
+          //          		alert(addform.getForm().getValues().id);
+                    		Ext.getCmp('winadd').close();
+                    	}
+                    }
+                    
+                    
+                    ]
+         });
+                    
+                          
+                   addform.loadRecord(rcd);
+                   
+                   
+                   
+                   
+                   winadd=new Ext.Window ({
+                             id:"winadd",
+                             title:"添加/修改网址类别名",
+                             x:100,
+                             y:30,
+                             width:300,
+                             height:160,
+                             bodyPadding: 10,
+                             modal:true,
+                             resizable:true,
+                             closable : true,
+                //             draggable:true,
+                          
+                             items: addform
+                                                
+                  }
+        );  
+
+           winadd.show();
+    	
+    	
+    }
+//给数增加点击和双击事件
+    tree.on({             
+	       'itemclick' : function(view, rcd, item, idx, event, eOpts) {   
+	       	var active = tabs.getActiveTab();
+	       	if(rcd.get('text')=='敏感网址类别'){
+	       		active.tab.setText('敏感网址类别查询');
+	       	}
+	      else{
+          active.tab.setText('敏感网址类别名:'+rcd.get('text'));
+        }
+          keydet.cid=rcd.get('id');
+          keydet.cname=rcd.get('text');
+          keydet.clearkeyword();  
+         keydet.cxxm();
+//      keydet.getCmp('addKey').setDisabled(0);
+          keydet.reflash();
+          
+     //    alert(keydet.cid);
+               
+	       	  },       
+	     //目录树双击击事件          
+	       'itemdblclick' : function(view, rcd, item, idx, event, eOpts) {
+	        opaddedit(rcd);
+	         },              
+	         scope : this        });
+
+
+    var tabs = Ext.createWidget('tabpanel', {
+       
+        height:950,
+        region: 'center',
+        margins: '0 0 0 5',
+        forceFit: true,
+        scrollOffset: 0,
+        activeTab: 0,
+        
+         defaults :{
+ 
+            bodyPadding: 0
+ 
+        },
+ 
+        items: [{
+ 
+            title: '敏感网址类别查询',              
+            html: '<iframe  id="keydet" name="keydet" src="/v4/sentive/ncs_sentive_url_det.htm" scrolling="no" width=100% height=950  FrameBorder=0 ></iframe>'
+ 
+            
+ 
+        }]
+ 
+    });
+    
+
+
+        
+
+
+    Ext.create('Ext.Panel', {
+        renderTo: 'editor-grid',
+        frame: true,
+ //       title: 'Book List',
+        forceFit: true,
+  //      width: 999,
+        height: 950,
+        layout: 'border',
+        margins: '12 15 10 15',
+
+        items: [tabs,tree]
+    });
+    
+
+
+    store.load();
+});
+</script>
+    
+    
+</head>
+<body>
+		<form name="form1" id="form1" action="/pronline/Msg">
+			<input type="hidden" name="groupid" value="">
+		<input type="hidden" name="did" value="">
+	</form>
+    <div id="editor-grid"></div>
+</body>
+</html>

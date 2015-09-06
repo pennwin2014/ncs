@@ -1,0 +1,4 @@
+Ext.define('proauthMobileAccount.model.List', {
+    extend: 'Ext.data.Model',
+    fields: ['sid','casecode', 'casename', 'casetype', 'caseclass', 'groupid','casedept','casedate','addby','flags','cmemo','lasttime','expiretime','cobj','cobjid','pcount','wcount','warnlasttime']
+}); 

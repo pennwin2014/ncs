@@ -1,0 +1,221 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+    <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" />
+    
+<style type="text/css">  
+   #app-header {
+    color: #596F8F;
+    font-size: 16px;
+    font-weight: 200;
+    border-left: 2px solid #ACC3E4;
+    border-right: 2px solid #ACC3E4;
+    padding: 4px 4px;
+    text-shadow: 0 1px 0 #fff;
+}
+</style>
+
+    <script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+    
+
+      <script type="text/javascript">
+
+Ext.Loader.setPath('Ext.ux', '/newver/ux/');
+Ext.Loader.setPath('Ext.app', 'classes');
+     Ext.require([
+         'Ext.form.*',
+    'Ext.window.*',
+    'Ext.grid.*',
+    'Ext.data.*',
+    'Ext.util.*',
+    'Ext.window.MessageBox',
+    'Ext.toolbar.Paging',
+
+            'Ext.layout.container.*',
+            'Ext.resizer.Splitter',
+            'Ext.fx.target.Element',
+            'Ext.fx.target.Component',
+            'Ext.window.Window',
+            'Ext.app.PortalColumn',
+            'Ext.app.PortalPanel',
+            'Ext.app.Portlet',
+            'Ext.app.PortalDropZone'
+ //           'Ext.app.GridPortlet',
+ //           'Ext.app.ChartPortlet'
+        ]);
+
+      
+
+
+
+    Ext.define('EimData', {
+        extend: 'Ext.data.Model',
+        fields: [
+            'servicecode', 'cname', 'dispname', 'sip', 'mac','stime','etime','fun','idtype','idno','position','flow','uid','did'
+        ]
+  //      idProperty: 'did'
+    });
+
+     var  store = Ext.create('Ext.data.Store', {
+        pageSize: 40,
+        model: 'EimData',
+        remoteSort: true,
+ //       autoLoad :{params:{aaad:0,dddd:2}},
+        proxy: {
+            type: 'ajax',
+            url: '/pronline/Msg?FunName@ncsUserlogSearch_v4',
+            reader: {
+                type:'json',
+                root: 'eimdata',
+                totalProperty: 'totalCount'
+            },         
+            simpleSortMode: true
+
+        },
+//        params:{ffffff:'aaaaaa'},
+        sorters: [{
+            property: 'stime',
+            direction: 'ASC'
+        }]
+    });
+
+
+
+  
+
+
+
+
+
+
+Ext.define('Ext.app.Portal', {
+
+    extend: 'Ext.container.Viewport',
+
+    uses: ['Ext.app.PortalPanel', 'Ext.app.PortalColumn', 'Ext.app.GridPortlet', 'Ext.app.ChartPortlet'],
+
+    getTools: function(){
+        return [{
+            xtype: 'tool',
+            type: 'gear',
+            handler: function(e, target, panelHeader, tool){
+                var portlet = panelHeader.ownerCt;
+                portlet.setLoading('Working...');
+                Ext.defer(function() {
+                    portlet.setLoading(false);
+                }, 2000);
+            }
+        }];
+    },
+
+    initComponent: function(){
+       
+        Ext.apply(this, {
+            id: 'app-viewport',
+            layout: {
+                type: 'border',
+                padding: '0 0 0 0' // pad the layout from the window edges
+            },
+            items: [{
+                id: 'app-header',
+                xtype: 'box',
+                region: 'north',
+                height: 0,
+                html: '显示首页内容'
+            }
+            ,{
+                xtype: 'container',
+                region: 'center',
+                layout: 'border',
+                items: [{
+                    id: 'app-portal',
+                    xtype: 'portalpanel',
+                    region: 'center',
+                    items: [{
+                        id: 'col-1',
+                        items: [{
+                            id: 'zxdw',
+                           
+                            title: '&nbsp;&nbsp;当前在线单位',
+                            height:'400',
+                            html: '<iframe  id="gdrzIframe" name="gdrzIframe" src="/v4/ncs_onlinefirst_list.htm" scrolling="no" width=100% height="400"  FrameBorder=0 ></iframe>',
+                            listeners: {
+                                'close': Ext.bind(this.onPortletClose, this)
+                            }
+                        },{
+                            id: 'gjxx',
+                            title: '&nbsp;&nbsp;当前布控告警信息',
+                            height:'400',
+                            html: '<iframe  id="gdrzIframe" name="gdrzIframe" src="/v4/ncs_casemesg_first.htm" scrolling="no" width=100% height="400"  FrameBorder=0 ></iframe>',
+                            listeners: {
+                                'close': Ext.bind(this.onPortletClose, this)
+                            }
+                        }
+                      ]
+                    },{
+                        id: 'col-3',
+                        items: [{
+                            id: 'zxltj',
+                            title: '在线单位分布图',
+                            height:'400',
+                             html: '<iframe  id="gdrzIframe" name="gdrzIframe" src="/v4/ncs_first_pie.htm" scrolling="no" width=100% height="400"  FrameBorder=0 ></iframe>',
+                            listeners: {
+                                'close': Ext.bind(this.onPortletClose, this)
+                            }
+                        },
+                        {
+                            id: 'zxfb',
+                            title: '单位在线率统计',
+                            height:'400',
+                            html: '<iframe  id="gdrzIframe" name="gdrzIframe" src="/v4/ncs_first_onlinestat.htm" scrolling="no" width=100% height="400"  FrameBorder=0 ></iframe>',
+                            listeners: {
+                                'close': Ext.bind(this.onPortletClose, this)
+                            }
+                        }]
+                    }
+           
+                    
+                    ]
+                }]
+            }
+            
+            
+            ]
+        });
+        this.callParent(arguments);
+    },
+
+    onPortletClose: function(portlet) {
+        this.showMsg('"' + portlet.title + '" was removed');
+    },
+
+    showMsg: function(msg) {
+        var el = Ext.get('app-msg'),
+            msgId = Ext.id();
+
+        this.msgId = msgId;
+        el.update(msg).show();
+
+        Ext.defer(this.clearMsg, 3000, this, [msgId]);
+    },
+
+    clearMsg: function(msgId) {
+        if (msgId === this.msgId) {
+            Ext.get('app-msg').hide();
+        }
+    }
+});
+
+
+        Ext.onReady(function(){
+            Ext.create('Ext.app.Portal');
+        });
+    </script>
+    
+    </head>
+<body>
+    <span id="app-msg" style="display:none;"></span>
+</body>
+</html>
+</html>

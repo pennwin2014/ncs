@@ -1,0 +1,443 @@
+ 
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <title>轨迹图</title>
+     <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css">
+    <script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+    <script type="text/javascript" src="/newver/jquery/jquery-1.7.2.js"></script>
+    <style>
+.label{position:relative;}
+.label span{background-color:#0D9BF2;}
+</style>
+
+    <style type="text/css">	
+    .accept {
+            background-image:url(/newver/resources/themes/images/share/accept.png) !important;
+    }
+    .exp {
+            background-image:url(/newver/resources/themes/images/share/exportimg.png) !important;
+    }
+		body{
+			margin:0;
+			height:100%;
+			width:100%;
+			position:absolute;
+		}
+		#mapleft{
+			position: absolute;
+			top:0;
+			width:100%;
+			left:0;			
+			bottom:0;
+		}
+		#mapContainer{
+			position: absolute;
+			top:40px;		
+		  left:0;
+		  right:0;
+			bottom:40px;
+		}
+		#tip{
+			height:45px;
+			background-color:#fff;
+			padding-left:10px;
+			padding-right:10px;
+			border:1px solid #969696;
+			position:absolute;
+			font-size:12px;
+			right:10px;
+			bottom:30px;
+			border-radius:3px;
+			line-height:45px;
+		}
+		
+		#tip input[type='button']{
+			height:28px;
+			line-height:28px;
+			outline:none;
+			text-align:center;
+			padding-left:5px;
+			padding-right:5px;
+			color:#FFF;
+			background-color:#0D9BF2;
+			border:0;
+			border-radius: 3px;
+			margin-top:8px;
+			margin-left:5px;
+			cursor:pointer;
+			margin-right:10px;
+		}
+		
+		.markspan{
+			display: block;
+			height: 40px;
+			width:180px;
+			text-align:center;
+			padding-left:10px;
+			padding-right:10px;
+			line-height:40px;
+			background-color:#fff;
+			border:1px solid #ccc;
+			color:#FF6BBB;
+			font-size:12px;
+			border-radius:3px;
+		}
+		
+    </style>	
+</head>
+<script>
+
+Ext.Loader.setConfig({enabled: true});
+Ext.Loader.setPath('Ext.ux', '/newver/ux/');
+Ext.require([
+    'Ext.form.*',
+    'Ext.window.*',
+    'Ext.grid.*',
+    'Ext.data.*',
+    'Ext.util.*',
+    'Ext.window.MessageBox',
+    'Ext.toolbar.Paging',
+    'Ext.ux.PreviewPlugin',
+    'Ext.tree.*',
+    'Ext.ux.*'
+ 
+]);
+var flag=0;
+var ssmarker;
+	 	var cluster;
+		var markers= [];
+		var markerss = [];
+var polyline;
+var store;
+var dots = new Array(); 
+dots[0] = 150;
+dots[1] = 150;
+dots[2] = 150;
+dots[3] = 150;
+dots[4] = 150;
+dots[5] = 150;
+dots[6] = 150;
+dots[7] = 150;
+dots[8] = 150;
+dots[9] = 150;
+dots[10] = 150;
+dots[11] = 150;
+dots[12] = 150;
+dots[13] = 150;
+dots[14] = 150;
+dots[15] = 150;
+dots[16] = 150;
+dots[17] = 150;
+var newdots = new Array();
+var percents = new Array();
+percents[0] = 0;
+percents[1] = 0;
+percents[2] = 0;
+percents[3] = 0;
+percents[4] = 0;
+percents[5] = 0;
+percents[6] = 0;
+percents[7] = 0;
+percents[8] = 0;
+percents[9] = 0;
+percents[10] = 0;
+percents[11] = 0;
+
+function  setplace (params) {
+	Ext.getCmp('keyword').setValue(params);
+}
+	//添加点聚合
+		function addCluster(tag)
+		{
+			if(cluster) {	
+				cluster.setMap(null);
+			}
+			if(tag==1) {
+				var sts=[{url:"http://developer.amap.com/wp-content/uploads/2014/06/1.png", size:new AMap.Size(32,32),offset:new AMap.Pixel(-16,-30)},
+					{url:"http://developer.amap.com/wp-content/uploads/2014/06/2.png", size:new AMap.Size(32,32),offset:new AMap.Pixel(-16,-30)},
+					{url:"http://developer.amap.com/wp-content/uploads/2014/06/3.png", size:new AMap.Size(48,48),offset:new AMap.Pixel(-24,-45),textColor:'#CC0066'}];
+				map.plugin(["AMap.MarkerClusterer"],function(){
+					cluster = new AMap.MarkerClusterer(map,markers,{styles:sts});
+				});
+			}
+			else {
+				map.plugin(["AMap.MarkerClusterer"],function(){
+					cluster = new AMap.MarkerClusterer(map,markers);
+				});
+			}
+		}
+ function addMarker(sname,count,longitude,latitude,num,rows){ 
+			
+			
+		var iconstr;
+ iconstr = '/newver/resources/themes/images/map/pass.png';
+		var m =document.createElement("div");
+		m.className = "label";
+     var tmp = 1;
+        var n =document.createElement("span");
+     n.innerHTML ="<h1><font size=\"4\" face=\"arial\" color=\"blue\">"+sname+"</font></h1>" ;//要显示的文本标注的内容
+     m.appendChild(n);
+     var marker = new AMap.Marker({                  
+      map:map, //将点添加到地图                  
+      position:new AMap.LngLat(longitude,latitude),    
+      content:m ,        
+      //marker图标，直接传递地址url                  
+  offset:new AMap.Pixel(-20,-42) //相对于基点的位置   
+  }); 
+  markerss.push(marker);
+		for (var i = 0; i < parseInt(count); i ++) {
+        
+        tmp =-1* tmp
+		    var markerPosition = new AMap.LngLat(longitude + 0.001 * (Math.random() * tmp),latitude - 0.001 * (Math.random() * tmp));
+			var marker = new AMap.Marker({
+				//基点位置
+				position:markerPosition, 
+				//marker图标，直接传递地址url
+				icon:"http://developer.amap.com/wp-content/uploads/2014/06/marker.png", 
+				//相对于基点的位置
+				offset:{x:-8, y:-34} 
+			});
+			markers.push(marker);
+		}
+
+		addCluster(0);
+
+	}
+
+	function reflash(){
+
+	   var mac = Ext.getCmp('keyword').value;
+	   
+      
+	   store.load({params:{mac:mac},
+     callback:function(records, options, success){
+     	var maxlong,maxlat,minlong,minlat;
+     	maxlong=0;maxlat=0;minlong=0;minlat=0;
+   
+    	if(store.getCount()==0){ 
+     		return;
+     	}  
+			
+
+ 
+     	for(i=0;i<markers.length;i++){
+     		markers[i].setMap(null);
+     	}
+
+     markers=[];
+     markerss =[];
+     var lineArr = new Array(); 
+    var num = store.getCount();
+     for(var i=0;i< num;i++)
+     {  
+     	  newdots[i] = store.getAt(i).get('count') - dots[i];
+     	  if(newdots[i]<0)
+     	  {
+     	  	percents[2*i] =Math.round(parseFloat((1.0*newdots[i])/(dots[i]-5*newdots[i]))*10000)/100;
+     	  	percents[2*i+1] =Math.round( parseFloat(1.0*(newdots[i])/(dots[i]-3*newdots[i]))*10000)/100;
+     	  	}     	     	
+     }
+     for(var i=0;i<num;i++)
+     if(parseFloat(store.getAt(i).get('longitude'))&&parseFloat(store.getAt(i).get('latitude'))&&(parseFloat(store.getAt(i).get('longitude'))>73 && parseFloat(store.getAt(i).get('longitude'))<136)&&(parseFloat(store.getAt(i).get('latitude'))>3&&parseFloat(store.getAt(i).get('latitude'))<54))
+     {    
+     	  	  	
+     	  addMarker(store.getAt(i).get('address'),store.getAt(i).get('count'),parseFloat(store.getAt(i).get('longitude')), parseFloat(store.getAt(i).get('latitude')),num,i); 	   	
+     		if(i==3||i==4)
+     		lineArr.push(new AMap.LngLat(parseFloat(store.getAt(i).get('longitude')), parseFloat(store.getAt(i).get('latitude')))); 
+     
+     }
+     
+       for(var i=0;i<store.getCount();i++)
+     {  
+     	  dots[i] =   store.getAt(i).get('count');	  	
+     }
+     if(ssmarker)
+     ssmarker.setMap(null)
+     ssmarker = new AMap.Marker({
+				map:map,
+				//draggable:true, //是否可拖动
+				position:new AMap.LngLat(parseFloat(store.getAt(0).get('longitude')),parseFloat(store.getAt(0).get('latitude'))),//基点位置
+				icon:"http://code.mapabc.com/images/car_03.png", //marker图标，直接传递地址url
+				offset:new AMap.Pixel(-26,-13), //相对于基点的位置
+				autoRotation:true
+			});
+			if(polyline){
+      polyline.setMap(null);
+    }
+
+      /*polyline = new AMap.Polyline({
+				map:map,
+				path:lineArr,
+				strokeColor:"#F00",//线颜色
+				strokeOpacity:1,//线透明度
+				strokeWeight:3,//线宽
+				strokeStyle:"solid"//线样式
+			}); */
+   polygon=new AMap.Polygon({                 
+  map:map,//要显示覆盖物的地图对象                 
+  path:lineArr,  //多边形顶点经纬度数组                 
+  strokeColor:"#0000ff",//线颜色                 
+  strokeOpacity:0.2,//线透明度                 
+  strokeWeight:3,   //线宽                 
+  fillColor: "red", //填充色                 
+  fillOpacity: 0.35 //填充透明度                 
+   }); 
+			if(flag==0)
+			 map.setFitView();
+			 flag=1;
+   
+				ssmarker.moveAlong(lineArr,5000);
+    }
+  }
+	);
+	
+ }
+	
+	Ext.onReady(function(){
+    Ext.tip.QuickTipManager.init();
+    Ext.define('EimData', {
+        extend: 'Ext.data.Model',
+        fields: [
+            'address','dispname', 'count', 'longitude', 'latitude'
+        ]
+        //idProperty: 'sdate'
+    });
+   
+  
+   
+    
+       store = Ext.create('Ext.data.Store', {
+        pageSize: 40,
+        model: 'EimData',
+        remoteSort: true,
+        proxy: {
+            type: 'ajax',
+            url: '/pronline/Msg?FunName@dm_crowd',
+//              url:'/data/ncs_pelope_gj.htm',
+            reader: {
+                type:'json',
+                root: 'eimdata',
+                totalProperty: 'totalCount'
+            },         
+            simpleSortMode: true
+        },
+        sorters: [{
+      //      property: 'id',
+     //       direction: 'DESC'
+        }]
+    });
+    
+   
+
+
+        var tbar = Ext.create('Ext.Toolbar',{
+            
+            items:[
+           
+                { 
+                	 fieldLabel:'指定场所',
+                	 labelWidth: 60,
+                    xtype:'textfield',
+                    id:'keyword',
+                    width:240,
+                    name:'keyword',
+                    value:'',         
+                    emptyText:'请在左侧选择场所范围',
+                    enableKeyEvents:true,
+                    listeners:{
+                        'focus':function(){
+                        },           
+                        'keydown' : function(i,e){
+                             var aae=e.getKey() ; 
+                             if(aae==13){
+                             }
+                         }
+                    }
+                },'  ',
+                {
+                    text:'查询',
+                    iconCls:'accept',
+                    handler:function()
+                    {
+                    	reflash();
+                    	setInterval("reflash()", 10000);
+                    	
+                    }
+                },
+                '-',
+               
+             {
+			     	 	text:'导出',
+			     	 	itemId: 'expbutton',
+			     	 	iconCls:'exp',
+			     	 	handler:function() {
+			     	 		
+			     	 		var form1 = document.getElementById('form1');
+        
+                      form1.mac.value =  Ext.getCmp('keyword').value;
+                     
+                      
+
+                    form1.exp.value='exp';
+                        form1.submit();
+                      form1.exp.value=""; 
+			     	 	}
+			     	 },
+                {xtype:'label', html:'<span id="titledx"></span>'}
+            ]
+        });
+
+       var panel = Ext.create('Ext.form.FormPanel', {
+        title: '',
+        margins: '0 0 0 0',
+        id:'myform',
+        name:'myform',
+        autoScroll: false,
+        renderTo: 'mapleft',
+        frame: true,
+        tbar:tbar
+ 
+    }); 
+});
+	
+	
+	
+	
+	</script>
+<body>
+	<div id="mapleft"></div>
+	<div id="mapContainer"></div>
+	<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=9ac2d10856d92017d2d8d82ce004a820"></script>
+	
+	<script type="text/javascript">
+		
+	  var features = [];
+      features.push('bg');
+      features.push('point');
+      
+		//初始化地图对象，加载地图
+	
+var map = new AMap.Map('mapContainer',{
+			resizeEnable: true,
+			view: new AMap.View2D({
+				center: new AMap.LngLat(121.467151,31.228183),
+				zoom: 13
+			})
+		});	
+		map.setFeatures(features);
+		map.setFitView();  		  
+	</script>
+	
+<form name="form1" id="form1" action="/pronline/Msg">
+        <input type="hidden" name="FunName" value="dm_crowd">       
+        <input type="hidden" name="mac" value="">
+        <input type="hidden" name="exp" value="">
+     
+	</form>
+</body >
+</html>						
+ 
+

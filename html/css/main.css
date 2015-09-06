@@ -1,0 +1,63 @@
+<p>body{font-family: "Verdana", "Arial", "Helvetica", "sans-serif", "ËÎÌו"; 
+             font-size: 12px ; 
+             margin-left: 62px;
+             margin-right: 0px;
+             text-indent: 30px;
+             text-align: justify;
+             line-height: 5px;} 
+
+BODY {
+	SCROLLBAR-FACE-COLOR:#C0DAF3; SCROLLBAR-HIGHLIGHT-COLOR: #f3f3f3; SCROLLBAR-SHADOW-COLOR: #f3f3f3; SCROLLBAR-ARROW-COLOR: #ffffff; SCROLLBAR-BASE-COLOR: #3c0b11; scrollbar-dark-shadow-color: #FFFFFF; scrollbar-3d-light-color: #3C0B11
+}
+
+.text{font-family: "Verdana", "Arial", "Helvetica", "sans-serif", "ËÎÌו"; 
+         font-size:  14px ;  
+         text-align: justify;
+         line-height: 5px;} 
+
+  table { font-size: 12px;line-height: 16px;color:#333333 }
+ A.link1:link {text decoration:none;font-size: 13px;color:#1A70CE;}
+ A.link1:active   {text-decoration:none; font-size: 13px;color:#CE7700;} 
+ A.link1:visited {text-decoration:none;  font-size: 13px; color:#1A70CE;} 
+ A.link1:hover {text-decoration:underline; font-size: 13px;color:#CE7700;} 
+ 
+  A.link2:link {text decoration:none;color:#2452BD;}
+ A.link2:active   {text-decoration:none; color:#2452BD;} 
+ A.link2:visited {text-decoration:none; color:#2452BD;} 
+ A.link2:hover {text-decoration:none;color:#FF9900;} 
+ 
+   A.link3:link {text decoration:none;color:#3874A9;}
+ A.link3:active   {text-decoration:none;color:#3874A9;} 
+ A.link3:visited {text-decoration:none; color:#3874A9;} 
+ A.link3:hover {text-decoration:underline; color:#E18700;} 
+
+   A.link4:link {text decoration:none;color:#D2791F;}
+ A.link4:active   {text-decoration:none;color:#D2791F;} 
+ A.link4:visited {text-decoration:none; color:#D2791F;} 
+ A.link4:hover {text-decoration:underline; color:#D2791F;} 
+
+   A.link5:link {text decoration:none;color:#CA0000;}
+ A.link5:active   {text-decoration:none;color:#CA0000;} 
+ A.link5:visited {text-decoration:none; color:#CA0000;} 
+ A.link5:hover {text-decoration:underline; color:#CA0000;} 
+
+   A.link6:link {text decoration:none;color:#0000FF;}
+ A.link6:active   {text-decoration:none;color:#0000FF;} 
+ A.link6:visited {text-decoration:none; color:#0000FF;} 
+ A.link6:hover {text-decoration:underline; color:#0000FF;} 
+  
+   .body    { margin-left: 0px;
+             margin-right: 0px;
+             text-indent: 30px;
+             text-align: justify;
+             font-size: 13px;
+             line-height: 10px;
+             font-family: "arial narrow", arial, sans-serif }
+
+   .title0{ margin-left: 0px;
+             margin-right: 0px;
+             text-indent: 30px;
+             text-align: justify;
+             font-size: 16px;
+             line-height: 25px;
+             font-family: "arial narrow", arial, sans-serif }

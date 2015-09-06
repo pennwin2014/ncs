@@ -1,0 +1,401 @@
+<!-- saved from url=(0022)http://internet.e-mail -->
+<html>
+<head>
+<title>网络督察</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script language="javascript" src="/js/browser.js"></script>
+<script language="javascript" src="/js/chromeless_e.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Hide
+function killErrors() {
+return true;
+}
+window.onerror = killErrors;
+// -->
+</SCRIPT>
+<script>
+function goto(t){
+ main.location.href=t
+}
+
+function ff(){
+xx=window.open("aa.htm","","fullscreen=1") 
+}
+//window.opener.focus()
+</script>
+<script language="javascript">
+var huiful="6"
+var huiful2;
+var menus    = new Array();
+var isShow   = new Boolean(); 
+isShow=false;
+var isdown   = new Boolean();
+isdown=false;
+var srcel; 
+var fromel;  
+var toel; 
+var usestatus=false;
+var space=" ";
+menucolor='#cccccc';fontcolor='MenuText';menuhighlighttext='highlighttext';menuhightlight='highlight';menuoutcolor='Menu';menuincolor='cccccc';menuoutbordercolor='buttonhighlight';menuinbordercolor='buttonshadow';midoutcolor='#E0DFF5';midincolor='#8B8AA0';menuovercolor='MenuText';menuunitwidth=60;menuitemwidth=140;menuheight=22;menuwidth='100%';menuadjust=0; menualign='center';leftchar='(无)';rightchar='(无)';fonts='font-family: 宋体; font-size: 9pt; color: MenuText; ';cursor='default';
+
+function getReal(el, type, value) {
+	temp = el;
+	while ((temp != null) && (temp.tagName != "BODY")) {
+		if (eval("temp." + type) == value) {
+			el = temp;
+			return el;
+		}
+		temp = temp.parentElement;
+	}
+	return el;
+}
+function mouseoverlay (o){
+dff=o.style.backgroundColor
+	o.style.border="1"
+	o.style.borderStyle="inset"
+o.style.cursor="hand";	
+}
+
+function mouseoutlay (o){
+	o.style.backgroundColor=dff
+o.style.border="0"
+	
+}
+
+function MenuRegister(menu) 
+{
+  menus[menus.length] = menu
+  return (menus.length - 1)
+}
+function MenuItem(caption,command,target,isline,statustxt){
+	this.caption=caption;
+	this.command=command;
+	this.target=target;
+	this.isline=(isline)?true:false;
+	this.statustxt=statustxt;
+}
+
+function Menu(caption,command,target){
+	this.items = new Array();
+	this.caption=caption;
+	this.command=command;
+	this.target=target;
+	this.id=MenuRegister(this);
+}
+function MenuAddItem(item)
+{
+  this.items[this.items.length] = item
+  item.parent = this.id;
+  this.children=true;
+}
+
+Menu.prototype.addItem = MenuAddItem;
+
+
+
+
+function quit1(){
+window.alert("网络督察3.0")
+window.close()
+}
+function aboutme(){
+    showModalDialog("/about.htm", window, "status:no;center:yes;help:no;minimize:no;maximize:no;border:thick;statusbar:no;dialogWidth:360px;scroll:no;dialogHeight:260px");  
+
+}
+function helpme(){
+dodo()
+}
+
+function dodo() {
+		win1.open ();
+	}
+	
+		var win1 = new ChromelessWindow ();
+		
+		win1.title = "帮助主题";
+		win1.width = 524;
+		win1.height = 400;
+		win1.url = "/help.htm";
+		win1.thisName="chromeless";
+		
+		win1.ChromeTop.dragable = true;
+		win1.ChromeTop.width = 24;
+		win1.ChromeTop.bgColor = "white";
+		win1.ChromeTop.windowControls = windowControls_Close ;
+		win1.ChromeTop.content = "<img src=\"/images/bar2.gif\" border=\"0\" alt=\"e3 dev - journal [click/drag here]\">";
+		win1.ChromeTop.icon.src = "/images/spacer.gif";
+		
+		win1.ChromeBottom.dragable = true;
+		win1.ChromeBottom.width = 4;
+		win1.ChromeBottom.bgColor = "white";
+		win1.ChromeBottom.windowControls = windowControls_None;
+		win1.ChromeBottom.content = "<img src=\"/images/bar_bot2.gif\" border=\"0\" alt=\"[you can drag this too.]\">";
+		
+		win1.ChromeLeft.dragable = true;
+		win1.ChromeLeft.width = 0;
+		win1.ChromeLeft.bgColor = "";
+		win1.ChromeLeft.windowControls = windowControls_None;
+		win1.ChromeLeft.content = "";
+		
+		win1.ChromeRight.dragable = true;
+		win1.ChromeRight.width = 0;
+		win1.ChromeRight.bgColor = "";
+		win1.ChromeRight.windowControls = windowControls_None;
+		win1.ChromeRight.content = "";
+		
+		win1.BorderLeft.width = 0;
+		win1.BorderLeft.color = "#0066CC";
+		win1.BorderRight.width = 0;
+		win1.BorderRight.color = "#0066CC";
+		win1.BorderTop.width = 0;
+		win1.BorderTop.color = "#0066CC";
+		win1.BorderBottom.width = 0;
+		win1.BorderBottom.color = "#0066CC";
+
+
+
+function makeRaised(el) {
+	with (el.style) {
+		borderLeft   = "1px solid buttonhighlight";
+		borderRight  = "1px solid buttonshadow";
+		borderTop    = "1px solid buttonhighlight";
+		borderBottom = "1px solid buttonshadow";
+		padding      = "1px";
+	}
+}
+function jiyi(k){
+huiful=k
+}
+
+function huifu(u) {
+makeRaised(huiful)
+jiyi(u)
+	}
+
+function makePressed(el) {
+	with (el.style) {
+		borderLeft   = "1px solid buttonshadow";
+		borderRight  = "1px solid buttonhighlight";
+		borderTop    = "1px solid buttonshadow";
+		borderBottom = "1px solid buttonhighlight";
+		paddingTop    = "2px";
+		paddingLeft   = "2px";
+		paddingBottom = "0px";
+		paddingRight  = "0px";
+	}
+}
+function makeFlat(el) {
+	with (el.style) {
+		background = "";
+		border = "1px solid #cccccc";
+		padding      = "1px";
+	}
+}
+
+function makeGray(el) {
+	var filtval= "gray()";
+
+	var imgs = findChildren(el, "tagName", "IMG");
+		
+	for (var i=0; i<imgs.length; i++) {
+	imgs[i].style.filter = filtval;
+	}
+
+}
+
+function nomakeGray(el) {
+	var filtval= "";
+
+	var imgs = findChildren(el, "tagName", "IMG");
+		
+	for (var i=0; i<imgs.length; i++) {
+	imgs[i].style.filter = filtval;
+	}
+
+}
+function findChildren(el, type, value) {
+	var children = el.children;
+	var tmp = new Array();
+	var j=0;
+	
+	for (var i=0; i<children.length; i++) {
+		if (eval("children[i]." + type + "==\"" + value + "\"")) {
+			tmp[tmp.length] = children[i];
+		}
+		tmp = tmp.concat(findChildren(children[i], type, value));
+	}
+	
+	return tmp;
+}
+
+</script>
+<STYLE type=text/css>
+.coolButton2 {
+	HEIGHT: 20px; MARGIN: 1px; WIDTH: 20px
+}
+.coolButton3 {
+	HEIGHT: 20px; MARGIN: 1px; WIDTH: 20px; background-color: #0000FF;
+}
+
+.gray1{filter:gray
+}
+table {  font-size: 9pt}
+.nohand {  cursor: default}
+.dd {  cursor: default}
+</STYLE>
+<script language="JavaScript">
+<!--
+function fwLoadMenus() {
+  if (window.fw_menu_0) return;
+  window.fw_menu_0 = new Menu("root",87,17,"宋体,Verdana, Arial, Helvetica, sans-serif",12,"#000000","#ffffff","#cccccc","#000099");
+  fw_menu_0.addMenuItem("用户设置..","window.open('/pronline/Msg?FunName@ncWebListUserTree&plate@adduser.htm', 'main');");
+  fw_menu_0.addMenuItem("网络设置..","window.open('/pronline/Msg?FunName@ncWebDispNetwork', 'main');");
+  fw_menu_0.addMenuItem("带宽管理..","window.open('/pronline/Msg?FunName@ncWebShowUserRandWidth', 'main');");
+  fw_menu_0.addMenuItem("访问限制..","window.open('/pronline/Msg?FunName@ncWebListUserTree&plate@limited.htm', 'main');");
+  fw_menu_0.addMenuItem("系统重置.","main.location.href='/pronline/Msg?FunName@ncWebSystemReset'");
+  
+   fw_menu_0.hideOnMouseOut=true;
+if (window.fw_menu_1) return;
+  window.fw_menu_1 = new Menu("root",87,17,"Verdana, Arial, Helvetica, sans-serif",12,"#000000","#ffffff","#cccccc","#000099");
+  fw_menu_1.addMenuItem("网络监控","window.open('/pronline/Msg?FunName@ncWebListUserTree&plate@user.htm', 'main');");
+  fw_menu_1.addMenuItem("网站监控","window.open('/pronline/Msg?FunName@ncWebListUserTree&plate@webvister.htm', 'main');");
+
+  fw_menu_1.addMenuItem("当前状态","window.open('/pronline/Msg?FunName@ncWebShowUserStatus&startid@0', 'main');");
+  fw_menu_1.addMenuItem("访问查询","window.open('/pronline/Msg?FunName@ncWebListUserTree&plate@quyeiplog.htm', 'main');");
+  fw_menu_1.addMenuItem("网站查询","window.open('/pronline/Msg?FunName@ncWebListUserTree&plate@quyehttplog.htm', 'main');");
+//  fw_menu_1.addMenuItem("IP 访 问","window.open('/pronline/Msg?FunName@ncWebListUserTree&plate@quyeiplog.htm', 'main');");
+   fw_menu_1.hideOnMouseOut=true;
+if (window.fw_menu_2) return;
+  window.fw_menu_2 = new Menu("root",87,17,"Verdana, Arial, Helvetica, sans-serif",12,"#000000","#ffffff","#cccccc","#000099");
+  fw_menu_2.addMenuItem("访问流量","window.open('/pronline/Msg?FunName@ncWebListUserTree&plate@quyeipcount.htm', 'main');");
+  fw_menu_2.addMenuItem("连接时间","window.open('/pronline/Msg?FunName@ncWebListUserTree&plate@quyeiptime.htm', 'main');");
+  fw_menu_2.addMenuItem("排行榜",  "window.open('/ncsort.htm', 'main');");
+   fw_menu_2.hideOnMouseOut=true;
+if (window.fw_menu_3) return;
+  window.fw_menu_3 = new Menu("root",87,17,"Verdana, Arial, Helvetica, sans-serif",12,"#000000","#ffffff","#cccccc","#000099");
+  fw_menu_3.addMenuItem("流量分析","window.open('/pronline/Msg?FunName@ncWebListUserTree&plate@tjflow.htm', 'main');");
+  fw_menu_3.addMenuItem("时间分析","window.open('/pronline/Msg?FunName@ncWebListUserTree&plate@tjtime.htm', 'main');");
+  fw_menu_3.addMenuItem("出口流量","window.open('/pronline/Msg?FunName@ncWebCountTotalFlow&unix@分&ctype@2', 'main');");
+  fw_menu_3.hideOnMouseOut=true;
+
+if (window.fw_menu_4) return;
+  window.fw_menu_4 = new Menu("root",87,17,"Verdana, Arial, Helvetica, sans-serif",12,"#000000","#ffffff","#cccccc","#000099");
+  fw_menu_4.addMenuItem("管理用户","window.open('/pronline/Msg?FunName@ncWebAdminUserList', 'main');");
+  fw_menu_4.addMenuItem("权限定义","window.open('/pronline/Msg?FunName@ncWebAdminRole', 'main');");
+  fw_menu_4.addMenuItem("数据备份","window.open('/pronline/Msg?FunName@ncWebBackList', 'main');");
+  fw_menu_4.addMenuItem("系统关机","window.open('/pronline/Msg?FunName@ncWebReplace&plate@shutdown.htm', 'main');");
+  fw_menu_4.hideOnMouseOut=true;
+
+if (window.fw_menu_5) return;
+  window.fw_menu_5 = new Menu("root",87,17,"Verdana, Arial, Helvetica, sans-serif",12,"#000000","#ffffff","#cccccc","#000099");
+  // fw_menu_5.addMenuItem("帮助主题","helpme();");
+  fw_menu_5.addMenuItem("新网程","window.open('http://www.pronetway.com', '_blank');");
+  fw_menu_5.addMenuItem("关于...","aboutme();");
+  fw_menu_5.hideOnMouseOut=true;
+  fw_menu_5.writeMenus();
+} // fwLoadMenus()
+
+//-->
+</script>
+<script language="JavaScript">
+
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+//-->
+</script>
+<script language="JavaScript1.2" src="/js/fw_menu.js"></script>
+</head>
+
+<body bgcolor="#CCCCCC" text="#000000"  oncontextmenu="return false" leftmargin="0" topmargin="0">
+<table width="100%" border="0" bgcolor="#CCCCCC" cellspacing="0" cellpadding="0">
+  <tr bgcolor="#CCCCCC" valign="bottom"> 
+    <td width="20" height="25"> 
+<table width="430" border="0" cellpadding="0" cellspacing="0">
+        <tr> 
+          <td width="10">&nbsp;</td>
+          <td width="70" onMouseOut="FW_startTimeout();mouseoutlay(Layer1)"  onMouseOver="window.FW_showMenu(window.fw_menu_0,10,24);mouseoverlay(Layer1)" class="dd">&nbsp;设置(F)</td>
+          <td width="70" onMouseOut="FW_startTimeout();mouseoutlay(Layer2)"  onMouseOver="window.FW_showMenu(window.fw_menu_1,80,24);mouseoverlay(Layer2)" class="dd">&nbsp;察看(W)</td>
+          <td width="70" onMouseOut="FW_startTimeout();mouseoutlay(Layer3)"  onMouseOver="window.FW_showMenu(window.fw_menu_2,150,24);mouseoverlay(Layer3)" class="dd">&nbsp;统计(S)</td>
+          <td width="70" onMouseOut="FW_startTimeout();mouseoutlay(Layer4)"  onMouseOver="window.FW_showMenu(window.fw_menu_3,220,24);mouseoverlay(Layer4)" class="dd">&nbsp;图表(T)</td>
+          <td width="70" onMouseOut="FW_startTimeout();mouseoutlay(Layer5)"  onMouseOver="window.FW_showMenu(window.fw_menu_4,290,24);mouseoverlay(Layer5)" class="dd">&nbsp;系统(M)</td>
+          <td width="70" onMouseOut="FW_startTimeout();mouseoutlay(Layer6)"  onMouseOver="window.FW_showMenu(window.fw_menu_5,360,24);mouseoverlay(Layer6)" class="dd">&nbsp;帮助(H)</td>
+        </tr>
+      </table>
+    </td>
+    <td height="25"> 
+      <div align="right"> <img src="/images/globezx2.gif" width="74" height="23"></div></td>
+  </tr>
+  <tr background="/images/topbg.gif"> 
+    <td height="75" colspan="2" background="/images/topbg.gif"> 
+<script language="JavaScript1.2">fwLoadMenus();</script> 
+      <div id="Layer1" style="position:absolute; left:10px; top:7px; width:70px; height:17px; z-index:1" onMouseOut="FW_startTimeout();mouseoutlay(this)"  onMouseOver="window.FW_showMenu(window.fw_menu_0,10,24);mouseoverlay(this)"></div>
+      <div id="Layer2" style="position:absolute; left:80px; top:7px; width:70px; height:17px; z-index:1" onMouseOut="FW_startTimeout();mouseoutlay(this)"  onMouseOver="window.FW_showMenu(window.fw_menu_1,80,24);mouseoverlay(this)"></div>
+      <div id="Layer3" style="position:absolute; left:150px; top:7px; width:70px; height:17px; z-index:1" onMouseOut="FW_startTimeout();mouseoutlay(this)"  onMouseOver="window.FW_showMenu(window.fw_menu_2,150,24);mouseoverlay(this)"></div>
+      <div id="Layer4" style="position:absolute; left:220px; top:7px; width:70px; height:17px; z-index:1" onMouseOut="FW_startTimeout();mouseoutlay(this)"  onMouseOver="window.FW_showMenu(window.fw_menu_3,220,24);mouseoverlay(this)"></div>
+      <div id="Layer5" style="position:absolute; left:290px; top:7px; width:70px; height:17px; z-index:1" onMouseOut="FW_startTimeout();mouseoutlay(this)"  onMouseOver="window.FW_showMenu(window.fw_menu_4,290,24);mouseoverlay(this)"></div>
+      <div id="Layer6" style="position:absolute; left:360px; top:7px; width:70px; height:17px; z-index:1" onMouseOut="FW_startTimeout();mouseoutlay(this)"  onMouseOver="window.FW_showMenu(window.fw_menu_5,360,24);mouseoverlay(this)"></div>
+      <table border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="20">&nbsp;</td>
+          <td height="49" width="60"> <div align="center"><span  class=coolButton2 onClick="goto('/pronline/Msg?FunName@ncWebShowUserStatus&startid@0')" title=用户状态 onMouseOver="makeRaised(this);nomakeGray(this)" onMouseOut="makeGray(this);makeFlat(this)" onMouseDown="makePressed(this)" onMouseUp="makeRaised(this)"> 
+              <img align=absMiddle height=36 src="/images/ans3.gif" width=36 class="gray1"><br>
+              <nobr class="nohand">当前状态</nobr> </span></div></td>
+          <td height="49" width="60"> <div align="center"><span  class=coolButton2 onClick="goto('/pronline/Msg?FunName@ncWebListUserTree&plate@adduser.htm')" title=添加用户 onMouseOver="makeRaised(this);nomakeGray(this)" onMouseOut="makeGray(this);makeFlat(this)" onMouseDown="makePressed(this)" onMouseUp="makeRaised(this)"> 
+              <img align=absMiddle height=36 src="/images/ans4.gif" width=36 class="gray1"><br>
+              <nobr class="nohand">用户管理</nobr> </span></div></td>
+          <td height="49" width="60"> <div align="center"> <span  class=coolButton2 onClick="goto('/pronline/Msg?FunName@ncWebDispNetwork')" title=网络设置 onMouseOver="makeRaised(this);nomakeGray(this)" onMouseOut="makeGray(this);makeFlat(this)" onMouseDown="makePressed(this)" onMouseUp="makeRaised(this)"> 
+              <img align=absMiddle height=36 src="/images/ans8.gif" width=36 class="gray1"><br>
+              <nobr class="nohand">网络设置</nobr> </span></div></td>
+          <td height="49" width="60"> <div align="center"> <span  class=coolButton2 onClick="goto('/pronline/Msg?FunName@ncWebListUserTree&plate@limited.htm')" title=访问限制 onMouseOver="makeRaised(this);nomakeGray(this)" onMouseOut="makeGray(this);makeFlat(this)" onMouseDown="makePressed(this)" onMouseUp="makeRaised(this)"> 
+              <img align=absMiddle height=36 src="/images/ans18.gif" width=36 class="gray1"><br>
+              <nobr class="nohand">访问限制</nobr> </span></div></td>
+          <td height="49" width="60"> <div align="center"><span  class=coolButton2 onClick="goto('/pronline/Msg?FunName@ncWebListUserTree&plate@quyeiplog.htm')" title=历史纪录 onMouseOver="makeRaised(this);nomakeGray(this)" onMouseOut="makeGray(this);makeFlat(this)" onMouseDown="makePressed(this)" onMouseUp="makeRaised(this)"> 
+              <img align=absMiddle height=36 src="/images/ans11.gif" width=36 class="gray1"><br>
+              <nobr class="nohand">访问查询</nobr> </span></div></td>
+          <td height="49" width="60"> <div align="center"><span  class=coolButton2 onClick="goto('/pronline/Msg?FunName@ncWebListUserTree&plate@quyehttplog.htm')" title=网站查询 onMouseOver="makeRaised(this);nomakeGray(this)" onMouseOut="makeGray(this);makeFlat(this)" onMouseDown="makePressed(this)" onMouseUp="makeRaised(this)"> 
+              <img align=absMiddle height=36 src="/images/ans7.gif" width=36 class="gray1"><br>
+              <nobr class="nohand">网站查询</nobr> </span></div></td>
+          <td height="49" width="60"> <div align="center"><span  class=coolButton2 onClick="goto('/pronline/Msg?FunName@ncWebListUserTree&plate@quyeipcount.htm')" title=流量统计 onMouseOver="makeRaised(this);nomakeGray(this)" onMouseOut="makeGray(this);makeFlat(this)" onMouseDown="makePressed(this)" onMouseUp="makeRaised(this)"> 
+              <img align=absMiddle height=36 src="/images/ans13.gif" width=36 class="gray1"><br>
+              <nobr class="nohand">流量统计</nobr></span></div></td>
+          <td height="49" width="60"> <div align="center"><span  class=coolButton2 onClick="goto('/pronline/Msg?FunName@ncWebListUserTree&plate@quyeiptime.htm')" title=系统设置 onMouseOver="makeRaised(this);nomakeGray(this)" onMouseOut="makeGray(this);makeFlat(this)" onMouseDown="makePressed(this)" onMouseUp="makeRaised(this)"> 
+              <img align=absMiddle height=36 src="/images/ans20.gif" width=36 class="gray1"><br>
+              <nobr class="nohand">时间统计</nobr> </span></div></td>
+          <td height="49" width="60"> <div align="center"><span  class=coolButton2 onClick="goto('/pronline/Msg?FunName@ncWebListUserTree&plate@tjflow.htm')" title=流量分析 onMouseOver="makeRaised(this);nomakeGray(this)" onMouseOut="makeGray(this);makeFlat(this)" onMouseDown="makePressed(this)" onMouseUp="makeRaised(this)"> 
+              <img align=absMiddle height=36 src="/images/ans16.gif" width=36 class="gray1"><br>
+              <nobr class="nohand">流量分析</nobr> </span></div></td>
+          <td height="49" width="60"> <div align="center"><span  class=coolButton2 onClick="goto('/pronline/Msg?FunName@ncWebListUserTree&plate@tjtime.htm')" title=流量分析 onMouseOver="makeRaised(this);nomakeGray(this)" onMouseOut="makeGray(this);makeFlat(this)" onMouseDown="makePressed(this)" onMouseUp="makeRaised(this)"> 
+              <img align=absMiddle height=36 src="/images/ans21.gif" width=36 class="gray1"><br>
+              <nobr class="nohand">时间分析</nobr> </span></div></td>
+          <td height="49" width="60"> <div align="center"><span  class=coolButton2 onClick="goto('/ncsort.htm')" title=排行榜 onMouseOver="makeRaised(this);nomakeGray(this)" onMouseOut="makeGray(this);makeFlat(this)" onMouseDown="makePressed(this)" onMouseUp="makeRaised(this)"> 
+              <img align=absMiddle height=36 src="/images/ans9.gif" width=36 class="gray1"><br>
+              <nobr class="nohand">排行榜</nobr> </span></div></td>
+          <td height="49" width="60"> <div align="center"><span  class=coolButton2 onClick="goto('/pronline/Msg?FunName@ncWebShowUserRandWidth')" title=带宽管理 onMouseOver="makeRaised(this);nomakeGray(this)" onMouseOut="makeGray(this);makeFlat(this)" onMouseDown="makePressed(this)" onMouseUp="makeRaised(this)"> 
+              <img align=absMiddle height=36 src="/images/ans1.gif" width=36 class="gray1"><br>
+              <nobr class="nohand">带宽管理</nobr> </span></div></td>
+          <td height="49" width="60"> <div align="center"><span  class=coolButton2 onClick="goto('/pronline/Msg?FunName@ncWebListUserTree&plate@nc_mail.htm')" title=内容监控 onMouseOver="makeRaised(this);nomakeGray(this)" onMouseOut="makeGray(this);makeFlat(this)" onMouseDown="makePressed(this)" onMouseUp="makeRaised(this)"> 
+              <img align=absMiddle height=36 src="/images/anss11.gif" width=36 class="gray1"><br>
+              <nobr class="nohand">内容监控</nobr> </span></div></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table width="100%" border="0">
+  <tr> 
+     <script>
+b=screen.height-160
+document.write("<td colspan='2' height="+b+">")
+</script>
+<br>
+<div align="center"><iframe name="main" src="/pronline/Msg?FunName@ncWebListUserTree&plate@user.htm" width="98%" height="98%" scrolling="yes"></iframe></div>
+  
+  </tr>
+</table>
+
+</body>
+</html>

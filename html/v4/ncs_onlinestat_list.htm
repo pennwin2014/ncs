@@ -1,0 +1,369 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<title>单位管理</title>
+    <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" /> 
+        <style type="text/css">
+        .icon-grid {
+            background-image:url(/newver/resources/themes/images/share/grid.png) !important;
+        }
+        .add {
+            background-image:url(/newver/resources/themes/images/share/add.gif) !important;
+        }
+        .option {
+            background-image:url(/newver/resources/themes/images/share/plugin.gif) !important;
+        }
+        .remove {
+            background-image:url(/newver/resources/themes/images/share/delete.gif) !important;
+        }
+        .exp {
+            background-image:url(/newver/resources/themes/images/share/application_go.png) !important;
+        }
+        .accept {
+            background-image:url(/newver/resources/themes/images/share/accept.png) !important;
+        }
+     .x-tab-default-top button, .x-tab-default-top.x-tab-inner {
+		  height: 16px !important;
+		  line-height: 16px;
+	    }
+
+    </style>
+<style type="text/css">   
+   .x-selectable, .x-selectable * {   
+    -moz-user-select: text!important;   
+    -khtml-user-select: text!important; 
+     } 
+     A:link {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+a:visited {
+	COLOR: #222222; TEXT-DECORATION: none
+}
+a:hover {
+	COLOR: #666666; TEXT-DECORATION: underline
+}
+a:active {
+	COLOR: red; TEXT-DECORATION: underline
+}
+  
+</style>
+      
+    <script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+    
+  <script>  
+
+
+Ext.Loader.setConfig({enabled: true});
+Ext.Loader.setPath('Ext.ux', '/newver/ux/');
+Ext.require([
+    'Ext.form.*',
+    'Ext.window.*',
+    'Ext.grid.*',
+    'Ext.data.*',
+    'Ext.util.*',
+    'Ext.window.MessageBox',
+    'Ext.toolbar.Paging',
+    'Ext.ux.PreviewPlugin',
+//    'Ext.ModelManager',
+//    'Ext.tip.QuickTipManager'
+]);
+var store;
+ function reflash(){
+
+  var did1=document.getElementById("form1").did.value;
+
+  var gid=document.getElementById("form1").groupid.value;
+  var ip1=document.getElementById("form1").ip1.value;
+  var dispname1=document.getElementById("form1").dispname1.value;
+  var servicecode1=document.getElementById("form1").servicecode1.value;
+  var address1=document.getElementById("form1").address1.value;
+  var area1=document.getElementById("form1").area1.value;
+
+  var keyword1=document.getElementById('form1').keyword.value;
+
+  store.load({params: {groupid: gid,ip1:ip1,dispnam1:dispname1,servicecode1:servicecode1,address1:address1,area1:area1,did:did1,keyword:keyword1}});  
+  }
+    
+
+//显示单位信息
+    function ShowCorplist(id,flag,fcode){
+         document.getElementById("form1").gid.value=id;
+         document.getElementById("form1").show_flag.value=flag;
+         document.getElementById("form1").fcode.value=fcode;
+
+         var htmlvar='<iframe src="/v4/ncs_user_list_link.htm" scrolling="yes" name="moduleIframe" frameborder="no" height="700px" width="100%"></iframe>';              
+         var win = new Ext.Window ({
+                             id:"addwindow",
+                             title:"查看单位信息",
+                             x:0,
+                             y:0,
+                             width:830,
+                             height:700,
+                             bodyPadding: 10,
+                             modal:false,
+                             resizable:true,
+                             draggable:true,
+                             html:htmlvar
+                                               
+         }
+        )
+         win.on("beforeclose", function() {
+
+        	store.load();
+         });
+        
+        win.show();
+    }
+
+
+
+
+
+
+
+Ext.Loader.setConfig({
+    enabled: true
+});
+Ext.Loader.setPath('Ext.ux', '/newver/ux/');
+
+Ext.require([
+    'Ext.data.*',
+    'Ext.grid.*',
+    'Ext.tree.*',
+    'Ext.ux.CheckColumn'
+]);
+
+Ext.onReady(function() {
+    Ext.QuickTips.init();
+
+    //we want to setup a model and store instead of using dataUrl
+    Ext.define('Task', {
+        extend: 'Ext.data.Model',
+        fields: [
+            {name: 'area',     type: 'string'},
+            {name: 'did_count',     type: 'string'},
+            {name: 'ondid_count', type: 'string'},
+            {name: 'ycdid_count',     type: 'string'},
+            {name: 'lxdid_count',     type: 'string'},
+            {name: 'wh_count',     type: 'string'},
+            {name: 'ty_count',     type: 'string'},
+            {name: 'onuid_count', type: 'string'},
+            {name: 'endnum',     type: 'string'},
+            {name: 'rate', type: 'string'},
+            {name: 'groupid', type: 'string'}
+
+        ]
+    });
+
+  store = Ext.create('Ext.data.TreeStore', {
+        model: 'Task',
+        proxy: {
+            type: 'ajax',
+            //the store will get the content from the .json file
+            url: '/pronline/Msg?FunName@ncs_onlinecorp_first_onlinerate'
+        },
+        folderSort: true
+    });
+    
+   store.on('beforeload', function (store, options) {
+ // 	alert(parent.wireflag);
+    	var wireflag=parent.wireflag;
+ 	  var new_params={wireflag:wireflag};
+     Ext.apply(store.proxy.extraParams,new_params);
+       });	
+
+   function show_sumcorp(value,p,record){
+        var temp_count=record.data.did_count;
+        var temp_id=record.data.groupid;
+        return Ext.String.format( '<a href="#xxm" onclick=ShowCorplist("{0}","","")>{1}</a>',temp_id,temp_count);
+      
+    }
+
+   function show_zxcorp(value,p,record){
+        var temp_count=record.data.ondid_count;
+        var temp_id=record.data.groupid;
+        return Ext.String.format( '<a href="#xxm" onclick=ShowCorplist("{0}","1","")>{1}</a>',temp_id,temp_count);
+      
+    }
+    function show_lxcorp(value,p,record){
+        var temp_count=record.data.lxdid_count;
+        var temp_id=record.data.groupid;
+        return Ext.String.format( '<a href="#xxm" onclick=ShowCorplist("{0}","2","")>{1}</a>',temp_id,temp_count);
+      
+    }
+    function show_tycorp(value,p,record){
+        var temp_count=record.data.ty_count;
+        var temp_id=record.data.groupid;
+        return Ext.String.format( '<a href="#xxm" onclick=ShowCorplist("{0}","4","")>{1}</a>',temp_id,temp_count);
+      
+    }
+     function show_whcorp(value,p,record){
+        var temp_count=record.data.wh_count;
+        var temp_id=record.data.groupid;
+        return Ext.String.format( '<a href="#xxm" onclick=ShowCorplist("{0}","5","")>{1}</a>',temp_id,temp_count);
+      
+    }
+    
+    var aaa=screen.width;
+    aaa=aaa-241;
+    var tree = Ext.create('Ext.tree.Panel', {
+//        title: '单位在线率统计',
+//        width: aaa,
+//        forceFit: true,
+        scrollOffset: 0,
+        height:parent.grid_height,
+ //      padding: '0 10 0 0',
+        border:true,
+        renderTo: Ext.getBody(),
+        collapsible: false,
+        autoScroll: true,
+ //       useArrows: true,
+        rootVisible: false,
+        store: store,
+        multiSelect: true,
+ //       singleExpand: true,
+        dockedItems: [{
+            xtype: 'toolbar',
+            items: [{
+                text: '展开全部节点',
+                 iconCls:'add',
+                handler: function(){
+                    tree.expandAll();
+                }
+            }, {
+                text: '收缩全部节点',
+                iconCls:'remove',
+                handler: function(){
+                    tree.collapseAll();
+                }
+            }, {
+                text: '显示第一级',
+                iconCls:'accept',
+                handler: function(){
+                    reflash();
+                }
+            }, {
+                text: '导出',
+                iconCls:'exp',
+                handler: function(){
+                   document.getElementById('form1').exp.value='exp';
+                   document.getElementById("form1").submit();
+                   document.getElementById("form1").exp.value="";
+                }
+            }]
+        }],
+        
+        
+        listeners:{itemclick:function(view, rcd, item, idx, event, eOpts){
+  //       	var sid=rcd.get('id');
+ //        	 alert(sid);
+         }
+        }, 
+        columns: [{
+            xtype: 'treecolumn', //this is so we know which column will show the tree
+            text: '区域(单位组)',
+            width:220,
+           
+            sortable: true,
+            dataIndex: 'area'
+        },{
+          
+            text: '单位总数',
+            align:'right',
+            width:100,
+            sortable: false,
+ //           dataIndex: 'did_count',
+            renderer: show_sumcorp,     
+            align: 'right'
+
+        },{
+            text: '在线单位',
+            align:'right',
+            width:100,
+            renderer: show_zxcorp,
+ //           dataIndex: 'ondid_count',
+            sortable: false
+        },{
+            text: '异常在线单位',
+            align:'right',
+            width:100,
+            hidden:true,
+            dataIndex: 'ycdid_count',
+            sortable: false
+        },{
+            text: '维护单位',
+            align:'right',
+            width:100,
+            renderer:show_whcorp,
+ //           dataIndex: 'wh_count',
+            sortable: false
+        },{
+            text: '停业单位',
+            align:'right',
+            width:100,
+            renderer:show_tycorp,
+ //           dataIndex: 'ty_count',
+            sortable: false
+        },{
+            text: '离线单位',
+            align:'right',
+            width:100,
+//            dataIndex: 'lxdid_count',
+           renderer:show_lxcorp,
+            sortable: false
+        },{
+            text: '在线率',
+            width:100,
+            dataIndex: 'rate',
+            align:'right',
+            sortable: true
+        },{
+            text: '上网用户数',
+            align:'right',
+            width:100,
+            hidden:true,
+            dataIndex: 'endnum',
+            sortable: true
+        },{
+            text: '在线用户数',
+            align:'right',
+            width:100,
+            dataIndex: 'onuid_count',
+            sortable: true
+        }, {
+           flex:1,
+            menuDisabled: true,
+            align: 'center'
+           
+        }]
+    });
+});
+
+</script>
+    
+    
+</head>
+<body>
+	<form name="form1" id="form1" action="/pronline/Msg">
+		<input type="hidden" name="FunName" value="ncs_onlinecorp_first_onlinerate">
+		<input type="hidden" name="groupid" value="">
+		<input type="hidden" name="did" value="">
+		<input type="hidden" name="ip1" value="">
+		<input type="hidden" name="dispname1" value="">
+		<input type="hidden" name="servicecode1" value="">
+		<input type="hidden" name="groupid1" value="">		
+	  <input type="hidden" name="address1" value="">
+		<input type="hidden" name="area1" value="">
+		<input type="hidden" name="exp" value="">
+		<input type="hidden" name="lxstate" value="">
+		<input type="hidden" name="keyword" value="">
+		
+		<input type="hidden" name="gid" value="">
+		<input type="hidden" name="show_flag" value="">
+			<input type="hidden" name="fcode" value="">
+	</form>
+    <div id="grid-corp"></div>
+
+</body>
+</html>

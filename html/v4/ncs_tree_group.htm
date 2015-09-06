@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<title>单位管理</title>
+    <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" /> 
+    <script type="text/javascript" src="/newver/resources/js/ext_tree_base.js"></script>
+   
+ <script> 
+function clicknode(id){
+
+parent.passid(id,'');
+parent.doreflashTab();
+
+//parent.viewIframe.document.getElementById("form1").groupid.value=id;
+//parent.viewIframe.document.getElementById("form1").did.value='';
+//parent.viewIframe.reflash();
+
+}
+
+Ext.require([
+    'Ext.tree.*',
+    'Ext.data.*',
+    'Ext.tip.*',
+    'Ext.tab.*'
+]);
+
+Ext.onReady(function() {
+
+    Ext.QuickTips.init();
+
+    var store = Ext.create('Ext.data.TreeStore', {
+        proxy: {
+            type: 'ajax',
+            url: '/pronline/Msg?FunName@ncsTreeGroup_v4'
+        },
+        root: {
+            text: '全部单位组',
+            id: '',
+            expanded: true
+        },
+        folderSort: true,
+        sorters: [{
+            property: 'text',
+            direction: 'ASC'
+        }]
+    });
+
+    var tree = Ext.create('Ext.tree.Panel', {
+        store: store,
+ //       viewConfig: {
+//            plugins: {
+ //               ptype: 'treeviewdragdrop'
+//            }
+ //       },
+        renderTo: 'tree-div',
+        height: 980,
+        width: 350,
+        useArrows: false
+        ,
+         listeners:{itemclick:function(view, rcd, item, idx, event, eOpts){
+         	var sid=rcd.get('id');
+         	  clicknode(sid);
+         }
+        } 
+    });
+});
+</script>
+<body>
+<div id="tabs1">
+    <div id="tree-div"></div>
+</div>   
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,18 @@
+BODY {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-SIZE: 12px; PADDING-BOTTOM: 0px; MARGIN: 10px 40px; COLOR: #000000; LINE-HEIGHT: 1.166; PADDING-TOP: 0px; FONT-FAMILY: Verdana, Arial, sans-serif, "新宋体"
+}
+TD.login_txt {
+	FONT: 12px Verdana, Arial, sans-serif, "新宋体"; COLOR: #000000; TEXT-ALIGN: left
+}
+.vision {
+	DISPLAY: block; VISIBILITY: visible
+}
+.visioff {
+	DISPLAY: none; VISIBILITY: hidden
+}
+INPUT {
+	FONT-SIZE: 12px; FONT-FAMILY: Verdana, Arial, sans-serif, "新宋体"
+}
+INPUT.sub_btn {
+	FONT-SIZE: 12px; WIDTH: 75px; FONT-FAMILY: Verdana, Arial, sans-serif, "新宋体"
+}

@@ -1,0 +1,142 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META content=no-cache http-equiv=Pragma>
+<link href="/css/css.css" rel="stylesheet" type="text/css">
+<link REL=stylesheet HREF="/css/listdatetable.css" TYPE="text/css">
+<style type="text/css">
+<!--
+body {  font-size: 9pt}
+table {  font-size: 9pt}
+.anuse3 { font-size: 9pt; background-color: E7F3FF; 
+  vertical-align: middle; height: 18px; width: 45px; border-top-width: 0px; border-right-width: 
+  0px; border-bottom-width: 0px; border-left-width: 0px; cursor: hand}
+-->
+</style>
+
+<script>
+var ll=2;
+var yy=100;
+function goto(t){
+self.location.href=t
+}
+
+function gotoPage(nun)
+{
+
+form1.CurPg.value=nun;
+form1.submit();
+}
+function mouseovertr2 (o){
+var i;
+df=o.style.backgroundColor
+	o.style.backgroundColor= "#ffff00";
+	o.style.borderColor= "#FFFF00";
+	o.style.cursor="hand";	
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#000000";
+}	
+}
+
+function mouseouttr2(o){
+	o.style.backgroundColor=df
+	
+	
+}
+function gotozd(){
+var t='/pronline/Msg?FunName@ncWebSelectZd&flag@11&zd@'+form1.zd.value;
+ tt=showModalDialog(t, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:320px;scroll:yes;dialogHeight:400px');
+}
+function sx()
+{
+form1.submit();
+
+}
+setInterval('sx()',5000);
+
+</script>
+</head>
+
+<body BGCOLOR="Menu" topmargin="0"  leftmargin="0" >
+
+<form name="form1" method="post" action="/pronline/Msg" target="main">
+<input type="hidden" name="FunName" value="ncsWebFtpOnline">
+<input type="hidden" name="groupid" value="">
+<input type="hidden" name="userid" value="">
+<input type="hidden" name="zd" value="dwjc,dwmc,ip,sxsl,xxsl,zxyh,lxsj,">
+<table  cellspacing=0   cellpadding="0" bgcolor="#DEE8FA" border="0" align="center" width="100%">
+    <tr >
+      <td colspan="7">
+        <table width="100%" height="27" border="0" align="center" cellpadding="0" cellspacing="0" background="/images/table_bg1.gif">
+          <tr > 
+            <td align="center"> <strong><font color="#FFFFFF">监控单位在线状态</font></strong></td>
+          </tr>
+        </table>
+     </td>
+    </tr>    
+    <tr > 
+      <td colspan="7" > 
+       <table width="100%" border="0"  class="ttt">
+          <tr> 
+            <td width="64%" height="25"> &nbsp;关键字: 
+                <input type="text"   name="cond" value="" size="30">                  
+                <input name="search" type="submit" class="an3" value="查 询">
+                <input name="exp" type="submit" class="an3" value="导 出">
+                <input name="selzd" type="button" class="an3"   value="选择字段" onclick="gotozd()">
+             </td>
+            <td width="36%" >
+             <table align=right border=0 cellpadding=0 cellspacing=0 class=main width=111>
+                <tbody>
+                  <tr> 
+                <td width="10%" ><script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-06.gif' border=0 height=17 width=35 class='gray1'>")}
+                      else{
+                        document.write("<img src='/images/zbuyer-06.gif' border=0 height=17 width=35 onClick='gotoPage(1)' class='hand'>")}
+                   </script></td>
+                <td width="10%"><script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 class='gray1'>")}
+                      else {
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 onClick='gotoPage(form1.CurPg.value-1);' class='hand'>")}
+                   </script></td>
+                <td width="20%"><img src="/images/zbuyer-08.gif" border=0 height=17 width=32></td>
+                <td align=middle background="" width=92>
+                    <input class=Main name='CurPg' maxlength=68  size=8 style="FONT-SIZE: 12px; HEIGHT: 17px; TEXT-ALIGN: center; WIDTH: 50px" value='' onKeyPress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" onBlur="checkme(this)">
+                </td>
+                <td width="10%"><img src="/images/zbuyer-09.gif" border=0 height=17 width=16></td>
+                <td width="10%"><img align=middle border=0 height=17 src="/images/zbuyer-10.gif" width=17 onClick="gotoPage(form1.CurPg.value);" class="hand"><img align=middle height=17 src="/images/zbuyer-11.gif" width=3></td>                
+    <td width="10%"><img border=0 height=17 src="/images/zin1.gif" width=17 ></td>
+    <td align=middle  width=92> 
+      <input  class=Main name='totpg'  maxlength=5  size=3 style="FONT-SIZE: 12px; HEIGHT: 17px; TEXT-ALIGN: center; WIDTH: 50px" value=''>
+    </td>
+    <td width="10%"><img align=middle height=17 src="/images/zbuyer-09.gif" width=16></td>
+    <td align=middle background="" width=92> 
+      <input  class=Main name='totrec' maxlength=8  size=8 style="FONT-SIZE: 12px; HEIGHT: 17px; TEXT-ALIGN: center; WIDTH: 50px" value=''>
+    </td>
+    <td width="10%"><img border=0 height=17 src="/images/zin3.gif" width=17 align="middle" ><img align=middle height=17  src="/images/zbuyer-11.gif" width=3></td>               
+    <td width="10%"><img src='/images/zbuyer-04.gif' border=0 height=17 width=20 align="middle" onClick='gotoPage(form1.CurPg.value+1);' class='hand'>                  
+     </td>
+    <td width="10%"><img src='/images/zbuyer-05.gif' border=0 height=17 width=36 align="middle" onClick='gotoPage(form1.totpg.value);' class='hand'>                  
+   </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+</table>
+</form>
+
+<div style="position:relative;left:0px;top:-19px;">
+<form id="ff" name='ff'>
+</form>
+</div>
+<iframe name="main" id="data" style="display:none" src="/pronline/Msg?FunName@ncsWebFtpOnline"> </iframe>
+</body>
+</html>

@@ -1,0 +1,461 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<title>单位管理</title>
+    <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" /> 
+        <style type="text/css">
+        .icon-grid {
+            background-image:url(/newver/resources/themes/images/share/grid.png) !important;
+        }
+        .add {
+            background-image:url(/newver/resources/themes/images/share/add.gif) !important;
+        }
+        .option {
+            background-image:url(/newver/resources/themes/images/share/plugin.gif) !important;
+        }
+        .remove {
+            background-image:url(/newver/resources/themes/images/share/delete.gif) !important;
+        }
+        .exp {
+            background-image:url(/newver/resources/themes/images/share/application_go.png) !important;
+        }
+        .accept {
+            background-image:url(/newver/resources/themes/images/share/accept.png) !important;
+        }
+     .x-tab-default-top button, .x-tab-default-top.x-tab-inner {
+		  height: 16px !important;
+		  line-height: 16px;
+	    }
+
+    </style>
+<style type="text/css">   
+   .x-selectable, .x-selectable * {   
+    -moz-user-select: text!important;   
+    -khtml-user-select: text!important;   
+}   
+</style>
+      
+    <script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+    
+  <script>  
+
+
+Ext.Loader.setConfig({enabled: true});
+Ext.Loader.setPath('Ext.ux', '/newver/ux/');
+Ext.require([
+    'Ext.form.*',
+    'Ext.window.*',
+    'Ext.grid.*',
+    'Ext.data.*',
+    'Ext.util.*',
+    'Ext.window.MessageBox',
+    'Ext.toolbar.Paging',
+    'Ext.ux.PreviewPlugin',
+//    'Ext.ModelManager',
+//    'Ext.tip.QuickTipManager'
+]);
+var store;
+
+
+var wireflag=parent.wireflag;
+var wjointype;
+if(wireflag=='2'){
+	wjointype='08';
+}
+else{
+	wjointype='05';
+}
+
+ function reflash(){
+
+// var aaa="\u5408\u5e76\u578b\u914d\u7f6e\uff0c\u533a\u57df\u3001\u7f51\u70b9\u3001\u53d7\u63a7\u7aef\u7684\u914d\u7f6e\u5c06\u8fdb\u884c\u5408\u5e76\uff0c\u5408\u5e76\u7684\u4f18\u5148\u7ea7\u4e3a\uff1a\u533a\u57df>\u7f51\u70b9>\u53d7\u63a7\u7aef";
+ //alert(aaa);
+  var did1=document.getElementById("form1").did.value;
+  var gid=document.getElementById("form1").groupid.value; 
+  var keyword1=Ext.getCmp('keyword1').value; 
+ var fcod1=document.getElementById('form1').fcode.value;
+  var clb=document.getElementById('form1').lb.value;
+  if(keyword1=='输入单位编码/名称查询'){
+  	keyword1='';
+  }
+
+  store.load({params: {lb:clb,fcode:fcod1,groupid: gid,did:did1,keyword:keyword1}});  
+  }
+
+      function _show_corpinfo(did,title)
+    	{
+    	if(parent.document.getElementById("form1")){
+      parent.document.getElementById("form1").did.value=did;
+    	parent.dhsrc('/v4/ncs_gdrz_lab_corp.htm',title,did);
+    	}
+    	else{
+    	
+   	
+    	  document.getElementById("form1").did.value=did;
+var htmlvar='<iframe src="/pronline/Msg?FunName@ncsWebReplace&plate@v4/ncs_gdrz_lab_corp.htm&did@'+did+'" scrolling="no" name="moduleIframe" frameborder="no" width="100%" height="700px"></iframe>';   //   		var htmlvar='<iframe src="/v4/ncs_gdrz_lab_corp.htm" scrolling="no" name="moduleIframe" frameborder="no" style="width:100%;height:100%;"></iframe>';  
+            
+         	 var win = new Ext.Window ({
+                             id:"addwindow",
+                             title:"联网单位信息",
+                             x:0,
+                             y:0,
+                             width:910,
+                             height:700,
+                             bodyPadding: 0,
+                             modal:true,
+                             resizable:true,
+                             draggable:true,
+                     	     html:htmlvar})
+        	 win.show();
+}
+    	}
+
+
+Ext.onReady(function(){
+
+//    Ext.tip.QuickTipManager.init();
+
+    Ext.define('EimData', {
+        extend: 'Ext.data.Model',
+        fields: [
+            'username', 'dispname', 'ip', 'endnum', 'onuser','status','ssxx','userid','version','groupname','contact','telphone','address','lasttime','gtype','jrcj','dwlb'
+        ],
+        idProperty: 'userid'
+    });
+
+    // create the Data Store
+    //重写排序函数，解决远程条件查询问题
+    Ext.data.Store.prototype.doSort = function() {
+    	reflash();
+    }
+       store = Ext.create('Ext.data.Store', {
+        pageSize: 40,
+        model: 'EimData',
+        remoteSort: true,
+        proxy: {
+            type: 'ajax',
+            url: '/pronline/Msg?FunName@ncsWebClientSearch_v4&lxstate@1',
+            reader: {
+                type:'json',
+                root: 'eimdata',
+                totalProperty: 'totalCount'
+            },         
+            simpleSortMode: true
+        },
+        sorters: [{
+            property: 'userid',
+            direction: 'DESC'
+        }]
+    });
+    store.on('beforeload', function (store, options) {
+ // 	alert(parent.wireflag);
+    	var wireflag=parent.wireflag;
+ 	  var new_params={wireflag:wireflag};
+     Ext.apply(store.proxy.extraParams,new_params);
+       });	
+
+
+
+
+
+    // pluggable renders
+
+
+
+    var pluginExpanded = true;
+    
+      function show_corpinfo(value, p, record)
+    	{
+    		var temp_dispname = record.data.dispname;
+    		var temp_id=record.data.userid;
+    		
+    		return Ext.String.format( '<a href="#xxm" onclick=_show_corpinfo("{0}","{1}")>{2}</a>',temp_id,temp_dispname,temp_dispname);
+    	}
+
+  
+//对翻页工具条重新构建，替换翻页函数    
+  Ext.PagingToolbar1 = Ext.extend(Ext.PagingToolbar, {
+     doRefresh:function(){  
+     reflash();
+    },
+    moveLast:function(){
+    	var b=this,a=b.getPageData().pageCount;
+    	if(b.fireEvent("beforechange",b,a)!==false){
+    	store.currentPage=a;
+    	reflash();
+       }},
+     moveFirst:function(){
+      if(this.fireEvent("beforechange",this,1)!==false){
+      store.currentPage=1;
+      reflash();}}, 
+     movePrevious:function(){var b=this,a=b.store.currentPage-1;if(a>0){if(b.fireEvent("beforechange",b,a)!==false){store.currentPage=a;reflash();}}},
+     moveNext:function(){var c=this,b=c.getPageData().pageCount,a=c.store.currentPage+1;if(a<=b){if(c.fireEvent("beforechange",c,a)!==false){store.currentPage=a;reflash();}}},
+      
+      
+      onPagingKeyDown:function(i,h){
+     var d=this,b=h.getKey(),c=d.getPageData(),a=h.shiftKey?10:1,g;
+     if(b==h.RETURN){h.stopEvent();g=d.readPageFromInput(c);
+        if(g!==false){
+         g=Math.min(Math.max(1,g),c.pageCount);
+         if(d.fireEvent("beforechange",d,g)!==false){
+        //d.store.loadPage(g)
+         d.store.currentPage=g;
+         reflash();
+        }        
+      }
+    }
+    else{
+       if(b==h.HOME||b==h.END){
+    			h.stopEvent();g=b==h.HOME?1:c.pageCount;i.setValue(g)
+       }
+       else{
+         if(b==h.UP||b==h.PAGEUP||b==h.DOWN||b==h.PAGEDOWN){
+          h.stopEvent();g=d.readPageFromInput(c);
+           if(g){
+             if(b==h.DOWN||b==h.PAGEDOWN){a*=-1}
+             g+=a;
+             if(g>=1&&g<=c.pages){i.setValue(g)}
+             }
+            }
+           }
+         }  
+      }
+
+      
+      
+       
+});
+
+    var aaa=screen.width;
+    aaa=(aaa-275)/2;
+
+    var grid = Ext.create('Ext.grid.Panel', {
+//        width: aaa,
+  //      forceFit: true,
+        scrollOffset: 0,
+        height:parent.grid_height,
+        autoScroll: true,
+        store: store,
+        frame:false,
+        viewConfig:{
+	        	loadMask : false
+	        },
+        // grid columns
+        columns:[{
+            id: 'userid',
+            text: "单位编码",
+            dataIndex: 'username',
+ //           hidden: true,
+            width: 120,
+            sortable: true
+        },{
+            text: "单位名称",
+  //          dataIndex: 'dispname', 
+           renderer: show_corpinfo,
+           width: 150,
+            sortable: true
+        },{
+            text: "属组",
+            dataIndex: 'groupname', 
+            hidden: false, 
+            width: 90,
+            sortable: true
+        },
+        {
+            text: "联系人",
+            dataIndex: 'contact',
+            hidden: true,
+            width: 90,
+            sortable: false
+        },
+        {
+            text: "联系电话",
+            dataIndex: 'telphone',
+            hidden: true,
+            width: 100,
+            sortable: false
+        },
+        {
+            text: "地址",
+            dataIndex: 'address',
+            hidden: true,
+            width: 100,
+            sortable: false
+        }
+        ,{
+            text: "IP地址",
+            dataIndex: 'ip',
+            width: 130,
+          
+            sortable: false
+        }
+        ,{
+            text: "用户数",
+            dataIndex: 'endnum',
+            width: 70,
+            align: 'right',
+            hidden:false,
+            sortable: false
+        },
+        {
+            text: "在线用户",
+            dataIndex: 'onuser',
+            width: 70,
+            align: 'right',
+            sortable: true
+        },
+        {
+            text: "状态",
+            dataIndex: 'status',
+            width: 70,
+            hidden: false,
+            align: 'center',
+            sortable: true
+        },
+        {
+            text: "最近通讯时间",
+            dataIndex: 'lasttime',
+            width: 110,
+            hidden: false,
+            align: 'center',
+            sortable: true
+        },
+        {
+            text: "接入厂商",
+            dataIndex: 'jrcj',
+            width: 70,
+            hidden: false,
+            align: 'center',
+            sortable: true
+        },
+        {
+            text: "单位类型",
+            dataIndex: 'dwlb',
+            width: 70,
+            hidden: false,
+            align: 'center',
+            sortable: true
+        },
+        {
+            text: "版本号",
+            dataIndex: 'version',
+            width: 80,
+            align: 'center',
+            sortable: true
+        },{
+        flex:1
+        }
+        ],
+        
+        columnLines: true,
+                                        
+        // paging bar on the bottom
+        tbar: Ext.create('Ext.PagingToolbar1', {
+            store: store,
+            displayInfo: true,
+            displayMsg: '共<font color=red>{2}</font>条记录',
+            emptyMsg: "共0条记录",
+                                       
+            items: [
+
+             {
+               xtype:'textfield',
+               id:'keyword1',
+               name:'keyword1',
+               width:'120px',
+               style:'color:#7aa7d5',
+               value:'输入单位编码/名称查询',
+               enableKeyEvents:true,
+               listeners:{
+                 'focus':function(){
+                 if(this.value=='输入单位编码/名称查询'){                
+                    this.setValue('');
+                  }
+                 },
+                  'keydown' : function(i,e){
+                var aae=e.getKey() ; 
+                if(aae==13){
+                    var aa=Ext.getCmp('keyword1').value;
+                    
+		                  document.getElementById("form1").did.value='';
+		                  document.getElementById("form1").groupid.value='';
+
+		                  store.currentPage=1;
+		                   reflash();
+                }
+               
+                 
+                 }
+               }
+             },
+             {
+                text:'确认',
+                iconCls:'accept',
+                handler: function(){
+                 var aa=Ext.getCmp('keyword1').value;
+                if(aa!='输入单位编码/名称查询'){
+                 
+                  document.getElementById("form1").did.value='';
+                  document.getElementById("form1").groupid.value='';
+
+                  store.currentPage=1;
+                   reflash();
+                }
+                }
+            }
+           ,'-',{
+                text:'导出',
+                iconCls:'exp',
+                handler:function(){
+                var t_keyword=Ext.getCmp('keyword1').value;
+                
+                 if(t_keyword=='输入单位编码/名称查询'){
+                 document.getElementById("form1").keyword.value='';
+                 }
+                 else{
+                  document.getElementById("form1").keyword.value=Ext.getCmp('keyword1').value;
+                  }
+                document.getElementById('form1').export2.value='exp';
+                document.getElementById("form1").submit();
+               document.getElementById("form1").export2.value="";
+              
+                }
+            }
+            
+            
+            
+          ]
+       
+
+        }),
+        renderTo: 'grid-corp'
+    });
+
+    // trigger the data store load
+    reflash();
+ //    store.loadPage(1);
+
+});
+//自动刷新
+setInterval('reflash()',7000);
+</script>
+    
+    
+</head>
+<body>
+	<form name="form1" id="form1" action="/pronline/Msg">
+		<input type="hidden" name="FunName" value="ncsWebClientSearch_v4">
+		<input type="hidden" name="groupid" value="">
+    <input type="hidden" name="did" value="">
+		<input type="hidden" name="lb" value="">
+		<input type="hidden" name="fcode" value="">
+		<input type="hidden" name="did" value="">
+		<input type="hidden" name="lxstate" value="1">
+		<input type="hidden" name="export2" value="">
+		<input type="hidden" name="keyword" value="">
+	</form>
+    <div id="grid-corp"></div>
+
+</body>
+</html>

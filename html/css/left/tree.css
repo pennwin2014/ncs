@@ -1,0 +1,39 @@
+
+BODY{background-color:#f3f3f3;}
+BODY, TD, INPUT, PRE
+{
+  font-size: 9pt;
+  font-family: 宋体;
+}
+
+BODY, FORM, PRE
+{
+  margin: 0;
+}
+UL
+{
+  margin-left: 24;
+}
+/********* 大模块定义 End   ********/
+
+
+
+A.MzTreeview /* TreeView 链接的基本样式 */
+{
+  cursor: hand;
+  color: #000000;
+  margin-top: 5px;
+  padding: 2 1 0 2;
+  text-decoration: none;
+}
+A.select      /* TreeView 链接被选中时的样式 */
+{
+  color: highlighttext;
+  background-color: highlight;
+}
+textarea.text     /* 文本域的基本样式 */
+{
+  color: #000000;
+  font-size: 9pt;
+  border-style: groove;
+}

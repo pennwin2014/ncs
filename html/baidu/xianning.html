@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+		<META HTTP-EQUIV="Expires" CONTENT="0">
+		<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache,must-revalidate">
+		<META HTTP-EQUIV="Pragma"  		CONTENT="no-cache">
+		<META HTTP-EQUIV="Jon Eyrick"  CONTENT="no-cache">
+<title>舆情信息分析系统</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+
+  <script language="JavaScript" src="js/tree_tpl.js"></script>
+	<script language="JavaScript" src="js/tree.js"></script>
+	<script language="javascript"> 
+		function init(){
+				document.getElementById("sys_top").src='/baidu/baidu_map-3-15.htm';
+		}
+		function mark_search(){
+				frames.sys_top.form1.search_m.value=form1.search_m.value;
+   			frames.sys_top.form1.submit();
+    }
+	</script>
+	
+</head>
+
+<body onload="init();">
+	<form id="form1" name="form1" method="post" action="/pronline/Msg">
+		<input type="hidden" name="FunName" value="ncShow_hotel_map">
+
+		<input type="hidden" name="maxlon" value="">
+    <input type="hidden" name="minlon" value="">
+    <input type="hidden" name="maxlat" value="">
+    <input type="hidden" name="minlat" value="">
+	<table width="940">
+			<tr>
+				<td align="center">
+					<input size="50" type="text" id="search_m" name="search_m" value='' onkeypress="if(event.keyCode==13||event.which==13){return false;}"/>&nbsp;<input type="button" name="sou" value="&nbsp;搜&nbsp;索&nbsp;" onclick="mark_search();" />	<br></br>	
+				</td>
+			</tr>
+			<tr>
+           <td ><iframe name="sys_top"  id="sys_top" noresize target="contents" src="" width=100% height="1700"   FrameBorder=0></iframe>         
+           </td>
+      </tr>
+  </table>
+</form>
+</body>
+</html>

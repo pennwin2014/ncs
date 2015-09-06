@@ -1,0 +1,71 @@
+<!-- saved from url=(0022)http://internet.e-mail -->
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script>
+<!--
+function change_it() { 
+　get_select=select1.selectedIndex; 
+　select_item_m=select1.options[get_select].text 
+　switch(select_item_m) { 
+　case '发送邮件': MD(1);break; 
+　case '接收邮件': MD(2);break; 
+　default: MD(1);break; 
+　} 
+}
+var r1=3;
+gg=new Array()
+gg[0]="a0";
+gg[1]="a1";
+gg[2]="a2";
+
+var r2=5;
+hh=new Array()
+hh[0]="er0";
+hh[1]="er1";
+hh[2]="er2";
+hh[3]="er3";
+hh[4]="er4";
+
+function MD(t) { 
+if (t==1){
+　j=select2.options.length; 
+　for(k=0;k<j;k++) select2.options.remove(1); 
+　for(i=0;i<r1;i++) { 
+　var ttt=document.createElement("OPTION"); 
+　select2.options.add(ttt); 
+　ttt.innerText=gg[i]; 
+　ttt.value=gg[i]; 
+　} 
+}else if(t==2){
+　j=select2.options.length; 
+　for(k=0;k<j;k++) select2.options.remove(1); 
+　for(i=0;i<r2;i++) { 
+　var ttt=document.createElement("OPTION"); 
+　select2.options.add(ttt); 
+　ttt.innerText=hh[i]; 
+ttt.value=hh[i]; 
+　} 
+}
+} 
+　　
+
+function MM_callJS(jsStr) { //v2.0
+  return eval(jsStr)
+}
+//-->
+</script>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" onload="MD(1)">
+<select name="select1" onChange="change_it()">
+  <option value="0">发送邮件</option>
+  <option value="1">接收邮件</option>
+</select>
+<select name="select2">
+  <option value="全部" selected>全部</option>
+</select>
+<input type="button" name="Button" value="Button" onclick="javascript:alert(select2.value)">
+</body>
+</html>

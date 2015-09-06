@@ -1,0 +1,60 @@
+<!-- saved from url=(0022)http://internet.e-mail -->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>流量分析</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+</head>
+
+<body bgcolor="#999999">
+<!--
+!!! Do not put the applet into a form !!!
+-->
+<p>&nbsp;</p><center>
+  <applet 
+code=JavaChart
+id=JavaChart
+name=JavaChart
+width=800
+height=400
+align = center
+>
+    <!--  these must be input -->
+    <param name=ChartType value="2">
+    <param name=RowCount value="8">
+    <param name=ColumnCount value="3">
+    <param name=groupGaps value="5">
+    <param name=leftGaps value="40">
+    <!--
+<PARAM NAME=ColumnColor value="blue;red;green;black;cyan;darkGray;gray;lightGray;magenta;orange;pink;yellow;">
+-->
+    <param name=ColumnColor value="188,0,0,;55,255,255,;125,55,25,;155,155,255,;215,155,215,;155,155,255,;255,255,255,;155,255,155,;155,155,55,;55,55,55,;">
+    <param name=Data value="
+45,45,480,;
+90,180,90,;
+90,60,10,;
+45,45,180,;
+90,180,90,;
+90,60,10,;
+45,45,180,;
+90,180,90,;
+90,60,10,;
+">
+    <!-- thest must be input or not 
+     according to the ChartType
+-->
+    <param name=Diameter value="80">
+    <param name=barWidth value="10">
+    <param name=barGaps value="10">
+    <!-- these need not be input if you donot like to  -->
+    <param name=FontSize  value="12">
+    <param name=TitleText  value="网络流量情况">
+    <param name=showLegend value="true">
+    <param name=showControlBar value="true">
+    <param name=ColumnLabel value="上行;下行;总流量;">
+    <param name=RowLabel value=";;;;;;;;">
+    <param name=YAxisUnit  value="[#ylabel#]">
+    <param name=XAxisUnit  value="[#xlabel#]">
+  </applet>
+</center></body>
+</html>

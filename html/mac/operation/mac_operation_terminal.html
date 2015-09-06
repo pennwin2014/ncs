@@ -1,0 +1,280 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>场所管理</title>
+<script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+<link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" />
+<style type="text/css">
+        .icon-grid {
+            background-image:url(/newver/resources/themes/images/share/grid.png) !important;
+        }
+        .add {
+            background-image:url(/newver/resources/themes/images/share/add.gif) !important;
+        }
+        .option {
+            background-image:url(/newver/resources/themes/images/share/plugin.gif) !important;
+        }
+        .remove {
+            background-image:url(/newver/resources/themes/images/share/delete.gif) !important;
+        }
+        .exp {
+            background-image:url(/newver/resources/themes/images/share/application_go.png) !important;
+        }
+        .accept {
+            background-image:url(/newver/resources/themes/images/share/accept.png) !important;
+        }
+     .x-tab-default-top button, .x-tab-default-top.x-tab-inner {
+		  height: 16px !important;
+		  line-height: 16px;
+	    }
+
+    </style>
+<script type="text/javascript" >
+/*
+               
+			MAC扫描日志
+
+*/
+//
+
+
+Ext.onReady(function(){  
+
+   //var sm=new   Ext.grid.CheckboxSelectionModel(),
+    //定义列  
+    var columns = [  
+	 // sm,
+ {header:'人员编号',dataIndex:'id',width:120,sortable:false,hidden:false},
+{header:'姓名',dataIndex:'name',width:120,sortable:false,hidden:false},
+{header:'归属区域',dataIndex:'state',width:120,sortable:false,hidden:false},
+{header:'联系电话',dataIndex:'comtroller',width:120,sortable:false,hidden:false},
+{header:'邮箱',dataIndex:'startime',width:120,sortable:false,hidden:false},
+{header:'关联状态',dataIndex:'endtime',width:120,sortable:false,hidden:false},
+{header:'关联规则名称',dataIndex:'recently',width:160,sortable:false,hidden:false},
+{header:'最新接警时间',dataIndex:'alarmState',width:120,sortable:false,hidden:false},
+{header:'告警处理',dataIndex:'startime',width:120,sortable:false,hidden:false},
+{header:'接警记录',  
+width: 80,  
+align: 'right',  
+dataIndex:'autoId',  
+iconCls:'option',
+renderer: function cancel(value){  
+cancelButton='<TABLE class="x-btn-wrap x-btn x-btn-text-icon" id=save style="WIDTH:55px" cellSpacing=0 cellPadding=0 border=0>';  
+cancelButton+='<TBODY><TR><TD class=x-btn-left><I> </I></TD>';  
+cancelButton+='<TD class=x-btn-center><EM unselectable="on"><BUTTON id=ext-gen97 onclick="cancel('+value+')"   style="color:#D7003A" >查看</BUTTON></EM></TD>';  
+cancelButton+='<TD class=x-btn-right><I> </I></TD></TR></TBODY></TABLE>';  
+return cancelButton;  
+}  
+}  
+      ];  
+	  
+	  
+//定义数据  
+var data=[
+['1','张凯','普陀区中江路',,'18273161003','昨天','118广场','身份证','36095619900506','15/7/11','15/8/9'],
+['2','朱秀才','普陀区中江路','18273161003','昨天','118广场','身份证','36095619900506','15/7/11','15/8/9'],
+['3','沐风','普陀区中江路','18273161003','昨天','118广场','身份证','36095619900506','15/7/11','15/8/9'],
+['4','欧阳霖','普陀区中江路','18273161003','昨天','118广场','身份证','36095619900506','15/7/11','15/8/9'],
+['5','钟建国','普陀区中江路','18273161003','昨天','118广场','身份证','36095619900506','15/7/11','15/8/9'],
+['6','卫青','普陀区中江路','18273161003','昨天','118广场','身份证','36095619900506','15/7/11','15/8/9'],
+['7','霍东升','普陀区中江路','18273161003','昨天','118广场','身份证','36095619900506','15/7/11','15/8/9'],
+['8','爱丽莎','普陀区中江路','18273161003','昨天','118广场','身份证','36095619900506','15/7/11','15/8/9']
+];
+
+    //转换原始数据为EXT可以显示的数据  
+    var store = new Ext.data.ArrayStore({  
+        data:data,  
+        fields:[  
+          {name:'id'},
+{name:'name'},
+{name:'state'},
+{name:'comtroller'},
+{name:'startime'},
+{name:'endtime'},
+{name:'recently'},
+{name:'alarmState'},
+{name:'approvalState'},
+        ]  
+    });  
+    //加载数据  
+    store.load();  
+	
+					
+//弹出框方法
+   function gotoedit1(){
+			var htmlvar='<iframe src="addrule.html" frameborder="no" style="width:100%;height:1000px;"></iframe>';        
+			var win = new Ext.Window ({
+                    id:"addwindow",
+                    title:"新增目录",
+                    x:270,
+                    y:0,
+                    width:800,
+                    height:660,
+                    bodyPadding: 0,
+                    modal:true,
+                    resizable:true,
+                    html:htmlvar
+				})
+			win.show();
+		}
+				
+				
+  
+	
+	//
+	var  pagingTool=new   Ext.PagingToolbar({
+	              //  store:store,
+				   frame:true,
+                    pageSize:5,
+                    displayInfo:true,
+                    displayMsg:'当前记录数: {0} - {1} 总记录数  共{2}条记录',   
+                    emptyMsg:'没有符合条件的记录',
+		            items:[{
+					fieldLabel:'&nbsp;时间',
+					labelWidth:50,
+					width:180,
+					//mode:'local',
+					xtype:'combo',
+					//value:'1',
+					triggerAction:'all',
+					foreSelection:true,
+					editable:true,
+					name:'time_flag',
+					displayField:'name',
+					//valueField:'value'
+					queryMode:'local',
+					//store:Toooldata,
+			
+					listeners:{
+					'change':function(){
+					}
+					},
+					},{
+					   xtype:'textfield',
+					   id:'keyword_dwgl',
+					   width:200,
+					   name:'keyword5',
+					   style:'color:#7aad5',
+					   emptyText:'MAC/场所名称/APMAC/SSID',
+					   enableKeyEvents:true,
+					   listeners:{
+					   }
+					
+					
+					},{
+					    xtype:'button',
+					    text:'查询',
+						iconCls:'accept',
+						action:'keycx',
+						textAlign:'center'
+					},'-',{
+					text:'修改',
+					anchor:'right',
+					action:'advancecx',
+					iconCls:'option'
+					},{  
+                    text:'添加',  
+			           iconCls:'add',
+					   /*
+                          handler:function(){     
+                      var p ={  
+                        id:'',  
+                        name:'',  
+                        descn:''  
+                        };  
+                    store.insert(0,p);  
+                       },*/listeners:{
+			         "click":function(){
+				 gotoedit1();
+			 }
+		 }  
+            },{  
+                text:'删除',  
+				 iconCls:'remove',
+                handler:function(){  
+                    Ext.Msg.confirm('系统提示','确定要删除？',function(btn){  
+                        if(btn=='yes'){  
+                            var sm = grid.getSelectionModel();  
+                            var record = sm.getSelection()[0];  
+                            store.remove(record);  
+                        }  
+                    });  
+                }  
+        },{  
+                   text:'保存',  
+                   handler:function(){  
+                var m = store.getModifiedRecords().slice(0);  
+                var jsonArray = [];  
+                Ext.each(m,function(item){  
+                    jsonArray.push(item.data);  
+                });  
+                Ext.Ajax.request({  
+                    method:'POST',  
+                    url:'/ExtJs4.2Pro/EditGridServlet',  
+                    success:function(response){  
+                        Ext.Msg.alert('系统提示',response.responseText,function(){  
+                            store.load();  
+                        });  
+                    },  
+                    failure:function(){  
+                        Ext.Msg.alert("错误","与后台联系的时候出了问题。");  
+                    },  
+                    params:'data='+encodeURIComponent(Ext.encode(jsonArray))  
+                });  
+            }  
+        },'-',{
+					text:'接警记录',
+					anchor:'right',
+					action:'advancecx',
+					iconCls:'add'
+					},'-',{
+					text:'接警处理',
+					anchor:'right',
+					action:'advancecx',
+					iconCls:'option'
+					},'-',{
+                text:'导出',
+                iconCls:'exp',
+                handler:function(){
+                document.getElementById('grid').export2.value='exp';
+                document.getElementById("grid").submit();
+               document.getElementById("grid").export2.value="";
+              
+                }
+            }
+					]					
+                });
+
+
+    //创建表格  
+    var grid = new Ext.grid.GridPanel({  
+        renderTo:'grid', //渲染位置  
+        width:1330,  
+      //  autoHeight:true,  
+        store:store,  
+        columns:columns, //显示列  
+        stripeRows:true, //斑马线效果  
+        selType: 'cellmodel', 
+        selModel: { selType: 'checkboxmodel' }, 		
+		//sm:sm,
+        plugins:[  
+                 Ext.create('Ext.grid.plugin.CellEditing',{  
+                     clicksToEdit:1 //设置单击单元格编辑  
+                 })  
+        ],  
+        tbar:[pagingTool],  
+    });  
+});  
+
+
+
+
+</script>
+<script type="text/javascript">
+</script>
+</head>
+<body>
+<div   id="grid"></div>
+</body>
+</html>

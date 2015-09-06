@@ -1,0 +1,111 @@
+<!-- saved from url=(0022)http://internet.e-mail -->
+<html>
+<head>
+<title>邮件查询</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META content=no-cache http-equiv=Pragma>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<style type="text/css">
+<!--
+.cccv {  border-style: inset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.xan3 {  width: 100px; font-size: 12px; font-weight: normal; }
+.anjujue {  background-image: url(/images/anjj.gif); width: 60px; background-repeat: no-repeat; height: 30px}
+.anfasong {  background-image: url(/images/ansend.gif); width: 60px; background-repeat: no-repeat; height: 30px}
+
+-->
+</style>
+<script language="JavaScript">
+<!--
+function gg(){
+//  self.close()
+ form1.submit()
+}
+
+//-->
+</script>
+</head>
+
+<body bgcolor="menu" text="#000000" >
+<form name="form1" method="post" action="/profire/Msg"  target="sbpm_right">
+  <table width="100%" border="0" cellspacing="0" align="center" height="10%">
+    <tr> 
+      <td colspan="4" height="26"> 
+        <div align="center">邮件查询</div>
+      </td>
+    </tr>
+    <tr> 
+      <td width="181" height="26">用户名包含</td>
+      <td height="26"> 
+        <input type="text" name="username" size="32" maxlength="32" >
+      </td>
+      <td height="26">部门</td>
+      <td height="26">[#dept#]</td>
+    </tr>
+    <tr> 
+      <td width="181" height="26">发件人包含</td>
+      <td colspan="3" height="26"> 
+        <input type="text" name="from" size="50" >
+      </td>
+    </tr>
+    <tr> 
+      <td width="181" height="32">收件人包含</td>
+      <td height="32" colspan="3"> 
+        <input type="text" name="to" size="50" maxlength="63" >
+      </td>
+    </tr>
+    <tr> 
+      <td width="181" height="32">日期范围</td>
+      <td height="32" colspan="3"> 
+        <input type="text" name="sdate" size="20" maxlength="12" >
+        到 
+        <input type="text" name="edate" size="20" maxlength="20" >
+      </td>
+    </tr>
+    <tr> 
+      <td width="181" height="33">主题包含</td>
+      <td colspan="3" height="33"> 
+        <input type="text" name="sub" size="50" maxlength="63" >
+      </td>
+    </tr>
+    <tr> 
+      <td width="181" height="32">邮件大于</td>
+      <td height="32" width="104"> 
+        <input type="text" name="msize" size="12" >
+      </td>
+      <td height="32" width="77">附件大于</td>
+      <td height="32" width="219"> 
+        <input type="text" name="asize" size="12" maxlength="12">
+      </td>
+    </tr>
+    <tr> 
+      <td width="181" height="32">排序 </td>
+      <td height="32" colspan="3"> 
+        <input type="radio" name="osort" value="d" checked>
+        日期 
+        <input type="radio" name="osort" value="from">
+        发件人 
+        <input type="radio" name="osort" value="to">
+        收件人 
+        <input type="radio" name="osort" value="msize">
+        邮件大小 
+        <select name="orderby">
+          <option value="0" selected>升序</option>
+          <option value="1">降序</option>
+        </select>
+      </td>
+    </tr>
+    <tr> 
+      <td width="181" height="33">&nbsp;</td>
+      <td colspan="3" height="33"> 
+        <div align="center"> 
+          <input type="button" name="can1" value="放弃" onClick="self.close()">
+          <input type="button" name="ok"  value="开始查询" onClick="gg()">
+        </div>
+      </td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

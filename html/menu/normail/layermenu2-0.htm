@@ -1,0 +1,85 @@
+<html>
+<head>
+<title></title>
+<link REL=stylesheet HREF="/css/runmit.css" TYPE='text/css'>
+</head>
+<script>
+function mouseovertr2 (o){
+var i;
+df=o.style.backgroundColor
+	o.style.backgroundColor= "#000066";
+	o.style.borderColor= "#cccccc";
+	o.style.cursor="hand";	
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#ffffff";
+}	
+parent.parent.clearTimeout(parent.parent.popTimer);
+}
+
+function mouseouttr2(o){
+	o.style.backgroundColor=df
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#000000";
+}
+parent.parent.popOut()
+}
+
+function goto(t){
+  parent.sbpm_right.location.href=t
+}
+
+function goto2(t){
+parent.sbpm_left.location.href=t
+}
+
+ 	
+ 	
+function menu_frame_onmouseover()
+{
+	parent.clearTimeout(parent.popTimer);
+	//alert('parent cleartimeout ok!');
+	document.body.className='highlight_container'}
+function menu_frame_onmouseout()
+{
+	document.body.className="menu_container";
+	parent.popOut()}
+//document.onmouseover=menu_frame_onmouseover;
+//document.onmouseout=menu_frame_onmouseout;
+</script>
+<body topMargin=0 leftmargin=0 marginheight="0" class=menu_space style='cursor:default;border:0' fixed oncontextmenu="return false">
+<table class=3dtable_notop1 border=0 width=100% cellspacing=0 cellpadding=0 style='padding:2px' height="132">
+  <tr onmouseover="mouseovertr2(this)" onmouseout="mouseouttr2(this)"
+     onclick="goto('/pronline/Msg?FunName@ncWebFlowCount&opt@1&way@1&CurPg@1');goto2('/pronline/Msg?FunName@ncWebListUserTree&plate@nc/nc_flow_count_tree.htm');parent.go_show()"> 
+   
+    <td height="22">&nbsp;<img src="/images/blank.gif" width="21" height="21" align="absmiddle">访问流量统计</td>
+  </tr>
+  <tr onmouseover="mouseovertr2(this)" onmouseout="mouseouttr2(this)" 
+     onclick="goto('/pronline/Msg?FunName@ncWebFlowCount&opt@1&way@2&CurPg@1');goto2('/pronline/Msg?FunName@ncWebListUserTree&plate@nc/nc_time_count_tree.htm');parent.go_show()"> 
+    <td height="22">&nbsp;<img src="/images/blank.gif" width="21" height="21" align="absmiddle">访问时间统计</td>
+  </tr>
+  
+  <tr onmouseover="mouseovertr2(this)" onmouseout="mouseouttr2(this)" 
+       onclick="goto('/pronline/Msg?FunName@ncWebuseDispForm');goto2('/pronline/Msg?FunName@ncWebReplace&plate@nc/nc_webuse_left.htm');parent.go_show()">  
+    <td height="22">&nbsp;<img src="/images/blank.gif" width="21" height="21" align="absmiddle">网站访问统计</td>
+  </tr>
+  <tr onmouseover="mouseovertr2(this)" onmouseout="mouseouttr2(this)"
+     onclick="goto('/pronline/Msg?FunName@ncWebCountMailByBm');goto2('/no.htm');parent.go_hide()"> 
+    <td height="22">&nbsp;<img src="/images/blank.gif" width="21" height="21" align="absmiddle">部门邮件统计</td>
+  </tr>
+  <tr onmouseover="mouseovertr2(this)" onmouseout="mouseouttr2(this)" 
+     onclick="goto('/pronline/Msg?FunName@ncWebCountMailByU');goto2('/pronline/Msg?FunName@ncWebListUserTree&plate@mail/nc_tree_mailcontu.htm');parent.go_show()"> 
+    <td height="22">&nbsp;<img src="/images/blank.gif" width="21" height="21" align="absmiddle">个人邮件统计</td>
+  </tr>
+  <tr onmouseover="mouseovertr2(this)" onmouseout="mouseouttr2(this)"
+     onclick="goto('/pronline/Msg?FunName@ncWebCountMailByStatus');goto2('/no.htm');parent.go_hide()"> 
+    <td height="22">&nbsp;<img src="/images/blank.gif" width="21" height="21" align="absmiddle">邮件处理状态统计</td>
+  </tr>
+  <tr onmouseover="mouseovertr2(this)" onmouseout="mouseouttr2(this)" 
+       onclick="goto('/pronline/Msg?FunName@ncWebSortUserByFlow&group@W&order@F');goto2('/nc_sort.htm');parent.go_show()">  
+    <td height="22">&nbsp;<img src="/images/blank.gif" width="21" height="21" align="absmiddle">访问排行榜</td>
+  </tr>
+</table>
+</body>
+</html>

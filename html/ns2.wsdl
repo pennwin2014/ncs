@@ -1,0 +1,549 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="Service"
+ targetNamespace="http://localhost:80/Service.wsdl"
+ xmlns:tns="http://localhost:80/Service.wsdl"
+ xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+ xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+ xmlns:ns2="http://tempuri.org/ns2.xsd"
+ xmlns:SOAP="http://schemas.xmlsoap.org/wsdl/soap/"
+ xmlns:MIME="http://schemas.xmlsoap.org/wsdl/mime/"
+ xmlns:DIME="http://schemas.xmlsoap.org/ws/2002/04/dime/wsdl/"
+ xmlns:WSDL="http://schemas.xmlsoap.org/wsdl/"
+ xmlns="http://schemas.xmlsoap.org/wsdl/">
+
+<types>
+
+ <schema targetNamespace="http://tempuri.org/ns2.xsd"
+  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+  xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:ns2="http://tempuri.org/ns2.xsd"
+  xmlns="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="unqualified"
+  attributeFormDefault="unqualified">
+  <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+  <!-- operation request element -->
+  <element name="Hello">
+   <complexType>
+    <sequence>
+     <element name="name" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation response element -->
+  <element name="HelloResponse">
+   <complexType>
+    <sequence>
+     <element name="result" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation request element -->
+  <element name="GetDateTime">
+   <complexType>
+    <sequence>
+     <element name="session" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation response element -->
+  <element name="GetDateTimeResponse">
+   <complexType>
+    <sequence>
+     <element name="result" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation request element -->
+  <element name="SetDateTime">
+   <complexType>
+    <sequence>
+     <element name="session" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+     <element name="xml" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation response element -->
+  <element name="SetDateTimeResponse">
+   <complexType>
+    <sequence>
+     <element name="result" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation request element -->
+  <element name="SetUpStatusProperty">
+   <complexType>
+    <sequence>
+     <element name="session" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+     <element name="xml" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation response element -->
+  <element name="SetUpStatusPropertyResponse">
+   <complexType>
+    <sequence>
+     <element name="result" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation request element -->
+  <element name="QueryStatus">
+   <complexType>
+    <sequence>
+     <element name="session" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+     <element name="xml" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation response element -->
+  <element name="QueryStatusResponse">
+   <complexType>
+    <sequence>
+     <element name="result" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation request element -->
+  <element name="CommitMessage">
+   <complexType>
+    <sequence>
+     <element name="session" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+     <element name="xml" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation response element -->
+  <element name="CommitMessageResponse">
+   <complexType>
+    <sequence>
+     <element name="result" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation request element -->
+  <element name="SelectMessage">
+   <complexType>
+    <sequence>
+     <element name="session" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+     <element name="xml" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation response element -->
+  <element name="SelectMessageResponse">
+   <complexType>
+    <sequence>
+     <element name="result" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation request element -->
+  <element name="SelectDailyStat">
+   <complexType>
+    <sequence>
+     <element name="session" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+     <element name="xml" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation response element -->
+  <element name="SelectDailyStatResponse">
+   <complexType>
+    <sequence>
+     <element name="result" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation request element -->
+  <element name="SelectStat">
+   <complexType>
+    <sequence>
+     <element name="session" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+     <element name="xml" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation response element -->
+  <element name="SelectStatResponse">
+   <complexType>
+    <sequence>
+     <element name="result" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation request element -->
+  <element name="UpdateData">
+   <complexType>
+    <sequence>
+     <element name="session" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+     <element name="xml" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation response element -->
+  <element name="UpdateDataResponse">
+   <complexType>
+    <sequence>
+     <element name="result" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation request element -->
+  <element name="SelectData">
+   <complexType>
+    <sequence>
+     <element name="session" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+     <element name="xml" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation response element -->
+  <element name="SelectDataResponse">
+   <complexType>
+    <sequence>
+     <element name="result" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation request element -->
+  <element name="DeleteData">
+   <complexType>
+    <sequence>
+     <element name="session" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+     <element name="xml" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation response element -->
+  <element name="DeleteDataResponse">
+   <complexType>
+    <sequence>
+     <element name="result" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation request element -->
+  <element name="GetVersion">
+   <complexType>
+    <sequence>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation response element -->
+  <element name="GetVersionResponse">
+   <complexType>
+    <sequence>
+     <element name="result" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+    </sequence>
+   </complexType>
+  </element>
+ </schema>
+
+</types>
+
+<message name="HelloRequest">
+ <part name="parameters" element="ns2:Hello"/>
+</message>
+
+<message name="HelloResponse">
+ <part name="parameters" element="ns2:HelloResponse"/>
+</message>
+
+<message name="GetDateTimeRequest">
+ <part name="parameters" element="ns2:GetDateTime"/>
+</message>
+
+<message name="GetDateTimeResponse">
+ <part name="parameters" element="ns2:GetDateTimeResponse"/>
+</message>
+
+<message name="SetDateTimeRequest">
+ <part name="parameters" element="ns2:SetDateTime"/>
+</message>
+
+<message name="SetDateTimeResponse">
+ <part name="parameters" element="ns2:SetDateTimeResponse"/>
+</message>
+
+<message name="SetUpStatusPropertyRequest">
+ <part name="parameters" element="ns2:SetUpStatusProperty"/>
+</message>
+
+<message name="SetUpStatusPropertyResponse">
+ <part name="parameters" element="ns2:SetUpStatusPropertyResponse"/>
+</message>
+
+<message name="QueryStatusRequest">
+ <part name="parameters" element="ns2:QueryStatus"/>
+</message>
+
+<message name="QueryStatusResponse">
+ <part name="parameters" element="ns2:QueryStatusResponse"/>
+</message>
+
+<message name="CommitMessageRequest">
+ <part name="parameters" element="ns2:CommitMessage"/>
+</message>
+
+<message name="CommitMessageResponse">
+ <part name="parameters" element="ns2:CommitMessageResponse"/>
+</message>
+
+<message name="SelectMessageRequest">
+ <part name="parameters" element="ns2:SelectMessage"/>
+</message>
+
+<message name="SelectMessageResponse">
+ <part name="parameters" element="ns2:SelectMessageResponse"/>
+</message>
+
+<message name="SelectDailyStatRequest">
+ <part name="parameters" element="ns2:SelectDailyStat"/>
+</message>
+
+<message name="SelectDailyStatResponse">
+ <part name="parameters" element="ns2:SelectDailyStatResponse"/>
+</message>
+
+<message name="SelectStatRequest">
+ <part name="parameters" element="ns2:SelectStat"/>
+</message>
+
+<message name="SelectStatResponse">
+ <part name="parameters" element="ns2:SelectStatResponse"/>
+</message>
+
+<message name="UpdateDataRequest">
+ <part name="parameters" element="ns2:UpdateData"/>
+</message>
+
+<message name="UpdateDataResponse">
+ <part name="parameters" element="ns2:UpdateDataResponse"/>
+</message>
+
+<message name="SelectDataRequest">
+ <part name="parameters" element="ns2:SelectData"/>
+</message>
+
+<message name="SelectDataResponse">
+ <part name="parameters" element="ns2:SelectDataResponse"/>
+</message>
+
+<message name="DeleteDataRequest">
+ <part name="parameters" element="ns2:DeleteData"/>
+</message>
+
+<message name="DeleteDataResponse">
+ <part name="parameters" element="ns2:DeleteDataResponse"/>
+</message>
+
+<message name="GetVersionRequest">
+ <part name="parameters" element="ns2:GetVersion"/>
+</message>
+
+<message name="GetVersionResponse">
+ <part name="parameters" element="ns2:GetVersionResponse"/>
+</message>
+
+<portType name="ServicePortType">
+ <operation name="Hello">
+  <documentation>Service definition of function ns2__Hello</documentation>
+  <input message="tns:HelloRequest"/>
+  <output message="tns:HelloResponse"/>
+ </operation>
+ <operation name="GetDateTime">
+  <documentation>Service definition of function ns2__GetDateTime</documentation>
+  <input message="tns:GetDateTimeRequest"/>
+  <output message="tns:GetDateTimeResponse"/>
+ </operation>
+ <operation name="SetDateTime">
+  <documentation>Service definition of function ns2__SetDateTime</documentation>
+  <input message="tns:SetDateTimeRequest"/>
+  <output message="tns:SetDateTimeResponse"/>
+ </operation>
+ <operation name="SetUpStatusProperty">
+  <documentation>Service definition of function ns2__SetUpStatusProperty</documentation>
+  <input message="tns:SetUpStatusPropertyRequest"/>
+  <output message="tns:SetUpStatusPropertyResponse"/>
+ </operation>
+ <operation name="QueryStatus">
+  <documentation>Service definition of function ns2__QueryStatus</documentation>
+  <input message="tns:QueryStatusRequest"/>
+  <output message="tns:QueryStatusResponse"/>
+ </operation>
+ <operation name="CommitMessage">
+  <documentation>Service definition of function ns2__CommitMessage</documentation>
+  <input message="tns:CommitMessageRequest"/>
+  <output message="tns:CommitMessageResponse"/>
+ </operation>
+ <operation name="SelectMessage">
+  <documentation>Service definition of function ns2__SelectMessage</documentation>
+  <input message="tns:SelectMessageRequest"/>
+  <output message="tns:SelectMessageResponse"/>
+ </operation>
+ <operation name="SelectDailyStat">
+  <documentation>Service definition of function ns2__SelectDailyStat</documentation>
+  <input message="tns:SelectDailyStatRequest"/>
+  <output message="tns:SelectDailyStatResponse"/>
+ </operation>
+ <operation name="SelectStat">
+  <documentation>Service definition of function ns2__SelectStat</documentation>
+  <input message="tns:SelectStatRequest"/>
+  <output message="tns:SelectStatResponse"/>
+ </operation>
+ <operation name="UpdateData">
+  <documentation>Service definition of function ns2__UpdateData</documentation>
+  <input message="tns:UpdateDataRequest"/>
+  <output message="tns:UpdateDataResponse"/>
+ </operation>
+ <operation name="SelectData">
+  <documentation>Service definition of function ns2__SelectData</documentation>
+  <input message="tns:SelectDataRequest"/>
+  <output message="tns:SelectDataResponse"/>
+ </operation>
+ <operation name="DeleteData">
+  <documentation>Service definition of function ns2__DeleteData</documentation>
+  <input message="tns:DeleteDataRequest"/>
+  <output message="tns:DeleteDataResponse"/>
+ </operation>
+ <operation name="GetVersion">
+  <documentation>Service definition of function ns2__GetVersion</documentation>
+  <input message="tns:GetVersionRequest"/>
+  <output message="tns:GetVersionResponse"/>
+ </operation>
+</portType>
+
+<binding name="Service" type="tns:ServicePortType">
+ <SOAP:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+ <operation name="Hello">
+  <SOAP:operation soapAction=""/>
+  <input>
+     <SOAP:body parts="parameters" use="literal"/>
+  </input>
+  <output>
+     <SOAP:body parts="parameters" use="literal"/>
+  </output>
+ </operation>
+ <operation name="GetDateTime">
+  <SOAP:operation soapAction=""/>
+  <input>
+     <SOAP:body parts="parameters" use="literal"/>
+  </input>
+  <output>
+     <SOAP:body parts="parameters" use="literal"/>
+  </output>
+ </operation>
+ <operation name="SetDateTime">
+  <SOAP:operation soapAction=""/>
+  <input>
+     <SOAP:body parts="parameters" use="literal"/>
+  </input>
+  <output>
+     <SOAP:body parts="parameters" use="literal"/>
+  </output>
+ </operation>
+ <operation name="SetUpStatusProperty">
+  <SOAP:operation soapAction=""/>
+  <input>
+     <SOAP:body parts="parameters" use="literal"/>
+  </input>
+  <output>
+     <SOAP:body parts="parameters" use="literal"/>
+  </output>
+ </operation>
+ <operation name="QueryStatus">
+  <SOAP:operation soapAction=""/>
+  <input>
+     <SOAP:body parts="parameters" use="literal"/>
+  </input>
+  <output>
+     <SOAP:body parts="parameters" use="literal"/>
+  </output>
+ </operation>
+ <operation name="CommitMessage">
+  <SOAP:operation soapAction=""/>
+  <input>
+     <SOAP:body parts="parameters" use="literal"/>
+  </input>
+  <output>
+     <SOAP:body parts="parameters" use="literal"/>
+  </output>
+ </operation>
+ <operation name="SelectMessage">
+  <SOAP:operation soapAction=""/>
+  <input>
+     <SOAP:body parts="parameters" use="literal"/>
+  </input>
+  <output>
+     <SOAP:body parts="parameters" use="literal"/>
+  </output>
+ </operation>
+ <operation name="SelectDailyStat">
+  <SOAP:operation soapAction=""/>
+  <input>
+     <SOAP:body parts="parameters" use="literal"/>
+  </input>
+  <output>
+     <SOAP:body parts="parameters" use="literal"/>
+  </output>
+ </operation>
+ <operation name="SelectStat">
+  <SOAP:operation soapAction=""/>
+  <input>
+     <SOAP:body parts="parameters" use="literal"/>
+  </input>
+  <output>
+     <SOAP:body parts="parameters" use="literal"/>
+  </output>
+ </operation>
+ <operation name="UpdateData">
+  <SOAP:operation soapAction=""/>
+  <input>
+     <SOAP:body parts="parameters" use="literal"/>
+  </input>
+  <output>
+     <SOAP:body parts="parameters" use="literal"/>
+  </output>
+ </operation>
+ <operation name="SelectData">
+  <SOAP:operation soapAction=""/>
+  <input>
+     <SOAP:body parts="parameters" use="literal"/>
+  </input>
+  <output>
+     <SOAP:body parts="parameters" use="literal"/>
+  </output>
+ </operation>
+ <operation name="DeleteData">
+  <SOAP:operation soapAction=""/>
+  <input>
+     <SOAP:body parts="parameters" use="literal"/>
+  </input>
+  <output>
+     <SOAP:body parts="parameters" use="literal"/>
+  </output>
+ </operation>
+ <operation name="GetVersion">
+  <SOAP:operation soapAction=""/>
+  <input>
+     <SOAP:body parts="parameters" use="literal"/>
+  </input>
+  <output>
+     <SOAP:body parts="parameters" use="literal"/>
+  </output>
+ </operation>
+</binding>
+
+<service name="Service">
+ <documentation>gSOAP 2.7.9f generated service definition</documentation>
+ <port name="Service" binding="tns:Service">
+  <SOAP:address location="http://localhost:80"/>
+ </port>
+</service>
+
+</definitions>

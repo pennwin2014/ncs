@@ -1,0 +1,188 @@
+
+
+Ext.define('proauthMobileAccount.view.common.macLimBk' ,{
+  extend: 'Ext.grid.Panel',
+  alias : 'widget.maclimlist',
+//  store : this.field2, 
+  store:'MacLimStore',
+  height: 900,
+  title:'终端阀值布控',
+  field1: this.field1,
+  columnLines: true,
+  initComponent: function() {
+             var warnlimstore=Ext.data.StoreMgr.lookup('MacLimStore');   
+             warnlimstore.load(); 
+
+    var sm = Ext.create('Ext.selection.CheckboxModel',{
+        listeners: {
+            selectionchange: function(sm, selections) {  
+          	var grid=Ext.ComponentQuery.query('maclimlist')[0];
+                  
+           grid.down('#removeButton4').setDisabled(selections.length == 0);
+    //          grid.down('#moveGroupButton').setDisabled(selections.length == 0);
+    
+                
+            }
+        }
+    
+    });
+    this.selModel=sm;
+
+      var rowEditing1 = Ext.create('Ext.ux.grid.plugin.RowEditing', {
+    	      pluginId:'rowEditing2', 
+            saveBtnText: "保存", 
+            cancelBtnText: "取消", 
+            autoRecoverOnCancel:true,
+            autoCancel: true,
+            filed1:'sid',
+            filed2:'level',
+            filed3:'dateid',
+            filed4:'countlimit',
+            filed5:'apname',
+            filed6:'flags'
+ //       clicksToMoveEditor: 1,
+ //       autoCancel: false
+    });
+    
+   
+    this.plugins=rowEditing1;
+    this.tbar = Ext.create('Ext.PagingToolbar',{
+    	store: 'MacLimStore',
+      displayInfo: true,
+      displayMsg: '显示{0} - {1}条记录 共{2}条记录',
+     emptyMsg: "没有记录可显示",
+     items:[
+             
+         '-',
+     	 {
+     	 	text:'添加',
+     	 	iconCls:'add',
+     	 	 handler : function() {
+                rowEditing1.cancelEdit();    
+                  
+                 var r = Ext.create('proauthMobileAccount.model.macModel', {  
+                 	  level:'1',             	  
+                    dateid: '1',
+                    flags:'0'
+                                      
+                                   
+                });
+               var store = Ext.ComponentQuery.query('maclimlist')[0].getStore();
+
+              store.insert(0, r);
+               rowEditing1.startAdd1(0,0);
+            
+       //     rowEditing.startEdit(0, 0);
+              }
+     	 	
+     	 	
+//     	 	action:'add'
+     	},'-',
+     	 {
+     	 	text:'删除',
+     	 	itemId: 'removeButton4',
+     	 	iconCls:'remove',
+     	 	disabled: true,
+     	 	action:'del'
+     	},'-'
+     	]
+    }
+    );
+    
+    
+   
+  	
+    this.columns = [
+      {header: '告警级别', dataIndex: 'level', width:100, sortable: true,
+      	renderer:function(value,metaData,record){
+      		if(value=='1'){return '<font color=green>一般</font>'}
+          else if(value=='2'){return '<font color=blue>中度</font>'}
+					else if(value=='3'){return '<font color=red>严重</font>'}  
+      	},
+      	editor: {
+          xtype: 'combo',
+       
+          store: Ext.create('Ext.data.Store', {
+                                    fields : ['classname', 'classid'],
+                                    data   : [
+                                   {"classid":"1","classname":"一般"},
+                                   {"classid":"2","classname":"中度"},
+                                    {"classid":"2","classname":"严重"}                                                                    
+                                    ]
+            }),
+           displayField: 'classname',
+           valueField:'classid',
+            queryMode: 'local',
+				   value:'2',
+           allowBlank: true
+            
+    
+            }
+      	
+      	
+      	},
+      {header: '统计时间段',dataIndex: 'dateid',width:160, sortable: false,
+      	  editor: {
+      	 
+      	  emptyText:'选择统计时间间隔',
+          xtype: 'combo',
+                 store: Ext.create('Ext.data.Store', {
+                                    fields : ['classname', 'classid'],
+                                    data   : [
+                                   {"classid":"1","classname":"每分钟"},
+                                   {"classid":"2","classname":"每小时"},
+                                    {"classid":"3","classname":"每天"}                                                                    
+                                    ]
+            }),
+           displayField: 'classname',
+           valueField:'classid',
+            queryMode: 'local',
+				   value:'',
+           allowBlank: true
+
+    
+            },
+      	   renderer:function(value,metaData,record){
+      		if(value=='1'){return '<font color=green>每分钟</font>'}
+          else if(value=='2'){return '<font color=blue>每小时</font>'}
+					else if(value=='3'){return '<font color=red>每天</font>'}  
+      	}
+      	
+      	},
+      {header: '终端数阀值',dataIndex: 'countlimit',width:160, sortable: false,editor: {emptyText:'超过该阀值将告警',allowBlank:true}},
+       {header: 'AP编号',dataIndex: 'apname',width:160, sortable: false,editor: {emptyText:'空为全部',allowBlank:true}}
+       ,{header: '状态', dataIndex: 'flags', width:100, sortable: true,
+      	renderer:function(value,metaData,record){
+      		if(value=='0'){return '<font color=green>启用</font>'}
+					else if(value=='1'){return '<font color=red>停用</font>'}  
+      	},
+      	editor: {
+          xtype: 'combo',
+       
+          store: Ext.create('Ext.data.Store', {
+                                    fields : ['classname', 'classid'],
+                                    data   : [
+                                   {"classid":"0","classname":"启用"},
+                                   {"classid":"1","classname":"停用"}                                                                   
+                                    ]
+            }),
+           displayField: 'classname',
+           valueField:'classid',
+            queryMode: 'local',
+				   value:'2',
+           allowBlank: true
+            
+    
+            }
+      	
+      	
+      	},
+      	{flex:1}
+      
+      
+    ];
+
+    this.callParent(arguments);
+  }
+    
+});

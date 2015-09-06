@@ -1,0 +1,135 @@
+<html>
+<head>
+<META content="text/html; charset="gb2312" http-equiv=Content-Type>
+<title>新网程网络督察-(管理员)</title>
+<link REL=stylesheet HREF="/css/runmit.css" TYPE="text/css">
+<script>
+<!--
+function go_hide()
+{
+	index_left.style.display='none';
+}
+function go_show()
+{
+	index_left.style.display='block';
+}
+function hide_bar()
+{
+	//sbpm_top.style.display='none';
+
+	document.all.main_header.height=1;
+}
+function show_bar()
+{
+//sbpm_top.document.all.toolbar.style.display='block';
+	document.all.main_header.height=45;
+}
+
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_findObj(n, d) { //v4.0
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && document.getElementById) x=document.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+function changeWin(){
+	if(index_left.style.display=='none'){
+		go_show();
+	document.all.menuSwitch1.innerHTML = "<img src='/images/arrow1.gif' width='20' height='18' border='0' alt='隐藏树结构' name='Image7' onMouseOut=\"MM_swapImgRestore();window.status='网络督察'\" onMouseOver=\"MM_swapImage('Image7','','/images/arrow1-1.gif',1);window.status='隐藏树结构'\" onclick='changeWin()' class='handme'>";
+	}
+	else{
+		go_hide();
+		document.all.menuSwitch1.innerHTML = "<img src='/images/arrow2.gif' width='20' height='18' border='0' alt='显示树结构' name='Image8' onMouseOut=\"MM_swapImgRestore();window.status='网络督察'\" onMouseOver=\"MM_swapImage('Image8','','/images/arrow2-1.gif',1);window.status='显示树结构'\" onclick='changeWin()' class='handme'>";
+	}
+}
+function changeWin2(){
+	if(document.all.main_header.height==1){
+		show_bar();
+	document.all.menuSwitch2.innerHTML = "<img src='/images/arrow4.gif' width='18' height='20' border='0' alt='隐藏工具条' name='Image5' onMouseOut=\"MM_swapImgRestore();window.status='网络督察'\" onMouseOver=\"MM_swapImage('Image5','','/images/arrow4-1.gif',1);window.status='隐藏工具条'\" onclick='changeWin2()' class='handme'>";
+	}
+	else{
+		hide_bar();
+	document.all.menuSwitch2.innerHTML = "<img src='/images/arrow3.gif' width='18' height='20' border='0' alt='显示工具条' name='Image6' onMouseOut=\"MM_swapImgRestore();window.status='网络督察'\" onMouseOver=\"MM_swapImage('Image6','','/images/arrow3-1.gif',1);window.status='显示工具条'\" onclick='changeWin2()' class='handme'>";
+	}
+}
+//-->
+</script>
+<style type="text/css">
+<!--
+.handme {  cursor: hand}
+.bord4 {  border: #999999; border-style: solid; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px}
+-->
+</style>
+</head>
+<body topMargin=0 leftmargin=0 marginheight="0" bgColor=Menu oncontextmenu="return false" >
+<script>
+var openwinflag;
+function wqp()
+{
+a=screen.width
+b=screen.height
+  openwinflag=window.open('/pronline/Msg?FunName@ncWebReplace&plate@nc/main.htm','RUNMIT_sbpm','left=0,top=0,width='+a+',height='+b+',fullscreen=0,toolbar=no,scrollbars=no,resizable=1,menubar=no,status=1');
+  window.focus();
+  self.close();
+}
+if(window.name != "RUNMIT_sbpm")
+{
+ 	wqp();
+}
+
+</script>
+<div>
+<script language="javascript" src="/js/menu.js"></script>
+<script>write_menu()</script>
+</div>
+<table border="0" width="100%" height="96%" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td id="main_header" class=3dtable_up1 width="100%" height="45" colspan="4"> 
+      <iframe name="sbpm_top" scrolling="no" noresize target="contents" src="/main_header.htm" width=100% height=100% FrameBorder=0></iframe> 
+    </td>
+  </tr>
+  <tr> 
+    <td width="130" id="td_index_left" class="bord4">
+      <div id="index_left" > <iframe name="sbpm_left" src="/pronline/Msg?FunName@ncWebReplace&plate@mail/nc_mailbak_left.htm" width=130 height=100% FrameBorder=0></iframe></div>
+    </td>
+    <td width="1" valign="top" > <br>
+      <table width="100%" border="0" cellpadding="5">
+        <tr> 
+          <td> 
+            <div align="center" id="menuSwitch2"><img src="/images/arrow4.gif" width="18" height="20" border=0 alt="隐藏工具条" name="Image5" onMouseOut="MM_swapImgRestore();window.status='网络督察'" onMouseOver="MM_swapImage('Image5','','/images/arrow4-1.gif',1);window.status='隐藏工具条'" onclick="changeWin2()" class="handme"></div>
+          </td>
+        </tr>
+        <tr> 
+          <td> 
+            <div align="center" id="menuSwitch1"><img src="/images/arrow1.gif" width="20" height="18" border=0 alt="隐藏树结构" name="Image7"  onMouseOut="MM_swapImgRestore();window.status='网络督察'" onMouseOver="MM_swapImage('Image7','','/images/arrow1-1.gif',1);window.status='隐藏树结构'" onclick="changeWin()" class="handme"></div>
+          </td>
+        </tr>
+      </table>
+      <br><script>window.status="新网程网络督察"</script>
+    </td>
+    <td width="4" valign="top" bgcolor="#999999" background="/images/bian.gif" >&nbsp;</td>
+    <td width="100%"> <iframe name="sbpm_right" src="/pronline/Msg?FunName@ncWebMailCtlList&userid@0" scrolling="yes" width=100% height=100% FrameBorder=0></iframe> 
+    </td>
+  </tr>
+</table>
+  <noframes>
+  <p>此网页使用了框架，但您的浏览器不支持框架。</p>
+  </noframes>
+</body>
+
+</html>

@@ -1,0 +1,101 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META content=no-cache http-equiv=Pragma>
+<link href="/css/css.css" rel="stylesheet" type="text/css">
+<link REL=stylesheet HREF="/css/listdatetable.css" TYPE="text/css">
+<style type="text/css">
+<!--
+body {  font-size: 9pt}
+table {  font-size: 9pt}
+.anuse3 { font-size: 9pt; background-color: E7F3FF; 
+  vertical-align: middle; height: 18px; width: 45px; border-top-width: 0px; border-right-width: 
+  0px; border-bottom-width: 0px; border-left-width: 0px; cursor: hand}
+-->
+</style>
+
+<script>
+function goto(t){
+ tt=showModalDialog(t, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:520px;scroll:yes;dialogHeight:530px');
+}
+function mouseovertr2 (o){
+var i;
+df=o.style.backgroundColor
+	o.style.backgroundColor= "#ffff00";
+	o.style.borderColor= "#FFFF00";
+	o.style.cursor="hand";	
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#000000";
+}	
+}
+
+function mouseouttr2(o){
+	o.style.backgroundColor=df
+	
+	
+}
+function gotozd(){
+var t='/pronline/Msg?FunName@ncWebSelectZd&flag@18&zd@'+form1.zd.value;
+ tt=showModalDialog(t, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:320px;scroll:yes;dialogHeight:400px');
+}
+function sx()
+{
+form1.submit();
+
+}
+setInterval('sx()',5000);
+
+</script>
+</head>
+
+<body BGCOLOR="Menu" topmargin="0"  leftmargin="0" >
+
+<form name="form1" method="post" action="/pronline/Msg" target="main">
+<input type="hidden" name="FunName" value="ncsWebLoginOnline">
+<input type="hidden" name="ProId" value="">
+<input type="hidden" name="groupid" value="">
+<input type="hidden" name="userid" value="">
+<input type="hidden" name="fun" value="">
+<input type="hidden" name="ip" value="">
+<input type="hidden" name="mac" value="">
+<input type="hidden" name="dispname" value="">
+<input type="hidden" name="zd" value="dw,xm,kssj,ip,mac,ctime,flow,dz,">
+<table  cellspacing=0   cellpadding="0" bgcolor="#DEE8FA" border="0" align="center" width="100%">
+    <tr >
+      <td colspan="7">
+        <table width="100%" height="27" border="0" align="center" cellpadding="0" cellspacing="0" background="/images/table_bg1.gif">
+          <tr > 
+            <td align="center"> <strong><font color="#FFFFFF">实时用户登陆监控</font></strong></td>
+          </tr>
+        </table>
+     </td>
+    </tr>    
+    <tr > 
+      <td colspan="7" > 
+       <table width="100%" border="0"  class="ttt">
+          <tr> 
+            <td width="100%" height="25">&nbsp;
+            	 <!--        <input type="hidden"   name="rycx" value="" size="20">                  
+                <input name="search" type="submit" class="an3" value="查 询">  
+    -->
+                <input name="hsear" type="button" class="an3"  onclick="goto('/pronline/Msg?FunName@ncWebCorpDepSearch&flag@29')" value="过滤条件">
+                <input name="exp" type="submit" class="an3" value="导 出" onclick="form1.CurPg.value=1">
+                <input name="selzd" type="button" class="an3"   value="选择字段" onclick="gotozd()">
+             </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+</table>
+</form>
+
+<div style="position:relative;left:0px;top:-19px;">
+<form id="ff" name='ff'>
+</form>
+</div>
+<iframe name="main" id="data" style="display:none" src="/pronline/Msg?FunName@ncsWebLoginOnline"> </iframe>
+</body>
+</html>

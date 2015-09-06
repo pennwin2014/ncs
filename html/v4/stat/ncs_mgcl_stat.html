@@ -1,0 +1,363 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<title></title>
+<link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" /> 
+
+<style type="text/css">
+
+
+	.x-selectable, .x-selectable * 
+	{   
+    		-moz-user-select: text!important;   
+		-khtml-user-select: text!important;   
+	}   
+</style>
+
+
+
+
+<script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+<script>  
+  		
+	Ext.Loader.setConfig({enabled: true});
+	Ext.Loader.setPath('Ext.ux', '/newver/ux/');
+Ext.require([
+    'Ext.grid.*',
+    'Ext.data.*',
+    'Ext.util.*',
+    'Ext.state.*'
+]);
+
+	
+	var store;
+	function reflash()
+ 	{
+                          var sdate=Ext.getCmp('sdate').value;
+                          var sdate_t=Ext.Date.format(sdate, 'Y/m/d');
+                          var edate=Ext.getCmp('edate').value;
+                          var edate_t=Ext.Date.format(edate, 'Y/m/d');
+                          
+                       
+                          		store.load({params: {sdate:sdate_t,edate:edate_t}}); 
+  	}
+    
+
+
+Ext.onReady(function(){
+    
+Ext.QuickTips.init();
+
+
+    function changname(val) {      
+      return '<span style="color:green;">' + val + '</span>';      
+    }
+    function changtot(val) {      
+      return '<span style="color:red;">' + val + '</span>';      
+    }
+    Ext.define('EimData', 
+    		{
+        		extend: 'Ext.data.Model',
+        		fields: 
+        		[
+            			'dispname', 'keyyh', 'keyxs', 'keydq', 'keytot', 'urlyh', 'urlxs', 'urldq','urltot','vidyh','vidxs','viddq','vidtot','useyh','usexs','usedq','usetot','bkyh','bkxs','bkdq','bktot','tot'
+        		]
+        });
+
+       		store = Ext.create('Ext.data.Store', 
+       		{
+        		pageSize: 37,
+        		model: 'EimData',
+        		remoteSort: true,
+        		proxy: 
+        		{
+            			type: 'ajax',
+            			url: '/pronline/Msg?FunName@ncsMgcl_stat_v4',
+            			reader: {
+                			type:'json',
+                			root: 'eimdata',
+                			totalProperty: 'totalCount'
+            			},         
+            			simpleSortMode: true
+        		}
+    		});
+//   reflash();
+    // create the Grid
+    var grid1 = Ext.create('Ext.grid.Panel', {
+        store: store,
+        columnLines: true,
+        columns: [{
+            text     : '姓名',
+            width:75,
+            align:'center',
+            sortable : false,
+            renderer : 'changname',
+            dataIndex: 'dispname'
+        }, {
+            text: '处理敏感关键字',
+            columns: [{
+                text     : '归入有害',
+                width    : 55,
+                sortable : true,
+                dataIndex: 'keyyh'
+            }
+            ,
+             {
+                text     : '归入线索',
+                width    : 55,
+               sortable : true,
+               dataIndex: 'keyxs'
+            }, 
+            {
+                text     : '丢弃',
+                width    : 45,
+                sortable : true,
+                dataIndex: 'keydq'
+            }, {
+                text     : '合计',
+                width    : 45,
+                sortable : true,
+                renderer : changtot,
+                dataIndex: 'keytot'
+            }]
+        }, {
+            text: '处理敏感网址',
+            columns: [{
+                text     : '归入有害',
+                width    : 55,
+                sortable : true,
+                dataIndex: 'urlyh'
+            }, {
+                text     : '归入线索',
+                width    : 55,
+                sortable : true,
+                dataIndex: 'urlxs'
+            }, {
+                text     : '丢弃',
+                width    : 45,
+                sortable : true,
+                dataIndex: 'urldq'
+            }, {
+                text     : '合计',
+                width    : 45,
+                sortable : true,
+                renderer : changtot,
+                dataIndex: 'urltot'
+            }]
+        }, {
+            text: '处理敏感虚拟身份',
+            columns: [{
+                text     : '归入有害',
+                width    : 55,
+                sortable : true,
+                dataIndex: 'vidyh'
+            }, {
+                text     : '归入线索',
+                width    : 55,
+                sortable : true,
+                dataIndex: 'vidxs'
+            }, {
+                text     : '丢弃',
+                width    : 45,
+                sortable : true,
+                dataIndex: 'viddq'
+            }, {
+                text     : '合计',
+                width    : 45,
+                sortable : true,
+                renderer : changtot,
+                dataIndex: 'vidtot'
+            }]
+        }, {
+            text: '处理重点关注用户',
+            columns: [{
+                text     : '归入有害',
+                width    : 55,
+                sortable : true,
+                dataIndex: 'useyh'
+            }, {
+                text     : '归入线索',
+                width    : 55,
+                sortable : true,
+                dataIndex: 'usexs'
+            }, {
+                text     : '丢弃',
+                width    : 45,
+                sortable : true,
+                dataIndex: 'usedq'
+            }, {
+                text     : '合计',
+                width    : 45,
+                sortable : true,
+                renderer : changtot,
+                dataIndex: 'usetot'
+            }]
+        }, {
+            text: '处理布控告警',
+            columns: [{
+                text     : '归入有害',
+                width    : 55,
+                sortable : true,
+                dataIndex: 'bkyh'
+            }, {
+                text     : '归入线索',
+                width    : 55,
+                sortable : true,
+                dataIndex: 'bkxs'
+            }, {
+                text     : '丢弃',
+                width    : 45,
+                sortable : true,
+                dataIndex: 'bkdq'
+            }, {
+                text     : '合计',
+                width    : 45,
+                sortable : true,
+                renderer : changtot,
+                dataIndex: 'bktot'
+            }]
+        }, {
+            text     : '总计',
+            width    : 60,
+            sortable : true,
+            renderer : changtot,
+            dataIndex: 'tot'
+        },{
+           
+            flex     : 1,
+            sortable : false,
+          
+        }],
+        height: 940,
+
+        viewConfig: {
+            stripeRows: true
+        }
+    });
+   
+
+
+
+
+  		var myDate = new Date();
+  		var yy = ( myDate.getYear() < 1900 ) ? ( 1900 + myDate.getYear() ) : myDate.getYear();
+  		var mm=myDate.getMonth()+1;
+  		if(mm<10)
+  		{
+  			mm='0'+mm;
+  		}
+  		var dd=myDate.getDate();
+  		if(dd<10)
+  		{
+  			dd='0'+dd;
+  		}
+  		var today=yy+'/'+mm+'/'+dd;
+  		var startday=yy+'/'+mm+'/'+'01';
+
+
+    
+   var panel = Ext.create('Ext.form.Panel', {
+
+        height: 940,
+        renderTo: 'search-panel',
+        id: 'search-results',
+
+        items:  [
+            grid1         
+            ]
+            ,
+        	tbar: Ext.create('Ext.FormPanel', 
+           {         
+						frame: true,
+						margin: '0 0 1 1',
+						fieldDefaults: 
+						{
+							labelWidth: 70,     
+						 	xtype: 'textfield' 
+						},
+						layout: 'hbox',
+						bodyPadding: 0,
+                  	items: [
+                  	{                        
+                        	fieldLabel:'&nbsp;起始日期',
+                        	xtype: 'datefield',
+                        	format: "Y/m/d",
+                         value:startday,
+                        	name:'sdate',
+                        	id:'sdate'
+                        	
+                    	},
+                    	{
+                        	fieldLabel:'&nbsp;结束日期',
+                        	xtype: 'datefield',
+                        	id:'edate',
+                        	format: "Y/m/d",
+                        	value:today,
+                        	name:'edate'
+                    	},
+                    	{
+                    	xtype:'button',
+                    	style : 'margin-left:10px',
+                    	text:'重新统计',
+                    	 handler: function()
+                        {
+                          
+                          
+                          var sdate=Ext.getCmp('sdate').value;
+                          var sdate_t=Ext.Date.format(sdate, 'Y/m/d');
+                          var edate=Ext.getCmp('edate').value;
+                          var edate_t=Ext.Date.format(edate, 'Y/m/d');
+                          
+                       
+                          		store.load({params: {sdate:sdate_t,edate:edate_t}}); 
+                        }
+                    	} 
+                    	,{
+                text:'导出',
+                xtype:'button',
+                    	style : 'margin-left:10px',
+                handler:function(){
+                
+                          var sdate=Ext.getCmp('sdate').value;
+                          var sdate_t=Ext.Date.format(sdate, 'Y/m/d');
+                          var edate=Ext.getCmp('edate').value;
+                          var edate_t=Ext.Date.format(edate, 'Y/m/d');
+                
+                document.getElementById('form1').sdate.value=sdate_t;
+                document.getElementById('form1').edate.value=edate_t;
+                document.getElementById('form1').exp.value='exp';
+                document.getElementById("form1").submit();
+                document.getElementById("form1").exp.value="";
+              
+                }
+                 }
+                    	]
+                    	}
+                    	)
+                    	
+						
+						
+						
+    });
+  reflash();
+});
+</script>
+</head>
+<body >
+	
+<div id="search-panel">
+</div>
+
+
+
+		<form name="form1" id="form1" action="/pronline/Msg">
+		<input type="hidden" name="FunName" value="ncsMgcl_stat_v4">
+		<input type="hidden" name="exp" value="">
+		<input type="hidden" name="sdate" value="">
+		<input type="hidden" name="edate" value="">
+	</form>
+
+
+
+</body>
+</html>

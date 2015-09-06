@@ -1,0 +1,187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <title>Tabs Example</title>
+    <style type="text/css">
+    	
+ .x-tab-default-top button, .x-tab-default-top.x-tab-inner {
+		height: 16px !important;
+		line-height: 16px;
+	}
+    	
+    
+      *{font-size:12px!important;}
+    .page{margin:0 auto;width:[#swidth#]px;background-color:#E9F2FC;overflow:hidden; border:1px solid #D4E0F5;}
+  </style>
+    <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" />
+
+    <script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+        <script type="text/javascript">
+        	var wireflag=parent.wireflag;
+        	var tabs_gdrz;
+        	function reflash(){
+        		var index=tabs_gdrz.getActiveTab();
+        		var tabframe="yxztIframe_"+index.id;       		 
+       	  eval(tabframe).document.getElementById("form1").groupid.value=document.getElementById("form1").groupid.value;
+       		eval(tabframe).document.getElementById("form1").did.value=document.getElementById("form1").did.value;
+  //      		eval(tabframe).document.getElementById("time_flag").value=document.getElementById("time_flag").value;    
+  //      		tabs_gdrz.doLayout();
+
+	  if(eval(tabframe).document.getElementById("form1").fcode){
+	  	eval(tabframe).document.getElementById("form1").fcode.value=document.getElementById("form1").fcode.value;
+	  }
+	  if(eval(tabframe).document.getElementById("form1").lb){
+	  	eval(tabframe).document.getElementById("form1").lb.value=document.getElementById("form1").lb.value;
+	  }
+
+        	  eval(tabframe).reflash();
+	
+        	}
+        	
+   function dhsrc(srcurl,title,id){
+	    var i=0;
+	    var m=0;
+			var tabs_obj=Ext.getCmp('yxfxtab');
+	
+			var tab_len=tabs_obj.items.length;
+     tabs_obj.items.each(function(item) { 
+
+     			if(item.id==id)
+     			{    	       
+     	        i++;
+     	    }
+           if(i==0){
+           	m++;
+          }
+                
+ 
+      });
+ 
+     if(i>0){
+
+     	tabs_obj.setActiveTab(m);
+     	 return; 
+     	} 
+
+if(tab_len>=6){
+	//删除第一个标签
+	tabs_obj.remove(6);
+}
+
+	  var tabframe="yxzt_"+id;
+//	  document.getElementById(tabframe).src=srcurl;
+	  var htmlvar='<iframe  id=\"'+tabframe+'\" name=\"'+tabframe+'\" src=\"'+srcurl+'\"  width=100% height=950  FrameBorder=0 scrolling=\"no\"></iframe>';
+
+	  tabs_obj.add({
+            closable: true,
+            id:id,
+            html:htmlvar,
+           iconCls: 'add16',
+            title: title
+        }).show();
+  //      tabs_obj.doLayout();
+}	
+        	
+        	
+        	
+        	Ext.require('Ext.tab.*');
+
+    Ext.onReady(function(){
+   
+     tabs_gdrz = Ext.createWidget('tabpanel', {
+        renderTo: 'gdrz',
+        forceFit: true,
+        id:'yxfxtab',
+        scrollOffset: 0,
+//        width: aaa,
+        height:970,
+        activeTab: 0,
+         defaults :{
+            bodyPadding: 1
+        },
+        items: [{
+        	  id:'zxdw',
+            title: '在线单位',
+            html: '<iframe  id="yxztIframe_zxdw" name="yxztIframe_zxdw" src="/v4/ncs_onlinecorp_list.htm" scrolling="no" width=100% height=1000  FrameBorder=0 ></iframe>'
+           
+        },{      
+        	  id:'zgt',    
+            title: '直观图模式',
+
+            html: '<iframe  id="yxztIframe_zgt" name="yxztIframe_zgt" src="/pronline/Msg?FunName@ncsWebDispXxztZgt_v4&wireflag@'+wireflag+'" scrolling="yes" width=100% height=800  FrameBorder=0 ></iframe>'           
+        },{    
+        	  id:'lxdw',      
+            title: '离线单位',
+
+            html: '<iframe  id="yxztIframe_lxdw" name="yxztIframe_lxdw" src="/v4/ncs_user_list_link.htm" scrolling="no" width=100% height=1000  FrameBorder=0 ></iframe>'   
+            },{   
+            id:'whdw',       
+            title: '维护单位',
+            html: '<iframe  id="yxztIframe_whdw" name="yxztIframe_whdw" src="/v4/ncs_user_list_link.htm" scrolling="no" width=100% height=1000  FrameBorder=0 ></iframe>'
+             },{ 
+            id:'tydw',         
+            title: '停业单位',
+            html: '<iframe  id="yxztIframe_tydw" name="yxztIframe_tydw" src="/v4/ncs_user_list_link.htm" scrolling="no" width=100% height=1000  FrameBorder=0 ></iframe>' 
+            },{   
+            id:'zxl',       
+            title: '在线率统计',
+            html: '<iframe  id="yxztIframe_zxl" name="yxztIframe_zxl" src="/v4/ncs_onlinestat_list.htm" scrolling="no" width=100% height=1000  FrameBorder=0 ></iframe>' 
+            },{   
+            id:'lbzxl',       
+            title: '单位类别在线率',
+            html: '<iframe  id="yxztIframe_lbzxl" name="yxztIframe_lbzxl" src="/v4/ncs_lbonlinestat_list.htm" scrolling="no" width=100% height=1000  FrameBorder=0 ></iframe>' 
+            },{   
+            id:'keymag',       
+            title: '注册维护KEY',
+            html: '<iframe  id="yxztIframe_keymag" name="yxztIframe_keymag" src="/v4/ncs_keyuser.htm" scrolling="no" width=100% height=1000  FrameBorder=0 ></iframe>' 
+            },{   
+            id:'whlog',       
+            title: '维护日志',
+            html: '<iframe  id="yxztIframe_whlog" name="yxztIframe_whlog" src="/v4/ncs_whlog.htm" scrolling="no" width=100% height=1000  FrameBorder=0 ></iframe>' 
+            }
+            
+            
+            
+            ],
+       
+                listeners:{
+                    tabchange:function(tp,p){
+        
+                    	 if(p.title=='离线单位'){
+                    	 	  document.getElementById("form1").show_flag.value='2';
+                    	  }
+                        if(p.title=='维护单位'){
+                    	 	  document.getElementById("form1").show_flag.value='5';
+                    	  }
+                    	  if(p.title=='停业单位'){
+                    	 	  document.getElementById("form1").show_flag.value='4';
+                    	  }
+                        reflash();
+                    		
+                    		
+                    	}
+                    }
+      });
+});
+
+        </script> 
+</head>
+<body>
+    <div id="gdrz">
+
+    </div>
+    	    
+  <form name="form1" id="form1" >
+		<input type="hidden" name="groupid" value="">
+		<input type="hidden" name="did" value="">
+		<input type="hidden" id="time_flag" name="time_flag" value="">
+		<input type="hidden" id="show_flag" name="show_flag" value="">
+	  <input type="hidden" id="fcode" name="fcode" value="">
+	  	  <input type="hidden" id="lb" name="lb" value="">
+		<input type="hidden" id="gid" name="gid" value="">
+	</form> 
+    
+   
+</body>
+</html>

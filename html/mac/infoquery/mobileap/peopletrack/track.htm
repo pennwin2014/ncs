@@ -1,0 +1,579 @@
+ 
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <title>轨迹图</title>
+     <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css">
+    <script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+
+    <style type="text/css">	
+    .accept {
+            background-image:url(/newver/resources/themes/images/share/accept.png) !important;
+    }
+    .exp {
+            background-image:url(/newver/resources/themes/images/share/exportimg.png) !important;
+    }
+		body{
+			margin:0;
+			height:100%;
+			width:100%;
+			position:absolute;
+		}
+		#mapleft{
+			position: absolute;
+			top:0;
+			width:100%;
+			left:0;			
+			bottom:0;
+		}
+		#mapContainer{
+			position: absolute;
+			top:40px;		
+		  left:0;
+		  right:0;
+			bottom:40px;
+		}
+		#tip{
+			height:45px;
+			background-color:#fff;
+			padding-left:10px;
+			padding-right:10px;
+			border:1px solid #969696;
+			position:absolute;
+			font-size:12px;
+			right:10px;
+			bottom:30px;
+			border-radius:3px;
+			line-height:45px;
+		}
+		
+		#tip input[type='button']{
+			height:28px;
+			line-height:28px;
+			outline:none;
+			text-align:center;
+			padding-left:5px;
+			padding-right:5px;
+			color:#FFF;
+			background-color:#0D9BF2;
+			border:0;
+			border-radius: 3px;
+			margin-top:8px;
+			margin-left:5px;
+			cursor:pointer;
+			margin-right:10px;
+		}
+		
+		.markspan{
+			display: block;
+			height: 40px;
+			width:180px;
+			text-align:center;
+			padding-left:10px;
+			padding-right:10px;
+			line-height:40px;
+			background-color:#fff;
+			border:1px solid #ccc;
+			color:#FF6BBB;
+			font-size:12px;
+			border-radius:3px;
+		}
+		
+    </style>	
+</head>
+<script>
+    var tmpposition = {};
+Ext.Loader.setConfig({enabled: true});
+Ext.Loader.setPath('Ext.ux', '/newver/ux/');
+Ext.require([
+    'Ext.form.*',
+    'Ext.window.*',
+    'Ext.grid.*',
+    'Ext.data.*',
+    'Ext.util.*',
+    'Ext.window.MessageBox',
+    'Ext.toolbar.Paging',
+    'Ext.ux.PreviewPlugin',
+    'Ext.tree.*',
+    'Ext.ux.*'
+ 
+]);
+var flag=0;
+var markers=[];
+var polyline;
+var store;
+var sssmarker;
+
+var contents = {};
+Date.prototype.Format = function (fmt) { //author: meizz 
+    var o = {
+        "M+": this.getMonth() + 1, //月份 
+        "d+": this.getDate(), //日 
+        "h+": this.getHours(), //小时 
+        "m+": this.getMinutes(), //分 
+        "s+": this.getSeconds(), //秒 
+        "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+        "S": this.getMilliseconds() //毫秒 
+    };
+    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+    for (var k in o)
+        if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+    return fmt;
+}
+function getLocalTime(tm) {
+    var tt = new Date(parseInt(tm) * 1000);
+    return tt;
+}
+  function addMarker(i){ 
+ 
+ // iconstr = '/newver/resources/themes/images/map/start.png';
+ 
+  //	iconstr = '/newver/resources/themes/images/map/end.png';
+  
+      iconstr = '/newver/resources/themes/images/map/past.png';
+      var mac = Ext.getCmp('keyword').value; 
+     
+          var marker = new AMap.Marker({
+              map: map, //将点添加到地图                  
+              position: new AMap.LngLat(parseFloat(contents[i][0]), parseFloat(contents[i][1])),
+              icon: iconstr,//marker图标，直接传递地址url                  
+              offset: new AMap.Pixel(-20, -42) //相对于基点的位置   
+          });
+          var poiinfo = "<table style='width:270px;cursor:pointer;'>";
+          for (var j = 1; j < contents[i].length / 2; j++) {
+              if (contents[i][2 * j] > 0)
+                  poiinfo += "<tr  style='margin:0; padding:0;'><td>" + getLocalTime(contents[i][2 * j]).Format("yyyy-MM-dd hh:mm:ss") +
+                   "</td><td><b>进入</b></td></tr>";
+              if (contents[i][2 * j + 1] > 0)
+                  poiinfo += "<tr  style='margin:0; padding:0; background-color:#9889f4'><td>" + getLocalTime(contents[i][2 * j + 1]).Format("yyyy-MM-dd hh:mm:ss") +
+                   "</td><td><b>离开</b></td></tr>";
+          }
+          poiinfo += "</table>";
+          resultStr = "<div style=\"font-size: 12px;padding:0px 0 4px 2px; border-bottom:1px solid #C1FFC1;\"><b><font size=3 color='green'>" + mac + "</font></b><table><tr><td><b></b></td><td align='right'>" + i + "</td></tr></table>" + "<hr/>" + poiinfo + "</div>";
+          var inforWindow = new AMap.InfoWindow({
+              offset: new AMap.Pixel(0, -23),
+              content: resultStr
+          });
+
+          AMap.event.addListener(marker, "click", function (e) {
+              inforWindow.open(map, marker.getPosition());
+
+          });
+
+          markers.push(marker);
+     
+     
+ 
+  }
+
+  function addap(desc, lnt, lat) {
+      var mac = Ext.getCmp('keyword').value;
+      iconstr = '/newver/resources/themes/images/map/past.png';
+      
+      var marker = new AMap.Marker({
+          map: map, //将点添加到地图                  
+          position: new AMap.LngLat(lnt, lat),
+          icon: iconstr,//marker图标，直接传递地址url                  
+          offset: new AMap.Pixel(-20, -42) //相对于基点的位置   
+      });
+      
+      var poiinfo = "<table style='width:270px;cursor:pointer;'>";     
+      poiinfo += "<tr  style='margin:0; padding:0;'><td>" + getLocalTime(desc).Format("yyyy-MM-dd hh:mm:ss") +
+       "</td><td></td></tr>";
+    
+      poiinfo += "</table>";
+      resultStr = "<div style=\"font-size: 12px;padding:0px 0 4px 2px; border-bottom:1px solid #C1FFC1;\"><b><font size=3 color='green'>" + mac + "</font></b><table><tr><td><b></b></td><td align='right'>" +desc+ "</td></tr></table>" + "<hr/>" + poiinfo + "</div>";
+      var inforWindow = new AMap.InfoWindow({
+          offset: new AMap.Pixel(0, -23),
+          content: resultStr
+      });
+
+      AMap.event.addListener(marker, "click", function (e) {
+          marker.setAnimation('AMAP_ANIMATION_BOUNCE')
+          setTimeout(function () {
+              marker.setAnimation('AMAP_ANIMATION_NONE')
+          }, 2400);
+          inforWindow.open(map, marker.getPosition());
+
+      });
+
+      markers.push(marker);
+  }
+
+	function reflash(){
+	   
+	   var mytime = Ext.getCmp('times').value;
+	   var mac = Ext.getCmp('keyword').value;
+	   var styles =Ext.getCmp('places').value;
+
+	   store.load({params:{mac:mac, time_flag:mytime, styles:styles},
+     callback:function(records, options, success){
+     	var maxlong,maxlat,minlong,minlat;
+     	maxlong=0;maxlat=0;minlong=0;minlat=0;
+     	if (store.getCount() == 0) {
+     	    for (i = 0; i < markers.length; i++) {
+     	        markers[i].setMap(null);
+     	    }
+
+     	    markers = [];
+     		return;
+     	}
+     
+ 
+     	for(i=0;i<markers.length;i++){
+     		markers[i].setMap(null);
+     	}
+
+     	markers = [];
+     	if (polyline) {
+     	    polyline.setMap(null);
+     	}
+     	if (sssmarker)
+     	    sssmarker.setMap(null);
+     var lineArr = new Array();
+     contents = {};
+     if (styles == 0) {
+         for (var i = 0; i < store.getCount() ; i++) {
+             if (store.getAt(i).get('servicename') in contents) {
+                 contents[store.getAt(i).get('servicename')][contents[store.getAt(i).get('servicename')].length] = store.getAt(i).get('stime');
+                 contents[store.getAt(i).get('servicename')][contents[store.getAt(i).get('servicename')].length] = store.getAt(i).get('etime');
+             
+             }
+             else {
+                 if (typeof( tmpposition[store.getAt(i).get('servicename')]) != 'undefined' )
+                     contents[store.getAt(i).get('servicename')] = [tmpposition[store.getAt(i).get('servicename')][0], tmpposition[store.getAt(i).get('servicename')][1], store.getAt(i).get('stime'), store.getAt(i).get('etime')];
+                
+               
+             }
+             lineArr.push(new AMap.LngLat(parseFloat(tmpposition[store.getAt(i).get('servicename')][0]), parseFloat(tmpposition[store.getAt(i).get('servicename')][1])));
+
+         }
+         var counti = 0;
+       
+         for (var i in contents) {
+             counti++;
+             addMarker(i);
+         }
+         map.setFitView();
+         if(counti>1){
+         if (polyline) {
+             polyline.setMap(null);
+         }
+
+         polyline = new AMap.Polyline({
+             map: map,
+             path: lineArr,
+             strokeColor: "#F00",//线颜色
+             strokeOpacity: 1,//线透明度
+             strokeWeight: 3,//线宽
+             strokeStyle: "solid"//线样式
+         });
+
+
+         sssmarker = new AMap.Marker({
+             map: map,
+             //draggable:true, //是否可拖动
+             position: new AMap.LngLat(parseFloat(tmpposition[store.getAt(0).get('servicename')][0]), parseFloat(tmpposition[store.getAt(0).get('servicename')][1])),//基点位置
+             icon: "/newver/resources/themes/images/map/track.gif", //marker图标，直接传递地址url
+             offset: new AMap.Pixel(-26, -13), //相对于基点的位置
+             autoRotation: true
+         });
+    
+         
+         sssmarker.moveAlong(lineArr, 10000,'', true);
+         AMap.event.addListener(sssmarker, "moving", function (e) {
+             if ((sssmarker.getAngle() > 90 && sssmarker.getAngle() < 270) ) {
+                 sssmarker.setIcon("/newver/resources/themes/images/map/track1.gif");
+               //  alert(sssmarker.getAngle());
+               
+             }
+             else {
+                 sssmarker.setIcon("/newver/resources/themes/images/map/track.gif");
+               //  alert(sssmarker.getAngle());
+             }
+         });
+         }
+     }
+     else {
+         for (var i = 0; i < store.getCount() ; i++) {
+             if (parseFloat(store.getAt(i).get('stime')) > 0 && parseFloat(store.getAt(i).get('etime'))) {
+             lineArr.push(new AMap.LngLat(parseFloat(store.getAt(i).get('stime')), parseFloat(store.getAt(i).get('etime'))));
+             addap(store.getAt(i).get('servicename'), store.getAt(i).get('stime'), store.getAt(i).get('etime'));
+         }
+         }
+      
+
+         polyline = new AMap.Polyline({
+             map: map,
+             path: lineArr,
+             strokeColor: "#F00",//线颜色
+             strokeOpacity: 1,//线透明度
+             strokeWeight: 3,//线宽
+             strokeStyle: "solid"//线样式
+         });
+         map.setFitView();
+      
+         sssmarker = new AMap.Marker({
+             map: map,
+             //draggable:true, //是否可拖动
+             position: new AMap.LngLat(parseFloat(store.getAt(0).get('stime')), parseFloat(store.getAt(1).get('etime'))),//基点位置
+             icon: "/newver/resources/themes/images/map/car.png", //marker图标，直接传递地址url
+             offset: new AMap.Pixel(-26, -13), //相对于基点的位置
+             autoRotation: true
+         });
+         sssmarker.moveAlong(lineArr, 10000, '', true);
+     }
+
+
+
+    }
+  }
+	);
+	
+ }
+
+	Ext.onReady(function(){
+	    Ext.tip.QuickTipManager.init();
+	    Ext.Ajax.request({
+	        url: '/pronline/Msg?FunName@dm_place',
+	        method: 'GET',
+	        success: function (resp, opts) {
+	            try {
+
+	                var respText = resp.responseText;
+	                var respRecord = eval("(" + respText + ")");
+	                for (var i in respRecord.data) {
+
+	                    tmpposition[respRecord.data[i].servicename] = [respRecord.data[i].longitude, respRecord.data[i].latitude];
+	                }
+
+	            }
+	            catch (e) { }
+	        },
+	        failure: function (resp, opts) {
+	            var respText = eval("(" + respText + ")");
+	            alert('错误', respText.error);
+	        }
+	    });
+
+
+
+
+    Ext.define('EimData', {
+        extend: 'Ext.data.Model',
+        fields: [
+            'servicename', 'stime','etime'
+        ]
+     
+    });
+
+       store = Ext.create('Ext.data.Store', {
+        pageSize: 40,
+        model: 'EimData',
+        remoteSort: true,
+        proxy: {
+            type: 'ajax',
+            url: '/pronline/Msg?FunName@dm_track',  
+            reader: {
+                type:'json',
+                root: 'eimdata',
+                totalProperty: 'totalCount'
+            },         
+            simpleSortMode: true
+        },
+        sorters: [{
+      //      property: 'id',
+     //       direction: 'DESC'
+        }]
+    });
+    
+     var placeCombo = Ext.create('Ext.form.field.ComboBox', {
+     	  fieldLabel:'分析对象',
+        labelWidth: 60,
+        width:160,
+        valueField:'value',
+        displayField: 'name',
+        id:'places',
+        name : 'places',      
+        value:'0',
+        allowBlank: true,
+        forceSelection: false,
+                                    store: Ext.create('Ext.data.Store', {
+                                    fields : ['name', 'value'],
+                                    data   : [
+                                        //{name : '指定终端',   value: '0'},
+                                        {name : '指定采集设备',   value: '0'}
+                                    ]
+                                })
+                                ,
+        queryMode: 'local',
+        typeAhead: true,
+                listeners: {
+                      'change':function(){
+                      
+                        }
+                    }
+        });
+         var timeCombo = Ext.create('Ext.form.field.ComboBox', {
+         	fieldLabel:'指定时间',
+        labelWidth: 60,
+        width:160,
+        valueField:'value',
+        displayField: 'name',
+        id:'times',
+        name : 'times',      
+        value:'0',
+        allowBlank: true,
+        forceSelection: false,
+         store: Ext.create('Ext.data.Store', {
+           fields : ['name', 'value'],
+            data   : [
+            {name : '今天',   value: '0'},
+            {name : '前三天',   value: '1'},
+            {name : '前一周',   value: '2'},
+            {name : '前一月',   value: '3'},
+            {name : '前三月',   value: '4'},
+            {name : '前半年',   value: '5'}                           
+                                    ]
+                                })
+                                ,
+        queryMode: 'local',
+        typeAhead: true,
+                listeners: {
+                      'change':function(){
+                      	
+                        }
+                    }
+        });
+        
+        try{
+						mac_value = parent.getGlobalInfoMac(); 	 						 					
+						
+				}catch(e){
+						mac_value = parent.parent.getGlobalInfoMac(); 	 	
+	 					
+				}
+
+        var tbar = Ext.create('Ext.Toolbar',{
+            
+            items:[
+               placeCombo,'  ',
+               timeCombo,'   ',
+                {
+                    xtype:'textfield',
+                    id:'keyword',
+                    width:250,
+                    name:'keyword',
+                    style:'color:#7aa7d5', 
+                    value: mac_value,      
+                    //00-00-AD-0D-98-07     
+                    emptyText:'请输入MAC信息，格式XX-XX-XX-XX-XX-XX',
+                    enableKeyEvents:true,
+                    listeners:{
+                        'focus':function(){
+                        },           
+                        'keydown' : function(i,e){
+                             var aae=e.getKey() ; 
+                             if(aae==13){
+                             }
+                         }
+                    }
+                },'  ',
+                {
+                    text:'查询',
+                    iconCls:'accept',
+                    handler:function()
+                    {
+                     
+
+                    	reflash();
+                    	
+                    }
+                },
+                '-',
+               
+             {
+			     	 	text:'导出',
+			     	 	
+			     	 	iconCls:'exp',
+			     	 	handler:function()
+                    {
+                    
+                    	var form1 = document.getElementById('form1');
+        
+                      form1.mac.value =  Ext.getCmp('keyword').value;
+                      form1.time_flag.value = Ext.getCmp('times').value;
+                      form1.styles.value =  Ext.getCmp('places').value;
+
+                    form1.exp.value='exp';
+                        form1.submit();
+                      form1.exp.value=""; 
+                    	
+                    }
+			     	 },
+                {xtype:'label', html:'<span id="titledx"></span>'}
+            ]
+        });
+
+       var panel = Ext.create('Ext.form.FormPanel', {
+        title: '',
+        margins: '0 0 0 0',
+        id:'myform',
+        name:'myform',
+        autoScroll: false,
+        renderTo: 'mapleft',
+        frame: true,
+        tbar:tbar
+ 
+    });
+
+     
+    
+ 
+});
+	
+	
+	
+	
+	</script>
+<body>
+	<div id="mapleft"></div>
+	<div id="mapContainer"></div>
+	<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=9ac2d10856d92017d2d8d82ce004a820"></script>
+	
+	<script type="text/javascript">
+	
+	
+
+		
+	
+		//初始化地图对象，加载地图
+	
+var map = new AMap.Map('mapContainer',{
+			resizeEnable: true,
+			//二维地图显示视口
+	        //设置地图中心点
+	        //设置地图显示的缩放级别
+			view: new AMap.View2D({
+				center: new AMap.LngLat(121.48, 31.22),
+				zoom: 13
+			})
+		});	
+		map.setFitView(); 
+		  
+	</script>
+	
+<form name="form1" id="form1" action="/pronline/Msg">
+        <input type="hidden" name="FunName" value="dm_track">
+        <input type="hidden" name="styles" value="">
+        <input type="hidden" name="time_flag" value="">
+        <input type="hidden" name="mac" value="">
+        <input type="hidden" name="exp" value="">
+     
+	</form>
+</body >
+</html>						
+ 
+

@@ -1,0 +1,5 @@
+Ext.define('proauthRzAuthlog.model.List', {
+    extend: 'Ext.data.Model',
+    fields: [ 'mac', 'ssid', 'channel', 'stime',   'servicecode',  'servicename',  'rssi',   'security',   'apname',   'apmac','longitude',  'latitude', 'address']
+});
+  

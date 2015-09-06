@@ -1,0 +1,826 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<title></title>
+<link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" /> 
+<link rel="stylesheet" type="text/css" href="/css/search_css.css" /> 
+<style type="text/css">
+	.icon-grid 
+	{
+		background-image:url(/newver/resources/themes/images/share/grid.png) !important;
+	}
+	.add 
+	{
+ 		background-image:url(/newver/resources/themes/images/share/add.gif) !important;
+	}
+	.option 
+	{
+        	background-image:url(/newver/resources/themes/images/share/plugin.gif) !important;
+	}
+	.remove 
+	{
+		background-image:url(/newver/resources/themes/images/share/delete.gif) !important;
+	}
+	.exp 
+	{
+		background-image:url(/newver/resources/themes/images/share/application_go.png) !important;
+	}
+	.accept 
+	{
+		background-image:url(/newver/resources/themes/images/share/accept.png) !important;
+	}
+	.x-form-clear-trigger 
+	{
+        	background-image: url(/newver/resources/themes/images/default/form/clear-trigger.gif);
+	}
+	.x-form-search-trigger 
+	{
+        	background-image: url(/newver/resources/themes/images/default/form/search-trigger.gif);
+	}
+	.x-selectable, .x-selectable * 
+	{   
+    		-moz-user-select: text!important;   
+		-khtml-user-select: text!important;   
+	}   
+</style>
+
+    <style type="text/css">
+        #search-results a {
+            color: #385F95;
+            font:bold 11px tahoma, arial, helvetica, sans-serif;
+            text-decoration:none;
+        }
+        
+        #search-results a:hover {
+            text-decoration:underline;
+        }
+        
+        #search-results p {
+            margin:3px !important;
+        }
+        
+        .search-item {
+            font:normal 11px tahoma, arial, helvetica, sans-serif;
+            padding:3px 10px 3px 10px;
+            border:1px solid #fff;
+            border-bottom:1px solid #8eeeee;
+            white-space:normal;
+            color:#555;
+        }
+        .search-item h3 {
+            display:block;
+            font:inherit;
+            font-weight:bold;
+            color:#222;
+        }
+
+        .search-item h3 span {
+            float: right;
+            font-weight:normal;
+            margin:0 0 5px 5px;
+            width:250px;
+            display:block;
+            clear:none;
+        }
+        
+        .x-form-clear-trigger {
+            background-image: url(/newver/resources/themes/images/default/form/clear-trigger.gif);
+        }
+        
+        .x-form-search-trigger {
+            background-image: url(/newver/resources/themes/images/default/form/search-trigger.gif);
+        }
+    </style>
+
+
+
+<script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+<script>  
+  		
+  		
+  		
+	Ext.Loader.setConfig({enabled: true});
+	Ext.Loader.setPath('Ext.ux', '/newver/ux/');
+Ext.require([
+    'Ext.data.*',
+    'Ext.panel.Panel',
+    'Ext.view.View',
+    'Ext.layout.container.Fit',
+    'Ext.toolbar.Paging',
+    'Ext.ux.form.SearchField'
+]);
+
+	var store;
+	var store1;
+	var adv = "0";//标记
+ function reflash(){
+
+  var did1=document.getElementById("form1").did.value;
+  var gid=document.getElementById("form1").groupid.value;
+  var uid=parent.document.getElementById("form1").uid.value;
+  if(uid!=''&&did1!=''){
+    gid='';
+  }
+//  alert(uid);
+//alert(did1);
+//alert(gid);
+  var time_flag=document.getElementById("form1").time_flag.value;
+  var field_flag=document.getElementById("form1").field_flag.value;
+  var keyword=document.getElementById('form1').keyword.value;
+  var sdate=document.getElementById('form1').sdate.value;
+  var kflag=document.getElementById('form1').kflag.value;
+  if(sdate=='undefined'){
+  		sdate='';
+  }
+  var edate=document.getElementById('form1').edate.value;
+  if(edate=='undefined'){
+  edate='';
+  }
+  var sip=document.getElementById('form1').sip.value;
+  var mac=document.getElementById('form1').mac.value;
+  var cname=document.getElementById('form1').cname.value;
+  var position=document.getElementById('form1').position.value;
+  var servicecode=document.getElementById('form1').servicecode.value;
+  var idno=document.getElementById('form1').idno.value;
+  var dispname=document.getElementById('form1').dispname.value;
+//  store.currentPage=1;
+  store.load({params: {kid:gid,did:did1,time_flag:time_flag,field_flag:field_flag,keyword:keyword,sdate:sdate,edate:edate,sip:sip,mac:mac,cname:cname,position:position,servicecode:servicecode,idno:idno,dispname:dispname,kflag:kflag,uid:uid}});  
+  }
+   function setflag(sid,flag){
+    if(flag=='9'){
+    if(!confirm('您确认将本条记录丢弃吗？')){
+    return;
+    }
+    }
+  var did1=document.getElementById("form1").did.value;
+  var gid=document.getElementById("form1").groupid.value;
+  var time_flag=document.getElementById("form1").time_flag.value;
+  var field_flag=document.getElementById("form1").field_flag.value;
+  var keyword=document.getElementById('form1').keyword.value;
+  var sdate=document.getElementById('form1').sdate.value;
+  var kflag=document.getElementById('form1').kflag.value;
+  if(sdate=='undefined'){
+  		sdate='';
+  }
+  var edate=document.getElementById('form1').edate.value;
+  if(edate=='undefined'){
+  edate='';
+  }
+ 
+  var sip=document.getElementById('form1').sip.value;
+  var mac=document.getElementById('form1').mac.value;
+  var cname=document.getElementById('form1').cname.value;
+  var position=document.getElementById('form1').position.value;
+  var servicecode=document.getElementById('form1').servicecode.value;
+  var idno=document.getElementById('form1').idno.value;
+  var dispname=document.getElementById('form1').dispname.value;
+  
+  store.load({params: {sid:sid,flag:flag,set:'set',kid:gid,did:did1,time_flag:time_flag,field_flag:field_flag,keyword:keyword,sdate:sdate,edate:edate,sip:sip,mac:mac,cname:cname,position:position,servicecode:servicecode,idno:idno,dispname:dispname,kflag:kflag}});  
+  
+  
+  parent.parent.refreshtree();
+  }	
+  	
+  	
+  	
+  	
+
+  	
+
+	
+	function _show_enduser(did, uid)
+	{
+	      var aa=parent.document.getElementById('form1').time_flag.value;
+         var htmlvar='<iframe src="/pronline/Msg?FunName@ncsWebShowUserBh&did@'+did+'+uid@'+uid+'&time_flag@'+aa+' " scrolling="no" name="moduleIframe" frameborder="no" style="width:100%;height:100%;"></iframe>'; 
+ // alert(htmlvar); 
+        parent.parent.show_enduserinfo(htmlvar);
+        /*
+         var win = new Ext.Window ({
+                             id:"userwindow",
+                             title:"用户上网行为统计报告",
+                             x:0,
+                             y:0,
+                             width:760,
+                             height:700,
+                             bodyPadding: 0,
+                             modal:false,
+                             resizable:true,
+                             draggable:true,
+                             html:htmlvar
+                                               
+         }
+        )
+        win.show();
+        */
+   }
+	
+	function  show_enduser(value,p,record)
+	{
+		 var oArr = record.data.dispname.split("_");
+       		 return Ext.String.format( '<a href="#xxm" onclick=_show_enduser("{0}","{1}")>{2}</a>',oArr[1], oArr[2], oArr[0]);
+    	}
+    	
+   
+   		 var fp2;
+ //高级查询
+  		var win2 = null;
+       		function showCxForm() 
+       		{
+        		if (!win2) 
+        		{
+            			win2 = Ext.widget('window', 
+            			{
+                			title: '高级查询',
+                			closeAction: 'hide',
+                			x:380,
+                			y:32,
+                			width: 280,
+                			height: 400,
+                			minHeight: 320,
+                			resizable: true,
+                			modal: false,
+                			items: fp2
+            			});
+        		}
+        		win2.on("beforeclose", function() {
+        		
+            document.getElementById("time_flag").value=document.getElementById("form1").time_flag.value;
+          
+         });
+        		
+        		win2.show();
+    		}
+
+
+Ext.onReady(function(){
+    
+    Ext.define('EimData', 
+    		{
+        		extend: 'Ext.data.Model',
+        		fields: 
+        		[
+              'servicecode', 'cname', 'dispname', 'sip', 'mac','vtime','keyword','subject','content','descr','idcard','position','url','uid','did','type','type_desc','idtype','flag','tname','sid','no','flag_sid'
+        		]
+        });
+
+       		store = Ext.create('Ext.data.Store', 
+       		{
+        		pageSize: 40,
+        		model: 'EimData',
+        		remoteSort: true,
+        		proxy: 
+        		{
+            			type: 'ajax',
+            			url: '/pronline/Msg?FunName@ncsKewordlog_v4',
+            			reader: {
+                			type:'json',
+                			root: 'eimdata',
+                			totalProperty: 'totalCount'
+            			},         
+            			simpleSortMode: true
+        		},
+        		sorters: 
+        		[{
+            			property: 'stime',
+            			direction: 'DESC'
+        		}]
+    		});
+   
+
+   
+       		var handleAction = function(action)
+    		{
+       			if(action=='cx')
+       			{
+       			}
+    		};
+    		
+    		var myDate = new Date();
+  		var yy = ( myDate.getYear() < 1900 ) ? ( 1900 + myDate.getYear() ) : myDate.getYear();
+  		var mm=myDate.getMonth()+1;
+  		if(mm<10)
+  		{
+  			mm='0'+mm;
+  		}
+  		var dd=myDate.getDate();
+  		if(dd<10)
+  		{
+  			dd='0'+dd;
+  		}
+  		var today=yy+'/'+mm+'/'+dd;
+  		var startday=yy+'/'+mm+'/'+'01';
+ 		
+       fp2=Ext.create('Ext.FormPanel', {         
+			        frame: true,
+			        fieldDefaults: {
+			           labelWidth: 65,                        
+			           xtype: 'textfield' 
+			        },
+              bodyPadding: 10,
+                  items: [{                        
+                        fieldLabel:'起始日期',
+                        xtype: 'datefield',
+                        value:startday,
+                        name:'sdate'
+                    },{
+                        fieldLabel:'结束日期',
+                        xtype: 'datefield',
+                        value:today,
+                        name:'edate'
+                    },
+                    {
+                        fieldLabel:'用户名',
+
+                        xtype: 'textfield',
+                        name:'dispname'
+                    }
+                    ,
+                    {
+                        fieldLabel:'源IP',
+
+                        xtype: 'textfield',
+                        name:'sip'
+                    }
+                    ,{
+                        fieldLabel:'Mac地址',
+                        xtype: 'textfield',
+                        name:'mac'
+                       
+                    },{
+                        fieldLabel:'证件号码',
+                        xtype: 'textfield',
+                        name:'idno'
+                       
+                    },{
+                        fieldLabel:'位置/房号',
+                        xtype: 'textfield',
+                        name:'position'
+                       
+                    },{
+                        fieldLabel:'内容关键字',
+                        xtype: 'textfield',
+                        name:'keycond'
+                       
+                    },{
+                        fieldLabel:'上网单位',
+                        xtype: 'textfield',
+                        name:'cname'
+                       
+                    }
+                    ,{
+                        xtype: 'button',
+                        anchor: 'right',
+                         style : 'margin-left:80px',
+                        text:'查&nbsp;&nbsp;询',
+                         handler: function(){
+                        
+                         document.getElementById("form1").sip.value=fp2.getForm().getValues().sip;
+
+                        var tm=fp2.getForm().getValues().sdate;                      
+                        document.getElementById("form1").sdate.value=tm;
+                       
+                        document.getElementById("form1").edate.value=fp2.getForm().getValues().edate;
+                       
+                          
+                          
+                         document.getElementById("form1").mac.value=fp2.getForm().getValues().mac; 
+         
+                         document.getElementById("form1").position.value=fp2.getForm().getValues().position; 
+                  
+                         document.getElementById("form1").keycond.value=fp2.getForm().getValues().keycond; 
+                                            
+                         document.getElementById("form1").cname.value=fp2.getForm().getValues().cname; 
+               
+                         document.getElementById("form1").dispname.value=fp2.getForm().getValues().dispname; 
+                         document.getElementById("form1").idno.value=fp2.getForm().getValues().idno;  
+                         document.getElementById("form1").keyword.value='';
+                         store.currentPage=1;
+                         reflash();
+                         win2.close();
+                         
+                         }
+                       
+                    },{
+							            text: '清&nbsp;&nbsp;除',
+							            style : 'margin-left:10px',
+							            xtype: 'button',
+							            handler: function(){
+							                fp2.getForm().reset();
+							            }
+							         }]
+                  });
+                  
+
+  
+
+   
+   		//对翻页工具条重新构建，替换翻页函数    
+  		Ext.PagingToolbar1 = Ext.extend(Ext.PagingToolbar, 
+  		{
+     			doRefresh:function()
+     			{
+     				reflash();
+    			},
+    			onPagingKeyDown:function(i,h)
+    			{
+     				var d=this,b=h.getKey(),c=d.getPageData(),a=h.shiftKey?10:1,g;
+     				if(b==h.RETURN)
+     				{
+     					h.stopEvent();
+     					g=d.readPageFromInput(c);
+        				if(g!==false)
+        				{
+         					g=Math.min(Math.max(1,g),c.pageCount);
+         					if(d.fireEvent("beforechange",d,g)!==false)
+         					{
+         						d.store.currentPage=g;
+         						reflash();
+        					}        
+      					}
+    				}
+    				else
+    				{
+       					if(b==h.HOME||b==h.END)
+       					{
+    						h.stopEvent();
+    						g=b==h.HOME?1:c.pageCount;i.setValue(g)
+       					}
+       					else
+       					{
+         					if(b==h.UP||b==h.PAGEUP||b==h.DOWN||b==h.PAGEDOWN)
+         					{
+          						h.stopEvent();
+          						g=d.readPageFromInput(c);
+           						if(g)
+           						{
+             							if(b==h.DOWN||b==h.PAGEDOWN)
+             							{
+             								a*=-1
+             							}
+             							g+=a;
+             							if(g>=1&&g<=c.pages)
+             							{
+             								i.setValue(g)
+             							}
+             						}
+            					}
+           				}
+         			}  
+      			},
+    			moveLast:function()
+    			{
+    				var b=this;
+    				var a=b.getPageData().pageCount;
+    				if(b.fireEvent("beforechange",b,a)!==false)
+    				{
+    					store.currentPage=a;
+    					reflash();
+       				}
+       			},
+     			moveFirst:function()
+     			{
+      				if(this.fireEvent("beforechange",this,1)!==false)
+      				{
+      					store.currentPage=1;
+      					reflash();
+      				}
+      			}, 
+     			movePrevious:function()
+     			{
+     				var b=this;
+     				var a=b.store.currentPage-1;
+     				if(a>0)
+     				{
+     					if(b.fireEvent("beforechange",b,a)!==false)
+     					{
+     						store.currentPage=a;
+     						reflash();
+     					}
+     				}
+     			},
+     			moveNext:function()
+     			{
+     				var c=this;
+     				var b=c.getPageData().pageCount;
+     				var a=c.store.currentPage+1;
+  
+     				if(a<=b)
+     				{
+     					if(c.fireEvent("beforechange",c,a)!==false)
+     					{
+     						store.currentPage=a;
+     						reflash();
+     					}
+     				}
+     			}
+		});
+   
+   
+
+
+
+
+    var resultTpl = Ext.create('Ext.XTemplate',
+        '<tpl for=".">',
+        '<div class="search-item">',
+        	 '<table cellSpacing=0 cellPadding=0 width="100%" style="word-break:break-all" border=0>',
+        	 	'<tr><td valign="top">',
+        	 	'<p><b>{no}.</b>{flag:this.formatState}&nbsp;&nbsp;日志类型：<font color=green>{type_desc:this.formattype}</font>&nbsp;&nbsp;触发关键字组:&nbsp;&nbsp;<font color=green>{tname}</font>&nbsp;&nbsp;&nbsp;</p>',
+        	 	'<p>&nbsp;</p>',
+        	 	'<h4> <font color=blue>主题：</font><a href="{url}" target="_blank">{subject:this.formatDate}</a></h4>',
+
+        	 	'<p >{content:this.formatContent}</p>',
+        	 	'<p><a href="{url}" target="_blank"><font color="green">{url:this.formatUrl}</font></a></p>',
+            '<h3><font color=#333>{descr}</font></h3>',  
+            '<p>&nbsp;</p>',     	
+            '<p>{flag_sid:this.formatButton}</p>',
+        	 	'</td>',
+        	 	'<td valign="top"  width="250">',
+            '<p>姓名:<a href="#xxm" onclick=_show_enduser("{did}","{uid}")>{dispname}</a></p>',
+            '<p>上网单位:{cname}</p>',
+            '<p>上网时间:{vtime}</p>',
+            '<p>MAC地址:{mac}</p>',
+            '<p>源IP地址:{sip:this.formatDate}</p>',
+            '<p>上网位置:{position}</p>',
+            '<p>证件号码:{idcard}</p>',
+           '<td></tr>',
+          '</table>',
+        '</div></tpl>',
+        {
+        formatUrl: function(value){
+             var temp='';
+             var index=value.indexOf('http');
+           if(index!=-1){
+             temp=value;
+          }
+             
+              
+             return temp;
+          }
+        },
+        {
+        formattype: function(value){
+             var temp='';
+           if(value=='QQ'){
+            	temp='<img  src="/images/large/QQ.png" style="position:relative;top:2px;">&nbsp;QQ';
+           }
+           else if(value=='MSN'){
+           		temp='<img  src="/images/large/MSN.png" style="position:relative;top:2px;">&nbsp;MSN';
+           }
+           else if(value=='飞信'){
+           		temp='<img  src="/images/large/fx.png" style="position:relative;top:2px;">&nbsp;飞信';
+           }
+           else if(value=='邮件'){
+           		temp='<img  src="/images/large/mail.png" style="position:relative;top:2px;">&nbsp;邮件日志';
+           }
+           else{
+           temp=value;
+           }
+           return temp;
+        }
+        },
+        {
+        formatButton: function(value){
+             var temp='';
+             var flag,sid;
+             var svalue=value.split('_');
+             flag=svalue[0];
+             sid=svalue[1];
+             if(flag=='0'){
+               temp='<input type="button" name="ok1" value="&nbsp;归入有害信息&nbsp;" style="height:20px;width:90px;position:relative;top:2px;background:#eee;" onclick=setflag("'+sid+'","1")> &nbsp;<input type="button" name="ok2" value="&nbsp;直接丢弃&nbsp;" style="height:20px;width:90px;position:relative;top:2px;background:#eee;" onclick=setflag("'+sid+'","9")>&nbsp;'          
+            }
+            else if(flag=='1'){
+              temp='&nbsp;<input type="button" name="ok2" value="&nbsp;直接丢弃&nbsp;" style="height:20px;width:90px;position:relative;top:2px;background:#eee;" onclick=setflag("'+sid+'","9")>&nbsp;'
+            }
+            else if(flag=='2'){
+               temp='<input type="button" name="ok1" value="&nbsp;归入有害信息&nbsp;" style="height:20px;width:90px;position:relative;top:2px;background:#eee;" onclick=setflag("'+sid+'","1")> &nbsp;<input type="button" name="ok2" value="&nbsp;直接丢弃&nbsp;" style="height:20px;width:90px;position:relative;top:2px;background:#eee;" onclick=setflag("'+sid+'","9")>&nbsp;' 
+            }
+            else{
+               temp='<input type="button" name="ok1" value="&nbsp;归入有害信息&nbsp;" style="height:20px;width:90px;position:relative;top:2px;background:#eee;" onclick=setflag("'+sid+'","1")> &nbsp;<input type="button" name="ok2" value="&nbsp;直接丢弃&nbsp;" style="height:20px;width:90px;position:relative;top:2px;background:#eee;" onclick=setflag("'+sid+'","9")>&nbsp;'
+
+            }
+           return temp;
+        }
+        }
+        
+        ,
+        
+        {
+        formatDate: function(value){
+             var re=/&lt;/g;
+             var dre="<";             
+             var  aaaa=value.replace(re,dre);
+             var re=/&gt;/g;
+             var dre=">";  
+             value=aaaa.replace(re,dre); 
+             
+              
+             return value;
+          }
+        },
+        
+        {
+        formatContent: function(value){
+             
+        
+             var re=/&lt;/g;
+             var dre="<";             
+             var  aaaa=value.replace(re,dre);
+             var re=/&gt;/g;
+             var dre=">";  
+             value=aaaa.replace(re,dre); 
+               
+             return value;
+          }
+        }
+        
+        
+        ,
+        
+                {
+        formatState: function(value){
+        var temp;
+        if(value==1){
+        temp='<img title="有害信息" src="/newver/resources/themes/images/share/error.gif" style="position:relative;top:2px;"><font color=red>&nbsp;有害信息</font>';
+        }
+        else if(value==2){
+         temp='<img title="线索信息" src="/newver/resources/themes/images/share/accept.gif"  style="position:relative;top:2px;"><font color=blue>&nbsp;线索信息</font>';
+       
+        }
+        else{
+        temp='<img title="待处理信息" src="/newver/resources/themes/images/share/manual.png"  style="position:relative;top:2px;"><font color=green>&nbsp;待处理</font>';
+        }
+            
+             
+              
+             return temp;
+          }
+        }
+        
+        );
+
+    var panel = Ext.create('Ext.panel.Panel', {
+//        title: 'Forum Search',
+        height: 830,
+ //       width: 600,
+        renderTo: 'search-panel',
+        id: 'search-results',
+        layout: 'fit',
+        items: {
+            autoScroll: true,
+            xtype: 'dataview',
+            tpl: resultTpl,
+            store: store,
+            itemSelector: 'div.search-item'
+        },
+        	tbar: Ext.create('Ext.PagingToolbar1', 
+{
+            store: store,
+            
+            displayInfo: true,
+            displayMsg: '显示{0} - {1}条记录 共{2}条记录',
+            emptyMsg: "没有记录可显示",
+                                       
+            items: [
+ //          '->',
+            '-',
+           {
+           xtype:'label',
+            html:'&nbsp;<select name="time_flag" id="time_flag"  onchange="if(this.value==9){showCxForm();return;};document.getElementById(\'form1\').time_flag.value=this.value;"><option value="">时间不限</option><option value="1">今天</option><option value="2">最近三天</option><option value="3">最近一周</option><option value="4">最近一月</option><option value="5">最近三月</option><option value="6">最近半年</option><option value="9">自定义时间</option></select><select name="field_flag" onchange="document.getElementById(\'form1\').field_flag.value=this.value"><option value="8">内容关键字</option><option value="1">用户名</option><option value="2">上网IP</option><option value="3">MAC地址</option><option value="4">证件号码</option><option value="5">上网单位</option><option value="6">上网位置/房间号</option><option value="7">命中关键字</option></select>包含'
+           
+            
+             }
+             ,
+             {
+               xtype:'textfield',
+               id:'keyword1',
+               name:'keyword1',
+               width:'120',
+               style:'color:#7aa7d5',
+               enableKeyEvents:true,
+               value:'请输入查询内容',
+               listeners:{
+                 'focus':function(){
+                 if(this.value=='请输入查询内容'){                
+                    this.setValue('');
+                  }
+                 },
+                   'keydown' : function(i,e){
+                var aae=e.getKey() ; 
+		            if(aae==13){
+                 var aa=Ext.getCmp('keyword1').value;
+                
+                if(aa!='请输入查询内容'){
+                  	document.getElementById("form1").keyword.value=aa;
+                 }
+     
+                 document.getElementById("form1").kflag.value=document.getElementById('kflag').value;
+       
+                 document.getElementById("form1").sdate.value='';  
+                 document.getElementById("form1").edate.value='';
+                 document.getElementById("form1").sip.value='';
+                 document.getElementById("form1").mac.value='';
+                 document.getElementById("form1").position.value='';
+                 document.getElementById("form1").keycond.value='';
+                 document.getElementById("form1").cname.value='';
+                 document.getElementById("form1").dispname.value='';
+                 document.getElementById("form1").idno.value='';
+                 document.getElementById("form1").did.value='';
+                 document.getElementById("form1").groupid.value='';
+                 store.currentPage=1;
+                 reflash();
+		               
+               }
+                 }
+                 
+               }
+             },
+             {
+                text:'确认',
+                iconCls:'accept',
+                handler: function(){
+                 var aa=Ext.getCmp('keyword1').value;
+                
+                if(aa!='请输入查询内容'){
+                  	document.getElementById("form1").keyword.value=aa;
+                 }
+                 document.getElementById("form1").kflag.value=document.getElementById('kflag').value;
+                 document.getElementById("form1").sdate.value='';  
+                 document.getElementById("form1").edate.value='';
+                 document.getElementById("form1").sip.value='';
+                 document.getElementById("form1").mac.value='';
+                 document.getElementById("form1").position.value='';
+                 document.getElementById("form1").keycond.value='';
+                 document.getElementById("form1").cname.value='';
+                 document.getElementById("form1").dispname.value='';
+                 document.getElementById("form1").idno.value='';
+                 document.getElementById("form1").did.value='';
+                 document.getElementById("form1").groupid.value='';
+                 store.currentPage=1;
+                 reflash();
+              
+                }
+            },
+            '-',
+            {
+                text:'高级',
+                anchor: 'right',
+  //            xtype: 'button',
+   //             menu:menu_cx,
+                
+               handler: showCxForm,
+                iconCls:'option'
+            },
+           '-',{
+                text:'导出',
+                iconCls:'exp',
+                handler:function(){
+
+                document.getElementById('form1').exp.value='exp';
+                document.getElementById("form1").submit();
+               document.getElementById("form1").exp.value="";
+              
+                }
+            },
+            '->',
+             {
+            xtype:'label',
+            html:'&nbsp;日志状态<select name="kflag" id="kflag"  onchange="document.getElementById(\'form1\').kflag.value=this.value;reflash();"><option value="0">待处理</option><option value="">全部日志</option><option value="1">有害日志</option></select>'
+           
+            
+             }
+            ]
+       
+
+        })
+    });
+    reflash();
+});
+</script>
+</head>
+<body >
+	<form name="form1" id="form1" action="/pronline/Msg">
+		<input type="hidden" name="FunName" value="ncsKewordlog_v4">
+		<input type="hidden" name="groupid" value="">
+		<input type="hidden" name="did" value="">	
+		<input type="hidden" name="uid" value="">
+		<input type="hidden" name="keyword" value="">
+		<input type="hidden" name="time_flag" value="">
+		<input type="hidden" name="field_flag" value="8">
+		<input type="hidden" name="sdate" value="">
+		<input type="hidden" name="edate" value="">
+		<input type="hidden" name="sip" value="">
+		<input type="hidden" name="mac" value="">
+		<input type="hidden" name="cname" value="">
+		<input type="hidden" name="position" value="">
+		<input type="hidden" name="servicecode" value="">
+		<input type="hidden" name="idno" value="">
+		<input type="hidden" name="dispname" value="">
+		<input type="hidden" name="keycond" value="">
+		<input type="hidden" name="kflag" value="0">
+		<input type="hidden" name="exp" value="">
+	</form>
+    <div id="search-panel">
+</div>
+</body>
+</html>

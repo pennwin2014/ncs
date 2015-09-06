@@ -1,0 +1,629 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<title></title>
+<link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" /> 
+<style type="text/css">
+	.icon-grid 
+	{
+		background-image:url(/newver/resources/themes/images/share/grid.png) !important;
+	}
+	.add 
+	{
+ 		background-image:url(/newver/resources/themes/images/share/add.gif) !important;
+	}
+	.option 
+	{
+        	background-image:url(/newver/resources/themes/images/share/plugin.gif) !important;
+	}
+	.remove 
+	{
+		background-image:url(/newver/resources/themes/images/share/delete.gif) !important;
+	}
+	.exp 
+	{
+		background-image:url(/newver/resources/themes/images/share/application_go.png) !important;
+	}
+	.accept 
+	{
+		background-image:url(/newver/resources/themes/images/share/accept.png) !important;
+	}
+	.x-form-clear-trigger 
+	{
+        	background-image: url(/newver/resources/themes/images/default/form/clear-trigger.gif);
+	}
+	.x-form-search-trigger 
+	{
+        	background-image: url(/newver/resources/themes/images/default/form/search-trigger.gif);
+	}
+	.x-selectable, .x-selectable * 
+	{   
+    		-moz-user-select: text!important;   
+		-khtml-user-select: text!important;   
+	}   
+</style>
+<script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+<script>  
+  		
+	Ext.Loader.setConfig({enabled: true});
+	Ext.Loader.setPath('Ext.ux', '/newver/ux/');
+	Ext.require([
+    		'Ext.form.*',
+    		'Ext.window.*',
+    		'Ext.grid.*',
+    		'Ext.data.*',
+    		'Ext.util.*',
+    		'Ext.window.MessageBox',
+    		'Ext.toolbar.Paging',
+    		'Ext.ux.PreviewPlugin',
+	]);
+	
+	Ext.onReady(function()
+	{
+		
+		
+		Ext.define('Demo.form.field.ComboTree', {
+	extend: "Ext.form.field.Picker",
+	xtype: 'treecombox',
+	requires: ["Ext.tree.Panel"],
+	alias: 'widget.combotree',
+	
+    triggerCls: Ext.baseCSSPrefix + 'form-arrow-trigger',
+ 
+    /**
+     * 是否启用多选
+     * @type Boolean
+     */
+    multiSelect: false,
+
+    /**
+     * 多选时在文本上的分隔符
+     * @type String
+     */
+    delimiter: ', ',
+
+    /**
+     * 显示列
+     * @type String
+     */
+    displayField: 'text',
+    
+	autoSelect: true,
+
+	/**
+	 * true 必须选树上的值
+	 * false 允许设置任意值
+	 * @type Boolean
+	 */
+    forceSelection: false,
+    
+    defaultTreeConfig: {
+    	height:200,
+        minWidth: 70,
+        maxHeight: 300,
+        shadow: 'sides'
+    },
+
+    /**
+	 * true 必须选叶子
+	 * false 允许选择任意节点
+	 * @type Boolean
+	 */
+    leafSelection : false,
+    
+    //private
+    ignoreSelection: 0,
+    initComponent: function() {
+        var me = this,
+            isDefined = Ext.isDefined,
+            store = me.store;
+
+        //<debug>
+        if (!store) {
+            Ext.Error.raise('Either a valid store, must be configured on the combo.');
+        }
+        if (me.selectOnFocus && !me.editable) {
+            Ext.Error.raise('If selectOnFocus is enabled the combo must be editable: true -- please change one of those settings.');
+        }
+        //</debug>
+
+        this.addEvents(
+            /*
+             * @event select
+             * Fires when at least one list item is selected.
+             * @param {Ext.form.field.ComboBox} combo This combo box
+             * @param {Array} records The selected records
+             */
+            'select'
+        );
+        
+        me.bindStore(store, true);
+        store = me.store;
+
+        if (!isDefined(me.valueField)) {
+            me.valueField = me.displayField;
+        }
+        
+        if (!me.displayTpl) {
+            me.displayTpl = Ext.create('Ext.XTemplate',
+                '<tpl for=".">' +
+                    '{[typeof values === "string" ? values : values.' + me.displayField + ']}' +
+                    '<tpl if="xindex < xcount">' + me.delimiter + '</tpl>' +
+                '</tpl>'
+            );
+        } else if (Ext.isString(me.displayTpl)) {
+            me.displayTpl = Ext.create('Ext.XTemplate', me.displayTpl);
+        }
+
+        me.callParent();
+        
+        if (me.store.getCount() > 0) {
+            me.setValue(me.value);
+        }
+
+    },
+
+    beforeBlur: function() {
+        var me = this;
+        if (me.forceSelection) {
+            me.assertValue();
+        } else {
+            me.collapse();
+        }
+    },
+    
+    // private
+    assertValue: function() {
+        var me = this,
+            value = me.getRawValue(),
+            rec;
+
+        if (me.multiSelect) {
+            // For multiselect, check that the current displayed value matches the current
+            // selection, if it does not then revert to the most recent selection.
+            if (value !== me.getDisplayValue()) {
+                me.setValue(me.lastSelection);
+            }
+        } else {
+            // For single-select, match the displayed value to a record and select it,
+            // if it does not match a record then revert to the most recent selection.
+            rec = me.findRecordByDisplay(value);
+            if (rec) {
+                me.select(rec);
+            } else {
+                me.setValue(me.lastSelection);
+            }
+        }
+        me.collapse();
+    },
+        
+    // invoked when a different store is bound to this combo
+    // than the original
+    resetToDefault: function() {
+
+    },
+    
+    bindStore: function(store, initial) {
+        var me = this,
+            oldStore = me.store;
+
+        // this code directly accesses this.picker, bc invoking getPicker
+        // would create it when we may be preping to destroy it
+        if (oldStore && !initial) {
+            if (oldStore !== store && oldStore.autoDestroy) {
+                oldStore.destroy();
+            } else {
+                oldStore.un({
+                    scope: me,
+                    load: me.onLoad,
+                    exception: me.collapse
+                });
+            }
+            if (!store) {
+                me.store = null;
+                if (me.picker) {
+                    me.picker.bindStore(null);
+                }
+            }
+        }
+        if (store) {
+            if (!initial) {
+                me.resetToDefault();
+            }
+
+            me.store = Ext.data.StoreManager.lookup(store);
+            me.store.on({
+                scope: me,
+                load: me.onLoad,
+                exception: me.collapse
+            });
+
+            if (me.picker) {
+                me.picker.bindStore(store);
+            }
+        }
+    },
+    
+    onLoad: function() {
+        var me = this,
+            value = me.value;
+
+        // If performing a remote query upon the raw value...
+        if (me.rawQuery) {
+            me.rawQuery = false;
+            me.syncSelection();
+            if (me.picker && !me.picker.getSelectionModel().hasSelection()) {
+                me.doAutoSelect();
+            }
+        }
+        // If store initial load or triggerAction: 'all' trigger click.
+        else {
+            // Set the value on load
+            if (me.value) {
+                me.setValue(me.value);
+            } else {
+                // There's no value.
+                // Highlight the first item in the list if autoSelect: true
+                if (me.store.getCount()) {
+                    me.doAutoSelect();
+                } else {
+                    me.setValue('');
+                }
+            }
+        }
+    },
+
+    /**
+     * @private
+     * If the autoSelect config is true, and the picker is open, highlights the first item.
+     */
+    doAutoSelect: function() {
+        var me = this,
+            picker = me.picker,
+            lastSelected, itemNode;
+        if (picker && me.autoSelect && me.store.getCount() > 0) {
+            // Highlight the last selected item and scroll it into view
+            lastSelected = picker.getSelectionModel().lastSelected;
+            itemNode = picker.getNode(lastSelected || 0);
+            if (itemNode) {
+                picker.highlightItem(itemNode);
+                picker.listEl.scrollChildIntoView(itemNode, false);
+            }
+        }
+    },
+
+    onTriggerClick: function() {
+        var me = this;
+        if (!me.readOnly && !me.disabled) {
+            if (me.isExpanded) {
+                me.collapse();
+            } else {
+               me.expand();
+            }
+            me.inputEl.focus();
+        }
+    },
+    
+    createPicker: function(){
+        var me = this,
+            picker,
+            menuCls = Ext.baseCSSPrefix + 'menu',
+            opts = Ext.apply({
+                selModel: {
+                    mode: me.multiSelect ? 'SIMPLE' : 'SINGLE'
+                },
+                floating: true,
+                hidden: true,
+                ownerCt: me.ownerCt,
+                cls: me.el.up('.' + menuCls) ? menuCls : '',
+                store: me.store,
+                displayField: me.displayField,
+                focusOnToFront: false,
+                tpl: me.tpl
+            }, me.treeConfig, me.defaultTreeConfig);
+
+        picker = me.picker = Ext.create('Ext.tree.Panel', opts);
+
+        me.mon(picker, {
+            itemclick: me.onItemClick,
+            refresh: me.onTreeRefresh,
+            beforeload: function(){},
+            scope: me
+        });
+
+        me.mon(me.picker.getSelectionModel(), 'selectionchange', me.onTreeSelectionChange, me);;
+
+
+        return me.picker;
+    },
+    
+    alignPicker: function() {
+        // override the original method because otherwise the height of the treepanel would be always 0
+        var me = this,
+                picker, isAbove,
+                aboveSfx = '-above';
+        if (this.isExpanded) {
+            picker = me.getPicker();
+            if (me.matchFieldWidth) {
+                // Auto the height (it will be constrained by min and max width) unless there are no records to display.
+                picker.setWidth( me.bodyEl.getWidth() );
+            }
+            if (picker.isFloating()) {
+                picker.alignTo(me.inputEl, me.pickerAlign, me.pickerOffset);
+                // add the {openCls}-above class if the picker was aligned above
+                // the field due to hitting the bottom of the viewport
+                isAbove = picker.el.getY() < me.inputEl.getY();
+                me.bodyEl[isAbove ? 'addCls' : 'removeCls'](me.openCls + aboveSfx);
+                picker.el[isAbove ? 'addCls' : 'removeCls'](picker.baseCls + aboveSfx);
+            }
+        }
+    },
+    
+    onTreeRefresh: function() {
+        this.alignPicker();
+        this.syncSelection();
+    },
+    
+    onItemClick: function(picker, record){
+        /*
+         * If we're doing single selection, the selection change events won't fire when
+         * clicking on the selected element. Detect it here.
+         */
+        var me = this,
+            lastSelection = me.lastSelection,
+            valueField = me.valueField,
+            selected;
+    	
+		if(me.leafSelection && !record.isLeaf()) {
+    		return;
+    	}
+        if (!me.multiSelect && lastSelection) {
+            selected = lastSelection[0];
+            if (selected && (record.get(valueField) === selected.get(valueField))) {
+                me.collapse();
+            }
+        }
+    },
+    
+	onTreeSelectionChange: function(sm, selectedRecords) {
+        var me = this,
+            isMulti = me.multiSelect,
+            hasRecords = selectedRecords.length > 0,
+            collapse = true;
+        // Only react to selection if it is not called from setValue, and if our list is
+        // expanded (ignores changes to the selection model triggered elsewhere)
+        if (!me.ignoreSelection && me.isExpanded) {
+        	
+        	Ext.Array.each(selectedRecords, function(node) {
+        		if(me.leafSelection && !node.isLeaf()) {
+		    		collapse = false;
+		    	}
+        	});
+        	if(!collapse)
+        		return;
+            if (!isMulti) {
+                Ext.defer(me.collapse, 1, me);
+            }
+            /*
+             * Only set the value here if we're in multi selection mode or we have
+             * a selection. Otherwise setValue will be called with an empty value
+             * which will cause the change event to fire twice.
+             */
+            if (isMulti || hasRecords) {
+                me.setValue(selectedRecords, false);
+            }
+            if (hasRecords) {
+                me.fireEvent('select', me, selectedRecords);
+            }
+            me.inputEl.focus();
+        }
+    },
+
+    select: function(r) {
+        this.setValue(r, true);
+    },
+
+    findRecord: function(field, value) {
+    	var me = this, record, key,
+    		nodes = me.store.tree.nodeHash;
+    	for(key in nodes) {
+    		record = nodes[key];
+    		if(record.get(field) === value) {
+    			return record;
+    		}
+    	}
+        return false;
+    },
+    
+    findRecordByValue: function(value) {
+        return this.findRecord(this.valueField, value);
+    },
+    
+    findRecordByDisplay: function(value) {
+        return this.findRecord(this.displayField, value);
+    },
+    
+    setValue: function(value, doSelect) {
+        var me = this,
+            valueNotFoundText = me.valueNotFoundText,
+            inputEl = me.inputEl,
+            i, len, record,
+            models = [],
+            displayTplData = [],
+            processedValue = [];
+			
+        if (me.store.tree.root && me.store.tree.root.isLoading()) {
+            // Called while the Store is loading. Ensure it is processed by the onLoad method.
+            me.value = value;
+            return me;
+        }
+
+        // This method processes multi-values, so ensure value is an array.
+        value = Ext.Array.from(value);
+
+        // Loop through values
+        for (i = 0, len = value.length; i < len; i++) {
+            record = value[i];
+            if (!record || !record.isModel) {
+            	record = me.findRecordByValue(record);
+            }
+            // record found, select it.
+            if (record) {
+                models.push(record);
+                displayTplData.push(record.data);
+                processedValue.push(record.get(me.valueField));
+            }
+            // record was not found, this could happen because
+            // store is not loaded or they set a value not in the store
+            else {
+                // if valueNotFoundText is defined, display it, otherwise display nothing for this value
+                if (Ext.isDefined(valueNotFoundText)) {
+                    displayTplData.push(valueNotFoundText);
+                }
+                processedValue.push(value[i]);
+            }
+        }
+
+        // Set the value of this field. If we are multiselecting, then that is an array.
+        me.value = me.multiSelect ? processedValue : processedValue[0];
+        if (!Ext.isDefined(me.value)) {
+            me.value = null;
+        }
+        me.displayTplData = displayTplData; //store for getDisplayValue method
+        me.lastSelection = me.valueModels = models;
+
+        if (inputEl && me.emptyText && !Ext.isEmpty(value)) {
+            inputEl.removeCls(me.emptyCls);
+        }
+
+        // Calculate raw value from the collection of Model data
+        me.setRawValue(me.getDisplayValue());
+        me.checkChange();
+        
+		if (doSelect !== false) {
+            me.syncSelection();
+        }
+        
+        me.applyEmptyText();
+
+        return me;
+    },
+    
+    getDisplayValue: function() {
+        return this.displayTpl.apply(this.displayTplData);
+    },
+
+    getValue: function() {
+        // If the user has not changed the raw field value since a value was selected from the list,
+        // then return the structured value from the selection. If the raw field value is different
+        // than what would be displayed due to selection, return that raw value.
+        var me = this,
+            picker = me.picker,
+            rawValue = me.getRawValue(), //current value of text field
+            value = me.value; //stored value from last selection or setValue() call
+
+        if (me.getDisplayValue() !== rawValue) {
+            value = rawValue;
+            me.value = me.displayTplData = me.valueModels = null;
+            if (picker) {
+                me.ignoreSelection++;
+                picker.getSelectionModel().deselectAll();
+                me.ignoreSelection--;
+            }
+        }
+
+        return value;
+    },
+
+    getSubmitValue: function() {
+        return this.getValue();
+    },
+    
+    isEqual: function(v1, v2) {
+        var fromArray = Ext.Array.from,
+            i, len;
+
+        v1 = fromArray(v1);
+        v2 = fromArray(v2);
+        len = v1.length;
+
+        if (len !== v2.length) {
+            return false;
+        }
+
+        for(i = 0; i < len; i++) {
+            if (v2[i] !== v1[i]) {
+                return false;
+            }
+        }
+
+        return true;
+    },
+
+    /**
+     * Clears any value currently set in the ComboBox.
+     */
+    clearValue: function() {
+        this.setValue([]);
+    },
+    
+    /**
+     * @private Synchronizes the selection in the picker to match the current value of the combobox.
+     */
+    syncSelection: function() {
+        var me = this,
+            ExtArray = Ext.Array,
+            picker = me.picker,
+            selection, selModel;
+        if (picker) {
+            // From the value, find the Models that are in the store's current data
+            selection = [];
+            ExtArray.forEach(me.valueModels || [], function(value) {
+                if (value && value.isModel && me.store.tree.nodeHash[value.get(me.store.model.prototype.idProperty)]) {
+                    selection.push(value);
+                }
+            });
+
+            // Update the selection to match
+            me.ignoreSelection++;
+            selModel = picker.getSelectionModel();
+            selModel.deselectAll();
+            if (selection.length) {
+                selModel.select(selection);
+            }
+            me.ignoreSelection--;
+        }
+    }
+}) 
+		
+		panel = Ext.create('Ext.panel.Panel', 
+		{
+        		renderTo: Ext.getBody(),
+        		width: 600,
+        		bodyPadding: 0,
+        		layout: 'anchor',
+        		items : [
+        		{
+        			 xtype : 'treecombox',
+                    		 fieldLabel : '机构',
+                   	 	 name : 'organizationId',
+                    		 allowBlank: false,
+                    		 treeConfig : {
+                        			useArrows : true,
+                        			rootVisible : false
+                    		},
+                    		displayField : 'text',
+                    		valueField : 'id',
+                    		forceSelection : true,
+                    		store : Ext.create('Ext.data.TreeStore', 
+                    		{
+                        		proxy : 
+                        		{
+                            			type : 'ajax',
+                            			url : '/organization/statictree'
+                        		}
+                    		})
+        		}]  
+	 	});
+	});
+</script>

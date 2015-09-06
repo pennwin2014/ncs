@@ -1,0 +1,611 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>管理中心</title>
+<link href="/css/css_main.css" rel="stylesheet" type="text/css">
+
+
+<script>
+
+var rfun='';
+rfun=parent.right_fun;
+var right_sy=parent.right_sy;
+
+var url_sy;
+var right_id;
+
+
+var menu_data=new Array();
+
+    if(right_sy=='单位管理'||right_sy=='用户管理'){
+    	right_id='dwgl';
+    	url_sy="/v4/ncs_user_list.htm";
+  
+    }
+	  else if(right_sy=='单位组'){
+	  	right_id="dwz";
+	  	url_sy="/v4/ncs_group_list.htm";
+	  	
+	  }
+	  else if(right_sy=='归档日志'){
+	  	right_id="gdrz";
+	  	url_sy="/v4/ncs_gdrz_lab.htm";
+	  }
+	  else if(right_sy=='在线单位'){
+	  	right_id="zxdw";
+	  	url_sy="/v4/ncs_onlinecorp_list.htm";
+	  
+	  }
+	  else if(right_sy=='在线率统计'){
+	  	right_id="zxtj";
+	  	url_sy="/v4/ncs_onlinestat_list.htm";
+	  }
+	  else if(right_sy=='告警信息'){
+	  	right_id="gjxx";
+	  	url_sy="/v4/ncs_casemesg_list.htm";
+	  }
+	  else if(right_sy=='布控管理'){
+	  	right_id="bkgl";
+	  	url_sy="/v4/ncs_case_lab.htm";
+	  	tab_html='<iframe  id="viewIframe_bkgl" name="viewIframe_bkgl" src="/v4/ncs_case_lab.htm"  width=100% height=950  FrameBorder=0 scrolling="no"></iframe>';
+	  }
+	  else if(right_sy=='权限管理'){
+	  	right_id="xtgl";
+	    url_sy="/v4/ncs_role_list.htm";
+	  	
+	  }
+	  else if(right_sy=='综合统计'){
+	  	right_id="zhtj";
+	  	url_sy="/pronline/Msg?FunName@ncsShowZhtj_v4";
+	  
+	  }
+	  else if(right_sy=='关键字归档'){
+	  	right_id="keywordgdmenu";
+	  	url_sy="/v4/sentive/ncs_keywordlog_list.htm";
+
+	  }
+	  else if(right_sy=='系统操作日志'){
+	  	right_id="czrimenu";
+	  	url_sy="/v4/ncs_syslog_list.htm";
+
+	  }
+	  else if(right_sy=='敏感监控'){
+	  	right_id="mgjkrz";
+	  	url_sy="/v4/ncs_mgjk_lab.htm";
+
+	  }
+	  else if(right_sy=='敏感规则'||right_sy=='关键字管理'){
+	  	right_id="mggz";
+	  	url_sy="/v4/ncs_mggz_lab.htm";
+
+	  }
+	  else if(right_sy=='虚拟身份库'){
+	  	right_id="xnsfkmenu";
+	  	url_sy="/v4/vid/ncs_vid_lab.htm";
+
+	  }
+	  else if(right_sy=='运行分析'){
+	  	right_id="yxfx";
+	  	url_sy="/v4/ncs_yxfx_lab.htm";
+
+	  }
+	  else{	  
+	  	right_id="zhtj";
+	  		url_sy="/pronline/Msg?FunName@ncsShowZhtj_v4";
+	  	
+	  }
+
+
+
+
+
+  menu_data[0]={
+	  id: 'sy',
+	  level: 0,
+	  title: '首页',
+	  url: url_sy,
+	  	  children: [
+   
+	  ]
+  };
+
+
+  menu_data[1]={
+	  id: 'dwglmenu',
+	  level: 1,
+	  title: '单位管理',
+//	  url: '/v4/ncs_user_list.htm',
+	  	  children: [
+			  {
+		    id: 'dwgl',
+		    title: '单位管理',
+		    url: '/v4/ncs_user_list.htm'
+			  },
+			  {
+			    id: 'zxdw',
+			    title: '在线单位',
+			    url: '/v4/ncs_onlinecorp_list.htm'
+			  },
+			  {
+			    id: 'dwz',
+			    title: '单位组',
+			    url: '/v4/ncs_group_list.htm'
+			  },
+			  {
+			    id: 'cswh',
+			    title: '接入厂商代码维护',
+			    url: '/v4/ncs_joinuser_list.htm'
+			  }      
+	  ]
+  };
+  
+  menu_data[2]={
+	  id: 'sfkgl',
+	  level: 1,
+	  title: '身份库管理',
+//	  url: '/v4/ncs_group_list.htm',
+	  	  children: [
+			  {
+		    id: 'swyhkmenu',
+		    title: '上网用户库',
+		    url: '/v4/ncs_enduser_list.htm'
+			  },
+           {
+		        id: 'mkdzmenu',
+				    title: 'MAC地址库',
+				    url: '/v4/vid/ncs_macvid_list.htm'
+           	   
+           },
+			  {
+			    id: 'xnsfkmenu',
+			    title: '虚拟身份库',
+			    url: '/v4/vid/ncs_vid_lab.htm'
+			  }
+	  ]
+  };
+
+  menu_data[3]={
+	  id: 'mggzMenuw',
+	  level: 1,
+	  title: '敏感监控',
+//	  url: '/v4/ncs_gdrz_lab.htm',
+	  children: [
+			  {
+		    id: 'mggzMenu',
+		    title: '敏感监控',
+		    url: '/v4/ncs_mgjk_lab.htm'
+			  }  
+	  ]
+  };
+ 
+   menu_data[4]={
+	  id: 'mggzw',
+	  level: 1,
+	  title: '关键字管理',
+//	  url: '/v4/ncs_gdrz_lab.htm',
+	  children: [
+			  {
+		    id: 'mggz',
+		    title: '关键字管理',
+		    url: '/v4/ncs_mggz_lab.htm'
+			  }  
+	  ]
+  };
+ 
+    menu_data[5]={
+	  id: 'yxfxw',
+	  level: 1,
+	  title: '运行分析',
+//	  url: '/v4/ncs_gdrz_lab.htm',
+	  children: [
+			  {
+		    id: 'yxfx',
+		    title: '运行分析',
+		    url: '/v4/ncs_yxfx_lab.htm'
+			  }  
+	  ]
+  };
+ 
+ 
+  menu_data[6]={
+//	  id: 'zxdw',
+	  level: 1,
+	  title: '归档日志',
+//	  url: '/v4/ncs_onlinecorp_list.htm',
+	  	  children: [
+			  {
+		    id: 'gdrz',
+		    title: '归档日志',
+		    url: '/v4/ncs_gdrz_lab.htm'
+			  }
+	//		  ,
+	//		  {
+	//		    id: 'qwjs',
+	//		    title: '全文检索',
+	//		    url: '/v4/ncs_gdrz_lab.htm'
+	//		  }
+	  ]
+  };
+
+  menu_data[7]={
+	  id: 'zxtj',
+	  level: 1,
+	  title: '统计报表',
+//	  url: '/v4/ncs_onlinestat_list.htm',
+	  	 children: [
+			  {
+		    id: 'zxtj',
+		    title: '当前在线率',
+		    url: '/v4/ncs_onlinestat_list.htm'
+			  },
+			  {
+			    id: 'zhtj',
+			    title: '综合统计',
+			    url: '/pronline/Msg?FunName@ncsShowZhtj_v4'
+			  },
+			  {
+			    id: 'gzqkmenu',
+			    title: '信息处理统计',
+			    url: '/v4/stat/ncs_gzstat_lab.htm'
+			  }
+	  ]
+  };
+
+  menu_data[8]={
+	  id: 'bkgl',
+	  level: 1,
+	  title: '布控管理',
+	  url: '/v4/ncs_casemesg_list.htm',
+	  	 children: [
+			  {
+		    id: 'bkgl',
+		    title: '布控管理',
+		    url: '/v4/ncs_case_lab.htm'
+			  },
+			  {
+			    id: 'gjxx',
+			    title: '告警信息',
+			    url: '/v4/ncs_casemesg_list.htm'
+			  },
+			  {
+			    id: 'mailserver',
+			    title: '邮件服务器参数设置',
+			    url: '/pronline/Msg?FunName@ncMailSendSet_par'
+			  }
+	  ]
+  };
+  
+
+  menu_data[9]={
+	  id: 'xtsz',
+	  level: 1,
+	  title: '系统设置',
+	  url: '/v4/ncs_case_lab.htm',
+	  children: []
+  };
+   
+  menu_data[10]={
+	  id: 'qxgl',
+	  level: 1,
+	  title: '权限管理',
+	  children: [
+			  {
+		    id: 'rolemenu',
+		    title: '权限角色',
+		    url: '/v4/ncs_role_list.htm'
+			  },
+			  {
+			    id: 'xtyhmenu',
+			    title: '系统用户',
+			    url: '/v4/ncs_adminuser_list.htm'
+			  },
+			  {
+			    id: 'ydmbmenu',
+			    title: '移动密保管理',
+			    url: '/pronline/Msg?FunName@ncsWebReplace&plate@ds/ds_mbauth.htm&fname@ncWebDisplayMbManager'
+			  },
+			  {
+			    id: 'czrimenu',
+			    title: '系统操作日志',
+			    url: '/v4/ncs_syslog_list.htm'
+			  }	 	 	  
+	  ]
+  };
+  
+
+  menu_data[11]={
+	  id: 'myaccount',
+	  level: 1,
+	  title: '我的帐号',
+	  children: [
+			  {
+		    id: 'modpass',
+		    title: '修改密码',
+		    url: '/pronline/Msg?FunName@ncsWebDispModiPass'
+			  },
+			  {
+			    id: 'mytool',
+			    title: '我的工具栏',
+			    url: '/pronline/Msg?FunName@ncsDispTool_v4'
+			  }	 	  
+	  ]
+  };
+
+
+
+var tree_menu_data=new Array();
+
+var m=0;
+var i;
+  tree_menu_data[m]=menu_data[0];
+  m++;
+  for(i=0;i<menu_data.length;i++){
+ 
+  	if(rfun.indexOf(menu_data[i].title)!=-1||menu_data[i].title=='我的帐号'||(rfun.indexOf('敏感规则')!=-1&&menu_data[i].title=='关键字管理')){
+  	   tree_menu_data[m]=menu_data[i];
+  	   m++;
+  	}
+	}
+
+  
+  
+
+//根据树形图数据，构建左侧树形列表
+function init_tree_menu(menu_data, ctn) {
+  var TMPLT = '<dl><dt style="@DTSTL@" onclick="@ONCLICK@">@TITLE@</dt><dd class="undis">@LIST@</dd></dl>';
+  var DECORATE_TITLE = '<a href="javascript:void(0);" onclick="onClickLeafNode(\'@URL@\',\'@TITLE@\',\'@ID@\');" id="leaf_@ID@_a">@TITLE@</a>';
+  var LEVEL_0_TITLE = '<a href="javascript:void(0);" onclick="onClickLeafNode(\'@URL@\',\'@TITLE@\',\'@ID@\');" style="background-image:none;color:#06c; font-weight:600;">@TITLE@</a>';
+  var LI_TMPLT = '<li id="leaf_@ID@">' + DECORATE_TITLE + '</li>';
+  var id_url_mapper = {};
+  var result = [];
+  for (var i = 0; i < menu_data.length; i++) {
+    var data = menu_data[i];
+    var level = data['level'];
+    var hiddend=data['hidden'];
+   
+    var html = '';
+    switch (level) {
+    case 0:
+      {
+        var html = TMPLT.replace(/@TITLE@/ig, LEVEL_0_TITLE).replace(/@TITLE@/ig, data['title']).replace(/@LIST@/ig, '').replace(/@URL@/ig, data['url']).replace(/@ONCLICK@/ig, "").replace(/@DTSTL@/ig, "background:url(/images/v4/dhrow.gif);");
+        id_url_mapper['l' + data['id']] = data['url'];
+        break
+      }
+    case 1:
+      var li_html = [];
+      li_html.push('<ul>');
+      for (var j = 0; j < data['children'].length; j++) {
+        var child = data['children'][j];
+        li_html.push(LI_TMPLT.replace(/@TITLE@/ig, child['title']).replace(/@URL@/ig, child['url']).replace(/@ID@/ig, child['id']))
+        id_url_mapper['l' + child['id']] = child['url'];
+      }
+      li_html.push('</ul>');
+      html = TMPLT.replace(/@TITLE@/ig, data['title']).replace(/@LIST@/ig, li_html.join('')).replace(/@ONCLICK@/ig, "leftmenu(this,'dd');");
+      break;
+    }
+    result.push(html);
+  } !! $(ctn) ? $(ctn).innerHTML = result.join('') : '';
+  
+
+  return id_url_mapper;
+}
+
+
+</script>
+
+</head>
+
+<body style="background-color:#DFF0F7;"  marginheight=0 leftmargin=0 marginwidth=0 topMargin="0">
+
+
+<div id="left">
+  <div class="left_wrap" id="left_wrap"></div>
+</div>
+
+<div id="right">
+  <div class="right_wrap" id="right_wrap">
+  
+  </div>
+</div>
+
+
+<div class="clear"></div>
+</div>
+
+
+<script>
+	var $=function(objectId){
+	if(document.getElementById&&document.getElementById(objectId)){
+		return document.getElementById(objectId)}
+	else if(document.all&&document.all(objectId)){
+		return document.all(objectId)}
+	else if(document.layers&&document.layers[objectId]){
+		return document.layers[objectId];}
+	else{
+		return false;}
+	};
+
+  			
+			     			</script>
+<script language="javascript">
+
+//重新给颜色切换设置事件响应函数，以便支持iframe内的颜色切换
+var g_deltaHeight = 30;
+function getColor() {
+  if ($('ipt_fc_cn') && $('ipt_fc_en')) {
+    if ($('ipt_fc_cn').checked) return 0;
+    else return 1
+  } else return 0
+}
+function onInitColorChange() {
+  var _onChangeColor = function(color) {
+    if (typeof colorset == 'function') colorset(color);
+    if ($('moduleIframe')) {
+      try {
+        $('moduleIframe').contentWindow['onChangeColor'](color)
+      } catch(e) {
+        if (window.console) window.console.log('error in onOpenModuleInParent' + e)
+      }
+    }
+  };
+  if ($('ipt_fc_cn') && $('ipt_fc_en')) {
+    $('ipt_fc_cn').onclick = function() {
+      _onChangeColor(0)
+    }
+    $('ipt_fc_en').onclick = function() {
+      _onChangeColor(1)
+    }
+  }
+}
+
+//更改选中的左侧叶子节点的背景
+function setLeftNavBg(leaf_id)
+{
+    var p = $('left_wrap');
+    var pcli = p.getElementsByTagName('li');
+    for (var i=0; i<pcli.length; i++)
+    {
+        if (pcli[i].id == 'leaf_'+leaf_id)
+        {
+//            pcli[i].style.background='url(/images/v4/bg_4.gif) no-repeat';
+            
+        }
+        else
+        {
+  //          pcli[i].style.background='url(/images/v4/bg_3.gif) no-repeat scroll 15px 0 transparent';
+        }
+    }
+    
+}
+
+//点击左侧列表的叶节点，叶节点表示可以直接打开页面的节点
+function onClickLeafNode(url,title,id){
+  var leaf_id = onOpenModule(url,title,id);
+  setLeftNavBg(leaf_id);
+//  if(bossLog)
+//    bossLog({sOp:1100,iParam:leaf_id});
+}
+
+var g_ahref= $('T');
+function onOpenModule(url,title,id) {
+	   var  bbbb=parent.document.all('ltitle');
+     bbbb.innerHTML='当前位置：'+title;
+	
+   parent.dhsrc(url,title,id);
+   if(title=='关键字日志归档'||title=='敏感监控'){
+      parent.onAddTree_left('keywordgd','/v4/sentive/ncs_tree_keyword.htm','关键字');
+   }
+  else if(title=='敏感网址归档'){
+  	 parent.onAddTree_left('senwebgd','/v4/sentive/ncs_tree_senweb.htm','敏感网址');
+  }
+else if(title=='归档日志'||title=='上网用户库'||title=='虚拟身份库'||title=='MAC地址库'){
+	 parent.onAddTree_left('dwtree','/v4/ncs_tree_user.htm','单位树');
+}
+else if(title=='重点虚拟身份归档'){
+  	 parent.onAddTree_left('sennetidgd','/v4/sentive/ncs_tree_sennetid.htm','虚拟身份');
+  }
+else if(title=='单位组'){
+	 parent.onAddTree_left('dwztree','/v4/ncs_tree_group.htm','敏感网址');
+}	
+else if(title=='告警信息'){
+	 parent.onAddTree_left('dwztree','/v4/sentive/ncs_tree_case.htm','当前告警');
+}		
+else if(title=='单位管理'||title=='在线单位'||title=='运行分析'){
+	 parent.onAddTree_left('dwztree','/v4/ncs_tree_userfl.htm','单位分类');
+}
+	
+  var moduleIframe = $('');
+  var color = getColor();
+  var changeColorQuery = '';
+
+ 
+   var leaf_id = '',
+      leafHash = '';
+
+
+  return leaf_id;
+}
+
+
+function leftmenu(obj, tag, n) {
+  var dls = $("left").getElementsByTagName("dl");
+  if (n == 1) dls = $("A_index").getElementsByTagName("dd");
+  for (var i = 0; i < dls.length; i++) {
+    var Pdiv = dls[i].getElementsByTagName(tag);
+    if (obj == dls[i].firstChild) {
+      for (var j = 0; j < Pdiv.length; j++) {
+        if (Pdiv[j].className == "") {
+          dls[i].firstChild.className = "";
+          Pdiv[j].className = "undis"
+        } else if (Pdiv[j].className == "undis") {
+          dls[i].firstChild.className = "yk_on";
+          Pdiv[j].className = ""
+        }
+      }
+    } else {
+      for (var j = 0; j < Pdiv.length; j++) {
+        dls[i].firstChild.className = "";
+        Pdiv[j].className = "undis"
+      }
+    }
+  }
+}
+
+function getUrlByLeafId(leaf_id){
+  var url = g_id_url_mapper['l' + (leaf_id=='jsxg'?'ljzf':leaf_id)],
+      newLeafId = leaf_id;
+
+  return [newLeafId, url];
+}
+
+var g_id_url_mapper = init_tree_menu(tree_menu_data, 'left_wrap');
+if (g_id_url_mapper) {
+  var hash = location.hash;
+  var href = location.href;
+  var leaf_id = '';
+  var pattern = '?';
+  if (hash) {
+    leaf_id = hash.substring(1);
+    if(leaf_id.indexOf('T')==0)
+      leaf_id = leaf_id.substring(1);
+  } else if (href.indexOf(pattern) != -1) {
+    var start = href.indexOf(pattern) + pattern.length;
+    var end = href.indexOf('&', start);
+    end = end == -1 ? href.length: end;
+    leaf_id = href.substring(start, end)
+  }
+  //leaf_id = leaf_id.toLowerCase().replace(/[^a-z]*/ig,'');
+  var rtn = getUrlByLeafId(leaf_id),
+      url = rtn[1],
+      newLeafId = rtn[0];
+  leaf_id = newLeafId;
+  var color = getColor();
+  if (url) {
+ //   onOpenModule(url);
+  } else {
+//    onOpenModule('dctr_modules/index_module.htm');
+    leaf_id = '';
+  }
+  if('' === leaf_id || '0' === leaf_id) 
+    leaf_id = 'jsxg';
+  if ($('leaf_' + (leaf_id=='jsxg'?'ljzf':leaf_id))) {
+    var dt = $('leaf_' + (leaf_id=='jsxg'?'ljzf':leaf_id)).parentNode.parentNode.parentNode.firstChild;
+    leftmenu(dt, 'dd');
+  }
+}
+
+function switchLeftMenu(leaf_id){
+  if ($('leaf_' + leaf_id)) {
+    var dt = $('leaf_' + leaf_id).parentNode.parentNode.parentNode.firstChild;
+    leftmenu(dt, 'dd');
+  }
+}
+
+</script>
+
+
+
+
+</body>
+</html>

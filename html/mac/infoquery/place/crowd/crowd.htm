@@ -1,0 +1,549 @@
+ 
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gbk" />  
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">  
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <title>轨迹图</title>
+     <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css">
+    <script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+    <script type="text/javascript" src="/newver/jquery/jquery-1.7.2.js"></script>
+    <style>
+.label{position:relative;}
+.label span{background-color:#0D9BF2;}
+</style>
+
+    <style type="text/css">	
+    .accept {
+            background-image:url(/newver/resources/themes/images/share/accept.png) !important;
+    }
+    .exp {
+            background-image:url(/newver/resources/themes/images/share/exportimg.png) !important;
+    }
+    .search {
+
+            background:url(/newver/resources/themes/images/map/search.png) no-repeat 1px 2px !important;
+    }
+      .gray-row .x-grid-cell{
+             background-color:rgba(0,0,0,0) !important;
+             border:none;
+             height:30px;
+             color:blue;
+             font-size:14px;
+             font-family:"微软雅黑"
+         }
+      .button {
+	display: inline-block;
+	outline: none;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	font: 18px/100% Arial, Helvetica, sans-serif;
+	padding: .5em 2em .55em;
+	text-shadow: 0 1px 1px rgba(0,0,0,.3);
+	-webkit-border-radius: .5em; 
+	-moz-border-radius: .5em;
+	border-radius: .5em;
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+.button:hover {
+	text-decoration: none;
+}
+.button:active {
+	position: relative;
+	top: 1px;
+}
+
+.orange {
+	color: #fef4e9;
+	border: solid 1px #da7c0c;
+	background: #f78d1d;
+	background: -webkit-gradient(linear, left top, left bottom, from(#faa51a), to(#f47a20));
+	background: -moz-linear-gradient(top,  #faa51a,  #f47a20);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20');
+}
+.orange:hover {
+	background: #f47c20;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f88e11), to(#f06015));
+	background: -moz-linear-gradient(top,  #f88e11,  #f06015);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f88e11', endColorstr='#f06015');
+}
+.orange:active {
+	color: #fcd3a5;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f47a20), to(#faa51a));
+	background: -moz-linear-gradient(top,  #f47a20,  #faa51a);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f47a20', endColorstr='#faa51a');
+}
+
+
+    </style>	
+</head>
+<script>
+    var pointss;
+Ext.Loader.setConfig({enabled: true});
+Ext.Loader.setPath('Ext.ux', '/newver/ux/');
+Ext.require([
+    'Ext.form.*',
+    'Ext.window.*',
+    'Ext.grid.*',
+    'Ext.data.*',
+    'Ext.util.*',
+    'Ext.window.MessageBox',
+    'Ext.toolbar.Paging',
+    'Ext.ux.PreviewPlugin',
+    'Ext.tree.*',
+    'Ext.ux.*'
+ 
+]);
+var inputflag;
+var imac;
+var store;
+var grid;
+
+function  setSearchValue (typename,params) {
+    Ext.getCmp('keyword').setValue(params);
+    inputflag = typename;
+    if (typename == '0') {
+
+        try {
+            imac = parent.getGlobalGroupId();            	
+        }
+        catch (e) {
+            alert(e.message);
+        }
+
+    }
+    else {
+
+        try {
+            imac = parent.getGlobalUserName();
+            //alert(g_usernamequery);
+        }
+        catch (e) {
+            alert(e.message);
+        }
+
+    }
+
+}
+var mygeo = {};
+    /*{
+    '松江0730-1': [121.217426, 31.032248],
+    '松江0730-2': [121.237681, 31.068472],
+    '蓝驿酒店张泽店': [121.275165, 30.925102],
+    '海友九亭店': [121.315746, 31.188737],
+    '锦云精品宾馆': [121.320649, 31.151753],
+    '上海妍颐旅馆有限公司': [121.322644, 31.231706],
+    '上海九杜宾馆管理有限公司': [121.360835, 31.142235],
+    '新网程总部1': [121.38134, 31.33461],
+    '新疆喀什烤肉王': [121.31514, 31.556481]
+};*/
+var tmpdataBig1=[];
+var tmpdata1=[];
+var tmpdata2 = [];
+var mystore;
+function needrefresh() {
+    myChart.hideLoading();
+}
+
+
+	function reflash(){
+
+	   var mac = Ext.getCmp('keyword').value;
+	   
+      
+	   store.load({params:{mac:imac, inputflag:inputflag},
+     callback:function(records, options, success)
+     {
+       
+     	    tmpdataBig1=[];
+          tmpdata1=[];
+          tmpdata2=[];
+          for (var i in records) {
+                    
+              if (records[i].raw[0].name == records[i].raw[1].name) {
+                  tmpdata2.push(records[i].raw[1]);
+                }
+              else{
+                  tmpdata1.push(records[i].raw[0]);
+                  tmpdata1.push(records[i].raw[1]);
+                  tmpdataBig1.push(tmpdata1);
+                  tmpdata1 = [];
+                  //tmpdata1.push(records[i].raw[0]);
+              }
+          }   
+        
+
+
+          var allOverlay = mymap.getOverlays();
+          for (var i = 0; i < allOverlay.length - 1; i++) {
+              mymap.removeOverlay(allOverlay[i]);
+          }
+          var pointss = [];
+          for (var i = 0; i < tmpdata2.length; i++) {
+              if (tmpdata2[i].name in mygeo && parseInt(mygeo[tmpdata2[i].name][0]) >= -180 && parseInt(mygeo[tmpdata2[i].name][0]) <= 180 && parseInt(mygeo[tmpdata2[i].name][1]) >= -90 && parseInt(mygeo[tmpdata2[i].name][1])<=90) {
+                  var point = new BMap.Point(mygeo[tmpdata2[i].name][0], mygeo[tmpdata2[i].name][1]);
+              pointss.push(point);
+              var opts = {
+                  position: point,
+                  offset: new BMap.Size(-20, 0)
+              }
+              var label = new BMap.Label(tmpdata2[i].name + '<br /><b><font size=3 color="red">' + tmpdata2[i].value+ '</font></b>人', opts);  // 创建文本标注对象
+              label.setStyle({
+                  color: "black",
+                  fontSize: "1",
+                  height: "35px",
+                  border: 'none',
+                  borderRadius: '3px',
+
+                  backgroundColor: 'rgba(0,177,241,0.7)',
+                  // lineHeight: "20px",
+                  fontFamily: "微软雅黑"
+              });
+              mymap.addOverlay(label);
+          }
+          }
+     	    option = {
+             color: ['red'],
+          
+            tooltip : {
+                trigger: 'item'
+            },
+            toolbox: {
+                show : false,
+                orient : 'vertical',
+                x: 'right',
+                y: 'center',
+                feature : {
+                    mark : {show: true},
+                    dataView : {show: true, readOnly: false},
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                }
+            },
+            dataRange: {
+              //  orient:'horizontal',
+                min : 0,
+                max : 200,
+               range: {
+                   start: 0,
+                   end:100
+                },
+               x: 'right',
+           
+                calculable : true,
+                color: ['#360802', '#ff7302', '#f3a604'],
+                textStyle:{
+                    color:'#000'
+                }
+            }, credits: {
+                enabled: false
+            },
+
+
+            series : [
+                {
+                    name: '各场所当前人数',
+                    type:'map',
+                    mapType: 'none',
+                    data: [],
+                    large:true,
+                    geoCoord:mygeo,
+                    markPoint : {                         
+                        normal: {
+                            label: {show:false}
+                        },
+                        symbolSize: 10,
+                        effect: {
+                            show: false,
+                            shadowBlur: 0
+                        },
+                        tooltip: {
+                            trigger: 'item',
+                            formatter: '{b} 当前{c}人'
+                        },
+                        itemStyle:{
+                            normal: {
+                                color:'red',
+                                label: {show:false}
+                            },
+                            emphasis: {
+                                label: {show:false}
+                              }
+                        },
+                        data :  tmpdata2 
+                     
+                    }
+                   
+                }                
+            ]
+     	    };
+
+     	    var view = mymap.getViewport(eval(pointss));
+     	    var mapSize = view.zoom > 15 ? 15 : view.zoom;
+     	    var centerPoint = view.center;
+     	   
+     	    mymap.centerAndZoom(centerPoint, mapSize);
+     	    myChart.showLoading();
+     	    setTimeout(needrefresh, 500);
+     	    BMapExt.refresh();     	   
+     	    BMapExt.setOption(option, true);
+     	   
+     	    
+        }
+  }
+	);
+	
+ }
+	
+	Ext.onReady(function(){
+    Ext.tip.QuickTipManager.init();
+    Ext.define('EimData', {
+        extend: 'Ext.data.Model',
+        fields: [
+            'name', 'value'
+        ]
+        //idProperty: 'sdate'
+    });
+   
+  
+   
+    
+       store = Ext.create('Ext.data.Store', {
+        pageSize: 40,
+        model: 'EimData',
+        remoteSort: true,
+        proxy: {
+            type: 'ajax',
+            url: '/pronline/Msg?FunName@dm_crowd',
+//              url:'/data/ncs_pelope_gj.htm',
+            reader: {
+                type:'json',
+                root: 'data',
+                totalProperty: 'totalCount'
+            },         
+            simpleSortMode: true
+        },
+        sorters: [{
+      //      property: 'id',
+     //       direction: 'DESC'
+        }]
+       });
+       Ext.Ajax.request({
+           url: '/pronline/Msg?FunName@dm_place',
+           method: 'GET',
+           success: function (resp, opts) {
+               try {
+                   
+                   var respText = resp.responseText;
+                   var respRecord = eval("(" + respText + ")");
+                   for (var i in respRecord.data) {
+                     
+                       mygeo[respRecord.data[i].servicename] = [respRecord.data[i].longitude, respRecord.data[i].latitude];
+                   }
+
+               }
+               catch (e) { }
+           },
+           failure: function (resp, opts) {
+               var respText = resp.responseText;
+        
+               alert('错误', respText.error);
+           }
+       });
+        var tbar = Ext.create('Ext.Toolbar',{
+            
+            items:[
+           
+                { 
+                	 fieldLabel:'指定场所',
+                	 labelWidth: 60,
+                    xtype:'textfield',
+                    id:'keyword',
+                    width:240,
+                    name:'keyword',
+                    value:'',         
+                    emptyText:'请在左侧选择场所范围',
+                    enableKeyEvents:true,
+                    listeners:{
+                        'focus':function(){
+                        },           
+                        'keydown' : function(i,e){
+                             var aae=e.getKey() ; 
+                             if (aae == 13) {
+
+                             }
+                         }
+                    }
+                },'  ',
+                {
+                    text:'查询',
+                    iconCls:'accept',
+                    handler:function()
+                    {
+                    
+                    	reflash();
+                    	//setInterval("reflash()", 10000);
+                    	
+                    }
+                },
+                '-',
+               
+             {
+			     	 	text:'导出',
+			     	 	itemId: 'expbutton',
+			     	 	iconCls:'exp',
+			     	 	handler:function() {
+			     	 		
+			     	 		var form1 = document.getElementById('form1');
+        
+                      form1.mac.value =  Ext.getCmp('keyword').value;
+                     
+                      
+
+                    form1.exp.value='exp';
+                        form1.submit();
+                      form1.exp.value=""; 
+			     	 	}
+			     	 },
+                {xtype:'label', html:'<span id="titledx"></span>'}
+            ]
+        });
+
+       var panel = Ext.create('Ext.form.FormPanel', {
+           title: '',         
+        margins: '0 0 0 0',
+        id:'myform',
+        name:'myform',
+        autoScroll: false,
+        renderTo: 'mapleft',
+        frame: true,
+        tbar:tbar 
+       });
+
+       var gridbar= Ext.create('Ext.Toolbar', {
+           width: '100%',
+           height: 50,
+           //layout:'form',
+           style: 'background:rgba(255,255,255,0.8);border:none;',
+           items: [{
+               xtype: 'buttongroup',
+               style: 'background:rgba(0,0,0,0);border:none;',
+               frame: false,
+               columns: 2,
+               items:[{
+                   xtype: 'textfield',              
+                   id: 'keywords',
+                   width: 270,
+                   height: 30,
+                   name: 'keywords',
+                   value: '',
+                 
+                   // fieldStyle: 'background:rgba(50,50,50,0.7); border:none;  font-size:18px; font-color:"red" font-family:"微软雅黑"',
+                   fieldStyle: 'color:blue;background:rgba(255,255,100,0.3); font-size:18px;  font-family:"微软雅黑";',
+                   emptyText: '请输入场所',
+                   enableKeyEvents: true,
+                   listeners: {
+                       'focus': function () {
+                       },
+                       'keydown': function (i, e) {
+                           var aae = e.getKey();
+                           if (aae == 13) {
+                               refresh(this.value);
+                           }
+                       }
+                   }
+               },
+           {
+               width:32,
+               height:32,
+               cls: 'search',
+               handler: function () {
+                   var param = Ext.getCmp('keywords').value;
+                   refresh(param);
+               }
+           }
+           ]
+           }
+           ]
+
+       });
+       mystore =  Ext.create('Ext.data.Store', {
+           storeId: 'simpsonsStore',
+           fields: ['start', 'stop', 'number'],
+           data: {
+               'items': [               
+               ]
+           },
+           proxy: {
+               type: 'memory',
+               reader: {
+                   type: 'json',
+                   root: 'items'
+               }
+           }
+       });
+      
+        grid = Ext.create('Ext.grid.Panel', {
+            renderTo: 'infogrid',
+            title: '人群流动数据',         
+           store: mystore,
+           bodyStyle: 'background:rgba(255,255,255,0.8); border:none',
+           height: 690,
+           width: 320,
+          // style: 'opacity: 0.9',
+           collapseDirection: 'bottom',
+          // collapseDirection: true,
+           headerPosition:'top',
+           collapsible: true,
+           hideHeaders :true,
+           viewConfig: {
+               forceFit: true,
+               getRowClass: function(record, rowIndex, rowParams, store){
+                                   var cls;                                
+                                  cls = 'gray-row';                                     
+	                     return cls;
+	                }
+             
+           },
+           columns: [
+        { header: '<font size=3 color="orange" >起点</font>', style: 'background:rgba(0,0,0,0.7);  border:none; height:30px; width:150px', dataIndex: 'start'},
+        { header: '<font size=3 color="orange" >去</font>', style: 'background:rgba(0,0,0,0.7);  border:none; height:30px;', flex:1,renderer: function () { return '<img src="/newver/resources/themes/images/map/arrows.png"/>' } },
+        { header: '<font size=3 color="orange" >终点</font>', style: 'background:rgba(0,0,0,0.7); border:none;height:30px;width:150px', dataIndex: 'stop' },
+        { header: '<font size=3 color="orange">人数</font>', style: 'background:rgba(0,0,0,0.7); border:none;height:30px; width:40px', dataIndex: 'number', renderer: function (value) { return value + '人' } }
+           ],
+           tbar:  gridbar
+          
+        });
+        grid.on("cellclick", function (table, td, cellIndex, record, tr, rowIndex, e, eOpts) {
+            if(cellIndex!=3)
+            refresh(td.textContent);
+        })
+     
+
+});
+	
+	
+	
+	
+	</script>
+<body>
+	<div id="mapleft"></div>
+		 <div id="main"  style="height:680px"></div>
+     <div id ="infogrid" style="position:absolute; left:1px;top: 35px;  width:320px; height:300px"></div>
+        <script src="/js/echarts/build/dist/echarts.js" charset="utf-8"></script>
+        <script type="text/javascript" src="./input.js"></script>
+      
+        <script src="./example.js"></script>
+	
+<form name="form1" id="form1" action="/pronline/Msg">
+        <input type="hidden" name="FunName" value="dm_crowd">       
+        <input type="hidden" name="mac" value="">
+        <input type="hidden" name="exp" value="">
+     
+	</form>
+</body >
+</html>						

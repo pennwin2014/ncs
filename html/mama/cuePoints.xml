@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="GBK" standalone="no" ?>
+<FLVCoreCuePoints version="1">   
+
+    <CuePoint>
+        <Time>0</Time>
+        <Type>event</Type>
+        <Name>qqq无奈www</Name>
+        <Parameters>
+            <Parameter>
+                <Name>id</Name>
+                <Value>value</Value>
+            </Parameter>
+        </Parameters>
+    </CuePoint>   
+
+    <CuePoint>
+        <Time>0</Time>
+        <Type>event</Type>
+        <Name>无奈</Name>
+        <Parameters>
+            <Parameter>
+                <Name>id</Name>
+                <Value>value</Value>
+            </Parameter>
+        </Parameters>
+    </CuePoint>  
+    
+        <CuePoint>
+        <Time>0</Time>
+        <Type>event</Type>
+        <Name>无奈</Name>
+        <Parameters>
+            <Parameter>
+                <Name>id</Name>
+                <Value>value</Value>
+            </Parameter>
+        </Parameters>
+    </CuePoint>  
+    
+        <CuePoint>
+        <Time>0</Time>
+        <Type>event</Type>
+        <Name>无奈</Name>
+        <Parameters>
+            <Parameter>
+                <Name>id</Name>
+                <Value>value</Value>
+            </Parameter>
+        </Parameters>
+    </CuePoint>  
+
+
+    <CuePoint>
+        <Time>5000</Time>
+        <Type>event</Type>
+        <Name>slide2</Name>
+        <Parameters>
+            <Parameter>
+                <Name>param1</Name>
+                <Value>value1</Value>
+            </Parameter>
+            <Parameter>
+                <Name>param2</Name>
+                <Value>value2</Value>
+            </Parameter>
+        </Parameters>
+    </CuePoint>   
+
+    <CuePoint>
+        <Time>20000</Time>
+        <Type>event</Type>
+        <Name>slide3</Name>
+    </CuePoint>   
+    
+        <CuePoint>
+        <Time>20000</Time>
+        <Type>event</Type>
+        <Name>slide3</Name>
+    </CuePoint> 
+    
+    
+        <CuePoint>
+        <Time>20000</Time>
+        <Type>event</Type>
+        <Name>slide3</Name>
+    </CuePoint> 
+    
+        <CuePoint>
+        <Time>20000</Time>
+        <Type>event</Type>
+        <Name>slide3</Name>
+    </CuePoint> 
+    
+        <CuePoint>
+        <Time>20000</Time>
+        <Type>event</Type>
+        <Name>slide3</Name>
+    </CuePoint> 
+    
+    
+        <CuePoint>
+        <Time>20000</Time>
+        <Type>event</Type>
+        <Name>slide3</Name>
+    </CuePoint> 
+    
+    
+    
+        <CuePoint>
+        <Time>20000</Time>
+        <Type>event</Type>
+        <Name>slide3</Name>
+    </CuePoint> 
+    
+    
+        <CuePoint>
+        <Time>20000</Time>
+        <Type>event</Type>
+        <Name>slide3</Name>
+    </CuePoint> 
+    
+    
+        <CuePoint>
+        <Time>20000</Time>
+        <Type>event</Type>
+        <Name>slide3</Name>
+    </CuePoint> 
+    
+    
+        <CuePoint>
+        <Time>20000</Time>
+        <Type>event</Type>
+        <Name>slide3</Name>
+    </CuePoint> 
+    
+    
+        <CuePoint>
+        <Time>20000</Time>
+        <Type>event</Type>
+        <Name>slide3</Name>
+    </CuePoint> 
+    
+    
+        <CuePoint>
+        <Time>20000</Time>
+        <Type>event</Type>
+        <Name>slide3</Name>
+    </CuePoint> 
+    
+    
+        <CuePoint>
+        <Time>20000</Time>
+        <Type>event</Type>
+        <Name>slide3</Name>
+    </CuePoint> 
+    
+    
+    
+    
+    
+    
+
+</FLVCoreCuePoints>
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+Minified using disk
+Page Caching using disk (enhanced) (request URI contains query)
+Database Caching using disk
+Object Caching 62/146 objects using disk
+
+Served from: blog.minidx.com @ 2011-06-14 22:16:38 -->

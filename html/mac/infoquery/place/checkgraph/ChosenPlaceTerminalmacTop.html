@@ -1,0 +1,216 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+
+<script type="text/javascript" src="/newver/jquery/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="/newver/chart/highcharts.js"></script>
+
+<!--
+<script type="text/javascript" src="http://cdn.hcharts.cn/jquery/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
+
+ <script type="text/javascript" src="http://cdn.hcharts.cn/highcharts/exporting.js"></script> -->
+  
+<!-- 导入Extjs框架 -->
+<link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css">
+  <script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+
+<style>
+.tab_btn_group{position:absolute; top:31px; height:20px; width:100%;}
+.tab_button_normal{cursor:pointer;display:-moz-inline-box;display:inline-block;text-align:center;background-color:#FFF;color:#0D3967;margin-left:1%;height:95%;width:50px;border-radius:3px 3px 3px 3px;}
+.tab_button_focus{cursor:pointer;display:-moz-inline-box;display:inline-block;text-align:center;background-color:#BEDCF5;color:#0D3967;margin-left:1%;height:95%;width:50px;border-radius:3px 3px 3px 3px;}
+</style>  
+  
+<script type="text/javascript"> 
+
+//获取时间下拉框输入时间
+var time_value = parent.Ext.getCmp('time_flag').value;	 
+
+//获取 parent 对象中输入框的内容(mac地址)
+var service_name = parent.Ext.getCmp('keyword_mobileaccount').value;	 
+
+
+//parent.parent.doSearchByKeyword(service_input);
+
+var chart;
+var g_chart = [];
+var g_table = [];
+
+/* 函数：绘制图表 */	
+function drawchart(service_name){
+	chart = new Highcharts.Chart({	
+	chart: {									
+		type: 'column',						//指定图表类型，默认是拆线图(line)
+		renderTo: 'container' 
+	},
+	credits: {
+		enabled: false
+	},
+  title: {
+  	text: '指定场所 ' + service_name + ' 频繁出现的终端',
+    x: -20 //center
+  },        
+	subtitle: {
+    x: -20
+  }, 
+	exporting:{
+  	enabled:false
+  },
+  xAxis: {
+		type: 'category',
+		labels: {
+			x: 5,
+			y: 20,
+    	//rotation: -25,
+    	style: {
+    		fontSize: '12px',
+    		fontFamily: 'Verdana, sans-serif'					
+    	}
+    }           			
+	},
+  yAxis: {
+		tickInterval:10,
+		//max:25000,
+		min:0,
+  	title: {
+    	text: '出现次数'
+    },
+    plotLines: [{
+    	value: 0,
+      width: 1,
+      color: '#808080'
+    }]
+  },				
+	tooltip: { 
+		//这种模式下，每点的tooltip单独显示 
+		shared: false, 
+		formatter: function() { 
+			var s = '<b>'+ this.point.name +'</b>'+'<br/> '+this.point.y +'次<br/>'; 
+			return s; 
+		} 
+	}, 
+	plotOptions: {
+  	column: {
+    	dataLabels:{
+				enabled:true //是否显示数据标签
+			}
+  	}
+  },
+	legend: {
+  	enabled: false
+  }, 		
+	series: [{
+		allowPointSelect: true,
+    //name: '出现次数',
+		data: []				   
+  }]		
+  
+  });
+	//setInterval("GetDrawData()", 5000);		
+}   
+
+
+/* 函数：获取后台数据  */
+function GetDrawData(){
+	
+	parent.parent.showWaitDialog();	
+	
+	Ext.Ajax.request({						
+		url: '/pronline/Msg?FunName@ncsPlace_Chosenplace_TerminalmacTop&timevalue@' + time_value + '&servicename@' + service_name, 
+		method: 'GET',		
+		success: function(resp, opts){
+			parent.parent.closeWaitDialog();	
+			
+			var respText = resp.responseText; 			//获取整个 JSON 数据的字符串
+			var respRecord = eval("("+respText+")");	//字符串转成结构体
+			
+			var macValue;
+			var macCount;
+			var maxCount;
+			if(parseInt(respRecord.result) > 0)
+			{
+				/*maxCount = parseInt(respRecord.max);
+				if(maxCount > 200)
+					chart.axes[1].max = maxCount;
+				*/	
+				
+				//指定场所下终端TOP出现次数
+				for(var i in respRecord.data){
+					macValue = respRecord.data[i].mac;
+					macCount = parseInt(respRecord.data[i].count);
+					g_chart.push({x:i, y:macCount, name: i});
+					g_table.push({x:i, y:macCount, name: macValue});					
+				}				
+			}
+			else
+			{
+				g_chart.push({name: "当前查询没有数据"});
+			}
+			
+			chart.series[0].setData(g_chart);
+			showgridgridpanel();
+		},
+		failure: function(resp, opts){
+			parent.parent.closeWaitDialog();	
+			
+			var resqText = eval("(" + resqText + ")");
+			alert('错误', resqText.error);
+		} 
+	});		
+}
+
+function showgridgridpanel()
+{		
+    //创建表格	
+	var data = [];
+	for(var i in g_table){
+		data.push([i, g_table[i].name, g_table[i].y]);
+	}
+				
+	var vstore = new Ext.data.ArrayStore({data:data, fields:["serialnumber", "mac", "appearcount"]});
+    var mygrid = new Ext.grid.GridPanel({
+				store: vstore,
+				//frame: true,
+				//width: 270,
+				border: false,
+				height: 560,
+				columnLines: true,	
+				//style: 'margin-left:105px ',	/* 优先在代码中改变表格显示的位置 */
+				renderTo: 'mygrid',
+				columns:[{header: "序号", dataIndex: "serialnumber", width:40},
+						 {header: "终端MAC", dataIndex: "mac", width: 140 /* ,
+							renderer: ghostsearch*/
+						 },
+						 
+						 {header: "出现次数", dataIndex: "appearcount", width:80}
+						]			
+
+	});		
+		
+	
+}
+
+
+Ext.onReady(function(){	
+	drawchart(service_name);
+	GetDrawData();			
+});	  
+	  
+</script>
+  
+</head>
+<body>
+  
+  <!-- <div id="myform"></div> -->
+  <div id="mygrid" style = "position:absolute; top:0px; left:70%; width:30%; height:100%" ></div>
+  <div id="container" style = "width:70%; height:100%;" ></div>
+
+
+<script src="/mac/infoquery/place/checkgraph/js/highcharts.js"></script>
+<script src="/mac/infoquery/place/checkgraph/js/highcharts-more.js"></script>
+<script src="/mac/infoquery/place/checkgraph/js/modules/exporting.js"></script> 
+  
+</body>
+</html>

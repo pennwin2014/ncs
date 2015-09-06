@@ -1,0 +1,1220 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>单位组管理</title>
+    <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" />
+
+    <script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+
+    <style type="text/css">
+        .add {
+            background-image:url(/newver/resources/themes/images/share/add.gif) !important;
+        }
+        .remove {
+            background-image:url(/newver/resources/themes/images/share/delete.gif) !important;
+        }
+        .accept {
+            background-image:url(/newver/resources/themes/images/share/accept.png) !important;
+        }
+        .exp {
+            background-image:url(/newver/resources/themes/images/share/application_go.png) !important;
+        }
+    </style>
+    
+ <script type="text/javascript">     
+    
+    Ext.Loader.setConfig({
+    enabled: true
+});
+Ext.Loader.setPath('Ext.ux', '/newver/ux/');
+
+Ext.require([
+    'Ext.grid.*',
+    'Ext.data.*',
+    'Ext.util.*',
+    'Ext.state.*',
+    'Ext.form.*',
+    'Ext.ux.CheckColumn',
+    'Ext.tree.*',
+    'Ext.tip.*',
+    'Ext.tab.*',
+    'Ext.*'
+]);
+
+
+var _storeUrl;
+var preid="";
+var  preladw="";
+var temp_id;
+var cid='';
+ function reflash(){
+ 	var gid=document.getElementById("form1").groupid.value;
+ 	store.load({params: {groupid: gid}});
+}
+      var _storeDate = Ext.create('Ext.data.Store', {pageSize: 40,fields: ['groupid', 'groupname'],remoteSort: true,autoLoad: false,
+			      proxy: {type: 'ajax',url: '/pronline/Msg?FunName@ncsDateComp',reader: {type:'json',root: 'corpclassdata',totalProperty: 'totalCount'},simpleSortMode: true
+			      },sorters: [{property: 'groupid'}]});
+        _storeDate.load();
+
+  function gotoedit1(id,record){
+ 	 	
+         pid=id;
+          var store_groupcorp = Ext.create('Ext.data.Store', {pageSize: 40,fields: ['groupid', 'groupname'],remoteSort: true,autoLoad: false,
+			      proxy: {type: 'ajax',url: '/pronline/Msg?FunName@ncsGroupCorpComp',reader: {type:'json',root: 'corpclassdata',totalProperty: 'totalCount'},simpleSortMode: true
+			      },sorters: [{property: 'groupid'}]});
+			      	
+	//		  store_adprocy.new_params={pid:pid};
+	//      store_adprocy.on('beforeload', function (store, options) {
+  //      Ext.apply(store.proxy.extraParams, store_adprocy.new_params);
+  //     });
+        
+        store_groupcorp.load();
+        
+
+        
+        		
+  		var myDate = new Date();
+  		var yy = ( myDate.getYear() < 1900 ) ? ( 1900 + myDate.getYear() ) : myDate.getYear();
+  		var mm=myDate.getMonth()+1;
+  		if(mm<10)
+  		{
+  			mm='0'+mm;
+  		}
+  		var dd=myDate.getDate();
+  		if(dd<10)
+  		{
+  			dd='0'+dd;
+  		}
+  		var hh=myDate.getHours();
+  		if(hh<10){
+  			hh='0'+hh;
+  		}
+  		var mi=myDate.getMinutes();
+  		if(mi<10){
+  			mi='0'+mi;
+  		}
+  		var ss=myDate.getSeconds();
+  		if(ss<10){
+  			ss='0'+ss;
+  		}
+  		var today=yy+'/'+mm+'/'+dd;
+  		var startday=yy+mm+dd+hh+mi+ss;
+     
+      
+        var fp2=Ext.create('Ext.FormPanel', {
+        frame: true,
+        fieldDefaults: {
+            labelWidth: 110
+        },
+        width: 660,
+        bodyPadding: 10,
+        items: [
+         {
+    //       columnWidth: 0.4,
+           margin: '0 0 0 0',
+           xtype: 'fieldset',
+           collapsible: false,
+           collapsed:false,
+           title:'控制规则',
+           defaults: {
+  //              width: 240,
+  //              labelWidth: 40
+            },
+            defaultType: 'textfield',
+            items: [
+            {
+             xtype: 'fieldcontainer',
+             layout: 'hbox',
+                defaults: {
+       //             flex: 1
+  //                  hideLabel: true
+                },
+                items:[
+                {xtype: 'hidden',name: 'sid', value: ''},
+			            {
+			            	  xtype     : 'textfield',
+			                fieldLabel: '策略编号',
+			                labelWidth: 90,
+			                value:startday,
+			                width:200,
+			                name: 'rule_id'
+			            },
+			            {
+			            	  xtype     : 'textfield',
+			                fieldLabel: '&nbsp;策略名称',
+			              
+			                labelWidth: 80,
+			                width:200,
+			                name: 'rule_name'
+			            },
+			            	{
+			            	 
+			                fieldLabel: '&nbsp;审计级别',
+			                labelWidth: 80,
+			                width:180,
+                                xtype:          'combo',
+                                mode:           'local',
+                                value:          '1',
+                                triggerAction:  'all',
+                                forceSelection: true,
+                                editable:       false,                                
+                                name:           'nol',
+                               
+                                displayField:   'name',
+                                valueField:     'value',
+                                queryMode: 'local',
+                                store: Ext.create('Ext.data.Store', {
+                                    fields : ['name', 'value'],
+                                    data   : [
+                                        {name : '严重',   value: '1'},
+                                        {name : '中度',   value: '2'},
+                                        {name : '一般',   value: '9'},
+                                        {name:'其它', value:'3'}
+                                      
+                                       
+                                    ]
+                                })
+			                
+			                
+			                
+			                
+			                
+			            }
+			            
+			            
+			          ]
+			        },				        
+			      {
+             xtype: 'fieldcontainer',
+             layout: 'hbox',
+                defaults: {
+       //             flex: 1
+  //                  hideLabel: true
+                },
+                items:[
+               
+			            {
+			                fieldLabel: '&nbsp;控制对象类别',
+			                labelWidth: 90,
+			                width:200,
+                                xtype:          'combo',
+                                mode:           'local',
+                                value:          '3',
+                                triggerAction:  'all',
+                                forceSelection: true,
+                                editable:       false,                                
+                                name:           'uflags',
+                               
+                                displayField:   'name',
+                                valueField:     'value',
+                                queryMode: 'local',
+                                store: Ext.create('Ext.data.Store', {
+                                    fields : ['name', 'value'],
+                                    data   : [
+                                        {name : '全部',   value: '3'},
+                                        {name : '组',   value: '2'},
+                                        {name : '单位',   value: '1'}
+                                      
+                                       
+                                    ]
+                                }),
+                                  listeners: {    
+                                  select: function (combo,record) {                  
+                                  var quyu = fp2.getForm().findField("uflags").getValue();  
+                                 
+                                   store_groupcorp.load({ params: { uflags: quyu} });//加载第二个combo的数据源  
+ 
+                                 }  
+                               }
+                                
+                                
+                                
+			            },
+			            {
+			            	  fieldLabel: '&nbsp;对象名称',
+			                labelWidth: 80,
+			                width:200,
+                                xtype:          'combo',
+                                mode:           'local',
+                                value:          '0',
+                                triggerAction:  'all',
+                                forceSelection: true,
+                                editable:       false,                                
+                                name:           'userid',
+                               
+                                displayField:   'groupname',
+                                valueField:     'groupid',
+                                queryMode: 'local',
+                                store: store_groupcorp
+			            },
+			            	{
+			            	  xtype: 'datefield',
+			                fieldLabel: '&nbsp;规则失效日期',
+			                format: "Y/m/d",
+			                labelWidth: 80,
+			                value:"",
+			                width:180,
+			                name: 'validation_time' 
+			            }
+			            
+			            
+			          ]
+			        },
+			        
+			        
+			        {
+             xtype: 'fieldcontainer',
+             layout: 'hbox',
+                defaults: {
+       //             flex: 1
+  //                  hideLabel: true
+                },
+                items:[
+                
+			            {
+			                fieldLabel: '&nbsp;时间段',
+			                labelWidth: 90,
+			                width:200,
+			                			    xtype:          'combo',
+                                mode:           'remote',
+                                value:          '0',
+                                triggerAction:  'all',
+                                forceSelection: true,
+                                editable:       false,                                
+                                name:           'timetype',                             
+                                displayField:   'groupname',
+                                valueField:     'groupid',
+                                queryMode: 'local',
+                                store: _storeDate
+                                
+                                
+                                
+			            },
+			            {
+			            	  xtype     : 'textfield',
+			                fieldLabel: '&nbsp;起始时间',
+			              
+			                labelWidth: 80,
+			                width:200,
+			                value:'00:00:00',
+			                name: 'starttime'
+			            },
+			             {
+			            	  xtype     : 'textfield',
+			                fieldLabel: '&nbsp;结束时间',
+			                value:'23:59:59',
+			                labelWidth: 80,
+			                width:180,
+			                name: 'stoptime'
+			            }
+			            
+			            
+			            
+			          ]
+			        },
+			        
+			     {
+             xtype: 'fieldcontainer',
+             layout: 'hbox',
+                defaults: {
+       //             flex: 1
+  //                  hideLabel: true
+                },
+                items:[
+			            {
+			                fieldLabel: '&nbsp;规则动作',
+			                labelWidth: 90,
+			                width:200,
+                                xtype:          'combo',
+                                mode:           'local',
+                                value:          '1',
+                                triggerAction:  'all',
+                                forceSelection: true,
+                                editable:       false,                                
+                                name:           'flags',
+                               
+                                displayField:   'name',
+                                valueField:     'value',
+                                queryMode: 'local',
+                                store: Ext.create('Ext.data.Store', {
+                                    fields : ['name', 'value'],
+                                    data   : [
+                                        {name : '不控制',   value: '1'},
+                                        {name : '阻断',   value: '0'}
+                                  //      {name : '告警',   value: '3'},
+                                  //      {name : '告警阻断',   value: '2'}
+                                      
+                                       
+                                    ]
+                                })
+                                
+                                
+                                
+			            },
+			            {
+			                fieldLabel: '&nbsp;规则内容',
+			                labelWidth: 80,
+			                width:200,
+                                xtype:          'combo',
+                                mode:           'local',
+                                value:          '1',
+                                triggerAction:  'all',
+                                forceSelection: true,
+                                editable:       false,                                
+                                name:           'conflags',
+                               
+                                displayField:   'name',
+                                valueField:     'value',
+                                queryMode: 'local',
+                                store: Ext.create('Ext.data.Store', {
+                                    fields : ['name', 'value'],
+                                    data   : [
+                                        {name : '访问外网',   value: '1'},
+                                        {name : '使用网络服务',   value: '2'},
+                                        {name : 'IP地址限制',   value: '3'},
+                                        {name : '网址限制',   value: '6'},
+                                        {name : '网址库限制',   value: '8'}
+                                      
+                                       
+                                    ]
+                                })
+                                
+                                ,
+                                  listeners: {    
+                                  select: function (combo,record) {                  
+                                  var quyu = fp2.getForm().findField("conflags").getValue();  
+                                  if(quyu=='3'){
+                                 	  Ext.getCmp('iprule').show();
+                                 	  Ext.getCmp('servicerule').hide();
+                                 	  Ext.getCmp('webrule').hide();
+                                 	  Ext.getCmp('urlidrule').hide();
+                                  }
+                                  else if(quyu=='2'){
+                                    Ext.getCmp('iprule').hide();
+                                 	  Ext.getCmp('servicerule').show();
+                                 	  Ext.getCmp('webrule').hide();
+                                 	  Ext.getCmp('urlidrule').hide();
+                                  }
+                                  else if(quyu=='6'){
+                                    Ext.getCmp('iprule').hide();
+                                 	  Ext.getCmp('servicerule').hide();
+                                 	  Ext.getCmp('urlidrule').hide();
+                                 	  Ext.getCmp('webrule').show();
+                          //       	  Ext.getCmp('urlidrule').hide(); 
+                                  }
+                                  else if(quyu=='8'){
+                                    Ext.getCmp('iprule').hide();
+                                 	  Ext.getCmp('servicerule').hide();
+                                 	  Ext.getCmp('webrule').hide();
+                                 	  Ext.getCmp('urlidrule').show();
+                                 	  
+                                  }
+                                  else{
+                                    Ext.getCmp('iprule').hide();
+                                 	  Ext.getCmp('servicerule').hide();
+                                 	  Ext.getCmp('webrule').hide();
+                                 	   Ext.getCmp('urlidrule').hide();
+                                  }
+                                 }  
+                               }
+                                
+			            }
+			           
+			            
+			            
+			            
+			          ]
+			        }
+            ]
+         }
+         
+         
+         ,
+         {
+    //       columnWidth: 0.4,
+           margin: '0 0 0 0',
+           xtype: 'fieldset',
+           collapsible: false,
+           id:'servicerule',
+           hidden:true,
+           collapsed:false,
+           title:'网络服务规则',
+           defaults: {
+  //              width: 240,
+  //              labelWidth: 40
+            },
+            defaultType: 'textfield',
+            items: [
+            {
+             xtype: 'fieldcontainer',
+             layout: 'hbox',
+                defaults: {
+       //             flex: 1
+  //                  hideLabel: true
+                },
+                items:[         
+			            {
+			            	  xtype     : 'textfield',
+			                fieldLabel: '网络服务类别',
+			                labelWidth: 90,
+			               
+			                width:200,
+			                          xtype:          'combo',
+                                mode:           'remote',
+                                emptyText:'选择服务大类...',
+                                value:          '0',
+                                triggerAction:  'all',
+                                forceSelection: true,
+                                editable:       false,                                
+                                name:           'serviceclass',                              
+                                displayField:   'name',
+                                valueField:     'groupid',
+                                queryMode: 'local',
+                                store: _storeSgroup,
+									              listeners:
+									        			{    
+									            				select : function(combo, record,index)
+									            				{  
+									            					
+									                				_storeService.proxy.url= "/pronline/Msg?FunName@ncsServiceIndex_v4&groupid@" + combo.value;  
+									                    		_storeService.load();   
+									            				}  
+									        			}  
+			            },
+			            {
+			            	  xtype     : 'textfield',
+			                fieldLabel: '&nbsp;网络服务名称',
+			                emptyText:'选择细分服务...', 
+			                labelWidth: 80,
+			                width:200,
+			                			    xtype:          'combo',
+                                mode:           'local',
+                                value:          '0',
+                                triggerAction:  'all',
+                                forceSelection: true,
+                                editable:       false,                                
+                                name:           'service',                             
+                                displayField:   'name',
+                                valueField:     'groupid',
+                                queryMode: 'local',
+                                store: _storeService
+			            }
+			            
+			            
+			          ]
+			        }
+			
+			        
+            ]
+          },
+          
+         {
+    //       columnWidth: 0.4,
+           margin: '0 0 0 0',
+           xtype: 'fieldset',
+           id:'iprule',
+           hidden:true,
+           collapsible: false,
+          
+           collapsed:false,
+           title:'IP地址规则',
+           defaults: {
+  //              width: 240,
+  //              labelWidth: 40
+            },
+            defaultType: 'textfield',
+            items: [
+            {
+             xtype: 'fieldcontainer',
+             layout: 'hbox',
+                defaults: {
+       //             flex: 1
+  //                  hideLabel: true
+                },
+                items:[
+         			        {
+			                fieldLabel: '协议',
+			                labelWidth: 35,
+			                width:95,
+                                xtype:          'combo',
+                                mode:           'local',
+                                value:          '0',
+                                triggerAction:  'all',
+                                forceSelection: true,
+                                editable:       false,                                
+                                name:           'trantype',
+                               
+                                displayField:   'name',
+                                valueField:     'value',
+                                queryMode: 'local',
+                                store: Ext.create('Ext.data.Store', {
+                                    fields : ['name', 'value'],
+                                    data   : [
+                                        {name : '全部',   value: '0'},
+                                        {name : 'TCP',   value: '6'},
+                                        {name : 'UDP',   value: '17'}
+                                      
+                                       
+                                    ]
+                                })
+                                
+                                
+                                
+			            }
+			            ,
+			            {
+			            	  xtype     : 'textfield',
+			                fieldLabel: '起始IP',
+			                labelWidth: 45,
+			               
+			                width:150,
+			                name: 'lowerip'
+			            },
+			            {
+			            	  xtype     : 'textfield',
+			                fieldLabel: '&nbsp;终止IP',
+			              
+			                labelWidth: 45,
+			                width:150,
+			                name: 'upperip'
+			            },
+			            {
+			            	  xtype     : 'textfield',
+			                fieldLabel: '起始端口',
+			                labelWidth: 55,
+			               
+			                width:106,
+			                name: 'lowerport'
+			            },
+			            {
+			            	  xtype     : 'textfield',
+			                fieldLabel: '终止端口',
+			              
+			                labelWidth: 55,
+			                width:106,
+			                name: 'upperport'
+			            }
+			            
+			            
+			            
+			            
+			          ]
+			        }
+			
+			        
+            ]
+          }, 
+          
+           {
+    //       columnWidth: 0.4,
+           margin: '0 0 0 0',
+           xtype: 'fieldset',
+           collapsible: false,
+           id:'webrule',
+           hidden:true,
+           collapsed:false,
+           title:'网址规则',
+           defaults: {
+  //              width: 240,
+  //              labelWidth: 40
+            },
+            defaultType: 'textfield',
+            items: [
+            {
+             xtype: 'fieldcontainer',
+             layout: 'hbox',
+                defaults: {
+       //             flex: 1
+  //                  hideLabel: true
+                },
+                items:[
+         
+			            {
+			            	  xtype     : 'textfield',
+			                fieldLabel: '访问网址包含',
+			                labelWidth: 90,
+			               
+			                width:240,
+			                name: 'url'
+			            }
+			            
+			            
+			          ]
+			        }
+			
+			        
+            ]
+          },
+           {
+           margin: '0 0 0 0',
+           xtype: 'fieldset',
+           collapsible: false,
+           id:'urlidrule',
+           hidden:true,
+           collapsed:false,
+           title:'网址库规则',
+           defaults: {
+  //              width: 240,
+  //              labelWidth: 40
+            },
+            defaultType: 'textfield',
+            items: [
+            {
+             xtype: 'fieldcontainer',
+             layout: 'hbox',
+                defaults: {
+       //             flex: 1
+  //                  hideLabel: true
+                },
+                items:[         
+			          
+			            {
+			            	  xtype     : 'textfield',
+			                fieldLabel: '&nbsp;网址库名称',
+			                emptyText:'选择网址库...', 
+			                labelWidth: 80,
+			                width:200,
+			                			    xtype:          'combo',
+                                mode:           'local',
+                                value:          '0',
+                                triggerAction:  'all',
+                                forceSelection: true,
+                                editable:       false,                                
+                                name:           'urlid',                             
+                                displayField:   'name',
+                                valueField:     'groupid',
+                                queryMode: 'local',
+                                store: _storeUrl
+			            }
+			            
+			            
+			          ]
+			        }
+			
+			        
+            ]
+          },
+          
+          
+          
+          
+			        {
+             xtype: 'fieldcontainer',
+             layout: 'hbox',
+                defaults: {
+       //             flex: 1
+  //                  hideLabel: true
+                },
+                items:[
+			             {xtype: 'button', margins: '20 20 00 300',  name:'aaaa',text: '保存',width:100,
+                  handler: function() {
+                  
+              var temp=this.up('form').getForm().findField('rule_id').getValue();
+            	if(temp==''){
+            		alert('请填写策略编号');
+            		return;
+            	}
+//              var temp=this.up('form').getForm().findField('rule_name').getValue();
+//            	if(temp==''){
+//            		alert('请填写策略名称');
+//            		return;
+//            	}
+            	
+            	    this.up('form').getForm().doAction('submit',{
+                  url:'/pronline/Msg',
+                 method:'post',
+                 waitMsg: '正在保存...',
+                  params:{FunName:'ncsAuditSave_v8'},
+                  success:function(form,action){
+          //        	Ext.Msg.alert(action.result.msg);
+                  	 fp2.getForm().findField('sid').setValue(action.result.sid);                	
+                  	 reflash();
+                     win2.close();
+                  }
+                  ,
+                 failure:function(form,action){
+                 	Ext.Msg.alert(action.result.msg);
+                 	win2.close();
+                   }
+                     
+                 })
+                           		
+                  }
+                           	
+                   }
+		            
+			            
+			            
+			           
+			          ]
+			        }
+         
+         
+         
+         
+         
+         
+         
+         
+         
+          
+          
+          
+          
+        ]
+      });
+    
+   fp2.loadRecord(record);
+      if(id!=''){
+       var quyu=record.get('conflags');
+                                  if(quyu=='3'){
+                                 	  Ext.getCmp('iprule').show();
+                                 	  Ext.getCmp('servicerule').hide();
+                                 	  Ext.getCmp('webrule').hide();
+                                 	  Ext.getCmp('urlidrule').hide();
+                                  }
+                                  else if(quyu=='2'){
+                                    Ext.getCmp('iprule').hide();
+                                 	  Ext.getCmp('servicerule').show();
+                                 	  Ext.getCmp('webrule').hide();
+                                 	  Ext.getCmp('urlidrule').hide();
+                                  }
+                                  else if(quyu=='6'){
+                                    Ext.getCmp('iprule').hide();
+                                 	  Ext.getCmp('servicerule').hide();
+                                 	  Ext.getCmp('urlidrule').hide();
+                                 	  Ext.getCmp('webrule').show();
+
+                                  }
+                                  else if(quyu=='8'){
+                                    Ext.getCmp('iprule').hide();
+                                 	  Ext.getCmp('servicerule').hide();
+                                 	  Ext.getCmp('webrule').hide();
+                                 	  Ext.getCmp('urlidrule').show();
+                                 	  
+                                  }
+                                  else{
+                                    Ext.getCmp('iprule').hide();
+                                 	  Ext.getCmp('servicerule').hide();
+                                 	  Ext.getCmp('webrule').hide();
+                                 	   Ext.getCmp('urlidrule').hide();
+                                  }
+           }
+
+         var win2 = new Ext.Window ({
+                             id:"addwindow",
+                             title:"控制策略管理",
+                             x:0,
+                             y:0,
+                             width:690,
+                             height:600,
+                             bodyPadding: 10,
+                             modal:true,
+                             resizable:true,
+           //                  draggable:false,
+                             items: fp2
+                                               
+         }
+        )
+        win2.show();
+    };
+
+var _storeService;
+var _storeSgroup;
+var store;
+Ext.onReady(function(){
+
+
+Ext.tip.QuickTipManager.init();
+
+ 		Ext.define("ServiceGroup", 
+    		{
+        		extend: 'Ext.data.Model',
+        		proxy: 
+        		{
+        			type: 'ajax',
+        			url: '/pronline/Msg?FunName@ncsServiceGroup_v4',
+        			reader: new Ext.data.JsonReader(
+        			{
+               				type:'json',
+                			root: 'eimdata1',
+                			totalProperty: 'totalCount'
+            			}),        
+            			simpleSortMode: true
+        		},
+        		fields: [
+            			{name: 'name', mapping: 'name'},
+            			{name: 'groupid', mapping: 'groupid'}
+        		]
+    		});
+    		
+    		_storeSgroup = Ext.create('Ext.data.Store', {
+        		pageSize: 10000,
+        		model: 'ServiceGroup'
+    		});
+    		_storeSgroup.load();
+    		Ext.define("ServiceIndex", 
+    		{
+        		extend: 'Ext.data.Model',
+        		proxy: 
+        		{
+        			type: 'ajax',
+        			url: '/pronline/Msg?FunName@ncsServiceIndex_v4&groupid@0',
+        			reader: new Ext.data.JsonReader(
+        			{
+               				type:'json',
+                			root: 'eimdata1',
+                			totalProperty: 'totalCount'
+            			}),        
+            			simpleSortMode: true
+        		},
+        		fields: [
+            			{name: 'name', mapping: 'name'},
+            			{name: 'groupid', mapping: 'groupid'}
+        		]
+    		});
+    		
+    		 _storeUrl = Ext.create('Ext.data.Store', {pageSize: 40,fields: ['groupid', 'name'],remoteSort: true,autoLoad: false,
+			      proxy: {type: 'ajax',url: '/pronline/Msg?FunName@ncsUrlidComp',reader: {type:'json',root: 'eimdata1',totalProperty: 'totalCount'},simpleSortMode: true
+			      },sorters: [{property: 'groupid'}]});
+    		_storeUrl.load();
+    		
+    		
+    		 _storeService = Ext.create('Ext.data.Store', {
+        		pageSize: 10000,
+        		model: 'ServiceIndex'
+    		});
+       _storeService.load();
+
+ 
+
+
+
+
+
+   
+
+
+
+
+   Ext.define('EimData', {
+        extend: 'Ext.data.Model',
+        fields: [
+            'msg', 'num', 'sid', 'no1','rule_id','rule_name','set_time','validation_time','no','tab','xz','cmsg','namet','tp','userid','uflags','timetype','starttime','stoptime','flags','conflags','trantype','lowerip','upperip','lowerport','upperport','url','service','urlid'
+        ],
+        idProperty: 'sid'
+    });
+
+        store = Ext.create('Ext.data.Store', {
+        pageSize: 40,
+        model: 'EimData',
+        remoteSort: true,
+        proxy: {
+            type: 'ajax',
+            url: '/pronline/Msg?FunName@ncsWebAuditList_v4&status@1',
+            reader: {
+                type:'json',
+                root: 'eimdata',
+                totalProperty: 'totalCount'
+            },         
+            simpleSortMode: true
+        },
+        sorters: [{
+            property: 'sid',
+            direction: 'DESC'
+        }]
+    });
+    store.load();
+
+
+   
+
+    var sm = Ext.create('Ext.selection.CheckboxModel',{
+        listeners: {
+            selectionchange: function(sm, selections) {
+           
+  //          grid.down('#removeButton').setDisabled(selections.length == 0);
+                
+            }
+        }
+    
+    });
+//对翻页工具条重新构建，替换翻页函数    
+  Ext.PagingToolbar1 = Ext.extend(Ext.PagingToolbar, {
+     doRefresh:function(){  
+     reflash();
+    },
+    moveLast:function(){
+    	var b=this,a=b.getPageData().pageCount;
+    	if(b.fireEvent("beforechange",b,a)!==false){
+    	store.currentPage=a;
+    	reflash();
+       }},
+     moveFirst:function(){
+      if(this.fireEvent("beforechange",this,1)!==false){
+      store.currentPage=1;
+      reflash();}}, 
+     movePrevious:function(){var b=this,a=b.store.currentPage-1;if(a>0){if(b.fireEvent("beforechange",b,a)!==false){store.currentPage=a;reflash();}}},
+     moveNext:function(){var c=this,b=c.getPageData().pageCount,a=c.store.currentPage+1;if(a<=b){if(c.fireEvent("beforechange",c,a)!==false){store.currentPage=a;reflash();}}},
+      
+      
+      onPagingKeyDown:function(i,h){
+     var d=this,b=h.getKey(),c=d.getPageData(),a=h.shiftKey?10:1,g;
+     if(b==h.RETURN){h.stopEvent();g=d.readPageFromInput(c);
+        if(g!==false){
+         g=Math.min(Math.max(1,g),c.pageCount);
+         if(d.fireEvent("beforechange",d,g)!==false){
+        //d.store.loadPage(g)
+         d.store.currentPage=g;
+         reflash();
+        }        
+      }
+    }
+    else{
+       if(b==h.HOME||b==h.END){
+    			h.stopEvent();g=b==h.HOME?1:c.pageCount;i.setValue(g)
+       }
+       else{
+         if(b==h.UP||b==h.PAGEUP||b==h.DOWN||b==h.PAGEDOWN){
+          h.stopEvent();g=d.readPageFromInput(c);
+           if(g){
+             if(b==h.DOWN||b==h.PAGEDOWN){a*=-1}
+             g+=a;
+             if(g>=1&&g<=c.pages){i.setValue(g)}
+             }
+            }
+           }
+         }  
+      }
+
+      
+      
+       
+});
+
+
+    Ext.define('State', {
+        extend: 'Ext.data.Model',
+        fields: [
+            {type: 'string', name: 'classid'},
+            {type: 'string', name: 'classname'}
+        ]
+    });
+    // The data for all states
+
+    var data_sxsj = [
+        {"classid":"1","classname":"三天"},
+        {"classid":"2","classname":"一周"},
+        {"classid":"3","classname":"一个月"},
+        {"classid":"4","classname":"三个月"},
+        {"classid":"5","classname":"半年"},
+        {"classid":"6","classname":"一年"},
+        {"classid":"7","classname":"两年"},
+        {"classid":"8","classname":"五年"},
+        {"classid":"0","classname":" "}
+    ];
+    var store_sxsj = Ext.create('Ext.data.Store', {
+        model: 'State',
+        data: data_sxsj
+    });
+
+
+    // create the grid and specify what field you want
+    // to use for the editor at each column.
+    
+
+    
+      var aaa=screen.width;
+      aaa=aaa-265;
+     var win2;
+    var grid = Ext.create('Ext.grid.Panel', {
+        store: store,
+        selModel: sm,
+        columns: [{
+            header: '策略名称',
+  //          id: 'pid',
+            dataIndex: 'rule_name',
+            sortable: false,
+            width:100
+        }, {
+            header: '策略编号',
+            dataIndex: 'rule_id',
+             width:120,
+           sortable: false
+        }, {
+
+            header: '审计级别',
+            dataIndex: 'no',
+            width:60,
+            sortable: false
+        },{
+        	  header: '策略内容',
+            dataIndex: 'msg',
+            sortable: false,
+            width: 250
+            
+        },{
+        	  header: '下发对象',
+            dataIndex: 'xz',
+            sortable: false,
+           
+            width: 100
+        },{
+        	  header: '有效时间',
+            dataIndex: 'validation_time',
+            sortable: false,
+            width: 100
+        },{
+        	  header: '设置时间',
+            dataIndex: 'set_time',
+            width:100,
+            sortable: false
+          },      
+        {
+        	  header: '修改',
+        	 width:60,
+     //  	  renderer: bjmx,
+           xtype: 'actioncolumn',
+            dataIndex: 'sid',
+            align:'left',
+            icon: '/v4/images/edit_task.png',
+            tooltip: '点击该图标添加该布控信息的具体策略。',
+            sortable: false,
+             listeners: {
+             	click:function(grid, rowIndex, colIndex, actionItem, event, record, row){
+             		gotoedit1(record.data.sid,record);
+        
+
+
+ //        win2.on("beforeclose", function() {
+//        	reflash();
+//         }
+//         );
+        
+ //       win2.show();	
+             		
+             		
+             	}
+            },
+       //     ,
+      //      handler: function(grid, rowIndex, colIndex, actionItem, event, record, row) {
+     //           Ext.Msg.alert('Editing' + (record.get('done') ? ' completed task' : '') , record.get('task'));
+     //       },
+   //         hidden:true,
+            width: 95
+        }
+
+        ],
+        columnLines: true,
+        renderTo: 'editor-grid',
+ //       width: aaa,
+        forceFit: true,
+        scrollOffset: 0,
+        height: 950,
+
+        frame: true,
+        tbar: Ext.create('Ext.PagingToolbar1', {
+            store: store,
+            displayInfo: true,
+            displayMsg: '显示{0} - {1}条记录 共{2}条记录',
+            emptyMsg: "没有记录可显示",
+                                       
+            items: 
+        ['-',{
+            text: '添加控制策略',
+            iconCls: 'add',
+            handler : function() {
+             gotoedit1('','');
+            }
+        }, {
+            itemId: 'removeEmployee',
+            text: '撤控',
+            iconCls: 'remove',
+
+               handler:function(){
+             
+							   if(confirm('您真的要执行撤控操作吗？')){                  
+                 var selsid;
+                   
+                 var rows=sm.getSelection();
+                   selsid='';
+                  for(var i=0;i<rows.length;i++){
+                  	if(i==0){
+                  	 selsid="\'"+rows[i].get('rule_id')+"\'";
+                  	}
+                  	else{
+                       selsid=selsid+","+"\'"+rows[i].get('rule_id')+"\'";
+                    }
+                   
+                   }
+
+                     store.load({params: {del: "del",selsid:selsid}});
+                  
+                
+              }
+                
+            }
+    //        ,
+ //           disabled: true
+        },
+        '-',      
+         ,
+           {
+               xtype:'textfield',
+               id:'keyword',
+               name:'keyword',
+               style:'color:#7aa7d5',
+               value:'请输入查询内容',
+               enableKeyEvents:true,
+               listeners:{
+                 'focus':function(){
+                 if(this.value=='请输入查询内容'){                
+                    this.setValue('');
+                  }
+                 },
+                 'keydown' : function(i,e){
+                var aae=e.getKey() ; 
+                if(aae==13){
+                    var aa=Ext.getCmp('keyword').value;
+                    store.load({params:{keyword:aa}});
+                  }
+                }
+               }
+             },
+        ,
+             {
+                text:'确认',
+                iconCls:'accept',
+                handler: function(){
+                 var aa=Ext.getCmp('keyword').value;
+                
+                if(aa!='请输入查询内容'){
+                	store.load({params:{keyword:aa}});
+                  	
+                 }
+                
+              
+                }
+           }
+        ]}),
+        listeners: {
+            'selectionchange': function(view, records) {
+                grid.down('#removeEmployee').setDisabled(!records.length);
+               
+                
+            }
+        }
+    });
+});
+</script>
+    
+    
+</head>
+<body>
+		<form name="form1" id="form1" action="/pronline/Msg">
+			<input type="hidden" name="groupid" value="">
+		<input type="hidden" name="did" value="">
+	</form>
+    <div id="editor-grid"></div>
+</body>
+</html>

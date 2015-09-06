@@ -1,0 +1,336 @@
+<html>
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<title>main</title>
+<script>
+var dfd1="0"
+function gotoPage(pagenum)
+
+{
+    form1.CurPg.value = pagenum;
+}
+
+function lprint()
+{
+form1.cx.style.display="none";
+form1.rycx.style.display="none";
+form1.hsear.style.display="none";
+form1.pr.style.display="none";
+form1.exp.style.display="none";
+window.print();
+
+form1.cx.style.display="";
+form1.rycx.style.display="";
+form1.hsear.style.display="";
+form1.pr.style.display="";
+form1.exp.style.display="";
+}
+// function goto(t){
+// self.location.href=t
+// }
+
+function goto(t){
+ tt=showModalDialog(t, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:520px;scroll:yes;dialogHeight:480px');
+}
+function showuser(did,uid)
+{
+var temp_var="/pronline/Msg?FunName@ncsWebShowUserinfo&did@"+did+"+uid@"+uid;
+	showModalDialog(temp_var, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:520px;scroll:yes;dialogHeight:520px');
+}
+function mouseovertr2 (o){
+var i;
+df=o.style.backgroundColor
+	o.style.backgroundColor= "#ffff00";
+	o.style.borderColor= "#FFFF00";
+	o.style.cursor="hand";	
+}
+
+function mouseouttr2(o){
+	o.style.backgroundColor=df
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#000000";
+}
+	
+	
+}
+
+function checkme(p)
+{
+	var tt=p.value
+	if (tt>yy)
+	{
+		MM_changeProp('browsdopage','','value',yy,'INPUT/TEXT')
+	}
+	if (tt==0)
+	{
+		MM_changeProp('browsdopage','','value','1','INPUT/TEXT')
+	}
+}
+
+function allChecked(){
+    if(dfd1=="1"){
+        dfd1="0"
+    }
+    else {
+         dfd1="1"
+    }
+	for(var i=0;i<document.all.DataTable.rows.length;i++)
+	{
+		if(typeof(document.all.DataTable.rows[i].cells[0].childNodes[1])=="object"
+
+				&&document.all.DataTable.rows[i].cells[0].childNodes[1].tagName=="INPUT"
+
+				&&document.all.DataTable.rows[i].cells[0].childNodes[1].type=="checkbox") {
+			if(dfd1=="1"){
+  			    document.all.DataTable.rows[i].cells[0].childNodes[1].checked="true";
+            }
+			else{
+                document.all.DataTable.rows[i].cells[0].childNodes[1].checked="";
+            }
+        }
+ 	}
+}
+
+
+// -->
+<!-- Hide
+//var ll=[#CurPg#]
+//var yy=[#TotPg#]
+var ll=1
+var yy=1
+function killErrors() {
+return true;
+}
+window.onerror = killErrors;
+// -->
+
+</script>
+
+<link REL=stylesheet HREF="/css/listdatetable.css" TYPE="text/css">
+<script src="/js/tablecssall.js"></script>
+<script src="/js/rmenu.js"></script>
+<style type="text/css">
+<!--
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+-->
+</style>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+<body marginheight=0 leftmargin=0 marginwidth=0 topMargin="0" BGCOLOR="Menu">
+<form name="form1" method="post" action="/pronline/Msg">
+  <table border="0" width=100% height=100% cellspacing="0" cellpadding="0" align=center bgcolor='#ffffff'>
+    <tr> 
+      <td valign="bottom" width="100%"  valign=middle align=center height="28" bgcolor="#DEE8FA" class="ttt"> 
+        <table width="100%" border="0" cellspacing="0">
+
+          <tr > 
+           <td  > 
+					&nbsp;&nbsp;             
+               <input name="pr" type="button" class="an3"   value="打 印" onclick="lprint()">
+               <input name="exp" type="submit" class="an3"   value="导 出" >
+           
+              <input type="hidden" name="FunName" value="ncsWebNetLog">
+              <input type="hidden" name="CurPg"      value="[#CurPg#]">
+              <input type="hidden" name="TotPg"      value="[#TotPg#]">
+              <input type="hidden" name="lcount"      value="[#TotRec#]">
+              <input type="hidden" name="cond" value="[#cond#]">
+      
+            </td>
+            <td width="37%" height="23"> 
+              <table align=right border=0 cellpadding=0 cellspacing=0 class=main>
+              <tbody> 
+                <td width="10%"><script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-06.gif' border=0 height=17 width=35 class='gray1'>")}
+                      else{
+                        document.write("<a href='#'><img src='/images/zbuyer-06.gif' border=0 height=17 width=35 onClick='gotoPage(1);form1.submit()' class='hand'>")}
+                   </script></td>
+                <td width="10%"><script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 class='gray1'>")}
+                      else {
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]-1);form1.submit()' class='hand'>")}
+                   </script></td>
+                <td width="20%"><img src="/images/zbuyer-08.gif" border=0 height=17 width=32></td>
+                <td align=middle background="" width=92>
+                    <input class=Main id=browsdopage maxlength=68 name=browsdopage size=8 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 50px" value=1 onKeyPress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" onBlur="checkme(this)">
+                </td>
+                <td width="10%"><img src="/images/zbuyer-09.gif" border=0 height=17 width=16></td>
+                <td width="10%"><img align=middle border=0 height=17 src="/images/zbuyer-10.gif" width=17 onClick="gotoPage(form1.browsdopage.value);form1.submit()" class="hand"><img align=middle height=17 src="/images/zbuyer-11.gif" width=3></td>
+                
+                
+    <td width="10%"><img border=0 height=17 src="/images/zin1.gif" width=17 ></td>
+    <td align=middle background="" width=92> 
+      <input  class=Main id=browsdopage1 maxlength=5 name=browsdopage12 size=3 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 50px" value='1'>
+    </td>
+    <td width="10%"><img align=middle height=17 src="/images/zbuyer-09.gif" width=16></td>
+    <td align=middle background="" width=92> 
+      <input  class=Main id=browsdopage1 maxlength=8 name=browsdopage12 size=8 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 50px" value='10'>
+    </td>
+    <td width="10%"><img border=0 height=17 src="/images/zin3.gif" width=17 align="middle" ><img align=middle height=17  src="/images/zbuyer-11.gif" width=3></td>
+                
+                <td width="10%"><script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]+1);form1.submit()' class='hand'>")}
+                    </script></td>
+                <td width="10%"><script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 onClick='gotoPage([#TotPg#]);form1.submit()' class='hand'>")}
+                    </script></td>
+              </tbody> 
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+  </tr>
+  <tr>
+      <td width="100%"  valign=top align=center bgcolor="#DEE8FA"> 
+        <table id="DataTable" class="listDataTable" width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+          <tr bgcolor="#6382BD" height="18">
+             
+            <td width="12%" align="center" class="bord2"> <font color="#FFFFFF">单位名称</font></td>
+            <td width="8%" align="center" class="bord2"><font color="#FFFFFF">部门</font></td>
+            <td width="8%" align="center" class="bord2"><font color="#FFFFFF">姓名</font></td>
+            <td width="12%" align="center" class="bord2"> <font color="#FFFFFF">源IP地址</font></td>
+            <td width="8%" align="center" class="bord2"><font color="#FFFFFF">服务</font></td>
+
+            <td width="14%" align="center" class="bord2"><font color="#FFFFFF">内容</font></td>
+            <td width="14%" align="center" class="bord2"><font color="#FFFFFF">时间</font></td>
+          </tr>
+          <!-- [#SLPB#] -->
+          <tr onMouseOver="mouseovertr2(this)" height="18" onMouseOut="mouseouttr2(this)" > 
+            <td class="bord1"   nowrap >&nbsp;上海新网程</td>
+            <td class="bord1"   nowrap >&nbsp;技术部</td>
+            <td class="bord1"  nowrap  >&nbsp;陈昌国</td>
+            <td class="bord1"   nowrap >&nbsp;192.168.0.12</td>
+            <td class="bord1"  nowrap  >&nbsp;telnet</td>
+            <td class="bord1"  nowrap  >&nbsp;telnet 192.168.0.12</td>
+            <td class="bord3"  nowrap  >&nbsp;2006/04/26 10:12</td>
+          </tr>
+          
+          <tr onMouseOver="mouseovertr2(this)" height="18" onMouseOut="mouseouttr2(this)" > 
+            <td class="bord1"   nowrap >&nbsp;上海新网程</td>
+            <td class="bord1"   nowrap >&nbsp;技术部</td>
+            <td class="bord1"  nowrap  >&nbsp;陈昌国</td>
+            <td class="bord1"   nowrap >&nbsp;192.168.0.12</td>
+            <td class="bord1"  nowrap  >&nbsp;FTP</td>
+            <td class="bord1"  nowrap  >&nbsp;FTP aaa.c</td>
+            <td class="bord3"  nowrap  >&nbsp;2006/04/26 10:12</td>
+          </tr>
+          
+          <tr onMouseOver="mouseovertr2(this)" height="18" onMouseOut="mouseouttr2(this)" > 
+            <td class="bord1"   nowrap >&nbsp;上海新网程</td>
+            <td class="bord1"   nowrap >&nbsp;技术部</td>
+            <td class="bord1"  nowrap  >&nbsp;陈昌国</td>
+            <td class="bord1"   nowrap >&nbsp;192.168.0.12</td>
+            <td class="bord1"  nowrap  >&nbsp;telnet</td>
+            <td class="bord1"  nowrap  >&nbsp;telnet 192.168.0.12</td>
+            <td class="bord3"  nowrap  >&nbsp;2006/04/26 10:12</td>
+          </tr>
+          
+          <tr onMouseOver="mouseovertr2(this)" height="18" onMouseOut="mouseouttr2(this)" > 
+            <td class="bord1"   nowrap >&nbsp;上海新网程</td>
+            <td class="bord1"   nowrap >&nbsp;技术部</td>
+            <td class="bord1"  nowrap  >&nbsp;陈昌国</td>
+            <td class="bord1"   nowrap >&nbsp;192.168.0.12</td>
+            <td class="bord1"  nowrap  >&nbsp;FTP</td>
+            <td class="bord1"  nowrap  >&nbsp;FTP aaa.c</td>
+            <td class="bord3"  nowrap  >&nbsp;2006/04/26 10:12</td>
+          </tr>
+          
+         <tr onMouseOver="mouseovertr2(this)" height="18" onMouseOut="mouseouttr2(this)" > 
+            <td class="bord1"   nowrap >&nbsp;上海新网程</td>
+            <td class="bord1"   nowrap >&nbsp;技术部</td>
+            <td class="bord1"  nowrap  >&nbsp;陈昌国</td>
+            <td class="bord1"   nowrap >&nbsp;192.168.0.12</td>
+            <td class="bord1"  nowrap  >&nbsp;telnet</td>
+            <td class="bord1"  nowrap  >&nbsp;telnet 192.168.0.12</td>
+            <td class="bord3"  nowrap  >&nbsp;2006/04/26 10:12</td>
+          </tr>
+          
+          <tr onMouseOver="mouseovertr2(this)" height="18" onMouseOut="mouseouttr2(this)" > 
+            <td class="bord1"   nowrap >&nbsp;上海新网程</td>
+            <td class="bord1"   nowrap >&nbsp;技术部</td>
+            <td class="bord1"  nowrap  >&nbsp;陈昌国</td>
+            <td class="bord1"   nowrap >&nbsp;192.168.0.12</td>
+            <td class="bord1"  nowrap  >&nbsp;FTP</td>
+            <td class="bord1"  nowrap  >&nbsp;FTP aaa.c</td>
+            <td class="bord3"  nowrap  >&nbsp;2006/04/26 10:12</td>
+          </tr>
+          
+         <tr onMouseOver="mouseovertr2(this)" height="18" onMouseOut="mouseouttr2(this)" > 
+            <td class="bord1"   nowrap >&nbsp;上海新网程</td>
+            <td class="bord1"   nowrap >&nbsp;技术部</td>
+            <td class="bord1"  nowrap  >&nbsp;陈昌国</td>
+            <td class="bord1"   nowrap >&nbsp;192.168.0.12</td>
+            <td class="bord1"  nowrap  >&nbsp;telnet</td>
+            <td class="bord1"  nowrap  >&nbsp;telnet 192.168.0.12</td>
+            <td class="bord3"  nowrap  >&nbsp;2006/04/26 10:12</td>
+          </tr>
+          
+          <tr onMouseOver="mouseovertr2(this)" height="18" onMouseOut="mouseouttr2(this)" > 
+            <td class="bord1"   nowrap >&nbsp;上海新网程</td>
+            <td class="bord1"   nowrap >&nbsp;技术部</td>
+            <td class="bord1"  nowrap  >&nbsp;陈昌国</td>
+            <td class="bord1"   nowrap >&nbsp;192.168.0.12</td>
+            <td class="bord1"  nowrap  >&nbsp;FTP</td>
+            <td class="bord1"  nowrap  >&nbsp;FTP aaa.c</td>
+            <td class="bord3"  nowrap  >&nbsp;2006/04/26 10:12</td>
+          </tr>
+          
+         <tr onMouseOver="mouseovertr2(this)" height="18" onMouseOut="mouseouttr2(this)" > 
+            <td class="bord1"   nowrap >&nbsp;上海新网程</td>
+            <td class="bord1"   nowrap >&nbsp;技术部</td>
+            <td class="bord1"  nowrap  >&nbsp;陈昌国</td>
+            <td class="bord1"   nowrap >&nbsp;192.168.0.12</td>
+            <td class="bord1"  nowrap  >&nbsp;telnet</td>
+            <td class="bord1"  nowrap  >&nbsp;telnet 192.168.0.12</td>
+            <td class="bord3"  nowrap  >&nbsp;2006/04/26 10:12</td>
+          </tr>
+          
+          <tr onMouseOver="mouseovertr2(this)" height="18" onMouseOut="mouseouttr2(this)" > 
+            <td class="bord1"   nowrap >&nbsp;上海新网程</td>
+            <td class="bord1"   nowrap >&nbsp;技术部</td>
+            <td class="bord1"  nowrap  >&nbsp;陈昌国</td>
+            <td class="bord1"   nowrap >&nbsp;192.168.0.12</td>
+            <td class="bord1"  nowrap  >&nbsp;FTP</td>
+            <td class="bord1"  nowrap  >&nbsp;FTP aaa.c</td>
+            <td class="bord3"  nowrap  >&nbsp;2006/04/26 10:12</td>
+          </tr>
+
+ <!--         <tr id=[#snum#]>
+           <td class="bord1" >&nbsp;</td>
+            <td class="bord1" >&nbsp;</td>
+            <td class="bord1" >&nbsp;</td>
+            <td class="bord1" >&nbsp;</td>
+            <td class="bord1" >&nbsp;</td>
+            <td class="bord1" >&nbsp;</td>
+            <td class="bord1" >&nbsp;</td>
+            <td class="bord1" >&nbsp;</td>
+            <td class="bord3" >&nbsp;</td>
+          </tr>
+          <!-- [#SLPE#] -->
+        </table>
+      </td>
+  </tr>
+</table>
+ </form>
+</body>
+
+</html>

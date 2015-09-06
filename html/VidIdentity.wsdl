@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://10.66.190.210:9080/DIReceiveServer/services/VidIdentity" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://10.66.190.210:9080/DIReceiveServer/services/VidIdentity" xmlns:intf="http://10.66.190.210:9080/DIReceiveServer/services/VidIdentity" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+
+   <wsdl:message name="selectDataRequest">
+
+      <wsdl:part name="verifyID" type="soapenc:string"/>
+
+      <wsdl:part name="xml" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="queryStatusRequest">
+
+      <wsdl:part name="verifyID" type="soapenc:string"/>
+
+      <wsdl:part name="xml" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getDateTimeResponse">
+
+      <wsdl:part name="getDateTimeReturn" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="setDateTimeResponse">
+
+      <wsdl:part name="setDateTimeReturn" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="updateDataRequest">
+
+      <wsdl:part name="verifyID" type="soapenc:string"/>
+
+      <wsdl:part name="xml" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="setUpStatusPropertyRequest">
+
+      <wsdl:part name="verifyID" type="soapenc:string"/>
+
+      <wsdl:part name="xml" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="setUpStatusPropertyResponse">
+
+      <wsdl:part name="setUpStatusPropertyReturn" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="submitTraceResponse">
+
+      <wsdl:part name="submitTraceReturn" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="deleteDataRequest">
+
+      <wsdl:part name="verifyID" type="soapenc:string"/>
+
+      <wsdl:part name="xml" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="deleteDataResponse">
+
+      <wsdl:part name="deleteDataReturn" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="queryStatusResponse">
+
+      <wsdl:part name="queryStatusReturn" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="submitTraceRequest">
+
+      <wsdl:part name="verifyID" type="soapenc:string"/>
+
+      <wsdl:part name="xml" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="updateDataResponse">
+
+      <wsdl:part name="updateDataReturn" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="setDateTimeRequest">
+
+      <wsdl:part name="verifyID" type="soapenc:string"/>
+
+      <wsdl:part name="xml" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="selectDataResponse">
+
+      <wsdl:part name="selectDataReturn" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="commitStatusResponse">
+
+      <wsdl:part name="commitStatusReturn" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="commitStatusRequest">
+
+      <wsdl:part name="verifyID" type="soapenc:string"/>
+
+      <wsdl:part name="xml" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getDateTimeRequest">
+
+      <wsdl:part name="verifyID" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="Vids_Identity">
+
+      <wsdl:operation name="submitTrace" parameterOrder="verifyID xml">
+
+         <wsdl:input message="impl:submitTraceRequest" name="submitTraceRequest"/>
+
+         <wsdl:output message="impl:submitTraceResponse" name="submitTraceResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="updateData" parameterOrder="verifyID xml">
+
+         <wsdl:input message="impl:updateDataRequest" name="updateDataRequest"/>
+
+         <wsdl:output message="impl:updateDataResponse" name="updateDataResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="commitStatus" parameterOrder="verifyID xml">
+
+         <wsdl:input message="impl:commitStatusRequest" name="commitStatusRequest"/>
+
+         <wsdl:output message="impl:commitStatusResponse" name="commitStatusResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteData" parameterOrder="verifyID xml">
+
+         <wsdl:input message="impl:deleteDataRequest" name="deleteDataRequest"/>
+
+         <wsdl:output message="impl:deleteDataResponse" name="deleteDataResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getDateTime" parameterOrder="verifyID">
+
+         <wsdl:input message="impl:getDateTimeRequest" name="getDateTimeRequest"/>
+
+         <wsdl:output message="impl:getDateTimeResponse" name="getDateTimeResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="queryStatus" parameterOrder="verifyID xml">
+
+         <wsdl:input message="impl:queryStatusRequest" name="queryStatusRequest"/>
+
+         <wsdl:output message="impl:queryStatusResponse" name="queryStatusResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="selectData" parameterOrder="verifyID xml">
+
+         <wsdl:input message="impl:selectDataRequest" name="selectDataRequest"/>
+
+         <wsdl:output message="impl:selectDataResponse" name="selectDataResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setDateTime" parameterOrder="verifyID xml">
+
+         <wsdl:input message="impl:setDateTimeRequest" name="setDateTimeRequest"/>
+
+         <wsdl:output message="impl:setDateTimeResponse" name="setDateTimeResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setUpStatusProperty" parameterOrder="verifyID xml">
+
+         <wsdl:input message="impl:setUpStatusPropertyRequest" name="setUpStatusPropertyRequest"/>
+
+         <wsdl:output message="impl:setUpStatusPropertyResponse" name="setUpStatusPropertyResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="VidIdentitySoapBinding" type="impl:Vids_Identity">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="submitTrace">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="submitTraceRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://identity.webservice.vids.hintsoft.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="submitTraceResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://10.66.190.210:9080/DIReceiveServer/services/VidIdentity" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="updateData">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="updateDataRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://identity.webservice.vids.hintsoft.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="updateDataResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://10.66.190.210:9080/DIReceiveServer/services/VidIdentity" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="commitStatus">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="commitStatusRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://identity.webservice.vids.hintsoft.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="commitStatusResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://10.66.190.210:9080/DIReceiveServer/services/VidIdentity" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteData">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="deleteDataRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://identity.webservice.vids.hintsoft.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="deleteDataResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://10.66.190.210:9080/DIReceiveServer/services/VidIdentity" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getDateTime">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getDateTimeRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://identity.webservice.vids.hintsoft.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getDateTimeResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://10.66.190.210:9080/DIReceiveServer/services/VidIdentity" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="queryStatus">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="queryStatusRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://identity.webservice.vids.hintsoft.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="queryStatusResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://10.66.190.210:9080/DIReceiveServer/services/VidIdentity" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="selectData">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="selectDataRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://identity.webservice.vids.hintsoft.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="selectDataResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://10.66.190.210:9080/DIReceiveServer/services/VidIdentity" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setDateTime">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setDateTimeRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://identity.webservice.vids.hintsoft.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setDateTimeResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://10.66.190.210:9080/DIReceiveServer/services/VidIdentity" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setUpStatusProperty">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setUpStatusPropertyRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://identity.webservice.vids.hintsoft.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setUpStatusPropertyResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://10.66.190.210:9080/DIReceiveServer/services/VidIdentity" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="Vids_IdentityService">
+
+      <wsdl:port binding="impl:VidIdentitySoapBinding" name="VidIdentity">
+
+         <wsdlsoap:address location="http://10.66.190.210:9080/DIReceiveServer/services/VidIdentity"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

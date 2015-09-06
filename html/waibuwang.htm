@@ -1,0 +1,169 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<title>main</title>
+<script>
+function goto(t){
+self.location.href=t
+}
+function mouseovertr2 (o){
+var i;
+df=o.style.backgroundColor
+	o.style.backgroundColor= "#003399";
+	o.style.borderColor= "#FFFF00";
+	o.style.cursor="hand";	
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#ffffff";
+}	
+}
+
+function mouseouttr2(o){
+	o.style.backgroundColor=df
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#000000";
+}
+	
+	
+}
+</script>
+<link REL=stylesheet HREF="runmit.css" TYPE="text/css">
+<script src="rmenu.js"></script>
+<style type="text/css">
+<!--
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+-->
+</style>
+<link rel="stylesheet" href="css/css.css" type="text/css">
+</head>
+<body marginheight=0 leftmargin=0 marginwidth=0 topMargin="0" BGCOLOR="Menu">
+<table border="0" width=100% height=100% cellspacing="0" cellpadding="0" align=center bgcolor='#ffffff'>
+  <tr> 
+    <td width="100%"  valign=middle align=center height="25" bgcolor="#dfdfdf" class="ttt">
+      <table width="100%" border="0" cellspacing="0">
+        <tr> 
+          <td>&nbsp;&nbsp;起始 IP 
+            <input type="text" name="textfield2" size="16">
+            终止 IP 
+            <input type="text" name="textfield3" size="16">
+            <input type="button" name="  " value="添加" class="an3">
+            <input type="button" name="  " value="删除" class="an3">
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td width="100%"  valign=top align=center bgcolor="#BBBBBB"> 
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" height="100%">
+        <tr> 
+          <td class="bord2" background="images/ttt.gif" height="20"><img src="images/lline.gif" width="1" height="18" align="absmiddle">&nbsp;</td>
+          <td class="bord2" height="18" background="images/ttt.gif"><img src="images/lline.gif" width="1" height="18" align="absmiddle">&nbsp;起始 
+            IP 地址</td>
+          <td class="bord4" height="18" background="images/ttt.gif"><img src="images/lline.gif" width="1" height="18" align="absmiddle">&nbsp;终止 
+            IP 地址</td>
+        </tr>
+        <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" > 
+          <td class="bord1" width="25"> 
+            <input type="checkbox" name="checkbox" value="checkbox">
+          </td>
+          <td class="bord1">&nbsp;192.168.0.237 </td>
+          <td class="bord3">&nbsp;192.168.0.237 </td>
+        </tr>
+        <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" > 
+          <td class="bord1" width="25"> 
+            <input type="checkbox" name="checkbox2" value="checkbox">
+          </td>
+          <td class="bord1">&nbsp;192.168.0.223</td>
+          <td class="bord3">192.168.0.237 </td>
+        </tr>
+        <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" > 
+          <td class="bord1" width="25"> 
+            <input type="checkbox" name="checkbox3" value="checkbox">
+          </td>
+          <td class="bord1">&nbsp;192.168.0.238</td>
+          <td class="bord3">192.168.0.237 </td>
+        </tr>
+        <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" > 
+          <td class="bord1" width="25"> 
+            <input type="checkbox" name="checkbox4" value="checkbox">
+          </td>
+          <td class="bord1">&nbsp;192.168.0.235</td>
+          <td class="bord3">192.168.0.237 </td>
+        </tr>
+        <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" > 
+          <td class="bord1" width="25"> 
+            <input type="checkbox" name="checkbox5" value="checkbox">
+          </td>
+          <td class="bord1">&nbsp;192.168.0.211</td>
+          <td class="bord3">192.168.0.237 </td>
+        </tr>
+        <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" > 
+          <td class="bord1" width="25"> 
+            <input type="checkbox" name="checkbox6" value="checkbox">
+          </td>
+          <td class="bord1">&nbsp;192.168.0.18</td>
+          <td class="bord3">192.168.0.237 </td>
+        </tr>
+        <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" > 
+          <td class="bord1" width="25"> 
+            <input type="checkbox" name="checkbox7" value="checkbox">
+          </td>
+          <td class="bord1">&nbsp;192.168.0.19</td>
+          <td class="bord3">192.168.0.237 </td>
+        </tr>
+        <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)"> 
+          <td class="bord1" width="25"> 
+            <input type="checkbox" name="checkbox8" value="checkbox">
+          </td>
+          <td class="bord1">&nbsp;192.168.0.13</td>
+          <td class="bord3">192.168.0.237 </td>
+        </tr>
+        <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)"> 
+          <td class="bord1" width="25"> 
+            <input type="checkbox" name="checkbox9" value="checkbox">
+          </td>
+          <td class="bord1">192.168.0.13</td>
+          <td class="bord3">192.168.0.237 </td>
+        </tr>
+        <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)"> 
+          <td class="bord1" width="25"> 
+            <input type="checkbox" name="checkbox10" value="checkbox">
+          </td>
+          <td class="bord1">192.168.0.13</td>
+          <td class="bord3">192.168.0.237 </td>
+        </tr>
+        <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)"> 
+          <td class="bord1" width="25"> 
+            <input type="checkbox" name="checkbox11" value="checkbox">
+          </td>
+          <td class="bord1">192.168.0.13</td>
+          <td class="bord3">192.168.0.237 </td>
+        </tr>
+        <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)"> 
+          <td class="bord1" width="25"> 
+            <input type="checkbox" name="checkbox12" value="checkbox">
+          </td>
+          <td class="bord1">192.168.0.13</td>
+          <td class="bord3">192.168.0.237 </td>
+        </tr>
+      </table>
+    
+<!--//鼠标显示//-->
+              <script language="JavaScript">
+<!--
+var MenuBarColor ='#cccccc';
+DrawMouseRightButtonUpMenu();
+
+</script></td>
+  </tr>
+</table>
+</body>
+
+</html>

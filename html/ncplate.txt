@@ -1,0 +1,313 @@
+网络设置:
+
+修改的参数 /etc/sysconfig/network-scripts/ifcfg-eth1
+           /etc/sysconfig/network-scripts/ifcfg-eth0
+
+           
+html/login.htm                         登陆 
+html/login2.htm                        输入用户名/口令*******************
+plate/nc/login2.htm                    输入用户名/口令(错误信息)*********
+plate/main.htm                          显示主画面
+html/main_header.htm                   快捷菜单
+html/js/menu.js                        主菜单
+html/layermenu0-0.htm                  一级菜单
+html/layermenu0-1.htm                  一级菜单
+html/layermenu0-2.htm                  一级菜单
+html/layermenu0-3.htm                  一级菜单
+html/layermenu0-4.htm                  邮件控制
+html/layermenu0-5.htm                  防火墙
+网络行为管理
+cusermon_00.htm                       显示最近访问IP(主画面)           /pronline/Msg?FunName@ncWebReplace&plate@ncusermon_00.htm
+html/ncnewvister_bot.htm               显示最近访问IP(动态)***************
+html/ncusermon_label.htm               当前访问带宽***********************                 html/nc_networkset.htm               设置－网络设置******************                 /pronline/Msg?FunName@ncWebShowNewvister&userid@[#userid#]
+html/nc_monip_left.htm                 左边                
+plate/nc/nc_tree_monip.htm             树
+plate/nc/ncnewvister.htm               IP访问内容
+html/ncnewweb_label.htm                当前正在访问的网站情况*************
+html/ncnewweb_bot.htm                  当前正在访问的网站情况(动态)*******
+plate/nc/nc_webmon_left.htm            显示最近访问IP左边*****************
+plate/ncnewweb_00.htm                  最近访问的网站
+html/nc_monweb_left.htm                左边                
+plate/nc/nc_tree_monweb.htm            树
+plate/nc/ncnewweb.htm                  Web访问内容
+
+nc/ncnewvister.htm                     显示最近访问IP (nc003.c)
+nc/nc_form_useredit.htm                用户信息编辑
+nc/nc_msg_useredit.htm                 增加成功现实画面
+nc/nc_list_user.htm                    用户列表(设置－用户管理)***********
+nc/nc_form_group.htm                   设置－用户管理-部门管理************
+nc/nc_form_useredit.htm                设置－用户管理-新增用户************
+nc/nc_form_usersear.htm                设置－用户管理-新增用户(内页)******
+nc/nc_usermgr_left.htm                 设置－用户管理-新增用户(左页)******
+nc/nc_form_usermodi.htm                设置－用户管理-查看用户************
+nc/nc_list_time.htm                    设置－上网时间控制*****************
+
+nc/nc_list_width.htm                   部门管理(设置－带宽限制)***********
+
+nc/ncsys_par.htm                       系统参数设置(系统基本参数)*********
+nc/ncsys_fun.htm                       系统参数设置(系统功能选项)*********
+nc/ncsys_back.htm                      系统参数设置(自动备份设定)*********
+nc/nc_limdefault.htm                   系统参数设置(缺省访问控制策略 )****
+nc/ncsys_matain.htm                    系统参数设置(系统参数删除)*********
+nc/ncsys_billrate.htm                  系统参数设置(计费参数设定)*********            
+nc/ncsys_base.htm                      系统参数设置(主机网络设置)*********
+nc/ncmsg_back.htm                      系统参数设置(代收邮件)*********
+
+查看
+nc/nc_list_onlineuser.htm              查看-在线用户*************
+nc/nc_iplog_hsear.htm                  查看-IP访问查询***********
+nc/nc_ip_hsear.htm                     查看-IP访问查询（内页）***********
+nc/nc_ip_ipfilter.htm                  查看-当前IP访问（内页）***********
+nc/nc_ipmon_left.htm                   查看-当前IP访问（左页）***********
+nc/nc_http_hsear.htm                   查看-网站访问记录（查询）*********
+nc/nc_httplog_hsear.htm                查看-网站访问记录*********
+nc/nc_webmon_left.htm                  查看-网站访问记录（左页）*********
+nc/nc_ip_webfilter.htm                 查看-网站访问记录（内页）*********
+统计
+nc/ncflowcount.htm                     统计-访问流量统计*********
+nc/nctimecount.htm                     统计-访问时间统计*********
+nc/nc_print_webusemenu.htm             统计-网站访问统计*********
+nc/nc_print_webuse_u.htm               统计-网站访问统计(内页)***
+nc/nc_print_netflowform.htm            统计-网络流量统计*********
+nc/nc_print_netusemenu.htm             统计-上网情况统计*********
+nc/nc_print_netuse.htm                 统计-上网情况统计(内页)***
+nc/nc_print_print_                     统计-上网情况统计(内页)***
+nc/nc_print_netbill_left.htm           统计-上网情况统计(内页)***
+nc/nc_print_netbillmenu.htm            统计-上网费用统计*********
+nc/nc_print_bill.htm                   统计-上网费用统计(内页)***
+nc/nc_print_icusemenu.htm              统计-IC卡上网统计*********
+nc/nc_print_icuse_u.htm                统计-IC卡上网统计(内页)***
+nc/nc_print_icuse_left.htm             统计-IC卡上网统计(左页)***
+nc/nc_print_netuseweek.htm             统计-上网情况周报*********
+nc/ncsortservice.htm                   统计-访问排行榜(Internet服务排行榜)*********
+nc/ncsortweb.htm                       统计-访问排行榜("网站访问排行榜)*********
+nc/ncsorttrip.htm                      统计-访问排行榜(IP连接时间排行榜)*********
+nc/ncsortflow.htm                      统计-访问排行榜*********
+
+plate/quyeiplog.htm                    IP访问查询
+html/nc_qyeip_left.htm 
+plate/nc/nc_tree_qyeip.htm
+
+nc/nc_list_networka.htm                网络设置（验证)
+nc/nc_list_network.htm                 网络设置
+
+nc/nc_list_onlineuser.htm              当前用户状态(nc008.c)
+
+nc001.c 
+
+访问IP查询 (nc00
+
+nc003.c
+
+访问流量和时间统计
+plate/quyeipcount.htm     
+
+ncWebFlowCount                         IP访问统计
+nc/ncflowcount.htm
+nc_flow_count_tree.htm
+
+nc/nctimecount.htm
+nc_time_count_tree.htm
+
+plate/shutdown.htm                     关机
+邮件监控  ncmil003.c
+plate/mail/nc_mailmon_form.htm          /* 过滤规则  */
+plate/mail/nc_mailmon_menu.htm
+plate/mail/nc_mailmon_list.htm
+
+
+邮件控制  ncmil002.c
+plate/mail/nc_mailctl_left.htm
+plate/mail/nc_mailctl_tree.htm
+plate/mail/nc_mailctl_menu.htm
+plate/mail/nc_mailctl_list.htm
+plate/mail/nc_mailctl_form.htm
+
+plate/mail/nc_mailctl_mlist.htm         /* 邮件清单 */
+plate/mail/nc_mailbak_left.htm
+plate/mail/nc_mailbak_tree.htm
+plate/mail/nc_mailread_form.htm         /* 读一个邮件 */
+plate/mail/nc_mailctl_audit.htm         /* 邮件审计   */
+
+    plate/nc/nc_count_flow.htm           图表/访问流量分析**************
+    plate/nc/nc_count_mailmon.htm        图表/访问时间分析**************
+    plate/nc/nc_outflow.htm              图表/出口流量统计**************
+    plate/selecttime.js                  图表/时间选择
+
+邮件监控  ncmil003.c 
+ncMailMonListRule
+    plate/mail/nc_mailmon_mlist.htm      内容监控/监控邮件内容查看******
+    plate/mail/nc_list_mailbackup.htm    内容监控/内容备份情况查看******
+    plate/mail/nc_mailctl_countg.htm     内容监控/拦截邮件收发统计******
+    plate/mail/nc_mailmon_fllist.htm     内容监控/监控邮件分类查看******
+    plate/mail/nc_upload_mlist.htm       内容监控/外发表单内容查看******
+    plate/mail/nc_formmon_fllist.htm     内容监控/外发表单分类查看******
+    plate/mail/nc_mailmon_countg.htm     内容监控/监控邮件收发统计******
+    plate/mail/nc_mailmon_countu.htm     内容监控/监控邮件收发统计(内页)******
+    plate/mail/nc_count_mailmon.htm      内容监控/邮件收发数量分析******
+    plate/mail/nc_upload_mlist.htm       内容监控/拦截邮件收发统计(内页)**
+    plate/mail/nc_mail_group.htm         内容监控/监控邮件分类定义******
+    plate/mail/nc_mail_group.htm         内容监控/监控邮件分类定义******
+    plate/mail/nc_mailmon_rlist.htm      内容监控/外发表单分类定义(内页)******
+    plate/mail/nc_form_default.htm       内容监控/外发表单分类定义(内页)******
+
+    plate/mail/nc_mailctl_mlist.htm      邮件拦截/拦截邮件内容查看******
+    plate/mail/nc_mail_hsear.htm         邮件拦截/拦截邮件内容查看(高级)**
+    plate/mail/nc_mailctl_fl.htm         邮件拦截/邮件拦截分类查看******
+    plate/mail/nc_list_mailbackup.htm    邮件拦截/邮件拦截备份记录******
+    plate/mail/nc_mailctl_counts.htm     邮件拦截/拦截邮件状态统计******
+    plate/mail/nc_mailctl_countg.htm     邮件拦截/监控邮件收发统计******
+    plate/mail/nc_mailctl_audit.htm      邮件拦截/拦截邮件审计**********
+    plate/mail/nc_mailctl_audit1.htm     邮件拦截/拦截邮件审计日志******
+    plate/mail/nc_count_mailctl.htm      邮件拦截/拦截邮件数量分析******
+    plate/mail/nc_mailctl_rlist.htm      邮件拦截/拦截邮件规则设置******
+    plate/mail/nc_form_mailctlset.htm    邮件拦截/拦截邮件规则设置(内页)******
+    plate/mail/nc_mail_ctlgroup.htm      邮件拦截/拦截邮件分类定义******
+    plate/mail/nc_mailctl_fllist.htm      邮件拦截/拦截邮件分类定义(内页)******
+    plate/mail/nc_mailmon_list.ht
+    plate/mail/nc_mailmon_form.htm
+    plate/mail/nc_mailmon_menu.htm
+网页监控
+    plate/mail/nc_uploadmon_list.htm
+    plate/mail/nc_uploadmon_form.htm
+    plate/mail/nc_upload_menu.htm
+
+    plate/nc_lim_setmenu.htm             访问控制/设定访问控制************
+    plate/nc_lim_service.htm             访问控制/设定访问控制(应用限制)******
+    plate/nc_lim_base.htm                访问控制/设定访问控制(全部规则)******
+    plate/nc_lim_out.htm                 访问控制/设定访问控制(访问外部网)******
+    plate/nc_lim_IP.htm                  访问控制/设定访问控制(IP地址限制)******
+    plate/nc_lim_web.htm                 访问控制/设定访问控制(网址限制)******
+    plate/nc_lim_weblist.htm             访问控制/设定访问控制(网址库控制策略)******
+    plate/nc_lim_iplist.htm              访问控制/设定访问控制(应用控制策略)******
+    plate/nc_limwebpolgroup.htm          访问控制/定义网址库访问策略******
+    plate/nc_lim_webpol_1.htm            访问控制/定义网址库访问策略(内页)******
+    plate/nc_lim_webpol_r.htm            访问控制/定义网址库访问策略(内页)******
+    html/nc_limweb_main.htm              访问控制/定义网址库访问策略(内页)******
+    plate/nc_limweblist.htm              访问控制/定义网址库访问策略(弹出页)******
+    plate/nc_limippolgroup.htm           访问控制/定义网络应用策略******
+    plate/nc_lim_ippol.htm               访问控制/定义网络应用策略(内页)******
+    plate/nc_limiplist.htm               访问控制/定义网络应用策略(内页)******
+    plate/nc_limrulegroup.htm            访问控制/定义访问控制策略******
+    plate/nc_lim_setrule.htm             访问控制/定义访问控制策略(内页)******
+    plate/nc_lim_base1.htm               访问控制/网站地址分类******
+    plate/nc_limwebgroup.htm             访问控制/网站地址分类(内页)******
+    plate/nc_limdatelist.htm             访问控制/限制日期分类******
+    plate/nc_limdategroup.htm            访问控制/限制日期分类(内页)******
+    plate/nc_test_vcontrol.htm           访问控制/访问控制测试******
+
+    plate/tc/nctc_sumset.htm             带宽管理/基本参数设置******
+    plate/tc/nctc_classset.htm           带宽管理/带宽通道参数******
+    plate/tc/nctc_setuser.htm            带宽管理/带宽通道参数******
+    plate/tc/nctc_settip.htm             带宽管理/带宽通道参数******
+
+    plate/firewall/fire_default.htm      防火墙/基本参数设置******
+    plate/firewall/fire_define001.htm    防火墙/基本参数设置(内页)******
+    plate/firewall/fire_rule001.htm      防火墙/包过滤规则设置******
+    plate/firewall/fire_rulesnat.htm     防火墙/源地址伪装******
+    plate/firewall/fire_rulenatip.htm    防火墙/内外地址映射******
+    plate/firewall/fire_rulesnatport.htm 防火墙/端口地址重定向******
+    plate/firewall/fire_msg_run.htm      防火墙/应用规则******
+
+    plate/nc/ncadminuserlist.htm            系统/系统用户管理******
+    plate/nc/ncadminuser.htm                系统/系统用户管理（内页）******
+    plate/nc/nc_list_mailbackup.htm         系统/网络访问备份信息******
+    plate/nc/ncadminuser.htm                系统/系统在线信息******
+
+查看监控邮件 ncmil004.c
+
+ncmil005.c
+显示邮件清单 ncWebMailMonList
+
+    plate/mail/nc_mailmon_mlist.htm
+    plate/mail/nc_mailmonread_form.htm
+    plate/mail/nc_tree_mailmon.htm
+    
+    plate/mail/nc_upload_mlist.htm
+    plate/mail/nc_mailmonread_form.htm
+    plate/mail/nc_tree_upload.htm
+    
+
+nc005.c
+网络设置
+plate/nc/nc_list_network.htm
+plate/nc/nc_list_networka.htm           /*修改过了 上一级是html/nc_networkset.htm*/
+
+
+带宽管理 nc008.c
+plate/nc/nc_list_width.htm              /* 带宽限制列表  */
+plate/nc/nciplog.htm   (ncWebQyeIp)     /* IP访问查询  */
+plate/nc/nc_tree_qyeip.htm
+
+plate/nc/ncweblog.htm   (ncWebQyehttp)  /* 网站查询    */
+plate/nc/nc_tree_qyeweb.htm
+
+当前出口流量  nc007.c (ncWebCountTotalFlow)
+plate/nc/nc_outflow.htm
+
+上网统计(时间和流量)  nc007.c(ncWebCountIp)
+plate/nc/nc_count_flow.htm
+
+plate/nc/nc_count_flow_tree.htm
+
+
+/* nc014.c 
+网站访问统计
+plate/nc/nc_prinbt_webuse.htm    ncWebPrintWebUse
+
+
+/* nc009 */
+htmp/nc_sort.htm           排行榜
+
+nc/ncsortflow.htm          网络流量
+nc/ncsortweb.htm
+nc/ncsortip.htm
+
+/* nc011.c */     
+       Upload文件的处理
+
+网站访问控制
+plate/nc/nc_limweb_main.htm          /**********************
+
+/*    */   网络设置
+
+
+Q&A
+
+Mysql的安装
+不能启动,可能是系统已经安装了Mysql,
+删除 /etc/my.cnf
+     /usr/bin/mysq
+
+
+监控邮件的结构
+
+maillog
+    ctl ----- 邮件拦截目录
+    mon ----- 监控邮件目录
+    cur ----- 当前监控邮件
+       Send  -- 发送邮件
+       Inbox -- 接收邮件
+       Upload-- 上载邮件
+    tmp ----- 工作目录
+    
+邮件接收目录
+maildir/00000000/Send
+maildir/00000000/Inbox
+maildir/00000000/Upload
+
+邮件工作目录
+maildir/00000001
+
+maildir/00/00/ -- maildir/99/99/
+
+时间控制
+nc016
+plate/nc/nc_list_time.htm
+
+垃圾页面
+nc/
+71160000.htm
+adduser.htm
+
+宽带管理

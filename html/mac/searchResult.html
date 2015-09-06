@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<title>搜索结果</title>
+    <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" />     
+	<script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+    
+	<script> 
+		function doSth(value){
+			alert(value);
+		}
+		
+		function getNeedMac(mac){
+			str =  (mac.replace(/(.{2})/g,'$1-'));
+			return str.substr(0, str.length-1);
+		}
+		
+		function removeAllGap(src){
+			var s = src.replace(/\-/g, "" );
+			return s;
+		}
+		
+		function highlightKeyword(value, p, record){
+			var mKeyword = parent.searchKeyword.toUpperCase();
+			var mValue = value.toUpperCase();
+			var str = Ext.String.format('<a style="color:red")">{0}</a>', removeAllGap(mKeyword));
+			var valueIndex = mValue.indexOf(mKeyword);
+			var value1 = mValue.substr(0, valueIndex);
+			var value2 = mValue.substr(valueIndex+mKeyword.length, mValue.length - valueIndex-mKeyword.length);
+			return value1+str+value2;
+		}	
+		Ext.Loader.setConfig({enabled: true});
+		Ext.Loader.setPath('Ext.ux', '/newver/ux/');
+		Ext.require([
+			'Ext.form.*',
+			'Ext.window.*',
+			'Ext.grid.*',
+			'Ext.data.*',
+			'Ext.util.*',
+			'Ext.window.MessageBox',
+			'Ext.toolbar.Paging',
+			'Ext.ux.PreviewPlugin',
+			'Ext.tree.*'
+		]);
+		var store;
+		Ext.onReady(function(){
+			Ext.tip.QuickTipManager.init();
+
+			Ext.define('EimData', {
+				extend: 'Ext.data.Model',
+				fields: [
+					'mac'
+				]
+			});
+			
+			store = Ext.create('Ext.data.Store', {
+				pageSize: 40,
+				model: 'EimData',
+				proxy: {
+					type: 'ajax',
+					url: '/pronline/Msg?FunName@macFrontPageSearch',
+					reader: {
+						type:'json',
+						root: 'data',
+						totalProperty: 'totalCount'
+					}
+				}
+			});
+
+			var grid = Ext.create('Ext.grid.Panel', {
+				scrollOffset: 0,
+				height: 300,        
+				store: store,
+				frame:false,    
+				// grid columns
+				columns:[
+					{
+						id: 'idColMac',
+						text: "MAC地址",
+						dataIndex: 'mac',
+						hidden: false,
+						width: 180,
+						renderer:highlightKeyword
+					},{
+						text:"真实mac",
+						dataIndex:'mac',
+						hidden:true,
+						flex: 1
+					}
+				],        
+				columnLines: true,
+				renderTo: 'grid-corp',
+				header:false,
+				listeners:{
+					itemdblclick:function(view, rcd, item, idx, e, eOpts){
+						//alert("展示"+rcd.data.mac);
+						parent.showMacWindow(getNeedMac(rcd.data.mac), "");
+						//win.hide();
+						//jumpToDestPage(result_id, item.textContent);				
+					}
+				}  
+			});
+			store.load({params:{keyword:parent.searchKeyword, groupid:parent.globalSelectGroupId}});
+		});
+		
+	</script>
+</head>
+<body>
+    <div id="grid-corp"></div>
+</body>
+</html>

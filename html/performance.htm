@@ -1,0 +1,2176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>业绩预告</title>
+<link href="http://mat1.gtimg.com/finance/css/stock/dcenter/css.css" rel="stylesheet" type="text/css">
+<link href="http://mat1.gtimg.com/finance/css/stock/dcenter/common_css.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="http://finance.qq.com/js/stock/performance_v1.1.js"  charset="gb2312"></script>
+<script src="http://finance.qq.com/stock/dcenter/modules/common_js.htm"></script>
+<style>
+  .ykbar3short li{cursor:pointer;}
+  .ykbar3short li.yk_on{background:url(http://mat1.gtimg.com/finance/images/stock/dcenter/bg26.png) repeat-x;font-weight:bold;border-left:1px solid #CCC;border-right:1px solid #CCC;position:relative;margin-left:-2px;cursor:default;}  
+  .searchtools a {margin-right:5px;/*color:#0058a7;*/}
+  /*.searchtools a:hover{color:#bb0000; text-decoration:underline;}*/
+
+  #page td{background:none !important;border:none;}
+</style>
+<script type="text/javascript">
+var dw = function(date, f){
+var year = date.substring(0,4);
+var md = date.substring(5);
+var bgq_lit = '';
+if(md=='03-31')
+{
+    bgq_lit = '一季报';
+}
+else if(md=='06-30')
+{
+    bgq_lit = '中报';
+}
+else if(md=='09-30')
+{
+    bgq_lit = '三季报';
+}
+else
+{
+    bgq_lit = '年报';
+}
+if(f)
+{
+    return year + '年' + bgq_lit + '业绩预告';
+}
+else
+{
+    document.write(year+'年'+bgq_lit);
+}
+};
+</script>
+</head>
+<body style="width:100%;background-color:#fff;">
+  <a href="javascript:void(0);" name="T" id="T"></a>
+  <div id="data_tab">
+      <div class="tit2">
+          <div class="title" id='bqg_title'></div>
+          
+          <div class="searchtools" id="date" style="width:490px;">报告期：<a fba="293~11004" onclick="redirectFrontPage('http://stock.finance.qq.com/cgi-bin/sstock/performance?t=2&date=2011-12-31&tw='+tableWidth)" onMouseover="this.style.cursor='pointer'"  class="" ><script type="text/javascript">dw('2011-12-31',false);</script></a><a fba="293~11004" onclick="redirectFrontPage('http://stock.finance.qq.com/cgi-bin/sstock/performance?t=2&date=2011-06-30&tw='+tableWidth)" onMouseover="this.style.cursor='pointer'"  class="fcred"><script type="text/javascript">dw('2011-06-30',false); var date2='2011-06-30';</script></a><a fba="293~11004" onclick="redirectFrontPage('http://stock.finance.qq.com/cgi-bin/sstock/performance?t=2&date=2011-03-31&tw='+tableWidth)" onMouseover="this.style.cursor='pointer'" class=""><script type="text/javascript">dw('2011-03-31',false); var date3='2011-03-31';</script></a><a fba="293~11004" onclick="redirectFrontPage('http://stock.finance.qq.com/cgi-bin/sstock/performance?t=2&date=2010-12-31&tw='+tableWidth)" onMouseover="this.style.cursor='pointer'"  class=""><script type="text/javascript">dw('2010-12-31',false);</script></a><a fba="293~11004" onclick="redirectFrontPage('http://stock.finance.qq.com/cgi-bin/sstock/performance?t=2&date=2010-09-30&tw='+tableWidth)" onMouseover="this.style.cursor='pointer'"  class=""><script type="text/javascript">dw('2010-09-30',false);</script></a></div>
+          <!--
+          <div class="searchtools" id="date" style="width:490px;">报告期：
+            <select onchange="red()">
+                <option value=<script type="text/javascript">dw('2011-12-31',false);</script>></option>
+                <option></option>
+                <option></option>
+                <option></option>
+                <option></option>
+            </select>
+          </div>
+          -->
+          
+      </div>
+	  <ul class="ykbar3short">
+	    <li id=0 class='yk_on' onclick="redirect('http://stock.finance.qq.com/cgi-bin/sstock/performance?t=2&date=2011-06-30&&displaytype=0&&page=1&tw='+tableWidth,'_self')" fba="293~11001~0">全部</li>
+	    <li id=1 class='' onclick="redirect('http://stock.finance.qq.com/cgi-bin/sstock/performance?t=2&date=2011-06-30&&displaytype=1&&page=1&tw='+tableWidth,'_self')" fba="293~11005">预增</li>
+	    <li id=2 class='' onclick="redirect('http://stock.finance.qq.com/cgi-bin/sstock/performance?t=2&date=2011-06-30&&displaytype=2&&page=1&tw='+tableWidth,'_self')" fba="293~11006">预减</li>
+	    <li id=3 class='' onclick="redirect('http://stock.finance.qq.com/cgi-bin/sstock/performance?t=2&date=2011-06-30&&displaytype=3&&page=1&tw='+tableWidth,'_self')" fba="293~11007">预盈</li>
+	    <li id=4 class='' onclick="redirect('http://stock.finance.qq.com/cgi-bin/sstock/performance?t=2&date=2011-06-30&&displaytype=4&&page=1&tw='+tableWidth,'_self')" fba="293~11008">预亏</li>
+	    <li id=5 class='' onclick="redirect('http://stock.finance.qq.com/cgi-bin/sstock/performance?t=2&date=2011-06-30&&displaytype=5&&page=1&tw='+tableWidth,'_self')" fba="293~11009">大升</li>
+	    <li id=6 class='' onclick="redirect('http://stock.finance.qq.com/cgi-bin/sstock/performance?t=2&date=2011-06-30&&displaytype=6&&page=1&tw='+tableWidth,'_self')" fba="293~11010">大降</li>
+	    <li id=7 class='' onclick="redirect('http://stock.finance.qq.com/cgi-bin/sstock/performance?t=2&date=2011-06-30&&displaytype=7&&page=1&tw='+tableWidth,'_self')" fba="293~11011">扭亏</li>
+	    <li id=8 class='' onclick="redirect('http://stock.finance.qq.com/cgi-bin/sstock/performance?t=2&date=2011-06-30&&displaytype=8&&page=1&tw='+tableWidth,'_self')" fba="293~11012">减亏</li>
+	    <li id=9 class='' onclick="redirect('http://stock.finance.qq.com/cgi-bin/sstock/performance?t=2&date=2011-06-30&&displaytype=9&&page=1&tw='+tableWidth,'_self')" fba="293~11013">无大变</li>
+	    <li id=10 class='' onclick="redirect('http://stock.finance.qq.com/cgi-bin/sstock/performance?t=2&date=2011-06-30&&displaytype=10&&page=1&tw='+tableWidth,'_self')" fba="293~11014">不确定</li>
+    </ul>
+	  <table width="770" border="0" cellpadding="0" cellspacing="0" class="data notborT" id="table1">
+	    <thead>
+	      <tr align="center">
+	        <th width="65">股票名称</th>
+            <td width="60">股票代码</td>
+            <td width="90">类型</td>
+            <td width="70">报告期</td>
+            <td width="300">业绩预告摘要</td>
+            <td width="110">上年同期每股收益</td>
+            <td width="85">明细</td>
+          </tr>
+        </thead>
+        <tbody>    
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/300104.shtml" target="_blank">乐视网</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/300104.shtml" target="_blank">300104</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.42</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/300104.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/300082.shtml" target="_blank">奥克股份</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/300082.shtml" target="_blank">300082</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.71</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/300082.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/300077.shtml" target="_blank">国民技术</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/300077.shtml" target="_blank">300077</a></td>
+          <td class="yjlx">业绩预降</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>1.16</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/300077.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600117.shtml" target="_blank">西宁特钢</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600117.shtml" target="_blank">600117</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.10</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/600117.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600521.shtml" target="_blank">华海药业</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600521.shtml" target="_blank">600521</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.13</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/600521.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600793.shtml" target="_blank">ST宜纸</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600793.shtml" target="_blank">600793</a></td>
+          <td class="yjlx">业绩预亏</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月累计净利润仍将出现亏...</em></td>
+          <td><span>-0.05</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/600793.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000936.shtml" target="_blank">华 西 村</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000936.shtml" target="_blank">000936</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.10</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/000936.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/300015.shtml" target="_blank">爱尔眼科</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/300015.shtml" target="_blank">300015</a></td>
+          <td class="yjlx">业绩预增</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.20</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/300015.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/300115.shtml" target="_blank">长盈精密</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/300115.shtml" target="_blank">300115</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.70</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/300115.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000680.shtml" target="_blank">山推股份</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000680.shtml" target="_blank">000680</a></td>
+          <td class="yjlx">无大幅变动</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.65</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/000680.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/300030.shtml" target="_blank">阳普医疗</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/300030.shtml" target="_blank">300030</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月净利润1500万元-1700万...</em></td>
+          <td><span>0.11</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/300030.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002398.shtml" target="_blank">建研集团</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002398.shtml" target="_blank">002398</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.24</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002398.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002453.shtml" target="_blank">天马精化</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002453.shtml" target="_blank">002453</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.30</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002453.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000596.shtml" target="_blank">古井贡酒</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000596.shtml" target="_blank">000596</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计2011年1至6月净利润约26,846.75 万元，...</em></td>
+          <td><span>0.46</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/000596.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/300146.shtml" target="_blank">汤臣倍健</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/300146.shtml" target="_blank">300146</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>1.33</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/300146.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002176.shtml" target="_blank">江特电机</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002176.shtml" target="_blank">002176</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.09</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002176.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000965.shtml" target="_blank">天保基建</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000965.shtml" target="_blank">000965</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.20</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/000965.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002135.shtml" target="_blank">东南网架</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002135.shtml" target="_blank">002135</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.18</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002135.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000507.shtml" target="_blank">珠海港</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000507.shtml" target="_blank">000507</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.23</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/000507.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000895.shtml" target="_blank">双汇发展</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000895.shtml" target="_blank">000895</a></td>
+          <td class="yjlx">业绩大幅下降</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月净利润约5600-11300万...</em></td>
+          <td><span>0.77</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/000895.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/300182.shtml" target="_blank">捷成股份</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/300182.shtml" target="_blank">300182</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月净利润4020万元-4288万...</em></td>
+          <td><span>0.00</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/300182.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/300134.shtml" target="_blank">大富科技</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/300134.shtml" target="_blank">300134</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.62</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/300134.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000598.shtml" target="_blank">兴蓉投资</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000598.shtml" target="_blank">000598</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于母公司所有者的...</em></td>
+          <td><span>0.26</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/000598.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/300160.shtml" target="_blank">秀强股份</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/300160.shtml" target="_blank">300160</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.00</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/300160.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000998.shtml" target="_blank">隆平高科</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000998.shtml" target="_blank">000998</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.07</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/000998.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/300013.shtml" target="_blank">新宁物流</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/300013.shtml" target="_blank">300013</a></td>
+          <td class="yjlx">业绩大幅下降</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.09</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/300013.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/300014.shtml" target="_blank">亿纬锂能</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/300014.shtml" target="_blank">300014</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月净利润3,300万元-3,900...</em></td>
+          <td><span>0.16</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/300014.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002112.shtml" target="_blank">三变科技</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002112.shtml" target="_blank">002112</a></td>
+          <td class="yjlx">业绩大幅下降</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.22</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002112.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/300088.shtml" target="_blank">长信科技</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/300088.shtml" target="_blank">300088</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月净利润7500万元-8200万...</em></td>
+          <td><span>0.40</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/300088.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000822.shtml" target="_blank">山东海化</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000822.shtml" target="_blank">000822</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.02</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/000822.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000707.shtml" target="_blank">双环科技</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000707.shtml" target="_blank">000707</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.06</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/000707.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000721.shtml" target="_blank">西安饮食</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000721.shtml" target="_blank">000721</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月净利润约为2945-3035万...</em></td>
+          <td><span>0.03</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/000721.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600256.shtml" target="_blank">广汇股份</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600256.shtml" target="_blank">600256</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年上半年实现归属于母公司的净...</em></td>
+          <td><span>0.26</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/600256.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000703.shtml" target="_blank">恒逸石化</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000703.shtml" target="_blank">000703</a></td>
+          <td class="yjlx">预计扭亏</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于母公司所有者的...</em></td>
+          <td><span>-0.01</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/000703.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002253.shtml" target="_blank">川大智胜</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002253.shtml" target="_blank">002253</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于母公司所有者的...</em></td>
+          <td><span>0.07</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002253.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000004.shtml" target="_blank">国农科技</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000004.shtml" target="_blank">000004</a></td>
+          <td class="yjlx">业绩大幅下降</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.04</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/000004.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/300183.shtml" target="_blank">东软载波</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/300183.shtml" target="_blank">300183</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.49</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/300183.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/601766.shtml" target="_blank">中国南车</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/601766.shtml" target="_blank">601766</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于母公司股东的净...</em></td>
+          <td><span>0.09</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/601766.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002136.shtml" target="_blank">安 纳 达</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002136.shtml" target="_blank">002136</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.17</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002136.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000692.shtml" target="_blank">惠天热电</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000692.shtml" target="_blank">000692</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.02</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/000692.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600199.shtml" target="_blank">金种子酒</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600199.shtml" target="_blank">600199</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于母公司所有者的...</em></td>
+          <td><span>0.16</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/600199.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000966.shtml" target="_blank">长源电力</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000966.shtml" target="_blank">000966</a></td>
+          <td class="yjlx">业绩预亏</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>-0.27</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/000966.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002103.shtml" target="_blank">广博股份</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002103.shtml" target="_blank">002103</a></td>
+          <td class="yjlx">无大幅变动</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.10</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002103.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002495.shtml" target="_blank">佳隆股份</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002495.shtml" target="_blank">002495</a></td>
+          <td class="yjlx">业绩预增</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.34</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002495.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600229.shtml" target="_blank">青岛碱业</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600229.shtml" target="_blank">600229</a></td>
+          <td class="yjlx">业绩预亏</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月累计净利润亏损。</em></td>
+          <td><span>-0.14</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/600229.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000836.shtml" target="_blank">鑫茂科技</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000836.shtml" target="_blank">000836</a></td>
+          <td class="yjlx">业绩预亏</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月净利润亏损约3,800万元</em></td>
+          <td><span>-0.03</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/000836.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000563.shtml" target="_blank">陕国投Ａ</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000563.shtml" target="_blank">000563</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月净利润约5,775.38-7,21...</em></td>
+          <td><span>0.08</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/000563.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600812.shtml" target="_blank">华北制药</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600812.shtml" target="_blank">600812</a></td>
+          <td class="yjlx">业绩大幅下降</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月累计净利润与上年同期...</em></td>
+          <td><span>0.19</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/600812.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600843.shtml" target="_blank">上工申贝</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600843.shtml" target="_blank">600843</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.01</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/600843.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600369.shtml" target="_blank">西南证券</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600369.shtml" target="_blank">600369</a></td>
+          <td class="yjlx">不确定</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月累计净利润不确定。</em></td>
+          <td><span>0.08</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/600369.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000011.shtml" target="_blank">深物业A</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000011.shtml" target="_blank">000011</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月净利润约27,000万元-32...</em></td>
+          <td><span>0.21</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/000011.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000856.shtml" target="_blank">ST唐陶</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000856.shtml" target="_blank">000856</a></td>
+          <td class="yjlx">业绩预亏</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月净利润约3,100.00-3,60...</em></td>
+          <td><span>-0.20</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/000856.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002432.shtml" target="_blank">九安医疗</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002432.shtml" target="_blank">002432</a></td>
+          <td class="yjlx">无大幅变动</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.13</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002432.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002024.shtml" target="_blank">苏宁电器</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002024.shtml" target="_blank">002024</a></td>
+          <td class="yjlx">业绩预增</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.28</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002024.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002013.shtml" target="_blank">中航精机</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002013.shtml" target="_blank">002013</a></td>
+          <td class="yjlx">无大幅变动</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.10</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002013.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600667.shtml" target="_blank">太极实业</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600667.shtml" target="_blank">600667</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月累计净利润比上年同期...</em></td>
+          <td><span>0.01</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/600667.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600639.shtml" target="_blank">浦东金桥</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600639.shtml" target="_blank">600639</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月净利润可能与上年同期...</em></td>
+          <td><span>0.22</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/600639.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002019.shtml" target="_blank">鑫富药业</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002019.shtml" target="_blank">002019</a></td>
+          <td class="yjlx">业绩预亏</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月业绩亏损1,100-1,600万...</em></td>
+          <td><span>-0.03</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002019.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000610.shtml" target="_blank">西安旅游</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000610.shtml" target="_blank">000610</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月净利润约1,500.00万元...</em></td>
+          <td><span>0.00</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/000610.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002149.shtml" target="_blank">西部材料</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002149.shtml" target="_blank">002149</a></td>
+          <td class="yjlx">业绩预亏</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月业绩亏损900-1300万元...</em></td>
+          <td><span>0.09</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002149.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002126.shtml" target="_blank">银轮股份</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002126.shtml" target="_blank">002126</a></td>
+          <td class="yjlx">业绩预增</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.60</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002126.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002030.shtml" target="_blank">达安基因</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002030.shtml" target="_blank">002030</a></td>
+          <td class="yjlx">业绩预增</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.09</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002030.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000416.shtml" target="_blank">民生投资</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000416.shtml" target="_blank">000416</a></td>
+          <td class="yjlx">预计扭亏</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月净利润约1,600.00万元...</em></td>
+          <td><span>0.00</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/000416.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002016.shtml" target="_blank">世荣兆业</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002016.shtml" target="_blank">002016</a></td>
+          <td class="yjlx">业绩预降</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.03</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002016.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002204.shtml" target="_blank">华锐铸钢</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002204.shtml" target="_blank">002204</a></td>
+          <td class="yjlx">业绩预降</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.29</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002204.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002362.shtml" target="_blank">汉王科技</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002362.shtml" target="_blank">002362</a></td>
+          <td class="yjlx">业绩预亏</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月净利润亏损9000万元-98...</em></td>
+          <td><span>0.89</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002362.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002200.shtml" target="_blank">*ST大地</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002200.shtml" target="_blank">002200</a></td>
+          <td class="yjlx">业绩预亏</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月净利润亏损900万元-140...</em></td>
+          <td><span>0.06</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002200.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600823.shtml" target="_blank">世茂股份</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600823.shtml" target="_blank">600823</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月业绩同比可能大幅增长...</em></td>
+          <td><span>0.24</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/600823.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600691.shtml" target="_blank">*ST东碳</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600691.shtml" target="_blank">600691</a></td>
+          <td class="yjlx">业绩预亏</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月净利润可能出现亏损。</em></td>
+          <td><span>-0.13</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/600691.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600633.shtml" target="_blank">*ST白猫</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600633.shtml" target="_blank">600633</a></td>
+          <td class="yjlx">业绩预亏</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月净利润仍为亏损。</em></td>
+          <td><span>-0.07</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/600633.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600678.shtml" target="_blank">*ST金顶</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600678.shtml" target="_blank">600678</a></td>
+          <td class="yjlx">业绩预亏</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月累计净利润仍为亏损。</em></td>
+          <td><span>-1.07</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/600678.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002025.shtml" target="_blank">航天电器</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002025.shtml" target="_blank">002025</a></td>
+          <td class="yjlx">业绩预增</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.17</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002025.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600850.shtml" target="_blank">华东电脑</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600850.shtml" target="_blank">600850</a></td>
+          <td class="yjlx">无大幅变动</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月净利润处于盈亏平衡，...</em></td>
+          <td><span>-0.06</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/600850.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002205.shtml" target="_blank">国统股份</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002205.shtml" target="_blank">002205</a></td>
+          <td class="yjlx">业绩预降</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.23</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002205.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002312.shtml" target="_blank">三泰电子</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002312.shtml" target="_blank">002312</a></td>
+          <td class="yjlx">业绩预增</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.07</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002312.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600203.shtml" target="_blank">*ST福日</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600203.shtml" target="_blank">600203</a></td>
+          <td class="yjlx">预计扭亏</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月累计净利润与上年同比...</em></td>
+          <td><span>-0.06</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/600203.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600745.shtml" target="_blank">中茵股份</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600745.shtml" target="_blank">600745</a></td>
+          <td class="yjlx">业绩大幅下降</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月累计净利润与上年同期...</em></td>
+          <td><span>0.27</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/600745.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000033.shtml" target="_blank">新都酒店</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000033.shtml" target="_blank">000033</a></td>
+          <td class="yjlx">预计减亏</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月净利润亏损约200-400万...</em></td>
+          <td><span>-0.02</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/000033.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600695.shtml" target="_blank">大江股份</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600695.shtml" target="_blank">600695</a></td>
+          <td class="yjlx">业绩预亏</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月累计净利润可能为亏损...</em></td>
+          <td><span>-0.05</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/600695.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600726.shtml" target="_blank">华电能源</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600726.shtml" target="_blank">600726</a></td>
+          <td class="yjlx">业绩预亏</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>-0.08</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/600726.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002159.shtml" target="_blank">三特索道</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002159.shtml" target="_blank">002159</a></td>
+          <td class="yjlx">业绩预亏</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月业绩亏损800万元-1,300...</em></td>
+          <td><span>0.03</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002159.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002293.shtml" target="_blank">罗莱家纺</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002293.shtml" target="_blank">002293</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.55</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002293.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600798.shtml" target="_blank">宁波海运</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600798.shtml" target="_blank">600798</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月累计净利润较上年同期...</em></td>
+          <td><span>0.04</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/600798.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000958.shtml" target="_blank">ST东热</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000958.shtml" target="_blank">000958</a></td>
+          <td class="yjlx">业绩预亏</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月净利润约亏损11000万元...</em></td>
+          <td><span>-0.24</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/000958.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000758.shtml" target="_blank">中色股份</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000758.shtml" target="_blank">000758</a></td>
+          <td class="yjlx">预计扭亏</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月净利润约7,000.00-10,0...</em></td>
+          <td><span>-0.07</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/000758.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002269.shtml" target="_blank">美邦服饰</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002269.shtml" target="_blank">002269</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.04</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002269.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000676.shtml" target="_blank">*ST思达</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000676.shtml" target="_blank">000676</a></td>
+          <td class="yjlx">业绩预亏</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月净利润亏损约1000-2000...</em></td>
+          <td><span>0.04</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/000676.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002425.shtml" target="_blank">凯撒股份</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002425.shtml" target="_blank">002425</a></td>
+          <td class="yjlx">业绩预增</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.27</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002425.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000768.shtml" target="_blank">西飞国际</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000768.shtml" target="_blank">000768</a></td>
+          <td class="yjlx">业绩大幅下降</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月净利润约0-6,329万元，...</em></td>
+          <td><span>0.05</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/000768.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000750.shtml" target="_blank">SST集琦</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000750.shtml" target="_blank">000750</a></td>
+          <td class="yjlx">业绩预亏</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月净利润亏损约1400万元...</em></td>
+          <td><span>-0.06</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/000750.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000962.shtml" target="_blank">东方钽业</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000962.shtml" target="_blank">000962</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月净利润为9,005.04-10,0...</em></td>
+          <td><span>0.06</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/000962.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000939.shtml" target="_blank">凯迪电力</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000939.shtml" target="_blank">000939</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月净利润约56,709万元-62...</em></td>
+          <td><span>0.19</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/000939.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000607.shtml" target="_blank">*ST华控</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000607.shtml" target="_blank">000607</a></td>
+          <td class="yjlx">预计减亏</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月净利润亏损约500.00万...</em></td>
+          <td><span>-0.06</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/000607.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002191.shtml" target="_blank">劲嘉股份</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002191.shtml" target="_blank">002191</a></td>
+          <td class="yjlx">无大幅变动</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.30</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002191.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002271.shtml" target="_blank">东方雨虹</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002271.shtml" target="_blank">002271</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.22</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002271.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002313.shtml" target="_blank">日海通讯</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002313.shtml" target="_blank">002313</a></td>
+          <td class="yjlx">业绩预增</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.39</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002313.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002343.shtml" target="_blank">禾欣股份</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002343.shtml" target="_blank">002343</a></td>
+          <td class="yjlx">业绩预增</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.47</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002343.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002434.shtml" target="_blank">万里扬</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002434.shtml" target="_blank">002434</a></td>
+          <td class="yjlx">无大幅变动</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.72</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002434.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002439.shtml" target="_blank">启明星辰</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002439.shtml" target="_blank">002439</a></td>
+          <td class="yjlx">无大幅变动</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>-0.20</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002439.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002008.shtml" target="_blank">大族激光</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002008.shtml" target="_blank">002008</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.16</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002008.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002370.shtml" target="_blank">亚太药业</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002370.shtml" target="_blank">002370</a></td>
+          <td class="yjlx">无大幅变动</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.20</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002370.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600225.shtml" target="_blank">天津松江</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600225.shtml" target="_blank">600225</a></td>
+          <td class="yjlx">业绩预亏</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月累计净利润可能为亏损...</em></td>
+          <td><span>0.00</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/600225.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002512.shtml" target="_blank">达华智能</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002512.shtml" target="_blank">002512</a></td>
+          <td class="yjlx">业绩预增</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.24</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002512.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600656.shtml" target="_blank">ST方源</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600656.shtml" target="_blank">600656</a></td>
+          <td class="yjlx">业绩预亏</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月累计净利润可能为亏损...</em></td>
+          <td><span>-0.07</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/600656.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002311.shtml" target="_blank">海大集团</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002311.shtml" target="_blank">002311</a></td>
+          <td class="yjlx">业绩预增</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.22</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002311.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002300.shtml" target="_blank">太阳电缆</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002300.shtml" target="_blank">002300</a></td>
+          <td class="yjlx">业绩预增</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.25</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002300.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000693.shtml" target="_blank">S*ST聚友</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000693.shtml" target="_blank">000693</a></td>
+          <td class="yjlx">预计减亏</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月净利润亏损约3,000.00...</em></td>
+          <td><span>-0.17</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/000693.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600975.shtml" target="_blank">新五丰</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600975.shtml" target="_blank">600975</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月累计净利润与去年同期...</em></td>
+          <td><span>0.02</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/600975.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600071.shtml" target="_blank">凤凰光学</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600071.shtml" target="_blank">600071</a></td>
+          <td class="yjlx">业绩大幅下降</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于母公司所有者的...</em></td>
+          <td><span>0.13</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/600071.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002155.shtml" target="_blank">辰州矿业</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002155.shtml" target="_blank">002155</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.12</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002155.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000697.shtml" target="_blank">*ST 偏转</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000697.shtml" target="_blank">000697</a></td>
+          <td class="yjlx">预计减亏</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月净利润亏损约1,600.00...</em></td>
+          <td><span>-0.13</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/000697.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000695.shtml" target="_blank">滨海能源</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000695.shtml" target="_blank">000695</a></td>
+          <td class="yjlx">预计减亏</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月净利润亏损约2,000.00...</em></td>
+          <td><span>-0.19</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/000695.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002061.shtml" target="_blank">江山化工</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002061.shtml" target="_blank">002061</a></td>
+          <td class="yjlx">业绩预增</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.13</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002061.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002169.shtml" target="_blank">智光电气</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002169.shtml" target="_blank">002169</a></td>
+          <td class="yjlx">业绩预增</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.08</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002169.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002261.shtml" target="_blank">拓维信息</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002261.shtml" target="_blank">002261</a></td>
+          <td class="yjlx">业绩预增</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.29</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002261.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002320.shtml" target="_blank">海峡股份</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002320.shtml" target="_blank">002320</a></td>
+          <td class="yjlx">无大幅变动</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.59</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002320.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002550.shtml" target="_blank">千红制药</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002550.shtml" target="_blank">002550</a></td>
+          <td class="yjlx">业绩预降</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.70</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002550.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002314.shtml" target="_blank">雅致股份</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002314.shtml" target="_blank">002314</a></td>
+          <td class="yjlx">业绩预增</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.22</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002314.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000519.shtml" target="_blank">江南红箭</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000519.shtml" target="_blank">000519</a></td>
+          <td class="yjlx">业绩预亏</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月净利润亏损约100万元-3...</em></td>
+          <td><span>0.01</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/000519.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002450.shtml" target="_blank">康得新</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002450.shtml" target="_blank">002450</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.26</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002450.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000150.shtml" target="_blank">宜华地产</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000150.shtml" target="_blank">000150</a></td>
+          <td class="yjlx">业绩大幅下降</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月净利润约100.00万元，...</em></td>
+          <td><span>0.02</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/000150.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600620.shtml" target="_blank">天宸股份</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600620.shtml" target="_blank">600620</a></td>
+          <td class="yjlx">业绩预亏</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月计累计净利润将出现亏...</em></td>
+          <td><span>-0.08</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/600620.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002157.shtml" target="_blank">正邦科技</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002157.shtml" target="_blank">002157</a></td>
+          <td class="yjlx">业绩预增</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.13</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002157.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002081.shtml" target="_blank">金 螳 螂</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002081.shtml" target="_blank">002081</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.37</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002081.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000018.shtml" target="_blank">ST中冠A</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000018.shtml" target="_blank">000018</a></td>
+          <td class="yjlx">业绩预亏</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月净利润亏损约600-800万...</em></td>
+          <td><span>0.03</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/000018.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000402.shtml" target="_blank">金 融 街</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000402.shtml" target="_blank">000402</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月净利润约86,303-111,68...</em></td>
+          <td><span>0.20</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/000402.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002027.shtml" target="_blank">七喜控股</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002027.shtml" target="_blank">002027</a></td>
+          <td class="yjlx">业绩预增</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.00</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002027.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002209.shtml" target="_blank">达 意 隆</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002209.shtml" target="_blank">002209</a></td>
+          <td class="yjlx">业绩预增</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.11</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002209.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002256.shtml" target="_blank">彩虹精化</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002256.shtml" target="_blank">002256</a></td>
+          <td class="yjlx">业绩预增</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.07</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002256.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002006.shtml" target="_blank">精功科技</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002006.shtml" target="_blank">002006</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.07</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002006.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002301.shtml" target="_blank">齐心文具</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002301.shtml" target="_blank">002301</a></td>
+          <td class="yjlx">业绩预增</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.21</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002301.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002345.shtml" target="_blank">潮宏基</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002345.shtml" target="_blank">002345</a></td>
+          <td class="yjlx">业绩预增</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.33</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002345.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002383.shtml" target="_blank">合众思壮</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002383.shtml" target="_blank">002383</a></td>
+          <td class="yjlx">业绩预降</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.29</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002383.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000722.shtml" target="_blank">*ST 金果</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000722.shtml" target="_blank">000722</a></td>
+          <td class="yjlx">预计扭亏</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月净利润约4,000.00万元...</em></td>
+          <td><span>-0.11</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/000722.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000409.shtml" target="_blank">*ST泰复</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000409.shtml" target="_blank">000409</a></td>
+          <td class="yjlx">预计减亏</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月净利润亏损约50-100万...</em></td>
+          <td><span>-0.01</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/000409.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002131.shtml" target="_blank">利欧股份</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002131.shtml" target="_blank">002131</a></td>
+          <td class="yjlx">业绩预增</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.18</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002131.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002098.shtml" target="_blank">浔兴股份</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002098.shtml" target="_blank">002098</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.14</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002098.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002047.shtml" target="_blank">成霖股份</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002047.shtml" target="_blank">002047</a></td>
+          <td class="yjlx">业绩预亏</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月业绩亏损3,500-4,500万...</em></td>
+          <td><span>0.05</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002047.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002140.shtml" target="_blank">东华科技</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002140.shtml" target="_blank">002140</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.27</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002140.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002224.shtml" target="_blank">三 力 士</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002224.shtml" target="_blank">002224</a></td>
+          <td class="yjlx">业绩预增</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.17</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002224.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002046.shtml" target="_blank">轴研科技</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002046.shtml" target="_blank">002046</a></td>
+          <td class="yjlx">业绩预增</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.21</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002046.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002478.shtml" target="_blank">常宝股份</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002478.shtml" target="_blank">002478</a></td>
+          <td class="yjlx">无大幅变动</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.25</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002478.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600027.shtml" target="_blank">华电国际</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600027.shtml" target="_blank">600027</a></td>
+          <td class="yjlx">不确定</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月盈利状况不确定。</em></td>
+          <td><span>0.01</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/600027.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002063.shtml" target="_blank">远光软件</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002063.shtml" target="_blank">002063</a></td>
+          <td class="yjlx">无大幅变动</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.37</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002063.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002212.shtml" target="_blank">南洋股份</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002212.shtml" target="_blank">002212</a></td>
+          <td class="yjlx">业绩预增</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.26</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002212.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002266.shtml" target="_blank">浙富股份</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002266.shtml" target="_blank">002266</a></td>
+          <td class="yjlx">无大幅变动</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.35</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002266.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000820.shtml" target="_blank">*ST金城</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000820.shtml" target="_blank">000820</a></td>
+          <td class="yjlx">业绩预亏</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月净利润亏损约8,000-9,0...</em></td>
+          <td><span>-0.77</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/000820.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002268.shtml" target="_blank">卫 士 通</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002268.shtml" target="_blank">002268</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.00</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002268.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002415.shtml" target="_blank">海康威视</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002415.shtml" target="_blank">002415</a></td>
+          <td class="yjlx">业绩预增</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.82</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002415.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002254.shtml" target="_blank">烟台氨纶</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002254.shtml" target="_blank">002254</a></td>
+          <td class="yjlx">业绩预降</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.55</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002254.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002364.shtml" target="_blank">中恒电气</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002364.shtml" target="_blank">002364</a></td>
+          <td class="yjlx">业绩预增</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.27</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002364.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002022.shtml" target="_blank">科华生物</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002022.shtml" target="_blank">002022</a></td>
+          <td class="yjlx">无大幅变动</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.22</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002022.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002278.shtml" target="_blank">神开股份</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002278.shtml" target="_blank">002278</a></td>
+          <td class="yjlx">无大幅变动</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.17</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002278.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600074.shtml" target="_blank">*ST中达</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600074.shtml" target="_blank">600074</a></td>
+          <td class="yjlx">业绩预盈</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月累计净利润处于盈利状...</em></td>
+          <td><span>-0.10</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/600074.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002091.shtml" target="_blank">江苏国泰</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002091.shtml" target="_blank">002091</a></td>
+          <td class="yjlx">业绩预增</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.28</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002091.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002390.shtml" target="_blank">信邦制药</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002390.shtml" target="_blank">002390</a></td>
+          <td class="yjlx">无大幅变动</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.31</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002390.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002373.shtml" target="_blank">联信永益</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002373.shtml" target="_blank">002373</a></td>
+          <td class="yjlx">业绩预亏</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月业绩亏损2,000-3,000万...</em></td>
+          <td><span>-0.11</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002373.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002535.shtml" target="_blank">林州重机</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002535.shtml" target="_blank">002535</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.25</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002535.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002090.shtml" target="_blank">金智科技</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002090.shtml" target="_blank">002090</a></td>
+          <td class="yjlx">业绩预降</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.12</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002090.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002183.shtml" target="_blank">怡 亚 通</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002183.shtml" target="_blank">002183</a></td>
+          <td class="yjlx">业绩预增</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.15</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002183.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600797.shtml" target="_blank">浙大网新</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600797.shtml" target="_blank">600797</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月累计净利润较上年同期...</em></td>
+          <td><span>0.04</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/600797.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002375.shtml" target="_blank">亚厦股份</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002375.shtml" target="_blank">002375</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.57</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002375.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000557.shtml" target="_blank">*ST广夏</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000557.shtml" target="_blank">000557</a></td>
+          <td class="yjlx">预计减亏</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月净利润亏损约586.00万...</em></td>
+          <td><span>-0.02</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/000557.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002044.shtml" target="_blank">江苏三友</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002044.shtml" target="_blank">002044</a></td>
+          <td class="yjlx">业绩预增</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.03</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002044.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002409.shtml" target="_blank">雅克科技</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002409.shtml" target="_blank">002409</a></td>
+          <td class="yjlx">业绩预增</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.38</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002409.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002518.shtml" target="_blank">科士达</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002518.shtml" target="_blank">002518</a></td>
+          <td class="yjlx">业绩预增</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.42</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002518.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600640.shtml" target="_blank">中卫国脉</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600640.shtml" target="_blank">600640</a></td>
+          <td class="yjlx">业绩预亏</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月净利润仍为亏损。</em></td>
+          <td><span>-0.04</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/600640.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002179.shtml" target="_blank">中航光电</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002179.shtml" target="_blank">002179</a></td>
+          <td class="yjlx">业绩预增</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.17</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002179.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002216.shtml" target="_blank">三全食品</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002216.shtml" target="_blank">002216</a></td>
+          <td class="yjlx">业绩预增</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.30</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002216.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000555.shtml" target="_blank">ST 太 光</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000555.shtml" target="_blank">000555</a></td>
+          <td class="yjlx">预计减亏</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月净利润亏损约470.00万...</em></td>
+          <td><span>-0.07</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/000555.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002100.shtml" target="_blank">天康生物</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002100.shtml" target="_blank">002100</a></td>
+          <td class="yjlx">业绩预增</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.26</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002100.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002369.shtml" target="_blank">卓翼科技</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002369.shtml" target="_blank">002369</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.34</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002369.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002059.shtml" target="_blank">云南旅游</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002059.shtml" target="_blank">002059</a></td>
+          <td class="yjlx">预计扭亏</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月盈利金额在0万-500万元...</em></td>
+          <td><span>-0.02</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002059.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600111.shtml" target="_blank">包钢稀土</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600111.shtml" target="_blank">600111</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月实现净利润与去年同期...</em></td>
+          <td><span>0.44</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/600111.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002427.shtml" target="_blank">尤夫股份</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002427.shtml" target="_blank">002427</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.18</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002427.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002490.shtml" target="_blank">山东墨龙</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002490.shtml" target="_blank">002490</a></td>
+          <td class="yjlx">业绩预降</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.00</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002490.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002042.shtml" target="_blank">华孚色纺</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002042.shtml" target="_blank">002042</a></td>
+          <td class="yjlx">业绩预增</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.70</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002042.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000576.shtml" target="_blank">ST甘化</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000576.shtml" target="_blank">000576</a></td>
+          <td class="yjlx">业绩预亏</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>-0.02</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/000576.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002545.shtml" target="_blank">东方铁塔</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002545.shtml" target="_blank">002545</a></td>
+          <td class="yjlx">业绩预增</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.65</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002545.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000705.shtml" target="_blank">浙江震元</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000705.shtml" target="_blank">000705</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东净...</em></td>
+          <td><span>0.09</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/000705.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600771.shtml" target="_blank">ST东盛</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600771.shtml" target="_blank">600771</a></td>
+          <td class="yjlx">预计扭亏</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月将扭亏为盈。</em></td>
+          <td><span>-0.18</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/600771.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002197.shtml" target="_blank">证通电子</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002197.shtml" target="_blank">002197</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.09</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002197.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002001.shtml" target="_blank">新 和 成</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002001.shtml" target="_blank">002001</a></td>
+          <td class="yjlx">业绩预增</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>1.16</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002001.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002074.shtml" target="_blank">东源电器</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002074.shtml" target="_blank">002074</a></td>
+          <td class="yjlx">业绩预增</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.14</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002074.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002192.shtml" target="_blank">路翔股份</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002192.shtml" target="_blank">002192</a></td>
+          <td class="yjlx">无大幅变动</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.01</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002192.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002234.shtml" target="_blank">民和股份</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002234.shtml" target="_blank">002234</a></td>
+          <td class="yjlx">预计扭亏</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月净利润5500-6000万元，...</em></td>
+          <td><span>-0.25</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002234.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002307.shtml" target="_blank">北新路桥</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002307.shtml" target="_blank">002307</a></td>
+          <td class="yjlx">业绩预降</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.15</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002307.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002325.shtml" target="_blank">洪涛股份</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002325.shtml" target="_blank">002325</a></td>
+          <td class="yjlx">业绩预增</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.23</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002325.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002492.shtml" target="_blank">恒基达鑫</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002492.shtml" target="_blank">002492</a></td>
+          <td class="yjlx">无大幅变动</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.29</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002492.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600020.shtml" target="_blank">中原高速</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600020.shtml" target="_blank">600020</a></td>
+          <td class="yjlx">业绩大幅下降</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月累计净利润与上年同期...</em></td>
+          <td><span>0.17</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/600020.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002095.shtml" target="_blank">生 意 宝</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002095.shtml" target="_blank">002095</a></td>
+          <td class="yjlx">无大幅变动</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.23</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002095.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002185.shtml" target="_blank">华天科技</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002185.shtml" target="_blank">002185</a></td>
+          <td class="yjlx">业绩预增</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.16</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002185.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002516.shtml" target="_blank">江苏旷达</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002516.shtml" target="_blank">002516</a></td>
+          <td class="yjlx">业绩预增</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.37</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002516.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600684.shtml" target="_blank">珠江实业</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/600684.shtml" target="_blank">600684</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月累计净利润较去年同期...</em></td>
+          <td><span>0.16</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/600684.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000049.shtml" target="_blank">德赛电池</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/000049.shtml" target="_blank">000049</a></td>
+          <td class="yjlx">业绩大幅上升</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.17</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/000049.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002105.shtml" target="_blank">信隆实业</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002105.shtml" target="_blank">002105</a></td>
+          <td class="yjlx">业绩大幅下降</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.08</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002105.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002142.shtml" target="_blank">宁波银行</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002142.shtml" target="_blank">002142</a></td>
+          <td class="yjlx">业绩预增</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.51</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002142.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002327.shtml" target="_blank">富安娜</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002327.shtml" target="_blank">002327</a></td>
+          <td class="yjlx">业绩预增</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.46</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002327.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002337.shtml" target="_blank">赛象科技</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002337.shtml" target="_blank">002337</a></td>
+          <td class="yjlx">业绩预降</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.33</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002337.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+        <tr class="alC">
+          <th><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002421.shtml" target="_blank">达实智能</a></th>
+          <td><a fba="293~11002" href="http://stockhtm.finance.qq.com/sstock/ggcx/002421.shtml" target="_blank">002421</a></td>
+          <td class="yjlx">业绩预增</td>
+          <td>2011-06-30</td>
+          <td><em style="text-align:left;">预计公司2011年1-6月归属于上市公司股东的...</em></td>
+          <td><span>0.17</span></td>
+          <td><a fba="293~11003" href="http://stockhtm.finance.qq.com/sstock/quotpage/q/002421.htm#10"target="_blank">点击查看明细</a></td>
+        </tr>
+        
+      </tbody>
+        <tfoot>
+	      <tr>
+          <th colspan="7" class="fanye">
+ <table width="400" border="0" cellpadding="0" cellspacing="0" class="fcGray2 fr" id="page" style="margin-top:10px;float:right;">
+       
+      <tr>
+        <td width="40"><img src="http://mat1.qq.com/finance/stock_hq/yjyg/btn2.png" width="34" height="19" border="0" onclick="redirectPage('http://stock.finance.qq.com/cgi-bin/sstock/performance?t=2&date=2011-06-30&tw='+tableWidth,1,4)" onMouseover="this.style.cursor='pointer'" /></td>
+        <td width="40"><img src="http://mat1.qq.com/finance/stock_hq/yjyg/btn3.png" width="34" height="19" border="0" onclick="redirectPage('http://stock.finance.qq.com/cgi-bin/sstock/performance?t=2&date=2011-06-30&tw='+tableWidth,0,4)" onMouseover="this.style.cursor='pointer'"/></td>
+         <td width="50" align="right">当前为</td>
+        <td width="40" align="center">1/4</td>
+         <td width="30" align="left">页</td>
+        <td width="40"><img src="http://mat1.qq.com/finance/stock_hq/yjyg/btn4.png" width="34" height="19" border="0" onclick="redirectPage('http://stock.finance.qq.com/cgi-bin/sstock/performance?t=2&date=2011-06-30&tw='+tableWidth,2,4)" onMouseover="this.style.cursor='pointer'"/></td>
+        <td width="40"><img src="http://mat1.qq.com/finance/stock_hq/yjyg/btn5.png" width="34" height="19" border="0" onclick="redirectPage('http://stock.finance.qq.com/cgi-bin/sstock/performance?t=2&date=2011-06-30&tw='+tableWidth,4,4)" onMouseover="this.style.cursor='pointer'"/></td>
+        <td width="60" align="center">转到第</td>
+        <td width="30" align="center"><select id="page_num" onchange="redirectSelectedPage('http://stock.finance.qq.com/cgi-bin/sstock/performance?t=2&date=2011-06-30&tw='+tableWidth)">
+                          <option selected='selected'>1</option><option>2</option><option>3</option><option>4</option>
+                       </select></td>
+        <td width="30" align="center">页</td>
+      </tr>
+      
+    </table>
+
+          </th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+<script language="javascript">
+
+var tableWidth = Url.getParam('tw') ? Url.getParam('tw') : '770';
+tableWidth = parseInt(tableWidth);
+if(isNaN(tableWidth) || tableWidth < 770){
+  tableWidth = 770;
+}
+$('table1').setAttribute('width', tableWidth);
+$('table1').style.width = tableWidth + 'px';
+var type = 0;
+loadData("table1");
+init();
+var $=function(s){return(typeof s=="object")?s:document.getElementById(s);};var Browser=new Object();Browser.ua=window.navigator.userAgent.toLowerCase();Browser.ie=/msie/.test(Browser.ua);String.prototype.trim=function(){return this.replace(/^\s*|\s*$/ig,"");};var Element={remove:function(){for(var i=0;i<arguments.length;i++){try{$(arguments[i]).parentNode.removeChild($(arguments[i]));}catch(e){}}}};var JsLoader={load:function(sId,sUrl,oOption){var _oOption=new Object();if(typeof oOption=="function")_oOption.onSuccess=oOption;else _oOption=oOption;_oOption.decay=_oOption.decay||1;_oOption.delay=_oOption.delay||1000;_oOption.count=_oOption.count||0;if(_oOption.timer)window.clearTimeout(_oOption.timer);Element.remove(sId);var _script=document.createElement("script");_script.setAttribute("id",sId);_script.setAttribute("type","text/javascript");_script.setAttribute("src",sUrl);document.getElementsByTagName("head")[0].appendChild(_script);_oOption.timer=window.setTimeout(function(){if($(sId))if(--_oOption.decay){_oOption.count++;JsLoader.load(sId,sUrl,_oOption);}else{if(typeof _oOption.onFailure=="function"){_oOption.onFailure();}}},_oOption.delay);if(Browser.ie){_script.onreadystatechange=function(){if(this.readyState=="loaded"||this.readyState=="complete"){Element.remove(_script);window.clearTimeout(_oOption.timer);if(typeof _oOption.isSuccess=="function"){if(!_oOption.isSuccess()){if(--_oOption.decay){_oOption.count++;JsLoader.load(sId,sUrl,_oOption);}else{if(typeof _oOption.onFailure=="function"){_oOption.onFailure();}}return;}}if(typeof _oOption.onSuccess=="function")_oOption.onSuccess();}};}else{_script.onload=function(){Element.remove(_script);window.clearTimeout(_oOption.timer);if(typeof _oOption.isSuccess=="function"){if(!_oOption.isSuccess()){if(--_oOption.decay){_oOption.count++;JsLoader.load(sId,sUrl,_oOption);}else{if(typeof _oOption.onFailure=="function"){_oOption.onFailure();}}return;}}if(typeof _oOption.onSuccess=="function")_oOption.onSuccess();};}}};
+
+resizeFrame();
+
+var bgq = Url.getParam('date') ? Url.getParam('date'):date2;
+$('bqg_title').innerHTML = dw(bgq, true);
+
+var red_arr = ['预计扭亏','业绩预增','业绩预盈','业绩上升','业绩大幅上升'];
+var green_arr = ['业绩预亏','业绩预降','业绩下降','业绩大幅下降'];
+Array.prototype.in_array = function(e)
+{
+    for(i=0;i<this.length && this[i]!=e;i++);
+    return !(i==this.length);
+}
+function yjlxColor()
+{
+    var yjlx_td = document.getElementsByTagName('td');
+    for (var i=0; i<yjlx_td.length; i++)
+    {
+        if(yjlx_td[i].className=="yjlx")
+        {
+            var yjlx = yjlx_td[i].innerHTML;
+            if ((red_arr.in_array(yjlx)))
+            {
+                yjlx_td[i].style.color='#ff0300';
+            }
+            else if((green_arr.in_array(yjlx)))
+            {
+                yjlx_td[i].style.color='#129800';
+            }
+        }
+    }
+}
+yjlxColor();
+//location.hash="T";
+
+</script>
+</body>
+</html>

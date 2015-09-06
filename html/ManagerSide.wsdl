@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="ManagerSide"
+ targetNamespace="http://192.168.0.57:97/ManagerSide.wsdl"
+ xmlns:tns="http://192.168.0.57/ManagerSide.wsdl"
+ xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+ xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+ xmlns:ns="urn:ManagerSide"
+ xmlns:SOAP="http://schemas.xmlsoap.org/wsdl/soap/"
+ xmlns:MIME="http://schemas.xmlsoap.org/wsdl/mime/"
+ xmlns:DIME="http://schemas.xmlsoap.org/ws/2002/04/dime/wsdl/"
+ xmlns:WSDL="http://schemas.xmlsoap.org/wsdl/"
+ xmlns="http://schemas.xmlsoap.org/wsdl/">
+
+<types>
+
+ <schema targetNamespace="urn:ManagerSide"
+  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+  xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:ns="urn:ManagerSide"
+  xmlns="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="unqualified"
+  attributeFormDefault="unqualified">
+  <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+ </schema>
+
+</types>
+
+<message name="CommitStatusRequest">
+ <part name="VerifyID" type="xsd:string"/>
+ <part name="xml" type="xsd:string"/>
+</message>
+
+<message name="CommitStatusResponse">
+ <part name="result" type="xsd:string"/>
+</message>
+
+<message name="UpdateDailyStatRequest">
+ <part name="VerifyID" type="xsd:string"/>
+ <part name="xml" type="xsd:string"/>
+</message>
+
+<message name="UpdateDailyStatResponse">
+ <part name="result" type="xsd:string"/>
+</message>
+
+<message name="SendSMSRequest">
+ <part name="VerifyID" type="xsd:string"/>
+ <part name="xml" type="xsd:string"/>
+</message>
+
+<message name="SendSMSResponse">
+ <part name="result" type="xsd:string"/>
+</message>
+
+<message name="UpdateDataRequest">
+ <part name="VerifyID" type="xsd:string"/>
+ <part name="xml" type="xsd:string"/>
+</message>
+
+<message name="UpdateDataResponse">
+ <part name="result" type="xsd:string"/>
+</message>
+
+<portType name="ManagerSidePortType">
+ <operation name="CommitStatus">
+  <documentation>Service definition of function ns__CommitStatus</documentation>
+  <input message="tns:CommitStatusRequest"/>
+  <output message="tns:CommitStatusResponse"/>
+ </operation>
+ <operation name="UpdateDailyStat">
+  <documentation>Service definition of function ns__UpdateDailyStat</documentation>
+  <input message="tns:UpdateDailyStatRequest"/>
+  <output message="tns:UpdateDailyStatResponse"/>
+ </operation>
+ <operation name="SendSMS">
+  <documentation>Service definition of function ns__SendSMS</documentation>
+  <input message="tns:SendSMSRequest"/>
+  <output message="tns:SendSMSResponse"/>
+ </operation>
+ <operation name="UpdateData">
+  <documentation>Service definition of function ns__UpdateData</documentation>
+  <input message="tns:UpdateDataRequest"/>
+  <output message="tns:UpdateDataResponse"/>
+ </operation>
+</portType>
+
+<binding name="ManagerSide" type="tns:ManagerSidePortType">
+ <SOAP:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+ <operation name="CommitStatus">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:ManagerSide" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:ManagerSide" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="UpdateDailyStat">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:ManagerSide" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:ManagerSide" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="SendSMS">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:ManagerSide" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:ManagerSide" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="UpdateData">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:ManagerSide" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:ManagerSide" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+</binding>
+
+<service name="ManagerSide">
+ <documentation>gSOAP 2.7.9b generated service definition</documentation>
+ <port name="ManagerSide" binding="tns:ManagerSide">
+  <SOAP:address location="http://localhost:8000"/>
+ </port>
+</service>
+
+</definitions>

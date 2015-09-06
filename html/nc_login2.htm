@@ -1,0 +1,153 @@
+<html>
+<head>
+<title>网络督察</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<style type="text/css">
+
+<!--
+
+table {  font-size: 9pt}
+
+
+
+.coolButton2 {
+
+	HEIGHT: 20px; MARGIN: 1px; WIDTH: 20px
+
+}
+
+.gray1{filter:gray
+
+}
+
+.anniu {  background-color: #dfdfdf; height: 22px; width: 80px; margin-top: 1px; margin-right: 1px; margin-bottom: 1px; margin-left: 1px; padding-top: 1px; padding-right: 1px; padding-bottom: 1px; padding-left: 1px; font-size: 9pt; font-style: normal; font-weight: normal; color: #000000; top: 20px; clip:   rect(   )}
+
+-->
+
+</style>
+
+<script language="JavaScript">
+<!--
+
+
+
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+
+}
+
+MM_reloadPage(true);
+
+// -->
+
+function goto(y){
+
+window.open(y,"_self","")
+
+}
+
+function spylogin(){
+ if(nclogin.mode.value=="ncWebInternetLogin"){
+   nclogin.FunName.value=nclogin.mode.value
+   nclogin.submit()
+ }else{
+   nclogin.FunName.value=nclogin.mode.value
+   document.body.onfocus=new Function("document.all.closes.Click()")
+   nclogin.target="xx"
+   nclogin.submit()
+  /* window.open("main.htm",'_blank','fullscreen=0'); */
+   window.focus();
+   document.closes.Click();
+ }
+}
+function ttt(){
+alert("xx")
+}
+
+
+function assignfun(){
+  nclogin.FunName.value=nclogin.mode.value
+}
+
+
+
+//-->
+</script>
+</head>
+
+<body bgcolor="menu" text="#000000" leftmargin="0" topmargin="0"  oncontextmenu="return false" style='overflow-y:hidden;overflow-x:hidden;'>
+<table width="428" border="0" height="171"  cellspacing="0" cellpadding="0">
+  <form name="nclogin" id="nclogin" method="post" action="/pronline/Msg">
+    <tr> 
+      <input type="hidden" name="FunName">
+      <td background="/images/logobbz2.gif"> 
+        <table width="100%" border="0">
+          <tr> 
+            <td width="13%">&nbsp;</td>
+            <td colspan="2"><img src="/images/loginspy.gif" width="35" height="34" align="texttop"> 
+              请输入密码,登录 Internet 网络</td>
+            <td width="47%"> 
+              <input type="button" name="Button" value="确定" onClick="spylogin()" class="anniu"  tabindex=4>
+            </td>
+            <td width="15%"><object id="closes" type="application/x-oleobject" classid="clsid:adb880a6-d8ff-11cf-9377-00aa003b7a11" width="0" height="0">
+                <param name="Command" value="Close">
+              </object></td>
+          </tr>
+          <tr> 
+            <td rowspan="2"> 
+              <div align="right"></div>
+            </td>
+            <td width="25%">用户名 
+              <input type="image" src="" width="1" height="1" tabindex=-1 name="image">
+            </td>
+            <td width="47%"> 
+              <input type="text" name="username" size="16" tabindex=1>
+            </td>
+            <td width="47%"> 
+              <input type="reset" name="Submit2" value="取消登陆"  class="anniu">
+            </td>
+            <td width="15%">&nbsp;</td>
+          </tr>
+          <tr> 
+            <td width="25%">密码</td>
+            <td width="47%"> 
+              <input type="password" name="password" size="16"  tabindex=2>
+            </td>
+            <td width="47%"> 
+              <input type="submit" name="ModiPass" value="修改密码" class="anniu" onClick="spylogin()">
+            </td>
+            <td width="15%">&nbsp;</td>
+          </tr>
+          <tr> 
+            <td>&nbsp;</td>
+            <td width="25%">登录模式</td>
+            <td width="47%"> 
+              <select name="mode" tabindex=3 onClick="assignfun()" >
+                <option value="ncWebInternetLogin" selected>一般用户</option>
+                <option value="ncWebAuth">管理用户</option>
+              </select>
+            </td>
+            <td width="47%"> 
+              <input type="button" name="exit" value="退出上网" class="anniu"  onClick="goto('/pronline/Msg?FunName@ncWebInternetLogout')">
+            </td>
+            <td width="15%">&nbsp;</td>
+          </tr>
+          <tr> 
+            <td width="13%">&nbsp;</td>
+            <td colspan="3"> 
+              <div align="center"></div>
+            </td>
+            <td width="15%">&nbsp;</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </form>
+</table>
+</body>
+</html>

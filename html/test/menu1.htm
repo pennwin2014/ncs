@@ -1,0 +1,389 @@
+
+<html>
+<head>
+<META http-equiv=Content-Type content=text/html; charset=gb2312>
+<meta name=keywords content="????,????,dvbbs">
+<title>????--????</title>
+<style type="text/css">
+A:link,A:active,A:visited{TEXT-DECORATION:none ;Color:#000000}
+A:hover{TEXT-DECORATION: underline;Color:#663399}
+
+BODY{
+FONT-SIZE: 12px;
+COLOR: #000000;
+FONT-FAMILY:  ??;
+background-color: #FFFFFF; 
+scrollbar-Base-Color: #ffffff;
+SCROLLBAR-TRACK-COLOR: #ffffff;  
+SCROLLBAR-HIGHLIGHT-COLOR: #ffffff;
+SCROLLBAR-FACE-COLOR: #F3EEF9; 
+SCROLLBAR-SHADOW-COLOR: #F3EEF9;
+SCROLLBAR-3DLIGHT-COLOR: #F3EEF9;
+SCROLLBAR-DARKSHADOW-COLOR: #E9DEF3;
+SCROLLBAR-ARROW-COLOR: #663399;
+background-image: url(skin/blue/kabg.gif);
+}
+TD{
+font-family: ??;
+font-size: 13px;
+line-height: 15px;
+}
+th
+{
+background-image: url(skin/blue/e3.gif);
+background-color: #8142BF;
+color: white;
+font-size: 12px;
+font-weight:bold;
+}
+td.TableTitle2
+{
+background-color: #E9DEF3;
+}
+td.TableBody1
+{
+background-color: #F3EEF9;
+}
+td.TableBody2
+{
+background-color: #E9DEF3;
+}
+td.TopDarkNav
+{
+background-image: url(skin/blue/e12.gif);
+}
+td.TopLighNav
+{
+background-image: url(skin/blue/e1.gif);
+}
+td.TopLighNav1
+{
+background-image: url(skin/blue/e2.gif);
+}
+td.TopLighNav2
+{
+background-color:#FFFFFF
+}
+.tableBorder1
+{
+width:95%;
+border: 1px; 
+background-color: #8142BF;
+}
+.tableBorder2
+{
+width:95%;
+border: 1px #B48ED9 solid; 
+background-color: #E9DEF3;
+}
+
+#TableTitleLink A:link, #TableTitleLink A:visited, #TableTitleLink A:active {
+	COLOR: #FFFFFF;
+	TEXT-DECORATION: none;
+}
+#TableTitleLink A:hover {
+	COLOR: #FFFFFF;
+	TEXT-DECORATION: underline;}
+
+input,select,Textarea{
+font-family:Tahoma,Verdana,??; font-size: 12px; line-height: 15px;}
+}
+.normalTextSmall 
+{ 
+    font-size : 11px;
+    color : #000000; 
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+</style><script language="javascript">
+function submitonce(theform){
+//if IE 4+ or NS 6+
+if (document.all||document.getElementById){
+//screen thru every element in the form, and hunt down "submit" and "reset"
+for (i=0;i<theform.length;i++){
+var tempobj=theform.elements[i]
+if(tempobj.type.toLowerCase()=="submit"||tempobj.type.toLowerCase()=="reset")
+//disable em
+tempobj.disabled=true
+}
+}
+}
+function openScript(url, width, height){
+	var Win = window.open(url,"openScript",'width=' + width + ',height=' + height + ',resizable=1,scrollbars=yes,menubar=no,status=yes' );
+}
+</script>
+<script Language="JavaScript">
+//***********??????.*********************
+tPopWait=50;//??tWait????????
+tPopShow=5000;//??tShow???????
+showPopStep=20;
+popOpacity=99;
+
+//***************??????*****************
+sPop=null;
+curShow=null;
+tFadeOut=null;
+tFadeIn=null;
+tFadeWaiting=null;
+
+document.write("<style type='text/css'id='defaultPopStyle'>");
+document.write(".cPopText {  background-color: #F8F8F5;color:#000000; border: 1px #000000 solid;font-color: font-size: 12px; padding-right: 4px; padding-left: 4px; height: 20px; padding-top: 2px; padding-bottom: 2px; filter: Alpha(Opacity=0)}");
+document.write("</style>");
+document.write("<div id='dypopLayer' style='position:absolute;z-index:1000;' class='cPopText'></div>");
+
+
+function showPopupText(){
+var o=event.srcElement;
+	MouseX=event.x;
+	MouseY=event.y;
+	if(o.alt!=null && o.alt!=""){o.dypop=o.alt;o.alt=""};
+        if(o.title!=null && o.title!=""){o.dypop=o.title;o.title=""};
+	if(o.dypop!=sPop) {
+			sPop=o.dypop;
+			clearTimeout(curShow);
+			clearTimeout(tFadeOut);
+			clearTimeout(tFadeIn);
+			clearTimeout(tFadeWaiting);	
+			if(sPop==null || sPop=="") {
+				dypopLayer.innerHTML="";
+				dypopLayer.style.filter="Alpha()";
+				dypopLayer.filters.Alpha.opacity=0;	
+				}
+			else {
+				if(o.dyclass!=null) popStyle=o.dyclass 
+					else popStyle="cPopText";
+				curShow=setTimeout("showIt()",tPopWait);
+			}
+			
+	}
+}
+
+function showIt(){
+		dypopLayer.className=popStyle;
+		dypopLayer.innerHTML=sPop;
+		popWidth=dypopLayer.clientWidth;
+		popHeight=dypopLayer.clientHeight;
+		if(MouseX+12+popWidth>document.body.clientWidth) popLeftAdjust=-popWidth-24
+			else popLeftAdjust=0;
+		if(MouseY+12+popHeight>document.body.clientHeight) popTopAdjust=-popHeight-24
+			else popTopAdjust=0;
+		dypopLayer.style.left=MouseX+12+document.body.scrollLeft+popLeftAdjust;
+		dypopLayer.style.top=MouseY+12+document.body.scrollTop+popTopAdjust;
+		dypopLayer.style.filter="Alpha(Opacity=0)";
+		fadeOut();
+}
+
+function fadeOut(){
+	if(dypopLayer.filters.Alpha.opacity<popOpacity) {
+		dypopLayer.filters.Alpha.opacity+=showPopStep;
+		tFadeOut=setTimeout("fadeOut()",1);
+		}
+		else {
+			dypopLayer.filters.Alpha.opacity=popOpacity;
+			tFadeWaiting=setTimeout("fadeIn()",tPopShow);
+			}
+}
+
+function fadeIn(){
+	if(dypopLayer.filters.Alpha.opacity>0) {
+		dypopLayer.filters.Alpha.opacity-=1;
+		tFadeIn=setTimeout("fadeIn()",1);
+		}
+}
+document.onmouseover=showPopupText;
+
+function CheckAll(form)  {
+  for (var i=0;i<form.elements.length;i++)    {
+    var e = form.elements[i];
+    if (e.name != 'chkall')       e.checked = form.chkall.checked; 
+   }
+  }
+
+//????????
+ var h;
+ var w;
+ var l;
+ var t;
+ var topMar = 1;
+ var leftMar = -2;
+ var space = 1;
+ var isvisible;
+ var MENU_SHADOW_COLOR='#999999';//?????????
+ var global = window.document
+ global.fo_currentMenu = null
+ global.fo_shadows = new Array
+
+function HideMenu() 
+{
+ var mX;
+ var mY;
+ var vDiv;
+ var mDiv;
+	if (isvisible == true)
+{
+		vDiv = document.all("menuDiv");
+		mX = window.event.clientX + document.body.scrollLeft;
+		mY = window.event.clientY + document.body.scrollTop;
+		if ((mX < parseInt(vDiv.style.left)) || (mX > parseInt(vDiv.style.left)+vDiv.offsetWidth) || (mY < parseInt(vDiv.style.top)-h) || (mY > parseInt(vDiv.style.top)+vDiv.offsetHeight)){
+			vDiv.style.visibility = "hidden";
+			isvisible = false;
+		}
+}
+}
+
+function ShowMenu(vMnuCode,tWidth) {
+	vSrc = window.event.srcElement;
+	vMnuCode = "<table id='submenu' cellspacing=1 cellpadding=3 style='width:"+tWidth+"' class=tableborder1 onmouseout='HideMenu()'><tr height=23><td nowrap align=left class=tablebody1>" + vMnuCode + "</td></tr></table>";
+
+	h = vSrc.offsetHeight;
+	w = vSrc.offsetWidth;
+	l = vSrc.offsetLeft + leftMar+4;
+	t = vSrc.offsetTop + topMar + h + space-2;
+	vParent = vSrc.offsetParent;
+	while (vParent.tagName.toUpperCase() != "BODY")
+	{
+		l += vParent.offsetLeft;
+		t += vParent.offsetTop;
+		vParent = vParent.offsetParent;
+	}
+
+	menuDiv.innerHTML = vMnuCode;
+	menuDiv.style.top = t;
+	menuDiv.style.left = l;
+	menuDiv.style.visibility = "visible";
+	isvisible = true;
+    makeRectangularDropShadow(submenu, MENU_SHADOW_COLOR, 4)
+}
+
+function makeRectangularDropShadow(el, color, size)
+{
+	var i;
+	for (i=size; i>0; i--)
+	{
+		var rect = document.createElement('div');
+		var rs = rect.style
+		rs.position = 'absolute';
+		rs.left = (el.style.posLeft + i) + 'px';
+		rs.top = (el.style.posTop + i) + 'px';
+		rs.width = el.offsetWidth + 'px';
+		rs.height = el.offsetHeight + 'px';
+		rs.zIndex = el.style.zIndex - i;
+		rs.backgroundColor = color;
+		var opacity = 1 - i / (i + 1);
+		rs.filter = 'alpha(opacity=' + (100 * opacity) + ')';
+		el.insertAdjacentElement('afterEnd', rect);
+		global.fo_shadows[global.fo_shadows.length] = rect;
+	}
+}
+//??????
+var manage= '<a style=font-size:9pt;line-height:14pt; href=\"JavaScript:openScript(\'messanger.asp?action=new\',500,400)\">???</a><br><a style=font-size:9pt;line-height:14pt; href=\"dispuser.asp?id=0&boardid=5&action=permission\">?????</a><br><a style=font-size:9pt;line-height:14pt; href=\"topicwithme.asp?s=2\">??????</a><br><a style=font-size:9pt;line-height:14pt; href=\"topicwithme.asp?s=1\">??????</a><br><a style=font-size:9pt;line-height:14pt; href=\"mymodify.asp\">??????</a><br><a style=font-size:9pt;line-height:14pt; href=\"modifypsw.asp\">??????</a><br><a style=font-size:9pt;line-height:14pt; href=\"modifyadd.asp\">??????</a><br><a style=font-size:9pt;line-height:14pt; href=\"usersms.asp\">??????</a><br><a style=font-size:9pt;line-height:14pt; href=\"friendlist.asp\">??????</a><br><a style=font-size:9pt;line-height:14pt; href=\"favlist.asp\">??????</a><br><a style=font-size:9pt;line-height:14pt; href=\"myfile.asp\">??????</a>'
+//????
+var stylelist = '<a style=font-size:9pt;line-height:12pt; href=\"cookies.asp?action=stylemod&skinid=0&boardid=5\">??????</a><br><a style=font-size:9pt;line-height:12pt; href=\"cookies.asp?action=stylemod&skinid=1&boardid=5\">????</a><br><a style=font-size:9pt;line-height:12pt; href=\"cookies.asp?action=stylemod&skinid=25&boardid=5\">????</a><br><a style=font-size:9pt;line-height:12pt; href=\"cookies.asp?action=stylemod&skinid=26&boardid=5\">e???</a><br><a style=font-size:9pt;line-height:12pt; href=\"cookies.asp?action=stylemod&skinid=27&boardid=5\">????</a><br><a style=font-size:9pt;line-height:12pt; href=\"cookies.asp?action=stylemod&skinid=28&boardid=5\">????</a><br><a style=font-size:9pt;line-height:12pt; href=\"cookies.asp?action=stylemod&skinid=29&boardid=5\">????</a><br><a style=font-size:9pt;line-height:12pt; href=\"cookies.asp?action=stylemod&skinid=32&boardid=5\">????</a><br><a style=font-size:9pt;line-height:12pt; href=\"cookies.asp?action=stylemod&skinid=34&boardid=5\">???</a><br><a style=font-size:9pt;line-height:12pt; href=\"cookies.asp?action=stylemod&skinid=35&boardid=5\">????</a><br><a style=font-size:9pt;line-height:12pt; href=\"cookies.asp?action=stylemod&skinid=36&boardid=5\">???</a><br><a style=font-size:9pt;line-height:12pt; href=\"cookies.asp?action=stylemod&skinid=37&boardid=5\">????</a><br><a style=font-size:9pt;line-height:12pt; href=\"cookies.asp?action=stylemod&skinid=38&boardid=5\">????</a><br><a style=font-size:9pt;line-height:12pt; href=\"cookies.asp?action=stylemod&skinid=40&boardid=5\">????</a><br><a style=font-size:9pt;line-height:12pt; href=\"cookies.asp?action=stylemod&skinid=41&boardid=5\">????</a><br><a style=font-size:9pt;line-height:12pt; href=\"cookies.asp?action=stylemod&skinid=42&boardid=5\">????</a><br><a style=font-size:9pt;line-height:12pt; href=\"cookies.asp?action=stylemod&skinid=44&boardid=5\">????</a><br><a style=font-size:9pt;line-height:12pt; href=\"cookies.asp?action=stylemod&skinid=45&boardid=5\">???</a><br><a style=font-size:9pt;line-height:12pt; href=\"cookies.asp?action=stylemod&skinid=46&boardid=5\">????</a><br><a style=font-size:9pt;line-height:12pt; href=\"cookies.asp?action=stylemod&skinid=47&boardid=5\">????</a><br><a style=font-size:9pt;line-height:12pt; href=\"cookies.asp?action=stylemod&skinid=48&boardid=5\">????</a><br>'
+//????
+var boardstat= '<a style=font-size:9pt;line-height:14pt; href=\"boardstat.asp?boardid=5\">??????</a><br><a style=font-size:9pt;line-height:14pt; href=\"boardstat.asp?action=lasttopicnum&boardid=5\">?????</a><br><a style=font-size:9pt;line-height:14pt; href=\"boardstat.asp?action=lastbbsnum&boardid=5\">?????</a><br><a style=font-size:9pt;line-height:14pt; href=\"boardstat.asp?reaction=online&boardid=5\">????</a><br><a style=font-size:9pt;line-height:14pt; href=\"boardstat.asp?reaction=onlineinfo&boardid=5\">????</a><br><a style=font-size:9pt;line-height:14pt; href=\"boardstat.asp?reaction=onlineUserinfo&boardid=5\">???????</a>'
+//????
+var downlist= '<a style=font-size:9pt;line-height:14pt; href=\"show.asp?filetype=0&boardid=5\">?????</a><br><a style=font-size:9pt;line-height:14pt; href=\"show.asp?filetype=1&boardid=5\">?????</a><br><a style=font-size:9pt;line-height:14pt; href=\"show.asp?filetype=2&boardid=5\">Flash??</a><br><a style=font-size:9pt;line-height:14pt; href=\"show.asp?filetype=3&boardid=5\">?????</a><br><a style=font-size:9pt;line-height:14pt; href=\"show.asp?filetype=4&boardid=5\">?????</a><br><a style=font-size:9pt;line-height:14pt; href=\"show.asp\">????</a>'
+</script>
+</head>
+<body  topmargin=0 leftmargin=0 onmousemove="HideMenu()">
+<div id=menuDiv style='Z-INDEX: 2; VISIBILITY: hidden; WIDTH: 1px; POSITION: absolute; HEIGHT: 1px; BACKGROUND-COLOR: #9cc5f8'></div>
+<table cellspacing=0 cellpadding=0 align=center style="border:1px #753AAF solid; border-top-width: 0px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 1px;width:95%;">
+<tr><td width=100%>
+<table width=100% align=center border=0 cellspacing=0 cellpadding=0>
+<tr><td class=TopDarkNav height=9></td></tr>
+<tr><td height=70 class=TopLighNav2>
+<TABLE border=0 width="100%" align=center>
+<TR>
+<TD align=left width="25%"><a href="http://www.51dress.com/bbs"><img border=0 src='http://www.51dress.com/2/LOGO1.GIF'></a></TD>
+<TD Align=center width="65%">
+<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=5,0,0,0" width="468" height="60"><param name=movie value="http://www.51dress.com/2/logo.swf"><param name=quality value=high><embed src="http://www.dvbbs.net/images/dvbanner.swf" quality=high pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="468" height="60"></embed></object>
+</td>
+<td align=right style="line-height: 15pt" width="10%">
+<a href=#><span style="CURSOR: hand" onClick="window.external.AddFavorite('http://www.51dress.com/bbs', '????')">????</span></a>
+<br><a href="mailto:treachery@163.com">????</a>
+<br><a href="boardhelp.asp?boardid=5">????</a>
+</td>
+</td></tr>
+</table>
+</td></tr>
+<tr><td class=TopLighNav height=9></td></tr>
+        <tr> 
+          <td class=TopLighNav1 height=22  valign="middle">&nbsp;&nbsp;
+
+<a href="login.asp">??</a> <img src=pic/navspacer.gif align=absmiddle> <a href="reg.asp">??</a>
+
+ <img src=pic/navspacer.gif align=absmiddle> <a href="query.asp?boardid=5">??</a> <img src=pic/navspacer.gif align=absmiddle> <a href="#" onMouseOver='ShowMenu(stylelist,100)'>????</a> <img src=pic/navspacer.gif align=absmiddle> <a href="boardstat.asp?boardid=5" onMouseOver='ShowMenu(boardstat,100)'>????</a> <img src=pic/navspacer.gif align=absmiddle> <a href="show.asp?boardid=5" onMouseOver='ShowMenu(downlist,100)'>????</a>  <img src=pic/navspacer.gif align=absmiddle> <a href="dispuser.asp?boardid=5&action=permission">?????</a>
+			</td>
+        </tr>
+</table>
+</td></tr>
+</table>
+
+<table cellspacing=1 cellpadding=3 align=center border=0 width="95%">
+<tr>
+
+<td height=25>
+<BR>
+>> ???????,????????,??or??????,?????????,??,come on
+</td></tr>
+</table>
+<table cellspacing=1 cellpadding=3 align=center class=tableBorder2>
+<tr><td height=25 valign=middle>
+<img src="pic/Forum_nav.gif" align=absmiddle> <a href=index.asp>????</a> ? 
+<a href=list.asp?boardid=1>?????</a> ?  <a href=list.asp?boardid=5>????</a> ?  ????
+<a name=top></a>
+</td></td>
+</table>
+<br>
+
+<br>
+<table cellpadding=3 cellspacing=1 align=center class=tableborder1 style="width:75%">
+<tr align=center>
+<th width="100%" height=25 colspan=2>??????
+</td>
+</tr>
+<tr>
+<td width="100%" class=tablebody1 colspan=2>
+<b>?????????:</b><br><br>
+<li>????????<a href="boardhelp.asp?boardid=5">????</a>,???????????????????????
+<br><li>????????????,?<a href=login.asp>??</a>?????????
+</td></tr>
+
+<form action="login.asp?action=chk" method=post>
+    <tr>
+    <th valign=middle colspan=2 align=center height=25>?????????????</td></tr>
+    <tr>
+    <td valign=middle class=tablebody1>????????</td>
+    <td valign=middle class=tablebody1><INPUT name=username type=text> &nbsp; <a href=reg.asp>?????</a></td></tr>
+    <tr>
+    <td valign=middle class=tablebody1>???????</font></td>
+    <td valign=middle class=tablebody1><INPUT name=password type=password> &nbsp; <a href=lostpass.asp>?????</a></td></tr>
+    <tr>
+    <td class=tablebody1 valign=top width=30% ><b>Cookie ??</b><BR> ????? Cookie ????,???????????</td>
+    <td valign=middle class=tablebody1>                <input type=radio name=CookieDate value=0 checked>???,????????<br>
+                <input type=radio name=CookieDate value=1>????<br>
+                <input type=radio name=CookieDate value=2>????<br>
+                <input type=radio name=CookieDate value=3>????<br>                </td></tr>
+    <tr>
+    <td valign=top width=30% class=tablebody1><b>????</b><BR> ?????????,??????????????????</td>
+    <td valign=middle class=tablebody1>                <input type=radio name=userhidden value=2 checked>????<br>
+                <input type=radio name=userhidden value=1>????<br>
+                </td></tr>
+	<input type=hidden name=comeurl value="http://www.51dress.com/bbs/dispbbs.asp?boardID=5&ID=786">
+    <tr>
+    <td class=tablebody2 valign=middle colspan=2 align=center><input type=submit name=submit value="? ?">&nbsp;&nbsp;<input type=button name="back" value="? ?" onclick="location.href='http://www.51dress.com/bbs/dispbbs.asp?boardID=5&ID=786'"></td></tr>
+</form>
+
+</table>
+
+<p>
+<TABLE cellSpacing=0 cellPadding=0 width="95%" border=0 align=center>
+<tr><td align=center>
+
+</td></tr>
+<tr><td align=center>
+   Powered by:<a href=http://www.51dress.com/bbs>Dvbbs Version 6.0.0</a><br>
+Copyright &copy;2003  <a href=http://www.51dress.com><font face=Verdana, Arial, Helvetica, sans-serif size=1><b>51dress<font color=#CC0000>.com</font></b></font></a>
+</td></tr>
+</table>
+</body>
+</html>

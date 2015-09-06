@@ -1,0 +1,322 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>单位组管理</title>
+    <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" />
+
+    <script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+
+    <style type="text/css">
+        .add {
+            background-image:url(/newver/resources/themes/images/share/add.gif) !important;
+        }
+        .remove {
+            background-image:url(/newver/resources/themes/images/share/delete.gif) !important;
+        }
+        .accept {
+            background-image:url(/newver/resources/themes/images/share/accept.png) !important;
+        }
+        .exp {
+            background-image:url(/newver/resources/themes/images/share/application_go.png) !important;
+        }
+    </style>
+    
+ <script type="text/javascript">     
+
+    
+    
+    Ext.Loader.setConfig({
+    enabled: true
+});
+Ext.Loader.setPath('Ext.ux', '/newver/ux/');
+
+Ext.require([
+    'Ext.grid.*',
+    'Ext.data.*',
+    'Ext.panel.*',
+    'Ext.tree.*',
+    'Ext.window.*',
+     'Ext.util.*',
+    'Ext.tip.*',
+    'Ext.tab.*',
+    'Ext.layout.container.Border'
+]);
+var store_tree;
+function updatetime(sdate,edate,cid){
+
+	store_tree.load({params: {sid:cid,sdate:sdate,edate:edate,update:'modi'}});  
+}
+
+Ext.onReady(function(){
+    Ext.define('Book',{
+        extend: 'Ext.data.Model',
+        fields: [
+            // set up the fields mapping into the xml doc
+            // The first needs mapping, the others are very basic
+            {name: 'Author', mapping: 'ItemAttributes > Author'},
+            'Title',
+            'Manufacturer',
+            'ProductGroup',
+            'DetailPageURL'
+        ]
+    });
+
+
+
+    Ext.define('treedata', {
+        extend: 'Ext.data.Model',
+        fields: [
+            {name: 'id',     type: 'string'},
+            {name: 'text',type:'string'},
+            {name: 'sdate', type: 'string'},
+            {name:'edate',type:'String'}
+        ]
+    });
+
+     store_tree = Ext.create('Ext.data.TreeStore', {
+    	  model: 'treedata',
+        proxy: {
+            type: 'ajax',
+            url: '/pronline/Msg?FunName@ncsTreeRpTask_v4'
+        },
+        root: {
+            text: '报表任务',
+            id: '',
+            pid:'',
+//            checked:false,
+            expanded: true
+        },
+        folderSort: true,
+        sorters: [{
+            property: 'text',
+            direction: 'ASC'
+        }]
+    });
+    
+   
+
+    var tree = Ext.create('Ext.tree.Panel', {
+        store: store_tree,
+
+ //       renderTo: 'tree-div',
+        height: 950,
+        width: 230,
+       region: 'west',
+        containerScroll: true,
+        useArrows: false,       
+          dockedItems: [
+          {
+            xtype: 'toolbar',
+            items: [{
+             text: '添加报表任务',
+                iconCls:'add',
+                 handler: function(){
+                 opaddedit('');
+   
+                }               
+            },
+            {
+            	text:'删除',
+            
+            	iconCls:'remove',
+            	handler:function(){
+            		var records=tree.getView().getChecked();
+            		var temps='';
+            		var iNum='';
+           		Ext.Array.each(records,function(rec){
+           			     if(iNum==0){
+                    temps=rec.get('id');
+                    }
+                    else{
+                    temps=temps+','+rec.get('id');
+                    }
+                    iNum++;
+           		  }
+           		  )
+           		  
+           		  if(temps==''){
+           		  	alert('请选择删除的报表任务');
+           		  	return;
+           		  }
+           		  if(confirm('您真的要执行删除操作吗？')){  
+           		  	store_tree.load({params: {del: "del",selsid:temps}});
+           		  }
+           		  
+            	}
+            	
+            }]
+        }]
+
+    });
+    
+
+    
+    function opaddedit(rcd)
+    { 
+    	             var winadd;
+                   var addform=Ext.create('Ext.FormPanel', {         
+						        frame: true,
+			              fieldDefaults: {
+					          	labelWidth: 85  ,                      
+			              	xtype: 'textfield' 
+					        	},
+						        bodyPadding: 10,
+                    items: [                  
+								   
+                    {                        
+                        fieldLabel:'报表任务名',
+                        xtype: 'textfield',
+                        name:'text'
+                    },
+                    {
+                    	 xtype: 'hidden', 
+											 name: 'id'
+											
+                    },
+                    {
+                        xtype: 'button',
+                        anchor: 'right',
+                         style : 'margin-left:80px',
+                        text:'保&nbsp;&nbsp;存',
+                         handler: function(){
+                         	var keyname=addform.getForm().getValues().text;
+                         	var sid=addform.getForm().getValues().id;
+                         
+                         if(keyname==''){
+                         	alert('请填写报表任务名');
+                        }
+                        else{                       
+                         store_tree.load({params: {update: "update",name:keyname,sid:sid}});
+                           Ext.getCmp('winadd').close();
+                        }
+                         
+                         }
+                       
+                    },
+                    {
+                    	xtype: 'button',
+                    	 style : 'margin-left:10px',
+                    	text:'关&nbsp;&nbsp;闭',
+                    	handler: function(){
+          //          		alert(addform.getForm().getValues().id);
+                    		Ext.getCmp('winadd').close();
+                    	}
+                    }
+                    
+                    
+                    ]
+         });
+                                    
+                   addform.loadRecord(rcd);
+                   winadd=new Ext.Window ({
+                             id:"winadd",
+                             title:"添加/修改关键字组",
+                             x:100,
+                             y:30,
+                             width:300,
+                             height:160,
+                             bodyPadding: 10,
+                             modal:true,
+                             resizable:true,
+                             closable : true,
+                //             draggable:true,
+                          
+                             items: addform
+                                                
+                  }
+        );  
+
+           winadd.show();
+    	
+    	
+    }
+//给数增加点击和双击事件
+    tree.on({             
+	       'itemclick' : function(view, rcd, item, idx, event, eOpts) {   
+	       	var active = tabs.getActiveTab();
+	       	if(rcd.get('text')=='报表任务'){
+	       		active.tab.setText('报表任务');
+	       	}
+	      else{
+          active.tab.setText('报表任务:'+rcd.get('text'));
+        }
+          keydet.cid=rcd.get('id');
+          keydet.cname=rcd.get('text');
+          
+          keydet.Ext.getCmp('sdate').setValue(rcd.get('sdate'));
+          keydet.Ext.getCmp('edate').setValue(rcd.get('edate'));
+   //        keydet.clearkeyword(); 
+          keydet.cxxm();
+//      keydet.getCmp('addKey').setDisabled(0);
+          keydet.reflash();
+          
+     //    alert(keydet.cid);
+               
+	       	  },       
+	     //目录树双击击事件          
+	       'itemdblclick' : function(view, rcd, item, idx, event, eOpts) {
+	        opaddedit(rcd);
+	         },              
+	         scope : this        });
+
+
+    var tabs = Ext.createWidget('tabpanel', {
+       
+        height:950,
+        region: 'center',
+        margins: '0 0 0 5',
+        forceFit: true,
+        scrollOffset: 0,
+        activeTab: 0,
+        
+         defaults :{
+ 
+            bodyPadding: 0
+ 
+        },
+ 
+        items: [{
+ 
+            title: '报表任务内容',              
+            html: '<iframe  id="keydet" name="keydet" src="/v4/stat/ncs_task_det.htm" scrolling="no" width=100% height=950  FrameBorder=0 ></iframe>'
+ 
+            
+ 
+        }]
+ 
+    });
+    
+
+
+        
+
+
+    Ext.create('Ext.Panel', {
+        renderTo: 'editor-grid',
+        frame: true,
+ //       title: 'Book List',
+        forceFit: true,
+  //      width: 999,
+        height: 950,
+        layout: 'border',
+        margins: '12 15 10 15',
+
+        items: [tabs,tree]
+    });
+    
+
+
+    store.load();
+});
+</script>
+    
+    
+</head>
+<body>
+		<form name="form1" id="form1" action="/pronline/Msg">
+			<input type="hidden" name="groupid" value="">
+		<input type="hidden" name="did" value="">
+	</form>
+    <div id="editor-grid"></div>
+</body>
+</html>

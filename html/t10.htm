@@ -1,0 +1,130 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<style type="text/css">
+
+<!--
+
+body {  font-family: "??"; font-size: 9pt; margin-top: 0px; margin-left: 0px; margin-right: 0px}
+
+A { COLOR:black; FONT-SIZE: 9pt; FONT-WEIGHT: 400; TEXT-DECORATION: none }
+
+ A:hover { COLOR: red; FONT-SIZE: 9pt; FONT-WEIGHT: 400; TEXT-DECORATION: underline }
+
+a:active     { font: 9pt "??"; cursor: hand; color: #FF0033 }
+
+a.cc:hover   { font: 9pt "??"; cursor: hand; color: #FF0033}
+
+.box         { font: 9pt "??"; position: absolute;  background: #fef4d9 }
+
+-->
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+<SCRIPT language=javascript><!--
+
+// document.onclick = popUp
+
+  
+
+function popUp() {
+
+newX = window.event.x + document.body.scrollLeft
+
+newY = window.event.y + document.body.scrollTop
+
+menu = document.all.itemopen
+
+  if ( menu.style.display == ""){
+
+    menu.style.display = "none" }
+
+
+    menu.style.pixelLeft = newX - 50
+
+    menu.style.pixelTop = newY - 50
+
+}
+
+function popDown() {
+
+newX = window.event.x + document.body.scrollLeft
+
+newY = window.event.y + document.body.scrollTop
+
+menu = document.all.itemopen
+
+  if ( menu.style.display == "none"){
+     menu.style.display = ""}
+
+
+
+    menu.style.pixelLeft = newX - 50
+
+    menu.style.pixelTop = newY - 50
+
+}
+
+//-->
+
+
+
+
+
+</SCRIPT>
+ <!-- Start of Popup Menu  -->
+
+
+
+ <table id="itemopen" class='box'  style='display:none'>  
+     <tr><td><a href='index.htm' class="cc" >aaaaa</a></td></tr>
+<!--    <SCRIPT language=javascript>
+        for(i=0;i<10;i++) {
+          document.write("<tr><td><a href='index.htm' class="cc" >aaaaa</a></td></tr>");
+        }
+    </script>
+    -->
+ </table>
+
+
+
+  <!-- End of Popup Menu  -->
+
+<form name="form1" method="post" action="">
+  <p>&nbsp;</p>
+  <table width="75%" border="0">
+    <tr>
+      <td>Text</td>
+      <td>
+        <input type="text" name="textfield"  onKeyDown="popUp()"  onKeyUp="popDown()" >
+      </td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+  </table>
+  <p>&nbsp;</p>
+</form>
+</body>
+</html>

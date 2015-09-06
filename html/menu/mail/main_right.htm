@@ -1,0 +1,304 @@
+<html>
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; ">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<title>main</title>
+<script>
+function goto(t){
+self.location.href=t
+}
+function mouseovertr2 (o){
+var i;
+df=o.style.backgroundColor
+	o.style.backgroundColor= "#003399";
+	o.style.borderColor= "#FFFF00";
+	o.style.cursor="hand";	
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#ffffff";
+}	
+}
+
+function mouseouttr2(o){
+	o.style.backgroundColor=df
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#000000";
+}
+	
+	
+}
+</script>
+<link REL=stylesheet HREF="runmit.css" TYPE="text/css">
+<script src="rmenu.js"></script>
+<style type="text/css">
+<!--
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+-->
+</style>
+<link rel="stylesheet" href="css/css.css" type="text/css">
+</head>
+<body marginheight=0 leftmargin=0 marginwidth=0 topMargin="0" BGCOLOR="Menu">
+<table border="0" width=100% height=100% cellspacing="0" cellpadding="0" align=center bgcolor='#ffffff'>
+  <tr> 
+    <td width="100%"  valign=middle align=center height="25" bgcolor="#dfdfdf" class="ttt">
+      <table width="100%" border="0" cellspacing="0">
+        <tr>
+          <td>&nbsp;&nbsp;关键字:
+            <input type="text" name="textfield" size="16">
+            <input type="button" name="  " value="  " class="anxiao">
+          </td>
+          <td>
+            <table align=right border=0 cellpadding=0 cellspacing=0 class=main width=111>
+              <tbody> 
+              <tr> 
+                <td width="10%"><img border=0 height=17 src="images/zbuyer-06.gif" width=35></td>
+                <td width="10%"><img border=0 height=17 src="images/zbuyer-03.gif" width=20></td>
+                <td width="20%"><img align=middle border=0  height=17 src="images/zbuyer-08.gif" width=32></td>
+                <td align=middle background="" width=92> 
+                  <input  class=Main id=browsdopage1 maxlength=5 name=browsdopage1 size=3 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 30px" value=1>
+                </td>
+                <td width="10%"><img align=middle height=17 src="images/zbuyer-09.gif" width=16></td>
+                <td width="10%"><a onClick=gotopage(document.turnPage.browsdopage1.value) style="CURSOR: hand"><img align=middle border=0  height=17 src="images/zbuyer-10.gif" width=17></a><img align=middle height=17  src="images/zbuyer-11.gif" width=3></td>
+                <td width="10%"><img border=0 height=17 src="images/zbuyer-04.gif" width=20 class="nnoo"></td>
+                <td width="10%"><a  href="#"><img  border=0 height=17 src="images/zbuyer-05.gif" width=36 class="nnoo"></a></td>
+              </tr>
+              </tbody> 
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td width="100%"  valign=top align=center bgcolor="#BBBBBB"> 
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" height="100%">
+        <tr> 
+          <td class="bord2" background="images/ttt.gif" height="20"><img src="images/lline.gif" width="1" height="18" align="absmiddle">&nbsp;</td>
+          <td class="bord2" background="images/ttt.gif" height="18"><img src="images/lline.gif" width="1" height="18" align="absmiddle">&nbsp;姓名</td>
+          <td class="bord2" height="18" background="images/ttt.gif"><img src="images/lline.gif" width="1" height="18" align="absmiddle">&nbsp;IP 
+            地址</td>
+          <td class="bord2" height="18" background="images/ttt.gif"><img src="images/lline.gif" width="1" height="18" align="absmiddle">&nbsp;MAC 
+            地址</td>
+          <td class="bord2" height="18" background="images/ttt.gif"><img src="images/lline.gif" width="1" height="18" align="absmiddle">&nbsp;部门</td>
+          <td class="bord4" height="18" background="images/ttt.gif"><img src="images/lline.gif" width="1" height="18" align="absmiddle">&nbsp;加入时间</td>
+        </tr>
+        <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" onclick="goto('uesredit.htm')"> 
+          <td class="bord1"> 
+            <div align="center"><img src="images/onlinec.gif" width="13" height="15"></div>
+          </td>
+          <td class="bord1">&nbsp;唐猛</td>
+          <td class="bord1">&nbsp;192.168.0.237 </td>
+          <td class="bord1">&nbsp;00:48:54:6c:6f:3c</td>
+          <td class="bord1">&nbsp;技术部</td>
+          <td class="bord3">&nbsp;2002-07-01</td>
+        </tr>
+        <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" onclick="goto('uesredit.htm')"> 
+          <td class="bord1"> 
+            <div align="center"><img src="images/onlinec.gif" width="13" height="15"></div>
+          </td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;192.168.0.223</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord3">&nbsp;</td>
+        </tr>
+        <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" onclick="goto('uesredit.htm')"> 
+          <td class="bord1"> 
+            <div align="center"><img src="images/onlinec.gif" width="13" height="15"></div>
+          </td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;192.168.0.238</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord3">&nbsp;</td>
+        </tr>
+        <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" onclick="goto('uesredit.htm')"> 
+          <td class="bord1"> 
+            <div align="center"><img src="images/onlinec.gif" width="13" height="15"></div>
+          </td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;192.168.0.235</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord3">&nbsp;</td>
+        </tr>
+        <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" onclick="goto('uesredit.htm')"> 
+          <td class="bord1"> 
+            <div align="center"><img src="images/onlinec.gif" width="13" height="15"></div>
+          </td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;192.168.0.211</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord3">&nbsp;</td>
+        </tr>
+        <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" onclick="goto('uesredit.htm')"> 
+          <td class="bord1"> 
+            <div align="center"><img src="images/onlinec.gif" width="13" height="15"></div>
+          </td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;192.168.0.18</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord3">&nbsp;</td>
+        </tr>
+        <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" onclick="goto('uesredit.htm')"> 
+          <td class="bord1"> 
+            <div align="center"><img src="images/onlinec.gif" width="13" height="15"></div>
+          </td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;192.168.0.19</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord3">&nbsp;</td>
+        </tr>
+        <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)"> 
+          <td class="bord1"> 
+            <div align="center"><img src="images/onlinec.gif" width="13" height="15"></div>
+          </td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;192.168.0.13</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord3">&nbsp;</td>
+        </tr>
+        <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)"> 
+          <td class="bord1"> 
+            <div align="center"><img src="images/onlinec.gif" width="13" height="15"></div>
+          </td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord3">&nbsp;</td>
+        </tr>
+        <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)"> 
+          <td class="bord1"> 
+            <div align="center"><img src="images/onlinec.gif" width="13" height="15"></div>
+          </td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord3">&nbsp;</td>
+        </tr>
+        <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)"> 
+          <td class="bord1"> 
+            <div align="center"><img src="images/onlinec.gif" width="13" height="15"></div>
+          </td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord3">&nbsp;</td>
+        </tr>
+        <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)"> 
+          <td class="bord1"> 
+            <div align="center"><img src="images/onlinec.gif" width="13" height="15"></div>
+          </td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord3">&nbsp;</td>
+        </tr>
+        <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)"> 
+          <td class="bord1"> 
+            <div align="center"><img src="images/onlinec.gif" width="13" height="15"></div>
+          </td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord3">&nbsp;</td>
+        </tr>
+        <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)"> 
+          <td class="bord1"> 
+            <div align="center"><img src="images/onlinec.gif" width="13" height="15"></div>
+          </td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord3">&nbsp;</td>
+        </tr>
+        <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)"> 
+          <td class="bord1"> 
+            <div align="center"><img src="images/onlinec.gif" width="13" height="15"></div>
+          </td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord3">&nbsp;</td>
+        </tr>
+        <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)"> 
+          <td class="bord1"> 
+            <div align="center"><img src="images/onlinec.gif" width="13" height="15"></div>
+          </td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord3">&nbsp;</td>
+        </tr>
+        <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)"> 
+          <td class="bord1"> 
+            <div align="center"><img src="images/onlinec.gif" width="13" height="15"></div>
+          </td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord3">&nbsp;</td>
+        </tr>
+        <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)"> 
+          <td class="bord1"> 
+            <div align="center"><img src="images/onlinec.gif" width="13" height="15"></div>
+          </td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord3">&nbsp;</td>
+        </tr>
+        <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)"> 
+          <td class="bord1"> 
+            <div align="center"><img src="images/onlinec.gif" width="13" height="15"></div>
+          </td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord3">&nbsp;</td>
+        </tr>
+        <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)"> 
+          <td class="bord1"> 
+            <div align="center"><img src="images/onlinec.gif" width="13" height="15"></div>
+          </td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord3">&nbsp;</td>
+        </tr>
+      </table>
+    
+<!--//鼠标显示//-->
+              <script language="JavaScript">
+<!--
+var MenuBarColor ='#cccccc';
+DrawMouseRightButtonUpMenu();
+
+</script></td>
+  </tr>
+</table>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+@charset 'gbk';
+#stocksuggest{overflow:visible;position:absolute;display:none;width:280px;height:auto;z-index:1000;background:#fff;padding:0;border:1px solid #6993C6;}#stocksuggest td{height:24px;padding:0 4px 0 4px;text-align:center;white-space:nowrap;}#stocksuggest .red{color:red;}#stocksuggest .onover{background:#ebf2fb;cursor:pointer;}#stocksuggest .onout{background:#fff;cursor:pointer;}#mark{position:absolute;width:100%;height:100%;background:#000;display:none;top:0;left:0;z-index:999;filter:alpha(opacity=30);-moz-opacity:0.3;opacity:0.3;}
+.ico1{width:15px;height:16px;overflow:hidden;background:url(http://mat1.gtimg.com/finance/images/stock/sother/ico1.Png) no-repeat;cursor:pointer;}
+.filed table{cursor:pointer; height:43px;}
+.tit{text-align:center;}
+.txt{text-align:left;}
+.tag{text-align:center;}
+
+
+
+#t1,#t2,#t3{text-align:center;}
+/*  表单定义  */
+.sel1{ width:61px; height:19px; line-height:16px}
+.inputTxt1{ width:94px; height:14px; padding:3px 2px 0 2px; border:1px solid #79A1BB}
+.inputTxt2{ width:100px; height:14px; padding:3px 2px 0 7px; border:1px solid #79A1BB}
+.inputTxt3{ width:88px; height:15px; padding:3px 2px 0 2px; color:#999999; border:1px solid #DDDDDD}
+.inputBtn1,.inputBtn2,.inputBtn3,.inputBtn4,.inputBtn5,.inputBtn6,.inputBtn7,.imgbtn1,.imgbtn2,.imgbtn3{ border:0; overflow:hidden; background-image:url(http://mat1.qq.com/finance/index09/bg1.png); background-repeat:no-repeat; cursor:pointer}
+.inputBtn1{ width:47px; height:19px; line-height:21px; background-position:-588px -349px}
+.inputBtn2{ width:86px; height:19px; margin-left:10px; line-height:21px; background-position:-588px -375px}
+.inputBtn3{ width:33px; height:17px; line-height:19px; background-position:0 -435px}
+.inputBtn4{ width:60px; height:19px; line-height:21px; background-position:-90px -435px}
+.inputBtn5{ width:45px; height:20px; background-position:-155px -435px}
+.inputBtn6{ width:68px; height:20px; background-position:-205px -435px}
+.inputBtn7{ width:67px; height:19px; line-height:21px; background-position:-278px -435px}
+.imgbtn1{ display:block; width:129px; height:20px; background-position:-422px -435px}
+.imgbtn2{ display:block; width:92px; height:20px; background-position:-588px -324px}
+.imgbtn3{ display:block; width:68px; height:20px; background-position:-612px 0}
+
+body.fc_en .fc3,body.fc_en .fc_red,body.fc_en .up,body.fc_en .fcred{color:#129800 !important;}
+body.fc_en .fc4,body.fc_en .fc_green,body.fc_en .down,body.fc_en .fcgreen{color:#FF0300 !important;}
+body.fc_cn .fc3,body.fc_cn .fc_red,body.fc_cn .up,body.fc_cn .fcred{color:#FF0300 !important;}
+body.fc_cn .fc4,body.fc_cn .fc_green,body.fc_cn .down,body.fc_cn .fcgreen{color:#129800 !important;} 
+/*  |xGv00|64921b597946c642bdd925a1a9ef8229 */

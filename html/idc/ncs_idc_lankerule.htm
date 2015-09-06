@@ -1,0 +1,172 @@
+<html>
+<head>
+<title>IDC lanke rule</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<style>
+.conts{visibility:hidden}
+
+</style>
+<script language="javascript">
+var ll=0;
+var yy=1;
+
+</script>
+<script LANGUAGE="JavaScript">
+//this is the tab switching function
+
+function init(){
+
+	//alert(form1.FunName.value);
+	document.getElementById("list").src="/pronline/Msg?FunName@ncsIdcRule_maintain&idcflag@1&cond@"+form1.cond.value+"&prikey@"+form1.prikey.value+"&groupid@"+form1.idc_groupid.value;
+	
+}
+
+function idc_del()
+{
+	if(form1.prikey.value==''){
+			alert("主键不能同时为空");
+			return;	
+	}	
+	document.getElementById("list").src="/pronline/Msg?FunName@ncsIdcRule_maintain&idcflag@1&del@1&cond@"+form1.cond.value+"&mo_sid@"+form1.prikey.value;
+	
+}
+function idc_add()
+{
+		
+		if(form1.prikey.value==''){
+			alert("主键不能同时为空");
+			return;	
+		}	
+		document.getElementById("list").src="/pronline/Msg?FunName@ncsIdcRule_maintain&idcflag@1&modi_st@1&cond@"+form1.cond.value+"&mo_sid@"+form1.prikey.value+"&st_flags@"+form1.idc_status.value;
+	
+		//document.getElementById("list").src="/pronline/Msg?FunName@ncsIdcSearch&delflag@1&name@"+form1.idcname.value+"&email@"+form1.email.value+"&ip@"+form1.ip.value+"&index@"+form1.idcindex.value+"&num@"+form1.num.value+"&city@"+form1.city.value+"&idcid="+form1.idcid.value+"&type="+form1.idc_type.value+"&prikey="+form1.prikey.value;
+	
+}
+var dfd1="0"
+
+</script>
+<style>
+.conts  {visibility:hidden}
+
+table {  font-size: 9pt}
+ .style2 {
+	font-size: 20px;
+	font-weight: bold;
+	font-style: italic;
+	color: #0000ff;
+}
+</style>
+
+<style type="text/css">
+
+<!--
+body {  font-size: 9pt}
+.tas {  border-color: black #FFFFFF; border-style: solid; border-top-width: 0px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 1px}
+table {  font-size: 9pt}
+.gray1 { filter:gray }
+.ttbbd {  cursor: default}
+.nobordertext{border-width:1px;border-color:blue;background-color:#d0e1fa;width:138;}
+
+-->
+</style>
+<link REL=stylesheet HREF="/css/listdatetable.css" TYPE="text/css">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<body bgcolor="#8cb4e8" leftmargin="1" topmargin="0" onload="init()"  style="overflow:hidden" >
+<form name="form1" id="form1" method="post" action="/pronline/Msg" target="main">
+<input type="hidden" name="FunName" value="">
+<input type="hidden" name="did" value="">
+<input type="hidden" name="uid" value="">
+<!--
+<input type="hidden" name="idcdomain" value="">
+<input type="hidden" name="sid" value="">
+<input type="hidden" name="idcname" value="">
+<input type="hidden" name="password" value="">
+<input type="hidden" name="email" value="">
+<input type="hidden" name="ip" value="">
+<input type="hidden" name="startdate" value="">
+<input type="hidden" name="enddate" value="">
+<input type="hidden" name="idcindex" value="">
+<input type="hidden" name="num" value="">
+<input type="hidden" name="idcid" value="">
+<input type="hidden" name="keyword" value="">
+<input type="hidden" name="city" value="">
+-->
+    <table border="0"  bordercolorlight=#aaaaaa bordercolordark=#ffffff  CELLPADDING="0" CELLSPACING="0" bgcolor=#8cb4e8 STYLE="width:100%; height:100%">
+   
+    <tr>
+   			<td>
+   				<table>
+   					<tr>
+   						<td>&nbsp;&nbsp;关键字：<input name="cond" size="12" type="text" /></td>
+   						<td>状态： <select name="idc_groupid" style="width:110px">
+   							<option value="[#idc_groupid#]" ></option>
+   							<option value="82000" >禁止关键字</option>
+   							<option value="83000">禁止URL</option>
+   							<option value="84000">禁止所有POST</option>
+   							<option value="84000">禁止特定POST</option>
+   							<option value="88000">禁止访问者IP</option>
+   							<option value="86000">下发IP</option>
+   							<option value="85000">下发用户名</option>
+   							<option value="87000">下发邮箱</option>
+   							</select>
+							</td>
+   						<td>&nbsp;&nbsp;主键：<input name="prikey" size="12" type="text" /></td>
+   						<td>状态： <select name="idc_status" style="width:100px">
+   							<option value="[#idc_status#]" ></option>
+   		<!--					<option value="1" selected>停用</option> -->
+   							<option value="1" >停用</option>
+   							<option value="0">正常</option>
+   						</select>
+							</td>
+   						<td><input type="button" class="an3"  name="search" value="搜 索"  onclick="init();"  /></td>
+   						<td><input type="button" class="an3"  name="idel" value="删 除"  onclick="idc_del();"  /></td>
+   						<td><input type="button" class="an3"  name="idel" value="保 存"  onclick="idc_add();"  /></td>
+   					</tr>	
+   				</table>
+   			</td>
+   		</tr>
+   		<!--
+   		<tr>
+   			<td>
+   				<table>
+   					<tr>
+   						<td>起始记录：<input name="idcindex" size="12" type="text" /></td>
+   						<td>&nbsp;记录数：<input name="num" size="12" type="text" /></td>
+   						<td>机房Id：<input name="idcid" size="12" type="text" /></td>
+   						<td>区域：<input name="city" size="12" type="text" /></td>
+   						
+   					</tr>	
+   				</table>
+   			</td>
+   		</tr>
+   		-->
+   <tr><td></td></tr>
+
+</form>	
+	
+<tr>
+	      <td height="635"  valign="top" width="60%">
+	       <iframe  height="635" name="list" id="list" width="100%"  border="0" frameborder="0" src="" scrolling="yes"> </iframe>      
+	      </td>
+	      
+	      	      
+      </tr>
+
+
+
+</table>
+
+	
+<script>
+  				form1.idc_status.value='[#idc_status#]';
+  				form1.idc_groupid.value='[#idc_groupid#]';
+  </script>
+
+
+</body>
+</html>

@@ -1,0 +1,927 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<title>单位管理</title>
+    <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" /> 
+        <style type="text/css">
+        .icon-grid {
+            background-image:url(/newver/resources/themes/images/share/grid.png) !important;
+        }
+        .add {
+            background-image:url(/newver/resources/themes/images/share/add.gif) !important;
+        }
+        .option {
+            background-image:url(/newver/resources/themes/images/share/plugin.gif) !important;
+        }
+        .remove {
+            background-image:url(/newver/resources/themes/images/share/delete.gif) !important;
+        }
+        .exp {
+            background-image:url(/newver/resources/themes/images/share/application_go.png) !important;
+        }
+        .accept {
+            background-image:url(/newver/resources/themes/images/share/accept.png) !important;
+        }
+     .x-tab-default-top button, .x-tab-default-top.x-tab-inner {
+		  height: 16px !important;
+		  line-height: 16px;
+	    }
+
+    </style>
+<style type="text/css">   
+   .x-selectable, .x-selectable * {   
+    -moz-user-select: text!important;   
+    -khtml-user-select: text!important;   
+}   
+</style>
+      
+    <script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+    
+  <script>  
+
+
+Ext.Loader.setConfig({enabled: true});
+Ext.Loader.setPath('Ext.ux', '/newver/ux/');
+Ext.require([
+    'Ext.form.*',
+    'Ext.window.*',
+    'Ext.grid.*',
+    'Ext.data.*',
+    'Ext.util.*',
+    'Ext.window.MessageBox',
+    'Ext.toolbar.Paging',
+    'Ext.ux.PreviewPlugin',
+    'Ext.tree.*',
+//    'Ext.ModelManager',
+//    'Ext.tip.QuickTipManager'
+]);
+
+var temp_id='';
+var preid='';
+ function gbck(){
+
+   Ext.getCmp('addwindow').close();
+   reflash();
+ }
+var store;
+ function reflash(){
+  var did1=document.getElementById("form1").did.value;
+
+  var gid=document.getElementById("form1").groupid.value;
+  var ip1=document.getElementById("form1").ip1.value;
+  var dispname1=document.getElementById("form1").dispname1.value;
+  var servicecode1=document.getElementById("form1").servicecode1.value;
+  var address1=document.getElementById("form1").address1.value;
+  var area1=document.getElementById("form1").area1.value;
+  var corpstate=document.getElementById('form1').lxstate.value;
+  var keyword1=document.getElementById('form1').keyword.value;
+  store.load({params: {groupid: gid,ip1:ip1,dispnam1:dispname1,servicecode1:servicecode1,address1:address1,area1:area1,did:did1,lxstate:corpstate,keyword:keyword1}});  
+  }
+
+var store_right;
+var store_adminuser;
+
+		/*向上遍历父结点*/
+		var nodep=function(node){
+			var bnode=false;
+			
+			Ext.Array.each(node.childNodes,function(v){
+				if(v.data.checked){
+					bnode=true;
+					return ;
+				}
+			});
+			return bnode;
+		}; 
+		
+		var parentnode=function(node){
+			if(node.parentNode != null){
+				if(nodep(node.parentNode)){
+					node.parentNode.set('checked',true); 
+				}else{
+					node.parentNode.set('checked',false);
+				}
+				parentnode(node.parentNode);
+			}
+		};
+		
+		/*遍历子结点选中与取消选中操作*/
+		var chd=function (node,check){
+			node.set('checked',check);
+			if(node.isNode){
+				node.eachChild(
+				function(child){
+					chd(child,check);
+		  	});
+			}
+		};
+
+		/*遍历子结点选中与取消选中操作*/
+		var chd1=function (node,fun){
+			
+			//console.info(node.getId(),",",fun);
+			if(node){
+				if(node.getId()=='client,客户端信息'){
+					//alert(node.getId()+(fun.indexOf("client")));
+					if(fun!="" && fun.indexOf("client")!=-1){
+						node.set('checked',true);
+					}else{
+						node.set('checked',false);
+					}
+				}else if(node.getId()=='dept,部门管理'){
+					if(fun!="" && fun.indexOf("dept,")!=-1 && fun.indexOf("部门管理")!=-1){
+						//console.info(node.getId(),",",fun,fun.indexOf("tree_procy,"));
+						node.set('checked',true);
+					}else{
+						node.set('checked',false);
+					}
+				}else if(node.getId()=='lay_base,预定义对象'){
+					if(fun!="" && fun.indexOf("lay_base")!=-1){
+						//console.info(node.getId(),",",fun,fun.indexOf("tree_procy,"));
+						node.set('checked',true);
+					}else{
+						node.set('checked',false);
+					}
+				}else if(node.getId()=='blacklist,黑白名单'){
+					if(fun!="" && fun.indexOf("blacklist")!=-1){
+						//console.info(node.getId(),",",fun,fun.indexOf("tree_procy,"));
+						node.set('checked',true);
+					}else{
+						node.set('checked',false);
+					}
+				}else{
+					if(fun!="" && fun.indexOf(node.getId()+",")!=-1){
+						node.set('checked',true);
+					}else{
+						node.set('checked',false);
+					}
+				}
+				
+				if(!node.isLeaf()){
+					node.eachChild(
+					function(child){
+						chd1(child,fun);
+			  	});
+				}
+			}
+		};
+
+
+   function getRolname(record){
+     if(record!=''){
+      	return record.data.username; 
+      }
+      else{
+       	return '';
+      }
+   }
+//获取系统用户信息
+		function getCombAdminuserData(record) { 
+
+		  var temp_check='';
+	     if(record!=''){
+
+	     temp_check=record.data.dx;
+
+	     }
+
+				var dataStr = "["; 
+		    var i=0;
+
+          var bCheck;
+   
+		      store_adminuser.each(function(item){
+
+		       bCheck="false";
+		       if(temp_check.indexOf(item.get('dispname'))!=-1){
+		       bCheck="true";
+		       }
+		      
+
+	       if(i==0){
+		       	 dataStr=dataStr+"{boxLabel: '"+item.get('dispname')+"' ,inputValue:'" +item.get('userid')+"',checked:"+bCheck+"}";
+		       }
+		       else{
+		       	 dataStr=dataStr+",{boxLabel: '"+item.get('dispname')+"' ,inputValue:'" +item.get('userid')+"',checked:"+bCheck+"}";
+		       }
+
+
+		       i++;
+		
+		    });
+        dataStr=dataStr+"]";
+       
+
+			return eval(dataStr); 
+     
+
+   };
+   
+		Ext.define('treeData', {
+			extend: 'Ext.data.Model',
+			fields: ['id','text']
+		});
+		
+
+   rightStore = Ext.create('Ext.data.TreeStore',{
+  // 	autoLoad: true, 
+   	model: 'treeData',
+   	root: {
+			text: "全部权限",
+			checked: false,
+			expanded: true,
+			children: [
+				{ id: "信息查询",text: "信息查询", checked: false, leaf: false, expanded: true, children: [
+					{ id: 'MAC日志查询',text: "MAC日志查询", checked: false, leaf: true},
+					{ id: '热点查询',text: "热点查询", checked: false, leaf: true},
+					{ id: '场所信息查询',text: "场所信息查询", checked: false, leaf: true},
+					{ id: '移动采集设备',text: "移动采集设备", checked: false, leaf: true},
+					{ id: '实时信息',text: "实时信息", checked: false, leaf: true}
+				]},
+				{ id: "布控告警",text: "布控告警", checked: false, leaf: false, expanded: true, children: [
+					{ id: "布控管理",text: "布控管理", checked: false, leaf: false, expanded: true, children: [{ id: "kd_s",text: "只读", checked: false, leaf: true, expanded: true, children: []},{ id: "kx_s",text: "可编辑", checked: false, leaf: true, expanded: true, children: []}]},
+					{ id: "接警人员管理",text: "接警人员管理", checked: false, leaf: true, expanded: true, children: []}
+					
+				]},
+				{ id: "数据挖掘",text: "数据挖掘", checked: false, leaf: false, expanded: true, children: [
+					{ id: "伴随行为分析",text: "伴随行为分析", checked: false, leaf: true, expanded: true, children: []},
+					{ id: "抽样分析",text: "抽样分析", checked: false, leaf: true, expanded: true, children: []},
+					{ id: "高频次分析",text: "高频次分析", checked: false, leaf: true, expanded: true, children: []},
+					{ id: "轨迹分析",text: "轨迹分析", checked: false, leaf: true, expanded: true, children: []},
+					{ id: "可疑热点分析",text: "可疑热点分析", checked: false, leaf: true, expanded: true, children: []},
+					{ id: "人流分析",text: "人流分析", checked: false, leaf: true, expanded: true, children: []}
+				]}
+				,
+				{ id: "业务配置",text: "业务配置", checked: false, leaf: false, expanded: true, children: [
+					{ id: "场所管理",text: "场所管理", checked: false, leaf: true, expanded: true, children: []},
+					{ id: "设备管理",text: "设备管理", checked: false, leaf: true, expanded: true, children: []},
+					{ id: "单位属组",text: "单位属组", checked: false, leaf: true, expanded: true, children: []},
+					{ id: "安全厂商管理",text: "安全厂商管理", checked: false, leaf: true, expanded: true, children: []},
+					{ id: "热点管理",text: "热点管理", checked: false, leaf: true, expanded: true, children: []},
+					{ id: "终端信息分组",text: "终端信息分组", checked: false, leaf: true, expanded: true, children: []}
+
+
+				]}
+		    ,
+				{ id: "系统配置",text: "系统配置", checked: false, leaf: false, expanded: true, children: [
+					{ id: "管理员账号",text: "管理员账号", checked: false, leaf: true, expanded: true, children: []},
+					{ id: "系统运维告警",text: "系统运维告警", checked: false, leaf: true, expanded: true, children: []},
+					{ id: "系统参数配置",text: "系统参数配置", checked: false, leaf: true, expanded: true, children: []},
+					{ id: "权限管理",text: "权限管理", checked: false, leaf: true, expanded: true, children: []},
+					{ id: "操作员日志",text: "操作员日志", checked: false, leaf: true, expanded: true, children: []}
+					
+
+				]}
+				,{ id: "我的账号",text: "我的账号", checked: false, leaf: false, expanded: true, children: [
+					{ id: "修改密码",text: "修改密码", checked: false, leaf: true, expanded: true, children: []},
+					{ id: "我的工具栏",text: "我的工具栏", checked: false, leaf: true, expanded: true, children: []}
+				
+					
+
+				]}
+				/*{ id: "统计报表",text: "统计报表", checked: false, leaf: false, expanded: true, children: [
+					{ id: "虚拟身份统计",text: "虚拟身份统计", checked: false, leaf: false, expanded: true, children: [{ id: "xnsf_s",text: "虚拟身份统计", checked: false, leaf: true, expanded: true, children: []}]},
+					
+					{ id: "上网人数统计",text: "上网人数统计", checked: false, leaf: false, expanded: true, children: [	{ id: "users_s",text: "上网人数统计", checked: false, leaf: true, expanded: true, children: []}]}
+				
+				]},
+				{ id: "接入厂商管理",text: "接入厂商管理", checked: false, leaf: false, expanded: true, children: [
+					{ id: "fac_s",text: "厂商信息维护", checked: false, leaf: true, expanded: true, children: []},
+					{ id: "csyxzt",text: "场所运行状态", checked: false, leaf: true, expanded: true, children: []},
+					{ id: "whlog",text: "场所维护日志", checked: false, leaf: true, expanded: true, children: []},
+					{ id: "mesglog",text: "消息管理", checked: false, leaf: true, expanded: true, children: []}
+				]}*/
+			]
+		}
+   });
+  
+	var rightCheckTree = Ext.create('Ext.tree.Panel',{
+		height: 400,
+		title: "选择权限",
+		autoScroll : true,
+		store: rightStore,
+    rootVisible: true,
+    listeners: {
+    	'checkchange':function(node, checked, eOpts ){
+    		if(checked){
+    			node.eachChild(function(child) {
+    				chd(child,true);
+    			});
+    		}else{
+    			node.eachChild(function(child) {
+    				chd(child,false);
+    			});
+    		}
+   // 		parentnode(node);  //进行父级选中操作
+    	}
+    }
+	});
+
+
+
+
+  function gotoedit1(id,record){
+  
+        var tmp = 0;
+        
+        if(record != ""){
+        	chd1(rightStore.getRootNode(),record.get('fun')+",");
+        }else{
+        	chd1(rightStore.getRootNode(),"");
+        }
+        var fp2=Ext.create('Ext.FormPanel', {
+    //    title: '增加或修改权限角色',
+        frame: true,
+        fieldDefaults: {
+            labelWidth: 110
+        },
+        width: 600,
+        height:450,
+        bodyPadding: 10,
+        items: [
+					{
+            xtype: 'textfield',
+            name: 'rolname',
+            fieldLabel: '角色名',
+            value:getRolname(record),
+            listeners:{
+            	blur: function(thisTF,eOpts ){
+            		var name =thisTF.getValue();
+	            	if(name != "admin" && name != "keeper"){
+		            	Ext.Ajax.request({
+								    url: '/pronline/Msg',
+								    params: {
+								    	FunName: "checkrolename",
+								    	rolename: name
+								    },
+								    success: function(response){
+								    	var text = Ext.decode(response.responseText);
+								    	
+								    	//alert(text.value);
+								    	if(text.value=='failure'){
+								    	 	alert("角色名已被注册！");
+								    	 	thisTF.setValue("");
+								    		tmp = 0;
+								    	}else{
+								    		tmp = 1;
+								    	}
+								    }
+									});
+								}else{
+									alert(name+"是系统保留字段，请换其他");
+								}
+            	}
+            }
+        	},
+        	{
+        		xtype: 'treepanel',
+        		height: 370,
+						title: "选择权限",
+						autoScroll : true,
+						store: rightStore,
+				    rootVisible: true,
+				    listeners: {
+				    	'checkchange':function(node, checked, eOpts ){
+				    		if(checked){
+				    			node.eachChild(function(child) {
+				    				chd(child,true);
+				    			});
+				    		}else{
+				    			node.eachChild(function(child) {
+				    				chd(child,false);
+				    			});
+				    		}
+	//			    		parentnode(node);  //进行父级选中操作
+				    	}
+				    }
+        	}
+        ],
+        buttons: [{
+            text: '保存',
+            handler: function(){
+            	var checkedValues = rightCheckTree.getChecked();
+            	var checkvalue= "";
+            	for(var i=0;i<checkedValues.length;i++){
+            		checkvalue = checkvalue + checkedValues[i].getId()+",";
+            	}
+  						
+            var rolvalue=fp2.getForm().getValues().rolname;
+						if(rolvalue == "" && tmp != 1){
+							alert("请输入角色名称");
+							return ;
+						}
+						
+						if(checkvalue == ""){
+							alert("请选择权限");
+							return ;
+						}
+						
+						alert(checkvalue);
+   					//console.info(checkvalue);
+            store.load({params:{update:"update",rolename:rolvalue,keyword:"",rightcheck:checkvalue}});
+            Ext.getCmp('addwindow').close();
+           
+            }
+        },{
+            text: '关闭',
+            handler: function(){
+            Ext.getCmp('addwindow').close();
+//                fp.getForm().reset();
+            }
+         }]
+      });
+    
+    
+         var win2 = new Ext.Window ({
+                             id:"addwindow",
+                             title:"增加或修改角色",
+                             x:0,
+                             y:0,
+                             width:630,
+                             height:500,
+                             bodyPadding: 10,
+                             modal:true,
+                             //resizable:true,
+           //                  draggable:false,
+                             items: fp2
+                                               
+         }
+        )
+        win2.show();
+    };
+
+//打开授权窗口
+function openGrant(record)
+{
+
+     var rightcheckGroup={
+           xtype:'fieldset',
+           title:'将角色授权给系统用户',
+           layout: 'form',
+        	defaults: {
+            labelStyle: 'padding-left:4px;'
+        	},
+         collapsible: false,
+        items: [{
+             xtype: 'checkboxgroup',
+             name:'rightgroup',
+             columns: 4,
+                items: getCombAdminuserData(record)
+            }]
+            }; 
+        
+        var fp2=Ext.create('Ext.FormPanel', {
+        frame: true,
+        fieldDefaults: {
+            labelWidth: 110
+        },
+        width: 600,
+        bodyPadding: 10,
+        items: [
+					{
+            xtype: 'textfield',
+            name: 'rolname',
+            fieldLabel: '角色名',
+            value:getRolname(record)
+        	},
+        	rightcheckGroup
+        ],
+        buttons: [{
+            text: '保存',
+            handler: function(){
+            var groupcheck=fp2.getForm().findField('rightgroup');
+            var checkvalue=groupcheck.getValue();
+            var keyword=Ext.getCmp('keyword1').value;
+            if(keyword=='输入角色名查询'){
+                 keyword='';
+           }
+
+         var croleid=record.getId();
+         store.load({params:{update:"grant",roleid:croleid,keyword:keyword,rightcheck:checkvalue}});
+            Ext.getCmp('addwindow').close();
+           
+            }
+        },{
+            text: '关闭',
+            handler: function(){
+            Ext.getCmp('addwindow').close();
+//                fp.getForm().reset();
+            }
+         }]
+      });
+    
+    
+         var win2 = new Ext.Window ({
+                             id:"addwindow",
+                             title:"授权",
+                             x:0,
+                             y:0,
+                             width:630,
+                             height:600,
+                             bodyPadding: 10,
+                             modal:true,
+                             resizable:true,
+           //                  draggable:false,
+                             items: fp2
+                                               
+         }
+        )
+        win2.show();
+   
+}
+
+
+
+
+
+Ext.onReady(function(){
+   Ext.tip.QuickTipManager.init();
+//    Ext.tip.QuickTipManager.init();
+
+
+     		Ext.define('CheckData', {
+        extend: 'Ext.data.Model',
+        fields: [
+            'vara', 'checked1', 'rolename','roldispname','userid','dispname'
+        ],
+        idProperty: 'rolename'
+        });
+		
+				//取权限check数据
+			   store_right = Ext.create('Ext.data.Store', {
+			        pageSize: 40,
+			        model: 'CheckData',
+			        remoteSort: true,
+			        proxy: {
+			            type: 'ajax',
+			            url: '/pronline/Msg?FunName@ncsDispRoleFunlist_v4',
+			            reader: {
+			                type:'json',
+			                root: 'eimdata',
+			                totalProperty: 'totalCount'
+			            },         
+			            simpleSortMode: true
+			        },
+			        sorters: [{
+			            property: 'userid',
+			            direction: 'DESC'
+			        }]
+			    });
+		
+		     store_right.load();
+		     
+
+
+
+
+Ext.override(Ext.form.CheckboxGroup,{    
+    //在inputValue中找到定义的内容后，设置到items里的各个checkbox中    
+    setValue : function(value){   
+        this.items.each(function(f){
+          if(value.indexOf(f.inputValue) != -1){  
+                 f.setValue(true);   
+             }else {   
+                 f.setValue(false);   
+             }      
+          
+        });   
+    },   
+    //以value1,value2的形式拼接group内的值   
+    getValue : function(){   
+        var re = "";   
+        this.items.each(function(f){   
+            if(f.getValue() == true){   
+                re += f.inputValue + ",";   
+            }   
+        });   
+        return re.substr(0,re.length - 1);   
+    },   
+    //在Field类中定义的getName方法不符合CheckBoxGroup中默认的定义，因此需要重写该方法使其可以被BasicForm找到   
+    getName : function(){   
+        return this.name;   
+    }   
+}); 
+
+
+
+
+    Ext.define('EimData', {
+        extend: 'Ext.data.Model',
+        fields: [
+            'userid','username', 'fun', 'dx'
+        ],
+        idProperty: 'userid'
+    });
+
+    // create the Data Store
+    //重写排序函数，解决远程条件查询问题
+    Ext.data.Store.prototype.doSort = function() {
+    	reflash();
+    }
+   store = Ext.create('Ext.data.Store', {
+        pageSize: 38,
+        model: 'EimData',
+        remoteSort: true,
+        proxy: {
+            type: 'ajax',
+            url: '/pronline/Msg?FunName@ncsRolelist_v9',
+            reader: {
+                type:'json',
+                root: 'eimdata',
+                totalProperty: 'totalCount'
+            },         
+            simpleSortMode: true
+        },
+        sorters: [{
+            property: 'userid',
+            direction: 'DESC'
+        }]
+    });
+
+  
+
+
+    var pluginExpanded = true;
+    
+    var sm = Ext.create('Ext.selection.CheckboxModel',{
+        listeners: {
+          selectionchange: function(sm, selections) {
+           	var str = parent.right_fun;
+				//		if(str.indexOf('6130')!=-1){
+            	grid.down('#removeButton').setDisabled(selections.length == 0);
+        //  	}
+          	
+				//		if(str.indexOf('6140')!=-1){
+          //		grid.down('#grantButton ').setDisabled(selections.length == 0);
+        //  	}  
+          }
+        }
+    
+    });
+    
+    
+ 
+
+ 
+ 
+  
+//对翻页工具条重新构建，替换翻页函数    
+  Ext.PagingToolbar1 = Ext.extend(Ext.PagingToolbar, {
+     doRefresh:function(){  
+     reflash();
+    },
+    moveLast:function(){
+    	var b=this,a=b.getPageData().pageCount;
+    	if(b.fireEvent("beforechange",b,a)!==false){
+    	store.currentPage=a;
+    	reflash();
+       }},
+     moveFirst:function(){
+      if(this.fireEvent("beforechange",this,1)!==false){
+      store.currentPage=1;
+      reflash();}}, 
+     movePrevious:function(){var b=this,a=b.store.currentPage-1;if(a>0){if(b.fireEvent("beforechange",b,a)!==false){store.currentPage=a;reflash();}}},
+     moveNext:function(){var c=this,b=c.getPageData().pageCount,a=c.store.currentPage+1;if(a<=b){if(c.fireEvent("beforechange",c,a)!==false){store.currentPage=a;reflash();}}},
+      
+      
+      onPagingKeyDown:function(i,h){
+     var d=this,b=h.getKey(),c=d.getPageData(),a=h.shiftKey?10:1,g;
+     if(b==h.RETURN){h.stopEvent();g=d.readPageFromInput(c);
+        if(g!==false){
+         g=Math.min(Math.max(1,g),c.pageCount);
+         if(d.fireEvent("beforechange",d,g)!==false){
+        //d.store.loadPage(g)
+         d.store.currentPage=g;
+         reflash();
+        }        
+      }
+    }
+    else{
+       if(b==h.HOME||b==h.END){
+    			h.stopEvent();g=b==h.HOME?1:c.pageCount;i.setValue(g)
+       }
+       else{
+         if(b==h.UP||b==h.PAGEUP||b==h.DOWN||b==h.PAGEDOWN){
+          h.stopEvent();g=d.readPageFromInput(c);
+           if(g){
+             if(b==h.DOWN||b==h.PAGEDOWN){a*=-1}
+             g+=a;
+             if(g>=1&&g<=c.pages){i.setValue(g)}
+             }
+            }
+           }
+         }  
+      }
+
+      
+      
+       
+});
+
+    function grant(value,p,record){
+      return Ext.String.format( '<a href="#xxm" >授权</a>');
+      
+    }
+
+  var grid = Ext.create('Ext.grid.Panel', {
+    scrollOffset: 0,
+    height:parent.grid_height+5,     
+    store: store,
+    selModel: sm,
+    frame:true,
+   // grid columns
+    columns:[{
+      id: 'username',
+      text: "角色名",
+      dataIndex: 'username',
+      hidden: false,
+      width: 120,
+      sortable: true
+    },{
+      text: "该角色授于对象",
+      dataIndex: 'dx',
+      width: 250,
+      sortable: true
+    },{
+			header: '编辑',
+			xtype: 'actioncolumn',
+			dataIndex: 'userid',
+			icon: '/images/v4/edit_task.png',
+			tooltip: '点击该图标进入修改角色信息界面。',
+			width: 40,
+			align: 'center',
+			sortable: false,
+			handler: function(grid, rowIndex, colIndex, actionItem, event, record, row) {
+				gotoedit1(record.get('userid'),record);
+			}
+    },{
+			text: "授权",
+			dataIndex: 'userid',           
+			width: 50,
+			sortable: false,
+			listeners: {
+				click: function(grid, rowIndex, colIndex, actionItem, event, record, row) {
+					openGrant(record);
+			
+				}
+			},
+			renderer: grant
+    },{
+    	 flex: 1
+    }],
+		columnLines: true,
+                                        
+    // paging bar on the bottom
+    tbar: Ext.create('Ext.PagingToolbar1', {
+      store: store,
+      displayInfo: true,
+      displayMsg: '显示{0} - {1}条记录 共{2}条记录',
+      emptyMsg: "没有记录可显示",
+                                   
+      items: [{
+				xtype:'textfield',
+				id:'keyword1',
+				name:'keyword1',
+				width:'120px',
+				style:'color:#7aa7d5',
+				value:'输入角色名查询',
+				enableKeyEvents:true,
+				listeners:{
+					'focus':function(){
+						if(this.value=='输入角色名查询'){                
+							this.setValue('');
+						}
+					},
+					'keydown' : function(i,e){
+            var aae=e.getKey() ; 
+            if(aae==13){
+							var aa=Ext.getCmp('keyword1').value;
+							
+							document.getElementById("form1").keyword.value=aa;
+							document.getElementById("form1").did.value='';
+							document.getElementById("form1").groupid.value='';
+							document.getElementById("form1").ip1.value='';
+							document.getElementById("form1").dispname1.value='';
+							document.getElementById("form1").servicecode1.value='';
+							document.getElementById("form1").address1.value='';
+							document.getElementById("form1").area1.value='';
+							
+							reflash();
+            }
+         	}
+        }
+      },{
+				text:'确认',
+				iconCls:'accept',
+				handler: function(){
+					var aa=Ext.getCmp('keyword1').value;
+					if(aa!='输入角色名查询'){
+						document.getElementById("form1").keyword.value=aa;
+						reflash();
+					}
+        }
+      },'-',{
+				text:'增加',
+				iconCls:'add',
+				id: "addrole",
+				handler : function() {
+					gotoedit1('','');
+   			}
+      }, '-', {
+				text:'删除',
+				itemId: 'removeButton',
+				iconCls:'remove',
+				disabled: true,
+				handler:function(){
+				
+					if(confirm('您真的要执行删除操作吗？')){                  
+						var selsid;  
+						var rows=sm.getSelection();
+						selsid='';
+						for(var i=0;i<rows.length;i++){
+							if(i==0){
+								selsid=rows[i].getId();
+							}else{
+								selsid=selsid+","+rows[i].getId();
+							}
+						}
+						var keyword=Ext.getCmp('keyword1').value;
+						if(keyword=='输入角色名查询'){
+							keyword='';
+						}
+						store.load({params:{del:"del",selsid:selsid,keyword:keyword}});
+					} 
+				}
+      }, '-']
+    }),
+    renderTo: 'grid-corp'
+	});
+
+    // trigger the data store load
+    reflash();
+ 
+ 
+//取系统用户信息
+			   store_adminuser = Ext.create('Ext.data.Store', {
+			        pageSize: 40,
+			        model: 'CheckData',
+			        remoteSort: true,
+			        proxy: {
+			            type: 'ajax',
+			            url: '/pronline/Msg?FunName@ncsSysUserlist_v4',
+			            reader: {
+			                type:'json',
+			                root: 'eimdata',
+			                totalProperty: 'totalCount'
+			            },         
+			            simpleSortMode: true
+			        },
+			        sorters: [{
+	//		            property: 'userid',
+	//		            direction: 'DESC'
+			        }]
+			    });
+			    
+			    
+ store_adminuser.load();
+		     
+   var str = parent.right_fun;
+		if(str.indexOf('6110')==-1){
+//			Ext.getCmp('addrole').setDisabled(true);
+		}
+ 
+
+});
+
+
+
+
+
+
+
+
+</script>
+    
+    
+</head>
+<body>
+	<form name="form1" id="form1" action="/pronline/Msg">
+		<input type="hidden" name="FunName" value="ncsWebClientSearch_v4">
+		<input type="hidden" name="groupid" value="">
+		<input type="hidden" name="did" value="">
+		<input type="hidden" name="ip1" value="">
+		<input type="hidden" name="dispname1" value="">
+		<input type="hidden" name="servicecode1" value="">
+		<input type="hidden" name="groupid1" value="">		
+	  <input type="hidden" name="address1" value="">
+		<input type="hidden" name="area1" value="">
+		<input type="hidden" name="export2" value="">
+		<input type="hidden" name="lxstate" value="">
+		<input type="hidden" name="keyword" value="">
+		<input type="hidden" name="mid" value="">
+	</form>
+    <div id="grid-corp"></div>
+
+</body>
+</html>

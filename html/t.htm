@@ -1,0 +1,97 @@
+
+<!-- saved from url=(0022)http://internet.e-mail -->
+<html>
+<head>
+<META content="text/html; charset="gb2312" http-equiv=Content-Type>
+<title>登录</title>
+<link REL=stylesheet HREF="runmit.css" TYPE="text/css">
+<style type="text/css">
+<!--
+.handme {  cursor: hand}
+.bord4 {  border: #999999; border-style: solid; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px}
+table {  font-size: 9pt}
+.anan {  width: 90px}
+-->
+</style>
+</head>
+<body topMargin=0 leftmargin=0 marginheight="0" bgColor=Menu  onload="self.focus()" oncontextmenu="return false" >
+<object id="closes" type="application/x-oleobject" classid="clsid:adb880a6-d8ff-11cf-9377-00aa003b7a11" width="0" height="0">
+<param name="Command" value="Close">
+</object>
+<script>
+function goto(y){
+
+window.open(y,"_self","")
+
+}
+
+
+function wqp()
+{
+//    openwinflag=window.open(self.location,'RUNMIT_sbpm','fullscreen=0,toolbar=no,scrollbars=no,resizable=1,menubar=no,status=0');
+//    window.focus();
+//    document.closes.Click();
+}
+
+if(window.name != "RUNMIT_sbpm")
+{
+ 	wqp();
+}
+
+</script> 
+<form name="nclogin" id="nclogin" method="post" action="http://61.143.6.149:8080/pronline/Msg">  
+<table width="100%" border="0" cellspacing="0" cellpadding="0" height="100%">
+  <tr> 
+      <td bgcolor="#FFFFFF" height="50"><img src="/images/newfz3.gif" width="937" height="54"></td>
+  </tr>
+  <tr> 
+    <td valign="top"> <br>
+        <input type="hidden" name="FunName" value="ncWebInternetLogin" >
+        <input type="hidden" name="url" value="" >
+        <table width="80%" border="0" align="center">
+        <tr>
+          <td><img src="/images/anb50.gif" width="30" height="30" align="absmiddle">为了您能正常访问Internet 
+            请先输入口令/密码</td>
+        </tr>
+      </table>
+      <table width="60%" border="0" align="center" cellpadding="4">
+        <tr> 
+          <td colspan="2"></td>
+        </tr>
+        <tr> 
+          <td width="19%">用户</td>
+          <td width="81%"> 
+            <input type="text" name="username">
+          </td>
+        </tr>
+        <tr> 
+          <td width="19%">密码</td>
+          <td width="81%"> 
+            <input type="password" name="password">
+          </td>
+        </tr>
+        <tr> 
+          <td width="19%">&nbsp;</td>
+          <td width="81%">&nbsp;</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr> 
+    <td height="1"><img src="/images/cc2.gif" width="100%" height="15"></td>
+  </tr>
+  <tr>
+    <td height="40"> 
+      <div align="right"> 
+        <input type="submit" name="auth1" value="确定" class="anan">
+        <input type="button" name="Button" value="退出上网" class="anan" onclick="goto('http://61.143.6.149:8080/pronline/Msg?FunName@ncWebInternetLogout')">
+        <input type="button" name="Button3" value="加入收藏夹" onClick="window.external.AddFavorite('http://61.143.6.149:8080/pronline/Msg?FunName@ncWebDispLogin','上网验证')" class="anan">
+        <input type="submit" name="ModiPass" value="修改密码" class="anan">
+        &nbsp;&nbsp; </div>
+    </td>
+  </tr>
+</table>
+</form>
+</body>
+
+</html>

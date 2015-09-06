@@ -1,0 +1,370 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>单位组管理</title>
+    <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" />
+
+    <script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+
+    <style type="text/css">
+        .add {
+            background-image:url(/newver/resources/themes/images/share/add.gif) !important;
+        }
+        .remove {
+            background-image:url(/newver/resources/themes/images/share/delete.gif) !important;
+        }
+        .accept {
+            background-image:url(/newver/resources/themes/images/share/accept.png) !important;
+        }
+        .exp {
+            background-image:url(/newver/resources/themes/images/share/application_go.png) !important;
+        }
+    </style>
+    
+ <script type="text/javascript">     
+    
+
+    
+    
+    
+    
+    Ext.Loader.setConfig({
+    enabled: true
+});
+Ext.Loader.setPath('Ext.ux', '/newver/ux/');
+
+Ext.require([
+    'Ext.grid.*',
+    'Ext.data.*',
+    'Ext.util.*',
+    'Ext.state.*',
+    'Ext.form.*',
+    'Ext.ux.CheckColumn',
+    'Ext.tree.*',
+    'Ext.tip.*',
+    'Ext.tab.*',
+    'Ext.*'
+]);
+
+var store;
+var preid="";
+var  preladw="";
+var temp_id;
+var cid='';
+var cname='';
+var grid;
+var pane1;
+function cxxm(){
+//	alert(sdate1);
+
+  if(cid==''){
+			panel.down('#addKey').setDisabled(1);
+//			panel.down('#removeEmployee').setDisabled(1);
+			panel.down('#genRep').setDisabled(1);
+			panel.down('#modtime').setDisabled(1);
+  }
+	else{
+			panel.down('#addKey').setDisabled(0);
+//			panel.down('#removeEmployee').setDisabled(0);
+			panel.down('#genRep').setDisabled(0);
+		  panel.down('#modtime').setDisabled(0);
+	}
+	
+
+
+}
+function reflash(){
+	
+//alert('ggggggggg');
+ 	store.load({params: {id: cid}});
+}
+
+
+Ext.onReady(function(){
+
+
+Ext.tip.QuickTipManager.init();
+
+  
+ 
+function openAdd(id,sid,rname)
+{
+
+   var rtitle='定义报表任务明细';
+   var htmlvar='<iframe  id="viewIframet" name="viewIframet" src="/pronline/Msg?FunName@ncsTaskdet_Add&id@'+cid+'&sid@'+sid+'"  width=100% height=1000  FrameBorder=0 scrolling="no"></iframe>'
+
+    var win2 = new Ext.Window ({
+                             id:"addwindow",
+   //                          title:rtitle,
+                             x:0,
+                             y:0,
+                             width:630,
+                             height:600,
+                             bodyPadding: 0,
+                             modal:true,
+                             resizable:true,
+                             html:htmlvar
+            //                 items: fp2
+                                               
+         }
+        )
+         win2.on("beforeclose", function() {
+        	reflash();
+        	
+        }
+        )
+        win2.show();
+   
+}
+
+ 
+
+   Ext.define('EimData', {
+        extend: 'Ext.data.Model',
+        fields: [
+            'sid', 'tid', 'rpname','msg'
+        ],
+        idProperty: 'sid'
+    });
+
+   store = Ext.create('Ext.data.Store', {
+        pageSize: 40,
+        model: 'EimData',
+        remoteSort: true,
+        proxy: {
+            type: 'ajax',
+            url: '/pronline/Msg?FunName@ncsWebTaskDetlist_v4',
+            reader: {
+                type:'json',
+                root: 'eimdata',
+                totalProperty: 'totalCount'
+            },         
+            simpleSortMode: true
+        },
+        sorters: [{
+            property: 'sid',
+            direction: 'DESC'
+        }]
+    });
+//    store.load();
+
+  
+    var sm = Ext.create('Ext.selection.CheckboxModel',{
+        listeners: {
+            selectionchange: function(sm, selections) {
+          
+          panel.down('#removeEmployee').setDisabled(selections.length == 0);
+              
+            }
+        }
+    
+    });
+
+     var win2;
+     grid = Ext.create('Ext.grid.Panel', {
+        store: store,
+        selModel: sm,
+        columns: [{
+            header: '报表说明',
+  //          id: 'pid',
+            dataIndex: 'rpname',
+            sortable: false,
+            width:150
+        },
+        {
+            header: '统计条件描述',
+  //          id: 'pid',
+            dataIndex: 'msg',
+            sortable: false,
+            width:350
+        }
+         ,
+        {
+          header: '编辑',
+            xtype: 'actioncolumn',
+            dataIndex: 'userid',
+             icon: '/v4/images/edit_task.png',
+            tooltip: '点击该图标进入修改报表任务界面。',
+            width: 40,
+            align: 'center',
+            sortable: false,
+            handler: function(grid, rowIndex, colIndex, actionItem, event, record, row) {
+            	sid=record.get('sid');
+            	openAdd(cid,sid);
+                
+            }
+ 
+        }       
+       ,{
+        	 width:50,
+            flex: 1
+           
+            
+        }
+        ],
+//        renderTo: 'editor-grid',
+        forceFit: true,
+        scrollOffset: 0,
+        height: 980,
+
+        frame: true,
+
+        listeners: {
+ //           'selectionchange': function(view, records) {
+ //         panel.down('#removeEmployee').setDisabled(1);  	
+//                panel.grid.down('#removeEmployee').setDisabled(!records.length);
+ //               alert(records.length);
+                
+  //          }
+        }
+    });
+    
+    
+        panel = Ext.create('Ext.panel.Panel', {
+        title: '',
+        margins: '0 0 0 0',
+        renderTo: 'editor-grid',
+//        border:false,
+        frame: false,
+        layout: 'fit',
+        items:
+        grid,
+        dockedItems: [{
+            dock: 'top',
+ //           margins: '0 0 0 0',
+            border:false,
+            xtype: 'toolbar',
+            items: [           
+             {
+            text: '添加',
+            itemId: 'addKey',
+            iconCls: 'add',
+            disabled: true,
+            handler : function() {
+            
+                openAdd(cid,'',cname);
+            }
+        }, {
+            itemId: 'removeEmployee',
+            text: '删除',
+            iconCls: 'remove',
+                handler:function(){
+             	
+							   if(confirm('您真的要执行删除操作吗？')){                  
+                 var selsid;  
+        
+                 var rows=sm.getSelection();
+                   selsid='';
+                  for(var i=0;i<rows.length;i++){
+                  	if(i==0){
+                  	 selsid=rows[i].getId();
+                  	}
+                  	else{
+                       selsid=selsid+","+rows[i].getId();
+                    }
+                   
+                   }
+       
+                store.load({params: {del: "del",selsid:selsid,id:cid}});     
+              
+    
+                
+              }
+                
+            },
+            disabled: true
+        },
+         '-',      
+         ,
+
+
+             {
+                text:'生成报表',
+                itemId: 'genRep',
+                iconCls:'accept',
+                disabled: true,
+                handler: function(){
+                
+                store.load({params: {id: cid,genrep:'genRep'}});
+                alert('进入后台统计，统计结果在“历史报表下载”界面查看');
+          //      alert('ggg');
+              
+                }
+             },
+                          {                        
+                        	fieldLabel:'统计起始日期',
+                        	xtype: 'datefield',
+                        	format: "Y/m/d",
+                        	labelWidth: 85,
+                        	width:190,
+                          value:'',
+                        	name:'sdate',
+                        	id:'sdate'
+                        	
+                    	},
+                    	{
+                        	fieldLabel:'结束日期',
+                        	labelWidth: 65,
+                        	width:170,
+                        	xtype: 'datefield',
+                        	id:'edate',
+                        	format: "Y/m/d",
+                        	value:'',
+                        	name:'edate'
+                   	},
+ 
+              	{
+                	text:'修改统计时间',
+                	iconCls:'accept',
+                	itemId: 'modtime',
+                	disabled: true,
+                	handler: function()
+                	{
+                	        var sdate=Ext.getCmp('sdate').value; 
+                	        var sdate_t,edate_t;
+                	        if(sdate){
+                          sdate_t=Ext.Date.format(sdate, 'Y/m/d');
+                          
+                          }
+                          else{
+                          sdate_t='';
+                          }
+                          var edate=Ext.getCmp('edate').value;
+                          if(edate){
+                          edate_t=Ext.Date.format(edate, 'Y/m/d');
+                         
+                          }
+                          else{
+                          edate_t ='';
+                          }
+                         
+                 	
+                 		      parent.updatetime(sdate_t,edate_t,cid);
+                	}
+            	}
+            ]
+        }]
+    });
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+});
+</script>
+    
+    
+</head>
+<body>
+		<form name="form1" id="form1" action="/pronline/Msg">
+			<input type="hidden" name="groupid" value="">
+		<input type="hidden" name="did" value="">
+	</form>
+    <div id="editor-grid"></div>
+</body>
+</html>

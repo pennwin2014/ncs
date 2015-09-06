@@ -1,0 +1,113 @@
+/*///////////////////////////////////////
+// 常用字体定义
+///////////////////////////////////////*/
+.p9 {font-size: 9pt; line-height: 11pt}
+.pl  {font-size:14.8px;line-height: 18px}
+.pt9_b {font-size: 9pt;color: #000000;line-height:21px}
+.pt9_w {font-size: 9pt; color: #FFFFFF}
+.pt9_b {font-size: 9pt; color: #000000}
+.p148_b {font-size: 14.8px; color: #000000}
+.p148_w {font-size: 14.8px; color: #FFFFFF}
+
+/*//////////////////////////////////////
+// 标准标签风格定义
+//////////////////////////////////////*/
+A:link {COLOR: #000000; TEXT-DECORATION: underline}
+A:visited {COLOR: #000000; TEXT-DECORATION: underline}
+A:active {TEXT-DECORATION: underline}
+A:hover {COLOR: #AA0000; TEXT-DECORATION: underline}
+body {  font-size: 9pt;line-height: 11pt}
+table { font-size: 9pt;cursor:default}
+button{	height:"60px";background-color :" Aqua";}
+select{} 
+checkbox{ height:60px } 
+radio{ height:60px } 
+text{ height:60px }
+file{ height:60px }
+password{ height:60px } 
+reset{height:60px; font-size: 9pt; color: #000000} 
+submit{ height:200px;  font-size: 14pt; color: #000000} 
+/*input{ height:60px;  font-size: 9pt; color: #000000} */
+textarea{} 
+address{ } /*文档的信息，例如地址，签名和身份等*/
+b{ }/*粗体*/
+blockquote{ }/*设置引号与想邻文本分隔*/
+kbd{ }/*以固定宽度显示文本*/
+br{ }/*软回车*/
+cite{ }/*指定引用。文本以斜体显示*/
+code{ }/*指定代码示例*/
+dd{ }/*指定定义列表中的定义，在定义列表中定义通常是缩进的*/
+div{ }/*html容器*/
+dl{ }/*指明定义列表*/ 
+dt{ }/*指定定义列表中的定义术语*/
+em{ }/*强调文本*/
+h1{ }/**/
+h2{ }/* */
+h3{ }/* */
+h4{ }/* */
+h5{ }/* */
+h6{ }/* */
+hr{ }/*水平线*/
+i{ }/*斜体*/
+img{ }/*图片*/
+li{ }/*列表中的一个项目*/
+ol{ }/*将文本转成编号列表*/
+p{ }/*表示一个段落*/
+pre{ }/*以固定长度字体显示文本*/
+s{}/*以加删除线类型显示文本*/
+samp{ }/*指定代码示例*/
+span{ }/*指定内联文本容器*/
+strong{ }/*粗休*/
+table{ }/*表格*/
+td{}/*单元格*/
+tr{ }/*单元行*/
+th{ }/*指定标题列，标题列是在单元内输入并且是粗体显示的*/
+tt{ }/*以固定宽度字体显示文本*/
+u{ }/*显示没有下划线的文本*/
+ul{ }/*将文本绘制为项目符号列表*/
+var{ }/*用小的固定宽度字体显示文本*/ 
+
+/*/////////////////////////////////////////////
+// 类风格定义
+/////////////////////////////////////////////*/
+
+/*按钮类*/
+.3dtable{CURSOR: default;border: 2px solid menu;}
+.3dtable_down{CURSOR: default;border-left: 2px solid buttonshadow;border-right: 2px solid buttonhighlight;border-bottom: 2px solid buttonhighlight;border-top: 2px solid buttonshadow}
+.3dtable_up{CURSOR: default;BORDER-BOTTOM: buttonshadow 2px solid;BORDER-LEFT: buttonhighlight 2px solid;BORDER-RIGHT: buttonshadow 2px solid;BORDER-TOP: buttonhighlight 2px solid;}
+.3dtable1{CURSOR: default;border: 1px solid #c1d8f9;}
+.3dtable_down1{CURSOR: default;border-left: 1px solid buttonshadow;border-right: 1px solid buttonhighlight;border-bottom: 1px solid buttonhighlight;border-top: 1px solid buttonshadow}
+.3dtable_up1{CURSOR: hand;BORDER-BOTTOM: buttonshadow 0px solid;BORDER-LEFT: buttonhighlight 1px solid;BORDER-RIGHT: buttonshadow 1px solid;BORDER-TOP: buttonhighlight 0px solid;}
+.3dtable_notop1{CURSOR: default;BORDER-BOTTOM: buttonshadow 1px solid;BORDER-LEFT: #4189DD 15px solid;BORDER-RIGHT: buttonshadow 1px solid;}
+.3dtable_nobottom1{CURSOR: default;BORDER-LEFT: buttonhighlight 1px solid;BORDER-RIGHT: buttonshadow 1px solid;BORDER-TOP: buttonhighlight 1px solid;}
+.3dtable_nov1{CURSOR: default;BORDER-LEFT: buttonhighlight 1px solid;BORDER-RIGHT: buttonshadow 1px solid;}
+
+/*背景类*/
+.app_space{background:appworkspace;color:black}
+.window_space{background:window;color:windowText}
+.menu_space{background:#ffffff;color:#00267F}
+.desktop_space{background:background;}
+.autoScrollDiv{width:100%;height:100%;overflow-X:auto;overflow-Y:auto;overflow:auto;padding:2px}
+.autoScrollDivX{width:100%;height:100%;overflow-X:auto;padding:2px}
+.autoScrollDivY{width:100%;height:100%;overflow-Y:auto;padding:2px}
+.title_bar{background:activecaption;color:white}
+
+/*操作类*/
+.highlight_container{background:highlight;color:highlighttext}
+.menu_container{background:menu;color:menutext}
+.table_with_menu{border:0;width:100%;height:expression(body.clientHeight-22)}
+.skin0{position:absolute;width:165px;border-left:2px solid #fcfcfc;border-top:2px solid #fcfcfc;border-right:2px solid #333333;border-bottom:2px solid #333333;background-color:menu;font-family:Verdana;line-height:20px;cursor:default;visibility:hidden;z-index:8}
+.rightmenu{padding-left:15px;padding-right:10px;cursor:hand} 
+
+/*其它*/
+.pre_app{position:absolute;width:800px;height:600px;border:1px solid #000000;z-index:91;background:white}
+.Editor_bar1{	POSITION: absolute; left: 70px;HEIGHT: 100%	;TOP: 55px;	WIDTH:575px;}  /*编辑区域*/
+.Editor_bar{POSITION: absolute; HEIGHT: 100%;LEFT: 0px;WIDTH: 100%;}
+.Compart{  BORDER-LEFT: buttonshadow 1px solid;BORDER-RIGHT: buttonhighlight 1px solid;FONT-SIZE: 0px;HEIGHT: 19px;POSITION: absolute;TOP: 31px;WIDTH: 2px}/*分隔符*/
+.Compart1{  BORDER-LEFT: buttonshadow 1px solid;BORDER-RIGHT: buttonhighlight 1px solid;FONT-SIZE: 0px;HEIGHT: 19px;POSITION: absolute;TOP: 61px;WIDTH: 2px}/*分隔符*/
+.Compart2{  BORDER-LEFT: buttonshadow 1px solid;BORDER-RIGHT: buttonhighlight 1px solid;FONT-SIZE: 0px;HEIGHT: 19px;WIDTH: 2px}/*分隔符*/
+.Compart3{  BORDER-LEFT: buttonshadow 1px solid;BORDER-RIGHT: buttonhighlight 1px solid;FONT-SIZE: 0px;HEIGHT: 19px;WIDTH: 2px}/*分隔符*/
+.select_menu{font-size: 9pt; line-height: 18px;border:1px solid #000000} 
+/*//////////////////////////////////////////////////
+// id风格定义
+//////////////////////////////////////////////////*/

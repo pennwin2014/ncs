@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <title>轨迹图</title>
+     <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css">
+    <script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+	  <script type="text/javascript" src="/newver/resources/locale/ext-lang-zh_CN.js"></script>
+    
+    
+    <style type="text/css">	
+    .accept {
+            background-image:url(/newver/resources/themes/images/share/accept.png) !important;
+    }
+		body{
+			margin:0;
+			height:100%;
+			width:100%;
+			position:absolute;
+		}
+		#mapleft{
+			position: absolute;
+			top:0;
+			width:250px;
+			left:0;			
+			bottom:0;
+		}
+		#mapContainer{
+			position: absolute;
+			top:0;		
+		  left:250px;
+		  right:0;
+			bottom:0;
+		}
+		#tip{
+			height:45px;
+			background-color:#fff;
+			padding-left:10px;
+			padding-right:10px;
+			border:1px solid #969696;
+			position:absolute;
+			font-size:12px;
+			right:10px;
+			bottom:30px;
+			border-radius:3px;
+			line-height:45px;
+		}
+		
+		#tip input[type='button']{
+			height:28px;
+			line-height:28px;
+			outline:none;
+			text-align:center;
+			padding-left:5px;
+			padding-right:5px;
+			color:#FFF;
+			background-color:#0D9BF2;
+			border:0;
+			border-radius: 3px;
+			margin-top:8px;
+			margin-left:5px;
+			cursor:pointer;
+			margin-right:10px;
+		}
+		
+		.markspan{
+			display: block;
+			height: 40px;
+			width:180px;
+			text-align:center;
+			padding-left:10px;
+			padding-right:10px;
+			line-height:40px;
+			background-color:#fff;
+			border:1px solid #ccc;
+			color:#FF6BBB;
+			font-size:12px;
+			border-radius:3px;
+		}
+		
+    </style>	
+</head>
+<script>
+Ext.Loader.setConfig({enabled: true});
+Ext.Loader.setPath('Ext.ux', '/newver/ux/');
+Ext.require([
+    'Ext.form.*',
+    'Ext.window.*',
+    'Ext.grid.*',
+    'Ext.data.*',
+    'Ext.util.*',
+    'Ext.window.MessageBox',
+    'Ext.toolbar.Paging',
+    'Ext.ux.PreviewPlugin',
+    'Ext.tree.*',
+    'Ext.ux.*'
+
+]);
+	var store;
+	
+	    var myDate = new Date();
+  		var yy = ( myDate.getYear() < 1900 ) ? ( 1900 + myDate.getYear() ) : myDate.getYear();
+  		var mm=myDate.getMonth()+1;
+  		if(mm<10)
+  		{
+  			mm='0'+mm;
+  		}
+  		var dd=myDate.getDate();
+  		if(dd<10)
+  		{
+  			dd='0'+dd;
+  		}
+  		var today=yy+'/'+mm+'/'+dd;
+  		var startday=yy+'/'+mm+'/'+'01';
+	
+	
+function addMarker(sname,sdate,longitude,latitude){ 
+
+	var marker = new AMap.Marker({                  
+  map:map, //将点添加到地图                  
+  position:new AMap.LngLat(longitude,latitude),    
+              
+  icon:"http://webapi.amap.com/images/marker_sprite.png",//marker图标，直接传递地址url                  
+  offset:new AMap.Pixel(-10,-35) //相对于基点的位置   
+  }); 
+  var info = [];  
+  var dw='单位名称:'+sname;
+  var sj='光顾时间:'+sdate+'';               
+	info.push(dw); 
+	info.push('<br>'); 
+	info.push('<br>');               
+	info.push(sj);                  
+
+  var temp=sdate+'到过'+sname;
+ marker.setTitle(temp); 
+
+
+	              
+	var inforWindow = new AMap.InfoWindow({                  
+	  offset:new AMap.Pixel(0,-23),                  
+	  content:info.join("")                  
+	});                  
+	AMap.event.addListener(marker,"click",function(e){                  
+	  inforWindow.open(map,marker.getPosition());      
+                 
+    });    
+	
+	 markers.push(marker);
+
+	}
+	/*
+	    //自定义点标记内容   
+		var markerContent = document.createElement("div");
+		markerContent.className = "markerContentStyle";
+    
+		//点标记中的图标
+		var markerImg = document.createElement("img");
+	     markerImg.className = "markerlnglat";
+		   markerImg.src = "http://webapi.amap.com/images/marker_sprite.png";	
+		   markerContent.appendChild(markerImg);
+		 
+		 //点标记中的文本
+		 var markerSpan = document.createElement("span");
+		 markerSpan.onclick=function(){
+		 	
+		}
+		 markerSpan.className="markspan";
+		 markerSpan.innerHTML = sdate+""+sname;
+		 markerContent.appendChild(markerSpan);
+		 var marker = new AMap.Marker({
+			map:map,
+			position: new AMap.LngLat(longitude,latitude), //基点位置
+			offset: new AMap.Pixel(-18,-36), //相对于基点的偏移位置
+			draggable: true,  //是否可拖动
+			content: markerContent   //自定义点标记覆盖物内容
+		});
+    markers.push(marker);
+*/	
+	var map;
+	var markers= [];
+	var polyline;
+	function reflash(){
+	   var stemp='';
+	   var sdate=Ext.getCmp('sdate').value;
+	   var edate=Ext.getCmp('edate').value;
+	   var mac=Ext.getCmp('mac').value;
+
+     if(sdate==null) {
+     	sdate=startday;
+    }
+    if(sdate==null){
+    	edate=today;
+    }
+    if(mac==undefined){
+    	mac='';
+    }
+    if(mac=='') return;
+    
+    
+	   store.load({params: {sdate:sdate,edate:edate,mac:mac},
+     callback:function(records, options, success){
+     	var maxlong,maxlat,minlong,minlat;
+     	maxlong=0;maxlat=0;minlong=0;minlat=0;
+   
+    	if(store.getCount()==0){
+    		map = new AMap.Map('mapContainer',{
+			resizeEnable: true,
+			//二维地图显示视口
+	        //设置地图中心点
+	        //设置地图显示的缩放级别
+			view: new AMap.View2D({
+				center: new AMap.LngLat(116.397428, 39.90923),
+				zoom: 13
+			})
+		});	
+     		return;
+     	}
+   
+   
+   
+   
+			for(var i=0;i<store.getCount();i++){
+			
+				if(maxlong==0){
+					maxlong=parseFloat(store.getAt(i).get('longitude'));
+				}
+				if(minlong==0){
+					minlong=parseFloat(store.getAt(i).get('longitude'));
+				}
+				if(maxlat==0){
+					maxlat=parseFloat(store.getAt(i).get('latitude'));
+				}
+			
+				if(minlat==0){
+					minlat=parseFloat(store.getAt(i).get('latitude'));
+				}
+				if(maxlong<parseFloat(store.getAt(i).get('longitude'))){
+					maxlong=parseFloat(store.getAt(i).get('longitude'));
+				}
+			
+				if(maxlat<parseFloat(store.getAt(i).get('latitude'))){
+					maxlat=parseFloat(store.getAt(i).get('latitude'));
+				}
+				if(minlong>parseFloat(store.getAt(i).get('longitude'))){
+					minlong=parseFloat(store.getAt(i).get('longitude'));
+				}
+	
+				if(minlat>parseFloat(store.getAt(i).get('latitude'))){
+					minlat=parseFloat(store.getAt(i).get('latitude'));
+				}
+			}
+
+        
+          var latitude=(parseFloat(maxlat)+parseFloat(minlat))/2;
+          var longitude=(parseFloat(maxlong)+parseFloat(minlong))/2;
+
+
+
+        map = new AMap.Map("mapContainer",{
+				resizeEnable: true,
+				//二维地图显示视口
+				view: new AMap.View2D({
+					//地图中心点
+					center:new AMap.LngLat(longitude,latitude),
+					//地图显示的缩放级别
+					zoom:11 
+				}),
+				continuousZoomEnable:false
+			});	
+
+
+
+
+
+     	for(i=0;i<markers.length;i++){
+     		markers[i].setMap(null);
+     	}
+     	
+    
+     	
+     	
+     	
+     markers=[];
+     var lineArr = new Array(); 
+     for(var i=0;i<store.getCount();i++){  		
+     	  addMarker(store.getAt(i).get('apname'),store.getAt(i).get('sdate'),store.getAt(i).get('longitude'),store.getAt(i).get('latitude'))  
+     	  lineArr.push(new AMap.LngLat(store.getAt(i).get('longitude'),store.getAt(i).get('latitude'))); 
+     	   	
+     }
+     if(polyline){
+      polyline.setMap(null);
+    }
+ //  polyline.setMap(null);
+      polyline = new AMap.Polyline({
+				map:map,
+				path:lineArr,
+				strokeColor:"#F00",//线颜色
+				strokeOpacity:1,//线透明度
+				strokeWeight:3,//线宽
+				strokeStyle:"solid"//线样式
+			});
+     
+     
+     
+	//alert(stemp);
+ // marker.setMap(map);
+     
+ 
+    }
+  }
+	);
+	
+ }
+	
+	Ext.onReady(function(){
+    Ext.tip.QuickTipManager.init();
+    Ext.define('EimData', {
+        extend: 'Ext.data.Model',
+        fields: [
+            'apname', 'sdate', 'longitude', 'latitude'
+        ],
+        idProperty: 'sdate'
+    });
+        // create the Data Store
+    //重写排序函数，解决远程条件查询问题
+    Ext.data.Store.prototype.doSort = function() {
+    	reflash();
+    }
+    
+       store = Ext.create('Ext.data.Store', {
+        pageSize: 40,
+        model: 'EimData',
+        remoteSort: true,
+        proxy: {
+            type: 'ajax',
+            url: '/pronline/Msg?FunName@ncsScanMacGj',
+//              url:'/data/ncs_pelope_gj.htm',
+            reader: {
+                type:'json',
+                root: 'eimdata',
+                totalProperty: 'totalCount'
+            },         
+            simpleSortMode: true
+        },
+        sorters: [{
+      //      property: 'id',
+     //       direction: 'DESC'
+        }]
+    });
+    
+    //store.load();
+     
+     var grid = Ext.create('Ext.grid.Panel', {
+       
+//        forceFit: true,
+        scrollOffset: 0,
+   //     height: parent.grid_height-40, 
+       //height: 1000,       
+        store: store,
+        id:"grid",
+        frame:true,    
+        columns:[{
+            id: 'username',
+            text: "上网场所",
+            dataIndex: 'apname',
+            hidden: false,
+            width: 120,
+            sortable: true
+        },{
+            text: "日期",
+            dataIndex: 'sdate', 
+           width: 100,
+ //           flex: 1,
+            sortable: true
+        }
+     
+        ],
+        
+        columnLines: true
+        
+   //    ,
+       
+        
+  //    renderTo: 'mapleft'
+    });  
+     
+     
+       var panel = Ext.create('Ext.form.Panel', {
+        title: '',
+        margins: '0 0 0 0',
+        autoScroll: false,
+        renderTo: 'mapleft',
+//      border:false,
+        frame: true,
+        items:[
+             {
+  	           xtype: 'fieldcontainer',layout: 'vbox',            
+               items:[			        
+			         { xtype: 'fieldcontainer',layout: 'hbox',
+                items:[{xtype: 'datefield',id:'sdate',format: "Y/m/d",fieldLabel: '日期',labelWidth: 30,emptyText:'',width:125,name: 'sdate',value:startday},{xtype:'datefield',id:'edate',format: "Y/m/d",fieldLabel: '&nbsp;到',labelWidth: 20,emptyText: '',width:115,name: 'edate',value:today}]
+			         },
+			         { xtype: 'fieldcontainer',layout: 'hbox',
+                items:[{xtype: 'textfield',id:'mac',fieldLabel: 'MAC：',labelWidth: 30,emptyText:'请输入MAC地址查询',width:185,name: 'mac'},{xtype:'button',text:'确认',iconCls:'accept',
+                  handler: function(){  
+             //     	        alert(Ext.getCmp('mac').value);       
+                   store.currentPage=1;         
+                   reflash();
+                 }               
+                }
+			         ]
+			         }
+       		         
+			       ]
+			     }
+			   
+			     
+			     
+		     ,
+		     grid 
+		    ]
+
+        
+    });
+   
+   
+     
+     reflash();
+     
+    
+
+});
+	
+	
+	
+	
+	</script>
+<body>
+	<div id="mapleft"></div>
+	<div id="mapContainer"></div>
+	<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=9ac2d10856d92017d2d8d82ce004a820"></script>
+	
+	<script type="text/javascript">
+		//初始化地图对象，加载地图
+	
+	var map = new AMap.Map('mapContainer',{
+			resizeEnable: true,
+			//二维地图显示视口
+	        //设置地图中心点
+	        //设置地图显示的缩放级别
+			view: new AMap.View2D({
+				center: new AMap.LngLat(116.397428, 39.90923),
+				zoom: 13
+			})
+		});	
+		
+		 
+		  
+	</script>
+</body >
+</html>						
+

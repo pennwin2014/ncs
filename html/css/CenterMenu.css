@@ -1,0 +1,107 @@
+.divleft1-td {
+	width: 25px;
+	height: 100%;
+	border-top: 1px solid #999999;
+	background: transparent url("../images/new/menu1-bg.jpg") repeat-y scroll left top;
+}
+
+.divleft2-td {
+	width: 136px;
+	height: 100%;
+	border-top: 1px solid #3F6D8E;
+	background: transparent url("../images/new/menu2-bg.jpg") repeat-y scroll left top;
+	padding-top: 5px;
+}
+
+.divleft1-wrap {
+	width: 21px;
+	margin: 5px 0 0 4px;
+}
+
+.divleft1-button {
+	cursor: pointer;
+}
+
+.divleft2-div {
+	height: 30px;
+	cursor: pointer;
+	background: transparent url("../images/new/menu_on.gif") no-repeat left top !important;
+}
+
+.divleft2-div-on {
+color:#ffffff;
+	background: transparent url("../images/new/menu_off.gif") no-repeat scroll left top !important;
+}
+
+.divleft2-img-collapsed {
+	width: 13px;
+	height: 10px;
+	margin: 9px 0 0 20px;
+	background: transparent url("../images/new/tri-collapsed.gif") no-repeat scroll center center;
+	cursor: pointer;
+}
+
+.divleft2-img-expanded {
+	width: 13px;
+	height: 10px;
+	margin: 9px 0 0 20px;
+	background: transparent url("../images/new/tri-expanded.gif") no-repeat scroll center center !important;
+	cursor: pointer;
+}
+
+.divleft2-img-grey {
+	width: 13px;
+	height: 10px;
+	margin: 9px 0 0 20px;
+	background: transparent url("../images/new/tri-grey.gif") no-repeat scroll center center !important;
+	cursor: pointer;
+}
+
+.divleft2-span {
+	margin: 9px 0 0 10px;
+}
+
+.divleft2-ul {
+
+	list-style-type:none;
+}
+.divleft2-li {
+	list-style-type:none;
+}
+
+
+.pgmenu-lvl3-li {
+	padding-top: 2px;
+}
+
+.pgmenu-lvl3-div {
+	cursor: pointer;
+	width: 100%;
+	height: 21px;
+}
+
+.pgmenu-lvl3-div-over {
+	background: transparent url("../images/new/menu3-over.jpg") no-repeat scroll left top !important;
+}
+
+.pgmenu-lvl3-div-on {
+	background: transparent url("../images/new/menu3-on.jpg") no-repeat scroll left top !important;
+}
+
+.pgmenu-lvl3-img {
+	margin-top: 3px;
+	margin-left: 20px;
+}
+
+.pgmenu-lvl3-span {
+	margin-top: 3px;
+	margin-left: 10px;
+}
+
+.pgmenu-nav-sep {
+	padding: 0 3px 0 3px;
+}
+
+.pgmenu-hidden {
+	display: none;
+}

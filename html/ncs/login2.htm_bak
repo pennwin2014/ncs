@@ -1,0 +1,97 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>伟思信安网络行为管理控制中心</title>
+<style type="text/css">
+<!--
+.style1 {color: #666666}
+body {
+	background-image: url(images/bg-1.gif);
+}
+-->
+</style>
+
+<script>
+function spylogin(){
+
+if (nclogin.username.value=="" || nclogin.password.value=="") {
+
+	window.alert("用户名或密码不能为空！");
+
+	return ;
+
+}
+nclogin.submit();
+
+}
+function ss()
+{
+if(event.keyCode==13)
+spylogin();
+}
+
+// -->
+</script>
+</head>
+
+<body topmargin="0" leftmargin="0" rightmargin="0" bottommargin="0" marginwidth="0" marginheight="0" bgcolor="#EAEAEA">
+<form name="nclogin" id="nclogin" method="post" action="/pronline/Msg">
+<input type="hidden" name="FunName" value="ncsWebAuth">
+<table border="0" width="100%" cellspacing="0" cellpadding="0" id="table1">
+	<tr>
+		<td height="100">&nbsp;　</td>
+	</tr>
+	<tr>
+		<td>　</td>
+	</tr>
+	<tr>
+		<td>
+		<div align="center">
+			<table border="0" width="634" cellspacing="0" cellpadding="0" height="368" id="table2">
+				<tr>
+					<td background="/images/bg.gif">
+					<div align="center">
+						<table border="0" width="100%" cellspacing="0" cellpadding="0" id="table3" height="274">
+							<tr>
+								<td colspan="6">　</td>
+							</tr>
+							<tr>
+								<td height="36" colspan="6"  align="center">　<b><font color="#FFCF00" size="3"></font></b></td>
+							</tr>
+							<tr>
+								<td height="43" width="17%"></td>
+								<td height="43" width="27%">
+								<p align="left">
+								<input type="text" name="username" style="height:22;" size="16"></td>
+								<td height="43" width="23%">
+								<p align="center">
+								<input type="password" name="password" style="height:22;" size="16" onKeyPress="ss()"></td>
+								<td height="43" width="15%">
+								<a href="#xx">
+								<img border="0" src="/images/ws_qr.gif" width="94" height="31" onClick="spylogin();"></a></td>
+								<td height="43" width="1%">　</td>
+								<td height="43" width="18%">
+								<a href="#xx">
+								<img border="0" src="/images/ws_qx.gif" width="94" height="31" onClick="window.close()"></a></td>
+							</tr>
+						</table>
+					</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+		</td>
+	</tr>
+	<tr>
+	  <td height="31">&nbsp;</td>
+  </tr>
+	<tr>
+		<td height="39">　
+	    <div align="center" class="style1">ZhuHai Victory Idea Network Security Technology Co.,Ltd.</div></td>
+	</tr>
+</table>
+</form>
+</body>
+
+</html>

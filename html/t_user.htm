@@ -1,0 +1,244 @@
+
+<html>
+<head>
+<title>用户权限管理</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/css.css" type="text/css">
+</head>
+
+<body bgcolor="#CCCCCC" text="#000000" leftmargin="10" topmargin="0" marginwidth="100%" marginheight="600">
+<div align="center"></div>
+<table width="80%" border="0" align="center">
+  <tr> 
+    <td height="108"> 
+      <form name="form1" method="post" action="/pronline/Msg" >
+        <input type="hidden" name="FunName" value="ncAdminUserSave">
+        <input type="hidden" name="userid"  value="100020">
+        <input type="hidden" name="sumright"  value="14">
+        <table width="100%" border="0" bgcolor="#AFAFC0" height="100%" cellspacing="0" cellpadding="4">
+          <tr bgcolor="#8C8CA6"> 
+            <td colspan="5" height="25" class="bord4"> 
+              <div align="center"><b><font color="#FFFFFF">用户使用权限管理</font></b></div>
+            </td>
+          </tr>
+          <tr> 
+            <td width="14%" valign="bottom" height="21" class="bord1"> 
+              <div align="right">登录名</div>
+            </td>
+            <td width="30%" valign="bottom" height="21" class="bord1"> 
+              <input type="text" name="name" size="20" maxlength="31" value="manager">
+            </td>
+            <td width="13%" valign="bottom" height="21" class="bord1"> 
+              <div align="right">姓名</div>
+            </td>
+            <td colspan="2" valign="bottom" height="21" class="bord1"> 
+              <div align="left"> 
+                <input type="text" name="dispname" size="20" maxlength="31" value="管理部">
+              </div>
+            </td>
+          </tr>
+          <tr> 
+            <td width="14%" valign="bottom" height="21" class="bord1"> 
+              <div align="right">口 令</div>
+            </td>
+            <td width="30%" valign="bottom" height="21" class="bord1"> 
+              <input type="password" name="password" size="20" maxlength="31">
+            </td>
+            <td width="13%" valign="bottom" height="21" class="bord1"> 
+              <div align="right">口令确认</div>
+            </td>
+            <td colspan="2" valign="bottom" height="21" class="bord1"> 
+              <input type="password" name="password2" size="20" maxlength="31">
+            </td>
+          </tr>
+          <tr> 
+            <td width="14%" valign="bottom" height="21" class="bord1"> 
+              <div align="right">管理组</div>
+            </td>
+            <td width="30%" valign="bottom" height="21" class="bord1"> 
+              <select name="group">
+                <option value="10014" selected>管理部</option>
+                <!--  -->
+                <option value="0">全部</option>
+                <!--  -->
+                <option value="10062">11111</option>
+                <!--  -->
+                <option value="10015">ProWorks部</option>
+                <!--  -->
+                <option value="10070">rrrrrr</option>
+                <!--  -->
+                <option value="10179">财务</option>
+                <!--  -->
+                <option value="10018">服务器</option>
+                <!--  -->
+                <option value="10014">管理部</option>
+                <!--  -->
+                <option value="10017">市场部</option>
+                <!--  -->
+                <option value="0">未知部门</option>
+                <!--  -->
+                <option value="10016">物流软件部</option>
+                <!--  -->
+              </select>
+            </td>
+            <td width="13%" valign="bottom" height="21" class="bord1"> 
+              <div align="right">用户级别</div>
+            </td>
+            <td colspan="2" valign="bottom" height="21" class="bord1"> 
+              <select name="usrlevel">
+                <option value="3" selected>一般操作员</option>
+                <option value="1">系统管理员</option>
+                <option value="3">一般操作员</option>
+              </select>
+            </td>
+          </tr>
+          <tr> 
+            <td width="14%" valign="bottom" height="32" class="bord1"> 
+              <div align="right">加入时间</div>
+            </td>
+            <td width="30%" valign="bottom" height="32" class="bord1"> 
+              <input type="text" name="addtime" value="2002-05-22 14:43:18"  disabled >
+            </td>
+            <td width="13%" valign="bottom" height="32" class="bord1">修改时间</td>
+            <td colspan="2" valign="bottom" height="32" class="bord1"> 
+              <input type="text" name="moditime" value="2002-07-03 18:51:21" disabled>
+            </td>
+          </tr>
+          <tr> 
+            <td width="14%" valign="bottom" height="29" class="bord1"> 
+              <div align="right">Email</div>
+            </td>
+            <td colspan="4" valign="bottom" height="29" class="bord1"> 
+              <div align="left"> 
+                <input type="text" name="email" size="63" maxlength="64" value="adm@proicq.com">
+              </div>
+            </td>
+          </tr>
+          <tr> 
+            <td colspan="5" valign="bottom" height="27" class="bord1"> 
+              <div align="center">使用权限</div>
+            </td>
+          </tr>
+          <!--  -->
+          <tr> 
+            <td width="14%" valign="bottom" height="21" class="bord1"> 
+              <div align="right"> 
+                <input type="checkbox" name="v0" value="100011"  checked>
+              </div>
+            </td>
+            <td width="30%" valign="bottom" height="21" class="bord1">查看统计分析结果</td>
+            <td width="13%" valign="bottom" height="21" class="bord1"> 
+              <div align="right"> 
+                <input type="checkbox" name="v1" value="101" checked>
+              </div>
+            </td>
+            <td colspan="2" valign="bottom" height="21" class="bord1">一般管理员</td>
+          </tr>
+          <!--  -->
+          <tr> 
+            <td width="14%" valign="bottom" height="21" class="bord1"> 
+              <div align="right"> 
+                <input type="checkbox" name="v2" value="100010"  checked>
+              </div>
+            </td>
+            <td width="30%" valign="bottom" height="21" class="bord1">查看访问记录</td>
+            <td width="13%" valign="bottom" height="21" class="bord1"> 
+              <div align="right"> 
+                <input type="checkbox" name="v3" value="100012" checked>
+              </div>
+            </td>
+            <td colspan="2" valign="bottom" height="21" class="bord1">限制网络访问</td>
+          </tr>
+          <!--  -->
+          <tr> 
+            <td width="14%" valign="bottom" height="21" class="bord1"> 
+              <div align="right"> 
+                <input type="checkbox" name="v4" value="100013"  checked>
+              </div>
+            </td>
+            <td width="30%" valign="bottom" height="21" class="bord1">设置网络</td>
+            <td width="13%" valign="bottom" height="21" class="bord1"> 
+              <div align="right"> 
+                <input type="checkbox" name="v5" value="100014" checked>
+              </div>
+            </td>
+            <td colspan="2" valign="bottom" height="21" class="bord1">用户管理</td>
+          </tr>
+          <!--  -->
+          <tr> 
+            <td width="14%" valign="bottom" height="21" class="bord1"> 
+              <div align="right"> 
+                <input type="checkbox" name="v6" value="100015"  checked>
+              </div>
+            </td>
+            <td width="30%" valign="bottom" height="21" class="bord1">网络带宽管理</td>
+            <td width="13%" valign="bottom" height="21" class="bord1"> 
+              <div align="right"> 
+                <input type="checkbox" name="v7" value="100016" >
+              </div>
+            </td>
+            <td colspan="2" valign="bottom" height="21" class="bord1">内容监控</td>
+          </tr>
+          <!--  -->
+          <tr> 
+            <td width="14%" valign="bottom" height="21" class="bord1"> 
+              <div align="right"> 
+                <input type="checkbox" name="v8" value="100018"  checked>
+              </div>
+            </td>
+            <td width="30%" valign="bottom" height="21" class="bord1">系统管理</td>
+            <td width="13%" valign="bottom" height="21" class="bord1"> 
+              <div align="right"> 
+                <input type="checkbox" name="v9" value="100024" >
+              </div>
+            </td>
+            <td colspan="2" valign="bottom" height="21" class="bord1">档案管理员</td>
+          </tr>
+          <!--  -->
+          <tr> 
+            <td width="14%" valign="bottom" height="21" class="bord1"> 
+              <div align="right"> 
+                <input type="checkbox" name="v10" value="100025"  >
+              </div>
+            </td>
+            <td width="30%" valign="bottom" height="21" class="bord1">数据录入</td>
+            <td width="13%" valign="bottom" height="21" class="bord1"> 
+              <div align="right"> 
+                <input type="checkbox" name="v11" value="100026" >
+              </div>
+            </td>
+            <td colspan="2" valign="bottom" height="21" class="bord1">收文管理</td>
+          </tr>
+          <!--  -->
+          <tr> 
+            <td width="14%" valign="bottom" height="21" class="bord1"> 
+              <div align="right"> 
+                <input type="checkbox" name="v12" value="100027"  >
+              </div>
+            </td>
+            <td width="30%" valign="bottom" height="21" class="bord1">发文管理</td>
+            <td width="13%" valign="bottom" height="21" class="bord1"> 
+              <div align="right"> 
+                <input type="checkbox" name="v13" value="100028" >
+              </div>
+            </td>
+            <td colspan="2" valign="bottom" height="21" class="bord1">流程定义</td>
+          </tr>
+          <!--  -->
+          <tr> 
+            <td colspan="4" height="12" class="bord1">&nbsp; </td>
+            <td width="24%" height="12" class="bord1"> 
+              <div align="left"> 
+                <input type="submit" name="ok"   value="确认" >
+                <input type="reset" name="cancel"   value="放弃"  onClick="history.back(-1)">
+              </div>
+            </td>
+          </tr>
+        </table>
+        <div align="center"></div>
+      </form>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

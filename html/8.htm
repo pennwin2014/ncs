@@ -1,0 +1,29 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+ <script>
+ function setgroup(){
+        t=form1.ttt.value;
+       j=form1.group.options.length; 
+       for(i=0;i<j;i++) { 
+           gv = form1.group.options[i].value;
+           if(gv == t) {
+               form1.group.selectedIndex = i;
+           }
+       }
+    }
+</script>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+<form name="form1" method="post" action="">
+  <select name="group">
+    <option value="1">aaaaa</option>
+    <option value="2">bbbb</option>
+  </select>
+     <input type="text" name="ttt">
+  <input type="button" name="Button" value="Button" onClick="setgroup()">
+</form>
+</body>
+</html>

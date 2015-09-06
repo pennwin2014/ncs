@@ -1,0 +1,410 @@
+<html>
+
+<head>
+
+<title>查询</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+
+<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+
+<META HTTP-EQUIV="expires" CONTENT="0">
+
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+
+<style>
+
+.conts{visibility:hidden}
+
+.tab{border-top:solid thin #E0E0E0;
+
+border-right:solid thin gray;
+
+border-left:solid thin #E0E0E0;
+
+font-family:Verdana;
+
+font-size:10pt;
+
+text-align:center;
+
+font-weight:normal}
+
+.selTab{border-left:solid thin white;
+
+border-top:solid thin white;
+
+border-right:solid thin black;
+
+font-weight:bold;
+
+text-align:center}
+
+</style>
+
+
+
+<style>
+
+.nobordertext{border-width:0px;overflow:hidden;width:100%;height:100%}
+
+.conts  {visibility:hidden}
+
+.tab{border-top:solid thin #E0E0E0;
+
+border-right:solid thin gray;
+
+border-left:solid thin #E0E0E0;
+
+font-family:Verdana;
+
+font-size:10pt;
+
+text-align:center;
+
+font-weight:normal;
+
+cursor: default}
+
+.selTab{border-left:solid thin white;
+
+border-top:solid thin white;
+
+border-right:solid thin black;
+
+font-weight:bold;
+
+text-align:center;
+
+cursor: default}
+
+table {  font-size: 9pt}
+
+</style>
+
+<SCRIPT LANGUAGE="JavaScript">
+
+
+
+function chaxun()
+
+{
+
+
+dialogArguments.form1.servicecode1.value=form1.servicecode.value;
+dialogArguments.form1.dispname1.value=form1.dispname.value;
+dialogArguments.form1.address1.value=form1.address.value;
+dialogArguments.form1.ceoname1.value=form1.ceoname.value;
+dialogArguments.form1.handphone1.value=form1.handphone.value;
+dialogArguments.form1.contact1.value=form1.contact.value;
+dialogArguments.form1.telphone1.value=form1.telphone.value;
+dialogArguments.form1.email1.value=form1.email.value;
+dialogArguments.form1.joincode1.value=form1.joincode.value;
+dialogArguments.form1.ip1.value=form1.ip.value;
+dialogArguments.form1.servicestate1.value=form1.servicestate.value;
+dialogArguments.form1.jointype1.value=form1.jointype.value;
+dialogArguments.form1.area1.value=form1.area.value;
+dialogArguments.form1.areaman1.value=form1.areaman.value;
+
+dialogArguments.form1.CurPg.value='1';
+
+dialogArguments.form1.submit();
+
+self.close();
+
+}
+
+
+
+</SCRIPT>
+
+<style type="text/css">
+
+<!--
+
+body {  font-size: 9pt}
+
+.tas {  border-color: black #FFFFFF; border-style: solid; border-top-width: 0px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 1px}
+
+table {  font-size: 9pt}
+
+.gray1 { filter:gray }
+
+.ttbbd {  cursor: default}
+
+-->
+<link REL=stylesheet HREF="/css/runmit.css" TYPE="text/css">
+<script src="/js/rmenu.js"></script>
+<style type="text/css">
+<!--
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+-->
+</style>
+<link href="../css/css.css" rel="stylesheet" type="text/css">
+
+</head>
+
+
+
+<body bgcolor="#D8E1E7" text="#000000" leftmargin="1" topmargin="4"   style="overflow:hidden">
+
+
+
+<form name="form1" id="form1" method="post" action="/pronline/Msg" >
+    <table width="100%"  border=1 bordercolordark=#ffffff bordercolorlight=#000000 cellspacing="1" cellpadding="6">
+         <tr bgcolor="#DEE8FA"> 
+           <td width="80%">
+		    <table width="100%" border="0" bordercolordark=#ffffff bordercolorlight=#000000  cellspacing="0" cellpadding="0">
+                <tr height="30px">  
+
+               <td width="17%" align="right">单位编码&nbsp;</td>
+
+               <td width="33%">
+
+                   <input name="servicecode" value="" type="text" style="width:100%" >
+
+               </td>
+
+
+
+             </tr>
+
+            <tr height="30px">
+
+ 
+
+               <td width="17%" align="right">单位名称&nbsp;</td>
+
+               <td width="33%">
+
+                   <input name="dispname" value="" type="text" style="width:100%" >
+
+               </td>
+
+             </tr>
+
+              <tr height="30px"> 
+
+               <td width="17%" align="right">地址&nbsp;</td>
+
+               <td width="33%">
+
+                   <input name="address" value="" type="text" style="width:100%" >
+
+               </td>
+
+             </tr>
+
+               <tr height="30px"> 
+
+               <td width="17%" align="right">法人代表&nbsp;</td>
+
+               <td width="33%">
+
+                   <input name="ceoname" value="" type="text" style="width:100%" >
+
+               </td>
+
+             </tr>
+
+             <tr height="30px"> 
+
+               <td width="17%" align="right">法人代表电话&nbsp;</td>
+
+               <td width="33%">
+
+                   <input name="handphone" value="" type="text" style="width:100%" >
+
+               </td>
+
+             </tr>
+
+            <tr height="30px"> 
+
+               <td width="17%" align="right">信息安全员&nbsp;</td>
+
+               <td width="33%">
+
+                   <input name="contact" value="" type="text" style="width:100%" >
+
+               </td>
+
+             </tr>
+			 
+            <tr height="30px"> 
+
+               <td width="17%" align="right">安全员电话&nbsp;</td>
+
+               <td width="33%">
+
+                   <input name="telphone" value="" type="text" style="width:100%" >
+
+               </td>
+
+             </tr>
+          <tr height="30px"> 
+
+               <td width="17%" align="right">安全员E-Mail&nbsp;</td>
+
+               <td width="33%">
+
+                   <input name="email" value="" type="text" style="width:100%" >
+
+               </td>
+
+             </tr>
+         <tr height="30px"> 
+
+               <td width="17%" align="right">接入服务商代码&nbsp;</td>
+
+               <td width="33%">
+
+                   <input name="joincode" value="" type="text" style="width:100%" >
+
+               </td>
+
+             </tr>     
+			  <tr height="30px"> 
+
+               <td width="17%" align="right">出口IP地址&nbsp;</td>
+
+               <td width="33%">
+
+                   <input name="ip" value="" type="text" style="width:100%" >
+
+               </td>
+
+             </tr>  
+			  <tr height="30px"> 
+
+               <td width="17%" align="right">服务状态&nbsp;</td>
+                 <td><select name="servicestate" style="width:222px">
+                <option value="" >选择</option>
+                <option value="1" >装机开始服务</option>
+                <option value="2" >装机停止服务</option>
+                <option value="3" >未装机开始服务</option>
+                <option value="4" >未装机停止服务</option>
+				<option value="9" >其他</option>
+                </select>
+                   </td>
+
+
+             </tr>    
+			 
+			 <tr height="30px"> 
+
+               <td width="17%" align="right">接入方式&nbsp;</td>
+
+              <td><select name="jointype" style="width:222px">
+                   <option value="" >选择</option>
+                   <option value="01" >专网真实IP地址</option>
+                   <option value="02" >专线</option>
+                   <option value="03" >ADSL拨号</option>
+                   <option value="04" >ISDN</option>
+                   <option value="05" >普通拨号</option>
+				   <option value="06" >Cable Moderm 拨号</option>
+				   <option value="07" >电力线</option>
+				   <option value="08" >无线上网</option>
+				   <option value="09" >其他</option>
+				   
+                   </select>
+                   </td>
+
+
+             </tr>      
+			 <tr height="30px"> 
+
+               <td width="17%" align="right">所属地区&nbsp;</td>
+
+               <td width="33%">
+
+                   <input name="area" value="" type="text" style="width:100%" >
+
+               </td>
+
+             </tr>   
+			 <tr height="30px"> 
+
+               <td width="17%" align="right">网监负责人&nbsp;</td>
+
+               <td width="33%">
+
+                   <input name="areaman" value="" type="text" style="width:100%" >
+
+               </td>
+
+             </tr>   
+			 
+
+             </table>
+
+         </td>
+
+                             
+
+           
+
+         <td width="20%" valign="top">
+
+          <table width="100%" border=0 bordercolordark=#ffffff bordercolorlight=#000000 cellspacing="0" cellpadding="0">
+
+
+
+            <tr height="30"> 
+
+                <td><p>
+                    <input name="search" type="button"  class="an3" onClick="chaxun()" value="查询">
+                    </p></td>
+
+              </tr>
+
+ 	   <tr height="30px">
+
+ 	      <td> <input name="button2" type="button" class="an3" onClick="self.close();" value="返回">
+
+ 	      </td>
+
+	   </tr>
+
+            </table>
+
+           </td>
+
+           
+
+        </tr>
+
+	
+
+  </table>
+
+ 
+
+</form>
+
+
+
+</body>
+
+</html>                                                              
+
+           
+
+        </tr>
+
+	
+
+  </table>
+
+ 
+
+</form>
+
+
+
+</body>
+
+</html>                                                              

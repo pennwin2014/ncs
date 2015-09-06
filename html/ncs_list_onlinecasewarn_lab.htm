@@ -1,0 +1,155 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META content=no-cache http-equiv=Pragma>
+<link href="/css/css.css" rel="stylesheet" type="text/css">
+<link REL=stylesheet HREF="/css/listdatetable.css" TYPE="text/css">
+<style type="text/css">
+<!--
+body {  font-size: 9pt}
+table {  font-size: 9pt}
+.anuse3 { font-size: 9pt; background-color: E7F3FF; 
+  vertical-align: middle; height: 18px; width: 45px; border-top-width: 0px; border-right-width: 
+  0px; border-bottom-width: 0px; border-left-width: 0px; cursor: hand}
+  
+  .tScrollh{
+    overflow: scroll;
+    overflow-x:hidden;
+    height:520px;
+    cursor: default;
+    }
+    .bord20 { font-size:9pt; color:#000000;border: #8CB4E8 solid; border-width: 0px 0px 0px 0px;cursor: hand}
+-->
+</style>
+
+<script>
+var ll=0;
+var yy=1;
+function goto(t){
+ tt=showModalDialog(t, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:520px;scroll:yes;dialogHeight:630px');
+}
+
+function gotoPage(nun)
+{
+	if(nun>form1.TotPg.value){
+		form1.CurPg.value=form1.TotPg.value;
+		return;
+	}
+form1.CurPg.value=nun;
+form1.submit();
+
+}
+function mouseovertr2 (o){
+var i;
+df=o.style.backgroundColor
+	o.style.backgroundColor= "#ffff00";
+	o.style.borderColor= "#FFFF00";
+	o.style.cursor="hand";	
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#000000";
+}	
+}
+function goto3(t){
+ tt=showModalDialog(t, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:640px;scroll:yes;dialogHeight:620px');
+}
+function mouseouttr2(o){
+	o.style.backgroundColor=df
+	
+	
+}
+function gotozd(){
+var t='/pronline/Msg?FunName@ncWebSelectZd&flag@16&zd@'+form1.zd.value;
+ tt=showModalDialog(t, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:320px;scroll:yes;dialogHeight:400px');
+}
+function sx()
+{
+form1.submit();
+
+}
+setInterval('sx()',5000);
+
+
+function showuser(did,uid)
+{
+var temp_var="/pronline/Msg?FunName@ncsWebShowUserinfo&did@"+did+"+uid@"+uid;
+	showModalDialog(temp_var, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:520px;scroll:yes;dialogHeight:520px');
+}
+function setscrollvaue()
+{
+	form1.sctop.value=document.all.tC.scrollTop;
+
+}
+</script>
+</head>
+
+<body bgcolor="#fbfbfb" topmargin="10"  leftmargin="0" style="overflow:hidden">
+
+<form name="form1" method="post" action="/pronline/Msg" target="main_c">
+<input type="hidden" name="FunName" value="ncsWarnInfoOnline">
+
+ <input type="hidden" name="sctop" value="0">
+
+ <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  	<tr>
+          <td width="26"><img src="/images/tbbg/tb_left.jpg"></td>
+         
+          <td  valign="top" style="background:url(/images/tbbg/tb_center.jpg);height:19;"></td>
+          <td  width="20"><img src="/images/tbbg/tb_right.jpg" width="20" height="19"></td>
+        
+      </tr>
+  	<tr>
+  		<td width="26" height="200" style="background:url(/images/tbbg/mid_left.jpg);position:relative;left:-2px;top:-2px;"></td>
+       
+  		<td style="background:url(/images/tbbg/mid_leftw.jpg);">
+
+<table  cellspacing=0   valign="top" cellpadding="0" bgcolor="#fefefe" border="0" align="center" width="100%">
+	<tr>
+	   <td valign="top" class=td0><table width="100%"  cellspacing="0" valign="top" cellpadding="0">
+         <tr height="30"> 
+         <td  class=td0_2>&nbsp;实时布控告警信息&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+         <td  align="right">        	
+         	 <table align=right border=0 cellpadding=0 cellspacing=0 class=main width=111>
+              <tbody> 
+
+              </tbody>
+            </table>  
+         	         	
+         	</td>
+         </tr>
+         
+         
+         </table>
+      </td>
+  </tr>
+  
+</table>
+</form>
+
+<div id="wlj1" class="tScrollh">
+
+</div>
+
+
+
+
+	</td>
+  	<td style="background:url(/images/tbbg/mid_right.jpg);position:relative;left:1px;top:-2px;">&nbsp;
+  	</td>
+    </tr>
+  	
+  	
+  	  	<tr>
+          <td width="26"><img src="/images/tbbg/bottom_left.jpg" style="position:relative;top:-2px;left:-1px;"></td>
+         
+          <td  valign="top" style="background:url(/images/tbbg/bottom_center.jpg);position:relative;left:-4px;top:-2px;"></td>
+          <td  width="20"><img src="/images/tbbg/bottom_right.jpg" width="20" height="19" style="position:relative;top:-2px;"></td>
+        
+      </tr>
+
+
+<iframe name="main_c" id="data" width="100%" style="display:none" src="/pronline/Msg?FunName@ncsWarnInfoOnline"> </iframe>
+</body>
+</html>

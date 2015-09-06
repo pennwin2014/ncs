@@ -1,0 +1,92 @@
+<html><head><title>高级搜索 </title>
+<META http-equiv="Content-Type" content="text/html; charset=GB2312">
+<style>
+body{margin:6px 0 0 0;padding:0;color:#000;background-color:#fff}form{margin:0}a{color:#261CDC}td{font-size:12px;line-height:18px}
+#top{margin-bottom:5px;}
+#ft{line-height:20px;background:#E6E6E6;text-align:center;color:#77c;font:12px arial}
+#gxsz th{font-size:9pt;text-align:left}
+#t1{background-color:#eee;padding:2px 0;table-layout:fixed}
+#tl{height:20px;background-color:#D9E1F7;margin:0 0 0 151px;position:relative;top:22px;font-size:12px;padding:3px 0 0 7px}
+</style>
+
+<SCRIPT>
+	function checkKeyword()
+	{
+		
+		
+		if(f1.q1.value == "" && f1.q2.value == "" && f1.q3.value == "")
+    {
+                return false;
+    }
+    return true;
+	}
+	
+	
+</SCRIPT>
+</head>
+<body>
+
+
+<form action="/pronline/Msg" name="f1" method="post" onSubmit="return checkKeyword()">
+ <input type="hidden" name="FunName" value="ncsmailmon_v4">
+<table width="100%" border="0" cellpadding="2" cellspacing="0" id="t1">
+<tr> 
+	<td width="150" rowspan="4" valign="top"><div style="margin:18px 0 0 10px"><b>搜索结果</b></div></td>
+	<td width="300">包含以下<b>全部</b>的关键词</td>
+	<td><input size="35" name="q1" maxlength="100"> <input value="搜索" type="submit"></td>
+</tr>
+<tr>
+	<td>包含以下的<b>完整关键词</b></td>
+
+	<td><input size="35" name="q2" maxlength="100"></td>
+</tr>
+<tr> 
+	<td>包含以下<b>任意一个</b>关键词</td>
+	<td><input size="35" name="q3" maxlength="100"></td>
+</tr>
+<tr> 
+	<td><b>不包括</b>以下关键词</td>
+	<td><input size="35" name="q4" maxlength="100"></td>
+
+</tr>
+
+</table>
+
+<table width="98%" cellpadding="2" cellspacing="0" border="0" style="margin:5px 0 0 10px;table-layout:fixed">
+<tr> 
+	<td width="140"><b>搜索结果显示条数</b></td>
+	<td width="300">选择搜索结果显示的条数</td>
+	<td><font size="-1"> 
+		<select name="rn"><option value="10" selected="selected">每页显示10条</option><option value="20">每页显示20条</option><option value="50">每页显示50条</option><option value="100">每页显示100条</option></select>
+	</font></td>
+</tr>
+<tr> 
+	<td><b>时间</b></td>
+	<td>限定要搜索的时间是</td>
+	<td><font size="-1"> 
+		<select name="lm"><option value="" selected="selected">全部时间</option><option value="1">最近一天</option><option value="7">最近一周</option><option value="30">最近一月</option><option value="365">最近一年</option></select>
+	</font></td>
+</tr>
+<!--
+<tr>
+	<td><b>关键词位置</b></td>
+	<td>查询关键词位于</td>
+	<td> 
+		<input name="q5" value="" checked="checked" type="radio"> 任何地方 
+		<input name="q5" value="1" type="radio"> 发件人 
+		<input name="q5" value="2" type="radio"> 收件人
+		<input name="q5" value="3" type="radio"> 主题
+		<input name="q5" value="4" type="radio"> 邮件正文
+		<input name="q5" value="5" type="radio"> 附件
+		<input name="q5" value="6" type="radio"> 附件正文 
+		<input name="q5" value="7" type="radio"> 显示姓名
+		<input name="q5" value="9" type="radio"> 源IP地址
+		<input name="q5" value="9" type="radio"> 目的IP地址 
+		 <input name="q5" value="10" type="radio"> 抄送 
+	</td>
+</tr>
+-->
+</table>
+</form>
+</body>
+</html>

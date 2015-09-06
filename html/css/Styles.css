@@ -1,0 +1,129 @@
+A:link {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: #222222; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #666666; TEXT-DECORATION: underline
+}
+A:active {
+	COLOR: red; TEXT-DECORATION: underline
+}
+A.a1:link {
+	FILTER: dropshadow(color=#e0e0e0, offx=1, offy=1); COLOR: #000000; TEXT-DECORATION: none
+}
+A.a1:visited {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+A.a1:hover {
+	COLOR: #a53333; TEXT-DECORATION: underline
+}
+A.a1:active {
+	COLOR: #eeee00; TEXT-DECORATION: underline
+}
+A.a2:link {
+	FILTER: dropshadow(color=#000000, offx=1, offy=1); COLOR: #f6f6f6; TEXT-DECORATION: underline
+}
+A.a2:visited {
+	COLOR: #dddddd; TEXT-DECORATION: underline
+}
+A.a2:hover {
+	COLOR: #a53333; TEXT-DECORATION: none
+}
+A.a2:active {
+	COLOR: #666666; TEXT-DECORATION: underline
+}
+A.a3:link {
+	COLOR: #000000; TEXT-DECORATION: underline
+}
+A.a3:visited {
+	COLOR: #222222; TEXT-DECORATION: underline
+}
+A.a3:hover {
+	COLOR: #666666; TEXT-DECORATION: none
+}
+A.a3:active {
+	COLOR: red; TEXT-DECORATION: underline
+}
+.td1 {
+	BORDER-RIGHT: black 1px solid; BORDER-TOP: black 0px dotted; BORDER-LEFT: black 1px solid; BORDER-BOTTOM: black 0px dotted
+}
+.td2 {
+	BORDER-RIGHT: black 0px dotted; BORDER-TOP: #999999 0px dotted; BORDER-LEFT: black 0px dotted; BORDER-BOTTOM: black 1px dotted
+}
+.td3 {
+	BORDER-RIGHT: black 1px solid; BORDER-TOP: black 0px dotted; BORDER-LEFT: black 0px solid; BORDER-BOTTOM: black 0px dotted
+}
+.fsttb1 TD A {
+	FILTER: dropshadow(color=#000000, offx=1, offy=1); WIDTH: 100%; COLOR: #ffffff; PADDING-TOP: 4px; LETTER-SPACING: 0px; HEIGHT: 25px; BACKGROUND-COLOR: transparent; TEXT-DECORATION: none
+}
+.fsttb1 TD A:visited {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+.fsttb1 TD A:active {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+.fsttb1 TD A:hover {
+	COLOR: #333333; BACKGROUND-COLOR: #fcfcfc; TEXT-DECORATION: none
+}
+.fsttb2 TD A {
+	FILTER: dropshadow(color=#cccccc, offx=1, offy=1); WIDTH: 100%; COLOR: #343434; PADDING-TOP: 10px; LETTER-SPACING: 0px; HEIGHT: 30px; BACKGROUND-COLOR: transparent; TEXT-DECORATION: none
+}
+.fsttb2 TD A:visited {
+	FILTER: dropshadow(color=#cccccc, offx=1, offy=1); COLOR: #333333; TEXT-DECORATION: none
+}
+.fsttb2 TD A:active {
+	COLOR: #333333; TEXT-DECORATION: none
+}
+.fsttb2 TD A:hover {
+	FILTER: dropshadow(color=#000000, offx=1, offy=1); COLOR: #ffffff; BACKGROUND-COLOR: #979797; TEXT-DECORATION: none
+}
+BODY {
+	SCROLLBAR-FACE-COLOR: #dcdcdc; FONT-SIZE: 9pt; MARGIN: 0px; SCROLLBAR-HIGHLIGHT-COLOR: #ffffff; SCROLLBAR-SHADOW-COLOR: #ffffff; SCROLLBAR-3DLIGHT-COLOR: #ffffff; SCROLLBAR-ARROW-COLOR: #ffffff; SCROLLBAR-TRACK-COLOR: #ffffff; FONT-FAMILY: 宋体; SCROLLBAR-DARKSHADOW-COLOR: #ffffff
+}
+.shadow {
+	FILTER: dropshadow(color=#eeeeee, offx=1, offy=1); COLOR: #000000
+}
+.txt {
+	BORDER-RIGHT: #434343 1px solid; BORDER-TOP: #434343 1px solid; FONT-WEIGHT: normal; FONT-SIZE: 9pt; BORDER-LEFT: #434343 1px solid; COLOR: #000000; LINE-HEIGHT: normal; BORDER-BOTTOM: #434343 1px solid; FONT-STYLE: normal; HEIGHT: 17px; BACKGROUND-COLOR: transparent; FONT-VARIANT: normal
+}
+.txt2 {
+	BORDER-RIGHT: #dcdcdc 1px solid; BORDER-TOP: #dcdcdc 1px solid; FONT-WEIGHT: normal; FONT-SIZE: 9pt; BORDER-LEFT: #dcdcdc 1px solid; COLOR: #000000; LINE-HEIGHT: normal; BORDER-BOTTOM: #dcdcdc 1px solid; FONT-STYLE: normal; HEIGHT: 17px; BACKGROUND-COLOR: #ffffff; FONT-VARIANT: normal
+}
+.btn {
+	BORDER-RIGHT: #c4c1bd 1px solid; BORDER-TOP: #ffffff 1px solid; FONT-WEIGHT: normal; FONT-SIZE: 9pt; FILTER: dropshadow(color=#000000, offx=1, offy=1); BORDER-LEFT: #ffffff 1px solid; CURSOR: default; COLOR: #000000; LINE-HEIGHT: normal; BORDER-BOTTOM: #c4c1bd 1px solid; FONT-STYLE: normal; HEIGHT: 17px; BACKGROUND-COLOR: #ededed; FONT-VARIANT: normal
+}
+TD {
+	FONT-SIZE: 9pt; LINE-HEIGHT: 130%; FONT-FAMILY: 宋体
+}
+DIV {
+	FONT-SIZE: 9pt; LINE-HEIGHT: 130%; FONT-FAMILY: 宋体
+}
+FONT {
+	FONT-SIZE: 9pt; LINE-HEIGHT: 130%; FONT-FAMILY: 宋体
+}
+P {
+	FONT-SIZE: 9pt; LINE-HEIGHT: 130%; FONT-FAMILY: 宋体
+}
+SPAN {
+	FONT-SIZE: 9pt; LINE-HEIGHT: 130%; FONT-FAMILY: 宋体
+}
+LI {
+	FONT-SIZE: 9pt; LINE-HEIGHT: 130%; FONT-FAMILY: 宋体
+}
+.big {
+	FONT-SIZE: 14px; LINE-HEIGHT: 180%; FONT-FAMILY: 宋体
+}
+.line180 {
+	LINE-HEIGHT: 180%
+}
+.important {
+	COLOR: #8a3700
+}
+.150 {
+	FONT-SIZE: 14px; LINE-HEIGHT: 130%; FONT-FAMILY: 宋体
+}
+.white {
+	COLOR: #ffffff
+}

@@ -1,0 +1,76 @@
+
+<html>
+<head>
+<META content="text/html; charset="gb2312" http-equiv=Content-Type>
+<title></title>
+
+<script>
+<!--
+function go_hide()
+{
+	index_left.style.display='none';
+}
+function go_show()
+{
+	index_left.style.display='block';
+}
+
+
+function changeWin(){
+	if(index_left.style.display=='none'){
+		go_show();
+	document.all.menuSwitch1.innerHTML = "<img src='/images/arrow1.gif' width='8' height='50' border='0' alt='隐藏树结构' name='Image7' onclick='changeWin()' >";
+	}
+	else{
+		go_hide();
+		document.all.menuSwitch1.innerHTML = "<img src='/images/arrow2.gif' width='8' height='50' border='0' alt='显示树结构' name='Image8'  onclick='changeWin()' >";
+	}
+}
+
+//-->
+</script>
+<style type="text/css">
+<!--
+.handme {  cursor: hand}
+.bord4 {  border: #999999; border-style: solid; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px}
+-->
+</style>
+</head>
+<body topMargin=0 leftmargin=0 marginheight="0" bgColor=#DEE8FA oncontextmenu="return false" style="overflow:hidden" onload="go_show()">
+<script>
+var openwinflag;
+
+
+</script>
+
+<table border="0" width="100%" height="100%" cellspacing="0" cellpadding="0">
+
+  <tr> 
+    <td width="124" class="bord4" id="td_index_left"> 
+      <div id="index_left" > 
+        <iframe name="sbpm_left" src="/pronline/Msg?FunName@ncsWebSentiveGroup&plate@ncs/nc_sentivetree.htm" width=135 height=100% FrameBorder=0 ></iframe>
+      </div>
+    </td>
+    <td width="6" align="left" valign="top" > <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <table border="0" cellpadding="0" cellspacing="0">
+
+        <tr> 
+          <td height="40"> <div align="left" id="menuSwitch1"><img src="/images/arrow2.gif" width="6" height="50" border=0 alt="隐藏树结构" name="Image7"   onclick="changeWin()"></div>
+          </td>
+        </tr>
+      </table>
+      <br>
+       </td>
+
+    <td  width="100%" valign="top"> <iframe name="sbpm_right" src="/pronline/Msg?FunName@ncsWebSentiveList" scrolling="no" width=100% height=610 FrameBorder=0></iframe> 
+    </td>
+  </tr>
+</table>
+
+</body>
+
+</html>

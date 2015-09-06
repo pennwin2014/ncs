@@ -1,0 +1,86 @@
+
+<!--新建,编辑,删除页面模版-->
+<html>
+
+<head>
+
+<title>邮件列表</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+
+<META HTTP-EQUIV="Expires" CONTENT="0">
+
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+
+<style>
+.tab{border-top:solid thin #E0E0E0;border-right:solid thin gray;border-left:solid thin #E0E0E0;font-family:Verdana;font-size:10pt;text-align:center;font-weight:normal;cursor:default}
+.selTab{border-left:solid thin white ;border-top:solid thin white;border-right:solid thin black;font-weight:bold;text-align:center;background-color:D8E1E7;cursor:default}
+.selTabBase{border-top:solid thin #dfdfdf}
+.TabBase{border-top:solid thin #ffffff}
+ .an328 { font-size: 9pt; background-color: #D8E1E7; 
+  vertical-align: middle; height: 20px; width: 75px; border-top-width: 1px; border-right-width: 
+  1px; border-bottom-width: 1px; border-left-width: 1px; cursor: hand;background-image: url(/images/antongguo.gif); background-repeat: no-repeat}
+ .an308 { font-size: 9pt; background-color: #D8E1E7; 
+  vertical-align: middle; height: 20px; width: 70px; border-top-width: 1px; border-right-width: 
+  1px; border-bottom-width: 1px; border-left-width: 1px; cursor: hand;background-image: url(/images/anshanchu.gif); background-repeat: no-repeat}
+</style>
+
+<script>
+function showQuery()
+
+{
+	temp="/Wss/Wss_Code/Port/chaxun.htm";
+		var oDia=showModalDialog(temp,window,
+		 "status:no;center:yes;help:no;minimize:no;maximize:no;border:thick;statusbar:no;dialogWidth:350px;scroll:none;dialogHeight:150px;overflow:none");	
+
+}
+function Add()
+{
+list.location='/pronline/Msg?FunName@portAdd';
+}
+function Del()
+{
+	frames.list.form1.FunName.value='portDel';
+	frames.list.form1.submit();
+}
+</script>
+
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<body  bgcolor="#DEE8FA" text="#000000" leftmargin="0" topmargin="0"  style="overflow:hidden" >
+
+<form name="form1" id="form1" method="post" action="/pronline/Msg">
+ <input type="hidden" name="FunName" value="">
+
+  <table width="98%"  border="0" cellspacing="0" cellpadding="0" align="center" height="100%"> 
+    <tr valign="top"> 
+    <td width="100%" valign="top">
+     <table width="100%"  border=1 bordercolordark=#ffffff bordercolorlight=#999999 cellspacing="0" cellpadding="5">
+     
+
+       <tr>
+	      <td height="600"  valign="top" width="50%">
+	       <iframe  height="600" name="list" id="list" width="100%"  border="0" frameborder="0" src="/pronline/Msg?FunName@ncs_userclasslist" scrolling=no> </iframe>      
+	      </td>
+	      
+	      <td valign="top" width="50%">
+	       <iframe  height="600" name="add" id="add" width="100%"  border="0" frameborder="0" src="/pronline/Msg?FunName@ncs_useridlist" scrolling=no> </iframe>      
+	      </td>
+	      
+      </tr>
+
+		 </table>
+      </td>
+      </tr>
+
+  </table>
+   
+</form>
+</body>
+
+</html>  

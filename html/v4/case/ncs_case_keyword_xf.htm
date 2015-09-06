@@ -1,0 +1,565 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<title>单位管理</title>
+    <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" /> 
+        <style type="text/css">
+        .icon-grid {
+            background-image:url(/newver/resources/themes/images/share/grid.png) !important;
+        }
+        .add {
+            background-image:url(/newver/resources/themes/images/share/add.gif) !important;
+        }
+        .option {
+            background-image:url(/newver/resources/themes/images/share/plugin.gif) !important;
+        }
+        .remove {
+            background-image:url(/newver/resources/themes/images/share/delete.gif) !important;
+        }
+        .exp {
+            background-image:url(/newver/resources/themes/images/share/application_go.png) !important;
+        }
+        .accept {
+            background-image:url(/newver/resources/themes/images/share/accept.png) !important;
+        }
+        .x-form-clear-trigger {
+            background-image: url(/newver/resources/themes/images/default/form/clear-trigger.gif);
+        }
+        
+        .x-form-search-trigger {
+            background-image: url(/newver/resources/themes/images/default/form/search-trigger.gif);
+        }
+.x-grid3-cell-inner{
+white-space:normal !important;
+overflow:visible!important;
+}
+
+
+    </style>
+<style type="text/css">   
+   .x-selectable, .x-selectable * {   
+    -moz-user-select: text!important;   
+    -khtml-user-select: text!important;   
+}   
+</style>
+      
+    <script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+
+  <script>  
+
+
+var cid='[#cid#]';
+Ext.Loader.setConfig({enabled: true});
+Ext.Loader.setPath('Ext.ux', '/newver/ux/');
+Ext.require([
+    'Ext.form.*',
+    'Ext.window.*',
+    'Ext.grid.*',
+    'Ext.data.*',
+    'Ext.util.*',
+    'Ext.window.MessageBox',
+    'Ext.toolbar.Paging',
+    'Ext.ux.PreviewPlugin',
+//    'Ext.ModelManager',
+//    'Ext.tip.QuickTipManager'
+]);
+var store;
+ function reflash(){
+
+  store.load({params: {cid:cid}});  
+  }
+
+
+
+Ext.onReady(function(){
+
+//    Ext.tip.QuickTipManager.init();
+
+    Ext.define('EimData', {
+        extend: 'Ext.data.Model',
+        fields: [
+            'keyword','dx','dispname','stime','vtime','sid'
+        ],
+      idProperty: 'sid'
+    });
+
+    // create the Data Store
+//重写排序函数，解决远程条件查询问题
+    Ext.data.Store.prototype.doSort = function() {
+    reflash();
+    }
+    
+       store = Ext.create('Ext.data.Store', {
+        pageSize: 40,
+        model: 'EimData',
+        remoteSort: true,
+ //       autoLoad :{params:{aaad:0,dddd:2}},
+        proxy: {
+            type: 'ajax',
+            url: '/pronline/Msg?FunName@ncsKeywordXf_v4',
+            reader: {
+                type:'json',
+                root: 'eimdata',
+                totalProperty: 'totalCount'
+            },         
+            simpleSortMode: true
+
+        },
+//        params:{ffffff:'aaaaaa'},
+        sorters: [{
+            property: 'sid',
+            direction: 'ASC'
+        }]
+    });
+
+
+
+    // pluggable renders
+ 
+  
+    var pluginExpanded = true;
+    
+ 
+ 
+     var sm = Ext.create('Ext.selection.CheckboxModel',{
+        listeners: {
+            selectionchange: function(sm, selections) {           
+           grid.down('#removeEmployee').setDisabled(selections.length == 0);
+                
+            }
+        }
+    
+    });
+ 
+ 
+  
+  
+//对翻页工具条重新构建，替换翻页函数    
+  Ext.PagingToolbar1 = Ext.extend(Ext.PagingToolbar, {
+     doRefresh:function(){
+    
+     reflash();
+    },
+    moveLast:function(){
+    	var b=this,a=b.getPageData().pageCount;
+    	if(b.fireEvent("beforechange",b,a)!==false){
+    	store.currentPage=a;
+    	reflash();
+       }},
+     moveFirst:function(){
+      if(this.fireEvent("beforechange",this,1)!==false){
+      store.currentPage=1;
+      reflash();}}, 
+     movePrevious:function(){var b=this,a=b.store.currentPage-1;if(a>0){if(b.fireEvent("beforechange",b,a)!==false){store.currentPage=a;reflash();}}},
+     moveNext:function(){var c=this,b=c.getPageData().pageCount,a=c.store.currentPage+1;if(a<=b){if(c.fireEvent("beforechange",c,a)!==false){store.currentPage=a;reflash();}}}
+       
+});
+
+function showmsg(value, cell){ 
+
+    cell.attr = 'style="white-space:pre-wrap;"';
+    return "<span style=’font-size:14px; font-family:Verdana; line-height: 150%’>" 
+            + value + "</span>";
+}
+
+
+   Ext.define('State', {
+        extend: 'Ext.data.Model',
+        fields: [
+            {type: 'string', name: 'groupid'},
+            {type: 'string', name: 'groupname'}
+        ]
+    });
+  var store_keyword;
+  var store_keyword = Ext.create('Ext.data.Store', {
+        model: 'State',
+        remoteSort: true,
+         proxy: {
+            type: 'ajax',
+            url: '/pronline/Msg?FunName@ncsWebKeywordComp',
+            reader: {
+                type:'json',
+                root: 'corpclassdata'              
+            },         
+            simpleSortMode: true
+        }
+    });
+    store_keyword.load();  
+
+		function getKeywordData() { 
+
+				var dataStr = "["; 
+		     var i=0;
+     
+          var bCheck=false;
+		      store_keyword.each(function(item){
+	        if(i==0){
+		       	 dataStr=dataStr+"{boxLabel: '"+item.get('groupname')+"' ,name:'" +item.get('groupid')+"',checked:"+bCheck+"}";
+		       }
+		       else{
+		       	 dataStr=dataStr+",{boxLabel: '"+item.get('groupname')+"' ,name:'" +item.get('groupid')+"',checked:"+bCheck+"}";
+		       }
+ 
+ 
+		       i++;
+		
+		    });
+        dataStr=dataStr+"]";
+   
+ 
+			return eval(dataStr); 
+     
+ 
+   };
+
+
+Ext.define('treedata', {
+        extend: 'Ext.data.Model',
+        fields: [
+            {name: 'text',     type: 'string'},
+            {name: 'id',       type: 'string'},
+            {name: 'dtype', type: 'string'}
+ 
+        ]
+    });
+ 
+    var store_tree = Ext.create('Ext.data.TreeStore', {
+     model: 'treedata',
+        proxy: {
+            type: 'ajax',
+            url: '/pronline/Msg?FunName@ncsTreeUserLb_v4'
+        },
+        root: {
+            text: '全部单位类别',
+            id: '',
+            dtype:'0',
+            checked:false,
+            expanded: true
+        },
+        folderSort: true,
+        sorters: [{
+            property: 'text',
+           
+            direction: 'ASC'
+        }]
+    });
+ 
+
+
+
+
+function openAdd()
+{
+
+    var tree = Ext.create('Ext.tree.Panel', {
+        store: store_tree,
+  //      renderTo: 'tree-div',
+        frame: true,
+        height: 250,
+        width: 570,
+        useArrows: false,
+         listeners:{itemclick:function(view, rcd, item, idx, event, eOpts){
+         	var sid=rcd.get('id');
+         	var did=rcd.get('did');
+         
+         	  clicknode(sid,did);
+         }
+        }  
+ 
+    });
+
+
+ var aaa=getKeywordData();
+     var rightcheckGroup={
+           xtype:'fieldset',
+           title:'选择关键字组下发到上网场所',
+           layout: 'form',
+        	defaults: {
+            labelStyle: 'padding-left:4px;'
+        	},
+         collapsible: false,
+        items: [{
+             xtype: 'checkboxgroup',
+             name:'rightgroup',
+             id:'keygroup',
+             columns: 6,
+                items: getKeywordData()
+            },
+            ]
+            }; 
+      var myDate = new Date();
+  		var yy = ( myDate.getYear() < 1900 ) ? ( 1900 + myDate.getYear() ) : myDate.getYear();
+  		var mm=myDate.getMonth()+7;
+  		if(mm>12) {mm=mm-12;yy=yy+1;}
+  		if(mm<10)
+  		{
+  			mm='0'+mm;
+  		}
+  		var dd=myDate.getDate();
+  		if(dd<10)
+  		{
+  			dd='0'+dd;
+  		}
+  		var today=yy+'/'+mm+'/'+dd;
+  	     
+        var fp2=Ext.create('Ext.FormPanel', {
+        frame: true,
+        fieldDefaults: {
+            labelWidth: 110
+        },
+        width: 600,
+        bodyPadding: 10,
+        items: [
+					{
+            xtype: 'datefield',
+            name: 'vdate',
+            fieldLabel: '失效日期',
+             format: "Y/m/d",
+             value:today
+        	},
+        	rightcheckGroup
+      	 ,tree
+        ],
+        buttons: [{
+            text: '保存',
+            handler: function(){
+//获取check框里的关键字ID
+            var kid='';
+            var i=0;
+            var gcheck=Ext.getCmp('keygroup');
+            gcheck.items.each(function(item){
+               if(item.checked){
+                  if(i==0){
+                     kid=item.name;
+                   }
+                   else{
+                     kid=kid+','+item.name;
+                   }
+                     i++;
+               }
+           
+            }
+            );
+           
+         
+            
+          var records = tree.getView().getChecked();
+    
+						       var temps=''; 
+						       var iNum=0;            
+                    Ext.Array.each(records, function(rec){
+ 
+                    if(iNum==0){
+                    temps=rec.get('dtype');
+                    temps=temps+'_'+rec.get('id');
+
+                    }
+                    else{
+                    temps=temps+','+rec.get('dtype')+'_'+rec.get('id');
+                    }
+                     iNum++;
+ 
+                    });
+ 
+           
+        
+            var sdate=fp2.getForm().getValues().vdate;
+                if(sdate==''){
+                alert('请填写失效日期');
+                return;
+                }
+             if(temps==''){
+	             alert('请选择下发的场所类别或单位');
+	             return ;
+             }
+             if(kid==''){
+	             alert('请选择下发的关键字组');
+	             return;
+             }
+            
+            
+	           store.load({params:{update:"update",kid:kid,seid:temps,vtime:sdate}});
+	            Ext.getCmp('addwindow').close();
+           
+            }
+        },{
+            text: '关闭',
+            handler: function(){
+              Ext.getCmp('addwindow').close();
+
+            }
+         }]
+      });
+    
+    
+         var win2 = new Ext.Window ({
+                             id:"addwindow",
+                             title:"关键字下发",
+                             x:0,
+                             y:0,
+                             width:630,
+                             height:600,
+                             bodyPadding: 10,
+                             modal:true,
+                             resizable:true,
+                             items: fp2
+                                               
+         }
+        )
+        win2.show();
+   
+}
+
+
+
+
+
+
+    var grid = Ext.create('Ext.grid.Panel', {
+ 
+        height: 980,
+         stripeRows: true,
+        store: store,
+        selModel: sm,
+       forceFit: true,
+        scrollOffset: 0,
+        frame:true,
+       
+        // grid columns
+        columns:[{
+            text: "关键字组",
+            dataIndex: 'keyword',
+            hidden: false,
+            width: 80,
+            sortable: false
+        },{
+            text: "下发场所对象",
+            dataIndex: 'dx',           
+            width: 440,
+             flex:1,
+            hidden:false,
+            sortable: true
+
+        },
+        {
+            text: "失效时间",
+            dataIndex: 'vtime',
+            hidden: false,
+            width: 90,
+            sortable: false
+        },
+        {
+            text: "下发时间",
+            dataIndex: 'stime',
+            hidden: false,
+            width: 90,
+            sortable: false
+        },
+        {
+            text: "操作员",
+            dataIndex: 'opname',
+            hidden: false,
+            width: 60,
+            sortable: false
+        }
+       
+        ],
+        
+        columnLines: true,
+                                        
+        // paging bar on the bottom
+ 
+        tbar: Ext.create('Ext.PagingToolbar1', {
+            store: store,
+            
+            displayInfo: true,
+            displayMsg: '共<font color=red>{2}</font>条记录',
+            emptyMsg: "共0条记录",
+                                       
+            items: [
+             {               
+                text:'添加',
+                iconCls:'add',
+                handler: function(){
+                  openAdd();
+              
+                }
+            },
+             {
+            itemId: 'removeEmployee',
+            text: '删除',
+            iconCls: 'remove',
+
+                handler:function(){
+             
+							   if(confirm('您真的要执行删除操作吗？')){                  
+                 var selsid;  
+                 var rows=sm.getSelection();
+                   selsid='';
+                  for(var i=0;i<rows.length;i++){
+                  	if(i==0){
+                  	 selsid=rows[i].getId();
+                  	}
+                  	else{
+                       selsid=selsid+","+rows[i].getId();
+                    }
+                   
+                   }
+ 
+                      store.load({params: {del: "del",selsid:selsid}});
+                  
+                
+              }
+                
+            },
+            disabled: true
+        }
+            
+            
+            ]
+       
+
+        })
+        
+
+        ,
+        renderTo: 'grid-corp'
+    });
+
+    // trigger the data store load
+       reflash();
+    
+    
+ //    store.loadPage(1);
+
+});
+
+
+</script>
+    
+    
+</head>
+<body>
+	<form name="form1" id="form1" action="/pronline/Msg">
+		<input type="hidden" name="FunName" value="ncsWarnInfoOnline_v4">
+		<input type="hidden" name="groupid" value="">
+		<input type="hidden" name="did" value="">	
+		<input type="hidden" name="export2" value="">
+		<input type="hidden" name="keyword" value="">
+		<input type="hidden" name="time_flag" value="">
+		<input type="hidden" name="field_flag" value="1">
+		<input type="hidden" name="sdate" value="">
+		<input type="hidden" name="edate" value="">
+		<input type="hidden" name="sip" value="">
+		<input type="hidden" name="mac" value="">
+		<input type="hidden" name="cname" value="">
+		<input type="hidden" name="position" value="">
+		<input type="hidden" name="servicecode" value="">
+		<input type="hidden" name="idno" value="">
+		<input type="hidden" name="dispname" value="">
+	</form>
+    <div id="grid-corp"></div>
+
+</body>
+</html>

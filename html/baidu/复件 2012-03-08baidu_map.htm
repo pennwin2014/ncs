@@ -1,0 +1,535 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+		<META HTTP-EQUIV="Expires" CONTENT="0">
+		<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache,must-revalidate">
+		<META HTTP-EQUIV="Pragma"  		CONTENT="no-cache">
+		<META HTTP-EQUIV="Jon Eyrick"  CONTENT="no-cache">
+<title>百度地图</title>
+<link rel="stylesheet" rev="stylesheet" href="/css/Map2_Baidu_Findding.css" type="text/css" />
+
+<style>
+.marker div { position:absolute;  min-width:51px;}
+.marker .marker_hover{z-index:2}
+.marker_0 { height:34px; white-space:nowrap;width:50px;}
+.marker_0 .marker_word, .marker_0 .marker_r { background:url()  0px 0 no-repeat; }
+
+.marker_0 .marker_word { height:34px; line-height:23px; padding:0 1px; cursor:pointer;color: white;text-align: center;font-family:simsun }
+.marker_0 .marker_word { padding-top:1px;*padding-top:0; }
+/*
+.marker_0 .marker_r { width:3px; height:24px; position:absolute; right:-2px; top:1px; z-index:110px; }
+.marker_0 .marker_r { background-position: 0 -24px; }
+.marker_0 .marker_b { background:url(/images/commit.png) no-repeat; bottom:7px;height:11px;left:13px;overflow:hidden;position:absolute;width:10px;}
+.marker_0 .marker_b { background-position: 0 0; }*/
+
+
+.marker {    position: absolute;   display: none;  min-width:51px; height: 34px;padding: 0 1px; color: white;text-align: center; font-size: 12px;cursor: pointer; line-height: 23px; 
+				background: url(/images/normal.png) 1px 0 no-repeat;}
+.marker_hover {z-index: 10; background-image: url(/images/open_hover.png);}
+</style>
+<!-- api -->
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.2"></script>
+<!-- 聚合marker -->
+<script type="text/javascript" src="/js/baidu/mark_jiqun/TextIconOverlay_min.js"></script>
+<script type="text/javascript" src="/js/baidu/mark_jiqun/MarkerClusterer_min.js"></script>
+<script type="text/javascript" src="/js/baidu/fu_marker/RichMarker_min.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/library/GeoUtils/1.2/src/GeoUtils_min.js"></script>
+</head>
+<body onload="init();">
+<form id="form1" name="form1" method="post" action="/pronline/Msg">
+<input type="hidden" name="maxlon" value="">
+    <input type="hidden" name="minlon" value="">
+    <input type="hidden" name="maxlat" value="">
+    <input type="hidden" name="minlat" value="">
+	
+<div style="width:935px;height:430px;border:1px solid gray" id="container"></div>
+</form>
+</body>
+</html>
+<script type="text/javascript">
+	
+	//width:48px;    background: none;    background-color:transparnt;
+  //  filter:progid:DXImageTransform.Microsoft.AlphaImageLoader (src='http://pages.anjukestatic.com/img/map/normal.png');
+//var mapOptions = { zoomLevelMin : 9 , zoomLevelMax : 18 };	
+//var map = new BMap.Map("container",mapOptions);
+var map = new BMap.Map("container");
+map.zoomLevelMin=18;
+map.zoomLevelMax=9;
+var MAX=0;             //酒店宾馆数量
+var aname_desc=new Array(); //酒店宾馆名称
+var lon_data=new Array();   //经度
+var lat_data=new Array();   //纬度
+var markers = [];
+var pt = null;
+var i = 0;
+//map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);
+
+//map.centerAndZoom(new BMap.Point(114.29969787597656,29.853746350935715), 11);
+//map.addEventListener("click", function(){
+//  alert("您点击了地图。");
+//});
+//var local = new BMap.LocalSearch(map, {  
+// renderOptions:{map: map}  
+//});  
+//local.search("咸宁市");
+
+
+//map.centerAndZoom(new BMap.Point(114.29969787597656,29.853746350935715), 10);  
+		
+		//map.centerAndZoom(new BMap.Point(114.1897705078125,29.63522956294847), 10);  
+		//test
+		map.centerAndZoom(new BMap.Point(114.33231353759765,29.83379420712392), 14);  
+		var opts = {type: BMAP_NAVIGATION_CONTROL_LARGE}; 
+		map.addControl(new BMap.NavigationControl(opts));  
+		map.addControl(new BMap.ScaleControl()); 
+		map.enableScrollWheelZoom();
+		/*
+//		var local = new BMap.LocalSearch("咸宁市", {  
+//		 renderOptions: {  
+//		   map: map,  
+//		   autoViewport: true,  
+//		   selectFirstResult: false  
+//		 },  
+//		  pageCapacity: 8  
+//		});  
+//		local.search("酒店");  
+
+
+//		var xx=0;
+//		var yy=0;
+//		var marker_s=new Array();
+//		var lat=new Array();
+//		var lon=new Array();
+//						//add the first marker
+//						//测试60个marker加载速度
+//		for(var i=0;i<MAX_marker;i++){
+//							//xx+=0.005;
+//							//yy+=0.0025;
+//				xx+=Math.random()*0.01;
+//				yy+=Math.random()*0.002;
+////			  lat[i]=117.90183+xx;
+////				lon[i]=24.41613+yy;
+//				//var lat=117.90183+xx;
+//				//var lon=24.41613+yy;
+//				var lat=114.90183+xx;
+//				var lon=29.41613+yy;
+//				//alert("i ="+i+"  lat="+lat[i]+" lon="+lon[i]+"  random="+Math.random());
+//				
+//				//alert("i ="+i+"  lat="+lat+" lon="+lon+"  random="+Math.random());
+//				//marker_s[i]= PointFeature.createPointFeature(new Location(lat[i],lon[i]));
+//							
+//							
+//				//var marker:PointFeature = PointFeature.createPointFeature(new Location(118.10183,24.51613));
+//							
+////				markers.addFeature(CustomMarker.createUrlBasedMarker("http://earth.google.com/intl/en_uk/outreach/images/add_placemark.png",
+////																new Location(lat[i],lon[i])));
+//														
+//				//markers.addFeature(marker_s[i]);
+//				
+//				
+//				var point4 = new BMap.Point(lat, lon);  
+//
+//				var label4 = new BMap.Label('',{ point:point4 });
+//				label4.setStyle({position:'absolute',border:'none',background:'none',zIndex:'1'});
+//				var ct = '<div class="marker_0"><div class="marker_word">文本标注';
+//				ct += '<em class="marker_r"></em></div><em class="marker_b"></em></div>';
+//				label4.setContent(ct);
+//				label4.setOffset(new BMap.Size(0,-35));
+//				map.addOverlay(label4);
+//
+//				
+//				
+//				//var marker = new BMap.Marker(new BMap.Point(lat, lon));  
+//				//map.addOverlay(marker); 
+//			}
+		
+   // var marker = new BMap.Marker(point);  
+   // map.addOverlay(marker); 
+   */
+   var b=map.getBounds();		 
+   var ne = b.getNorthEast() // 东北点
+	 var sw = b.getSouthWest() // 西南点
+	 //alert("东北点" + ne .lng + " " + ne .lat)
+	 //alert("西南点" + sw .lng + " " + sw .lat)
+   document.getElementById("form1").minlon.value=sw .lng;
+	 document.getElementById("form1").minlat.value=sw .lat;
+	 document.getElementById("form1").maxlon.value=ne .lng;
+	 document.getElementById("form1").maxlat.value=ne .lat;
+   //最简单的用法，生成一个marker数组，然后调用markerClusterer类即可。
+   var markerClusterer = new BMapLib.MarkerClusterer(map, {markers:markers});
+   
+	 function show_mark(MAX){
+	 	
+	 	if(map.getZoom()>=14&&map.getZoom()<=18){
+	   //添加和删除Markers
+	   	var newMarkers = getNewMarkers(MAX);
+	   	var newMarkers2 = newMarkers;
+	 	
+	 	  for (i = 0; i < MAX; i++) {
+	//           map.addOverlay(newMarkers2[i]);
+	          // alert("i="+i+"  newMarkers2"+newMarkers2[i]);
+	
+						var result = BMapLib.GeoUtils.isPointInRect(newMarkers2[i].point, map.getBounds());     //显示可视区域内的标注
+	 	   	   // alert("i="+i+"  newMarkers2="+newMarkers2[i]+"  result="+result+" lng="+newMarkers2[i].point.lng+"  lat="+newMarkers2[i].point.lat);
+	 	   	    if(result == true) 
+	 	   	    	map.addOverlay(newMarkers2[i]);  
+	 	   	    else 
+	 	   	    	map.removeOverlay(newMarkers2[i]); 
+	 	   	    
+	 	   	    window.setTimeout(function(){
+	//            canvas.setStyle({"height":canvasHeight+"px"});
+	//            container.setStyle({"width":containerWidth});
+	        	}, i*30);  //i++*30
+	
+	    }
+	  }else if(map.getZoom()>=9&&map.getZoom()<14){
+	  		var newMarkers = getNewMarkers(MAX);
+	   		var newMarkers2 = newMarkers;
+	 	
+	 	  	for (i = 0; i < MAX; i++) {
+						var result = BMapLib.GeoUtils.isPointInRect(newMarkers2[i].point, map.getBounds());     //显示可视区域内的标注
+	 	   	   // alert("i="+i+"  newMarkers2="+newMarkers2[i]+"  result="+result+" lng="+newMarkers2[i].point.lng+"  lat="+newMarkers2[i].point.lat);
+	 	   	    if(result == true) 
+	 	   	    	map.addOverlay(newMarkers2[i]);  
+	 	   	    else 
+	 	   	    	map.removeOverlay(newMarkers2[i]); 
+	 	   	    window.setTimeout(function(){
+	        	}, i*30);  //i++*30
+	
+	    	}	
+	  }else{
+	  }
+  }
+ map.addEventListener("moveend", show_mark);
+ //显示可视区域内的标注
+// function addMymarkers(){   
+// 	 document.getElementById("info").innerHTML = '';  
+// 	 for(i=0;i<markers.length;i++){    
+// 	   	    var result = BMapLib.GeoUtils.isPointInRect(markers[i].point, map.getBounds());     
+// 	   	    if(result == true) 
+// 	   	    	map.addOverlay(markers[i]);  
+// 	   	    else 
+// 	   	    	map.removeOverlay(markers[i]);   
+// 	   	    document.getElementById("info").innerHTML += '<img src="' + markers[i].getIcon().imageUrl +'" />';            
+// 	  }
+// }
+ 
+ 
+ 
+//   var btnAddMarkers = document.getElementById('btnAddMarkers');
+//   btnAddMarkers.onclick = function (event) {
+//       if(!newMarkers.length){
+//                //如果之前的markers被清空了，则重新生成
+//                newMarkers = getNewMarkers(MAX);
+//                newMarkers2 = newMarkers;
+//       };
+//       markerClusterer.addMarkers(newMarkers);
+//       for (i = 0; i < MAX; i++) {
+//           map.addOverlay(newMarkers2[i]);
+//       }
+//    };
+// 
+//    var btnRemoveMarkers = document.getElementById('btnRemoveMarkers');
+//    btnRemoveMarkers.onclick = function (event) {         
+//            markerClusterer.removeMarkers(newMarkers);
+//            for (i = 0; i < MAX; i++) {
+//                map.removeOverlay(newMarkers2[i]);
+//            }
+//    };
+
+   /**
+   * 得到一个随机的marker数组。
+   * @param  {Number} 数组的长度
+   * @return {Array} 随机marker数组
+   */
+   
+   function getNewMarkers(MAX){
+   			var xx=0.0;
+   			var yy=0.0;
+        var newMarkers = [];
+        var label4=new Array();
+        var marker=new Array();
+        var ct;
+        
+        for (i = 0; i < MAX; i++) {//alert("lon_data="+lon_data[i]+"  lat_data="+lat_data[i]);
+                //pt = new BMap.Point(Math.random() * 40 + 85, Math.random() * 30 + 21);
+              	pt = new BMap.Point(lat_data[i], lon_data[i]);
+              	
+                //pt = new BMap.Point(parseFloat(lon_data[i]), parseFloat(lat_data[i]));
+              /*  
+                //测试程序
+                xx+=Math.random()*0.1;
+                yy+=Math.random()*0.1;
+                //alert("i ="+i+"  xx="+xx+" yy="+yy+"  random="+Math.random());
+                if(i%2==0){
+                	if(i>30)
+                	pt = new BMap.Point(113.10183+xx, 29.01613+yy);
+                	else
+                	pt = new BMap.Point(113.30183+xx, 29.01613+yy);
+                }else{
+                	if(i>30)
+                	pt = new BMap.Point(113.60183+xx, 29.01613+yy);
+                	else
+                	pt = new BMap.Point(114.2299103+xx, 29.74578086+yy);
+              	} */
+                label4[i] = new BMap.Label('',{ point:pt });
+								label4[i] .setStyle({position:'absolute',border:'none',background:'none',zIndex:'1'});
+								if(i%2==0){
+									var ct = '<div class="marker_0"><div class="marker_word">宾馆';
+									ct += '<em class="marker_r"></em></div><em ></em></div>';
+								}else{
+									var ct = '<div class="marker_0"><div class="marker_word">酒店';
+									ct += '<em class="marker_r"></em></div><em ></em></div>';
+								}								
+								label4[i] .setContent(ct);
+								//label4[i] .setOffset(new BMap.Size(0,-15));	
+//                newMarkers.push(label4);       
+                
+                //newMarkers.push(new BMap.Label('酒店',{ point:pt })); 
+                if(map.getZoom()>=14&&map.getZoom()<=18){
+	                if(i%2==0){   
+	                	var icon = new BMap.Icon("/images/normal.png", new BMap.Size(50,50),new BMap.Size(0,-15)); 
+	                }else{
+	                	var icon = new BMap.Icon("/images/open_hover.png", new BMap.Size(50,50),new BMap.Size(0,-15));
+	                }
+              	}else if(map.getZoom()>=9&&map.getZoom()<14){
+              		if(i%2==0){   
+	                	var icon = new BMap.Icon("/images/area.png", new BMap.Size(300,62),new BMap.Size(0,-15)); 
+	                }else{
+	                	var icon = new BMap.Icon("/images/area_hover.png", new BMap.Size(300,62),new BMap.Size(0,-15));
+	                }	
+              	}else{}
+                marker[i] =new BMap.Marker(pt);
+                //marker.className="marker marker_hover";
+                marker[i].setIcon(icon);
+                marker[i].setLabel(label4[i] );
+                newMarkers.push(marker[i]);               
+                //newMarkers.push(new BMap.Marker(pt));               
+        }
+        return newMarkers;   
+  }
+
+var intervalid;
+function init(){
+		callServer(this);	
+		//	intervalid=setInterval('callServer(this)',10000);
+		//callajax();
+		/*
+		map.events.register("moveend", map, function  () {   
+  		//传给程序 程序处理zoom=1不做操作，zoom=0返回范围内基站
+   		//alert("鼠标移动结束后边界"+map.calculateBounds());
+   		
+   		var markers;
+   		var marker_t;
+   		var vectorLayer;
+   		var feature;
+   		//var point;
+   		//判断范围变化
+   		if(map.getZoom()==1){
+	   		var center = map.getCenter();
+			  var resolution = map.getResolution();
+			  if ((center != null) && (resolution != null)) {
+		            var size = map.getSize();
+		            var w_deg = size.w * resolution;
+		            var h_deg = size.h * resolution;
+			    	var minlon=center.lon - w_deg / 2;
+			    	var maxlon=center.lon + w_deg / 2;
+			    	var minlat=center.lat - h_deg / 2;
+			    	var maxlat=center.lat + h_deg / 2;
+			    	//alert("minlon="+minlon+"minlat="+minlat+"maxlon="+maxlon+"maxlat="+maxlat);
+			    	//调函数
+			    	form1.minlon.value=minlon;
+			    	form1.minlat.value=minlat;
+			    	form1.maxlon.value=maxlon;
+			    	form1.maxlat.value=maxlat;
+		    }
+	  	}else{ //用户通过roombar控制时，第一个图层清空popup用
+	  		callServer(this);	
+	  	}
+   		//window.clearInterval(intervalid);
+   		//alert("2  "+exec_flg);
+   		//start_time=new   Date().getTime(); 
+   		//sleep(2000);
+   		//if(exec_flg==1){  //alert("2  "+exe_time);
+	   		//callServer(this);//加载Marker 和label
+	   		//alert("  "+(new   Date().getTime()-start_time));
+	   	if(exec_flg==1){//alert(exe_time);
+	   		window.clearInterval(intervalid);
+	   		exe_time=3000;
+	   		
+	   		intervalid=setInterval('callServer(this)',exe_time);
+	   	}
+	   		exec_flg=1;
+   	
+	});  
+	setTimeout(CollectGarbage, 10000);
+	} */
+}  
+function getxmlbyname(ins,names,namee){
+		var start;
+		var end;
+		var ret='';
+	
+		start=ins.indexOf(names);
+		end=ins.indexOf(namee);
+		
+		if(start!=-1&&end!=-1){
+			ret=ins.substr(start+names.length,end-start-names.length);
+		}
+		return ret;	
+  }  
+var xmlHttp = false;
+
+ 	//创建XMLHttpRequest对象       
+function createXMLHttpRequest() {
+	var C=null;
+		if(window.XMLHttpRequest) { //Mozilla 浏览器
+			C = new XMLHttpRequest();
+		}else if (window.ActiveXObject) { // IE浏览器
+			try {
+				C = new ActiveXObject("Msxml2.XMLHTTP");
+			} catch (e) {
+				try {
+					C = new ActiveXObject("Microsoft.XMLHTTP");
+				} catch (e) {}
+			}
+		}
+		return C;
+	}
+	
+	 //调用AJAX
+ function callServer(e) {  //alert(1);
+  try{
+  if( xmlHttp && xmlHttp .readyState != 0 ){
+    xmlHttp.abort();
+  }
+   xmlHttp = createXMLHttpRequest();
+   if( xmlHttp ){
+		 var url;
+		// var dev_value=allselect();
+		 //url="/pronline/Msg?FunName@nc_macalocation_map&id@"+Math.random()*999+"&av_un@"+form1.av_un.value;
+		 url="/pronline/Msg?FunName@ncShow_hotel_map&id@"+Math.random()*999+"&minlon@"+form1.minlon.value+"&maxlon@"+form1.maxlon.value+"&minlat@"+form1.minlat.value+"&maxlat@"+form1.maxlat.value;
+    //打开连接
+     xmlHttp.open("GET",url, true);
+    //设置回调函数
+    
+     xmlHttp.onreadystatechange = updatePage;//alert("3  "+intervalid);
+     xmlHttp.send(null);
+   }else{
+		//document.getElementById("flag").innerHTML = "XMLHTTP对象创建失败";
+   }
+  }catch (e){
+	 //  document.getElementById("flag").innerHTML = "查询错误:" + e;
+  }
+ }
+ 
+  //回调处理函数
+ function updatePage() {
+
+  try {
+   if (xmlHttp.readyState == 1){
+//    document.getElementById("flag").innerHTML = "正在加载连接对象......";
+   }
+   if (xmlHttp.readyState == 2){
+//    document.getElementById("flag").innerHTML = "连接对象加载完毕。";
+   }
+   if (xmlHttp.readyState == 3){
+ //   document.getElementById("flag").innerHTML = "数据获取中......";
+   }
+   if (xmlHttp.readyState == 4){
+    var response = xmlHttp.responseText;
+	 
+	 
+		
+    //酒店宾馆数量
+    var temp_num=getxmlbyname(response,"<snum>","</snum>");
+    MAX=parseInt(temp_num);
+  
+	  //取酒店宾馆名称 
+	  for(i=0;i<parseInt(temp_num);i++){
+	  	  var st_name="<aname"+i+">";
+	  	  var en_name="</aname"+i+">";
+	      var pro_na=getxmlbyname(response,st_name,en_name);
+	      aname_desc[i]=pro_na;
+	  }
+	  
+	  //取经度
+	  for(i=0;i<parseInt(temp_num);i++){
+	  	  var st_name="<longitude"+i+">";
+	  	  var en_name="</longitude"+i+">";
+	      var pro_na=getxmlbyname(response,st_name,en_name);
+	      lon_data[i]=pro_na;
+	  }
+	  //取纬度
+	  for(i=0;i<parseInt(temp_num);i++){
+	  	  var st_name="<latitude"+i+">";
+	  	  var en_name="</latitude"+i+">";
+	      var pro_na=getxmlbyname(response,st_name,en_name);
+	      lat_data[i]=pro_na;
+	  }
+	/*
+	  //取一维数组k的值
+	  for(i=0;i<parseInt(temp_num);i++){
+	  	  var st_name="<sum_child"+i+">";
+	  	  var en_name="</sum_child"+i+">";
+	      var pro_na=getxmlbyname(response,st_name,en_name);
+	      sum_child[i]=pro_na;
+	  }
+	  var p;
+	  //alert(temp_num);
+	  //取流量值，数据包个数
+		
+	  for(i=0;i<parseInt(temp_num);i++){
+	  	site_child[i]=new Array();
+	  	site_company[i]=new Array();
+	  	site_bname[i]=new Array();
+	  	site_lBytes[i]=new Array();
+	  	site_lUsers[i]=new Array();
+	  	for(p=0;p<=sum_child[i];p++){
+	  	  var st_name="<child_site"+i+p+">";
+	  	  var en_name="</child_site"+i+p+">";
+	  	  //var date_name="sdate_y"+parseInt(i-1); 	  
+	      var temp_flo=getxmlbyname(response,st_name,en_name);
+	      site_child[i][p]=temp_flo;
+	      
+	      var st_name1="<child_company"+i+p+">";
+	  	  var en_name1="</child_company"+i+p+">";	  
+	      var temp_flo1=getxmlbyname(response,st_name1,en_name1);
+	      site_company[i][p]=temp_flo1;
+	      
+	      var st_name2="<child_bname"+i+p+">";
+	  	  var en_name2="</child_bname"+i+p+">"; 
+	      var temp_flo2=getxmlbyname(response,st_name2,en_name2);
+	      site_bname[i][p]=temp_flo2;
+	      
+	      var st_name3="<child_lBytes"+i+p+">";
+	  	  var en_name3="</child_lBytes"+i+p+">";  
+	      var temp_flo3=getxmlbyname(response,st_name3,en_name3);
+	      site_lBytes[i][p]=temp_flo3;
+	      
+	      var st_name4="<child_lUsers"+i+p+">";
+	  	  var en_name4="</child_lUsers"+i+p+">";
+	      var temp_flo4=getxmlbyname(response,st_name4,en_name4);
+	      site_lUsers[i][p]=temp_flo4;
+	      //alert("i="+i+"p="+p+"va="+site_child[i][p]);
+	      //alert(sdate_y[i][p]);
+	    }
+	  }
+	  if(version >= 5.5 && version < 7){
+		   		show_loc_ie6();
+	  }else{
+	  	 		show_loc();
+	  }	
+	  */
+		 show_mark(MAX);
+   }
+  }catch (e){
+ 		// document.getElementById("flag").innerHTML = "回调处理错误:" + e;
+  }
+ }   
+
+
+   
+   
+</script>

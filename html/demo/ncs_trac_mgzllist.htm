@@ -1,0 +1,335 @@
+<html>
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<title>main</title>
+<script>
+var ll=1
+var yy=1
+</script>
+<SCRIPT language=javascript><!--
+var oldQuery="法轮功";
+var keywords=new Array();
+
+var keywords_string="法轮功";
+keywords=keywords_string.split('\t');
+
+
+
+
+function searchInResult(id){
+var form=document.searchForm[id];
+if(oldQuery!=form.query.value)
+form.query.value=oldQuery+' '+form.query.value;
+form.submit();
+return true;
+}
+function o2(u,t){{var i=new Image();i.src='http://lpdir.sohu.com/click.php?url='+u.href+'&t='+t;} return true;}
+
+//--></SCRIPT>
+
+<script>
+var dfd1="0"
+function gotoPage(pagenum)
+
+{
+    form1.CurPg.value = pagenum;
+}
+
+function lprint()
+{
+form1.cx.style.display="none";
+form1.rycx.style.display="none";
+form1.hsear.style.display="none";
+form1.pr.style.display="none";
+form1.exp.style.display="none";
+window.print();
+
+form1.cx.style.display="";
+form1.rycx.style.display="";
+form1.hsear.style.display="";
+form1.pr.style.display="";
+form1.exp.style.display="";
+}
+// function goto(t){
+// self.location.href=t
+// }
+
+
+
+
+
+function checkme(p)
+{
+	var tt=p.value
+	if (tt>yy)
+	{
+		MM_changeProp('browsdopage','','value',yy,'INPUT/TEXT')
+	}
+	if (tt==0)
+	{
+		MM_changeProp('browsdopage','','value','1','INPUT/TEXT')
+	}
+}
+
+
+
+
+
+
+<script src="/js/tablecssall.js"></script>
+<script src="/js/rmenu.js"></script>
+<style type="text/css">
+<!--
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+-->
+</style>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+<body marginheight=0 leftmargin=0 marginwidth=0 topMargin="0" BGCOLOR="Menu">
+<form name="form1" method="post" action="/pronline/Msg">
+  <table border="0" width=100% height=100% cellspacing="0" cellpadding="0" align=center bgcolor='#ffffff'>
+    <tr> 
+      <td valign="bottom" width="100%"  valign=middle align=center height="28" bgcolor="#eeeeee" class="ttt"> 
+        <table width="100%" border="0" cellspacing="0">
+
+          <tr > 
+           <td  > 
+					&nbsp;&nbsp;             
+               <input name="pr" type="button" class="an3"   value="打 印" onclick="lprint()">
+               <input name="exp" type="submit" class="an3"   value="导 出" >
+           
+              <input type="hidden" name="FunName" value="ncsWebNetLog">
+              <input type="hidden" name="CurPg"      value="[#CurPg#]">
+              <input type="hidden" name="TotPg"      value="[#TotPg#]">
+              <input type="hidden" name="lcount"      value="[#TotRec#]">
+              <input type="hidden" name="cond" value="[#cond#]">
+      
+            </td>
+            <td width="37%" height="23"> 
+              <table align=right border=0 cellpadding=0 cellspacing=0 class=main>
+              <tbody> 
+                <td width="10%"><script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-06.gif' border=0 height=17 width=35 class='gray1'>")}
+                      else{
+                        document.write("<a href='#'><img src='/images/zbuyer-06.gif' border=0 height=17 width=35 onClick='gotoPage(1);form1.submit()' class='hand'>")}
+                   </script></td>
+                <td width="10%"><script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 class='gray1'>")}
+                      else {
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]-1);form1.submit()' class='hand'>")}
+                   </script></td>
+                <td width="20%"><img src="/images/zbuyer-08.gif" border=0 height=17 width=32></td>
+                <td align=middle background="" width=92>
+                    <input class=Main id=browsdopage maxlength=68 name=browsdopage size=8 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 50px" value=1 onKeyPress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" onBlur="checkme(this)">
+                </td>
+                <td width="10%"><img src="/images/zbuyer-09.gif" border=0 height=17 width=16></td>
+                <td width="10%"><img align=middle border=0 height=17 src="/images/zbuyer-10.gif" width=17 onClick="gotoPage(form1.browsdopage.value);form1.submit()" class="hand"><img align=middle height=17 src="/images/zbuyer-11.gif" width=3></td>
+                
+                
+    <td width="10%"><img border=0 height=17 src="/images/zin1.gif" width=17 ></td>
+    <td align=middle background="" width=92> 
+      <input  class=Main id=browsdopage1 maxlength=5 name=browsdopage12 size=3 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 50px" value='1'>
+    </td>
+    <td width="10%"><img align=middle height=17 src="/images/zbuyer-09.gif" width=16></td>
+    <td align=middle background="" width=92> 
+      <input  class=Main id=browsdopage1 maxlength=8 name=browsdopage12 size=8 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 50px" value='8'>
+    </td>
+    <td width="10%"><img border=0 height=17 src="/images/zin3.gif" width=17 align="middle" ><img align=middle height=17  src="/images/zbuyer-11.gif" width=3></td>
+                
+                <td width="10%"><script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]+1);form1.submit()' class='hand'>")}
+                    </script></td>
+                <td width="10%"><script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 onClick='gotoPage([#TotPg#]);form1.submit()' class='hand'>")}
+                    </script></td>
+              </tbody> 
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+  </tr>
+  <tr>
+   <td width="100%"  valign=top align=center bgcolor="#ffffff"> 
+<TABLE cellSpacing=0 cellPadding=2 width="95%" border=0 valgin="top">
+  <TBODY>
+  <TR>
+    <TD vAlign=top align=right>
+      <TABLE cellSpacing=0 cellPadding=0 align=left border=0 valign="top">
+        <TBODY>
+        <TR>
+          <TD vAlign=top align=middle><A class=show_his id=sogou_image 
+            href="http://china.dayoo.com/gb/content/2006-04/25/content_2487800_4.htm" 
+            target=_blank></A></TD></TR></TBODY></TABLE></TD>
+    <TD vAlign=top><FONT size=-1><A class=pp onmousedown="return o2(this,1)" 
+      onclick="return oo(this,1);" 
+      href="http://china.dayoo.com/gb/content/2006-04/25/content_2487800_4.htm" 
+      target=_blank><FONT class=f><B>http://www.pronetway.com/flg001.htm</B></FONT></A> 
+      <FONT class=l>&nbsp;<NOBR>新网程网</NOBR>&nbsp;<NOBR>2006-04-25 
+      14:52</NOBR></FONT><BR><FONT class=f>...恶意煽动不满情绪,比如反人类、反社会、法轮功等等内容都要实时删除。 
+      同时我们也要考虑到青年人,因为他思想尚未发育成熟,对有害的信息缺乏辨别能力,所以我们也对那些有可能对青少年产生不良影响的内容进行屏蔽,比如席主任讲的有些网站利用擦边球吸引眼球...</FONT> 
+      &nbsp;&nbsp;&nbsp;&nbsp;</FONT></TD></TR></TBODY></TABLE><BR>
+<TABLE cellSpacing=0 cellPadding=2 width="95%" border=0 valgin="top">
+  <TBODY>
+  <TR>
+    <TD vAlign=top align=right>
+      <TABLE cellSpacing=0 cellPadding=0 align=left border=0 valign="top">
+        <TBODY>
+        <TR>
+          <TD vAlign=top align=middle><A class=show_his id=sogou_image 
+            href="http://china.dayoo.com/gb/content/2006-04/25/content_2487800.htm" 
+            target=_blank></A></TD></TR></TBODY></TABLE></TD>
+    <TD vAlign=top><FONT size=-1><A class=pp onmousedown="return o2(this,1)" 
+      onclick="return oo(this,1);" 
+      href="http://china.dayoo.com/gb/content/2006-04/25/content_2487800.htm" 
+      target=_blank><FONT class=f><B>http://www.pronetway.com/flg444.htm</B></FONT></A> 
+      <FONT class=l>&nbsp;<NOBR>新网程网</NOBR>&nbsp;<NOBR>2006-04-25 
+      14:52</NOBR></FONT><BR><FONT 
+      class=f>...法的网站2478个。这涉及了很多的方面,比如说有宣扬邪教“法轮功”、淫秽色情的,还有视频聊天室,还有侵权、赌博、诈骗,还有手机注册,屏蔽软件下载,这类举报已经有两千多个,为什么说接到了26万多条举报现在只处理2000多...</FONT> 
+      &nbsp;</FONT></TD></TR></TBODY></TABLE><BR>
+<TABLE cellSpacing=0 cellPadding=2 width="95%" border=0 valgin="top">
+  <TBODY>
+  <TR>
+    <TD vAlign=top align=right>
+      <TABLE cellSpacing=0 cellPadding=0 align=left border=0 valign="top">
+        <TBODY>
+        <TR>
+          <TD vAlign=top align=middle><A class=show_his id=sogou_image 
+            href="http://www.yangtse.com/pub/yzweb/dzbpd/gnxw/t20060425_71078.htm" 
+            target=_blank><IMG alt=查看新闻 
+            src="E:\mydown\javascript\搜狗新闻搜索：法轮功.files\image_not_available(5).gif" 
+            border=0></A></TD></TR></TBODY></TABLE></TD>
+    <TD vAlign=top><FONT size=-1><A class=pp onmousedown="return o2(this,1)" 
+      onclick="return oo(this,1);" 
+      href="http://www.yangtse.com/pub/yzweb/dzbpd/gnxw/t20060425_71078.htm" 
+      target=_blank><FONT class=f><B>http://www.pronetway.com/fl333.htm</B></FONT></A> <FONT 
+      class=l>&nbsp;<NOBR>上海新网程</NOBR>&nbsp;<NOBR>2006-04-25 
+      13:10</NOBR></FONT><BR><FONT 
+      class=f>秦皇岛市公安局海港区分局海滨路派出所3月7日晚7时30分在煤场小区一出租房屋内查获5名非法聚集的“法轮功”人员。令人震惊的是,除这五人外,办案人员又在出租屋内发现了一男一女两具尸体,经查,二人均为“法轮功”痴迷者...</FONT> 
+      &nbsp;</FONT></TD></TR></TBODY></TABLE><BR>
+<TABLE cellSpacing=0 cellPadding=2 width="95%" border=0 valgin="top">
+  <TBODY>
+  <TR>
+    <TD vAlign=top align=right>
+      <TABLE cellSpacing=0 cellPadding=0 align=left border=0 valign="top">
+        <TBODY>
+        <TR>
+          <TD vAlign=top align=middle><A class=show_his id=sogou_image 
+            href="http://www.tianshannet.com.cn/GB/channel3/17/200604/25/255879.html" 
+            target=_blank><IMG alt=查看新闻 
+            src="E:\mydown\javascript\搜狗新闻搜索：法轮功.files\image_not_available(6).gif" 
+            border=0></A></TD></TR></TBODY></TABLE></TD>
+    <TD vAlign=top><FONT size=-1><A class=pp onmousedown="return o2(this,1)" 
+      onclick="return oo(this,1);" 
+      href="http://www.tianshannet.com.cn/GB/channel3/17/200604/25/255879.html" 
+      target=_blank><FONT class=f><B>http://www.pronetway.com/fl4444.htm</B></FONT></A> <FONT 
+      class=l>&nbsp;<NOBR>新网程</NOBR>&nbsp;<NOBR>2006-04-25 
+      10:04</NOBR></FONT><BR><FONT 
+      class=f>...是一个彻头彻尾的反科学、反人类、反社会的反动政治组织。“法轮功”已成为一个为西方反华势力和“台独”分裂势力所豢养、以推翻中国共产党为目的、以邪教方式进行活动的反动政治组织,我们开展同“法轮功”邪教组织的斗争...</FONT> 
+      </FONT></TD></TR></TBODY></TABLE><BR>
+      <TABLE cellSpacing=0 cellPadding=2 width="95%" border=0 valgin="top">
+  <TBODY>
+  <TR>
+    <TD vAlign=top align=right>
+      <TABLE cellSpacing=0 cellPadding=0 align=left border=0 valign="top">
+        <TBODY>
+        <TR>
+          <TD vAlign=top align=middle><A class=show_his id=sogou_image 
+            href="http://china.dayoo.com/gb/content/2006-04/25/content_2487800_4.htm" 
+            target=_blank></A></TD></TR></TBODY></TABLE></TD>
+    <TD vAlign=top><FONT size=-1><A class=pp onmousedown="return o2(this,1)" 
+      onclick="return oo(this,1);" 
+      href="http://china.dayoo.com/gb/content/2006-04/25/content_2487800_4.htm" 
+      target=_blank><FONT class=f><B>http://www.pronetway.com/fl88666.htm</B></FONT></A> 
+      <FONT class=l>&nbsp;<NOBR>新网程网</NOBR>&nbsp;<NOBR>2006-04-25 
+      14:52</NOBR></FONT><BR><FONT class=f>...恶意煽动不满情绪,比如反人类、反社会、法轮功等等内容都要实时删除。 
+      同时我们也要考虑到青年人,因为他思想尚未发育成熟,对有害的信息缺乏辨别能力,所以我们也对那些有可能对青少年产生不良影响的内容进行屏蔽,比如席主任讲的有些网站利用擦边球吸引眼球...</FONT> 
+      &nbsp;&nbsp;&nbsp;&nbsp;</FONT></TD></TR></TBODY></TABLE><BR>
+<TABLE cellSpacing=0 cellPadding=2 width="95%" border=0 valgin="top">
+  <TBODY>
+  <TR>
+    <TD vAlign=top align=right>
+      <TABLE cellSpacing=0 cellPadding=0 align=left border=0 valign="top">
+        <TBODY>
+        <TR>
+          <TD vAlign=top align=middle><A class=show_his id=sogou_image 
+            href="http://china.dayoo.com/gb/content/2006-04/25/content_2487800.htm" 
+            target=_blank></A></TD></TR></TBODY></TABLE></TD>
+    <TD vAlign=top><FONT size=-1><A class=pp onmousedown="return o2(this,1)" 
+      onclick="return oo(this,1);" 
+      href="http://china.dayoo.com/gb/content/2006-04/25/content_2487800.htm" 
+      target=_blank><FONT class=f><B>http://www.pronetway.com/fl6434.htm</B></FONT></A> 
+      <FONT class=l>&nbsp;<NOBR>新网程网</NOBR>&nbsp;<NOBR>2006-04-25 
+      14:52</NOBR></FONT><BR><FONT 
+      class=f>...法的网站2478个。这涉及了很多的方面,比如说有宣扬邪教“法轮功”、淫秽色情的,还有视频聊天室,还有侵权、赌博、诈骗,还有手机注册,屏蔽软件下载,这类举报已经有两千多个,为什么说接到了26万多条举报现在只处理2000多...</FONT> 
+      &nbsp;</FONT></TD></TR></TBODY></TABLE><BR>
+<TABLE cellSpacing=0 cellPadding=2 width="95%" border=0 valgin="top">
+  <TBODY>
+  <TR>
+    <TD vAlign=top align=right>
+      <TABLE cellSpacing=0 cellPadding=0 align=left border=0 valign="top">
+        <TBODY>
+        <TR>
+          <TD vAlign=top align=middle><A class=show_his id=sogou_image 
+            href="http://www.yangtse.com/pub/yzweb/dzbpd/gnxw/t20060425_71078.htm" 
+            target=_blank></A></TD></TR></TBODY></TABLE></TD>
+    <TD vAlign=top><FONT size=-1><A class=pp onmousedown="return o2(this,1)" 
+      onclick="return oo(this,1);" 
+      href="http://www.yangtse.com/pub/yzweb/dzbpd/gnxw/t20060425_71078.htm" 
+      target=_blank><FONT class=f><B>http://www.pronetway.com/fl53543.com</B></FONT></A> <FONT 
+      class=l>&nbsp;<NOBR>扬子晚报</NOBR>&nbsp;<NOBR>2006-04-25 
+      13:10</NOBR></FONT><BR><FONT 
+      class=f>秦皇岛市公安局海港区分局海滨路派出所3月7日晚7时30分在煤场小区一出租房屋内查获5名非法聚集的“法轮功”人员。令人震惊的是,除这五人外,办案人员又在出租屋内发现了一男一女两具尸体,经查,二人均为“法轮功”痴迷者...</FONT> 
+      &nbsp;</FONT></TD></TR></TBODY></TABLE><BR>
+<TABLE cellSpacing=0 cellPadding=2 width="95%" border=0 valgin="top">
+  <TBODY>
+  <TR>
+    <TD vAlign=top align=right>
+      <TABLE cellSpacing=0 cellPadding=0 align=left border=0 valign="top">
+        <TBODY>
+        <TR>
+          <TD vAlign=top align=middle><A class=show_his id=sogou_image 
+            href="http://www.tianshannet.com.cn/GB/channel3/17/200604/25/255879.html" 
+            target=_blank></A></TD></TR></TBODY></TABLE></TD>
+    <TD vAlign=top><FONT size=-1><A class=pp onmousedown="return o2(this,1)" 
+      onclick="return oo(this,1);" 
+      href="http://www.tianshannet.com.cn/GB/channel3/17/200604/25/255879.html" 
+      target=_blank><FONT class=f><B>http://www.pronetway.com</B></FONT></A> <FONT 
+      class=l>&nbsp;<NOBR>新网程</NOBR>&nbsp;<NOBR>2006-04-25 
+      10:04</NOBR></FONT><BR><FONT 
+      class=f>...是一个彻头彻尾的反科学、反人类、反社会的反动政治组织。“法轮功”已成为一个为西方反华势力和“台独”分裂势力所豢养、以推翻中国共产党为目的、以邪教方式进行活动的反动政治组织,我们开展同“法轮功”邪教组织的斗争...</FONT> 
+      </FONT></TD></TR></TBODY></TABLE><BR>
+      
+      
+      </td>
+  </tr>
+</table>
+ </form>
+ <SCRIPT language=javascript src="/js/setcolor.js"></SCRIPT>
+<SCRIPT language=javascript><!--
+//we call the set red function here
+if(keywords!="") setAllColor('f',keywords,'#cc0033');
+if(keywords!="") setAllColor('a',keywords,'red');
+//--></SCRIPT>
+ 
+</body>
+
+</html>

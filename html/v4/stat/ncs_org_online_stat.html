@@ -1,0 +1,530 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" /> 
+<style type="text/css">
+    .icon-grid 
+    {
+        background-image:url(/newver/resources/themes/images/share/grid.png) !important;
+    }
+    .add 
+    {
+         background-image:url(/newver/resources/themes/images/share/add.gif) !important;
+    }
+    .option 
+    {
+            background-image:url(/newver/resources/themes/images/share/plugin.gif) !important;
+    }
+    .remove 
+    {
+        background-image:url(/newver/resources/themes/images/share/delete.gif) !important;
+    }
+    .exp 
+    {
+        background-image:url(/newver/resources/themes/images/share/application_go.png) !important;
+    }
+    .accept 
+    {
+        background-image:url(/newver/resources/themes/images/share/accept.png) !important;
+    }
+    .x-form-clear-trigger 
+    {
+            background-image: url(/newver/resources/themes/images/default/form/clear-trigger.gif);
+    }
+    .x-form-search-trigger 
+    {
+            background-image: url(/newver/resources/themes/images/default/form/search-trigger.gif);
+    }
+    .x-selectable, .x-selectable * 
+    {   
+            -moz-user-select: text!important;   
+        -khtml-user-select: text!important;   
+    }   
+</style>
+<script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+<script>  
+          
+    Ext.Loader.setConfig({enabled: true});
+    Ext.Loader.setPath('Ext.ux', '/newver/ux/');
+    Ext.require([
+            'Ext.form.*',
+            'Ext.window.*',
+            'Ext.grid.*',
+            'Ext.data.*',
+            'Ext.util.*',
+            'Ext.window.MessageBox',
+            'Ext.toolbar.Paging',
+            'Ext.ux.PreviewPlugin',
+    ]);
+    
+    var store;
+    var store1;
+    var adv = "0";//标记
+    function reflash()
+    {
+         var did = document.getElementById("form1").did.value;
+         var sdate = document.getElementById("form1").sdate.value;
+         var edate = document.getElementById("form1").edate.value;
+         var stime = document.getElementById("form1").stime.value;
+         var etime = document.getElementById("form1").etime.value;
+       
+         store.load({params: {did:did,sdate:sdate,edate:edate,stime:stime,etime:etime,page:store.currentPage}});  
+    }
+    
+    function _show_enduser(did, uid)
+    {
+          var aa=parent.document.getElementById('form1').time_flag.value;
+         var htmlvar='<iframe src="/pronline/Msg?FunName@ncsWebShowUserBh&did@'+did+'+uid@'+uid+'&time_flag@'+aa+';" scrolling="no" name="moduleIframe" frameborder="no" style="width:100%;height:100%;"></iframe>'; 
+          parent.parent.show_enduserinfo(htmlvar);
+          /*
+         var win = new Ext.Window ({
+                             id:"userwindow",
+                             title:"用户上网行为统计报告",
+                             x:0,
+                             y:0,
+                             width:670,
+                             height:700,
+                             bodyPadding: 0,
+                             modal:false,
+                             resizable:true,
+                             draggable:true,
+                             html:htmlvar
+                                               
+         }
+        )
+        win.show();
+        */
+    }
+    
+    function  show_enduser(value,p,record)
+    {
+        var oArr = record.data.dispname.split("_");
+        return Ext.String.format( '<a href="#xxm" onclick=_show_enduser("{0}","{1}")>{2}</a>',oArr[1], oArr[2], oArr[0]);
+    }
+        
+        function _show_corpinfo(did)
+        {
+            var htmlvar='<iframe src="/pronline/Msg?FunName@ncsWebDispClientAddForm_v4&plate@v4/nc_form_clientinfo.htm&userid@'+did+'" scrolling="no" name="moduleIframe" frameborder="no" style="width:100%;height:100%;"></iframe>';  
+  //          alert(htmlvar);            
+              var win = new Ext.Window ({
+                             id:"addwindow",
+                             title:"联网单位信息",
+                             x:0,
+                             y:0,
+                             width:670,
+                             height:600,
+                             bodyPadding: 0,
+                             modal:false,
+                             resizable:true,
+                             draggable:true,
+                              html:htmlvar})
+             win.show();
+        }
+        
+        function show_corpinfo(value, p, record)
+        {
+            var oArr = record.data.corpname.split("_");
+            return Ext.String.format( '<a href="#xxm" onclick=_show_corpinfo("{0}")>{1}</a>',oArr[1],oArr[0]);
+        }
+        
+        var fp2;
+ 
+
+    
+    Ext.onReady(function()
+    {
+        Ext.define("Corp", 
+            {
+                extend: 'Ext.data.Model',
+                proxy: 
+                {
+                    type: 'ajax',
+                    url: '/pronline/Msg?FunName@ncsSearchCorp_v4',
+                    reader: new Ext.data.JsonReader(
+                    {
+                            type:'json',
+                            root: 'eimdata1',
+                            totalProperty: 'totalCount'
+                     }),        
+                     simpleSortMode: true
+                },
+                fields: [
+                        {name: 'username', mapping: 'username'},
+                        {name: 'dispname', mapping: 'dispname'}
+                ]
+            });
+        store1 = Ext.create('Ext.data.Store', {
+                pageSize: 10000,
+                model: 'Corp'
+            });
+    
+        Ext.define('EimData', 
+            {
+                extend: 'Ext.data.Model',
+                fields: 
+                [
+                    'PosCode','District','Posname','Address','RepresentPerson','Phone','IspCode','OnlineStatus','OfflinePeriod','UserDataOnlineStatus','UserDataOfflinePeriod','OnOffCount','AnonymousOver72H','HaveVidIn72H','Note'
+                ]
+            });
+        store = Ext.create('Ext.data.Store', 
+            {
+                pageSize: 37,
+                model: 'EimData',
+                remoteSort: true,
+                proxy: 
+                {
+                    type: 'ajax',
+                    url: '/pronline/Msg?FunName@ncs_org_on_line_log',
+                    reader: {
+                        type:'json',
+                        root: 'eimdata',
+                        totalProperty: 'totalCount'
+                    },         
+                    simpleSortMode: true
+                },
+                sorters: 
+                [{
+                        property: 'stime',
+                        direction: 'DESC'
+                }]
+            });
+        
+        var handleAction = function(action)
+            {
+                if(action=='cx')
+                {
+                }
+            };
+        
+        var myDate = new Date();
+        var yy = ( myDate.getYear() < 1900 ) ? ( 1900 + myDate.getYear() ) : myDate.getYear();
+        var mm=myDate.getMonth()+1;
+        if(mm<10)
+        {
+            mm='0'+mm;
+        }
+        var dd=myDate.getDate();
+        if(dd<10)
+        {
+            dd='0'+dd;
+        }
+        var today=yy+'/'+mm+'/'+dd;
+        var startday=yy+'/'+mm+'/'+'01';
+     
+        //对翻页工具条重新构建，替换翻页函数    
+        Ext.PagingToolbar1 = Ext.extend(Ext.PagingToolbar, 
+            {
+                doRefresh:function()
+                {
+                     reflash();
+                },
+                onPagingKeyDown:function(i, h)
+                {
+                     var d = this, b = h.getKey(), c=d.getPageData(), a = h.shiftKey ? 10 : 1, g;
+                     if(b == h.RETURN)
+                     {
+                         h.stopEvent();
+                         g = d.readPageFromInput(c);
+                        if(false !== g)
+                        {
+                            g = Math.min(Math.max(1, g), c.pageCount);
+                            if(false !== d.fireEvent("beforechange", d, g))
+                            {
+                                d.store.currentPage = g;
+                                reflash();
+                            }        
+                        }
+                    }
+                    else
+                    {
+                        if(b == h.HOME|| b == h.END)
+                        {
+                            h.stopEvent();
+                            g = (b == h.HOME) ? 1 : c.pageCount;
+                            i.setValue(g);
+                        }
+                        else
+                        {
+                            if(b == h.UP || b == h.PAGEUP || b == h.DOWN || b == h.PAGEDOWN)
+                            {
+                                h.stopEvent();
+                                g = d.readPageFromInput(c);
+                                if(g)
+                                {
+                                      if(b == h.DOWN || b == h.PAGEDOWN)
+                                      {
+                                          a *= -1;
+                                      }
+                                      g += a;
+                                      if(g >= 1 && g <= c.pages)
+                                      {
+                                          i.setValue(g);
+                                      }
+                                  }
+                             }
+                        }// if(b == h.HOME|| b == h.END)
+                    }// if(b == h.RETURN)
+                },// onPagingKeyDown:function(i, h)
+                moveLast:function()
+                {
+                    var b = this;
+                    var a = b.getPageData().pageCount;
+                    if(false !== b.fireEvent("beforechange", b, a))
+                    {
+                        store.currentPage = a;
+                        reflash();
+                    }
+                },
+                moveFirst:function()
+                {
+                    if(false !== this.fireEvent("beforechange",this,1))
+                    {
+                        store.currentPage = 1;
+                        reflash();
+                    }
+                }, 
+                movePrevious:function()
+                {
+                    var b = this;
+                    var a = b.store.currentPage - 1;
+                    if(0 < a)
+                    {
+                        if(false !== b.fireEvent("beforechange", b, a))
+                        {
+                            store.currentPage = a;
+                            reflash();
+                        }
+                    }
+                },
+                moveNext:function()
+                {
+                    var c = this;
+                    var b = c.getPageData().pageCount;
+                    var a = c.store.currentPage + 1;
+                    if( a <= b)
+                    {
+                        if(false !== c.fireEvent("beforechange", c, a))
+                        {
+                            store.currentPage = a;
+                            reflash();
+                        }
+                    }
+                }
+            });// Ext.PagingToolbar1 = Ext.extend(Ext.PagingToolbar, 
+
+        var width1=screen.width;
+        var height1 = screen.height;
+        var grid = Ext.create('Ext.grid.Panel', 
+            {
+            id:'gridlist',
+            height: 980,
+            store: store,
+            frame:true,
+            columns:[
+                {
+                    text: "场所编码",
+                    dataIndex: 'PosCode',
+                    width: 100,
+                    sortable: false
+                },
+                {
+                    text: "地区",
+                    dataIndex: 'District',
+                    width: 60,
+                    sortable: false
+                },
+                {
+                    text: "场所名称",
+                    dataIndex: 'Posname',
+                    width: 100,
+                    sortable: false
+                },
+                {
+                    text: "地址",
+                    dataIndex: 'Address',
+                    width: 100,
+                    sortable: false
+                },
+                {
+                    text: "法人",
+                    dataIndex: 'RepresentPerson',
+                    width: 60,
+                    sortable: false
+                },
+                {
+                    text: "联系电话",
+                    dataIndex: 'Phone',
+                    width: 100,
+                    sortable: false
+                },
+                {
+                    text: "厂商",
+                    dataIndex: 'IspCode',
+                    width: 50,
+                    sortable: false
+                },
+                {
+                    text: "在离线状态",
+                    dataIndex: 'OnlineStatus',
+                    width: 50,
+                    sortable: false
+                },
+                {
+                    text: "离线时长（小时）",
+                    dataIndex: 'OfflinePeriod',
+                    width: 100,
+                    sortable: false
+                },
+                {
+                    text: "数据在离线状态",
+                    dataIndex: 'UserDataOnlineStatus',
+                    width: 50,
+                    sortable: false
+                },
+                {
+                    text: "数据离线时长（小时）",
+                    dataIndex: 'UserDataOfflinePeriod',
+                    width: 100,
+                    sortable: false
+                },
+                {
+                    text: "上下网记录",
+                    dataIndex: 'OnOffCount',
+                    width: 70,
+                    sortable: false
+                },
+                {
+                    text: "实名记录",
+                    dataIndex: 'AnonymousOver72H',
+                    width: 100,
+                    sortable: false
+                },
+                {
+                    text: "虚拟身份记录",
+                    dataIndex: 'HaveVidIn72H',
+                    width: 100,
+                    sortable: false
+                },
+                {
+                    text: "备注",
+                    dataIndex: 'Note', 
+                    width: 100,
+                    flex: 1,
+                    sortable: false
+  //                renderer: show_enduser
+                }
+            ],// columns:[
+            columnLines: true,
+            tbar: Ext.create('Ext.PagingToolbar1', 
+                {
+                store: store,
+                displayInfo: true,
+                displayMsg: '显示{0} - {1}条记录 共{2}条记录',
+                emptyMsg: "没有记录可显示",
+                                       
+                items: [
+                        '-',
+                    {                        
+                        fieldLabel:'起始时间',
+                        xtype: 'datefield',
+                        format: "Y/m/d",
+                        labelWidth: 65,
+                        width:170,
+                        value:startday,
+                        name:'sdate',
+                        id:'sdate'
+                    },
+                    {
+                        fieldLabel:'',
+                        width:60,
+                        xtype: 'textfield',
+                        value:'00:00:00',
+                        name:'stime',
+                        regex :/^[0-2][0-9]:[0-6][0-9]:[0-6][0-9]$/,
+                        regexText: "格式：xx:xx:xx",
+                        allowBlank  : false,
+                        id:'stime'
+                    },
+                    {
+                        fieldLabel:'结束时间',
+                        labelWidth: 65,
+                        width:170,
+                        xtype: 'datefield',
+                        id:'edate',
+                        format: "Y/m/d",
+                        value:today,
+                        name:'edate'
+                    },
+                    {
+                        fieldLabel:'',
+                        width:60,
+                        xtype: 'textfield',
+                        value:'23:59:59',
+                        name:'etime',
+                        regex :/^[0-2][0-9]:[0-6][0-9]:[0-6][0-9]$/,
+                        regexText: "格式：xx:xx:xx",
+                        allowBlank  : false,
+                        id:'etime'
+                    },
+                    {
+                        text:'统计',
+                        iconCls:'accept',
+                        handler: function()
+                        {     
+                             //Ext.MessageBox.alert("ExtJS", "Hello ExtJS");
+                             var sdate = Ext.getCmp('sdate').value; 
+                             document.getElementById("form1").sdate.value = sdate ?  Ext.Date.format(sdate, 'Y/m/d') : '';
+                             var stime = Ext.getCmp('stime').value; 
+                             document.getElementById("form1").stime.value = stime ? stime : '';
+                             var edate = Ext.getCmp('edate').value;
+                             document.getElementById("form1").edate.value = edate ?  Ext.Date.format(edate, 'Y/m/d') : '';
+                             var etime = Ext.getCmp('etime').value; 
+                             document.getElementById("form1").etime.value = etime ? etime : '';
+    
+                             store.currentPage = 1;
+                             adv = "0";
+                             reflash();
+                        }// handler: function()
+                    }, // text:'统计',
+                    '-',
+                    {
+                        text:'导出',
+                        iconCls:'exp',
+                        handler:function(){
+                        var sdate = Ext.getCmp('sdate').value; 
+                        document.getElementById("form1").sdate.value = sdate ?  Ext.Date.format(sdate, 'Y/m/d') : '';
+                        var stime = Ext.getCmp('stime').value; 
+                        document.getElementById("form1").stime.value = stime ? stime : '';
+                        var edate = Ext.getCmp('edate').value;
+                        document.getElementById("form1").edate.value = edate ?  Ext.Date.format(edate, 'Y/m/d') : '';
+                        var etime = Ext.getCmp('etime').value; 
+                        document.getElementById("form1").etime.value = etime ? etime : '';
+
+        
+                        document.getElementById('form1').exp.value='exp';
+                        document.getElementById("form1").submit();
+                        document.getElementById("form1").exp.value="";
+                    }
+                }]// items: [
+            }),// tbar: Ext.create('Ext.PagingToolbar1', 
+
+            renderTo: 'grid-corp'
+        }); //var grid = Ext.create('Ext.grid.Panel', 
+        reflash();
+    });// Ext.onReady(function()
+
+</script>
+</head>
+<body >
+    <form name="form1" id="form1" action="/pronline/Msg">
+    <input type="hidden" name="FunName" value="ncs_org_on_line_log">
+        <input type="hidden" name="sdate" value="">
+        <input type="hidden" name="edate" value="">
+        <input type="hidden" name="stime" value="">
+        <input type="hidden" name="etime" value="">
+        <input type="hidden" name="did" value="">
+        <input type="hidden" name="exp" value="">
+    </form>
+        <div id="grid-corp"></div>
+</body>
+</html>

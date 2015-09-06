@@ -1,0 +1,100 @@
+<html>
+<head>
+<link rel="stylesheet" href="ftstyle.css">
+<!-- Infrastructure code for the tree -->
+<script language = "Javascript" src = "/js/adduser/ft.js"></script>
+<script language = "Javascript" src = "/js/adduser/ftoptions.js"></script>
+<script language="JavaScript">
+<!--
+//addImage("domain","/images/adduser/domain.gif")
+fT = gFld("外部网访问情况排行榜", "")
+	aux1 = insFld(fT, gFld("网络流量排行榜", "/pronline/Msg?FunName@ncWebSortUserByFlow&group@W&order@F"))
+	    insDoc(aux1, gLnk("一周", "/pronline/Msg?FunName@ncWebSortUserByFlow&group@W&order@F"))
+	    insDoc(aux1, gLnk("一天", "/pronline/Msg?FunName@ncWebSortUserByFlow&group@D&order@F"))
+	    insDoc(aux1, gLnk("一月", "/pronline/Msg?FunName@ncWebSortUserByFlow&group@M&order@F"))
+	aux1 = insFld(fT, gFld("上网时间排行榜", "/pronline/Msg?FunName@ncWebSortUserByFlow&group@W&order@T"))
+	    insDoc(aux1, gLnk("一周", "/pronline/Msg?FunName@ncWebSortUserByFlow&group@W&order@T"))
+	    insDoc(aux1, gLnk("一天", "/pronline/Msg?FunName@ncWebSortUserByFlow&group@D&order@T"))
+	    insDoc(aux1, gLnk("一月", "/pronline/Msg?FunName@ncWebSortUserByFlow&group@M&order@T"))
+	aux1 = insFld(fT, gFld("网站访问次数排行榜", "/pronline/Msg?FunName@ncWebSortWeb&group@W&order@C"))
+	    insDoc(aux1, gLnk("一周", "/pronline/Msg?FunName@ncWebSortWeb&group@W&order@C"))
+	    insDoc(aux1, gLnk("一天", "/pronline/Msg?FunName@ncWebSortWeb&group@D&order@C"))
+	    insDoc(aux1, gLnk("一月", "/pronline/Msg?FunName@ncWebSortWeb&group@M&order@C"))
+	aux1 = insFld(fT, gFld("网站访问时间排行榜", "/pronline/Msg?FunName@ncWebSortWeb&group@W&order@T"))
+	    insDoc(aux1, gLnk("一周", "/pronline/Msg?FunName@ncWebSortWeb&group@W&order@T"))
+	    insDoc(aux1, gLnk("一天", "/pronline/Msg?FunName@ncWebSortWeb&group@D&order@T"))
+	    insDoc(aux1, gLnk("一月", "/pronline/Msg?FunName@ncWebSortWeb&group@M&order@T"))
+	aux1 = insFld(fT, gFld("网站访问流量排行榜", "/pronline/Msg?FunName@ncWebSortWeb&group@W&order@F"))
+	    insDoc(aux1, gLnk("一周", "/pronline/Msg?FunName@ncWebSortWeb&group@W&order@F"))
+	    insDoc(aux1, gLnk("一天", "/pronline/Msg?FunName@ncWebSortWeb&group@D&order@F"))
+	    insDoc(aux1, gLnk("一月", "/pronline/Msg?FunName@ncWebSortWeb&group@M&order@F"))
+	aux1 = insFld(fT, gFld("目标IP连接时间排行榜", "/pronline/Msg?FunName@ncWebSortIp&group@W&order@T"))
+	    insDoc(aux1, gLnk("一周", "/pronline/Msg?FunName@ncWebSortIp&group@W&order@T"))
+	    insDoc(aux1, gLnk("一天", "/pronline/Msg?FunName@ncWebSortIp&group@D&order@T"))
+	    insDoc(aux1, gLnk("一月", "/pronline/Msg?FunName@ncWebSortIp&group@M&order@T"))
+	aux1 = insFld(fT, gFld("目标IP网洛流量排行榜", "/pronline/Msg?FunName@ncWebSortIp&group@W&order@F"))
+	    insDoc(aux1, gLnk("一周", "/pronline/Msg?FunName@ncWebSortIp&group@W&order@F"))
+	    insDoc(aux1, gLnk("一天", "/pronline/Msg?FunName@ncWebSortIp&group@D&order@F"))
+	    insDoc(aux1, gLnk("一月", "/pronline/Msg?FunName@ncWebSortIp&group@M&order@F"))
+	aux1 = insFld(fT, gFld("Internet服务使用时间排行榜", "/pronline/Msg?FunName@ncWebSortService&group@W&order@T&service@4"))
+	    aux2 = insFld(aux1, gFld("邮件发送时间排行榜", "/pronline/Msg?FunName@ncWebSortService&group@W&order@T&service@4"))
+  	        insDoc(aux2, gLnk("一周", "/pronline/Msg?FunName@ncWebSortService&group@W&order@T&service@4"))
+	        insDoc(aux2, gLnk("一天", "/pronline/Msg?FunName@ncWebSortService&group@D&order@T&service@4"))
+	        insDoc(aux2, gLnk("一月", "/pronline/Msg?FunName@ncWebSortService&group@M&order@T&service@4"))
+	    aux2 = insFld(aux1, gFld("邮件接收时间排行榜", "/pronline/Msg?FunName@ncWebSortService&group@W&order@T&service@5"))
+  	        insDoc(aux2, gLnk("一周", "/pronline/Msg?FunName@ncWebSortService&group@W&order@T&service@5"))
+	        insDoc(aux2, gLnk("一天", "/pronline/Msg?FunName@ncWebSortService&group@D&order@T&service@5"))
+	        insDoc(aux2, gLnk("一月", "/pronline/Msg?FunName@ncWebSortService&group@M&order@T&service@5"))
+	    aux2 = insFld(aux1, gFld("网站访问时间排行榜", "/pronline/Msg?FunName@ncWebSortService&group@W&order@T&service@3"))
+  	        insDoc(aux2, gLnk("一周", "/pronline/Msg?FunName@ncWebSortService&group@W&order@T&service@3"))
+	        insDoc(aux2, gLnk("一天", "/pronline/Msg?FunName@ncWebSortService&group@D&order@T&service@3"))
+	        insDoc(aux2, gLnk("一月", "/pronline/Msg?FunName@ncWebSortService&group@M&order@T&service@3"))
+	    aux2 = insFld(aux1, gFld("ICQ使用时间排行榜", "/pronline/Msg?FunName@ncWebSortService&group@W&order@T&service@6"))
+  	        insDoc(aux2, gLnk("一周", "/pronline/Msg?FunName@ncWebSortService&group@W&order@T&service@6"))
+	        insDoc(aux2, gLnk("一天", "/pronline/Msg?FunName@ncWebSortService&group@D&order@T&service@6"))
+	        insDoc(aux2, gLnk("一月", "/pronline/Msg?FunName@ncWebSortService&group@M&order@T&service@6"))
+	    aux2 = insFld(aux1, gFld("FTP使用时间排行榜", "/pronline/Msg?FunName@ncWebSortService&group@W&order@T&service@2"))
+  	        insDoc(aux2, gLnk("一周", "/pronline/Msg?FunName@ncWebSortService&group@W&order@T&service@2"))
+	        insDoc(aux2, gLnk("一天", "/pronline/Msg?FunName@ncWebSortService&group@D&order@T&service@2"))
+	        insDoc(aux2, gLnk("一月", "/pronline/Msg?FunName@ncWebSortService&group@M&order@T&service@2"))
+	    aux2 = insFld(aux1, gFld("TELNET使用时间排行榜", "/pronline/Msg?FunName@ncWebSortService&group@W&order@T&service@1"))
+  	        insDoc(aux2, gLnk("一周", "/pronline/Msg?FunName@ncWebSortService&group@W&order@T&service@1"))
+	        insDoc(aux2, gLnk("一天", "/pronline/Msg?FunName@ncWebSortService&group@D&order@T&service@1"))
+	        insDoc(aux2, gLnk("一月", "/pronline/Msg?FunName@ncWebSortService&group@M&order@T&service@1"))
+	aux1 = insFld(fT, gFld("Internet服务使用流量排行榜", "/pronline/Msg?FunName@ncWebSortService&group@W&order@F&service@4"))
+	    aux2 = insFld(aux1, gFld("邮件发送流量排行榜", "/pronline/Msg?FunName@ncWebSortService&group@W&order@F&service@4"))
+  	        insDoc(aux2, gLnk("一周", "/pronline/Msg?FunName@ncWebSortService&group@W&order@F&service@4"))
+	        insDoc(aux2, gLnk("一天", "/pronline/Msg?FunName@ncWebSortService&group@D&order@F&service@4"))
+	        insDoc(aux2, gLnk("一月", "/pronline/Msg?FunName@ncWebSortService&group@M&order@F&service@4"))
+	    aux2 = insFld(aux1, gFld("邮件接收流量排行榜", "/pronline/Msg?FunName@ncWebSortService&group@W&order@F&service@5"))
+  	        insDoc(aux2, gLnk("一周", "/pronline/Msg?FunName@ncWebSortService&group@W&order@F&service@5"))
+	        insDoc(aux2, gLnk("一天", "/pronline/Msg?FunName@ncWebSortService&group@D&order@F&service@5"))
+	        insDoc(aux2, gLnk("一月", "/pronline/Msg?FunName@ncWebSortService&group@M&order@F&service@5"))
+	    aux2 = insFld(aux1, gFld("网站访问流量排行榜", "/pronline/Msg?FunName@ncWebSortService&group@W&order@F&service@3"))
+  	        insDoc(aux2, gLnk("一周", "/pronline/Msg?FunName@ncWebSortService&group@W&order@F&service@3"))
+	        insDoc(aux2, gLnk("一天", "/pronline/Msg?FunName@ncWebSortService&group@D&order@F&service@3"))
+	        insDoc(aux2, gLnk("一月", "/pronline/Msg?FunName@ncWebSortService&group@M&order@F&service@3"))
+	    aux2 = insFld(aux1, gFld("ICQ使用流量排行榜", "/pronline/Msg?FunName@ncWebSortService&group@W&order@F&service@6"))
+  	        insDoc(aux2, gLnk("一周", "/pronline/Msg?FunName@ncWebSortService&group@W&order@F&service@6"))
+	        insDoc(aux2, gLnk("一天", "/pronline/Msg?FunName@ncWebSortService&group@D&order@F&service@6"))
+	        insDoc(aux2, gLnk("一月", "/pronline/Msg?FunName@ncWebSortService&group@M&order@F&service@6"))
+	    aux2 = insFld(aux1, gFld("FTP使用流量排行榜", "/pronline/Msg?FunName@ncWebSortService&group@W&order@F&service@2"))
+  	        insDoc(aux2, gLnk("一周", "/pronline/Msg?FunName@ncWebSortService&group@W&order@F&service@2"))
+	        insDoc(aux2, gLnk("一天", "/pronline/Msg?FunName@ncWebSortService&group@D&order@F&service@2"))
+	        insDoc(aux2, gLnk("一月", "/pronline/Msg?FunName@ncWebSortService&group@M&order@F&service@2"))
+	    aux2 = insFld(aux1, gFld("TELNET使用流量排行榜", "/pronline/Msg?FunName@ncWebSortService&group@W&order@F&service@1"))
+  	        insDoc(aux2, gLnk("一周", "/pronline/Msg?FunName@ncWebSortService&group@W&order@F&service@1"))
+	        insDoc(aux2, gLnk("一天", "/pronline/Msg?FunName@ncWebSortService&group@D&order@F&service@1"))
+	        insDoc(aux2, gLnk("一月", "/pronline/Msg?FunName@ncWebSortService&group@M&order@F&service@1"))
+//-->
+</script>
+
+</head>
+  
+<FRAMESET COLS="280,*"  onLoad="self.blank()" rows="*"> 
+  <FRAME name="menufrm" SRC = "/adduser/left.htm" scrolling="AUTO" >
+  <FRAME name="basefrm" SRC="/pronline/Msg?FunName@ncWebSortUserByFlow&group@D&order@F">
+</FRAMESET> 
+<noframes></noframes> 
+
+	

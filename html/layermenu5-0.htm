@@ -1,0 +1,81 @@
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link REL=stylesheet HREF="/css/runmit.css" TYPE='text/css'>
+</head>
+<script>
+function mouseovertr2 (o){
+var i;
+df=o.style.backgroundColor
+	o.style.backgroundColor= "#4189DD";
+	o.style.borderColor= "#cccccc";
+	o.style.cursor="hand";	
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#ffffff";
+}	
+parent.parent.clearTimeout(parent.parent.popTimer);
+}
+
+function mouseouttr2(o){
+	o.style.backgroundColor=df
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#000000";
+}
+parent.parent.popOut()		
+	
+}
+function menu_frame_onmouseover()
+{
+	parent.clearTimeout(parent.popTimer);
+	document.body.className='highlight_container'}
+function menu_frame_onmouseout()
+{
+	document.body.className="menu_container";
+	parent.popOut()}
+
+function goto(t){
+  parent.sbpm_right.location.href=t
+}
+
+function goto2(t){
+  parent.sbpm_left.location.href=t
+}
+function dono() {
+}
+</script>
+<body topMargin=0 leftmargin=0 marginheight="0" class=menu_space style='cursor:default;border:0' fixed oncontextmenu="return false">
+<table class=3dtable_notop1 border=0 width=100% cellspacing=0 cellpadding=0 style='padding:2px'>
+<!--   -->
+  <tr onmouseover="mouseovertr2(this)" onmouseout="mouseouttr2(this)"
+     onClick="goto('/pronline/Msg?FunName@ncsWebReplace&plate@ncs/main_Gdrz_Mon.htm');goto2('/pronline/Msg?FunName@ncsWebReplace&plate@tree/tree_menu_gdrz.htm');parent.go_show()">
+    <td height="22"><font color="#00267F">&nbsp;<img src="/images/blank.gif" width="21" height="21" align="absmiddle">本地归档日志</font></td>
+  </tr>
+  <tr onmouseover="mouseovertr2(this)" onmouseout="mouseouttr2(this)"
+     onClick="goto('/pronline/Msg?FunName@ncWebBBSLog');goto2('/no.htm');parent.go_hide()">
+    <td height="22"><font color="#00267F">&nbsp;<img src="/images/blank.gif" width="21" height="21" align="absmiddle">BBS表单查询</font></td>
+  </tr>
+<!--     -->
+  <tr onmouseover="mouseovertr2(this)" onmouseout="mouseouttr2(this)"
+     onClick="goto('main_UserVistTrac.htm');goto2('/pronline/Msg?FunName@ncsWebReplace&plate@/ncs/ncs_tree_classcorp_tracmenu.htm&fname@');parent.go_show()">
+    <td height="22"><font color="#00267F">&nbsp;<img src="/images/blank.gif" width="21" height="21" align="absmiddle">远程日志查询</font></td>
+  </tr>
+<!--     -->
+  <tr onmouseover="mouseovertr2(this)" onmouseout="mouseouttr2(this)"
+     onClick="goto('/pronline/Msg?FunName@ncsWebLoginLog');parent.go_hide()">
+    <td height="22"><font color="#00267F">&nbsp;<img src="/images/blank.gif" width="21" height="21" align="absmiddle">单位登陆日志</font></td>
+  </tr>
+<!--      -->
+  <tr id="4"> 
+    <td height="2"><img src="/images/hr.gif" width="100%" height="2"></td>
+  </tr>
+<!--  -->
+</table>
+</body>
+</html>

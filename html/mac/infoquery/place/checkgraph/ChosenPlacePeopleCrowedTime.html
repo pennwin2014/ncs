@@ -1,0 +1,177 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+
+<!-- <script type="text/javascript" src="http://cdn.hcharts.cn/jquery/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
+
+
+<!-- <script type="text/javascript" src="http://cdn.hcharts.cn/highcharts/exporting.js"></script> -->
+
+
+
+<script type="text/javascript" src="/newver/jquery/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="/newver/chart/highcharts.js"></script>
+
+  
+<!-- 导入Extjs框架 -->
+<link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css">
+<script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+
+  
+<script type="text/javascript"> 
+
+//获取时间下拉框输入时间
+var time_value = parent.Ext.getCmp('time_flag').value;	 
+
+//获取 parent 对象中输入框的内容(mac地址)
+var service_name = parent.Ext.getCmp('keyword_mobileaccount').value;	 
+
+var chart;
+var g_chart = [];
+
+/* 函数：绘制图表 */	
+function drawchart(){
+		chart = new Highcharts.Chart({	
+		chart: {									
+			type: 'pie',						//指定图表类型，默认是拆线图(line)
+			renderTo: 'container' 
+		},
+		credits: {
+			enabled: false
+		},
+    title: {
+    	text: '指定场所 ' + service_name + ' 的人流密集时段',
+      x: -20 //center
+    },        
+		subtitle: {
+    	x: -20
+    }, 
+		exporting:{
+      enabled:false
+    },
+    xAxis: {
+			type: 'category',
+			labels: {
+				x: 15,
+				y: 40,
+     		rotation: -25,
+      	style: {
+        	fontSize: '12px',
+          fontFamily: 'Verdana, sans-serif'					
+        }
+      }           			
+    },
+    yAxis: {
+			tickInterval:200,
+			//max:10000,
+			min:0,
+      title: {
+      	text: '出现次数'
+      },
+      plotLines: [{
+      	value: 0,
+        width: 1,
+        color: '#808080'
+      }]
+   	},				
+    tooltip: { 
+			//这种模式下，每点的tooltip单独显示 
+			shared: false, 
+			formatter: function() { 
+				var s = '<b>'+ this.point.name +'</b>'+'<br/> '+this.point.y +'次<br/>'; 
+				return s; 
+			} 
+		}, 
+		plotOptions: {
+    	column: {
+      	dataLabels:{
+					enabled:true //是否显示数据标签
+				}
+    	}
+    },
+		legend: {
+    	enabled: false
+    }, 
+		series: [{
+			allowPointSelect: true,
+      //name: '出现次数',
+			data: []				   
+    }]		
+	});	
+	//setInterval("GetDrawData()", 5000);
+}   
+
+
+/* 函数：获取后台数据  */
+function GetDrawData(){
+	
+	parent.parent.showWaitDialog();
+	
+	Ext.Ajax.request({					
+			
+		url: '/pronline/Msg?FunName@ncsPlace_Chosenplace_PeopleCrowedTime&timevalue@' + time_value + '&servicename@' + service_name, 
+		method: 'GET',		
+		success: function(resp, opts){
+			parent.parent.closeWaitDialog();	
+			
+			var respText = resp.responseText; 			//获取整个 JSON 数据的字符串
+			var respRecord = eval("("+respText+")");	//字符串转成结构体
+			
+			var macHour;
+			var macCount;
+			var maxCount;
+			if(parseInt(respRecord.result) > 0)
+			{
+				/*maxCount = parseInt(respRecord.max);
+				if(maxCount > 200)
+					chart.axes[1].max = maxCount;
+				*/	
+				
+				//指定场所下终端TOP出现次数
+				for(var i in respRecord.data){					
+					macHour = respRecord.data[i].hour;
+					macCount = parseInt(respRecord.data[i].count);					
+					g_chart.push({y:macCount, name: macHour + "点 出现" + macCount + "次"});					
+				}				
+			}
+			else
+			{
+				g_chart.push({name: "当前查询没有数据"});
+			}
+			
+			chart.series[0].setData(g_chart);			
+		},
+		failure: function(resp, opts){
+			parent.parent.closeWaitDialog();	
+			
+			var resqText = eval("(" + resqText + ")");
+			alert('错误', resqText.error);
+		} 
+	});		
+}
+
+      
+Ext.onReady(function(){
+	
+	drawchart();
+	GetDrawData();
+	
+});	  
+	  
+</script>
+  
+</head>
+<body>
+
+  <!-- <div id="myform"></div> -->
+  <div id="container" style = "width:700px; height:450px" ></div>
+  
+<!-- <script src="/mac/infoquery/place/checkgraph/js/highcharts.js"></script>
+<script src="/mac/infoquery/place/checkgraph/js/highcharts-more.js"></script>
+<script src="/mac/infoquery/place/checkgraph/js/modules/exporting.js"></script> -->
+
+</body>
+</html>
