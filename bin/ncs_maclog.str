@@ -1,0 +1,106 @@
+<table ncsuser>
+1;userid;int(11);NO;PRI;NULL;;
+1;username;char(14);NO;UNI;NULL;;
+1;password;char(32);YES;;;;
+1;groupid;int(11);YES;MUL;0;;
+1;dispname;char(255);NO;;NULL;;
+1;address;char(255);NO;;NULL;;
+1;telphone;char(64);YES;;;;
+1;contact;char(32);YES;;;;
+1;handphone;char(32);YES;;;;
+1;email;char(128);YES;;;;
+1;ceoname;char(32);YES;;;;
+1;postcode;char(6);YES;;;;
+1;servicestate;char(1);YES;;9;;
+1;joincode;char(6);YES;;;;
+1;endnum;char(6);YES;;0;;
+1;servernum;char(2);YES;;0;;
+1;jointype;char(2);YES;;99;;
+1;empnum;char(6);YES;;0;;
+1;area;char(70);YES;;;;
+1;areaman;char(30);YES;;;;
+1;areatel;char(30);YES;;;;
+1;demo;char(255);YES;;;;
+1;ip;char(64);YES;;;;
+1;addtime;char(16);YES;;;;
+1;gtype;char(1);NO;;NULL;;
+1;useflags;int(11);YES;;0;;
+1;moditime;bigint(20);YES;;0;;
+1;version;char(16);YES;;0;;
+1;lasttime;char(16);YES;;;;
+1;longitude;char(11);YES;;;;
+1;latitude;char(11);YES;;;;
+1;monflag;int(11);YES;;0;;
+1;fcode;char(9);NO;;NULL;;
+1;dateid;int(11);YES;;0;;
+1;jytype;int(11);YES;;1;;
+1;ceoidtype;char(3);YES;;;;
+1;ceocardid;char(128);YES;;;;
+1;ceotel;char(128);YES;;;;
+1;sdate;char(5);YES;;08:00;;
+1;edate;char(5);YES;;18:00;;
+1;port_start;char(20);YES;;;;
+1;port_end;char(20);YES;;;;
+1;shflag;int(11);YES;;0;;
+1;workflag;int(11);YES;;0;;
+1;yyflag;int(11);YES;;0;;
+2;PRIMARY;0;1;userid;
+2;ncsuser_ind1;0;1;username;
+2;ncsuser_ind2;1;1;groupid;
+</table>
+<table ncaplist>
+1;apname;char(21);NO;PRI;NULL;;
+1;servicecode;char(14);NO;;NULL;;
+1;dispname;char(128);NO;;NULL;;
+1;servicename;char(255);YES;;;;
+1;did;int(10) unsigned;YES;;0;;
+1;version;char(16);YES;;;;
+1;model;varchar(255);YES;; ;;
+1;devid;char(64);YES;;;;
+1;ip;char(16);YES;;;;
+1;mac;char(64);YES;;;;
+1;ssid;char(64);YES;;;;
+1;address;char(255);NO;;NULL;;
+1;plate;char(128);YES;;;;
+1;line;varchar(255);YES;; ;;
+1;mapid;varchar(255);YES;; ;;
+1;longitude;char(11);YES;;;;
+1;latitude;char(11);YES;;;;
+1;starttime;int(10) unsigned;YES;;0;;
+1;lasttime;int(10) unsigned;YES;;0;;
+1;bpflasttime;int(10) unsigned;YES;;0;;
+1;cursrvbpfrule;varchar(255);YES;;0;;
+1;aptype;int(1);NO;;NULL;;
+1;fcode;char(9);NO;;NULL;;
+1;radius;int(4);NO;;NULL;;
+1;uptimestep;int(8);NO;;NULL;;
+1;flags;int(1);YES;;0;;
+2;PRIMARY;0;1;apname;
+</table>
+<table ncsfactorycod>
+1;sid;int(10) unsigned;NO;PRI;NULL;auto_increment;
+1;code;char(9);NO;UNI;NULL;;
+1;name;char(70);NO;;NULL;;
+1;slink;char(128);NO;;NULL;;
+1;saddress;char(255);NO;;NULL;;
+1;stel;char(128);NO;;NULL;;
+1;smail;char(32);NO;;NULL;;
+1;flags;int(11);YES;;0;;
+1;moditime;bigint(20);YES;;0;;
+2;PRIMARY;0;1;sid;
+2;ncsfactory_ind1;0;1;code;
+</table>
+<table nctermnetlog>
+1;mac;char(17);NO;PRI;NULL;;
+1;nettype;int(11);NO;PRI;NULL;;
+1;vname;char(32);NO;PRI;NULL;;
+1;vdisp;char(32);YES;;;;
+1;starttime;bigint(20);NO;;NULL;;
+1;moditime;bigint(20);NO;;NULL;;
+2;nctermnetlog_ind1;0;1;mac;
+2;nctermnetlog_ind1;0;2;nettype;
+2;nctermnetlog_ind1;0;3;vname;
+2;nctermnetlog_ind2;1;1;nettype;
+2;nctermnetlog_ind2;1;2;vname;
+</table>
+

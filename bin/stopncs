@@ -1,0 +1,6 @@
+killall -9 proeim_server
+killall -9 proeim_server
+killall -9 proeim_server
+killall -9 proeim_s
+killall -9 proeim_s
+

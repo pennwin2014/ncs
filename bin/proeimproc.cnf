@@ -1,0 +1,4 @@
+# Check Process
+# ProcessName  MinProc   MaxProc     Start               Stop
+root ncfileserver    2        256         "./ncfileserver"    "paskillproc ncfileserver"
+

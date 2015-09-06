@@ -1,0 +1,666 @@
+# BCP输出模板描述
+# 最后修改时间 2015/06/23
+<BCP_PLATE name="WA_BCP" charset="GBK">
+<?xml version="1.0" encoding="[#charset#]"?>
+<MESSAGE>
+  <DATASET name="WA_COMMON_010017" rmk="数据文件索引信息">
+    <DATA>
+      <DATASET name="WA_COMMON_010013" rmk="BCP文件格式信息">
+      	[#SLPB01#]
+      	<DATA>
+          <ITEM key="I010032" val="\t" rmk="列分隔符（缺少值时默认为制表符\t）"/>
+          <ITEM key="I010033" val="\n" rmk="行分隔符（缺少值时默认为换行符\n）"/>
+          <ITEM key="A010004" val="[#source#]" rmk="数据集代码"/>
+          <ITEM key="B050016" val="145" rmk="数据来源"/>
+          <ITEM key="F010008" val="[#where#]" rmk="数据采集地"/>
+          <ITEM key="I010038" val="1" rmk="数据起始行，可选项，不填写默认为第１行"/>
+          <ITEM key="I010039" val="[#charset#]" rmk="可选项，默认为UTF-8，BCP文件编码格式（采用不带格式的编码方式，如：UTF-8无BOM）"/>
+          <DATASET name="WA_COMMON_010014" rmk="BCP数据文件信息">
+          	[#SLPB05#]
+            <DATA>
+              <ITEM key="H040003" val="[#filepath#]" rmk="文件路径"/>
+              <ITEM key="H010020" val="[#filename#]" rmk="文件名"/>
+              <ITEM key="I010034" val="[#linenum#]"  rmk="记录行数"/>
+            </DATA>
+            [#SLPE05#]
+          </DATASET>
+          <DATASET name="WA_COMMON_010015" rmk="BCP文件数据结构" fieldcnt="[#sumitem#]">
+            <DATA>
+                [#SLPB4#]<ITEM key="[#key#]" eng="[#eng#]" chn="[#chn#]" rmk="[#rmk#]"/>
+                [#SLPE4#]
+             </DATA>
+          </DATASET>
+        </DATA>
+        [#SLPE01#]
+      </DATASET>
+    </DATA>
+  </DATASET>
+</MESSAGE>
+</BCP_PLATE>
+
+# 常见服务对照表
+<WA_SERVICE name="NETTYPE"  rmk="常见服务对照表">
+        <ITEM wacode="1"   eimcode="103"       name="HTTP协议" />
+        <ITEM wacode="2"   eimcode="901"       name="WAP协议" />
+        <ITEM wacode="3"   eimcode="13001"     name="SMTP协议" />
+        <ITEM wacode="4"   eimcode="13002"     name="POP3协议" />
+        <ITEM wacode="5"   eimcode="13003"     name="IMAP协议" />
+        <ITEM wacode="5"   eimcode="13006"     name="IMAP协议" />
+        <ITEM wacode="5"   eimcode="13007"     name="IMAP协议" />
+        <ITEM wacode="5"   eimcode="13008"     name="IMAP协议" />
+        <ITEM wacode="5"   eimcode="13009"     name="IMAP协议" />
+        <ITEM wacode="6"   eimcode="20004"     name="NNTP协议" />
+        <ITEM wacode="7"   eimcode="4002"      name="SFTP协议" />
+        <ITEM wacode="8"   eimcode="12002"     name="SFTP协议" />
+        <ITEM wacode="9"   eimcode="12001"     name="TELNET协议" />
+        <ITEM wacode="10"  eimcode="116"      name="HTTPS协议" />
+        <ITEM wacode="11"  eimcode="902"      name="RSTP协议" />
+        <ITEM wacode="12"  eimcode="7516"     name="MMS协议" />
+        <ITEM wacode="13"  eimcode="903"      name="WAP协议" />
+        <ITEM wacode="14"  eimcode="904"      name="WPA协议" />
+        <ITEM wacode="15"  eimcode="905"      name="PPTP协议" />
+        <ITEM wacode="16"  eimcode="906"      name="L2TP协议" />
+        <ITEM wacode="17"  eimcode="3002"     name="SOCKS" />
+        <ITEM wacode="18"  eimcode="907"      name="Compo" />
+        <ITEM wacode="19"  eimcode="908"      name="CmSmtp代理协议" />
+        <ITEM wacode="91"  eimcode="909"      name="私有协议" />
+        <ITEM wacode="99"  eimcode="910"      name="其他" />
+</WA_SERVICE>
+        
+# 虚拟身份编码对照表        
+<WA_SERVICE name="VNAMETYPE"  rmk="虚拟身份代码">
+        <ITEM wacode="1001"   eimcode="1001"      name="QQ" />
+        <ITEM wacode="1071"   eimcode="7021"      name="微信" />
+        <ITEM wacode="1012"   eimcode="7021"      name="飞信" />
+        <ITEM wacode="1009"   eimcode="3019"      name="阿里旺旺" />
+        <ITEM wacode="1007"   eimcode="1002"      name="网易泡泡" />
+        <ITEM wacode="1082"   eimcode="1002"      name="Youni短信" />
+        <ITEM wacode="1080"   eimcode="1080"      name="米聊" />
+        <ITEM wacode="1072"   eimcode="1014"      name="Talkbox" />
+        <ITEM wacode="20001"  eimcode="20001"      name="百度帐号" />
+        <ITEM wacode="20002"  eimcode="20002"      name="搜狐帐号" />
+        <ITEM wacode="20003"  eimcode="20003"      name="新浪帐号" />
+        <ITEM wacode="20004"  eimcode="20004"      name="126邮箱" />
+        <ITEM wacode="20005"  eimcode="20005"      name="163邮箱" />
+        <ITEM wacode="20006"  eimcode="20006"      name="QQ邮箱" />
+        <ITEM wacode="20007"  eimcode="20007"      name="雅虎邮箱" />
+        <ITEM wacode="13010"  eimcode="0"           name="hotmail" />
+        <ITEM wacode="13009"  eimcode="13009"      name="GMail" />
+        <ITEM wacode="21348"  eimcode="1009"      name="QQ论坛" />
+        <ITEM wacode="20001"  eimcode="0"      name="百度贴吧" />
+        <ITEM wacode="20003"   eimcode="0"      name="新浪论坛" />
+        <ITEM wacode="20012"   eimcode="0"      name="开心网" />
+        <ITEM wacode="21000"   eimcode="0"      name="人人网" />
+        <ITEM wacode="23557"   eimcode="0"      name="珍爱网" />
+        <ITEM wacode="18080"   eimcode="1065"      name="腾讯微博" />
+        <ITEM wacode="18079"   eimcode="0"      name="新浪微博" />
+        <ITEM wacode="23555"   eimcode="0"      name="携程网" />
+        <ITEM wacode="21360"   eimcode="0"      name="去哪网" />
+        <ITEM wacode="23581"   eimcode="0"      name="华住酒店" />
+        <ITEM wacode="23580"   eimcode="0"      name="如家酒店连锁" />
+        <ITEM wacode="21357"   eimcode="0"      name="艺龙旅行网" />
+        <ITEM wacode="1030"   eimcode="0"      name="淘宝网" />
+        <ITEM wacode="21368"   eimcode="0"      name="京东商城" />
+        <ITEM wacode="21373"   eimcode="0"      name="1号店" />
+</WA_SERVICE>
+
+
+
+<BCP_ITEM name="WA_SOURCE_FJ_0001"   prodtype="WIFI"  rmk="终端上下线信息" table="nctermlog"  keyfield="sid">
+        <ITEM key="B040021" eng="AUTH_TYPE"                 chn="认证类型"              field="authtype"/>
+        <ITEM key="B040022" eng="AUTH_ACCOUNT"              chn="认证帐号"              field="username"/>
+        <ITEM key="B020004" eng="NETBAR_WACODE"             chn="场所编码"              field="servicecode"/>
+        <ITEM key="G020020" eng="NETSITE_TYPE"              chn="场所类型"              field="servicetype"/>
+        <ITEM key="B030004" eng="CERTIFICATE_TYPE"          chn="身份证件类型"          field="idtype"/>
+        <ITEM key="B030005" eng="CERTIFICATE_CODE"          chn="身份证件号码"          field="idno"/>
+        <ITEM key="G030001" eng="APP_COMPANY_NAME"          chn="APP厂商名称"           field="appsrc"/>
+        <ITEM key="G030002" eng="APP_SOFTWARE_NAME"         chn="APP应用软件名称"       field="appname"/>
+        <ITEM key="G030003" eng="APP_VERSION"               chn="APP版本号"             field=""appversion/>
+        <ITEM key="G030004" eng="APPID"                     chn="APP终端认证码"                        field="appid"/>
+        <ITEM key="H010015" eng="START_TIME"                chn="上线时间"         datatype="UINT"     field="stime"/>
+        <ITEM key="H010016" eng="END_TIME"                  chn="下线时间"         datatype="UINT"     field="etime"/>
+        <ITEM key="F020001" eng="IP_ADDRESS"                chn="场所内网IP地址"   datatype="UINT"     field="sip"/>
+        <ITEM key="F020004" eng="SRC_IP"                    chn="源外网IPv4地址"   datatype="UINT"     field="oip"/>
+        <ITEM key="F020010" eng="SRC_IPV6"                  chn="源外网IPv6地址"        field="sipv6"/>
+        <ITEM key="F020019" eng="SRC_PORT_START"            chn="源外网IPv4起始端口号" datatype="UINT" field="sport"/>
+        <ITEM key="F020020" eng="SRC_PORT_END"              chn="源外网IPv4结束端口号" datatype="UINT" field="eport"/>
+        <ITEM key="F020021" eng="SRC_PORT_START_V6"         chn="源外网IPv6起始端口号" datatype="UINT" field="sportv6"/>
+        <ITEM key="F020022" eng="SRC_PORT_END_V6"           chn="源外网IPv6结束端口号" datatype="UINT" field="eportv6"/>
+        <ITEM key="C040002" eng="MAC"                       chn="终端MAC地址"           field="mac"/>
+        <ITEM key="I070011" eng="COLLECTION_EQUIPMENT_ID"   chn="AP设备编号"            field="apname"/>
+        <ITEM key="F030011" eng="AP_MAC"                    chn="AP设备MAC地址"         field="apmac"/>
+        <ITEM key="F010001" eng="LONGITUDE"                 chn="移动AP经度"            field="longitude"/>
+        <ITEM key="F010002" eng="LATITUDE"                  chn="移动AP纬度"            field="latitude"/>
+        <ITEM key="H010013" eng="SESSIONID"                 chn="会话ID"                field="sessionid"/>
+        <ITEM key="I070003" eng="TERMINAL_FIELD STRENGTH"   chn="场强"     datatype="INT" field=""rssi/>
+        <ITEM key="I070001" eng="X_COORDINATE"              chn="X坐标"                 field="xposition"/>
+        <ITEM key="I070002" eng="Y_COORDINATE"              chn="Y坐标"                 field="yposition"/>
+        <ITEM key="B010001" eng="NAME"                      chn="上网人员姓名"          field="dispname"/>
+        <ITEM key="B020007" eng="IMSI"                      chn="终端IMSI码"            field="imsi"/>
+        <ITEM key="C050001" eng="IMEI_ESN_MEID"             chn="终端IMEI码"            field="imei"/>
+        <ITEM key="C020004" eng="OS_NAME"                   chn="终端系统"              field="termos"/>
+        <ITEM key="C010002" eng="BRAND"                     chn="终端品牌"              field="termname"/>
+        <ITEM key="C010003" eng="MODEL"                     chn="终端型号"              field="termtype"/>
+        <ITEM key="F090003" eng="ACTION"                    chn="动作1-上线 2-下线"     field="flags"/>
+        <ITEM key="G020013" eng="CODE_ALLOCATION_ORGANIZATION"     chn="安全厂商组织机构代码"           field="fcode"/>
+        <ITEM key=""        eng="SID"                       chn="记录序列号"            field="sid"/>        
+</BCP_ITEM>
+
+<BCP_ITEM name="WA_SOURCE_FJ_0002"   prodtype="WIFI" rmk="上网日志信息" table="nctermiplog" keyfield="sid">
+        <ITEM key="H010013" eng="SESSIONID"                 chn="会话ID"	                field="sessionid"/>
+        <ITEM key="G020004" eng="NETSERVERPORT_WACODE"      chn="上网服务场所编码" 	        field="servicecode"/>
+        <ITEM key="H010041" eng="NETWORK_APP                chn="网络应用服务类型"          field="nettype"/>
+        <ITEM key="F020001" eng="IP_ADDRESS"                chn="场所内网IP地址"        datatype="UINT"    field="sip"/>
+        <ITEM key="F020003" eng="PORT"                      chn="场所内网端口号"	    datatype="UINT"    field="sport"/>
+        <ITEM key="F020004" eng="SRC_IP"                    chn="源外网IPv4地址"	    datatype="UINT"    field="oip"/>
+        <ITEM key="F020010" eng="SRC_IPV6"                  chn="源外网IPv6地址"	        field="oipv6"/>
+        <ITEM key="F020019" eng="SRC_PORT_START"            chn="源外网IPv4起始端口号"  datatype="UINT"    field="osport"/>
+        <ITEM key="F020020" eng="SRC_PORT_END"              chn="源外网IPv4结束端口号"  datatype="UINT"    field="oeport"/>
+        <ITEM key="F020021" eng="SRC_PORT_START_V6"         chn="源外网IPv6起始端口号"   datatype="UINT"   field="sportv6"/>
+        <ITEM key="F020022" eng="SRC_PORT_END_V6"           chn="源外网IPv6结束端口号"   datatype="UINT"   field="eportv6"/>
+        <ITEM key="F020005" eng="DST_IP"                    chn="目的公网IPv4地址"	    datatype="UINT"    field="dip"/>
+        <ITEM key="F020011" eng="DST_IPV6"                  chn="目的公网IPv6地址"	        field="dipv6"/>
+        <ITEM key="F020007" eng="DST_PORT"                  chn="目的公网IPv4端口号"	datatype="UINT"    field="dport"/>
+        <ITEM key="F020013" eng="DST_PORT_V6"               chn="目的公网IPv6端口号"	datatype="UINT"    field="dportv6"/>
+        <ITEM key="C040002" eng="MAC"                       chn="终端MAC地址"	            field="mac"/>
+        <ITEM key="I070011" eng="COLLECTION_EQUIPMENT_ID"   chn="AP设备编号"	            field="apname"/>
+        <ITEM key="F030011" eng="AP_MAC"                    chn="AP设备MAC地址"	            field="apmac"/>
+        <ITEM key="F010001" eng="LONGITUDE"                 chn="移动AP经度"	            field="longitude"/>
+        <ITEM key="F010002" eng="LATITUDE"                  chn="移动AP纬度"	            field="latitude"/>
+        <ITEM key="H010014" eng="CAPTURE_TIME"              chn="日志记录时间"	       datatype="UINT"     field="stime"/>
+        <ITEM key="G020013" eng="CODE_ALLOCATION_ORGANIZATION"     chn="安全厂商组织机构代码"           field="fcode"/>
+        <ITEM key="B040022" eng="AUTH_ACCOUNT"              chn="认证帐号"              field="username"/>
+        <ITEM key="B010001" eng="NAME"                      chn="上网人员姓名"          field="dispname"/>
+        <ITEM key=""        eng="SID"                       chn="记录序列号"            field="sid"/>        
+</BCP_ITEM>
+
+
+<BCP_ITEM name="WA_SOURCE_FJ_2001"   prodtype="WIFI" rmk="虚拟身份日志信息" table="nctermnetlog"  keyfield="sid">
+        <ITEM key="H010013" eng="SESSIONID"                 chn="会话ID"	                        field="sessionid"/>
+        <ITEM key="G020004" eng="NETSERVERPORT_WACODE"      chn="上网服务场所编码" 	                field="servicecode"/>
+        <ITEM key="B040022" eng="AUTH_ACCOUNT"              chn="认证帐号"                          field="username"/>
+        <ITEM key="C040002" eng="MAC"                       chn="终端MAC地址"	                    field="mac"/>
+        <ITEM key="I070011" eng="COLLECTION_EQUIPMENT_ID"   chn="AP设备编号"	                    field="apname"/>
+        <ITEM key="F010001" eng="LONGITUDE"                 chn="移动AP经度"	                    field="longitude"/>
+        <ITEM key="F010002" eng="LATITUDE"                  chn="移动AP纬度"	                    field="latitude"/>
+        <ITEM key="H010014" eng="CAPTURE_TIME"              chn="日志记录时间"	 datatype="UINT"    field="stime"/>
+        <ITEM key="H010016" eng="END_TIME"                  chn="下线时间"       datatype="UINT"    field="etime"/>
+        <ITEM key="H010041" eng="NETWORK_APP                chn="网络应用类型"   datatype="UINT"    field="nettype"/>
+        <ITEM key="B040002" eng="CERTIFICATE_CODE"          chn="身份内容"                          field="vname" />
+        <ITEM key="P040002" eng="CERTIFICATE_NAME"          chn="昵称"                             field="vdisp" />
+        <ITEM key="F020001" eng="IP_ADDRESS"                chn="场所内网IP地址"        datatype="UINT"    field="sip"/>
+        <ITEM key="F020005" eng="DST_IP"                    chn="目的公网IPv4地址"	    datatype="UINT"    field="dip"/>
+        <ITEM key="F020004" eng="SRC_IP"                    chn="源外网IPv4地址"	    datatype="UINT"    field="oip"/>
+        <ITEM key="G020013" eng="CODE_ALLOCATION_ORGANIZATION"     chn="安全厂商组织机构代码"              field="fcode"/>
+        <ITEM key="P000009" eng="FLAGS"                     chn="进出标志"                                 field="flags"  />               
+        <ITEM key="P000010" eng="SID"                       chn="记录序列号"            field="sid"/>
+</BCP_ITEM>
+
+
+<BCP_ITEM name="WA_BASIC_FJ_0001"   prodtype="WIFI" rmk="场所基础信息"  att="BASICFILE" where="shflag=1" keyfield="moditime" table="ncsuser">
+        <ITEM key="G020004" eng="NETBAR_WACODE"                    chn="上网服务场所编码"	            field="username"/>
+        <ITEM key="F040002" eng="PLACE_NAME"                       chn="上网服务场所名称"	            field="dispname"/>
+        <ITEM key="G020017" eng="SITE_ADDRESS"                     chn="场所详细地址"	                field="address"/>
+        <ITEM key="F010016" eng="LONGITUDE"                        chn="场所经度"	                    field="longitude"/>
+        <ITEM key="F010017" eng="LATITUDE"                         chn="场所纬度"	                    field="latitude"/>
+        <ITEM key="F040011" eng="NETSITE_TYPE"                     chn="场所服务类型"	                field="gtype"/>
+        <ITEM key="E010007" eng="BUSINESS_NATURE"                  chn="场所经营性质"	                field="jytype"/>
+        <ITEM key="E020001" eng="LAW_PRINCIPAL_NAME"               chn="场所经营法人"	                field="ceoname"/>
+        <ITEM key="E020003" eng="LAW_PRINCIPAL_CERTIFICATE_TYPE"   chn="经营法人有效证件类型"	        field="ceoidtype"/>
+        <ITEM key="E020004" eng="LAW_PRINCIPAL_CERTIFICATE_ID"     chn="经营法人有效证件号码"	        field="ceocardid"/>
+        <ITEM key="B070003" eng="RELATIONSHIP_ACCOUNT"             chn="联系方式"	                    field="ceotel"/>
+        <ITEM key="I070009" eng="START_TIME"                       chn="营业开始时间"	                field="sdate"/>
+        <ITEM key="I070010" eng="END_TIME"                         chn="营业结束时间"	                field="edate"/>
+        <ITEM key="G020010" eng="ACCESS_TYPE"                      chn="场所网络接入方式"	            field="jointype"/>
+        <ITEM key="B020001" eng="OPERATOR_NET"                     chn="场所网络接入服务商"	            field="joincode"/>
+        <ITEM key="I070016" eng="ACSSES_IP/AUTH_ ACCOUNT"          chn="网络接入账号或固定IP地址"       field="ip"/>
+        <ITEM key="G020013" eng="CODE_ALLOCATION_ORGANIZATION"     chn="安全厂商组织机构代码"	        field="fcode"/>
+        <ITEM key=""        eng="MODITIME"                         chn="记录最后修改时间"               field="moditime"/>        
+</BCP_ITEM>
+
+<BCP_ITEM name="WA_BASIC_FJ_0002"   prodtype="WIFI" rmk="安全厂商基础信息"  att="BASICFILE"  where="flags=1" table="ncsfactorycod" keyfield="moditime">
+        <ITEM key="G020014" eng="SECURITY_SOFTWARE_ORGNAME"     chn="厂商名称"	                        field="name"/>
+        <ITEM key="G020013" eng="SECURITY_SOFTWARE_ORGCODE"     chn="厂商组织机构代码"	                field="code"/>
+        <ITEM key="G020037" eng="SECURITY_SOFTWARE_ ADDRESS"    chn="厂商地址"	                        field="saddress"/>
+        <ITEM key="E020017" eng="CONTACTOR"                     chn="联系人"	                        field="slink"/>
+        <ITEM key="E020020" eng="CONTACTOR_TEL"                 chn="联系人电话"	                    field="stel"/>
+        <ITEM key="E020023" eng="CONTACTOR _MAIL"               chn="联系人邮件"	                    field="smail"/>
+        <ITEM key=""        eng="MODITIME"                      chn="最后更新时间"	                    field="moditime"/>
+        
+</BCP_ITEM>
+
+
+<BCP_ITEM name="WA_BASIC_FJ_0003_1"   prodtype="WIFI" rmk="AP设备基础信息-固定AP"  att="BASICFILE"   where="aptype=0 and flags = 1"  keyfield="lasttime" table="ncaplist">
+        <ITEM key="I070011" eng="COLLECTION_EQUIPMENT_ID"       chn="AP设备编号"	            field="apname"/>
+        <ITEM key="F030011" eng="AP_MAC"                        chn="AP设备MAC地址"	            field="mac"/>
+        <ITEM key="G020004" eng="NETBAR_WACODE"                 chn="上网服务场所编码"	        field="servicecode"/>
+        <ITEM key="F010001" eng="LONGITUDE"                     chn="AP设备经度"	            field="longitude"/>
+        <ITEM key="F010002" eng="LATITUDE"                      chn="AP设备纬度"	            field="latitude"/>
+        <ITEM key="F040012" eng="FLOOR"                         chn="楼层"	                    field="mapid"/>
+        <ITEM key="P040001" eng="APTYPE"                        chn="AP类别"   datatype="UINT"   field="aptype"/>
+        <ITEM key=""        eng="LASTTIME"                      chn="记录最后修改时间"   datatype="UINT"   field="lasttime"/>
+</BCP_ITEM>
+
+<BCP_ITEM name="WA_BASIC_FJ_0003_2"   prodtype="WIFI" rmk="AP设备基础信息-移动AP"  att="BASICFILE"  where="aptype=1 and flags = 1"  keyfield="lasttime" table="ncaplist">
+        <ITEM key="I070011" eng="COLLECTION_EQUIPMENT_ID"       chn="AP设备编号"	            field="apname"/>
+        <ITEM key="F030011" eng="AP_MAC"                        chn="AP设备MAC地址"	            field="mac"/>
+        <ITEM key="G020004" eng="NETBAR_WACODE"                 chn="上网服务场所编码"	        field="servicecode"/>
+        <ITEM key="F040013" eng="SUBWAY_STATION"                chn="站点信息"	                field="plate"/>
+        <ITEM key="C030006" eng="SUBWAY_LINE_INFO"              chn="地铁线路信息（可选）"	    field="line"/>
+        <ITEM key="C030007" eng="SUBWAY_VEHICLE_INFO"           chn="地铁车辆信息（可选）"	    field="model"/>
+        <ITEM key="C030008" eng="SUBWAY_COMPARTMENT_NUMBER"     chn="地铁车厢编号（可选）"	    field="mapid"/>
+        <ITEM key="C030002" eng="CAR_CODE"                      chn="车牌号码（可选）"	        field="devid"/>
+        <ITEM key="P040001" eng="APTYPE"                        chn="AP类别"   atatype="UINT"   field="aptype"/>
+        <ITEM key=""        eng="LASTTIME"                      chn="记录最后修改时间"   datatype="UINT"   field="lasttime"/>
+</BCP_ITEM>
+
+# 以下信息针对MAC嗅探
+<BCP_ITEM name="WA_SOURCE_FJ_1001"  prodtype="MACCAP"  rmk="终端特征信息" table="ncmactermatt"  keyfield="sid">
+        <ITEM key="C040002"            chn="终端MAC地址"                         eng="MAC"                                   field="mac"        />
+        <ITEM key="C010002"            chn="终端品牌"                            eng="BRAND"                                 field="termtype" />
+        <ITEM key="F030021"            chn="终端历史SSID列表"                    eng="CACHE_SSID"                            field="ssid" />
+        <ITEM key="H010014"            chn="采集时间"                            eng="CAPTURE_TIME"                          field="stime"               datatype="UINT" />
+        <ITEM key="I070003"            chn="被采终端场强"                        eng="TERMINAL_FIELD_STRENGTH"               field="rssi" />
+        <ITEM key="B040001"            chn="身份类型"                            eng="IDENTIFICATION_TYPE"                   field="vtype" />
+        <ITEM key="B040002"            chn="身份内容"                            eng="CERTIFICATE_CODE"                      field="vname" />
+        <ITEM key="I070005"            chn="接入热点SSID"                        eng="SSID_POSITION"                         field="ssid" />
+        <ITEM key="I070006"            chn="接入热点MAC"                         eng="ACCESS_AP_MAC"                         field="apmac" />
+        <ITEM key="I070007"            chn="接入热点频道"                        eng="ACCESS_AP_CHANNEL"                     field="channel" />
+        <ITEM key="I070008"            chn="接入热点加密类型"                    eng="ACCESS_AP_ENCRYPTION_TYPE"             field="security" />
+        <ITEM key="I070001"            chn="X坐标"                               eng="X_COORDINATE"                          field="xpos" />
+        <ITEM key="I070002"            chn="Y坐标"                               eng="Y_COORDINATE"                          field="ypos" />
+        <ITEM key="G020004"            chn="场所编号"                            eng="NETBAR_WACODE"                         field="servicecode" />
+        <ITEM key="F040002"            chn="场所名称"                            eng="PLACE_NAME"                            field="servicename" />
+        <ITEM key="I070013"            chn="设备安装地址"                        eng="COLLECTION_EQUIPMENT_ADDRESS"          field="address" />
+        <ITEM key="I070011"            chn="采集设备编号"                        eng="COLLECTION_EQUIPMENT_ID"               field="apname" />
+        <ITEM key="F010018"            chn="采集设备经度"                        eng="COLLECTION_EQUIPMENT_LONGITUDE"        field="longitude" />
+        <ITEM key="F010019"            chn="采集设备纬度"                        eng="COLLECTION_EQUIPMENT_LATITUDE"         field="latitude"  />  
+        <ITEM key="P000009"            chn="进出标志"                            eng="FLAGS"                                 field="flags"  />    
+        <ITEM key="P000010"            chn="记录序列号"                          eng="SID"                                   field="sid"/>                    
+</BCP_ITEM> 
+
+<BCP_ITEM name="WA_SOURCE_FJ_1002" prodtype="MACCAP"  rmk="被采集热点信息" table="ncmachotinfo"  keyfield="sid"> 
+        <ITEM key="F030011"            chn="热点MAC地址"                   eng="MAP_MAC"                           field="mac"        />
+        <ITEM key="F030001"            chn="热点SSID"                      eng="BAP_SSID"                          field="ssid" />
+        <ITEM key="F030022"            chn="热点频道"                      eng="CAP_CHANNEL"                       field="channel" />
+        <ITEM key="B040025"            chn="热点加密类型"                  eng="CENCRYPT_ALGORITHM_TYPE"          field="security"  />
+        <ITEM key="H010014"            chn="采集时间"                      eng="TCAPTURE_TIME"                     field="stime"   datatype="UINT" />
+        <ITEM key="F030023"            chn="热点场强"                      eng="IAP_FIELD STRENGTH"                field="rssi" />
+        <ITEM key="I070001"            chn="X坐标"                         eng="CX_COORDINATE"                     field="xpos" />
+        <ITEM key="I070002"            chn="Y坐标"                         eng="SY_COORDINATE"                     field="ypos" />
+        <ITEM key="G020004"            chn="场所编号"                      eng="ANETBAR_WACODE"                    field="servicecode" />
+        <ITEM key="F040002"            chn="场所名称"                      eng="PLACE_NAME"                            field="servicename" />
+        <ITEM key="I070013"            chn="设备安装地址"                  eng="COLLECTION_EQUIPMENT_ADDRESS"          field="address" />
+        <ITEM key="I070011"            chn="采集设备编号"                  eng="ACOLLECTION_EQUIPMENT_ID"          field="apname" />
+        <ITEM key="F010018"            chn="采集设备经度"                  eng="ACOLLECTION_EQUIPMENT_LONGITUDE"   field="longitude" />
+        <ITEM key="F010019"            chn="采集设备纬度"                  eng="XCOLLECTION_EQUIPMENT_LATITUDE"    field="latitude" />
+        <ITEM key="I070006"            chn="接入热点MAC"                         eng="ACCESS_AP_MAC"                         field="apmac" />
+        <ITEM key="P000009"            chn="进出标志"                            eng="FLAGS"                                 field="flags"  />    
+        <ITEM key="P000010"            chn="记录序列号"                          eng="SID"                                   field="sid"/>                    
+</BCP_ITEM>  
+
+
+
+<BCP_ITEM name="WA_BASIC_FJ_1001" prodtype="MACCAP"  rmk="终端特征移动采集设备" table="ncmacmobileap"  keyfield="sid">
+        <ITEM key="I070011"            chn="采集设备编号"              eng="COLLECTION_EQUIPMENT_ID"            field="apname"      />
+        <ITEM key="G020004"            chn="场所编号"                  eng="NETBAR_WACODE"                      field="servicecode" />
+        <ITEM key="F040002"            eng="PLACE_NAME"                chn="上网服务场所名称"	                field="servicename"/>
+        <ITEM key="F010018"            chn="采集设备经度"              eng="COLLECTION_EQUIPMENT_LONGITUDE"     field="longitude" />
+        <ITEM key="F010019"            chn="采集设备纬度"              eng="COLLECTION_EQUIPMENT_LATITUDE"      field="latitude"  />
+        <ITEM key="H010014"            chn="时间"                      eng="TIME"                               field="stime"   datatype="UINT" />
+<       <ITEM key="P000010"            chn="记录序列号"                          eng="SID"                                   field="sid"/>                    
+</BCP_ITEM>  
+
+
+<BCP_ITEM name="WA_BASIC_FJ_1002" prodtype="MACCAP"  rmk="终端特征采集设备基础信息" table="ncaplist" att="BASICFILE"    keyfield="moditime">                                                   
+       <ITEM key="G020004"            chn="场所编号"                      eng="NETBAR_WACODE"                    field="servicecode"        />  
+       <ITEM key="I070011"            chn="采集设备编号"                  eng="COLLECTION_EQUIPMENT ID"          field="apname" />  
+       <ITEM key="I070012"            chn="采集设备名称"                  eng="OLLECTION_EQUIPMENT_NAME"         field="dispname" />
+       <ITEM key="I070013"            chn="设备地址"                      eng="COLLECTION_EQUIPMENT_ADRESS"      field="address"  /> 
+       <ITEM key="I070014"            chn="采集设备类型"                  eng="COLLECTION_EQUIPMENT_TYPE"        field="aptype"   datatype="UINT" />  
+       <ITEM key="G020013"            chn="安全厂商组织机构代码"          eng="SECURITY_SOFTWARE_ORGCODE"        field="fcode" /> 
+       <ITEM key="F010018"            chn="采集设备经度"                  eng="COLLECTION_EQUIPMENT_LONGITUDE"  field="longitude" />  
+       <ITEM key="F010019"            chn="采集设备纬度"                  eng="COLLECTION_EQUIPMENT _LATITUDE"  field="latitude" />  
+       <ITEM key="I070015"            chn="上传数据间隔时间"              eng="CUPLOAD_TIME_ INTERVAL"          field="uptimestep" />
+       <ITEM key="I070004"            chn="采集半径"                      eng="UCOLLECTION_RADIUS"              field="radius" />                     
+       <ITEM key="C030002"            chn="车牌号码"                      eng="CVEHICLE_CODE"                   field="devid" />                       
+       <ITEM key="C030006"            chn="地铁线路信息"                  eng="VSUBWAY_LINE_INFO"               field="line" />                        
+       <ITEM key="C030007"            chn="地铁车辆信息"                  eng="SSUBWAY_VEHICLE_INFO"            field="plate" />                 
+       <ITEM key="C030008"            chn="地铁车厢编号"                  eng="SUBWAY_COMPARTEMNT_NUMBER"       field="mapid" />                 
+       <ITEM key="P030008"            chn="记录最后修改时间"              eng="MODITIME"                        field="moditime" />                 
+</BCP_ITEM>  
+
+
+<BCP_ITEM name="WA_BASIC_FJ_1003"  prodtype="MACCAP" rmk="场所基础信息"  att="BASICFILE" where="shflag=1" keyfield="moditime" table="ncsuser">
+        <ITEM key="G020004" eng="NETBAR_WACODE"                    chn="上网服务场所编码"	            field="username"/>
+        <ITEM key="F040002" eng="PLACE_NAME"                       chn="上网服务场所名称"	            field="dispname"/>
+        <ITEM key="G020017" eng="SITE_ADDRESS"                     chn="场所详细地址"	                field="address"/>
+        <ITEM key="F010016" eng="LONGITUDE"                        chn="场所经度"	                    field="longitude"/>
+        <ITEM key="F010017" eng="LATITUDE"                         chn="场所纬度"	                    field="latitude"/>
+        <ITEM key="F040011" eng="NETSITE_TYPE"                     chn="场所服务类型"	                field="gtype"/>
+        <ITEM key="E010007" eng="BUSINESS_NATURE"                  chn="场所经营性质"	                field="jytype"/>
+        <ITEM key="E020001" eng="LAW_PRINCIPAL_NAME"               chn="场所经营法人"	                field="ceoname"/>
+        <ITEM key="E020003" eng="LAW_PRINCIPAL_CERTIFICATE_TYPE"   chn="经营法人有效证件类型"	        field="ceoidtype"/>
+        <ITEM key="E020004" eng="LAW_PRINCIPAL_CERTIFICATE_ID"     chn="经营法人有效证件号码"	        field="ceocardid"/>
+        <ITEM key="B070003" eng="RELATIONSHIP_ACCOUNT"             chn="联系方式"	                    field="ceotel"/>
+        <ITEM key="I070009" eng="START_TIME"                       chn="营业开始时间"	                field="sdate"/>
+        <ITEM key="I070010" eng="END_TIME"                         chn="营业结束时间"	                field="edate"/>
+        <ITEM key="G020010" eng="ACCESS_TYPE"                      chn="场所网络接入方式"	            field="jointype"/>
+        <ITEM key="B020001" eng="OPERATOR_NET"                     chn="场所网络接入服务商"	            field="joincode"/>
+        <ITEM key="I070016" eng="ACSSES_IP/AUTH_ ACCOUNT"          chn="网络接入账号或固定IP地址"       field="ip"/>
+        <ITEM key="G020013" eng="CODE_ALLOCATION_ORGANIZATION"     chn="安全厂商组织机构代码"	        field="fcode"/>
+        <ITEM key=""        eng="MODITIME"                         chn="记录最后修改时间"               field="moditime"/>        
+</BCP_ITEM>
+
+
+<BCP_ITEM name="WA_BASIC_FJ_1004" prodtype="MACCAP"  rmk="安全厂商基础信息"  att="BASICFILE"  where="flags=1" table="ncsfactorycod" keyfield="moditime">
+        <ITEM key="G020014" eng="SECURITY_SOFTWARE_ORGNAME"     chn="厂商名称"	                        field="name"/>
+        <ITEM key="G020013" eng="SECURITY_SOFTWARE_ORGCODE"     chn="厂商组织机构代码"	                field="code"/>
+        <ITEM key="G020037" eng="SECURITY_SOFTWARE_ ADDRESS"    chn="厂商地址"	                        field="saddress"/>
+        <ITEM key="E020017" eng="CONTACTOR"                     chn="联系人"	                        field="slink"/>
+        <ITEM key="E020020" eng="CONTACTOR_TEL"                 chn="联系人电话"	                    field="stel"/>
+        <ITEM key="E020023" eng="CONTACTOR _MAIL"               chn="联系人邮件"	                    field="smail"/>
+        <ITEM key=""        eng="MODITIME"                      chn="最后更新时间"	                    field="moditime"/>
+        
+</BCP_ITEM>
+
+
+<BCP_ITEM name="WA_ONLINE_FJ_1001" prodtype="MACCAP"  rmk="AP在线信息"  att="ONLINE" table="serviceheat" >
+       <ITEM key="G020004"            chn="场所编号"                      eng="NETBAR_WACODE"                    field="servicecode"        />
+       <ITEM key="I070011"            chn="采集设备编号"                  eng="COLLECTION_EQUIPMENT ID"          field="apname" />
+       <ITEM key="F040002"            chn="上网服务场所名称"	          eng="PLACE_NAME"                       field="servicename"/>
+       <ITEM key="I070012"            chn="采集设备名称"                  eng="OLLECTION_EQUIPMENT_NAME"         field="dispname" />  
+       <ITEM key="I070013"            chn="设备地址"                      eng="COLLECTION_EQUIPMENT_ADRESS"     field="address"  />   
+       <ITEM key="P100001"            chn="在线人数"                      eng="COLLECTION_ONLINE_PEOPLE"        field="number" datatype="UINT"  />   
+       <ITEM key="P100002"            chn="在线MAC数"                     eng="COLLECTION_ONLINE_MAC"           field="summac" datatype="UINT"  />   
+       <ITEM key="F010018"            chn="采集设备经度"                  eng="COLLECTION_EQUIPMENT_LONGITUDE" field="longitude" />  
+       <ITEM key="F010019"            chn="采集设备纬度"                  eng="COLLECTION_EQUIPMENT _LATITUDE"  field="latitude" />  
+       <ITEM key="C030002"            chn="车牌号码"                      eng="CVEHICLE_CODE"                   field="devid" />                       
+       <ITEM key="C030006"            chn="地铁线路信息"                  eng="VSUBWAY_LINE_INFO"               field="line" />                        
+       <ITEM key="C030007"            chn="地铁车辆信息"                  eng="SSUBWAY_VEHICLE_INFO"            field="plate" />                 
+       <ITEM key="C030008"            chn="地铁车厢编号"                  eng="SUBWAY_COMPARTEMNT_NUMBER"       field="mapid" />      
+       <ITEM key="P100002"            chn="AP的IP地址"                    eng="ServiceIP"                       field="serviceip" datatype="UINT" />      
+       <ITEM key="P100001"            chn="最后联系时间"                  eng="LAST_TIME"                       field="stime" />                 
+</BCP_ITEM>
+
+
+# datatype:  缺省 STRING UINT--无符号整型   INT--带符号整型   STRING--字符串
+# fmt:       数据格式 , 缺省    MD5CODE--通过Md5运算得到  SUBSTR(0,10)--从0位置开始取10个字符  SID--自动生成SID 
+# att:       数据属性   KEYWORD
+<EIM_ITEM name="WA_SOURCE_FJ_0001"   prodtype="WIFI"  rmk="终端上下线信息" table="nctermlog" keyfield="sid">
+        <ITEM key="H010013" eng="SESSIONID"                 chn="会话ID"                field="sessionid"/>
+        <ITEM key="B040021" eng="AUTH_TYPE"                 chn="认证类型"              field="authtype"/>
+        <ITEM key="B020004" eng="NETBAR_WACODE"             chn="场所编码"              field="servicecode"/>
+        <ITEM key="G020020" eng="NETSITE_TYPE"              chn="场所类型"              field="servicetype"/>
+        <ITEM key="B040022" eng="AUTH_ACCOUNT"              chn="认证帐号"              field="username"/>
+        <ITEM key="B010001" eng="NAME"                      chn="上网人员姓名"          field="dispname"/>
+        <ITEM key="C040002" eng="MAC"                       chn="终端MAC地址"           field="mac"/>
+        <ITEM key="F030011" eng="AP_MAC"                    chn="AP设备MAC地址"         field="apmac"/>
+        <ITEM key="I070011" eng="COLLECTION_EQUIPMENT_ID"   chn="AP设备编号"            field="apname"/>
+        <ITEM key="F010001" eng="LONGITUDE"                 chn="移动AP经度"            field="longitude"/>
+        <ITEM key="F010002" eng="LATITUDE"                  chn="移动AP纬度"            field="latitude"/>
+        <ITEM key="I070003" eng="TERMINAL_FIELD STRENGTH"   chn="场强"     datatype="INT" field=""rssi/>
+        <ITEM key="I070001" eng="X_COORDINATE"              chn="X坐标"                 field="xposition"/>
+        <ITEM key="I070002" eng="Y_COORDINATE"              chn="Y坐标"                 field="yposition"/>
+        <ITEM key="B030005" eng="CERTIFICATE_CODE"          chn="身份证件号码"          field="idno"/>
+        <ITEM key="B030004" eng="CERTIFICATE_TYPE"          chn="身份证件类型"          field="idtype"/>
+        <ITEM key="G030001" eng="APP_COMPANY_NAME"          chn="APP厂商名称"           field="appsrc"/>
+        <ITEM key="G030002" eng="APP_SOFTWARE_NAME"         chn="APP应用软件名称"       field="appname"/>
+        <ITEM key="G030003" eng="APP_VERSION"               chn="APP版本号"             field=""appversion/>
+        <ITEM key="G030004" eng="APPID"                     chn="APP终端认证码"         field="appid"/>
+        <ITEM key="H010015" eng="START_TIME"                chn="上线时间"         datatype="UINT"     field="stime"/>
+        <ITEM key="H010016" eng="END_TIME"                  chn="下线时间"         datatype="UINT"     field="etime"/>
+        <ITEM key="F020001" eng="IP_ADDRESS"                chn="场所内网IP地址"   datatype="UINT"     field="sip"/>
+        <ITEM key="F020004" eng="SRC_IP"                    chn="源外网IPv4地址"   datatype="UINT"     field="oip"/>
+        <ITEM key="F020019" eng="SRC_PORT_START"            chn="源外网IPv4起始端口号" datatype="UINT" field="sport"/>
+        <ITEM key="F020020" eng="SRC_PORT_END"              chn="源外网IPv4结束端口号" datatype="UINT" field="eport"/>
+        <ITEM key="F020010" eng="SRC_IPV6"                  chn="源外网IPv6地址"        field="sipv6"/>
+        <ITEM key="F020021" eng="SRC_PORT_START_V6"         chn="源外网IPv6起始端口号" datatype="UINT" field="sportv6"/>
+        <ITEM key="F020022" eng="SRC_PORT_END_V6"           chn="源外网IPv6结束端口号" datatype="UINT" field="eportv6"/>
+        <ITEM key="B020007" eng="IMSI"                      chn="终端IMSI码"            field="imsi"/>
+        <ITEM key="C050001" eng="IMEI_ESN_MEID"             chn="终端IMEI码"            field="imei"/>
+        <ITEM key="C010002" eng="BRAND"                     chn="终端品牌"              field="termname"/>
+        <ITEM key="C020004" eng="OS_NAME"                   chn="终端系统"              field="termos"/>
+        <ITEM key="C010003" eng="MODEL"                     chn="终端型号"              field="termtype"/>
+        <ITEM key="F090001" eng="CONNTIME"                  chn="连接时间"              datatype="UINT"         field="conntime"/>
+        <ITEM key="F090002" eng="SUMFLOW"                   chn="流量"                  datatype="UINT"         field="sumflow"/>
+        <ITEM key="F090003" eng="ACTION"                    chn="动作1-上线 2-下线"     datatype="UINT"   field="flags"/>
+        <ITEM key="G020013" eng="CODE_ALLOCATION_ORGANIZATION"     chn="安全厂商组织机构代码"           field="fcode"/>
+        <ITEM key="F090008" eng="SID"                       chn="记录序列号"          fmt="SID" field="sid"/>
+</EIM_ITEM>
+
+
+
+<EIM_ITEM name="WA_SOURCE_FJ_0002"   prodtype="WIFI" rmk="上网日志信息" table="nctermiplog" keyfield="sid">
+        <ITEM key="H010013" eng="SESSIONID"                 chn="会话ID"	                field="sessionid"/>
+        <ITEM key="G020004" eng="NETSERVERPORT_WACODE"      chn="上网服务场所编码" 	        field="servicecode"/>
+        <ITEM key="G020020" eng="NETSITE_TYPE"              chn="场所类型"              field="servicetype"/>
+        <ITEM key="B040022" eng="AUTH_ACCOUNT"              chn="认证帐号"              field="username"/>
+        <ITEM key="B010001" eng="NAME"                      chn="上网人员姓名"          field="dispname"/>
+        <ITEM key="C040002" eng="MAC"                       chn="终端MAC地址"	            field="mac"/>
+        <ITEM key="F030011" eng="AP_MAC"                    chn="AP设备MAC地址"	            field="apmac"/>
+        <ITEM key="I070011" eng="COLLECTION_EQUIPMENT_ID"   chn="AP设备编号"	            field="apname"/>
+        <ITEM key="F010001" eng="LONGITUDE"                 chn="移动AP经度"	            field="longitude"/>
+        <ITEM key="F010002" eng="LATITUDE"                  chn="移动AP纬度"	            field="latitude"/>
+        <ITEM key="H010014" eng="CAPTURE_TIME"              chn="日志记录时间"	       datatype="UINT"     field="stime"/>
+        <ITEM key="H010041" eng="NETWORK_APP                chn="网络应用服务类型"      datatype="UINT"   field="nettype"/>
+        <ITEM key="F020001" eng="IP_ADDRESS"                chn="场所内网IP地址"        datatype="UINT"    field="sip"/>
+        <ITEM key="F020003" eng="PORT"                      chn="场所内网端口号"	    datatype="UINT"    field="sport"/>
+        <ITEM key="F020004" eng="SRC_IP"                    chn="源外网IPv4地址"	    datatype="UINT"    field="oip"/>
+        <ITEM key="F020019" eng="SRC_PORT_START"            chn="源外网IPv4起始端口号"  datatype="UINT"    field="osport"/>
+        <ITEM key="F020020" eng="SRC_PORT_END"              chn="源外网IPv4结束端口号"  datatype="UINT"    field="oeport"/>
+        <ITEM key="F020005" eng="DST_IP"                    chn="目的公网IPv4地址"	    datatype="UINT"    field="dip"/>
+        <ITEM key="F020007" eng="DST_PORT"                  chn="目的公网IPv4端口号"	datatype="UINT"    field="dport"/>
+        <ITEM key="F020010" eng="SRC_IPV6"                  chn="源外网IPv6地址"	        field="oipv6"/>
+        <ITEM key="F020021" eng="SRC_PORT_START_V6"         chn="源外网IPv6起始端口号"   datatype="UINT"   field="sportv6"/>
+        <ITEM key="F020022" eng="SRC_PORT_END_V6"           chn="源外网IPv6结束端口号"   datatype="UINT"   field="eportv6"/>
+        <ITEM key="F020011" eng="DST_IPV6"                  chn="目的公网IPv6地址"	        field="dipv6"/>
+        <ITEM key="F020013" eng="DST_PORT_V6"               chn="目的公网IPv6端口号"	datatype="UINT"    field="dportv6"/>
+        <ITEM key="F090002" eng="SUMFLOW"                   chn="流量"                  datatype="UINT"         field="sumflow"/>
+        <ITEM key="G020013" eng="CODE_ALLOCATION_ORGANIZATION"     chn="安全厂商组织机构代码"           field="fcode"/>
+        <ITEM key="F090008" eng="SID"                       chn="记录序列号"          fmt="SID" field="sid"/>        
+</EIM_ITEM>
+
+<EIM_ITEM name="WA_SOURCE_FJ_2001"   prodtype="WIFI" rmk="虚拟身份日志信息" table="nctermnetlog"  keyfield="sid">
+        <ITEM key="H010013" eng="SESSIONID"                 chn="会话ID"	                        field="sessionid"/>
+        <ITEM key="G020004" eng="NETSERVERPORT_WACODE"      chn="上网服务场所编码" 	                field="servicecode"/>
+        <ITEM key="B040022" eng="AUTH_ACCOUNT"              chn="认证帐号"                          field="username"/>
+        <ITEM key="C040002" eng="MAC"                       chn="终端MAC地址"	                    field="mac"/>
+        <ITEM key="I070011" eng="COLLECTION_EQUIPMENT_ID"   chn="AP设备编号"	                    field="apname"/>
+        <ITEM key="F010001" eng="LONGITUDE"                 chn="移动AP经度"	                    field="longitude"/>
+        <ITEM key="F010002" eng="LATITUDE"                  chn="移动AP纬度"	                    field="latitude"/>
+        <ITEM key="H010014" eng="CAPTURE_TIME"              chn="日志记录时间"	 datatype="UINT"    field="stime"/>
+        <ITEM key="H010016" eng="END_TIME"                  chn="下线时间"       datatype="UINT"    field="etime"/>
+        <ITEM key="H010041" eng="NETWORK_APP                chn="网络应用类型"   datatype="UINT"    field="nettype"/>
+        <ITEM key="B040002" eng="CERTIFICATE_CODE"          chn="身份内容"                          field="vname" />
+        <ITEM key="P040002" eng="CERTIFICATE_NAME"          chn="昵称"                             field="vdisp" />
+        <ITEM key="F020001" eng="IP_ADDRESS"                chn="场所内网IP地址"        datatype="UINT"    field="sip"/>
+        <ITEM key="F020005" eng="DST_IP"                    chn="目的公网IPv4地址"	    datatype="UINT"    field="dip"/>
+        <ITEM key="F020004" eng="SRC_IP"                    chn="源外网IPv4地址"	    datatype="UINT"    field="oip"/>
+        <ITEM key="G020013" eng="CODE_ALLOCATION_ORGANIZATION"     chn="安全厂商组织机构代码"              field="fcode"/>
+        <ITEM key="P000009" eng="FLAGS"                     chn="进出标志"                                 field="flags"  />               
+        <ITEM key="P000010" eng="SID"                       chn="记录序列号"            field="sid"/>
+</EIM_ITEM>
+
+<EIM_ITEM name="WA_BASIC_FJ_0001"  prodtype="WIFI"  rmk="场所基础信息"  att="BASICFILE" table="ncsuser">
+        <ITEM key="P020004" eng="NETBAR_WACODE"                    chn="单位ID"              fmt="MD5CODE(G020004)"     field="userid"/>
+        <ITEM key="G020004" eng="NETBAR_WACODE"                    chn="上网服务场所编码"	     att="KEYWORD"  field="username"/>
+        <ITEM key="F040002" eng="PLACE_NAME"                       chn="上网服务场所名称"	            field="dispname"/>
+        <ITEM key="G020017" eng="SITE_ADDRESS"                     chn="场所详细地址"	                field="address"/>
+        <ITEM key="F010016" eng="LONGITUDE"                        chn="场所经度"	                    field="longitude"/>
+        <ITEM key="F010017" eng="LATITUDE"                         chn="场所纬度"	                    field="latitude"/>
+        <ITEM key="F040011" eng="NETSITE_TYPE"                     chn="场所服务类型"	                field="gtype"/>
+        <ITEM key="E010007" eng="BUSINESS_NATURE"                  chn="场所经营性质"	                field="jytype"/>
+        <ITEM key="E020001" eng="LAW_PRINCIPAL_NAME"               chn="场所经营法人"	                field="ceoname"/>
+        <ITEM key="E020003" eng="LAW_PRINCIPAL_CERTIFICATE_TYPE"   chn="经营法人有效证件类型"	        field="ceoidtype"/>
+        <ITEM key="E020004" eng="LAW_PRINCIPAL_CERTIFICATE_ID"     chn="经营法人有效证件号码"	        field="ceocardid"/>
+        <ITEM key="B070003" eng="RELATIONSHIP_ACCOUNT"             chn="联系方式"	                    field="ceotel"/>
+        <ITEM key="I070009" eng="START_TIME"                       chn="营业开始时间"	                field="sdate"/>
+        <ITEM key="I070010" eng="END_TIME"                         chn="营业结束时间"	                field="edate"/>
+        <ITEM key="G020010" eng="ACCESS_TYPE"                      chn="场所网络接入方式"	            field="jointype"/>
+        <ITEM key="B020001" eng="OPERATOR_NET"                     chn="场所网络接入服务商"	            field="joincode"/>
+        <ITEM key="I070016" eng="ACSSES_IP/AUTH_ ACCOUNT"          chn="网络接入账号或固定IP地址"       field="ip"/>
+        <ITEM key="G020013" eng="CODE_ALLOCATION_ORGANIZATION"     chn="安全厂商组织机构代码"	        field="fcode"/>
+</EIM_ITEM>
+
+<EIM_ITEM name="WA_BASIC_FJ_0002"  prodtype="WIFI" rmk="安全厂商基础信息" att="BASICFILE" table="ncsfactorycod">
+        <ITEM key="G020013" eng="SECURITY_SOFTWARE_ORGCODE"     chn="主键"	                datatype="UINT"    fmt="MD5CODE(G020013)"     field="sid"/>
+        <ITEM key="G020013" eng="SECURITY_SOFTWARE_ORGCODE"     chn="厂商组织机构代码"	    att="KEYWORD"     field="code"/>
+        <ITEM key="G020014" eng="SECURITY_SOFTWARE_ORGNAME"     chn="厂商名称"	                        field="name"/>
+        <ITEM key="E020017" eng="CONTACTOR"                     chn="联系人"	                        field="slink"/>
+        <ITEM key="G020037" eng="SECURITY_SOFTWARE_ ADDRESS"    chn="厂商地址"	                        field="saddress"/>
+        <ITEM key="E020020" eng="CONTACTOR_TEL"                 chn="联系人电话"	                    field="stel"/>
+        <ITEM key="E020023" eng="CONTACTOR _MAIL"               chn="联系人邮件"	                    field="smail"/>
+        <ITEM key=""        eng="MODITIME"                      chn="最后更新时间"	        datatype="UINT"   field="moditime"/>
+</EIM_ITEM>
+
+
+<EIM_ITEM name="WA_BASIC_FJ_0003_1"   prodtype="WIFI" rmk="AP设备基础信息-固定AP"  att="BASICFILE"   where="aptype=0 and flags = 1" table="ncaplist">
+        <ITEM key="I070011" eng="COLLECTION_EQUIPMENT_ID"       chn="AP设备编号"	            field="apname"/>
+        <ITEM key="F030011" eng="AP_MAC"                        chn="AP设备MAC地址"	             field="mac"/>
+        <ITEM key="G020004" eng="NETBAR_WACODE"                 chn="上网服务场所编码"	        field="servicecode"/>
+        <ITEM key="F010001" eng="LONGITUDE"                     chn="AP设备经度"	            field="longitude"/>
+        <ITEM key="F010002" eng="LATITUDE"                      chn="AP设备纬度"	            field="latitude"/>
+        <ITEM key="F040012" eng="FLOOR"                         chn="楼层"	                    field="mapid"/>
+        <ITEM key="P040001" eng="APTYPE"                        chn="AP类别"   atatype="UINT"    field="aptype"/>
+</EIM_ITEM>
+
+<EIM_ITEM name="WA_BASIC_FJ_0003_2"  prodtype="WIFI"  rmk="AP设备基础信息-移动AP"   att="BASICFILE"  where="aptype=1 and flags = 1" table="ncaplist">
+        <ITEM key="I070011" eng="COLLECTION_EQUIPMENT_ID"           chn="AP设备编号"	            field="apname"/>
+        <ITEM key="G020004" eng="NETBAR_WACODE"                     chn="上网服务场所编码"	        field="servicecode"/>
+        <ITEM key="F030011" eng="AP_MAC"                            chn="AP设备MAC地址"	            field="mac"/>
+        <ITEM key="F040013" eng="SUBWAY_STATION"                    chn="站点信息"	                field="plate"/>
+        <ITEM key="C030006" eng="SUBWAY_LINE_INFO"                  chn="地铁线路信息（可选）"	    field="line"/>
+        <ITEM key="C030007" eng="SUBWAY_VEHICLE_INFO"               chn="地铁车辆信息（可选）"	    field="model"/>
+        <ITEM key="C030008" eng="SUBWAY_COMPARTMENT_NUMBER"         chn="地铁车厢编号（可选）"	    field="mapid"/>
+        <ITEM key="C030002" eng="CAR_CODE"                          chn="车牌号码（可选）"	        field="devid"/>
+        <ITEM key="P040001" eng="APTYPE"                            chn="AP类别"   atatype="UINT"   field="aptype"/>
+</EIM_ITEM>
+
+
+<EIM_ITEM name="WA_SOURCE_FJ_1001"  prodtype="MACCAP"  rmk="终端特征信息" table="ncmactermatt"  keyfield="sid">
+        <ITEM key="C040002"            chn="终端MAC地址"                         eng="MAC"                                   field="mac"        />
+        <ITEM key="C010002"            chn="终端品牌"                            eng="BRAND"                                 field="termtype" />
+        <ITEM key="G020004"            chn="场所编号"                            eng="NETBAR_WACODE"                         field="servicecode" />
+        <ITEM key="F040002"            chn="场所名称"                            eng="PLACE_NAME"                            field="servicename" />
+        <ITEM key="I070013"            chn="设备安装地址"                        eng="COLLECTION_EQUIPMENT_ADDRESS"          field="address" />
+        <ITEM key="H010014"            chn="采集时间"                            eng="CAPTURE_TIME"                          field="stime"               datatype="UINT" />
+        <ITEM key="I070003"            chn="被采终端场强"                        eng="TERMINAL_FIELD_STRENGTH"               field="rssi" />
+        <ITEM key="B040001"            chn="身份类型"                            eng="IDENTIFICATION_TYPE"                   field="vtype" />
+        <ITEM key="B040002"            chn="身份内容"                            eng="CERTIFICATE_CODE"                      field="vname" />
+        <ITEM key="F030021"            chn="终端历史SSID列表"                    eng="CACHE_SSID"                            field="ssid" />
+        <ITEM key="I070011"            chn="采集设备编号"                        eng="COLLECTION_EQUIPMENT_ID"               field="apname" />
+        <ITEM key="I070006"            chn="接入热点MAC"                         eng="ACCESS_AP_MAC"                         field="apmac" />
+        <ITEM key="I070007"            chn="接入热点频道"                        eng="ACCESS_AP_CHANNEL"                     field="channel" />
+        <ITEM key="I070008"            chn="接入热点加密类型"                    eng="ACCESS_AP_ENCRYPTION_TYPE"             field="security" />
+        <ITEM key="I070001"            chn="X坐标"                               eng="X_COORDINATE"                          field="xpos" />
+        <ITEM key="I070002"            chn="Y坐标"                               eng="Y_COORDINATE"                          field="ypos" />
+        <ITEM key="F010018"            chn="采集设备经度"                        eng="COLLECTION_EQUIPMENT_LONGITUDE"        field="longitude" />
+        <ITEM key="F010019"            chn="采集设备纬度"                        eng="COLLECTION_EQUIPMENT_LATITUDE"         field="latitude"  />  
+        <ITEM key="P000009"            chn="进出标志"                            eng="FLAGS"                                 field="flags"  />    
+        <ITEM key="I070005"            chn="接入热点SSID"                        eng="SSID_POSITION"                         field="assid" />
+        <ITEM key="P000010"            chn="记录序列号"                          eng="SID"           fmt="SID"               field="sid"/>                    
+</EIM_ITEM> 
+
+<EIM_ITEM name="WA_SOURCE_FJ_1002" prodtype="MACCAP" rmk="被采集热点信息" table="ncmachotinfo"  keyfield="sid"> 
+        <ITEM key="F030011"            chn="热点MAC地址"                   eng="MAP_MAC"                           field="mac"        />
+        <ITEM key="F030001"            chn="热点SSID"                      eng="BAP_SSID"                          field="ssid" />
+        <ITEM key="F030022"            chn="热点频道"                      eng="CAP_CHANNEL"                       field="channel" />
+        <ITEM key="G020004"            chn="场所编号"                      eng="ANETBAR_WACODE"                    field="servicecode" />
+        <ITEM key="F040002"            chn="场所名称"                      eng="PLACE_NAME"                            field="servicename" />
+        <ITEM key="I070013"            chn="设备安装地址"                  eng="COLLECTION_EQUIPMENT_ADDRESS"          field="address" />
+        <ITEM key="H010014"            chn="采集时间"                      eng="TCAPTURE_TIME"                     field="stime"   datatype="UINT" />
+        <ITEM key="F030023"            chn="热点场强"                      eng="IAP_FIELD STRENGTH"                field="rssi" />
+        <ITEM key="I070011"            chn="采集设备编号"                  eng="ACOLLECTION_EQUIPMENT_ID"          field="apname" />
+        <ITEM key="I070006"            chn="接入热点MAC"                         eng="ACCESS_AP_MAC"                         field="apmac" />
+        <ITEM key="B040025"            chn="热点加密类型"                  eng="CENCRYPT_ALGORITHM_TYPE"          field="security"  />
+        <ITEM key="I070001"            chn="X坐标"                         eng="CX_COORDINATE"                     field="xpos" />
+        <ITEM key="I070002"            chn="Y坐标"                         eng="SY_COORDINATE"                     field="ypos" />
+        <ITEM key="F010018"            chn="采集设备经度"                  eng="ACOLLECTION_EQUIPMENT_LONGITUDE"  field="longitude" />
+        <ITEM key="F010019"            chn="采集设备纬度"                  eng="XCOLLECTION_EQUIPMENT_LATITUDE"   field="latitude" />
+        <ITEM key="P000009"            chn="进出标志"                      eng="FLAGS"                            field="flags"  />    
+        <ITEM key="P000010"            chn="记录序列号"                    eng="SID"           fmt="SID"               field="sid"/> 
+</EIM_ITEM>  
+
+
+
+<EIM_ITEM name="WA_BASIC_FJ_1001" prodtype="MACCAP"  rmk="终端特征移动采集设备" table="ncmacmobileap"  keyfield="sid">
+        <ITEM key="I070011"            chn="采集设备编号"              eng="COLLECTION_EQUIPMENT_ID"            field="apname"      />
+        <ITEM key="G020004"            chn="场所编号"                  eng="NETBAR_WACODE"                      field="servicecode" />
+        <ITEM key="F040002"            eng="PLACE_NAME"                chn="上网服务场所名称"	                field="servicename"/>
+        <ITEM key="F010018"            chn="采集设备经度"              eng="COLLECTION_EQUIPMENT_LONGITUDE"     field="longitude" />
+        <ITEM key="F010019"            chn="采集设备纬度"              eng="COLLECTION_EQUIPMENT_LATITUDE"      field="latitude"  />
+        <ITEM key="H010014"            chn="时间"                      eng="TIME"                               field="stime"   datatype="UINT" />
+        <ITEM key="P000010"            chn="记录序列号"                          eng="SID"             fmt="SID"                field="sid"/>                    
+</EIM_ITEM>  
+
+
+<EIM_ITEM name="WA_BASIC_FJ_1002"  prodtype="MACCAP" rmk="终端特征采集设备基础信息" att="BASICFILE"  table="ncaplist"  keyfield="moditime">                                                   
+       <ITEM key="G020004"            chn="场所编号"                      eng="NETBAR_WACODE"                    field="servicecode"  /> 
+       <ITEM key="I070011"            chn="采集设备编号"                  eng="COLLECTION_EQUIPMENT ID"       att="KEYWORD"   field="apname" />  
+       <ITEM key="I070012"            chn="采集设备名称"                  eng="OLLECTION_EQUIPMENT_NAME"         field="dispname" />
+       <ITEM key="I070013"            chn="设备地址"                      eng="COLLECTION_EQUIPMENT_ADRESS"     field="address"  /> 
+       <ITEM key="I070014"            chn="采集设备类型"                  eng="COLLECTION_EQUIPMENT_TYPE"        field="aptype"   datatype="UINT" /> 
+       <ITEM key="G020013"            chn="安全厂商组织机构代码"          eng="SECURITY_SOFTWARE_ORGCODE"           field="fcode" /> 
+       <ITEM key="F010018"            chn="采集设备经度"                  eng="COLLECTION_EQUIPMENT_LONGITUDE" field="longitude" />  
+       <ITEM key="F010019"            chn="采集设备纬度"                  eng="COLLECTION_EQUIPMENT _LATITUDE"  field="latitude" />  
+       <ITEM key="I070015"            chn="上传数据间隔时间"              eng="CUPLOAD_TIME_ INTERVAL"           field="uptimestep" /> 
+       <ITEM key="I070004"            chn="采集半径"                      eng="UCOLLECTION_RADIUS"               field="radius" />                     
+       <ITEM key="C030002"            chn="车牌号码"                      eng="CVEHICLE_CODE"                   field="devid" />                       
+       <ITEM key="C030006"            chn="地铁线路信息"                  eng="VSUBWAY_LINE_INFO"               field="line" />                        
+       <ITEM key="C030007"            chn="地铁车辆信息"                  eng="SSUBWAY_VEHICLE_INFO"            field="plate" />                 
+       <ITEM key="C030008"            chn="地铁车厢编号"                  eng="SUBWAY_COMPARTEMNT_NUMBER"       field="mapid" />                 
+</EIM_ITEM>  
+
+
+<EIM_ITEM name="WA_BASIC_FJ_1003" prodtype="MACCAP"  rmk="场所基础信息"  att="BASICFILE"  keyfield="moditime" table="ncsuser">
+        <ITEM key="P020004" eng="NETBAR_WACODE"                    chn="上网服务场所ID"     fmt="MD5CODE(G020004)"              field="userid"/>
+        <ITEM key="G020004" eng="NETBAR_WACODE"                    chn="上网服务场所编码"     att="KEYWORD"              field="username"/>
+        <ITEM key="F040002" eng="PLACE_NAME"                       chn="上网服务场所名称"	            field="dispname"/>
+        <ITEM key="G020017" eng="SITE_ADDRESS"                     chn="场所详细地址"	                field="address"/>
+        <ITEM key="F010016" eng="LONGITUDE"                        chn="场所经度"	                    field="longitude"/>
+        <ITEM key="F010017" eng="LATITUDE"                         chn="场所纬度"	                    field="latitude"/>
+        <ITEM key="F040011" eng="NETSITE_TYPE"                     chn="场所服务类型"	                field="gtype"/>
+        <ITEM key="E010007" eng="BUSINESS_NATURE"                  chn="场所经营性质"	                field="jytype"/>
+        <ITEM key="E020001" eng="LAW_PRINCIPAL_NAME"               chn="场所经营法人"	                field="ceoname"/>
+        <ITEM key="E020003" eng="LAW_PRINCIPAL_CERTIFICATE_TYPE"   chn="经营法人有效证件类型"	        field="ceoidtype"/>
+        <ITEM key="E020004" eng="LAW_PRINCIPAL_CERTIFICATE_ID"     chn="经营法人有效证件号码"	        field="ceocardid"/>
+        <ITEM key="B070003" eng="RELATIONSHIP_ACCOUNT"             chn="联系方式"	                    field="ceotel"/>
+        <ITEM key="I070009" eng="START_TIME"                       chn="营业开始时间"	                field="sdate"/>
+        <ITEM key="I070010" eng="END_TIME"                         chn="营业结束时间"	                field="edate"/>
+        <ITEM key="G020010" eng="ACCESS_TYPE"                      chn="场所网络接入方式"	            field="jointype"/>
+        <ITEM key="B020001" eng="OPERATOR_NET"                     chn="场所网络接入服务商"	              field="joincode"/>
+        <ITEM key="I070016" eng="ACSSES_IP/AUTH_ ACCOUNT"          chn="网络接入账号或固定IP地址"         field="ip"/>
+        <ITEM key="G020013" eng="CODE_ALLOCATION_ORGANIZATION"     chn="安全厂商组织机构代码"	        field="fcode"/>
+        <ITEM key="P030008" eng="MODITIME"                         chn="记录最后修改时间"         datatype="UINT"  field="moditime"/>        
+</EIM_ITEM>
+
+
+<EIM_ITEM name="WA_BASIC_FJ_1004" prodtype="MACCAP"  rmk="安全厂商基础信息"  att="BASICFILE"  table="ncsfactorycod" keyfield="moditime">
+        <ITEM key="G020013" eng="SERIALNUM"                     chn="序列号"             fmt="MD5CODE(G020013)"          field="sid" />
+        <ITEM key="G020014" eng="SECURITY_SOFTWARE_ORGNAME"     chn="厂商名称"	                                field="name"/>
+        <ITEM key="G020013" eng="SECURITY_SOFTWARE_ORGCODE"     chn="厂商组织机构代码"	 att="KEYWORD"          field="code"/>
+        <ITEM key="G020037" eng="SECURITY_SOFTWARE_ ADDRESS"    chn="厂商地址"	                                field="saddress"/>
+        <ITEM key="E020017" eng="CONTACTOR"                     chn="联系人"	                                field="slink"/>
+        <ITEM key="E020020" eng="CONTACTOR_TEL"                 chn="联系人电话"	                        field="stel"/>
+        <ITEM key="E020023" eng="CONTACTOR _MAIL"               chn="联系人邮件"	                        field="smail"/>
+        <ITEM key="P020022" eng="MODITIME"                      chn="最后更新时间"	                        field="moditime"/>
+</EIM_ITEM>
+
+
+<EIM_ITEM name="WA_ONLINE_FJ_1001" prodtype="MACCAP"  rmk="AP在线信息"  att="ONLINE" table="serviceheat" >
+       <ITEM key="G020004"            chn="场所编号"                      eng="NETBAR_WACODE"                    field="servicecode"        />
+       <ITEM key="I070011"            chn="采集设备编号"                  eng="COLLECTION_EQUIPMENT ID"          field="apname" />
+       <ITEM key="F040002"            chn="上网服务场所名称"	          eng="PLACE_NAME"                       field="caServicename"/>
+       <ITEM key="I070012"            chn="采集设备名称"                  eng="OLLECTION_EQUIPMENT_NAME"         field="dispname" />  
+       <ITEM key="I070013"            chn="设备地址"                      eng="COLLECTION_EQUIPMENT_ADRESS"     field="address"  />   
+       <ITEM key="P100001"            chn="在线人数"                      eng="COLLECTION_ONLINE_PEOPLE"        field="number" datatype="UINT"  />   
+       <ITEM key="P100002"            chn="在线MAC数"                     eng="COLLECTION_ONLINE_MAC"           field="summac" datatype="UINT"  />   
+       <ITEM key="F010018"            chn="采集设备经度"                  eng="COLLECTION_EQUIPMENT_LONGITUDE" field="longitude" />  
+       <ITEM key="F010019"            chn="采集设备纬度"                  eng="COLLECTION_EQUIPMENT _LATITUDE"  field="latitude" />  
+       <ITEM key="C030002"            chn="车牌号码"                      eng="CVEHICLE_CODE"                   field="devid" />                       
+       <ITEM key="C030006"            chn="地铁线路信息"                  eng="VSUBWAY_LINE_INFO"               field="line" />                        
+       <ITEM key="C030007"            chn="地铁车辆信息"                  eng="SSUBWAY_VEHICLE_INFO"            field="plate" />                 
+       <ITEM key="C030008"            chn="地铁车厢编号"                  eng="SUBWAY_COMPARTEMNT_NUMBER"       field="mapid" />                 
+       <ITEM key="P100001"            chn="最后联系时间"                  eng="LAST_TIME"                       field="stime" />                 
+</EIM_ITEM>

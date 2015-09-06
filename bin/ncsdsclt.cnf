@@ -1,0 +1,1062 @@
+Appsrv  ncs {
+    DispName: "网络督察管理中心";
+    DsServerIp: 127.0.0.1;      /* 目录服务器的Ip地址 */
+    DsServerPort:8396;          /* 目录服务器的端口号 */
+    KeySecret:OFF;              /* 口令是否加密       */
+    Mykey:ncs;                  /* 密码               */
+    StatusTime:60;
+    KeepTime:120;
+    MaxClients:2000;
+    MinClients:4;
+    ExtendStep:10;
+    UserTimeOut:6000;
+    Auth: Local;
+}
+
+/* 功能代码的描述  */
+
+Function Default {
+     DispName:  系统缺省;
+     Auth:      None;
+     MaxRunTime:300;
+     ErrorMsg:   ncs/ncmsg_pasmsg.htm;
+}
+
+Function OnTime {
+    Dispname:OnTime;
+    Auth:None;
+    MaxRunTime:7200;
+}
+
+Function ncsWebAuth {
+    Dispname:ncsWebAuth;
+    Auth:None;
+    MaxRunTime:300;
+}
+
+
+
+
+
+
+
+
+
+
+Function ncsWebReplace {
+    Dispname:ncsWebReplace;
+    Auth:None;
+    MaxRunTime:300;
+}
+
+Function ncs_warnbycorp_stat {
+    Dispname:ncs_warnbycorp_stat;
+    Auth:None;
+    MaxRunTime:300;
+}
+
+Function ncs_warnbyclassname_stat {
+    Dispname:ncs_warnbyclassname_stat;
+    Auth:None;
+}
+
+Function ncs_warnbydate_stat {
+    Dispname:ncs_warnbydate_stat;
+    Auth:None;
+    MaxRunTime:300;
+}
+
+Function ncs_errbycorp_stat {
+    Dispname:ncs_errbycorp_stat;
+    Auth:None;
+    MaxRunTime:300;
+}
+
+Function ncs_errbydip_stat {
+    Dispname:ncs_errbydip_stat;
+    Auth:None;
+    MaxRunTime:300;
+}
+
+Function ncsWebRefresh {
+    Dispname:ncsWebRefresh;
+    Auth:None;
+    MaxRunTime:300;
+}
+
+Function ncsNetSesLog {
+    Dispname:ncsNetSesLog;
+    Auth:None;
+}
+
+Function ncs_web_stat {
+    Dispname:ncs_web_stat;
+    Auth:None;
+}
+
+Function ncs_ip_stat {
+    Dispname:ncs_ip_stat;
+    Auth:None;
+    MaxRunTime:300;
+}
+
+Function ncsNcGetTime {
+    Dispname:ncsNcGetTime;
+    Auth:None;
+}
+
+Function ncsNcLogin {
+    Dispname:ncsNcLogin;
+    Auth:None;
+}
+
+Function ncsNcHeatBeat {
+    Dispname:ncsNcHeatBeat;
+    Auth:None;
+    MaxRunTime:300;
+}
+
+Function ncsNcGetSynSumm {
+    Dispname:ncsNcGetSynSumm;
+    Auth:None;
+}
+
+Function ncsNcReqSynData {
+    Dispname:ncsNcReqSynData;
+    Auth:None;
+}
+
+Function ncsNcSendRealData {
+    Dispname:ncsNcSendRealData;
+    Auth:None;
+}
+
+Function ncsNcSendBaseData {
+    Dispname:ncsNcSendBaseData;
+    Auth:None;
+}
+
+Function ncsNcSendFile {
+    Dispname:ncsNcSendFile;
+    Auth:None;
+    MaxRunTime:300;
+}
+
+Function ncsDebugReset {
+    Dispname:ncsDebugReset;
+    Auth:None;
+}
+
+Function ncsDebugClientOnline {
+    Dispname:ncsDebugClientOnline;
+    Auth:None;
+    MaxRunTime:300;
+}
+
+Function ncsDebugClientInfo {
+    Dispname:ncsDebugClientInfo;
+    Auth:None;
+    MaxRunTime:300;
+}
+
+Function ncsDebugSynIndex {
+    Dispname:ncsDebugSynIndex;
+    Auth:None;
+}
+
+Function ncsDebugSynMonSet {
+    Dispname:ncsDebugSynMonSet;
+    Auth:None;
+    MaxRunTime:300;
+}
+
+Function ncsDebugSynRealIp {
+    Dispname:ncsDebugSynRealIp;
+    Auth:None;
+    MaxRunTime:300;
+}
+
+Function ncsDebugSynRealWeb {
+    Dispname:ncsDebugSynRealWeb;
+    Auth:None;
+    MaxRunTime:300;
+}
+
+Function ncsDebugSynRealErr {
+    Dispname:ncsDebugSynRealErr;
+    Auth:None;
+    MaxRunTime:300;
+}
+
+Function ncsDebugSynRealWarn {
+    Dispname:ncsDebugSynRealWarn;
+    Auth:None;
+    MaxRunTime:300;
+}
+
+Function ncsDebugSynRealMail {
+    Dispname:ncsDebugSynRealMail;
+    Auth:None;
+    MaxRunTime:300;
+}
+
+Function ncsDebugSynRealForm {
+    Dispname:ncsDebugSynRealForm;
+    Auth:None;
+}
+
+Function ncsDebugSynRealIm {
+    Dispname:ncsDebugSynRealIm;
+    Auth:None;
+}
+
+Function ncsDebugSynRealUserlog {
+    Dispname:ncsDebugSynRealUserlog;
+    Auth:None;
+}
+
+Function ncsDebugSynRealNetId {
+    Dispname:ncsDebugSynRealNetId;
+    Auth:None;
+    MaxRunTime:300;
+}
+
+Function ncsDebugSynRealTelnet {
+    Dispname:ncsDebugSynRealTelnet;
+    Auth:None;
+}
+
+Function dsCltWebLogin {
+    Dispname:dsCltWebLogin;
+    Auth:None;
+}
+Function ncsWebNettypeComp{
+	Dispname:ncsWebNettypeComp;
+	Auth:CheckRight;
+}
+
+Function ncsWebShowUserBh{
+	Dispname:ncsWebShowUserBh;
+	Auth:CheckRight;
+}
+
+Function ncsWebDispClientAddForm_v4 {
+    Dispname:ncsWebDispClientAddForm_v4;
+    Auth:CheckRight;
+}
+
+/*单位管理*/
+Function ncsWebClientSearch_v4 {
+    Dispname:ncsWebClientSearch_v4;
+    Auth:CheckRight;
+}
+Function proauthExit {
+    Dispname:proauthExit;
+    Auth:CheckRight;
+}
+
+Function ncsWebClientAdd_v4 {
+    Dispname:ncsWebClientAdd_v4;
+    Auth:CheckRight;
+}
+
+/*单位组管理*/
+
+
+
+Function ncsTreeGroup_v4 {
+    Dispname:ncsTreeGroup_v4;
+    Auth:CheckRight;
+}
+
+
+Function ncsWebGroupComp0 {
+    Dispname:ncsWebGroupComp0;
+    Auth:CheckRight;
+}
+Function ncsTreeFac_v4 {
+    Dispname:ncsTreeFac_v4;
+    Auth:CheckRight;
+}
+Function ncsTestRight_v4 {
+    Dispname:ncsTestRight_v4;
+    Auth:CheckRight;
+}
+
+/*归档日志*/
+Function ncsUserlogSearch_v4 {
+    Dispname:ncsUserlogSearch_v4;
+    Auth:CheckRight;
+}
+
+
+/*在线率统计*/
+Function ncs_onlinecorp_first_onlinerate {
+    Dispname:ncs_onlinecorp_first_onlinerate;
+    Auth:CheckRight;
+}
+Function macFrontPageRange{
+    Dispname:macFrontPageRange;
+    Auth:CheckRight;
+}
+/*告警信息*/
+Function ncsWarnInfoOnline_v4 {
+    Dispname:ncsWarnInfoOnline_v4;
+    Auth:CheckRight;
+}
+
+/*布控管理*/
+Function ncsCaseList_v4 {
+    Dispname:ncsCaseList_v4;
+    Auth:CheckRight;
+}
+Function ncsCaseDet_netid_v4 {
+    Dispname:ncsCaseDet_netid_v4;
+    Auth:CheckRight;
+}
+Function ncsCaseDet_website_v4 {
+    Dispname:ncsCaseDet_website_v4;
+    Auth:CheckRight;
+}
+Function ncsCaseDet_user_v4 {
+    Dispname:ncsCaseDet_user_v4;
+    Auth:CheckRight;
+}
+Function ncsCaseDet_keyword_v4 {
+    Dispname:ncsCaseDet_keyword_v4;
+    Auth:CheckRight;
+}
+Function ncsKeywordtypeComp {
+    Dispname:ncsKeywordtypeComp;
+    Auth:CheckRight;
+}
+Function ncCaseKeywodDrNext {
+    Dispname:ncCaseKeywodDrNext;
+    Auth:CheckRight;
+}
+Function case_keyword_imp {
+    Dispname:case_keyword_imp;
+    Auth:CheckRight;
+}
+Function ncsCaseDet_service_v4 {
+    Dispname:ncsCaseDet_service_v4;
+    Auth:CheckRight;
+}
+Function ncsCaseDet_ipport_v4 {
+    Dispname:ncsCaseDet_ipport_v4;
+    Auth:CheckRight;
+}
+Function ncsCaseDet_warnset_v4 {
+    Dispname:ncsCaseDet_warnset_v4;
+    Auth:CheckRight;
+}
+Function ncsCase_xflog_v4 {
+    Dispname:ncsCase_xflog_v4;
+    Auth:CheckRight;
+}
+Function ncsCaseArea_v4 {
+    Dispname:ncsCaseArea_v4;
+    Auth:CheckRight;
+}
+Function ncsCaseDet_search_v4 {
+    Dispname:ncsCaseDet_search_v4;
+    Auth:CheckRight;
+}
+Function ncsTreeKeyword_v4 {
+    Dispname:ncsTreeKeyword_v4;
+    Auth:CheckRight;
+}
+Function ncsCase_keywordDet_v4 {
+    Dispname:ncsCase_keywordDet_v4;
+    Auth:CheckRight;
+}
+
+Function ncsUserlogSearch2_v4 {
+    Dispname:ncsUserlogSearch2_v4;
+    Auth:CheckRight;
+}
+Function ncsNetidSearch_v4 {
+    Dispname:ncsNetidSearch_v4;
+    Auth:CheckRight;
+}
+Function ncsImlogSearch_v4 {
+    Dispname:ncsImlogSearch_v4;
+    Auth:CheckRight;
+}
+Function ncsMailSearch_v4 {
+    Dispname:ncsMailSearch_v4;
+    Auth:CheckRight;
+}
+Function ncsSearchlogSearch_v4 {
+    Dispname:ncsSearchlogSearch_v4;
+    Auth:CheckRight;
+}
+Function ncsFormSearch_v4 {
+    Dispname:ncsFormSearch_v4;
+    Auth:CheckRight;
+}
+Function ncsHttpSearch_v4 {
+    Dispname:ncsHttpSearch_v4;
+    Auth:CheckRight;
+}
+Function ncsNetsesSearch_v4 {
+    Dispname:ncsNetsesSearch_v4;
+    Auth:CheckRight;
+}
+Function ncsIplogSearch_v4 {
+    Dispname:ncsIplogSearch_v4;
+    Auth:CheckRight;
+}
+Function ncsBbsSearch_v4 {
+    Dispname:ncsBbsSearch_v4;
+    Auth:CheckRight;
+}
+
+/*权限管理*/
+Function ncsSysUserlist_v4 {
+    Dispname:ncsSysUserlist_v4;
+    Auth:CheckRight;
+}
+Function ncsRolelist_v4 {
+    Dispname:ncsRolelist_v4;
+    Auth:CheckRight;
+}
+Function ncsDispRoleFunlist_v4 {
+    Dispname:ncsDispRoleFunlist_v4;
+    Auth:CheckRight;
+}
+Function ncsKewordlog_v4 {
+    Dispname:ncsKewordlog_v4;
+    Auth:CheckRight;
+}
+Function ncsSenUrllog_v4 {
+    Dispname:ncsSenUrllog_v4;
+    Auth:CheckRight;
+}
+Function ncsSenNetidlog_v4 {
+    Dispname:ncsSenUrllog_v4;
+    Auth:CheckRight;
+}
+Function ncsWebDispModiPass {
+    Dispname:ncsWebDispModiPass;
+    Auth:CheckRight;
+}
+Function ncsWebModiPass {
+    Dispname:ncsWebModiPass;
+    Auth:CheckRight;
+}
+Function ncsDispTool_v4 {
+    Dispname:ncsDispTool_v4;
+    Auth:CheckRight;
+}
+Function ncsDispToolSave_v4 {
+    Dispname:ncsDispToolSave_v4;
+    Auth:CheckRight;
+}
+Function ncsTreeUser_v4 {
+    Dispname:ncsTreeUser_v4;
+    Auth:CheckRight;
+}
+Function ncsTreeKeyword_log_v4 {
+    Dispname:ncsTreeKeyword_log_v4;
+    Auth:CheckRight;
+}
+Function ncsTreeNetid_log_v4 {
+    Dispname:ncsTreeNetid_log_v4;
+    Auth:CheckRight;
+}
+
+Function ncsTreeSenuser_log_v4 {
+    Dispname:ncsTreeSenuser_log_v4;
+    Auth:CheckRight;
+}
+Function ncsTreeUrl_log_v4 {
+    Dispname:ncsTreeUrl_log_v4;
+    Auth:CheckRight;
+}
+Function ncsSenUserlog_v4 {
+    Dispname:ncsSenUserlog_v4;
+    Auth:CheckRight;
+}
+Function ncsTreeCase_v4 {
+    Dispname:ncsTreeCase_v4;
+    Auth:CheckRight;
+}
+Function ncsTreeCase_yh_v4 {
+    Dispname:ncsTreeCase_yh_v4;
+    Auth:CheckRight;
+}
+
+
+
+
+Right 告警信息 {
+    Dispname: 告警信息;
+    FunName:ncsTestRight_v4;
+    FunName:ncsWarnInfoOnline_v4;
+    FunName:ncsTreeGroup_comp_v4;
+    FunName:ncsSysUserRoleConfig_v4;
+	FunName:ncsSysUserRoleConfig_v9;
+    FunName:ncsTreeGroup_v4;
+    FunName:ncsWebDispModiPass;
+    FunName:ncsWebModiPass;
+    FunName:ncsDispTool_v4;
+    FunName:ncsTreeUser_v4;
+    FunName:ncsDispToolSave_v4;
+}
+Right 布控管理 {
+    Dispname: 布控管理;
+    FunName:ncsTreeCase_yh_v4;
+    FunName:ncsTreeCase_v4;
+    FunName:ncsTestRight_v4;
+    FunName:ncsCaseList_v4;
+    FunName:ncsWarnInfoOnline_v4;
+    FunName:ncsTreeGroup_comp_v4;
+    FunName:ncsSysUserRoleConfig_v4;
+    FunName:ncsSysUserRoleConfig_v9;
+    FunName:ncsCaseDet_netid_v4;
+    FunName:ncsCaseDet_website_v4;
+    FunName:ncsCaseDet_user_v4;
+    
+    FunName:ncsCaseDet_keyword_v4;
+    FunName:ncsKeywordtypeComp;
+    FunName:ncCaseKeywodDrNext;
+    
+    FunName:case_keyword_imp;
+    FunName:ncsCaseDet_service_v4;
+    FunName:ncsCaseDet_ipport_v4;
+    
+    FunName:ncsCaseDet_warnset_v4;
+    FunName:ncsCase_xflog_v4;
+    FunName:ncsCaseArea_v4;
+    
+    FunName:ncsCaseDet_search_v4;
+    FunName:ncsTreeKeyword_v4;
+    FunName:ncsCase_keywordDet_v4;
+    FunName:ncsTreeGroup_v4;
+    FunName:ncsWebDispModiPass;
+    FunName:ncsWebModiPass;
+    FunName:ncsDispTool_v4;
+    FunName:ncsTreeUser_v4;
+    FunName:ncsDispToolSave_v4;
+}
+Right 系统参数配置 {
+    Dispname: 系统参数配置;
+    FunName:ncsTestRight_v4;
+    FunName:ncsSysUserlist_v4;
+    FunName:ncsRolelist_v4;
+    FunName:ncsDispRoleFunlist_v4;
+    FunName:ncsSysUserRoleConfig_v4;
+	FunName:ncsSysUserRoleConfig_v9;
+    FunName:ncsWebAdminDispUserForm;
+    FunName:ncsTreeGroup_v4;
+    FunName:ncsWebDispModiPass;
+    FunName:ncsWebModiPass;
+    FunName:ncsDispTool_v4;
+    FunName:ncsTreeUser_v4;
+    FunName:ncsDispToolSave_v4;    
+    FunName:ncsDispRoleFunlist_v4;
+    FunName:ncsRolelist_v4;
+}
+
+Right 导航树 {
+    Dispname: 导航树;
+    FunName:ncsWebDispModiPass;
+    FunName:ncsWebModiPass;
+    FunName:ncsDispTool_v4;
+    FunName:ncsTreeUser_v4;
+    FunName:ncsDispToolSave_v4;
+}
+
+Function ncsEndUserlist_v4 {
+    Dispname:ncsEndUserlist_v4;
+    Auth:CheckRight;
+    MaxRunTime:300;
+}
+Function ncsMacVid_v4 {
+    Dispname:ncsMacVid_v4;
+    Auth:CheckRight;
+    MaxRunTime:300;
+}
+Function ncsShowZhtj_v4 {
+    Dispname:ncsShowZhtj_v4;
+    Auth:CheckRight;
+    MaxRunTime:300;
+}
+Function ncsWebDispXxztZgt_v4 {
+    Dispname:ncsWebDispXxztZgt_v4;
+    Auth:CheckRight;
+    MaxRunTime:300;
+}
+Function ncsScanMaclist_v4 {
+    Dispname:ncsScanMaclist_v4;
+    Auth:CheckRight;
+    MaxRunTime:300;
+}
+Function ncAdminUserSave_v8 {
+    Dispname:ncAdminUserSave_v8;
+    Auth:CheckRight;
+    MaxRunTime:300;
+}
+
+Function ncsWebClientAdd_wif {
+    Dispname:ncsWebClientAdd_wif;
+    Auth:CheckRight;
+    MaxRunTime:300;
+}
+
+Function dm_bab {
+    Dispname:dm_bab;
+    Auth:CheckRight;
+    MaxRunTime:300;
+}
+
+
+
+Right 退出系统 {
+    Dispname: 退出系统;
+    FunName: proauthExit;   
+}
+Right 首页{
+    Dispname:首页;
+    FunName:macFrontPageRange;
+    FunName:macFrontPageChart1;
+    FunName:macFrontPageLeftBlocks;
+}
+Function macFrontPageLeftBlocks{
+    Dispname:macFrontPageLeftBlocks;
+    Auth:CheckRight;
+}
+Function macFrontPageChart1{
+    Dispname:macFrontPageChart1;
+    Auth:CheckRight;
+}
+Function macFrontPageRange{
+    Dispname:macFrontPageRange;
+    Auth:CheckRight;
+}
+Right MAC日志查询{
+	DispName:MAC日志查询;
+	FunName:ncsSysUserRoleConfig_v9;
+	FunName:ncsMacLog_mactermlist_v4;
+	FunName:ncsMacLog_ChosenMac_TimeOftenCount;
+	FunName:ncsMacLog_ChosenMac_PlaceOftenCount;
+	FunName:ncsMacLog_ChosenMac_PlaceTypeOftenCount;
+	FunName:ncsMacLog_ChosenMac_IDCheck;
+	FunName:ncsMacLog_ChosenMac_GetMacGroupInfo;
+	FunName:ncsMacLog_ChosenMac_JoinMacGroup;
+	FunName:ncsMacLog_ChosenMac_DistinctSsid;
+}
+Function ncsMacLog_ChosenMac_DistinctSsid{
+	Dispname:ncsMacLog_ChosenMac_DistinctSsid;
+	Auth:CheckRight;
+}
+Function ncsMacLog_ChosenMac_GetMacGroupInfo{
+	Dispname:ncsMacLog_ChosenMac_GetMacGroupInfo;
+	Auth:CheckRight;
+}
+Function ncsMacLog_ChosenMac_JoinMacGroup{
+	Dispname:ncsMacLog_ChosenMac_JoinMacGroup;
+	Auth:CheckRight;
+}
+
+Function ncsMacLog_mactermlist_v4{
+	Dispname:ncsMacLog_mactermlist_v4;
+	Auth:CheckRight;
+}
+
+Function ncsMacLog_ChosenMac_TimeOftenCount{
+	Dispname:ncsMacLog_ChosenMac_TimeOftenCount;
+	Auth:CheckRight;
+}
+
+Function ncsMacLog_ChosenMac_PlaceOftenCount{
+	Dispname:ncsMacLog_ChosenMac_PlaceOftenCount;
+	Auth:CheckRight;
+}
+
+Function ncsMacLog_ChosenMac_PlaceTypeOftenCount{
+	Dispname:ncsMacLog_ChosenMac_PlaceTypeOftenCount;
+	Auth:CheckRight;
+}
+
+Function ncsMacLog_ChosenMac_IDCheck{
+	Dispname:ncsMacLog_ChosenMac_IDCheck;
+	Auth:CheckRight;
+}
+
+
+
+Right 热点查询{
+	DispName:热点查询;
+	FunName:ncsSysUserRoleConfig_v9;
+	FunName:ncsHotSpot_infolist_v4;
+	FunName:ncsHotSpot_MarkRuleorNot;
+}
+
+Function ncsHotSpot_MarkRuleorNot{
+	Dispname:ncsHotSpot_MarkRuleorNot;
+	Auth:CheckRight;
+}
+
+Function ncsHotSpot_infolist_v4{
+	Dispname:ncsHotSpot_infolist_v4;
+	Auth:CheckRight;
+}
+Right 场所信息查询{
+	DispName:场所信息查询;
+	FunName:ncsSysUserRoleConfig_v9;
+	FunName:ncsPlace_mactermlist_v4;
+	FunName:ncsPlace_Chosenplace_MacCount;
+	FunName:ncsPlace_Chosenplace_TerminalmacTop;
+	FunName:ncsPlace_Chosenplace_PeopleCrowedTime;
+}
+Function ncsPlace_mactermlist_v4{
+	Dispname:ncsPlace_mactermlist_v4;
+	Auth:CheckRight;
+}
+
+Function ncsPlace_Chosenplace_MacCount{
+	Dispname:ncsPlace_Chosenplace_MacCount;
+	Auth:CheckRight;
+}
+
+Function ncsPlace_Chosenplace_TerminalmacTop{
+	Dispname:ncsPlace_Chosenplace_TerminalmacTop;
+	Auth:CheckRight;
+}
+
+Function ncsPlace_Chosenplace_PeopleCrowedTime{
+	Dispname:ncsPlace_Chosenplace_PeopleCrowedTime;
+	Auth:CheckRight;
+}
+
+Right 移动采集设备{
+	DispName:移动采集设备;
+	FunName:ncsSysUserRoleConfig_v9;
+	FunName:ncsMobileap_mactermlist_v4;
+	FunName:ncsMobileap_Chosenplace_TerminalmacTop;
+	FunName:ncsMobileap_Chosenplace_PeopleCrowedTime;
+}
+
+Function ncsMobileap_mactermlist_v4{
+	Dispname:ncsMobileap_mactermlist_v4;
+	Auth:CheckRight;
+}
+
+Function ncsMobileap_Chosenplace_TerminalmacTop{
+	Dispname:ncsMobileap_Chosenplace_TerminalmacTop;
+	Auth:CheckRight;
+}
+
+Function ncsMobileap_Chosenplace_PeopleCrowedTime{
+	Dispname:ncsMobileap_Chosenplace_PeopleCrowedTime;
+	Auth:CheckRight;
+}
+
+
+Right 实时信息{
+	DispName:实时信息;
+	FunName:ncsSysUserRoleConfig_v9;
+	FunName:ncsCurrent_mactermlist_v4;
+	FunName:ncsCurrent_FromRAM;
+}
+
+Function ncsCurrent_FromRAM{
+	Dispname:ncsCurrent_FromRAM;
+}
+
+Function ncsCurrent_mactermlist_v4{
+	Dispname:ncsCurrent_mactermlist_v4;
+	Auth:CheckRight;
+}
+
+Right 虚拟身份日志{
+	DispName:虚拟身份日志;
+	FunName:ncsSysUserRoleConfig_v9;
+	FunName:ncsNetidloglist_v4;
+}
+
+Function ncsNetidloglist_v4 {
+    Dispname:ncsNetidloglist_v4;
+    Auth:CheckRight;
+    MaxRunTime:300;
+}
+
+Right 布控管理{
+	DispName:布控管理;
+	FunName:ncsSysUserRoleConfig_v9;
+}
+
+Right 接警人员管理{
+	DispName:接警人员管理;
+	FunName:ncsSysUserRoleConfig_v9;
+}
+Right 告警信息查询{
+	DispName:告警信息查询;
+	FunName:ncsSysUserRoleConfig_v9;
+}
+
+Right 伴随行为分析{
+	DispName:伴随行为分析;
+	FunName:ncsSysUserRoleConfig_v9;
+	FunName:dm_bab;
+}
+
+Right 抽样分析{
+	DispName:抽样分析;
+	FunName:ncsSysUserRoleConfig_v9;
+}
+
+Right 高频次分析{
+	DispName:高频次分析;
+	FunName:ncsSysUserRoleConfig_v9;
+}
+
+Right 轨迹分析{
+	DispName:轨迹分析;
+	FunName:ncsSysUserRoleConfig_v9;
+}
+
+Right 可疑热点分析{
+	DispName:可疑热点分析;
+	FunName:ncsSysUserRoleConfig_v9;
+}
+
+Right 人流分析{
+	DispName:人流分析;
+	FunName:ncsSysUserRoleConfig_v9;
+}
+
+Right 设备管理{
+	DispName:设备管理;
+	FunName:ncsSysUserRoleConfig_v9;
+	FunName:ncsWebFacComp;
+	FunName:proauth_apset_Save_v9;
+	FunName:proauthWebAplist_v9;
+}
+
+Function proauthWebAplist_v9 {
+    Dispname:proauthWebAplist_v9;
+    Auth:CheckRight;
+}
+Function proauth_apset_Save_v9{
+    Dispname:proauth_apset_Save_v9;
+    Auth:CheckRight;
+}
+
+Right 单位属组{
+	DispName:单位属组;
+	FunName:ncsSysUserRoleConfig_v9;
+	FunName:ncsWebClientClassList_v4;
+	FunName:ncsTreeGroup_comp_v4;
+}
+
+Function ncsWebClientClassList_v4 {
+    Dispname:ncsWebClientClassList_v4;
+    Auth:CheckRight;
+}
+
+Right 热点管理{
+	DispName:热点管理;
+	FunName:ncsSysUserRoleConfig_v9;
+	FunName:ncsSysoperation;
+	FunName:ncsWebFacComp;
+}
+
+Function ncsSysoperation{
+	Dispname:ncsSysoperation;
+    Auth:CheckRight;
+}
+
+Right 场所管理{
+	DispName:场所管理;
+	FunName:ncsSysUserRoleConfig_v9;
+	FunName:ncsWebDispClientAddForm;
+	FunName:ncsTreeGroup_comp_v4;
+	FunName:ncsWebClientSearch;
+	FunName:ncsWebLbComp;
+	FunName:ncsWebFacComp;
+	FunName:ncsWebGroupComp;
+	FunName:ncsWebDispClientAddForm_wif;
+	FunName:ncsWebClientSearch_wif_v9;
+    FunName:ncsWebClientAdd_wif;
+	FunName:ncsWebClientAdd_wif_v9;
+	FunName:ncsCorpIp_v4;
+	FunName:ncsWebClientSearch_v4;
+	FunName:ncsTreeUser_v9;
+}
+
+Function ncsTreeUser_v9{
+	Dispname:ncsTreeUser_v9;
+	Auth:CheckRight;
+
+}
+Function ncsCorpIp_v4{
+	Dispname:ncsCorpIp_v4;
+    Auth:CheckRight;
+    MaxRunTime:300;
+}
+Function ncsWebClientAdd_wif_v9 
+{
+    Dispname:ncswebClientAdd_wif_v9;
+    Auth:CheckRight;
+    MaxRunTime:300;
+}
+Function ncsWebClientAdd_wif 
+{
+    Dispname:ncswebClientAdd_wif;
+    Auth:CheckRight;
+    MaxRunTime:300;
+}
+Function ncsWebClientSearch_wif_v9 
+{
+    Dispname:ncsWebClientSearch_wif_v9;
+    Auth:CheckRight;
+    MaxRunTime:300;
+}
+
+Function ncsWebDispClientAddForm_wif {
+    Dispname:ncsWebDispClientAddForm_wif;
+    Auth:CheckRight;
+    MaxRunTime:300;
+}
+
+Function ncsWebGroupComp {
+    Dispname:ncsWebGroupComp;
+    Auth:CheckRight;
+}
+
+Function ncsWebGroupComp{
+	Dispname:ncsWebGroupComp;
+	Auth:CheckRight;
+}
+
+Function ncsWebFacComp {
+    Dispname:ncsWebFacComp;
+    Auth:CheckRight;
+}
+
+Function ncsWebLbComp{
+	Dispname:ncsWebLbComp;
+	Auth:CheckRight;
+}
+
+Function ncsWebClientSearch{
+	Dispname:ncsWebClientSearch;
+	Auth:CheckRight;
+}
+
+Function ncsWebDispClientAddForm{
+	Dispname:ncsWebDispClientAddForm;
+	Auth:CheckRight;
+}
+
+Function ncsTreeGroup_comp_v4 {
+    Dispname:ncsTreeGroup_comp_v4;
+    Auth:CheckRight;
+}
+
+
+Right 安全厂商管理{
+	DispName:安全厂商管理;
+	FunName:ncsSysUserRoleConfig_v9;
+	FunName:ncsFacCode_v9;
+}
+
+Function ncsFacCode_v9 {
+    Dispname:ncsFacCode_v9;
+    Auth:CheckRight;
+    MaxRunTime:300;
+}
+
+Right 终端信息分组{
+	DispName:终端信息分组;
+	FunName:ncsSysUserRoleConfig_v9;
+	
+}
+
+Right 管理员账号{
+	DispName:管理员账号;
+	FunName:ncAdminUserSave_v8;
+	FunName:ncsTreeFac_v4;
+	FunName:ncsSysUserRoleConfig_v9;
+	
+}
+
+Right 系统运维告警{
+	DispName:系统运维告警;
+	FunName:ncsSysUserRoleConfig_v9;
+	FunName:ncsSysystem_alarm;
+
+
+}
+
+Right 系统参数配置{
+	DispName:系统参数配置;
+	FunName:ncsSysUserRoleConfig_v9;
+	
+}
+
+Right 操作员日志{
+	DispName:操作员日志;
+	FunName:ncsSysUserRoleConfig_v9;
+	
+}
+Right 权限管理{
+	DispName:权限管理;
+	FunName:ncsSysUserRoleConfig_v9;
+
+}
+
+Right 修改密码{
+	DispName:修改密码;
+	FunName:ncsSysUserRoleConfig_v9;	
+	FunName:ncsChangePass;
+}
+
+Right 我的工具栏 {
+    Dispname:我的工具栏;
+    FunName:ncsSysDispTool;
+	FunName:ncsSysUserRoleConfig_v9;
+	FunName:getDispToolInfo;
+	
+}
+Function ncsSysystem_alarm{
+	Dispname:ncsSysystem_alarm;
+	Auth:CheckRight;
+
+}
+Function ncsTreeFac_v4{
+	Dispname:ncsTreeFac_v4;
+	Auth:CheckRight;
+
+}
+
+
+
+Function ncsChangePass{
+	Dispname:ncsChangePass;
+	Auth:CheckRight;
+
+}
+
+
+Function getDispToolInfo{
+	Dispname:getDispToolInfo;
+	Auth:CheckRight;
+
+}
+
+Function ncsSysUserRoleConfig_v9{
+	Dispname:ncsSysUserRoleConfig_v9;
+	Auth:CheckRight;
+	
+}
+
+Function ncsSysDispTool{
+    Dispname:ncsSysDispTool;
+    Auth:CheckRight;
+}
+
+

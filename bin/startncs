@@ -1,0 +1,5 @@
+cd /home/ncmysql/ncs/bin
+./proeim_server
+sleep 5
+./proeim_s
+
