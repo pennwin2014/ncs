@@ -1,0 +1,495 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"> 
+	<link href="/css/css.css" rel="stylesheet" type="text/css">
+    <head>
+        <title></title>       
+        <meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+        <style type="text/css" media="screen"> 
+            html, body  { height:100%; }
+            body { margin:0; padding:0; overflow-y:hidden;
+                   background-color: #ffffff; }   
+            object:focus { outline:none; }
+            #flashContent { display:none; }
+        </style>
+                  
+        <script type="text/javascript" src="/js/flash/swfobject.js"></script>
+        <script type="text/javascript">
+            // For version detection, set to min. required Flash Player version, or 0 (or 0.0.0), for no version detection. 
+            var swfVersionStr = "10.2.0";
+            // To use express install, set to playerProductInstall.swf, otherwise the empty string. 
+            var xiSwfUrlStr = "/flash/playerProductInstall.swf";
+            var flashvars = {};
+            var params = {};
+		
+            params.wmode="opaque";
+            params.quality = "high";
+            params.bgcolor = "#ffffff";
+            params.allowscriptaccess = "sameDomain";
+            params.allowfullscreen = "true";
+            var attributes = {};
+            attributes.id = "table";
+            attributes.name = "table";
+            attributes.align = "left";
+            swfobject.embedSWF(
+                "/flash/table.swf", "flashContent", 
+                "100%", "100%", 
+                swfVersionStr, xiSwfUrlStr, 
+                flashvars, params, attributes);
+            // JavaScript enabled so display the flashContent div in case it is not replaced with a swf object.
+            swfobject.createCSS("#flashContent", "display:block;text-align:left;");
+            
+    var cx=1024;
+    var cy=840;
+
+cx=screen.width;        
+            
+						var left =0;
+			  		var top =0;
+			  		var width = cx-388;
+			  		var height = cy;
+			  		var colWidth = [40,80,100,90,45,55,40,55,50,40,40,50];	
+					var linkTxt =["百度","雅虎"];
+					var linkUrlMouse =["http://baidu.com/","http://yahoo.com/"];
+					var linkStyleMouse ="_blank";
+          var linkUrl = [["http://baidu.com/","http://yahoo.com/"],["http://baidu.com/","http://qq.com/"],["http://www.sina.com.cn/","http://qq.com/"]];
+			  		var linkCol = [1];
+			  		var linkStyle = ["_self","_blank","_blank"];
+			  		var align = ["","left","left","left","right",,"center","right","center","center","center","center","left"];
+			  		var color = ["","blue","red","black","blue",,"blue","red","black","blue"];
+					var title = ["selected","单位编码","单位名称","IP地址","用户数","在线用户","状态","实时信息","IP轨迹","详细","编辑","版本号"];
+					var id = new Array();
+          var idFlag = 0;
+						
+						function getNavigatorObject() {
+   						 var dataArr = new Array();
+   						 [#SLPB#]
+   						 dataArr[[#num#]] = ["[#username#]","[#dispname#]","[#ip#]","[#endnum#]","[#onuser#]","[#status#]","[#ssxx#]","IP轨迹","详细","编辑","[#version#]"];
+               [#SLPE#]
+    					 var i;
+    					 var j;
+    					 var key;
+    					 var value;
+    					 var arr = [];
+    					 for (i=0; i<dataArr.length; i++){
+    					 		var item = new Object(); 
+    					 		key = "id";
+    					 		value = i;
+    					 		item[key] =  value;
+    					 		
+    					 		key = "selected";
+        					value = false;
+        					item[key] =  value;
+    					 		
+    					 		for(j=1; j< title.length; j++){
+    					 			
+        						key = title[j];
+        					  value = dataArr[i][j-1];
+        					  item[key] =  value;
+    					 		}
+    					 	 	arr.push(item);
+    					}
+    					return arr;	
+    					 
+					 }
+			  function callApp() {
+			  			  	
+       		getSWF("table").newMessage(left,top,width,height,colWidth,linkTxt,linkUrlMouse,linkStyleMouse,linkCol,align,color,title);
+       		//alert("fsdf");
+   		 	}
+   		 function getTitle() {
+			  	return title;	 		
+   		 	}	
+   		 	function getLinkCol() {
+			  	return linkCol;	 		
+   		 	}	
+   		 	function getUrlStyle(row,col) {
+   		 		
+   		 		
+   		 		if(linkCol.length == 1)
+   		 			var arr = new Array(linkUrl[row],linkStyle[col]) 		
+   		 		else
+   		 			var arr = new Array(linkUrl[col][row],linkStyle[col]) 		
+			  	return arr;	 		
+   		 	}	
+   		 	
+   		 	
+   		 	
+				function getSWF(movieName){
+  			 	if (navigator.appName.indexOf("Microsoft") != -1){
+       			return window[movieName]
+  			 	}
+   				else {
+       			return document[movieName]
+   				}
+  			}
+  			
+				function openwin(url,style){
+
+					window.open(url,style,"width=700,height=700,toolbar=no, menubar=no, scrollbars=no location=no, status=no");
+           
+				}
+
+				function sendId(ID){
+              var j =0;
+ 				      for(;j < idFlag;j++){
+						if(ID == id[j]){
+							id.splice(j,1);						       
+                        break;
+             }
+  
+				     }
+           if(j == idFlag){  
+             id[idFlag] =ID;
+					idFlag++;
+                         } else
+					 idFlag--;
+                                  
+           return id;
+                                       
+				}
+                               
+        </script>
+        
+        
+        
+        
+        
+       <script>
+	
+var dfd1="0"
+function gotoPage(pagenum)
+
+{
+    form1.CurPg.value = pagenum;
+}
+
+function adduser(){
+    self.location.href="/pronline/Msg?FunName@ncsWebDispClientAddForm&groupid@[#groupid#]";
+}
+
+
+function userdel()
+{
+    form1.FunName.value = "ncWebDelSomeClient";
+    form1.submit();
+}
+
+ 
+function goto(t){
+self.location.href=t+'&groupid0@[#groupid0#]&cond@[#cond#]&CurPg@[#CurPg#]'
+}
+
+
+    function Del()
+    {
+    var flag=0;
+    	    for(var i=1;i<document.all.DataTable.rows.length;i++)
+	    {
+	    if(document.all.DataTable.rows[i].cells[0].childNodes[0].checked)
+	    {
+		    flag=1;
+		    break;
+	    }
+	    }
+	    if(flag==0)
+	    {
+	    	alert('请先选择要删除的单位');
+	    	return false;
+	    }
+	    	return true;
+    }
+function checkme(p)
+{
+	var tt=p.value
+	if (tt>yy)
+	{
+		MM_changeProp('browsdopage','','value',yy,'INPUT/TEXT')
+	}
+	if (tt==0)
+	{
+		MM_changeProp('browsdopage','','value','1','INPUT/TEXT')
+	}
+}
+function showQuery111()
+{
+
+	temp="/chaxun_khzl.htm";
+    var oDia=showModalDialog(temp,window,"status:no;center:yes;help:no;minimize:no;maximize:no;border:thick;statusbar:no;dialogWidth:430px;scroll:none;dialogHeight:490px;overflow:none");	
+}
+
+
+function allChecked(){
+    if(dfd1=="1"){
+        dfd1="0"
+    }
+    else {
+         dfd1="1"
+    }
+	for(var i=0;i<document.all.DataTable.rows.length;i++)
+	{
+		if(typeof(document.all.DataTable.rows[i].cells[0].childNodes[0])=="object"
+
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].tagName=="INPUT"
+
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].type=="checkbox") {
+			if(dfd1=="1"){
+  			    document.all.DataTable.rows[i].cells[0].childNodes[0].checked="true";
+            }
+			else{
+                document.all.DataTable.rows[i].cells[0].childNodes[0].checked="";
+            }
+        }
+ 	}
+}
+
+
+// -->
+<!-- Hide
+var ll='[#CurPg#]'
+var yy='[#TotPg#]'
+function killErrors() {
+return true;
+}
+window.onerror = killErrors;
+// -->
+function bj(id){
+self.location.href="/pronline/MsgL?FunName@ncsWebDispClientAddForm&userid@"+id;
+}
+function xx(id){
+self.location.href="/pronline/MsgL?FunName@ncsWebDispClientAddForm&disflag@1&userid@"+id;
+}
+function ipgj(id){
+var tt="/pronline/Msg?FunName@ncsWebReplace&plate@ncs/corp_ip_main.htm&userid@"+id;
+showModalDialog(tt, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thin;statusbar:no;dialogWidth:500px;scroll:yes;dialogHeight:480px');
+}
+function ssxx(id,dname){
+self.location.href="/pronline/Msg?FunName@ncsWebReplace&fname@nccWebShowUserStatus&plate@ncsmsg_showncc.htm&ProId@"+id+"&did@"+id+"&cname@"+dname;
+}
+function xxgl(){
+self.location.href="/pronline/Msg?FunName@ncsDispWbsMesg&flags@0";
+}
+function clearcon(){
+form1.servicestate1.value='';
+form1.contact1.value='';
+form1.ip1.value='';
+form1.dispname1.value='';
+form1.servicecode1.value='';
+form1.name.value='';
+form1.address1.value='';
+form1.handphone1.value='';
+form1.telphone1.value='';
+form1.email1.value='';
+form1.joincode1.value='';
+form1.jointype1.value='';
+form1.area1.value='';
+form1.areaman1.value='';
+form1.groupid.value='';
+}
+</script> 
+        
+        
+        
+        
+    </head>
+    <body marginheight=0 leftmargin=0 marginwidth=0 topMargin="0" bgcolor="#ffffff">
+    	
+   <form name="form1" method="post" action="/pronline/Msg">
+	 <input type="hidden" name="FunName" value="ncsWebClientSearch">
+     <input type="hidden" name="groupid" value="[#groupid#]">
+     <input type="hidden" name="sort" value="[#sort#]">
+     <input type="hidden" name="sortby" value="[#sortby#]">
+     <input type="hidden" name="name" value="[#name#]">
+     <input type="hidden" name="CurPg"      value="[#CurPg#]">
+	 <input type="hidden" name="TotPg"      value="[#TotPg#]">
+	 <input type="hidden" name="address1" value="[#address1#]">
+	 <input type="hidden" name="handphone1" value="[#handphone1#]">
+	 <input type="hidden" name="telphone1" value="[#telphone1#]">
+	 <input type="hidden" name="email1" value="[#email1#]">
+	 <input type="hidden" name="joincode1" value="[#joincode1#]">
+	 <input type="hidden" name="jointype1" value="[#jointype1#]">
+	 <input type="hidden" name="area1" value="[#area1#]">
+	 <input type="hidden" name="areaman1" value="[#areaman1#]">
+
+  <table border="0" width=100%  height="50" cellspacing="0" cellpadding="0" align=center bgcolor='#ffffff'>
+	<tr>
+	   <td class=td0>
+	   	<table width="100%" cellspacing="0" cellpadding="0">
+         <tr > 
+         <td >&nbsp;</td>
+	     	 <td  width="150px" class=td0_2>联网单位管理</td>
+         <td  >所属组:[#name#] </td>
+         <td  align="right">        	
+         	 <table align=right border=0 cellpadding=0 cellspacing=0 class=main width=111>
+                <tbody> 
+                <td width="10%"><script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-06.gif' border=0 height=17 width=35 class='gray1'>")}
+                      else{
+                        document.write("<a href='#xxm'><img src='/images/zbuyer-06.gif' border=0 height=17 width=35 onClick='gotoPage(1);form1.submit()' class='hand'>")}
+                   </script></td>
+                <td width="10%"><script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 class='gray1'>")}
+                      else {
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]-1);form1.submit()' class='hand'>")}
+                   </script></td>
+                <td width="20%"><img src="/images/zbuyer-08.gif" border=0 height=17 width=32></td>
+                <td align=middle background="" width=92>
+                    <input class=Main id=browsdopage maxlength=3  name=browsdopage size=3 style="FONT-SIZE: 12px; HEIGHT: 11px; TEXT-ALIGN: center; WIDTH: 50px" value=[#CurPg#] onKeyPress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" onBlur="checkme(this)">
+                </td>
+                <td width="10%"><img src="/images/zbuyer-09.gif" border=0 height=17 width=16></td>
+                <td width="10%"><img align=middle border=0 height=17 src="/images/zbuyer-10.gif" width=17 onClick="gotoPage(form1.browsdopage.value);form1.submit()" class="hand"></td>
+                
+                
+                <td width="10%"><img border=0 height=17 src="/images/zin1.gif" width=17 ></td>
+                <td align=middle background="" width=92> 
+                  <input  class=Main id=browsdopage1 maxlength=5 name=browsdopage12 size=3 style="FONT-SIZE: 12px; HEIGHT: 11px; TEXT-ALIGN: center; WIDTH: 50px" value='[#TotPg#]'>
+                </td>
+					    <td width="10%"><img align=middle height=17 src="/images/zbuyer-09.gif" width=16></td>
+					    <td align=middle background="" width=92> 
+					      <input  class=Main id=browsdopage1 maxlength=5 name=browsdopage12 size=3 style="FONT-SIZE: 12px; HEIGHT: 11px; TEXT-ALIGN: center; WIDTH: 50px;" value='[#TotRec#]'>
+					    </td>
+					    <td width="10%"><img border=0 height=17 src="/images/zin3.gif" width=17 align="middle" ></td>
+                
+                <td width="10%"><script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]+1);form1.submit()' class='hand'>")}
+                    </script></td>
+                <td width="10%"><script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 onClick='gotoPage([#TotPg#]);form1.submit()' class='hand'>")}
+                    </script></td>
+              </tbody>
+            </table>  
+         	         	
+         	</td>
+         </tr>         
+        </table>
+      </td>
+  </tr>	  
+  <tr bgcolor="#dfdfdf">
+            <td width="100%" height="30" >        
+             &nbsp;
+              <input name="del" type="submit" class="an3"   onclick="return Del()" value="删 除"> 
+              <input name="Add"type="button" class="an3"   onClick="adduser()" value="新 增"> 
+              <input name="export"type="submit" class="an3"    value="导 出">
+              <input name="xxgl2" type="button" class="an3"   onClick="xxgl()" value="消息">
+              
+             <input name="cx1" type="button" class="an3"   onClick="document.all.pcx.style.display='';" value="查询">
+            </td>
+   </tr>
+    <tr>
+      <td width="100%" align=center  valign=top bgcolor="#DEE8FA"> 
+      	 <div id="pcx" style="position:relative;display:none;">          
+          	  <table border=0 cellpadding=0 cellspacing=0 width="100%">
+       	        <tr height="110">
+       	        	<td colspan="2"  class="bordnr">
+       	        		<table border=0 cellpadding=0 cellspacing=0 width="100%">
+          	  	     <tr height="24">
+          	  	     	<td width="90" align="center">&nbsp;单位编码</td>
+          	  	     	<td width="220"><input type="text" name="servicecode1" value="[#servicecode1#]" size="26"></td>  
+          	  	     	<td width="90" align="center">&nbsp;单位名称</td>
+          	  	     	<td width="220"><input type="text" name="dispname1" value="[#dispname1#]" size="26"></td>  
+          	  	     	<td ><input name="chaxun1" type="submit"  value="&nbsp;确&nbsp;&nbsp;认&nbsp;" ></td>	     	
+          	  	    </tr>
+          	  	      <tr height="24">
+          	  	     	<td width="90" align="center">&nbsp;出口IP</td>
+          	  	     	<td><input type="text" name="ip1" value="[#ip1#]" size="26"></td> 
+          	  	     	<td width="90" align="center">&nbsp;法人代表</td>
+          	  	     	<td ><input type="text" name="ceoname1" value="[#ceoname1#]" size="26"></td>
+          	  	     	<td ><input name="yc" type="button"  value="&nbsp;隐&nbsp;&nbsp;藏&nbsp;" onclick="document.all.pcx.style.display='none' "></td> 	  	     	
+          	  	    </tr>
+          	  	      <tr height="24">
+          	  	     	<td width="90" align="center">&nbsp;信息安全员</td>
+          	  	     	<td><input type="text" name="contact1" value="[#contact1#]" size="26"></td> 
+          	  	     	<td width="90" align="center">&nbsp;服务状态</td>
+          	  	     	<td ><select name="servicestate1" style="width:200px">
+			                <option value="" >选择</option>
+			                <option value="1" >装机开始服务</option>
+			                <option value="2" >装机停止服务</option>
+			                <option value="3" >未装机开始服务</option>
+			                <option value="4" >未装机停止服务</option>
+							        <option value="9" >其他</option>
+			                </select></td>
+          	  	     	<td ><input name="search" type="button"  value="清除条件" onclick="clearcon()"></td> 	  	     	
+          	  	    </tr>
+          	  	   </table>
+       	        	</td>
+       	        </tr>     	        
+          	  </table>
+         </div>  		
+	      </td>
+	    </tr>   	
+   </form>
+     </table>
+    	 
+    	
+    	
+    	
+    	
+        <!-- SWFObject's dynamic embed method replaces this alternative HTML content with Flash content when enough 
+             JavaScript and Flash plug-in support is available. The div is initially hidden so that it doesn't show
+             when JavaScript is disabled.
+        -->
+      
+        <div id="flashContent">
+            <p>
+                To view this page ensure that Adobe Flash Player version 
+                10.2.0 or greater is installed. 
+            </p>
+            <script type="text/javascript"> 
+                var pageHost = ((document.location.protocol == "https:") ? "https://" : "http://"); 
+                document.write("<a href='http://www.adobe.com/go/getflashplayer'><img src='"+ pageHost + "www.adobe.com/images/shared/download_buttons/get_flash_player.gif' alt='Get Adobe Flash player' /></a>" ); 
+
+	       </script> 
+        </div>
+        
+        <noscript>
+            <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="100%" height="100%" id="table" >
+                <param name="movie" value="/flash/table.swf" />
+                <param name="quality" value="high" />
+             
+                <param name="bgcolor" value="#ffffff" />
+                <param name="allowScriptAccess" value="always" />
+                <param name="allowFullScreen" value="true" />
+                <!--[if !IE]>-->
+                <object type="application/x-shockwave-flash" data="/flash/table.swf" width="100%" height="100%">
+                    <param name="quality" value="high" />
+                  
+                    <param name="bgcolor" value="#ffffff" />
+                    <param name="allowScriptAccess" value="always" />
+                    <param name="allowFullScreen" value="true" />
+                <!--<![endif]-->
+                <!--[if gte IE 6]>-->
+                    <p> 
+                        Either scripts and active content are not permitted to run or Adobe Flash Player version
+                        10.2.0 or greater is not installed.
+                    </p>
+                <!--<![endif]-->
+                    <a href="http://www.adobe.com/go/getflashplayer">
+                        <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash Player" />
+                    </a>
+                <!--[if !IE]>-->
+                </object>
+                <!--<![endif]-->
+            </object>
+        </noscript>   
+        
+     
+
+       
+   </body>
+</html>

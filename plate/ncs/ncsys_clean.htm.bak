@@ -1,0 +1,202 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+
+<script>
+	function resetfac(){
+	if(confirm("执行该操作将清除所有的数据，您真的要这样做吗?")) {
+		if(confirm("请再次确认?")){
+		return true;
+		}
+	}
+	return false;
+	}
+</script>
+
+</head>
+
+<body bgcolor="#fbfbfb" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" align="center" oncontextmenu="return false" style="overflow:hidden">
+<form name="form1" method="post" action="/pronline/Msg">
+	  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  	<tr>
+          <td width="26"><img src="/images/tbbg/tb_left.jpg"></td>
+         
+          <td  valign="top" style="background:url(/images/tbbg/tb_center.jpg);height:19;"></td>
+          <td  width="20"><img src="/images/tbbg/tb_right.jpg" width="20" height="19"></td>
+        
+      </tr>
+  	<tr>
+  		<td width="26" height="200" style="background:url(/images/tbbg/mid_left.jpg);position:relative;left:-2px;top:-2px;"></td>
+      <td style="background:url(/images/tbbg/mid_leftw.jpg);">
+		
+		  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+		    <tr> 
+		      <td valign="top" ><table width="100%" height="35" border="0" align="center" cellpadding="0" cellspacing="0" >
+		          <tr > 
+		            <td colspan="2"> <div style="font-size:11pt;color:#00237e;font-weight:bold;text-align: center;">自动整理设置</div></td>
+		          </tr>
+		        </table></td>
+		    </tr>
+		    <tr> 
+		      <td>
+		        <table width="65%" border="1"   bordercolorlight=#89ACED   bordercolordark=#ffffff    align="center" cellpadding="0" cellspacing="0">
+		          <tr> 
+		            <td ><br>
+		              <table width="86%" border="0" align="center">
+		                <tr> 
+		                  <td width="22%" height="24"> <div align="right">启用自动整理&nbsp;</div></td>
+		                  <td width="22%" height="24"> <div align="left">[#AutoClean#] 
+		                    </div></td>
+		                  <td width="23%"><div align="right">每天整理时间:</div></td>
+		                  <td width="33%" height="24"><input type="text" name="CleanupTime" maxlength="15" size="15" value="[#CleanupTime#]"> </td>
+		                </tr>
+		                <tr bgcolor="#DEE8FA">
+		                  <td height="24">&nbsp;</td>
+		                  <td height="24"><div align="center">数据保留天数</div></td>
+		                  <td><div align="center">最大记录数</div></td>
+		                  <td height="24"><div align="center">备份数据保留天数</div></td>
+		                </tr>
+		                <tr bgcolor="#DEE8FA">
+		                  <td height="24"><div align="right">案件布控:</div></td>
+		                  <td height="24"><div align="center"> <input name="CaseKeepDay" type="text" id="CaseKeepDay" value="[#CaseKeepDay#]" size="10" maxlength="10" ></div></td>
+		                  <td height="24"><div align="center"> <input name="CaseMaxRec" type="text" id="CaseMaxRec" value="[#CaseMaxRec#]" size="10" maxlength="10" > </div></td>
+		                  <td height="24"><div align="center"> <input name="CaseBakKeep" type="text" id="CaseBakKeep" value="[#CaseBakKeep#]" size="10" maxlength="10"> </div></td>
+		                </tr>
+		                <tr bgcolor="#DEE8FA">
+		                  <td height="24"><div align="right">告警信息:</div></td>
+		                  <td height="24"><div align="center"> <input name="WarnKeepDay" type="text" id="WarnKeepDay" value="[#WarnKeepDay#]" size="10" maxlength="10" ></div></td>
+		                  <td height="24"><div align="center"> <input name="WarnMaxRec" type="text" id="WarnMaxRec" value="[#WarnMaxRec#]" size="10" maxlength="10" > </div></td>
+		                  <td height="24"><div align="center"> <input name="WarnBakKeep" type="text" id="WarnBakKeep" value="[#WarnBakKeep#]" size="10" maxlength="10"> </div></td>
+		                </tr>
+		                <tr bgcolor="#DEE8FA"> 
+		                  <td width="21%" height="24"> <div align="right">阻断日志:</div></td>
+		                  <td height="24"><div align="center"> <input name="ErrorKeepDay" type="text" id="ErrorKeepDay" value="[#ErrorKeepDay#]" size="10" maxlength="10" ></div></td>
+		                  <td height="24"><div align="center"> <input name="ErrorMaxRec" type="text" id="ErrorMaxRec" value="[#ErrorMaxRec#]" size="10" maxlength="10" > </div></td>
+		                  <td height="24"><div align="center"> <input name="ErrorBakKeep" type="text" id="ErrorBakKeep" value="[#ErrorBakKeep#]" size="10" maxlength="10"> </div></td>
+		                </tr>
+		                <tr bgcolor="#DEE8FA">
+		                  <td height="24"><div align="right">上下网日志:</div></td>
+		                  <td height="24"><div align="center"> <input name="NetvistKeepDay" type="text" id="NetvistKeepDay" value="[#NetvistKeepDay#]" size="10" maxlength="10" ></div></td>
+		                  <td height="24"><div align="center"> <input name="NetvistMaxRec" type="text" id="NetvistMaxRec" value="[#NetvistMaxRec#]" size="10" maxlength="10" > </div></td>
+		                  <td height="24"><div align="center"> <input name="NetvistBakKeep" type="text" id="NetvistBakKeep" value="[#NetvistBakKeep#]" size="10" maxlength="10"> </div></td>
+		                </tr>
+		                <tr bgcolor="#DEE8FA"> 
+		                  <td width="21%" height="24"> <div align="right">虚拟身份使用记录:</div></td>
+		                  <td height="24"><div align="center"> <input name="NetidKeepDay" type="text" id="NetidKeepDay" value="[#NetidKeepDay#]" size="10" maxlength="10" ></div></td>
+		                  <td height="24"><div align="center"> <input name="NetidMaxRec" type="text" id="NetidMaxRec" value="[#NetidMaxRec#]" size="10" maxlength="10" > </div></td>
+		                  <td height="24"><div align="center"> <input name="NetidBakKeep" type="text" id="NetidBakKeep" value="[#NetidBakKeep#]" size="10" maxlength="10"> </div></td>
+		                </tr>
+		                <tr bgcolor="#DEE8FA"> 
+		                  <td width="21%" height="24"> <div align="right">单位登录日志:</div></td>
+		                  <td height="24"><div align="center"> <input name="CorploginKeepDay" type="text" id="CorploginKeepDay" value="[#CorploginKeepDay#]" size="10" maxlength="10" ></div></td>
+		                  <td height="24"><div align="center"> <input name="CorploginMaxRec" type="text" id="CorploginMaxRec" value="[#CorploginMaxRec#]" size="10" maxlength="10" > </div></td>
+		                  <td height="24"><div align="center"> <input name="CorploginBakKeep" type="text" id="CorploginBakKeep" value="[#CorploginBakKeep#]" size="10" maxlength="10"> </div></td>
+		                </tr>
+		                <tr bgcolor="#DEE8FA"> 
+		                  <td width="21%" height="24"> <div align="right">IP连接日志:</div></td>
+		                  <td height="24"><div align="center"> <input name="IplogKeepDay" type="text" id="IplogKeepDay" value="[#IplogKeepDay#]" size="10" maxlength="10" ></div></td>
+		                  <td height="24"><div align="center"> <input name="IplogMaxRec" type="text" id="IplogMaxRec" value="[#IplogMaxRec#]" size="10" maxlength="10" > </div></td>
+		                  <td height="24"><div align="center"> <input name="IplogBakKeep" type="text" id="IplogBakKeep" value="[#IplogBakKeep#]" size="10" maxlength="10"> </div></td>
+		                </tr>
+		                <tr bgcolor="#DEE8FA"> 
+		                  <td width="21%" height="24"> <div align="right">WEB访问日志:</div></td>
+		                  <td height="24"><div align="center"> <input name="WeblogKeepDay" type="text" id="WeblogKeepDay" value="[#WeblogKeepDay#]" size="10" maxlength="10" ></div></td>
+		                  <td height="24"><div align="center"> <input name="WeblogMaxRec" type="text" id="WeblogMaxRec" value="[#WeblogMaxRec#]" size="10" maxlength="10" > </div></td>
+		                  <td height="24"><div align="center"> <input name="WeblogBakKeep" type="text" id="WeblogBakKeep" value="[#WeblogBakKeep#]" size="10" maxlength="10"> </div></td>
+		                </tr>
+		                <tr bgcolor="#DEE8FA"> 
+		                  <td width="21%" height="24"> <div align="right">邮件日志:</div></td>
+		                  <td height="24"><div align="center"> <input name="MaillogKeepDay" type="text" id="MaillogKeepDay" value="[#MaillogKeepDay#]" size="10" maxlength="10" ></div></td>
+		                  <td height="24"><div align="center"> <input name="MaillogMaxRec" type="text" id="MaillogMaxRec" value="[#MaillogMaxRec#]" size="10" maxlength="10" > </div></td>
+		                  <td height="24"><div align="center"> <input name="MaillogBakKeep" type="text" id="MaillogBakKeep" value="[#MaillogBakKeep#]" size="10" maxlength="10"> </div></td>
+		                </tr>
+		                <tr bgcolor="#DEE8FA"> 
+		                  <td width="21%" height="24"> <div align="right">表单日志:</div></td>
+		                  <td height="24"><div align="center"> <input name="FormlogKeepDay" type="text" id="FormlogKeepDay" value="[#FormlogKeepDay#]" size="10" maxlength="10" ></div></td>
+		                  <td height="24"><div align="center"> <input name="FormlogMaxRec" type="text" id="FormlogMaxRec" value="[#FormlogMaxRec#]" size="10" maxlength="10" > </div></td>
+		                  <td height="24"><div align="center"> <input name="FormlogBakKeep" type="text" id="FormlogBakKeep" value="[#FormlogBakKeep#]" size="10" maxlength="10"> </div></td>
+		                </tr>
+		                <tr bgcolor="#DEE8FA">
+		                  <td height="24">
+		                  <div align="right">聊天记录&nbsp;</div></td>
+		                  <td height="24"><div align="center">
+		                      <input name="IMlogKeepDay" type="text" id="IMlogKeepDay" value="[#IMlogKeepDay#]" size="10" maxlength="10" >
+		                  </div></td>
+		                  <td height="24"><div align="center">
+		                      <input name="IMlogMaxRec" type="text" id="IMlogMaxRec" value="[#IMlogMaxRec#]" size="10" maxlength="10" >
+		                  </div></td>
+		                  <td height="24"><div align="center"><input name="IMlogBakKeep" type="text" id="IMlogBakKeep" value="[#IMlogBakKeep#]" size="10" maxlength="10"> 
+		                  </div></td>
+		                </tr>
+		                <tr bgcolor="#DEE8FA">
+		                  <td height="24">
+		                  <div align="right">网络会话日志&nbsp;</div></td>
+		                  <td height="24"><div align="center">
+		                      <input name="NetsesKeepDay" type="text" id="NetsesKeepDay" value="[#NetsesKeepDay#]" size="10" maxlength="10" >
+		                  </div></td>
+		                  <td height="24"><div align="center">
+		                      <input name="NetsesMaxRec" type="text" id="NetsesMaxRec" value="[#NetsesMaxRec#]" size="10" maxlength="10" >
+		                  </div></td>
+		                  <td height="24"><div align="center"><input name="NetsesBakKeep" type="text" id="NetsesBakKeep" value="[#NetsesBakKeep#]" size="10" maxlength="10"> 
+		                  </div></td>
+		                </tr>
+		                <tr bgcolor="#DEE8FA"> 
+		                  <td width="21%" height="24"> <div align="right">其它日志信息</div></td>
+		                  <td height="24"><div align="center"> <input name="OtherKeepDay" type="text" id="OtherKeepDay" value="[#OtherKeepDay#]" size="10" maxlength="10" ></div></td>
+		                  <td height="24"><div align="center"> <input name="OtherMaxRec" type="text" id="OtherMaxRec" value="[#OtherMaxRec#]" size="10" maxlength="10" > </div></td>
+		                  <td height="24"><div align="center">  </div></td>
+		                </tr>
+		                <tr>
+		                  <td>&nbsp;</td>
+		                  <td>&nbsp;</td>
+		                  <td>&nbsp;</td>
+		                  <td>&nbsp;</td>
+		                </tr>
+		              </table>
+		              <div align="center"></div></td>
+		          </tr>
+		
+		        </table>
+		      </td>
+		    </tr>
+		    <tr>
+		      <td height="70">
+		<table width="70%" border="0" align="center">
+		          <tr> 
+		            <td> <div align="center"> 
+		                <input type="hidden" name="FunName" value="ncsWebSystemSave_clean">
+		                <input type="submit" name="save" value="确 认" class="an3">
+		                &nbsp; 
+		                <input type="submit" name="app" value="应 用" class="an3">
+		                &nbsp; 
+		                <input type="reset" name="cancel" value="取消" class="an3-1">
+		                 &nbsp;
+		  <!--              <input type="submit" name="resetf" value="恢复出厂状态" class="an3-1" onClick="return resetfac()">
+		  -->
+		              </div></td>
+		          </tr>
+		        </table>
+		      </td>
+		    </tr>
+		  </table>
+  	</td>
+  	<td style="background:url(/images/tbbg/mid_right.jpg);position:relative;left:1px;top:-2px;">&nbsp;
+  	</td>
+  </tr>
+   	  	<tr>
+          <td width="26"><img src="/images/tbbg/bottom_left.jpg" style="position:relative;top:-2px;left:-1px;"></td>         
+          <td  valign="top" style="background:url(/images/tbbg/bottom_center.jpg);position:relative;left:-4px;top:-2px;"></td>
+          <td  width="20"><img src="/images/tbbg/bottom_right.jpg" width="20" height="19" style="position:relative;top:-2px;"></td>        
+      </tr>
+  	
+  </table>
+  
+</form>
+</body>
+</html>

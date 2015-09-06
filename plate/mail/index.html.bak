@@ -1,0 +1,18 @@
+<html>
+<head>
+<title>欢迎使用榕树下邮件系统--新网程信息技术有限</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+</head>
+
+<frameset rows="116,335,44" cols="*" frameborder="NO" border="0" framespacing="0"> 
+  <frame src="../statichtml/login_top.htm" scrolling="NO" frameborder="NO" noresize>
+  <frameset cols="156,631" rows="*"> 
+    <frame name="leftFrame" src="/pronline/Msg?sid=[#sid#]&nFunCode=16902" scrolling="AUTO">
+    <frame name="mainFrame" src="/pronline/Msg?sid=[#sid#]&nFunCode=16903" scrolling="AUTO">
+  </frameset>
+  <frame src="../statichtml/login_bottom.htm" scrolling="NO" noresize>
+</frameset>
+<noframes>
+<body bgcolor="#FFFFFF" leftmargin="8" topmargin="0">
+</body></noframes>
+</html>

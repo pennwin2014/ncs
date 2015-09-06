@@ -1,0 +1,206 @@
+<html>
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<title>main</title>
+<script>
+		function gotopage(flag){
+	if(form1.CurPg.value=='') form1.CurPg.value='1';
+	var lCur=parseInt(form1.CurPg.value);
+
+	if(flag=='1'){
+	  form1.CurPg.value=lCur-1;
+	}
+	else{
+	form1.CurPg.value=lCur+1;
+	}
+
+	form1.submit();
+}
+	
+var dfd1="0"
+	function gotopage(flag){
+	if(form1.CurPg.value=='') form1.CurPg.value='1';
+	var lCur=parseInt(form1.CurPg.value);
+
+	if(flag=='1'){
+	  form1.CurPg.value=lCur-1;
+	}
+	else{
+	form1.CurPg.value=lCur+1;
+	}
+
+	form1.submit();
+}
+
+function lprint()
+{
+form1.cx.style.display="none";
+form1.rycx.style.display="none";
+form1.hsear.style.display="none";
+form1.pr.style.display="none";
+form1.exp.style.display="none";
+window.print();
+
+form1.cx.style.display="";
+form1.rycx.style.display="";
+form1.hsear.style.display="";
+form1.pr.style.display="";
+form1.exp.style.display="";
+}
+// function goto(t){
+// self.location.href=t
+// }
+
+function goto(t){
+ tt=showModalDialog(t, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:520px;scroll:yes;dialogHeight:620px');
+}
+function gotozd(t){
+ tt=showModalDialog(t, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:320px;scroll:yes;dialogHeight:400px');
+}
+function showuser(did,uid)
+{
+var temp_var="/pronline/Msg?FunName@ncsWebShowUserinfo&did@"+did+"+uid@"+uid;
+	showModalDialog(temp_var, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:520px;scroll:yes;dialogHeight:640px');
+}
+function mouseovertr2 (o){
+var i;
+df=o.style.backgroundColor
+	o.style.backgroundColor= "#ffff00";
+	o.style.borderColor= "#FFFF00";
+	o.style.cursor="hand";	
+}
+
+function mouseouttr2(o){
+	o.style.backgroundColor=df
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#000000";
+}
+	
+	
+}
+
+function checkme(p)
+{
+	var tt=p.value
+	if (tt>yy)
+	{
+		MM_changeProp('browsdopage','','value',yy,'INPUT/TEXT')
+	}
+	if (tt==0)
+	{
+		MM_changeProp('browsdopage','','value','1','INPUT/TEXT')
+	}
+}
+
+function allChecked(){
+    if(dfd1=="1"){
+        dfd1="0"
+    }
+    else {
+         dfd1="1"
+    }
+	for(var i=0;i<document.all.DataTable.rows.length;i++)
+	{
+		if(typeof(document.all.DataTable.rows[i].cells[0].childNodes[0])=="object"
+
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].tagName=="INPUT"
+
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].type=="checkbox") {
+			if(dfd1=="1"){
+  			    document.all.DataTable.rows[i].cells[0].childNodes[0].checked="true";
+            }
+			else{
+                document.all.DataTable.rows[i].cells[0].childNodes[0].checked="";
+            }
+        }
+ 	}
+}
+function showvname(did,sdate){
+	var temp_var="/pronline/Msg?FunName@ncsDispCorpUplog&did@"+did+"+sdate@"+sdate;
+ 
+		showModalDialog(temp_var, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:900px;scroll:yes;dialogHeight:640px');
+}
+
+
+// -->
+<!-- Hide
+var ll='[#CurPg#]';
+var yy='[#TotPg#]';
+function killErrors() {
+return true;
+}
+window.onerror = killErrors;
+// -->
+
+</script>
+
+<link REL=stylesheet HREF="/css/listdatetable.css" TYPE="text/css">
+<script src="/js/calendar3.js"></script>
+
+<script src="/js/rmenu.js"></script>
+<style type="text/css">
+<!--
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+-->
+</style>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+<body marginheight=0 leftmargin=0 marginwidth=0 topMargin="0" BGCOLOR="Menu">
+<form name="form1" method="post" action="/pronline/Msg">
+<input type="hidden" name="FunName" value="ncsSesSearch">
+<input type="hidden" name="CurPg"      value="[#CurPg#]">
+<input type="hidden" name="TotPg"      value="[#TotPg#]">
+<input type="hidden" name="usid" value="[#usid#]">  
+  <input type="hidden" name="did" value="[#did#]">
+  <table border="0" width=100% height=100% cellspacing="0" cellpadding="0" align=center bgcolor='#ffffff'>
+
+  
+       <tr bgcolor="#DEE8FA">
+            <td width="100%" height="28" >
+          
+               <a href="#xxm" onclick="gotopage('1')">[#pre#]</a>&nbsp;&nbsp;<a href="#xxm" onclick="gotopage('2')">[#next#]</a>&nbsp;&nbsp;&nbsp;&nbsp;
+            </td>
+       </tr>
+  <tr>
+      <td width="100%"  valign=top align=center bgcolor="#DEE8FA">
+      	
+        <table id="DataTable" class="listDataTable" width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+          <tr bgcolor="#6382BD" class="tableHead"  style="top:expression(document.getElementById('tC').scrollTop)">
+
+            <td width="120" align="center" class="bord2"> <font color="#FFFFFF">日期</font></td>
+            <td width="120" align="center" class="bord2"> <font color="#FFFFFF">单位名称</font></td>
+            <td width="130" align="center" class="bord2"> <font color="#FFFFFF">上网用户</font></td>
+            <td width="110" align="center" class="bord2"> <font color="#FFFFFF">源IP</font></td>
+            <td width="120" align="center" class="bord2"> <font color="#FFFFFF">MAC地址</font></td>
+            <td width="70" align="center" class="bord2"> <font color="#FFFFFF">搜索工具</font></td>
+            <td  align="center" class="bord4"> <font color="#FFFFFF">搜索关键字</font></td>
+          </tr>
+          <!-- [#SLPB#] -->
+          <tr onMouseOver="mouseovertr2(this)" height="17" onMouseOut="mouseouttr2(this)" > 
+            <td class="bord1" align="left"  >&nbsp;[#sdate#]</td>
+            <td class="bord1" align="left"  >&nbsp;[#cname#]</td>
+            <td class="bord1" align="left"  >&nbsp;[#dispname#]&nbsp;</td>
+            <td class="bord1" align="left"  >&nbsp;[#sip#]</td>
+            <td class="bord1" align="left"  >&nbsp;[#mac#]&nbsp;</td>
+            <td class="bord1" align="left"  >&nbsp;[#sname#]&nbsp;</td>
+            <td class="bord3" align="left"  >&nbsp;<a href="#xxm" onclick=showvname("[#did#]","[#sdate#]")>[#svalue#]</a></td>
+          </tr>
+          <!-- [#SLPE#] -->
+         
+        </table>
+      
+      </td>
+  </tr>
+</table>
+ </form>
+ 
+</body>
+
+</html>

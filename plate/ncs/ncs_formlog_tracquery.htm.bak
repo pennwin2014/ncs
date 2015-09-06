@@ -1,0 +1,186 @@
+<html>
+
+<head>
+<title>查询</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<!-- Infrastructure code for the tree -->
+<script>
+	function init()
+	{
+
+	form1.did.value=dialogArguments.form1.did.value;
+	form1.ProId.value=dialogArguments.form1.did.value;
+	
+	form1.url.value=dialogArguments.form1.url.value;
+
+	form1.urlpath.value=dialogArguments.form1.urlpath.value;
+
+	form1.sip.value=dialogArguments.form1.sip.value;
+	alert('ff');
+		if(typeof(dialogArguments.form1.dip)=='object')
+	   form1.dip.value=dialogArguments.form1.dip.value;
+
+	   
+	form1.dip.value=dialogArguments.form1.dip.value;
+	if(typeof(dialogArguments.form1.mac)=='object')
+	   form1.mac.value=dialogArguments.form1.mac.value;
+	   
+  form1.ysf.value=dialogArguments.form1.ysf.value;
+  form1.fjflag.value=dialogArguments.form1.fjflag.value;
+	form1.msize.value=dialogArguments.form1.msize.value;
+	form1.edate.value=dialogArguments.form1.edate.value;
+	form1.sdate.value=dialogArguments.form1.sdate.value;
+	form1.username.value=dialogArguments.form1.username.value;
+	form1.cname.value=dialogArguments.form1.cname.value;
+	if(dialogArguments.form1.sorta.value==1)
+		form1.sorta[0].checked=true;
+	else if(dialogArguments.form1.sorta.value==2) 
+		form1.sorta[1].checked=true;      
+	else if(dialogArguments.form1.sorta.value==3) 
+		form1.sorta[2].checked=true;
+
+ 
+
+
+	form1.ordera.value=dialogArguments.form1.ordera.value;
+		}
+function queren()
+{
+var sorta1='';
+if(form1.did.value=='')
+{
+	alert('远程查询要选择单位');
+	return ;
+	}
+
+dialogArguments.parent.form1.udname.value=form1.did.options[form1.did.selectedIndex].text;
+form1.ProId.value=form1.did.value;
+form1.submit();
+self.close();
+
+}
+</script>
+
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginheight="0"  oncontextmenu="return true" onload="init()">
+  <form name="form1" method="post" action="/pronline/Rmsg" target="xx1">
+  <input type="hidden" name="FunName" value="nccWebUploadList">
+  <input type="hidden" name="cname" value="">
+  <input type="hidden" name="ProId" value="">
+  
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+
+  <tr> 
+    <td colspan="2"><table width="100%" height="27" border="0" align="center" cellpadding="0" cellspacing="0" background="/images/table_bg1.gif">
+        <tr > 
+          <td colspan="2" > <div align="center"><strong><font color="#FFFFFF">             
+              网页表单日志查询</font></strong></div></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr> 
+    <td colspan="2"> 
+        <br>
+        <table width="95%" border="1"    bordercolorlight=#89ACED   bordercolordark=#ffffff    align="center" cellpadding="0" cellspacing="0" >
+          <tr> 
+            <td> 
+             <table width="100%" border="0" align="center" >
+
+                <tr height="30"> 
+                  <td ></td>
+                  <td ><font color="#000000"><b><font size="2">单位名称</font></b></td>
+                  <td ><select name="did" style="width:200">
+
+                  [#SLPB#]
+                  <option value="[#userid#]">[#dispname#]</option>
+                  [#SLPE#]
+                  </select></td>
+                  <td >&nbsp;</td>
+                </tr> 
+              
+                  <tr height="30">
+                  <td ></td>
+                  <td > <font color="#000000"><b><font size="2">网址</font></b></font></td>
+                  <td > <input type="text" name="url" size="27"></td>
+                  <td > </td>
+                </tr> 
+                <tr height="30">
+                  <td ></td>
+                  <td > <font color="#000000"><b><font size="2">路径</font></b></font></td>
+                  <td > <input type="text" name="urlpath" size="27"></td>
+                  <td > </td>
+                </tr>             
+                 <tr height="30">
+                  <td ></td>
+                  <td > <font color="#000000"><b><font size="2">内容包含</font></b></font></td>
+                  <td > <input type="text" name="mcontent" size="27"></td>
+                  <td > </td>
+                </tr>
+                <tr height="30"> 
+                  <td ></td>
+                  <td > <font color="#000000"><b><font size="2">源IP地址</font></b></font></td>
+                  <td > <input type="text" name="sip" size="27"></td>
+                  <td >&nbsp;目标IP<input type="text" name="dip" size="19"></td>
+                </tr>
+               <tr height="30"> 
+                  <td ></td>
+                  <td > <font color="#000000"><b><font size="2">表单大小</font></b></font></td>
+                  <td > <select name="ysf"><option value="1">大于</option>
+                  <option value="2">小于</option><option value="3">等于</option></select><input type="text" name="msize" size="19"></td>
+                  <td >&nbsp;&nbsp; </td>
+                </tr> 
+                <tr height="30"> 
+                  <td ></td>
+                  <td > <font color="#000000"><b><font size="2">日期</font></b></font></td>
+                  <td > <input type="text" name="sdate" size="27" maxlength="20" value="[#sdate#]"></td>
+                  <td >(YYYY/MM/DD HH:MI)</td>
+                </tr> 
+               <tr height="30"> 
+                  <td ></td>
+                  <td > <font color="#000000"><b><font size="2">到&nbsp;&nbsp;&nbsp;&nbsp;</font></b></font></td>
+                  <td > <input type="text" name="edate" size="27" maxlength="20" value="[#edate#]"></td>
+                  <td >(YYYY/MM/DD HH:MI)</td>
+                </tr> 
+
+                <tr height="30"> 
+                  <td ></td>
+                  <td> <font color="#000000"><b><font size="2">用户名</font></b></font></td>
+                  <td > <input type="text" name="username" size="27"></td>
+                  <td >&nbsp;Mac地址<input type="text" name="mac" size="19"></td>
+                </tr> 
+                <tr height="30"> 
+                  <td ></td>
+                  <td> <font color="#000000"><b><font size="2">有无附件</font></b></font></td>
+                  <td ><select name="fjflag" style="width:200"><option value="">不限</option>
+                  <option value="1">无</option><option value="2">有</option></select></td>
+                  <td >&nbsp;&nbsp;</td>
+                </tr> 
+                <tr height="30"> 
+                  <td ></td>
+                  <td > <font color="#000000"><b><font size="2">排&nbsp;&nbsp;序</font></b></font></td>
+                  <td colspan="2"> <input type="radio" name="sorta" value="1">用户名<input type="radio" name="sorta" value="2">时间<input type="radio" name="sorta" value="3">网址
+                  <select name="ordera"><option value="1">升序</option>
+                                        <option value="2">降序</option>
+                  </select>
+                  </td>                 
+                </tr> 
+              </table>
+            </td>
+          </tr>
+ 
+        </table>
+
+      </td>
+  </tr>
+           
+</table>
+          <p align="center"><input name='Button' type='button' class='an3' onClick='queren()' value='确 认'> </p>
+ </form>
+</body>
+</html>

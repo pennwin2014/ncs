@@ -1,0 +1,304 @@
+<html>
+
+<head>
+<title>查询</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<!-- Infrastructure code for the tree -->
+<style>
+	.tScroll5 {
+      overflow: scroll;
+    overflow-x:hidden;
+    height:480px;
+    cursor: default;
+    }
+A:link {TEXT-DECORATION:none;color:#333333;}
+A:visited{TEXT-DECORATION:none;color:#333333;}
+A:hover {TEXT-DECORATION:underline;color:#990000;}
+.aaaa {font-size:10pt;color:#000000;font-weight:bold;}
+</style>
+<script>
+	var dfd1;
+	function allChecked(){
+    if(dfd1=="1"){
+        dfd1="0"
+    }
+    else {
+         dfd1="1"
+    }
+	for(var i=0;i<document.all.DataTable.rows.length;i++)
+	{
+		if(typeof(document.all.DataTable.rows[i].cells[0].childNodes[0])=="object"
+
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].tagName=="INPUT"
+
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].type=="checkbox") {
+			if(dfd1=="1"){
+  			    document.all.DataTable.rows[i].cells[0].childNodes[0].checked="true";
+            }
+			else{
+                document.all.DataTable.rows[i].cells[0].childNodes[0].checked="";
+            }
+        }
+ 	}
+}
+function ss()
+{
+if(event.keyCode==13)
+caxun();
+}     	
+function mouseovertr2 (o){
+var i;
+df=o.style.backgroundColor
+	o.style.backgroundColor= "#ffff00";
+	o.style.borderColor= "#FFFF00";
+	o.style.cursor="hand";	
+}
+
+function mouseouttr2(o){
+	o.style.backgroundColor=df
+	for(i=0; i<o.cells.length; i++)
+	{
+		o.cells(i).style.color="#000000";
+	}	
+}
+function caxun(){
+form1.CurPg.value='1';
+form1.FunName.value='ncsWebReplace';
+
+form1.submit();
+}
+
+function clearcon(){
+form1.udisp.value='';
+form1.did.value='';
+form1.casename.value='';
+form1.message.value='';
+form1.sdate.value='';
+form1.edate.value='';
+
+}
+
+function gotoPage(pagenum)
+{
+    form1.CurPg.value = pagenum;
+}
+
+	
+	var ll='[#CurPg#]';
+var yy='[#TotPg#]';
+
+function showgj(did,uid,stime,etime){
+var tt="/pronline/Msg?FunName@ncsWebReplace&plate@ncs/ncs_swgj_lab.htm&did@"+did+"&uid@"+uid+"&stime@"+stime+"&etime@"+etime;
+  window.open (tt, 'ww', 'height=600, width=800, top=100,left=100, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no')
+}
+</script>
+<script src="/js/calendar.js"></script>
+</head>
+
+<body bgcolor="#eeeeee" leftmargin="0" topmargin="0" marginheight="0"  style="overflow:hidden" >
+  <form name="form1" method="post" action="/pronline/Msg" >
+  <input type="hidden" name="FunName" value="ncsCaseWarnlist">
+  <input type="hidden" name="plate" value="ncsmsg_showinfo_new.htm">
+  <input type="hidden" name="fun" value="ncsCaseWarnlist">
+  <input type="hidden" name="CurPg" value="[#CurPg#]">
+  <input type="hidden" name="flag" value="1">
+  <input type="hidden" name="cid" value="[#cid#]">
+  
+  
+   <table width="101%"  border="0" align="center" cellpadding="0" cellspacing="0" >
+  	<tr>
+          <td width="26"><img src="/images/tbbg/tb_left.jpg"></td>         
+          <td  valign="top" style="background:url(/images/tbbg/tb_center.jpg);height:19;"></td>
+          <td  width="20"><img src="/images/tbbg/tb_right.jpg" width="20" height="19"></td>        
+      </tr>
+  	<tr>
+  		<td width="26"  style="background:url(/images/tbbg/mid_left.jpg);position:relative;left:-2px;top:-2px;"></td>
+       
+  		<td style="background:url(/images/tbbg/mid_leftw.jpg);">	
+  
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+
+  <tr> 
+    <td colspan="2" valign="top"> <table width="98%" border="1"    bordercolorlight=#89ACED   bordercolordark=#ffffff    align="center" cellpadding="0" cellspacing="0" >
+         
+          <tr ><td valign="top" class=td0>
+          	<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" >
+          	<tr height="26"><td class=td0_2>
+                &nbsp;布控告警信息&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+             
+             </td>
+             <td valign="bottom" >
+             	<input type="submit" name="exp" value="导出" class="an3">
+             	&nbsp;	         	<input name="cx1" type="button" class="an3"   onClick="if(document.all.pcx.style.display=='') form1.submit();document.all.pcx.style.display='';" value="查询">
+             	</td>
+             <td valign="bottom" align="right" >
+             	    <table align=right border=0 cellpadding=0 cellspacing=0 class=main width=111>
+                      <tbody>
+                      <td width="10%" >
+                          <script>
+                          if (ll==1){
+                           document.write("<img src='/images/zbuyer-06.gif' border=0 height=17 width=35 class='gray1'>")}
+                          else{
+                            document.write("<a href='#xxm'><img src='/images/zbuyer-06.gif' border=0 height=17 width=35 onClick='gotoPage(1);form1.submit()' class='hand'>")}
+                         </script>
+                        </td>
+                        <td width="10%">
+                            <script>
+                           if (ll==1){
+                           document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 class='gray1'>")}
+                          else {
+                           document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]-1);form1.submit()' class='hand'>")}
+                           </script>
+                         </td>
+                          <td width="20%" valign="top"><img src="/images/zbuyer-08.gif" border=0 height=17 width=32></td>
+                          <td align=middle background="" width=92>
+                            <input class=Main id=browsdopage maxlength=7  name=browsdopage size=7 style="FONT-SIZE: 12px; HEIGHT: 17px; TEXT-ALIGN: center; WIDTH: 50px;position:relative;left:0px;top:-2px;" value=[#CurPg#] onKeyPress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" onBlur="checkme(this)">
+                          </td>
+                          <td width="10%" valign="top"><img src="/images/zbuyer-09.gif" border=0 height=17 width=16></td>
+                          <td width="10%" valign="top"><img align=middle border=0 height=17 src="/images/zbuyer-10.gif" width=17 onClick="gotoPage(form1.browsdopage.value);form1.submit()" class="hand"><img align=middle height=17 src="/images/zbuyer-11.gif" width=3></td>
+                          <td width="10%" valign="top"><img border=0 height=17 src="/images/zin1.gif" width=17 ></td>
+                          <td align=middle background="" width=92>
+                            <input  class=Main id=browsdopage12 maxlength=7 name=browsdopage12 size=7 style="FONT-SIZE: 12px; HEIGHT: 17px; TEXT-ALIGN: center; WIDTH: 50px;position:relative;left:0px;top:-2px;" value='[#TotPg#]'>
+                          </td>
+                          <td width="10%" valign="top"><img align=middle height=17 src="/images/zbuyer-09.gif" width=16></td>
+                          <td align=middle background="" width=92>
+                            <input  class=Main id=browsdopage12 maxlength=7 name=browsdopage12 size=7 style="FONT-SIZE: 12px; HEIGHT: 17px; TEXT-ALIGN: center; WIDTH: 50px;position:relative;left:0px;top:-2px;" value='[#TotRec#]'>
+                          </td>
+                          <td width="10%" valign="top"><img border=0 height=17 src="/images/zin3.gif" width=17 align="middle" ><img align=middle height=17  src="/images/zbuyer-11.gif" width=3></td>
+                          <td width="10%">
+                            <script>
+                            if (ll==yy){
+                              document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                            else if (yy==0){
+                              document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                            else{
+                              document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]+1);form1.submit()' class='hand'>")}
+                             </script>
+                          </td>
+                          <td width="10%">
+                            <script>
+                             if (ll==yy){
+                               document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                             else if (yy==0){
+                               document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                             else{
+                               document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 onClick='gotoPage([#TotPg#]);form1.submit()' class='hand'>")}
+                              </script>
+                          </td>
+                        </tbody>
+                    </table>
+             	
+             	
+
+             	
+             	
+             	</td>
+             	</tr>
+            </table>
+            
+            
+               <div id="pcx" style="position:relative;display:none;"> 
+          	  <table border=0 cellpadding=0 cellspacing=0 width="100%">
+          	  	<tr height="18">
+          	  		 <td width="90" valign="bottom" align="center" class="bordleft">布控告警查询</td>
+       	           <td width="740" class="bordright">&nbsp;</td>
+       	        </tr>
+                <tr height="110">
+       	        	<td colspan="2"  class="bordnr">
+       	        		<table border=0 cellpadding=0 cellspacing=0 width="100%">
+          	  	     <tr height="24">
+          	  	     	<td width="90" align="center">&nbsp;姓名/登录名</td>
+          	  	     	<td width="220"><input type="text" name="udisp" size="22" value="[#udisp#]" onKeyPress="ss()"></td>  
+          	  	     	<td width="90" align="center">&nbsp;单位名称</td>
+          	  	     	<td width="220"><select name="did" style="width:163">
+						    			<option value="">不限</option>
+						    			[#SLPB#]
+						    			<option value="[#userid#]">[#dispname#]</option>
+						    			[#SLPE#]
+						    		 </select></td>  
+          	  	     	<td ><input name="chaxun1" type="button"  value=" 查 询 " onclick="caxun()"></td>	     	
+          	  	    </tr>
+          	  	      <tr height="24">
+          	  	     	<td width="90" align="center">&nbsp;案件名称</td>
+          	  	     	<td><input type="text" name="casename" size="22" value="[#casename#]" onKeyPress="ss()"></td> 
+          	  	     	<td width="90" align="center">&nbsp;告警内容</td>
+          	  	     	<td ><input type="text" name="message" size="22" value="[#message#]" onKeyPress="ss()"></td>
+          	  	     	<td ><input name="yc" type="button"  value="&nbsp;隐&nbsp;&nbsp;藏&nbsp;" onclick="document.all.pcx.style.display='none' ">
+          	  	    </td> 	  	     	
+          	  	    </tr>
+          	  	      <tr height="24">
+          	  	      <td  align="center">&nbsp;告警时间</td>
+          	  	     	<td><input type="text" name="sdate" value="[#sdate#]" size="14" onclick="fPopCalendar(sdate,sdate,'Up');return false">&nbsp;<select name="stime" style="width:50px" ><option value=""></option><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option></select></td> 
+          	  	     	<td  align="center">&nbsp;到</td>
+          	  	     	<td ><input type="text" name="edate" value="[#edate#]" size="14" onclick="fPopCalendar(edate,edate,'Up');return false">&nbsp;<select name="etime" style="width:50px" ><option value=""></option><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option></select></td> 
+          	  	     	<td ><input name="search" type="button"  value="清除条件" onclick="clearcon()"></td> 	  	     	
+          	  	    </tr>
+          	  	   </table>
+       	        	</td>
+       	        </tr>
+          	  </table>
+   </div>
+            
+            
+            
+          </td>
+        </tr>
+          <tr><td>
+          	
+        <div class="tScroll5" id="tC">	  	      
+        <table  id="DataTable" width="100%" border="0" cellspacing="2" cellpadding="2" bgcolor="#FFFFFF" >
+          <!-- [#SLPB#] -->
+          <tr height="20" bgcolor="#EDF0F5" >           
+            <td >&nbsp;<a href="#xxm" onclick="showgj('[#did#]','[#uid#]','[#stime#]','[#etime#]')">[#message#]</a></td>
+
+          </tr>
+          <!-- [#SLPE#] -->
+          <!-- [#SLPB#] -->
+          <tr id=[#snum#] height="20"> 
+            <td   bgcolor="#EDF0F5" >&nbsp;</td>
+           
+          </tr>
+          <!-- [#SLPE#] -->
+        </table>
+      </div> 	
+          	</td>
+         </tr>
+         
+         
+         
+
+        
+        </table>
+
+
+
+
+      </td>
+  </tr>
+</table>
+
+ 	</td>
+ 	
+ 	<td style="background:url(/images/tbbg/mid_right.jpg);position:relative;left:1px;top:-2px;">&nbsp;
+  	</td>
+    </tr>
+  	  	
+
+  	  	<tr>
+          <td width="26"><img src="/images/tbbg/bottom_left.jpg" style="position:relative;top:-2px;left:-1px;"></td>         
+          <td   style="background:url(/images/tbbg/bottom_center.jpg);position:relative;left:-4px;top:-2px;">&nbsp;</td>
+          <td  width="20"><img src="/images/tbbg/bottom_right.jpg" width="20" height="19" style="position:relative;top:-2px;"></td>       
+      </tr>
+
+    </table>
+
+
+</form>
+<script> form1.did.value='[#did#]';</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<html>
+<head>
+<title>电子邮件-收件夹</title>
+<meta http-equiv="目录类型" content="文本/html; 字符集=gb2312">
+</head><STYLE type=text/css>BODY {
+	FONT-FAMILY: "宋体"; FONT-SIZE: 9pt
+}
+TD {
+	FONT-FAMILY: "宋体"; FONT-SIZE: 9pt
+}
+A {
+	COLOR: #008000; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #ff0000; TEXT-DECORATION: underline
+}
+</STYLE>
+
+<script language="javascript">
+
+function DeleteMail()
+{
+    parent.window.opener.location="/pronline/Msg?nFunCode=19912&sid=[#sid#]&fold=[#fold#]&require=forward&from=[#from#]&curmsg=[#curmsg#]&pagenum=1";
+    parent.window.close();
+}
+
+</script>
+
+
+<body bgcolor="#F0FDE6">
+<FORM action="/mail/pronline"  method="post" name="inmail" >
+<input type="hidden" name="nFunCode" >
+<input type="hidden" name="sid" value="[#sid#]">
+<input type="hidden" name="fold" value="[#fold#]">
+<input type="hidden" name="from" value="[#from#]">
+<input type="hidden" name="require" value="[#require#]">
+<input type="hidden" name="curmsgname" value="[#curmsgname#]">
+  <table border=0 cellpadding=0 cellspacing=0 width="100%" bordercolordark="#FFFFFF">
+    <tbody> 
+    <tr bgcolor="#CCF5A7"> 
+      <td height=15 width="129" align="center"><a href="/pronline/Msg?nFunCode=19910&sid=[#sid#]&fold=[#fold#]&require=reply&from=[#from#]&curmsg=[#curmsg#]" target='read'>回复发信人</a></td>
+      <td height=15 width="134" align="center"><a href="/pronline/Msg?nFunCode=19910&sid=[#sid#]&fold=[#fold#]&require=forward&from=[#from#]&curmsg=[#curmsg#]" target='read'>转发</a></td>
+      <td height=15 width="134" align="center"><a href="/pronline/Msg?nFunCode=19267&sid=[#sid#]&fold=[#fold#]&require=forward&from=[#from#]&curmsg=[#curmsg#]" target='read'>拒收</a></td>
+      <td height=15 width="134" align="center"><a href="/pronline/Msg?nFunCode=19101&sid=[#sid#]&fold=[#fold#]&require=forward&from=[#from#]&curmsg=[#curmsg#]&sendername=[#sendername#]" target='read'>存发件人</a></td>
+      <td height=15 width="138" align="center"><a href="javascript:DeleteMail()">删除</a></td>
+    </tr>
+    </tbody> 
+  </table>
+  <br>
+  <table width="100%" border="0" cellpadding="0" bordercolordark="#FFFFFF">
+    <tr bgcolor="#8ED573"> 
+      <td width="161" height="14"> 
+        <div align="center">发件人</div>
+      </td>
+      <td width="245" height="14"> 
+        <div align="center">主题</div>
+      </td>
+      <td width="112" height="14"> 
+        <div align="center">日期</div>
+      </td>
+      <td width="142" height="14"> 
+        <div align="center">收件人</div>
+      </td>
+    </tr>
+    
+    <tr bgcolor="#E2EEDB"> 
+      <td width="161" height="20">[#from#] </td>
+      <td width="245" height="20">[#subject#]</td>
+      <td width="112" height="20">[#date#]</td>
+      <td width="142" height="20">[#to#]</td>
+    </tr>
+    
+  </table>
+  <p><br>
+</p>
+</form>
+</body>
+</html>

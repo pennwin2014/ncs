@@ -1,0 +1,176 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+
+<SCRIPT LANGUAGE="JavaScript">
+
+
+
+parent.document.form1.CurPg.value='[#CurPg#]';
+parent.document.form1.TotPg.value='[#TotPg#]';
+parent.document.form1.TotRec.value='[#TotRec#]';
+parent.document.form1.lTotRec.value='[#lTotRec#]';
+parent.document.form1.cmdNo.value='[#cmdNo#]';
+parent.document.form1.gsid.value='[#gsid#]'; 
+parent.document.form1.service_flags.value='[#service_flags#]'; 
+
+
+
+function showsubmenu_td2(sid)
+{
+	var i = 0;
+	var tmp;
+	parent.document.form1.gsid.value = sid;
+	for(i = 1; i <= [#lTotRec#]; i++)
+	{
+		tmp = "detail" + i; 
+		parent.document.getElementById(tmp).style.display ="none";
+	}
+	
+	var s = "detail" + sid;
+	parent.document.getElementById(s).style.display ="";
+}
+
+
+function displaySub()
+{ 
+	
+	if(parent.document.form1.gsid.value != "" && parent.document.form1.gsid.value <= [#lTotRec#])
+	{ 
+		showsubmenu_td2(parent.document.form1.gsid.value);
+  }
+ 
+}
+
+
+function w1()
+{
+var yy='<tbody>';
+        yy=yy+'<div  class="tScrollw" id="tC">';
+        yy = yy + '<table cellspacing=0 bordercolor="#DFDFDF"  id="DataTable" class="listDataTable" border="0" align="center" width="100%">';  
+        yy = yy + '<tr bgcolor="#6382BD" height="18" class="tableHead"  style="top:expression(document.getElementById(\'tC\').scrollTop)">';
+        yy = yy + '<td width="12%" class="bord2" onClick="doSort(1)"> 记录时间</td>';
+        yy = yy + '<td width="10%" align="center" class="bord2" onClick="doSort(2)"> <font color="#FFFFFF">类型</font></td>';
+        yy = yy + '<td width="12%" align="center" class="bord2" onClick="doSort(3)"><font color="#FFFFFF">虚拟身份帐号</font></td>';
+        yy = yy + '<td width="12%" align="center" class="bord2" onClick="doSort(4)"> <font color="#FFFFFF">姓名</font></td>';
+       
+        yy = yy + '<td width="7%" align="center" class="bord2"> <font color="#FFFFFF">场所名称</font></td>';
+        yy = yy + '</tr>';
+
+      <!-- [#SLPB#] -->
+        yy = yy + '<tr height="18" bgcolor="#ffffff">';
+        yy = yy + '<td class="bord1"  nowrap  ><font class="url_wz_color" id=imgx1 onclick="showsubmenu_td([#iNum#])" style="text-decoration:TEXT-DECORATION: underline">&nbsp;[#time#]</font></td>';
+        yy = yy + '<td class="bord1"  nowrap  >&nbsp;[#apps_type#] </td>';
+        yy = yy + '<td class="bord1"  nowrap  >&nbsp;[#field_02#] </td>';
+        yy = yy + '<td class="bord1"   nowrap >&nbsp;[#user_name#] </td>';
+        yy = yy + '<td class="bord3"  nowrap  align="center">[#dispname#]&nbsp;</td>';
+        yy = yy + '</tr>';
+        
+        yy = yy +'<tr height="20" id="detail[#iNum#]" style="DISPLAY: none">';
+        yy = yy + '<td width="100%" colspan="7" class="td_bgcolor_1">';
+        yy = yy + '<table border="0" cellspacing="1" width="100%" class="table_bgcolor_2">';
+        
+        
+        yy = yy + '<tr height="20">';
+        yy = yy + '<td width="19%" class="td_bgcolor_2" align="right">记录时间：</td>';
+        yy = yy + '<td width="29%" class="td_bgcolor_1">&nbsp;[#time#]</td>';
+        yy = yy + '<td width="19%" class="td_bgcolor_2" align="right">房间号：</td>'; 
+        yy = yy + '<td width="33%" class="td_bgcolor_1">&nbsp;[#room#]</td>'; 
+        yy = yy + '</tr>'; 
+        
+        yy = yy + '<tr height="20">';
+        yy = yy + '<td width="19%" class="td_bgcolor_2" align="right">用户名：</td>';
+        yy = yy + '<td width="29%" class="td_bgcolor_1">&nbsp;[#user_name#]</td>';
+        yy = yy + '<td width="19%" class="td_bgcolor_2" align="right">上网终端名称：</td>'; 
+        yy = yy + '<td width="33%" class="td_bgcolor_1">&nbsp;[#net_ending_name#]</td>'; 
+        yy = yy + '</tr>';
+        
+        
+        
+        yy = yy + '<tr height="20">';
+        yy = yy + '<td width="19%" class="td_bgcolor_2" align="right">性别：</td>';
+        yy = yy + '<td width="29%" class="td_bgcolor_1">&nbsp;[#sex#]</td>';
+        yy = yy + '<td width="19%" class="td_bgcolor_2" align="right">上网终端IP：</td>'; 
+        yy = yy + '<td width="33%" class="td_bgcolor_1">&nbsp;[#net_ending_ip#]</td>'; 
+        yy = yy + '</tr>'; 
+        
+        
+        yy = yy + '<tr height="20">';
+        yy = yy + '<td width="19%" class="td_bgcolor_2" align="right">证件类型：</td>';
+        yy = yy + '<td width="29%" class="td_bgcolor_1">&nbsp;[#certificate_type#]</td>';
+        yy = yy + '<td width="19%" class="td_bgcolor_2" align="right">目标IP：</td>'; 
+        yy = yy + '<td width="33%" class="td_bgcolor_1">&nbsp;[#destination_ip#]</td>'; 
+        yy = yy + '</tr>';
+        
+        
+        
+        yy = yy + '<tr height="20">';
+        yy = yy + '<td width="19%" class="td_bgcolor_2" align="right">证件号码：</td>';
+        yy = yy + '<td width="29%" class="td_bgcolor_1">&nbsp;[#certificate_cod#]</td>';
+        yy = yy + '<td width="19%" class="td_bgcolor_2" align="right">目的端口号：</td>'; 
+        yy = yy + '<td width="33%" class="td_bgcolor_1">&nbsp;[#port#]</td>'; 
+        yy = yy + '</tr>';
+        
+        
+        
+        yy = yy + '<tr height="20">';
+        yy = yy + '<td width="19%" class="td_bgcolor_2" align="right">发证单位：</td>';
+        yy = yy + '<td width="29%" class="td_bgcolor_1">&nbsp;[#org_name#]</td>';
+        yy = yy + '<td width="19%" class="td_bgcolor_2" align="right">还原文件名：</td>'; 
+        yy = yy + '<td width="33%" class="td_bgcolor_1">&nbsp;[#file_name#]</td>'; 
+        yy = yy + '</tr>';
+        
+        
+        yy = yy + '<tr height="20">';
+        yy = yy + '<td width="19%" class="td_bgcolor_2" align="right">国籍：</td>';
+        yy = yy + '<td width="29%" class="td_bgcolor_1">&nbsp;[#country#]</td>';
+        yy = yy + '<td width="19%" class="td_bgcolor_2" align="right">还原文件大小：</td>'; 
+        yy = yy + '<td width="33%" class="td_bgcolor_1">&nbsp;[#file_size#]</td>'; 
+        yy = yy + '</tr>';
+        
+        
+        yy = yy + '<tr height="20">';
+        yy = yy + '<td width="19%" class="td_bgcolor_2" align="right">虚拟身份帐号：</td>';
+        yy = yy + '<td width="29%" class="td_bgcolor_1">&nbsp;[#field_02#]</td>';
+        yy = yy + '<td width="19%" class="td_bgcolor_2" align="right">动作：</td>'; 
+        yy = yy + '<td width="33%" class="td_bgcolor_1">&nbsp;[#field_04#]</td>'; 
+        yy = yy + '</tr>';
+        
+        
+        
+        
+        
+        
+        yy = yy + '<tr height="20">';
+        yy = yy + ' <td width="19%" class="td_bgcolor_2" align="right" valign="top">';
+        yy = yy + '</td>';
+        yy = yy + '<td width="81%" class="td_bgcolor_1" colspan="3">';
+        yy = yy + '</td>';
+        yy = yy + '</tr>';
+        
+        yy = yy + ' </table>';
+        yy = yy + ' </td>';  
+        yy = yy + ' </tr>'; 
+     <!-- [#SLPE#] -->
+
+        
+         
+  yy=yy+'</table>';
+  yy=yy+'</div>';
+  yy = yy + '</tbody>';
+  
+  parent.document.getElementById("ff").innerHTML=(yy);
+  displaySub();
+  
+  
+}
+setTimeout('w1()',1000);
+
+ </SCRIPT> 
+
+</head>
+<body>
+
+</body>
+</html>

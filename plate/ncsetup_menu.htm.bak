@@ -1,0 +1,18 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+</head>
+
+<body bgcolor="#C0C0C0" text="#000000">
+<table width="770" border="0" height="20" bgcolor="#C0C0C0">
+  <tr bgcolor="#CCCCCC"> 
+    <td width="20%" height="24"> <a href="/pronline/Msg?FunName@ncWebReplace&userid@[#userid#]&plate@ncsetup_i_menu.htm" target="mainFrame">上网限制</a></td>
+    <td width="18%" height="24"><a href="/pronline/Msg?FunName@ncWebReplace&userid@[#userid#]&plate@ncsetup_w_menu.htm" target="mainFrame">网站限制</a></td>
+    <td width="18%" height="24"><a href="/pronline/Msg?FunName@ncWebReplace&userid@[#userid#]&plate@ncsetup_s_menu.htm" target="mainFrame">服务限制</a></td>
+    <td width="23%" height="24"><a href="/pronline/Msg?FunName@ncWebReplace&userid@[#userid#]&plate@ncsetup_t_menu.htm" target="mainFrame">IP地址和TCP端口限制</a></td>
+    <td width="21%" height="24"><a href="/pronline/Msg?FunName@ncWebSystemReset">应用新的设置</a></td>
+  </tr>
+</table>
+</body>
+</html>

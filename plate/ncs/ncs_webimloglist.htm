@@ -1,0 +1,288 @@
+<html>
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<title>main</title>
+<script>
+var dfd1="0"
+function gotoPage(pagenum)
+
+{
+    form1.CurPg.value = pagenum;
+}
+function passdate()
+{
+parent.form1.CurPg.value='[#CurPg#]';
+parent.form1.TotPg.value='[#TotPg#]';
+parent.form1.TotRec.value='[#TotRec#]';
+
+parent.document.all.wlj.innerHTML='<b style="font-size: 10pt;color:#00237e;">本地日志([#title_name#])</b>';
+	parent.form1.did.value=form1.userid.value;
+	parent.form1.uid.value=form1.uid.value;
+	parent.form1.sdate.value=form1.sdate.value;
+	parent.form1.edate.value=form1.edate.value;
+}
+function lprint()
+{
+form1.cx.style.display="none";
+form1.rycx.style.display="none";
+form1.hsear.style.display="none";
+form1.pr.style.display="none";
+form1.exp.style.display="none";
+window.print();
+
+form1.cx.style.display="";
+form1.rycx.style.display="";
+form1.hsear.style.display="";
+form1.pr.style.display="";
+form1.exp.style.display="";
+}
+// function goto(t){
+// self.location.href=t
+// }
+
+function goto(t){
+ tt=showModalDialog(t, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:520px;scroll:yes;dialogHeight:620px');
+}
+function gotozd(t){
+ tt=showModalDialog(t, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:320px;scroll:yes;dialogHeight:400px');
+}
+function showuser(did,uid)
+{
+var temp_var="/pronline/Msg?FunName@ncsWebShowUserinfo&did@"+did+"+uid@"+uid;
+	showModalDialog(temp_var, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:520px;scroll:yes;dialogHeight:640px');
+}
+function mouseovertr2 (o){
+var i;
+df=o.style.backgroundColor
+	o.style.backgroundColor= "#ffff00";
+	o.style.borderColor= "#FFFF00";
+	o.style.cursor="hand";	
+}
+
+function mouseouttr2(o){
+	o.style.backgroundColor=df
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#000000";
+}
+	
+	
+}
+
+function checkme(p)
+{
+	var tt=p.value
+	if (tt>yy)
+	{
+		MM_changeProp('browsdopage','','value',yy,'INPUT/TEXT')
+	}
+	if (tt==0)
+	{
+		MM_changeProp('browsdopage','','value','1','INPUT/TEXT')
+	}
+}
+
+function allChecked(){
+    if(dfd1=="1"){
+        dfd1="0"
+    }
+    else {
+         dfd1="1"
+    }
+	for(var i=0;i<document.all.DataTable.rows.length;i++)
+	{
+		if(typeof(document.all.DataTable.rows[i].cells[0].childNodes[0])=="object"
+
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].tagName=="INPUT"
+
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].type=="checkbox") {
+			if(dfd1=="1"){
+  			    document.all.DataTable.rows[i].cells[0].childNodes[0].checked="true";
+            }
+			else{
+                document.all.DataTable.rows[i].cells[0].childNodes[0].checked="";
+            }
+        }
+ 	}
+}
+
+
+// -->
+<!-- Hide
+var ll=[#CurPg#]
+var yy=[#TotPg#]
+function killErrors() {
+return true;
+}
+window.onerror = killErrors;
+// -->
+</script>
+
+<style type="text/css">
+<!--
+.tScrollw {
+    overflow: scroll;
+    overflow-x:hidden;
+    height:425px;
+    cursor: default;
+    }
+    tr.tableHead {
+    position:relative;
+
+    height: 18px; 
+    text-align: center;
+    }
+ .bordnr {
+	border-left: 1px solid #0148b2;
+	border-top: 1px solid #888888;
+	border-bottom: 1px solid #0148b2;
+	border-right: 1px solid #0148b2;
+	background-color:#d0e1fa;  
+    
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+-->
+</style>
+
+
+<link REL=stylesheet HREF="/css/listdatetable.css" TYPE="text/css">
+<script src="/js/tablecssall.js"></script>
+<script src="/js/rmenu.js"></script>
+<style type="text/css">
+<!--
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+-->
+</style>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+<body marginheight=0 leftmargin=0 marginwidth=0 topMargin="0" BGCOLOR="#ffffff" onload="passdate()" style="overflow:hidden">
+<form name="form1" method="post" action="/pronline/Msg">
+			      <input type="hidden" name="plate" value="ncsmsg_showinfo.htm">
+            <input type="hidden" name="fun" value="ncsWebImLog">
+	          <input type="hidden" name="FunName" value="ncsWebImLog">
+              <input type="hidden" name="CurPg"      value="[#CurPg#]">
+              <input type="hidden" name="TotPg"      value="[#TotPg#]">
+              <input type="hidden" name="lcount"      value="[#TotRec#]">
+              <input type="hidden" name="cond" value="">
+              <input type="hidden" name="zd" value="[#zd#]">
+  
+              <input type="hidden" name="uid" value="[#uid#]">
+              <input type="hidden" name="did" value="[#userid#]">
+
+              <input type="hidden" name="exp" value="">
+              
+  <table border="0" width=100% height=100% cellspacing="0" cellpadding="0" align=center bgcolor='#ffffff'>
+   
+  <tr>
+      <td width="100%"  valign=top align=center bgcolor="#DEE8FA"> 
+      <div class="tScrollw" id="tC"> 
+        <table id="DataTable" class="listDataTable" width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+          <tr bgcolor="#6382BD" height="18" class="tableHead"  style="top:expression(document.getElementById('tC').scrollTop)">          
+            [#SLPB#]
+            <td width="[#width#]" align="center" class="bord2"> <font color="#FFFFFF">[#titlename#]</font></td>
+            [#SLPE#]
+          </tr>
+          <!-- [#SLPB#] -->
+          <tr onMouseOver="mouseovertr2(this)"  onMouseOut="mouseouttr2(this)" > 
+  
+            [#SLPB#]
+            <td class="[#bord#]" align="[#align#]"  >&nbsp;[#detname#]</td>
+            [#SLPE#]
+          
+          </tr>
+          <!-- [#SLPE#] -->
+          <!-- [#SLPB#] -->
+          <tr id=[#snum#]>
+          [#SLPB#]
+           <td class="bord1" >[#spance#]</td>
+          [#SLPE#]
+          
+          </tr>
+          <!-- [#SLPE#] -->
+        </table>
+      </div>
+      </td>
+  </tr>
+        	  	 <tr height="110">
+       	        	<td  class="bordnr" valign="top">
+       	        		<table border=0 cellpadding=0 cellspacing=0 width="100%">
+       	             <tr height="40">
+          	  	     	<td width="100" align="center">&nbsp;上网时间</td>
+          	  	     	<td width="150"><input type="text" name="sdate" value="[#sdate#]" size="19" maxlength="19"> </td> 
+          	  	     	<td width="75" align="center">&nbsp;到</td>
+          	  	     	<td width="155"><input type="text" name="edate" value="[#edate#]" size="19" maxlength="19"> </td> 
+          	  	     	<td width="60" align="center">&nbsp;发送者</td>
+          	  	     	<td ><input type="text" name="mfrom" value="[#mfrom#]" size="17"></td>
+          	  	     	<td width="80">&nbsp;服务类别</td>
+          	  	     	<td width="90"><select name="service" style="width:60">
+                     	<option value="">全部</option>
+                  	  <option value="1001">QQ</option>
+                  	  <option value="1006">雅虎通</option>
+                  	  <option value="1002">MSN</option>
+                  	  <option value="1008">ICQ</option>
+                     
+                    </select></td>
+          	  	     	<td width="110" align="center"><input name="cxx" type="submit"  value="查 询" ></td> 	  	     	
+          	  	    </tr>
+          	  	     <tr height="30">
+          	  	     	<td  align="center">&nbsp;用户名</td>
+          	  	     	<td ><input type="text" name="username" value="[#username#]" size="21" >
+
+          	  	     		</td>  
+          	  	     	<td  align="center" >单位名称</td>
+          	  	     	<td >	<select name="userid" style="width:170">
+			                  <option value="">全部</option>
+			                  [#SLPB#]
+			                  <option value="[#userid#]">[#dispname#]</option>
+			                  [#SLPE#]
+			                  </select></td>
+          	  	     	<td  align="center">&nbsp;接收者</td>
+          	  	     	<td ><input type="text" name="mto" value="[#mto#]" size="17"></td>
+          	  	     	<td >&nbsp;消息类别</td>
+          	  	     	<td ><select name="funcode" style="width:60px"><option value="">全部</option><option value="1">登录</option><option value="2">退出</option><option value="3">发送消息</option><option value="4">发送文件</option><option value="5">接收文件</option><option value="6">接收消息</option></select></td>  
+          	  	     	<td  align="center"><input name="clearaq" type="button"  value="清除条件" onclick="cleara()"></td>	     	
+          	  	    </tr>
+          	  	     <tr height="30">	    
+          	  	     	<td  align="center">&nbsp;单位组</td>
+          	  	     	<td  >
+          	  	     	<select name="groupid" style="width:170">
+			                  <option value="">全部</option>
+			                  [#SLPB#]
+			                  <option value="[#groupid#]">[#grouname#]</option>
+			                  [#SLPE#]
+			                  </select></td>
+          	  	     	<td  align="center">内容</td>
+          	  	     	<td colspan="3">
+                    <input type="text" name="message" size="40" maxlength="44" value="[#message#]" > 
+                   </td>
+ 
+          	  	     	<td > &nbsp;源IP&nbsp;</td>
+          	  	     	<td><input type="text" name="sip" size="15" value="[#sip#]"></td>	    
+          	  	     	<td>&nbsp;</td> 	
+          	  	    </tr>
+
+          	  	   </table>
+       	        	</td>
+       	        </tr>
+  
+  
+</table>
+ </form>
+ 
+  <script >
+ 	form1.userid.value='[#userid#]';
+ 	form1.groupid.value='[#groupid#]';
+ 	form1.service.value='[#service#]';
+ 	form1.funcode.value='[#funcode#]';
+</script>
+ 
+ 
+</body>
+
+</html>

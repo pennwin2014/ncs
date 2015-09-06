@@ -1,0 +1,330 @@
+<html>
+<head><title>即时通讯_关键字搜索_[#query#]</title> 
+<META http-equiv="Content-Type" content="text/html; charset=GBK">
+<link REL=stylesheet HREF="/css/css_s.css" TYPE="text/css">
+<SCRIPT>
+	function showQQcont(name,lntype){
+	var temp_var="/pronline/Msg?FunName@ncsWebReplace&plate@ncs/qqvid_det_frm.htm&name1@"+name+"+ntype@"+lntype;
+
+		showModalDialog(temp_var, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:720px;scroll:yes;dialogHeight:640px');
+}
+	function checkWd(){
+    		if(f.wd.value == ""){
+      			return false;
+    		}
+    		return true;
+ 	}
+ 
+  
+ 	function checkWd2(){
+    		if(form2.wd.value == ""){
+      			return false;
+    		}
+    		return true;
+ 	}
+ 
+ 	function adv_search(){
+   		self.location.href="/advanced_im_search.html";
+ 	}
+ 
+ 	function re_search(){
+   		self.location.href="/pronline/Msg?FunName@NcsImLog_s&f@re&q@[#query_text#]&t@[#total#]&rn@[#rn#]&lm@[#lm#]&sdate@[#sdate#]&edate@[#edate#]";
+ 	}
+ 	
+ 	var td_width = 0;
+        if(screen.width == 1280)
+        {
+                td_width = 730;
+        }
+        else if(screen.width == 1024)
+        {
+                td_width = 610;
+        }
+        else {
+                td_width = screen.width * 0.522;
+        }
+</SCRIPT>
+
+<style>
+A:link{
+font-size:10pt;
+}
+A:visited{
+font-size:10pt;
+}
+A:hover{
+font-size:10pt;
+}
+A:active{
+font-size:10pt;
+}
+</style>
+
+
+</head>
+<body >
+ <center>
+
+ <table cellSpacing=0 cellPadding=0 width="95%">
+	 <tr>
+  		 <td>
+  		  	<div id="top2" style="display:[#display2#]">
+  		 		<p align="right">
+  		 			搜索 <b>[#query#]</b> [#service#] 获得 <b>[#total#]</b> 个结果, 以下第 <b>[#start#]</b>-<b>[#end#]</b> 条(用时 [#total_times#] 秒)
+  		 			<br>[#sort1#]   [#sort2#]
+  		 		</p>
+  		 
+  		 	</div>
+  		 <td>
+  		 <td>
+  		 	<div id="top1" style="display:[#display1#]">
+  		 		<p align="right">
+  		 			没有找到与 <b>"[#query#]"</b> 相符的内容或信息
+  		 		</p>
+  		 	</div>
+  		<td>
+     </tr>	
+  </table>  
+    
+    
+    
+    
+    
+  
+ <table cellSpacing=0 cellPadding=0 width="85%" style="word-break:break-all" border=0>
+ 
+  [#SLPB#]
+  <tr [#class#]>
+ 
+   <td>
+     <table cellSpacing=0 cellPadding=0  style="word-break:break-all">
+     	
+     	
+     	<tr>
+		<br>
+    		<script>                        
+                        document.write("<td width=\""+ td_width + "\">");
+                </script>
+    			<h4>&nbsp;&nbsp;[#iNum#].<font color="blue">[#mesg#]</font></h4>
+    		</td>
+    		<td>
+    			
+    		</td>
+    	</tr>
+        
+        <tr>
+    		<script>                        
+                        document.write("<td width=\""+ td_width + "\">");
+                </script>
+    			<b>&nbsp;&nbsp;聊天工具</b>:&nbsp;&nbsp;[#service#]
+    		</td>
+    		<td width="300">
+    			<font color="blue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;记录时间:</font>&nbsp;&nbsp;[#stime#]
+    		</td>
+    	</tr>
+       
+    	<tr>
+    		
+    		<script>                        
+                document.write("<td width=\""+ td_width + "\">");
+                </script>
+       			<b>&nbsp;&nbsp;发送者</b>:&nbsp;&nbsp;&nbsp;&nbsp;[#mfrom#]
+       			
+       		</td>
+    		<td>
+    			<font color="blue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;场所代码:</font>&nbsp;&nbsp;[#servicecode#]
+    		</td>
+    	</tr>
+    	
+       	<tr>
+       		
+       		<script>                        
+                        document.write("<td width=\""+ td_width + "\">");
+                </script>
+       			<b>&nbsp;&nbsp;接收者</b>:&nbsp;&nbsp;&nbsp;&nbsp;[#mto#]
+       			
+       		</td>
+       		<td>
+       			<font color="blue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;场所名称</font>:&nbsp;&nbsp;[#servicename#]
+       		</td>
+       	
+       	</tr>
+       	
+       	<tr>
+       		
+       		<script>                        
+                        document.write("<td width=\""+ td_width + "\">");
+                </script>
+       			<b>&nbsp;&nbsp;
+       			
+       			
+       		</td>
+       		<td>
+       			<font color="blue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位置:</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#position#]
+       		</td>
+       		
+       	</tr>
+       	
+       	
+      
+       	
+       	
+       	
+       	<tr>
+       		<script>                        
+                        document.write("<td width=\""+ td_width + "\">");
+                </script>
+       			&nbsp;&nbsp;<a href="#xxm" onclick=showQQcont("[#mfrom#]","1001")>更多聊天内容...</a>
+       		</td>
+       		
+       		<td>
+       			<font color="blue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MAC地址:</font>&nbsp;&nbsp;&nbsp;[#mac#]
+       			
+       		</td>
+       		
+       	</tr>
+       	
+       	
+       
+       	
+       	<tr>
+       		<script>                        
+                        document.write("<td width=\""+ td_width + "\">");
+                </script>
+       			
+       		</td>
+       		
+       		<td>
+       			<font color="blue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;显示姓名:</font>&nbsp;&nbsp;[#udisp#]
+       		</td>
+       		
+       	</tr>
+       	
+       	<tr>
+       		<script>                        
+                        document.write("<td width=\""+ td_width + "\">");
+                </script>
+       			
+       		</td>
+       		
+       		<td>
+       			<font color="blue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;源IP地址:</font>&nbsp;&nbsp;[#sip#]
+       		</td>
+       		
+       	</tr>
+       	
+       	<tr>
+       		<script>                        
+                        document.write("<td width=\""+ td_width + "\">");
+                </script>
+       			
+       		</td>
+       		
+       		<td>
+       			<font color="blue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;目的IP地址:</font>[#dip#]
+       		</td>
+       		
+       	</tr>
+       	
+        
+       	
+       	
+        
+        </table>
+ 
+   </td>
+ 	
+   
+   
+   
+  </tr>
+  
+  
+  
+  
+  [#SLPE#]
+  
+  
+  
+  
+ </table>
+  <br>
+  <table cellSpacing=0 cellPadding=0 width="80%" border=0>
+		<tr>
+  	<td><p align="center">
+	      <a href="/pronline/Msg?FunName@NcsImLog_s&wd@[#wd_prev#]&q6@[#q6_prev#]&cp@[#CurPg_prev#]&rn@[#rn_prev#]&lm@[#lm_prev#]&sf@[#sf_prev#]&sdate@[#sdate#]&edate@[#edate#]" target="_self">[#prev#]</a>
+        [#SLPB#]
+        <a href="/pronline/Msg?FunName@NcsImLog_s&wd@[#wd_page1#]&q6@[#q6_page1#]&cp@[#CurPg_page1#]&rn@[#rn_page1#]&lm@[#lm_page1#]&sf@[#sf_page1#]&sdate@[#sdate1#]&edate@[#edate1#]" target="_self">[#page1#]</a>
+        [#SLPE#]
+  [#page#]
+        [#SLPB#]
+        <a href="/pronline/Msg?FunName@NcsImLog_s&wd@[#wd_page2#]&q6@[#q6_page2#]&cp@[#CurPg_page2#]&rn@[#rn_page2#]&lm@[#lm_page2#]&sf@[#sf_page2#]&[#sdate2#]&edate@[#edate2#]" target="_self">[#page2#]</a>
+        [#SLPE#]
+        <a href="/pronline/Msg?FunName@NcsImLog_s&wd@[#wd_next#]&q6@[#q6_next#]&cp@[#CurPg_next#]&rn@[#rn_next#]&lm@[#lm_next#]&sf@[#sf_next#]&sdate@[#sdate#]&edate@[#edate#]" target="_self">[#next#]</a>
+        </p></td>
+    </tr>	
+   </table><div id="bot" style="display:[#display2#]">
+       <p align="center">
+       <form method="post" action="/pronline/Msg" name="form2" onSubmit="return checkWd2()">
+              <input type="hidden" name="FunName" value="NcsImLog_syj">
+              <input type="hidden" name="sdate" value="[#sdate#]">
+              <input type="hidden" name="edate" value="[#edate#]">
+              <span id="in">
+                <input type="text" name="wd" value="[#query#]" id="kw" size="80" maxlength="255">
+                <br>
+                <input type="submit" value="搜索" id="sb">
+               
+              </span>
+       </form>
+     </p>
+  </div>
+ </center>
+</body>
+<script>
+	var w=window;
+	var d=document;
+	var n=navigator;
+	var k=d.f.wd;
+	var a=d.getElementById("nv").getElementsByTagName("a");
+	var isIE=n.userAgent.indexOf("MSIE")!=-1;
+	
+	if(!isIE||window.opera){
+		d.getElementById("st").style.display="none";
+	}
+	for(var i=0;i<a.length;i++){
+		a[i].onclick=function(){
+			if(k.value.length>0){
+				var C=this;
+				var A=C.href;
+				if(A.indexOf("&wd@")!=-1){
+					C.href=A.replace(/q=[^&$]*/,"&wd@"+k.value);
+				}else{
+					this.href+="&wd@"+k.value;
+				}
+			}
+		}
+	}
+	(function(){
+		if(/q=([^&]+)/.test(location.search)){
+			k.value=decodeURIComponent(RegExp.$1);
+		}
+	})();
+	
+	
+	
+	function addEV(C,B,A){
+		if(w.attachEvent){
+			C.attachEvent("on"+B,A);
+		}else{
+			if(w.addEventListener){
+				C.addEventListener(B,A,false);
+			}
+		}
+	}
+	
+	function G(A){
+		return d.getElementById(A);
+	}
+	
+</script>
+</html>

@@ -1,0 +1,77 @@
+<html>
+
+<head>
+
+<title>基本信息</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+
+</head>
+
+
+<body bgcolor="#CCCCCC" text="#000000" leftmargin="1" topmargin="1">
+<form name="form1" method="post" action="/profire/Msg#[#num#]"  target="fbot">
+
+  <table width="100%" border="0" cellspacing="0" bgcolor="#CCCCCC">
+    <tr> 
+      <td colspan="7" height="30" class="bord2"> 
+        <div align="center">
+          <input type="hidden" name="FunName" value="fireWebModiBaseInfo">
+          <input type="hidden" name="index" value="[#index#]">
+          基本信息定义</div>
+        <div align="center"> </div>
+      </td>
+      <td width="44%" height="30" class="bord4"> 
+        <div align="right">索引号[[#index#]]</div>
+      </td>
+    </tr>
+    <tr> 
+      <td width="5%" height="2"  class="bord1"> 
+        <div align="right">类别</div>
+      </td>
+      <td width="11%" height="2" class="bord1">[#type#]</td>
+      <td width="5%" height="2" class="bord1"> 
+        <div align="right">名称</div>
+      </td>
+      <td width="13%" height="2" class="bord1"> 
+        <input type="text" name="name" size="15" maxlength="15" value="[#name#]">
+      </td>
+      <td width="5%" height="2" class="bord1">
+        <div align="right">显示</div>
+      </td>
+      <td width="13%" height="2" class="bord1"> 
+        <input type="text" name="dispname" size="26" maxlength="31" value="[#dispname#]">
+      </td>
+      <td width="4%" height="2" class="bord1"> 
+        <div align="right">值</div>
+      </td>
+      <td width="44%" height="2" class="bord3"> 
+        <input type="text" name="values" size="30" maxlength="63" value="[#values#]">
+      </td>
+    </tr>
+    <tr> 
+      <td width="5%" height="2" class="bord1">&nbsp;</td>
+      <td width="11%" height="2" class="bord1">&nbsp;</td>
+      <td width="5%" height="2" class="bord1">&nbsp;</td>
+      <td width="13%" height="2" class="bord1">&nbsp;</td>
+      <td colspan="4" height="2" class="bord3"> 
+        <div align="right"> 
+          <input type="submit" name="search" value="分类查询" class="an3">
+          <input type="submit" name="modi" value="修改" [#modi#] class="an3">
+          <input type="submit" name="add" value="增加" class="an3">
+          <input type="reset"   name="reset"  value="恢复" class="an3">
+        </div>
+      </td>
+    </tr>
+  </table>
+
+</form>
+
+<table width="100%" border="0">
+
+</table>
+</body>
+
+</html>
+

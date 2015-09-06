@@ -1,0 +1,190 @@
+<html>
+<head>
+<title>分类管理</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<script>
+      function  goto() {
+         parent.sbpm_left.location.href='/pronline/Msg?FunName@ncWebLimIpGroup&plate@nc/nc_limiptree.htm';
+     }
+	
+	function dodel() {
+	    if(confirm("真的要删除吗?")) {
+		    form1.ddd.value = "yes";
+			form1.submit();
+			return false;
+	    }
+		return true;
+	}
+	
+	function setname(){
+       j=form1.nid.options.length; 
+	   t=form1.nid.value;
+       for(i=0;i<j;i++) { 
+           gv = form1.nid.options[i].value;
+           if(gv == t) {
+               form1.nname.value = form1.nid.options[i].text;
+           }
+       }
+    }
+	
+	
+</script>
+</head>
+
+<body bgcolor="#dfdfdf" text="#000000" topmargin="2"  oncontextmenu="return false" onload="setname()" >
+<table width="75%" border="0">
+  <tr>
+    <td>
+      <div align="center"><b>服务类别管理</b></div>
+    </td>
+  </tr>
+  <tr> 
+    <td> 
+      <p>&nbsp;</p>
+      <form name="form1" method="post" action="/pronline/Msg">
+        <input type="hidden" name="FunName" value="ncWebLimIpGroupEdit" >
+        <input type="hidden" name="plate" value="nc/nc_limipgroup.htm" >
+        <input type="hidden" name="ddd">
+        <table width="100%" border="0" height="100%">
+          <tr> 
+            <td valign="top"> 
+              <table width="98%" border="0" align="center">
+                <tr> 
+                  <td width="109"> 
+                    <div align="right"><b>新建一个类别</b></div>
+                  </td>
+                  <td width="531"><img src="/images/hr.gif" width="100%" height="2"></td>
+                </tr>
+              </table>
+              <br>
+              <table width="96%" border="0" align="center">
+                <tr> 
+                  <td width="84" height="22"> 
+                    <div align="right">分类名称</div>
+                  </td>
+                  <td height="22" width="238"> 
+                    <input type="text" name="gname" size="16" maxlength="63">
+                  </td>
+                  <td width="300" height="22"> 
+                    <input type="submit" name="add" value="确认" class="an3">
+                  </td>
+                </tr>
+                <tr> 
+                  <td colspan="3"> 
+                    <div align="center"><br>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+              <br>
+              <table width="98%" border="0" align="center">
+                <tr> 
+                  <td> 
+                    <img src="/images/hr.gif" width="100%" height="2"></td>
+                </tr>
+              </table>			  
+              <table width="98%" border="0" align="center">
+                <tr> 
+                  <td width="111"> 
+                    <div align="right"><b>删除一个类别</b></div>
+                  </td>
+                  <td width="529"><img src="/images/hr.gif" width="100%" height="2"></td>
+                </tr>
+              </table>
+              <br>
+              <table width="96%" border="0" align="center" height="39">
+                <tr> 
+                  <td width="201"> 
+                    <div align="right">要删除的分类名称</div>
+                  </td>
+                  <td width="257"> 
+                    <select name="did">
+                      <!-- [#SLPB#] -->
+                      <option value="[#id#]">[#name#]</option>
+                      <!-- [#SLPE#] -->
+                    </select>
+                  </td>
+                  <td width="470"> 
+                    <input type="button" name="del" value="删除"  onclick="dodel()" class="an3">
+                  </td>
+                </tr>
+                <tr> 
+                  <td colspan="3" height="21"> 
+                    <div align="center"><br>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+              <table width="98%" border="0" align="center">
+                <tr> 
+                  <td> <img src="/images/hr.gif" width="100%" height="2"></td>
+                </tr>
+              </table>
+              <table width="98%" border="0" align="center">
+                <tr> 
+                  <td width="138"> 
+                    <div align="right"><b>修改一个类别</b></div>
+                  </td>
+                  <td width="502"><img src="/images/hr.gif" width="100%" height="2"></td>
+                </tr>
+              </table>
+              <table width="96%" border="0" align="center">
+                <tr> 
+                  <td width="137"> 
+                    <div align="right">分类名称</div>
+                  </td>
+                  <td width="159"> 
+                    <select name="nid" onChange="setname()">
+                      <!-- [#SLPB#] -->
+                      <option value="[#id#]">[#name#]</option>
+                      <!-- [#SLPE#] -->
+                    </select>
+                  </td>
+                  <td width="225">改为 
+                    <input type="text" name="nname" size="16" maxlength="31">
+                  </td>
+                  <td width="160"> 
+                    <input type="submit" name="modi" value="确认"   class="an3">
+                  </td>
+                </tr>
+                <tr> 
+                  <td colspan="4"> 
+                    <div align="center"><br>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+              <table width="98%" border="0" align="center">
+                <tr> 
+                  <td> 
+                    <img src="/images/hr.gif" width="100%" height="2"></td>
+                </tr>
+				<tr> 
+                  <td> 
+                    <div align="center">
+                      <input type="button" name="Button" value="刷新分类树"  class="an3"  onclick="goto()">
+                      <input type="button" name="Button" value="返回"  onclick="history.back(-1)" class="an3">
+                    </div>
+                  </td>
+                </tr>
+				
+              </table>			  
+			  
+              <br>
+              <br>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <p>&nbsp;</p>
+    </td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+</body>
+</html>

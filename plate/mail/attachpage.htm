@@ -1,0 +1,106 @@
+<html>
+<head>
+<title>增加附件</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<style type="text/css">
+<!--
+td {font-size: 9pt}
+body {font-size: 9pt}
+select {font-size: 9pt}
+A {text-decoration: none; color: #003366; font-size: 9pt}
+A:hover {text-decoration: underline; color: #FF0000; font-size: 9pt}
+-->
+</style>
+<script language="JavaScript">
+<!--
+
+function Add(){
+if (document.attach.nfname.value=="") {alert("无效附件!");return;}
+document.attach.require.value="add";
+document.attach.submit( );
+}
+
+function Done(){
+
+var filename=document.attach.fname.value;
+var filetype=document.attach.ftype.value;
+
+window.opener.document.forms[0].ftype.value = filetype;
+window.opener.document.forms[0].fname.value = filename;
+window.opener.document.forms[0].afname.value = filename;
+
+window.close();
+}
+function Delete(){
+if (document.attach.delattach.value=="") {alert("请选择一个附件!");return;}
+document.attach.require.value="delete";
+document.attach.submit();
+}
+
+
+
+// -->
+</script>
+</head>
+<body bgcolor="#F0FFF0" onLoad='self.focus()'>
+<form name="attach"  method="post" action="/pronline/upload" enctype="multipart/form-data">
+<input type="hidden" name="nFunCode" value="16932">
+<input type="hidden" name="sid" value="[#sid#]">
+<input type="hidden" name="require" >
+<input type="hidden" name="fname" value="[#fname#]">
+<input type="hidden" name="ftype" value="[#ftype#]">
+<input type="hidden" name="UploadPath" value="[#www_home#]/tempdir/[#sid#]/upload">
+  <table border="0" width="320" cellspacing="0" cellpadding="2" height="21">
+    <tr bgcolor="#8ED573"> 
+      <td height="17"><font color="#7030ff">注意：传输一个附件可能需要几秒到几分钟的时间</font></td>
+</tr>
+</table>
+  <hr width="100%" size="1" align="left">
+  <table width="100%">
+    <tr bgcolor="#E2EEDB"> 
+      <td colspan="2" height="30"><font color="#000000">1、点“<font color="#FF6633">浏览 
+        ...</font></font>”<font color="#000000">按钮，选择你想要粘贴的附件： 
+        <input type="file" name="nfname" size="20">
+        </font></td>
+    </tr>
+    <tr bgcolor="#E2EEDB"> 
+      <td colspan="2" height="30"><font color="#000000">2、选定一个附件后，点击“<font color="#FF6633">粘贴</font>”按钮，将该文件粘贴到邮件上：</font> 
+        <input type=button value="粘贴" onClick="Add();" name="button" >
+      </td>
+    </tr>
+    <tr bgcolor="#E2EEDB"> 
+      <td width="16%" colspan="2" height="30"><font color="#000000">3、如果需要粘贴一个以上的附件，请重复1、2步骤；</font> 
+      </td>
+    </tr>
+    <tr bgcolor="#E2EEDB"> 
+      <td width="16%" colspan="2" height="30"><font color="#000000">4、所有的附件粘贴完后，点击“<font color="#FF6633">完成</font>”按钮返回。 
+        <input type=button value="完成" onClick="Done();" name="button2" >
+        </font></td>
+    </tr>
+    <tr bgcolor="#E2EEDB"> 
+      <td width="16%" colspan="2" height="30"><font color="#903030"> 
+        <select name="delattach" cols="40">
+          <option value="" selected>请选择下面的附件:</option>
+          [#SLPB010#]
+          <option value="[#attfile#]">[#attfile#]</option>
+          [#SLPE#]
+        </select>
+        
+        <input type=button onClick="Delete();" value="删除" name="button3">
+        </font>（如果要删除附件，请点击“<font color="#FF6633">删除</font>”按钮） </td>
+    </tr>
+    <tr bgcolor="#E2EEDB"> 
+      <td width="16%" colspan="2">&nbsp; </td>
+    </tr>
+    <tr bgcolor="#E2EEDB"> 
+      <td width="16%" colspan="2" height="30"><font color="#000000">现在附件总容量为：<strong><font color="#FF6633">[#tsize#]</font></strong><font color="#000000">K</font></font></td>
+    </tr>
+    <tr bgcolor="#8ED573"> 
+      <td width="16%" colspan="2" height="30"><font color="#7030ff">注意：附件总容量不要超过 
+        4M 。</font></td>
+    </tr>
+  </table>
+</form>
+
+</body>
+</html>

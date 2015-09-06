@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+
+</head>
+
+<style type="text/css">
+<!--
+
+a:link {
+	text-decoration: none;	color: #000000;
+	cursor:hand;
+}
+a:visited {
+	text-decoration: none;	color: #000000;
+	cursor:hand;
+}
+a:hover {
+	text-decoration: none;
+	color: #000000;
+	cursor:hand;
+}
+a:active {
+	text-decoration: none;
+	color: #000000;
+    font-weight: bold;
+    cursor:hand;
+}
+
+-->
+
+</style></head>
+<style>
+<!--
+.css1 {
+	border: 1px solid #C5C5C5;
+	height: 15px;
+	font-size: 12px;
+}
+table {
+	font-size: 12px;
+	font-family: "Arial", "Helvetica", "sans-serif";
+	 "Verdana", "Arial", "Helvetica", "sans-serif", "宋体"; 
+}
+
+
+-->
+</style>
+<script>
+	function changeuser(gid,num){
+var temp="/pronline/Msg?FunName@ncsWebDispCorp_new&groupid@"+gid+"&num@"+num;
+
+document.all.xxs.src=temp;
+
+}
+function opim(num,gid){
+  if(eval('document.all.divu_'+num).style.display=='none'){
+  eval('j_img_'+num).src='/images/minusbottom.gif';
+	eval('document.all.divu_'+num).style.display='';
+  changeuser(gid,num);
+  }
+  else{
+	 eval('document.all.divu_'+num).style.display='none';
+	 eval('j_img_'+num).src='/images/plusbottom.gif';
+	}	
+	}
+	
+   function gotoRight(t){  
+       parent.sbpm_right.form1.userid.value='';
+  //     parent.sbpm_right.location=t;      
+   }
+
+ function gtu(t){  
+
+				parent.sbpm_right.form1.userid.value=t;      
+
+   }	
+</script>
+
+<body leftmargin="0" bgcolor="#d0e1fa" topmargin="0" marginwidth="0" marginheight="0" style="SCROLLBAR-FACE-COLOR: #c1d8f9; OVERFLOW-y: scroll;overflow-x:hidden; SCROLLBAR-SHADOW-COLOR: #c1d8f9; SCROLLBAR-3DLIGHT-COLOR: #c1d8f9; SCROLLBAR-ARROW-COLOR: #5985ce; SCROLLBAR-DARKSHADOW-COLOR: #c1d8f9;">
+<table cellSpacing=0 cellPadding=0 border=0>
+	  <tr> 
+    <td ><img src="/images/base.gif" ></td>
+  </tr>
+</table>
+[#SLPB#]
+<table cellSpacing=0 cellPadding=0 border=0>
+ <tr >
+  <td noWrap onclick="opim('[#iNum#]','[#groupid#]')"><A ><img src="/images/plusbottom.gif" align=absBottom border="0" name=j_img_[#iNum#] ></A>
+  	<A href="#XXm"  onclick="gotoRight(1)">[#groupname#] </A>
+   </td>
+   </tr>
+  
+   </table>
+   <div id=divu_[#iNum#] style="display:none">  	
+   	</div>
+  [#SLPE#] 
+  
+      <iframe id="xxs" width="0" height="0" src="" display="no" ></iframe>
+  </body>
+ 
+</html>

@@ -1,0 +1,39 @@
+
+<html>
+
+<head>
+
+<title>邮件主页</title>
+<script language="javascript">
+function init(){
+	history.back();
+}
+</script>
+</head>
+
+<body  bgcolor="white" text="#000000" leftmargin="0" topmargin="0"  style="overflow:hidden" onload="init()">
+ 
+<form name="form1" id="form1" method="post" action="/pronline/Msg" >
+ 
+  <table width="98%"  border="1" cellspacing="0" cellpadding="0" align="center" height="100%"> 
+    <tr valign="top"> 
+    <td width="100%" valign="top">
+     <table width="100%"  border=0 bordercolordark=#ffffff bordercolorlight=#999999 cellspacing="0" cellpadding="5" >
+     
+      <tr height="30" bgcolor="#6382BD">
+       			<td   align="center" >
+       				<strong><font color="red">邮件发送成功!</font></strong>
+       			</td>
+       </tr>
+      <tr height="30"><td></td></tr>
+      <tr>
+           	<td   align="center" >  	   		
+              <input type="button" name="Button2" value="&nbsp;返回&nbsp;" style="background-color: #DEE8FA" onClick="history.back();">
+           	</td>         
+      </tr>
+ 
+  	</table>  
+  </form>
+
+ </body>
+</html>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    

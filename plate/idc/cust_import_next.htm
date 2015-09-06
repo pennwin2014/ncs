@@ -1,0 +1,358 @@
+<html>
+<head>
+<title>Groupinfo</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<script language="javascript">
+
+
+function goBack()
+{
+	history.back();
+	return false;
+}
+function queren(){
+	form1.submit();
+	document.all.ok.disabled=1;
+	document.all.xxm2.innerHTML='<font color=red size=3>正在导入,请稍候...</font>';
+//	self.close(); 	
+}
+
+function idc_back(){
+	history.back();	
+}
+
+
+</script>
+
+<body bgcolor="#DEE8FA" >
+<table width="100%" border="0" align="center" cellspacing="0" cellpadding="0" bgcolor="#DEE8FA">
+  
+  <tr> 
+    <td align="center"> 
+    	<form action="/pronline/Msg" method="post"  name="form1" >
+    	<input name="FunName" type="hidden" value="ncs_Idc_key_imp">
+    	<input type="hidden" name="fname" value="[#fname#]">
+    	<input type="hidden" name="groupid" value="[#groupid#]">
+    	<input type="hidden" name="kid" value="[#kid#]">
+    	<input type="hidden" name="expflag" value="">
+        <table width="100%" border="0" align="center" cellspacing="0" cellpadding="0">
+          <tr> 
+            <td align="center"> 
+              <table width="100%" border="1" align="center" bordercolorlight=#89ACED   bordercolordark=#ffffff cellspacing="0" cellpadding="0">
+
+                <tr> 
+                  <td align="center">
+                    <table width="100%" border="0" align="center" cellpadding="0"  bgcolor="#DEE8FA">
+
+                      <tr>
+                        <td width="16%" height="25"><div align="right">关键字&nbsp;</div></td>
+                        <td width="84%" height="25" valign="baseline">
+                        <select name="keyname" style="width:300px">
+                        <option value="[#keyname_num#]">[#keyname#]</option>
+                        [#SLPB#]
+                        <option value="[#iNum#]">[#caTemp#]</option>
+                        [#SLPE#]
+                        <option value="">无</option>
+                         </select>
+                        </td>
+                      </tr>
+                      <!--
+                      <tr>
+                        <td height="25"><div align="right">关键字组名&nbsp;</div></td>
+                        <td height="25" valign="baseline">
+                        <select name="keygroup" style="width:300px">
+                        <option value="[#keygroup_num#]">[#keygroup#]</option>
+            			     [#SLPB#]
+                        <option value="[#iNum#]">[#caTemp#]</option>
+                        [#SLPE#]
+                        <option value="">无</option>
+                        </select>
+                        </td>
+                      </tr> 
+                      
+                      <tr>
+                        <td height="25"><div align="right">IP地址&nbsp;</div></td>
+                        <td height="25" valign="baseline">
+                        <select name="ckIp" style="width:300px">
+                        <option value="[#ckIp_num#]">[#ckIp#]</option>
+            			     [#SLPB#]
+                        <option value="[#iNum#]">[#caTemp#]</option>
+                        [#SLPE#]
+                        <option value="">无</option>
+                        </select>
+                        </td>
+                      </tr> 
+                      
+                      <tr>
+                        <td height="25"><div align="right">&nbsp;&nbsp;&nbsp;E-Mail&nbsp;</div></td>
+                        <td height="25" valign="baseline">
+                        <select name="uemail" style="width:300px">
+                        <option value="[#email_num#]">[#uemail#]</option>
+            			      [#SLPB#]
+                        <option value="[#iNum#]">[#caTemp#]</option>
+                        [#SLPE#]
+                        <option value="">无</option>
+                         </select>
+                        </td>
+                      </tr>
+                      
+                      <tr>
+                        <td height="25"><div align="right">地址&nbsp;</div></td>
+                        <td height="25" valign="baseline">
+                        <select name="address" style="width:300px">
+                        <option value="[#address_num#]">[#address#]</option>
+            			     [#SLPB#]
+                        <option value="[#iNum#]">[#caTemp#]</option>
+                        [#SLPE#]
+                        <option value="">无</option>
+                        </select>
+                        </td>
+                      </tr> 
+                      
+                     
+                     <tr>
+                        <td height="25"><div align="right">电话&nbsp;</div></td>
+                        <td height="25" valign="baseline">
+                        <select name="infotel" style="width:300px">
+                        <option value="[#infotel_num#]">[#infotel#]</option>
+            			     [#SLPB#]
+                        <option value="[#iNum#]">[#caTemp#]</option>
+                        [#SLPE#]
+                        <option value="">无</option>
+                        </select>
+                        </td>
+                      </tr> 
+                      
+                      <tr>
+                        <td height="25"><div align="right">手机&nbsp;</div></td>
+                        <td height="25" valign="baseline">
+                        <select name="frtel" style="width:300px">
+                        <option value="[#frtel_num#]">[#frtel#]</option>
+            			     [#SLPB#]
+                        <option value="[#iNum#]">[#caTemp#]</option>
+                        [#SLPE#]
+                        <option value="">无</option>
+                        </select>
+                        </td>
+                      </tr> 
+                      
+                     <tr>
+                        <td height="25"><div align="right">联系人&nbsp;</div></td>
+                        <td height="25" valign="baseline">
+                        <select name="infopeo" style="width:300px">
+                        <option value="[#infopeo_num#]">[#infopeo#]</option>
+            			     [#SLPB#]
+                        <option value="[#iNum#]">[#caTemp#]</option>
+                        [#SLPE#]
+                        <option value="">无</option>
+                        </select>
+                        </td>
+                      </tr> 
+                      
+                      <tr>
+                        <td height="25"><div align="right">最后上线时间</div></td>
+                        <td height="25" valign="baseline">
+                        <select name="lasttime" style="width:300px">
+                        <option value="[#lasttime_num#]">[#lasttime#]</option>
+            			     [#SLPB#]
+                        <option value="[#iNum#]">[#caTemp#]</option>
+                        [#SLPE#]
+                        <option value="">无</option>
+                        </select>
+                        </td>
+                      </tr> 
+                      
+                      <tr>
+                        <td height="25"><div align="right">属&nbsp;&nbsp;主&nbsp;</div></td>
+                        <td height="25" valign="baseline">
+                        <select name="shuzhu" style="width:300px">
+                       <option value="[#shuzhu_num#]">[#shuzhu#]</option>
+            			      [#SLPB#]
+                        <option value="[#iNum#]">[#caTemp#]</option>
+                        [#SLPE#]
+                        <option value="">未知部门</option>
+                        </select>
+                        </td>
+                      </tr>
+                      
+                      <tr>
+                        <td height="25"><div align="right">经度&nbsp;</div></td>
+                        <td height="25" valign="baseline">
+                        <select name="longitude" style="width:300px">
+                        <option value="[#longitude_num#]">[#longitude#]</option>
+            			     [#SLPB#]
+                        <option value="[#iNum#]">[#caTemp#]</option>
+                        [#SLPE#]
+                        <option value="">无</option>
+                        </select>
+                        </td>
+                      </tr> 
+                      
+                     <tr>
+                        <td height="25"><div align="right">纬度&nbsp;</div></td>
+                        <td height="25" valign="baseline">
+                        <select name="latitude" style="width:300px">
+                        <option value="[#latitude_num#]">[#latitude#]</option>
+            			     [#SLPB#]
+                        <option value="[#iNum#]">[#caTemp#]</option>
+                        [#SLPE#]
+                        <option value="">无</option>
+                        </select>
+                        </td>
+                      </tr> 
+                      -->
+                     <!-- 
+                      
+                      <tr>
+                        <td height="25"><div align="right">密&nbsp;&nbsp;码&nbsp;</div></td>
+                        <td height="25" valign="baseline">
+                        <select name="upassword" style="width:300px">
+                        <option value="[#password_num#]">[#upassword#]</option>
+            			      [#SLPB#]
+                        <option value="[#iNum#]">[#caTemp#]</option>
+                        [#SLPE#]
+                        <option value="">无</option>
+                         </select>
+                        </td>
+                      </tr>
+                      
+                      <tr>
+                        <td height="25"><div align="right">单位类别&nbsp;</div></td>
+                        <td height="25" valign="baseline">
+                        <select name="deptlb" style="width:300px">
+                        <option value="[#deptlb_num#]">[#deptlb#]</option>
+            			      [#SLPB#]
+                        <option value="[#iNum#]">[#caTemp#]</option>
+                        [#SLPE#]
+                        <option value="">无</option>
+                         </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td height="25"><div align="right">服务状态&nbsp;</div></td>
+                        <td height="25" valign="baseline">
+                        <select name="sstate" style="width:300px">
+                        <option value="[#sstate_num#]">[#sstate#]</option>
+            			[#SLPB#]	
+                        <option value="[#iNum#]">[#caTemp#]</option>
+                        [#SLPE#]
+                        <option value="">无</option>
+                        </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td height="25"><div align="right">接入方式&nbsp;</div></td>
+                        <td height="25" valign="baseline">
+                        <select name="jrway" style="width:300px">
+                        <option value="[#jrway_num#]">[#jrway#]</option>
+            			[#SLPB#]
+                        <option value="[#iNum#]">[#caTemp#]</option>
+                        [#SLPE#]
+                        <option value="">无</option>
+                        </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td height="25"><div align="right">接入代码&nbsp;</div></td>
+                        <td height="25" valign="baseline">
+                        <select name="servicedm" style="width:300px">
+                        <option value="[#servicedm_num#]">[#servicedm#]</option>
+            			[#SLPB#]
+                        <option value="[#iNum#]">[#caTemp#]</option>
+                        [#SLPE#]
+                        <option value="">无</option>
+                        </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td height="25"><div align="right">终端数&nbsp;</div></td>
+                        <td height="25" valign="baseline">
+                        <select name="terminal" style="width:300px">
+                        <option value="[#terminal_num#]">[#terminal#]</option>
+            			[#SLPB#]
+                        <option value="[#iNum#]">[#caTemp#]</option>
+                        [#SLPE#]
+                        <option value="">无</option>
+                        </select>
+                        </td>
+                      </tr>
+                      
+                     <tr>
+                        <td height="25"><div align="right">服务器数&nbsp;</div></td>
+                        <td height="25" valign="baseline">
+                        <select name="server" style="width:300px">
+                        <option value="[#server_num#]">[#server#]</option>
+            			     [#SLPB#]
+                        <option value="[#iNum#]">[#caTemp#]</option>
+                        [#SLPE#]
+                        <option value="">无</option>
+                        </select>
+                        </td>
+                      </tr>
+                    
+                      <tr>
+                        <td height="25"><div align="right">法人代表&nbsp;</div></td>
+                        <td height="25" valign="baseline">
+                        <select name="frdb" style="width:300px">
+                        <option value="[#frdb_num#]">[#frdb#]</option>
+            			     [#SLPB#]
+                        <option value="[#iNum#]">[#caTemp#]</option>
+                        [#SLPE#]
+                        <option value="">无</option>
+                        </select>
+                        </td>
+                      </tr> 
+                     
+                      
+                      
+                      
+                      
+                      <tr>
+                        <td height="25"><div align="right">状态&nbsp;</div></td>
+                        <td height="25" valign="baseline">
+                        <select name="state" style="width:300px">
+                        <option value="[#state_num#]">[#state#]</option>
+            			     [#SLPB#]
+                        <option value="[#iNum#]">[#caTemp#]</option>
+                        [#SLPE#]
+                        <option value="">无</option>
+                        </select>
+                        </td>
+                      </tr>  
+                      -->
+                                
+                      <tr>
+                        <td height="25"><div align="right">忽略第一行</div></td>
+                        
+                        <td height="25" valign="baseline"><input type="checkbox" name="first" value="checkbo"  >
+                       <!-- 	&nbsp;&nbsp;导入前是否删除用户和部门信息<input type="checkbox" name="delflag" value="checdel">-->
+                        	</td>
+                        	
+                      </tr>
+                      <tr>
+                        <td height="25"><div align="right"> </div></td>
+                        <td height="25" valign="baseline" id="xxm2"> <input name="ok" type="button" class="anuse3" id="ok" value="确 认" onclick="queren();">
+                        <input name="return" type="button" onClick="idc_back();"   class="anuse3" value="返 回"></td>
+                      </tr>
+                     
+                    </table></td>
+                </tr>
+              </table>
+</td>
+
+          </tr>
+        </table>
+      </form></td>
+  </tr>
+</table>
+<br>
+</body>
+</html>

@@ -1,0 +1,414 @@
+
+
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
+<style>
+v\:*         { behavior: url(#default#VML) }
+o\:*         { behavior: url(#default#VML) }
+.shape       { behavior: url(#default#VML) }
+
+.style4 {color: #00237e; font-size: 13px; font-weight: bold; }
+
+</style>
+<link href="/css/css.css" rel="stylesheet" type="text/css">
+<head>
+	<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+	 <meta name="GENERATOR" content="Microsoft Visual Studio .NET 7.1">
+  <meta name="ProgId" content="VisualStudio.HTML">
+  <meta name="Originator" content="Microsoft Visual Studio .NET 7.1">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>Internet服务流量</title>
+<style>
+	.style4 {color: #00237e; font-size: 13px; font-weight: bold; }
+	.bord2_1 {	border-top: 1px solid #666666;
+	border-right: 0px solid #294767;
+	border-bottom: 1px solid #666666;
+	border-left: 1px solid #666666;}
+	
+	.bord2_2 {	border-top: 1px solid #666666;
+	border-right: 1px solid #294767;
+	border-bottom: 1px solid #666666;
+	border-left: 1px solid #666666;}
+	.bord1 { left: 5px; top: 5px; clip:  rect(5px 5px 5px 5px); border: #999999 solid; border-width: 0px 0px 1px 1px}
+
+A:link {COLOR: #800080; TEXT-DECORATION: underline;}
+A:visited{
+color:#000000;text-decoration:none;
+font-size:9pt;
+}
+A:hover{color:#000000;text-decoration:underline;
+font-size:9pt;
+}
+A:active{color:#000000;text-decoration:underline;
+font-size:9pt;
+}
+	
+TD {	FONT-SIZE: 9pt}
+</style>
+<script src="/js/calendar3.js"></script>
+
+	<script LANGUAGE="JavaScript">	
+	function showtree(id,cna){
+	var objEva=new Array();
+
+	objEva[0]=eval('form1.'+id);
+	objEva[1]=eval('form1.'+cna);
+
+showModalDialog('/pronline/Msg?FunName@ncWebTreeDispGroup_nolimit&plate@tree/tree_group_select.htm',objEva,
+		 "status:no;center:yes;help:no;minimize:no;maximize:no;border:thick;statusbar:no;dialogWidth:200px;scroll:none;dialogHeight:620px;overflow:none");	
+
+}	
+		
+		
+ function openreport(tid,uname){
+ 	  var t='/pronline/Msg?FunName@ncWebShowintlog&uid@'+tid+'&sdate@'+form1.sdate.value+'&edate@'+form1.edate.value+'&shour@'+form1.shour.value+'&ehour@'+form1.ehour.value+'&service@'+form1.service.value+'&servicesum@'+form1.servicesum.value+'&uname@'+uname;
+
+		window.open(t,'open_report','height=600, width=900, top=0, left=0,toolbar=no,scrollbars=no,resizable=1,menubar=no,status=no;');
+	}	
+ function getColor(){
+		   return "rgb("+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+")";
+    };
+ function maxs(mm){
+   var max1 = 0;
+     for(var i=0; i<mm.length; i++){
+     	
+      if(parseInt(mm[i]) > max1) max1 = mm[i];
+    }
+
+ return max1;
+ }
+  var tb_left=50;
+	var tb_top=120;
+	var tb_width=800;
+	var tb_height=200; 
+	var y_tot=5;
+	var x_tot=20;
+	var y_max=1500;
+  var to_day='[#today#]';
+	var sdate=new Array();
+	var sdate_desc=new Array();
+	var sdate_xh=new Array();
+	var uid=new Array();
+	[#SLPB#]
+	sdate[[#num#]]='[#data#]';
+	sdate_desc[[#num#]]='[#name#]';
+	sdate_xh[[#num#]]='[#num1#]';
+	uid[[#num#]]='[#uid#]';
+	[#SLPE#]
+
+	function drawzzt(){
+ 	var step_scal=(tb_height)/y_tot;		
+	var temp_html;
+	y_max=(Math.round(maxs(sdate)/100)+20)*100;
+
+
+	var step=y_max/y_tot;
+  x_tot=sdate.length;
+  if(x_tot>20) x_tot=20;
+	var step_x=Math.floor(tb_width/x_tot);
+	var yzoom=tb_height/y_max; 
+	var temp_html;
+  //画坐标轴	
+   temp_html="<v:rect  alt='' style='position:absolute;left:"+tb_left+";top:"+tb_top+";width:"+tb_width+";height:"+tb_height+";z-index:-1' fillcolor='#ffffff' stroked='f'>";
+   temp_html=temp_html+"<v:fill rotate='t' angle='-45' focus='100%' type='gradient'/></v:rect>";
+   temp_html=temp_html+"<v:line   style='position:absolute;left:0;text-align:left;top:0;flip:y;z-index:1' from='"+tb_left+","+parseInt(tb_top+tb_height)+"' to='"+parseInt(tb_left+tb_width)+","+parseInt(tb_top+tb_height)+"' strokecolor='#333333' />";	 
+   temp_html=temp_html+"<v:line   style='position:absolute;left:0;text-align:left;top:0;flip:y;z-index:1' from='"+tb_left+","+parseInt(tb_top-0)+"' to='"+tb_left+","+parseInt(tb_top+tb_height)+"' strokecolor='#333333'/> ";
+   
+   temp_html=temp_html+"<v:line   style='position:absolute;left:0;text-align:left;top:0;flip:y;z-index:1' from='"+parseInt(tb_left+tb_width)+","+parseInt(tb_top+tb_height)+"' to='"+parseInt(tb_left+tb_width)+","+parseInt(tb_top-0)+"' strokecolor='#333333' />";
+   //写日期
+//	temp_html=temp_html+"<v:shape   alt='' style='position:absolute;left:"+parseInt(tb_left+tb_width-82)+";top:"+parseInt(tb_top-17)+";width:80px;height:18px;z-index:1'>";
+//	temp_html=temp_html+"<v:textbox inset='0px,0px,0px,0px'>";
+//	temp_html=temp_html+"<table cellspacing='3' cellpadding='0' width='100%' height='100%'>";
+	
+//	temp_html=temp_html+"<tr><td align='right' style='font-size:10pt'>"+to_day+"</td></tr>";
+//	temp_html=temp_html+"</table></v:textbox></v:shape>";
+	
+	//画纵坐标刻度
+	temp_html=temp_html+"<v:line  alt='' style='position:absolute;left:0;text-align:left;top:0;flip:y;z-index:1' from='"+parseInt(tb_left)+","+tb_top+"' to='"+parseInt(tb_left+tb_width)+","+tb_top+"' strokecolor='#dddddd'/>	";
+	temp_html=temp_html+"<v:shape   alt='' style='position:absolute;left:"+parseInt(tb_left-100)+";top:"+parseInt(tb_top-8)+";width:100px;height:18px;z-index:1'>";
+	temp_html=temp_html+"<v:textbox inset='0px,0px,0px,0px'>";
+	temp_html=temp_html+"<table cellspacing='3' cellpadding='0' width='100%' height='100%'>";
+	
+	temp_html=temp_html+"<tr><td align='right'>"+y_max+"</td></tr>";
+	temp_html=temp_html+"</table></v:textbox></v:shape>";
+   
+  var i;
+	for(i=1;i<y_tot;i++){	   
+			temp_html=temp_html+"<v:line  alt='' style='position:absolute;left:0;text-align:left;top:0;flip:y;z-index:1' from='"+parseInt(tb_left)+","+parseInt(tb_top+step_scal*i)+"' to='"+parseInt(tb_left+tb_width)+","+parseInt(tb_top+step_scal*i)+"' strokecolor='#dddddd'/>	";		
+	
+			temp_html=temp_html+"<v:shape alt='' style='position:absolute;left:"+parseInt(tb_left-70)+";top:"+parseInt(tb_top+i*step_scal-10)+";width:70px;height:18px;z-index:1'>";
+			temp_html=temp_html+"<v:textbox inset='0px,0px,0px,0px'>";
+			temp_html=temp_html+"<table cellspacing='3' cellpadding='0' width='100%' height='100%'>";			
+			temp_html=temp_html+"<tr><td align='right'>"+parseInt(y_max-step*i)+"</td></tr>";
+			temp_html=temp_html+"</table></v:textbox></v:shape>";
+				   
+	}
+   //画X轴刻度和柱状图
+	for(i=0;i<x_tot;i++){
+		var t_color=getColor();
+	
+		temp_html=temp_html+"<v:rect   onclick=openreport('"+uid[i]+"','"+sdate_desc[i]+"') title='"+sdate_desc[i]+"' style='cursor:hand;position:absolute;left:"+parseInt(tb_left+step_x*(i+1)-step_x*3/4)+";top:"+parseInt(tb_height+tb_top-sdate[i]*yzoom)+ ";width:14px;height:"+parseInt(sdate[i]*yzoom)+";z-index:1' fillcolor='"+t_color+"'>";
+		temp_html=temp_html+"<v:fill color2='"+"#dddddd"+"' rotate='t' type='gradient'/><o:extrusion v:ext='view' backdepth='14pt' color='"+t_color+"' on='t'/></v:rect>";
+	
+	//柱上刻度		
+		temp_html=temp_html+"<v:shape   alt='' style='position:absolute;left:"+parseInt(tb_left+step_x*(i+1)-step_x*3/4-15)+";top:"+parseInt(tb_height+tb_top-sdate[i]*yzoom-25)+";width:60px;height:18px;z-index:8'>";
+		temp_html=temp_html+"<v:textbox inset='0px,0px,0px,0px'>";
+		temp_html=temp_html+"<table cellspacing='3' cellpadding='0' width='100%' height='100%'><tr><td align='center'>"+sdate[i]+"</td></tr></table>";
+		temp_html=temp_html+"</v:textbox></v:shape>";		
+					
+	//X轴刻度标志	
+		temp_html=temp_html+"<v:shape   alt='' style='position:absolute;left:"+parseInt(tb_left+step_x*(i+1)-step_x*3/4-10)+";top:"+parseInt(tb_top+tb_height+1)+";width:40;height:30px;z-index:2'>";
+
+		temp_html=temp_html+"	<table cellspacing='3' cellpadding='0' width='100%' height='100%' ><tr><td align='center' style='font-size:10pt'>"+sdate_xh[i]+"</td></tr></table>";
+		temp_html=temp_html+"</v:shape>";
+		
+		
+			//画图例
+      temp_html=temp_html+"<v:rect style='position:absolute;left:"+parseInt(tb_left+tb_width+22)+";top:"+parseInt(tb_top+i*20)+";width:16;height:12;z-index:2' fillcolor='"+t_color+"' strokecolor='"+t_color+"' strokeweight='1' stroked='t'></v:rect>";
+    
+      temp_html=temp_html+"<v:shape  style='position:absolute;left:"+parseInt(tb_left+tb_width+42)+";top:"+parseInt(tb_top+i*20-3)+";width:180px;height:18px;z-index:1'>";
+
+		  temp_html=temp_html+"<table cellspacing='3' cellpadding='0' width='100%' height='100%'>";	
+		  
+		  temp_html=temp_html+"<tr><td align='left'> <a href='#xxs' onclick=openreport('"+uid[i]+"','"+sdate_desc[i]+"') >"+sdate_xh[i]+":&nbsp;"+sdate_desc[i]+"</a></td></tr>";
+		  	  
+		  temp_html=temp_html+"</table></v:shape>";
+		
+		
+		
+	}
+//画单位
+  
+  		temp_html=temp_html+"<v:shape   style='position:absolute;left:"+parseInt(tb_left-70)+";top:"+parseInt(tb_top-38)+";width:80px;height:28px;z-index:3'>";
+		  temp_html=temp_html+"<v:textbox inset='0px,0px,0px,0px'>";
+		  temp_html=temp_html+"<table cellspacing='3' cellpadding='0' width='100%' height='100%'>";	
+		  temp_html=temp_html+"<tr><td align='right'>单位：[#unit#]</td></tr>";
+		  temp_html=temp_html+"</table></v:textbox></v:shape>"; 
+
+//画标题
+     temp_html=temp_html+"<v:shape  style='position:absolute;left:"+parseInt(tb_left+10)+";top:"+parseInt(tb_top-32)+";width:590px;height:18px;z-index:1'>";
+
+		  temp_html=temp_html+"<table cellspacing='3' cellpadding='0' width='100%' height='100%'>";	
+		  temp_html=temp_html+"<tr><td align='center' class='style4'>"+"网络服务([#service_buf#])流量排行榜"+"</td></tr>";
+		  temp_html=temp_html+"</table></v:shape>";
+
+
+     temp_html=temp_html+"<v:shape  style='position:absolute;left:"+parseInt(tb_left+150)+";top:"+parseInt(tb_top+tb_height+28)+";width:390px;height:18px;z-index:1'>";
+
+		  temp_html=temp_html+"<table cellspacing='3' cellpadding='0' width='100%' height='100%'>";	
+		  temp_html=temp_html+"<tr><td align='center' >"+"(X轴刻度为用户序号)"+"</td></tr>";
+		  temp_html=temp_html+"</table></v:shape>";
+
+
+  document.getElementById("test1").innerHTML=temp_html;
+   
+   
+   
+   
+}
+</script>
+<script language="javascript">
+var serviceid = new Array();
+var servicename=new Array();
+var servicegid=new Array();
+
+[#SLPB#]
+serviceid[[#num2#]]='[#serviceid#]';
+servicename[[#num2#]]='[#servicename#]';
+servicegid[[#num2#]]='[#servicegid#]';
+[#SLPE#]
+	   
+
+function hidelay(){
+document.all.Layer3.style.display="none";
+}
+
+function allxz(){
+	for(i=0;i<form1.lsum.value;i++){	
+		var chname="form1.chm"+i;
+	   eval(chname).checked=true;
+	}
+}
+
+function allbxz(){
+	for(i=0;i<form1.lsum.value;i++){	
+		var chname="form1.chm"+i;
+	   eval(chname).checked=false;
+	}
+}
+
+
+function selectservice(seid){
+	
+	var selHtml='';
+	selHtml=selHtml+'<tr><td><input type="checkbox" name="chm5" value="8" [#chm5#]>P2P下载&nbsp;</td>';
+	
+	selHtml=selHtml+'<td><input type="checkbox" name="chm6" value="1" [#chm6#]>即时通讯&nbsp;</td></tr>';
+	
+	selHtml=selHtml+'<tr><td><input type="checkbox" name="chm7" value="0" [#chm7#]>传统服务&nbsp;</td>';
+	
+	selHtml=selHtml+'<td><input type="checkbox" name="chm8" value="11" [#chm8#]>网上银行&nbsp;</td></tr>';
+		
+	selHtml=selHtml+'<tr><td><input type="checkbox" name="chm9" value="3" [#chm9#]>代理服务&nbsp;</td>';
+	
+	selHtml=selHtml+'<td><input type="checkbox" name="chm10" value="4" [#chm10#]>文件传输&nbsp;</td></tr>';	
+	
+	selHtml=selHtml+'<tr><td><input type="checkbox" name="chm11" value="12" [#chm11#]>远程访问&nbsp;</td>';
+	
+	selHtml=selHtml+'<td><input type="checkbox" name="chm12" value="13" [#chm12#]>邮件服务&nbsp;</td></tr>';	
+	
+	selHtml=selHtml+'<tr><td><input type="checkbox" name="chm13" value="14" [#chm13#]>办公系统&nbsp;</td>';
+	
+	selHtml=selHtml+'<td><input type="checkbox" name="chm14" value="15" [#chm14#]>视频会议&nbsp;</td></tr>';
+	
+	selHtml=selHtml+'<tr><td><input type="checkbox" name="chm15" value="16" [#chm15#]>数据库&nbsp;</td>';
+	
+	selHtml=selHtml+'<td><input type="checkbox" name="chm16" value="17" [#chm16#]>软件更新&nbsp;</td></tr>';
+
+var selHtml2;
+
+	var j=0;
+	var m=0;
+
+	selHtml+='</table></td></tr></table></div>';	
+
+
+
+ selHtml2='<div  style="position:absolute; left:380px; top:65px;overflow-y:auto; width:265px; height:'+200+'px; background-color:#DEE8FA; z-index:1;display:">';
+  selHtml2+='<table width="100" cellpadding=0 cellspacing=0>';
+	selHtml2+='<tr height="35">';
+  selHtml2+='<td><table border=1 bordercolorlight=#999999   bordercolordark=#ffffff cellpadding=0 cellspacing=0 width="265px">';
+ 
+  selHtml2+='<tr height="25"><td colspan="2"> &nbsp;&nbsp;	&nbsp; <input name="back" type="button" class="an3" value="隐藏"  Onclick="hidelay()"></td></tr>';
+  	
+  selHtml2+=selHtml;
+
+  document.all.Layer3.innerHTML=selHtml2;
+  
+//  if(gid=='')
+ //    hidelay();
+//  else
+     document.all.Layer3.style.display="";
+}
+</script>    
+
+    
+	
+	
+</head>
+
+<body topmargin=5 leftmargin=0 bgcolor="#eeeeee" scroll=AUTO onload="drawzzt()" style="SCROLLBAR-FACE-COLOR: #c1d8f9; OVERFLOW: scroll; SCROLLBAR-SHADOW-COLOR: #c1d8f9; SCROLLBAR-3DLIGHT-COLOR: #c1d8f9; SCROLLBAR-ARROW-COLOR: #5985ce; SCROLLBAR-DARKSHADOW-COLOR: #c1d8f9;">
+	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <form name="form1" method="post" action="/pronline/Msg">
+
+  <input type="hidden" name="FunName" value="ncWebSortServer">
+  <input type="hidden" name="groupid" value="[#groupid#]">
+  <input type="hidden" name="order" value="[#order#]">
+  <input type="hidden" name="service" value="[#service#]">
+  <input type="hidden" name="snumber" value="[#snumber#]">
+  <input type="hidden" name="servicesum" value="[#servicesum#]">
+	<input type="hidden" name="lsum" value="">
+  <tr> 
+    <td colspan="2">
+    	<table width="100%" height="35" border="0" align="center" cellpadding="0" cellspacing="0" >
+        <tr > 
+          <td colspan="2" > <div style="font-size:11pt;color:#00237e;font-weight:bold;text-align: center;">
+             
+             网络服务流量排行榜</div></td>
+        </tr>
+        
+      </table>
+      </td>
+  </tr>
+
+<tr> 
+    <td colspan="2"> 
+        
+        <table width="99%" border="1"    bordercolorlight=#89ACED   bordercolordark=#ffffff    align="center" cellpadding="0" cellspacing="0" >
+          <tr height="30"> 
+            <td colspan="2">&nbsp;
+            	<!--服务大类&nbsp;[#bserv#]&nbsp;服务小类&nbsp;[#sserv#]-->
+            	时间从&nbsp;<input type="text" name="sdate" size="11" value="[#sdate#]"><input type="button" name="sdate_but" style="position:relative;left:-15px;top:-2px;width:15px;height:17px" value='…' onclick="fPopCalendar(sdate,sdate,'Down');return false">
+   
+            	<span style="position:relative;left:-16px">到&nbsp;<input type="text" name="edate" size="11" value="[#edate#]" ><input type="button" name="sdate_but" style="position:relative;left:-15px;top:-2px;width:15px;height:17px" value='…' onclick="fPopCalendar(edate,edate,'Down');return false">
+
+            	 </span>
+            	 <span style="position:relative;left:-32px">
+         <!--   	部门
+            	<input type="text" name="bname" value="[#groupname#]" size="7" onclick="showtree('groupid','bname')" readonly >
+             --> 显示&nbsp;<input type="text" name="sunrec" size="2" value="[#sunrec#]">&nbsp;行
+             &nbsp;服务类别:<input type="checkbox" name="chm1" value="9" [#chm1#]>股票行情&nbsp;<input type="checkbox" name="chm2" value="10" [#chm2#]>股票交易&nbsp;<input type="checkbox" name="chm3" value="7" [#chm3#]>影视音乐&nbsp;<input type="checkbox" name="chm4" value="2" [#chm4#]>网络游戏&nbsp;
+             <a href="#xxm" onclick=selectservice('')>更多...</a>
+                    
+            	<input name="submit1" type="submit" class="an3"  value="确认" >
+
+            	
+            	<input name="exp" type="submit" class="an3"    value="导出" >
+            </span>
+            	</td>
+            	
+          </tr>
+          
+          <tr bgcolor="#ffffff">
+          	<td>
+          		
+          		<table  width="100%" align="center" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+          			<tr>
+          				<td width="49%" id="test1" height="300"></td>
+          			
+           </tr>
+           <tr>
+           	<td>
+           		<div class="tScrollw" id="tC">
+           		<table id="DataTable"  class="listDataTable" width="840" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+ <!--         				 <tr><td colspan="4" height="13"></td></tr>
+          		     <tr height="35">
+          			     <td colspan="6" height=35 class='style4'  align="center">上网[#order#]排行榜&nbsp;</td>
+          		     </tr>
+ -->
+                   <tr    bgcolor="#DEE8FA" height="22">
+				            <td width="30" align="center" class="bord2_1"> 序号</td>
+				            <td  align="center" class="bord2_1" >单位名称 </td>
+				            <td width="120" align="center" class="bord2_1" > 使用时间(小时)</td>				            
+
+				            <td width="100" align="center" class="bord2_2" >流量(MB)</td>
+				          </tr>
+          <!--  -->
+				          [#SLPB#]
+				          <tr height="20"> 
+				
+				            <td class="bord1"   nowrap >&nbsp;[#num1#]</td>
+				            <td class="bord1"   nowrap >&nbsp;<a href="#xxm" onclick="openreport('[#uid#]','[#name#]')">[#name#]</a></td>
+				            <td class="bord1"  nowrap align="right" >&nbsp;[#contime#]&nbsp;</td>				            
+
+				            <td class="bord3"   nowrap align="right">[#dbytes#]&nbsp;</td>	  
+				           
+				          </tr>
+                 [#SLPE#]
+          	    </table>
+          			 </td>
+          			</tr>
+          			
+          			  
+          			
+          			
+          	  </table>
+           	</td>
+          </tr>
+       
+        </table>
+     </td>
+    </tr>
+	</table>
+	<script> form1.shour.value="[#shour#]";		    
+		       form1.ehour.value="[#ehour#]";		   
+	</script>
+<div id="Layer3">
+ 
+ </div>     	 
+</form>
+</body>
+</html> 

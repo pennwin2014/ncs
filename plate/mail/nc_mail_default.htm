@@ -1,0 +1,87 @@
+<html>
+<head>
+<title>分类管理</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<script>
+	
+</script>
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0"  oncontextmenu="return false">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><table width="100%" height="27" border="0" align="center" cellpadding="0" cellspacing="0" background="/images/table_bg1.gif">
+        <tr> 
+          <td height="9"> <div align="center"><b><font color="#FFFFFF"><b>缺省邮件处理设置</b></font></b></div></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr> 
+    <td> 
+      <form name="form1" method="post" action="/pronline/Msg">
+        <input type="hidden" name="FunName" value="ncWebMailMonSaveDefault" >
+        <input type="hidden" name="plate" value="mail/nc_mail_default.htm" >
+        <input type="hidden" name="funtab" value="mailmonrule">
+        <br>
+        <table width="70%" border="1"    align="center" cellpadding="0" cellspacing="0"  bordercolorlight=#89ACED   bordercolordark=#ffffff>
+          <tr> 
+            <td valign="top"><br>
+              <br>
+              <table width="90%" border="0" align="center">
+                <tr> 
+                  <td colspan="4">&nbsp;&nbsp;&nbsp;&nbsp; 缺省邮件是指不符合设定分类规则的邮件。</td>
+                </tr>
+                <tr> 
+                  <td width="59"> 　</td>
+                  <td width="242"> 　</td>
+                  <td width="56">　</td>
+                  <td width="116"> 　</td>
+                </tr>
+                <tr> 
+                  <td width="59"> <p align="right">是否保存</td>
+                  <td width="242"> [#save#]</td>
+                  <td width="56"> <p align="right">是否通知</td>
+                  <td width="116"> [#tzflags#]</td>
+                </tr>
+                <tr> 
+                  <td width="59"> <p align="right">通知邮件</td>
+                  <td colspan="3"> <input type="text" name="tzmail" size="55" maxlength="31" value="[#tzmail#]"></td>
+                </tr>
+                <tr> 
+                  <td width="59"> 　</td>
+                  <td width="242"> 　</td>
+                  <td width="56">　</td>
+                  <td width="116"> 　</td>
+                </tr>
+
+              </table>
+ </td>
+          </tr>
+        </table>
+      </form>
+</td>
+  </tr>
+  <tr> 
+    <td height="70">
+<table width="50%" border="0" align="center">
+        <tr> 
+          <td> <div align="right">
+              <input type="reset" name="B1" value="放 弃"  class="an3" >
+              &nbsp; 
+              <input type="submit" name="B2" value="保 存"  class="an3">
+              &nbsp; 
+              <input type="submit" name="app" value="应 用"  class="an3">
+            </div></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

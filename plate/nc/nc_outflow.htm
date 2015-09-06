@@ -1,0 +1,120 @@
+<!-- saved from url=(0022)http://internet.e-mail -->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>流量分析</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta http-equiv="refresh" content="30;url=/pronline/Msg?FunName@ncWebCountTotalFlow&unit@[#unit#]&ctype@[#ctype#]&sdate@[#sdate#]&stime@[#stime#]">
+<script language = "Javascript" src = "/js/selecttime.js"></script>
+<script>
+function lprint(){
+  MM_showHideLayers('plabel','','hide')
+  window.print()
+  MM_showHideLayers('plabel','','show')
+}
+</script>
+<script language="JavaScript">
+<!--
+
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+
+
+function MM_findObj(n, d) { //v4.0
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && document.getElementById) x=document.getElementById(n); return x;
+}
+
+function MM_showHideLayers() { //v3.0
+  var i,p,v,obj,args=MM_showHideLayers.arguments;
+  for (i=0; i<(args.length-2); i+=3) if ((obj=MM_findObj(args[i]))!=null) { v=args[i+2];
+    if (obj.style) { obj=obj.style; v=(v=='show')?'visible':(v='hide')?'hidden':v; }
+    obj.visibility=v; }
+}
+//-->
+</script>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<style type="text/css">
+<!--
+.handhand {  cursor: hand}
+-->
+</style>
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<!--
+!!! Do not put the applet into a form !!!
+-->
+<table width="100%" border="0"cellpadding="0" cellspacing="0" >
+  <tr>
+    <td><table width="100%" height="27" border="0" align="center" cellpadding="0" cellspacing="0" background="/images/table_bg1.gif">
+        <tr > 
+          <td colspan="2"> <div align="center"><strong><b><font color="#FFFFFF">网络出口流量情况分析</font></b> 
+              </strong></div></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr> 
+    <td> <input type="hidden" name="hiddenField">
+      <br>
+      <table width="75%" border="0" align="center" cellpadding="8" cellspacing="0" >
+        <tr> 
+          <td> <form name="form1" id="form1" method="post" action="/pronline/Msg">
+              <table width="744" border="0" align="center" cellpadding="0" cellspacing="0" >
+                <div id="plabel"> 
+                  <tr> 
+                    <td width="100" height="35"> 
+                      <div align="right"> 
+                        <input type="hidden" name="FunName" value="ncWebCountTotalFlow">
+                        起始日期&nbsp;</div></td>
+                    <td width="76" height="35"> <div align="center"> 
+                        <input type="text" name="sdate" size="10" maxlength="10" value="[#sdate#]">
+                      </div></td>
+                    <td width="70" height="35"> 
+                      <div align="center"><font color="#000000">
+                        <input name="save12" type="button" class="an3"  onClick=show_calendar('tj1.sdate') value="日 期">
+                        </font></div></td>
+                    <td width="36" height="35"> <div align="center">时间</div></td>
+                    <td width="68" height="35"> <div align="center"> 
+                        <input type="text" name="stime" size="8" maxlength="8" value="[#stime#]">
+                      </div></td>
+                    <td width="69" height="35"> <div align="right">统计单位&nbsp;</div></td>
+                    <td width="54" height="35"> <div align="center"> [#sunit#]</div></td>
+                    <td width="37" height="35"> <div align="right">图表&nbsp;</div></td>
+                    <td width="63" height="35"> <div align="center"> [#sctype#]</div></td>
+                    <td width="191" height="35"> <div align="center"> </div>
+                      <div align="center">
+                        <input name="save1" type="button" class="an3" onClick="form1.submit()" value="确 定">
+                      </div></td>
+                  </tr>
+                </div>
+              </table>
+            </form></td>
+        </tr>
+        <tr> 
+          <td>
+</td>
+        </tr>
+        <tr  bgcolor=menu  > 
+          <td height="15"    class="bord3-1" > 
+            <div align="center"> 
+              <table width="80%" border="0" cellpadding="0" cellspacing="1" bgcolor="#9C9A9C">
+                <tr> 
+                  <td><img src="/pronline/Msg?FunName@ncWebOutFlowChart&sdate@[#sdate#]&stime@[#stime#]&ctype@[#ctype#]&unit@[#unit#]"></td>
+                </tr>
+              </table>
+            </div></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+
+</body>
+</html>

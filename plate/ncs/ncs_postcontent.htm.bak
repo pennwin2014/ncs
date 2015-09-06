@@ -1,0 +1,64 @@
+<html>
+<!-- DW6 -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta http-equiv="Content-Language" content="zh-cn">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<title>表单内容</title>
+<style type="text/css">
+<!--
+body {
+	background-color: #D9ECFF;
+}
+.style2 {font-size: 12px}
+-->
+</style></head>
+<body>
+<table width="639" border="0">
+  <tr bordercolor="#D4D0C8">
+    <td width="633">
+        <table width="627" border="0">
+        <tr bgcolor="#CCFFCC">
+          <th width="70" scope="row"><div align="right" class="style2">用户名:</div></th>
+          <td width="83"><div align="left" class="style2">[#username#]&nbsp;</div></td>
+          <td width="43"><div align="right" class="style2"><strong>部门:</strong></div></td>
+          <td width="123"><div align="left" class="style2">[#groupname#]&nbsp;</div></td>
+          <td width="43"><div align="right" class="style2"><strong>时间:</strong></div></td>
+          <td width="239"><span class="style2">[#date#]&nbsp;</span></td>
+        </tr>
+            </table></td>
+  </tr>
+  <!-- [#SLPB#] -->
+  <tr bordercolor="#D4D0C8">
+    <td width="633" height="29" nowrap><div align="left"><span class="style2"><strong>网址:</strong><strong>http://[#host#][#url#]
+      </strong></span><strong>
+      <hr>
+    </strong></div>      </td>
+  </tr>
+  <!-- [#SLPB#] -->
+  <tr bordercolor="#D4D0C8" bgcolor="#CCFFFF">
+    <td width="633"><table  border="0">
+      <tr>
+        <td width="63" height="14"><div align="right" class="style2"><strong>[#vvar#]:</strong></div></td>
+        <td width="556"><span class="style2">[#vvalue#]</span></td>
+      </tr>
+    </table></td>
+  </tr>
+  <!-- [#SLPE#] -->
+	<!-- [#SLPB#] -->
+  <tr bordercolor="#D4D0C8" bgcolor="#CCFFFF">
+    <td width="633"><table width="630" border="0">
+      <tr>
+        <th width="63" height="14" scope="row"><div align="right" class="style2">[#fvar#]:</div></th>
+        <td width="557"><span class="style2"><strong>[上传文件]</strong><a href="/pronline/Msg?FunName@ncsWebMailCtlDownload&fname@[#fname#]&disp@[#disp#]" target="_self">[#fvalue#] </a></span></td>
+        </tr>
+    </table></td>
+  </tr>
+ <!-- [#SLPE#] -->
+<!-- [#SLPE#] -->
+</table> 
+</body>
+</html>

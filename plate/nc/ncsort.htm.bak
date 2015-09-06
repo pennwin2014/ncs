@@ -1,0 +1,29 @@
+<html>
+<head>
+<link rel="stylesheet" href="ftstyle.css">
+<!-- Infrastructure code for the tree -->
+<script language = "Javascript" src = "/js/adduser/ft.js"></script>
+<script language = "Javascript" src = "/js/adduser/ftoptions.js"></script>
+<script language="JavaScript">
+<!--
+//addImage("domain","/images/adduser/domain.gif")
+fT = gFld("公司", "/pronline/Msg?FunName@ncWebDispUserAddForm")
+    insDoc(fT, gLnk("公司全部", "/pronline/Msg?FunName@ncWebDispLimited"))
+    [#SLPB#]
+	aux1 = insFld(fT, gFld("[#groupname#]", ""))
+	  [#SLPB#]
+	    insDoc(aux1, gLnk("[#username#]", "/pronline/Msg?FunName@ncWebDispLimited&username@[#userid#]"))
+          [#SLPE#]
+    [#SLPE#]
+//-->
+</script>
+
+</head>
+  
+<FRAMESET COLS="164,*"  onLoad="self.blank()" rows="*"> 
+  <FRAME name="menufrm" SRC = "/adduser/left.htm" scrolling="AUTO" >
+  <FRAME name="basefrm" SRC="/pronline/Msg?FunName@ncWebDispLimited">
+</FRAMESET> 
+<noframes></noframes> 
+
+	

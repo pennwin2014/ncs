@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+</head>
+
+<body bgcolor="#CCCCCC" text="#000000">
+<form name="form1" method="post" action="/pronline/Msg">
+  <table width="986" border="1">
+    <tr>
+      <td colspan="4"><div align="center"><strong>IP数据包内容</strong></div></td>
+    </tr>
+    <tr>
+      <td width="104">当前:[#cur#]</td>
+      <td width="313">源IP地址
+      <input name="sip" type="text" value="[#sip#]" size="15" maxlength="15">
+      端口
+      <input name="sport" type="text" value="[#sport#]" size="5" maxlength="5">      </td>
+      <td width="451">目标IP地址
+        <input name="dip" type="text" value="[#dip#]" size="15" maxlength="15">
+端口
+<input name="dport" type="text" value="[#dport#]" size="5" maxlength="5">
+<input name="FunName" type="hidden" id="FunName" value="ncWebTestShowPkg"></td>
+      <td width="90"><input type="submit" name="Submit" value="确认"></td>
+    </tr>
+    <tr>
+      <td> 处理:[#do#]</td>
+      <td>方向[#flags#] 协议[#ntype#] 显示[#disp#]</td>
+      <td>位置
+      <input name="pos" type="text" id="pos" value="[#pos#]" size="8" maxlength="8"> 
+      数据包
+      <input name="sum" type="text" id="sum" value="[#sum#]" size="3" maxlength="3"></td>
+      <td>&nbsp;</td>
+    </tr>
+  </table>
+</form>
+<!-- [#SLPB#] -->
+  <table width="982" border="1">
+    <tr bgcolor="#FFFFCC">
+      <td width="63" height="25">[#num#]</td>
+      <td width="83">[#len#]</td>
+      <td width="77"> [#lid#] </td>
+      <td width="110">[#lntype#]</td>
+      <td width="294">[#lsip#]:[#lsport#]</td>
+      <td width="315">[#ldip#]:[#ldport#]</td>
+    </tr>
+    <tr>
+      <td height="21" colspan="6">[#ltext#]</td>
+    </tr>
+  </table>
+<!-- [#SLPE#] -->
+
+<p>&nbsp;  </p>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<title>Web地址列表</title>
+<script language="JavaScript" src="/js/weblisttype.js"> </script>	
+<script>
+     function goto(t){
+        self.location.href=t;
+    }
+    
+    function setstatus(t){
+       j=form1.status.options.length; 
+       for(i=0;i<j;i++) { 
+           gv = form1.status.options[i].value;
+           if(gv == t) {
+               form1.status.selectedIndex = i;
+           }
+       }
+    }
+        
+	
+
+ function mouseovertr2 (o){
+        var i;
+        df=o.style.backgroundColor
+	    o.style.backgroundColor= "#003399";
+	    o.style.borderColor= "#FFFF00";
+	    o.style.cursor="hand";	
+        for(i=0; i<o.cells.length; i++)
+        {
+	        o.cells(i).style.color="#ffffff";
+        }	
+    }
+
+    function mouseouttr2(o){
+	    o.style.backgroundColor=df
+        for(i=0; i<o.cells.length; i++)
+        {
+	        o.cells(i).style.color="#000000";
+        }
+    }
+
+    var dfd1="0"
+    function gotoPage(pagenum)
+    {
+        form1.CurPg.value = pagenum;
+    }
+
+    function checkme(p)
+    {
+	    var tt=p.value
+	    if (tt>yy)
+	    {
+		    MM_changeProp('browsdopage','','value',yy,'INPUT/TEXT')
+	    }
+	    if (tt==0)
+	    {
+		    MM_changeProp('browsdopage','','value','1','INPUT/TEXT')
+	    }
+    }
+
+    function allChecked(){
+        if(dfd1=="1"){
+            dfd1="0"
+        }
+        else {
+             dfd1="1"
+        }
+	    for(var i=0;i<document.all.DataTable.rows.length;i++)
+	    {
+		    if(typeof(document.all.DataTable.rows[i].cells[0].childNodes[0])=="object"
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].tagName=="INPUT"
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].type=="checkbox") {
+			    if(dfd1=="1"){
+  			        document.all.DataTable.rows[i].cells[0].childNodes[0].checked="true";
+                }
+			    else{
+                    document.all.DataTable.rows[i].cells[0].childNodes[0].checked="";
+                }
+            }
+ 	    }
+    }
+
+   function Del()
+    {
+    var flag=0;
+    	    for(var i=1;i<document.all.DataTable.rows.length;i++)
+	    {
+	    if(document.all.DataTable.rows[i].cells[0].childNodes[0].checked)
+	    {
+		    flag=1;
+		    break;
+	    }
+	    }
+	    if(flag==0)
+	    {
+	    	alert('请先选择网址');
+	    	return false;
+	    }
+	    	return true;
+    }
+</script>
+
+<link REL=stylesheet HREF="/css/runmit.css" TYPE="text/css">
+<script src="/js/rmenu.js"></script>
+<style type="text/css">
+<!--
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+-->
+</style>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+<body marginheight=0 leftmargin=0 marginwidth=0 topMargin="0" BGCOLOR="#DEE8FA" >
+<form name="form1" method="post" action="/pronline/Msg"> 
+<input type="hidden" name="FunName" value="ncWebLimWebClassCx">
+  <table border="0" width=100%  cellspacing="0" cellpadding="0" align=center>
+    <tr> 
+      <td width="100%" valign="top" class="ttt"> 
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+
+          <tr> 
+            <td height="25"> 
+              <table width="100%" border="0">
+                <tr> 
+                  <td width="3%"> <div align="right"></div></td>
+                  <td width="34%"> 网址名称
+                    <input type="text" name="caurl" size="31" value="[#caurl#]" maxlength="31"> 
+      
+                    <input name="cx" type="submit" class="an3" value="查 询" >
+                    <input name="del" type="submit" class="an3" value="删 除" onclick="return Del()">
+                   &nbsp;&nbsp;移到类别
+                    <select name="webclass">[#SLPB#]<option value="[#classid#]">[#cname#]</option>[#SLPE#]</select>
+                    <input name="mov" type="submit" class="an3" value="确认" onclick="return Del()">
+                    </td>
+                </tr>
+
+              </table>         
+              </td>
+          </tr>
+      </table>      </td>
+  </tr>
+  <tr>
+      <td width="100%"  valign=top align=center> 
+        <table  id="DataTable" width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" >
+          <tr bgcolor="#6382BD"> 
+             <td width="44" height="18" bgcolor="#6382BD" class="bord2"> 
+              <div align="center"><font color="#FFFFFF"> 
+                <input type="button" name="b1" value="全选"  class="anniu_1"  onClick="allChecked()">
+            </font></div></td>
+            <td width="130" height="18" class="bord2"> 
+              <div align="center"><font color="#FFFFFF">类别名称</font></div></td>
+            <td width="283" bgcolor="#6382BD" class="bord2"><div align="center"><font color="#FFFFFF">网址</font></div></td>
+            <td width="283" bgcolor="#6382BD" class="bord2"><div align="center"><font color="#FFFFFF">网址说明</font></div></td>
+            <td width="80" height="18" bgcolor="#6382BD" class="bord2"> 
+              <div align="center"><font color="#FFFFFF">来源</font></div></td>
+            <td width="60" height="18" bgcolor="#6382BD" class="bord2"> 
+              <div align="center"><font color="#FFFFFF">状态</font></div></td>
+          </tr>
+          <!-- [#SLPB#] -->
+          <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" > 
+            <td  class="bord1"><input type="checkbox" name="ch[#num#]" value="[#sid#]"></td>
+            <td  height="21" class="bord1">&nbsp;[#classname#]</td>
+            <td  height="21" class="bord1">&nbsp;[#caurl#]</td>
+            <td  height="21" class="bord1">&nbsp;[#caName#]</td>
+            <td  height="21" class="bord1">&nbsp;[#lsname#]</td>
+            <td  height="21" class="bord3">&nbsp;[#lusename#]</td>
+          </tr>
+          <!-- [#SLPE#] -->
+         
+        </table>
+  </table>
+</form>
+</body>
+</html>

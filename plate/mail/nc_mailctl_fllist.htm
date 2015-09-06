@@ -1,0 +1,284 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<title>邮件分类</title>
+<script>
+    function goto(t){
+        self.location.href=t;
+    }
+	
+    
+	function setuflags(t){
+       j=form1.usertype.options.length;
+       for(i=0;i<j;i++) { 
+           gv = form1.usertype.options[i].value;
+           if(gv == t) {
+               form1.usertype.selectedIndex = i;
+           }
+       }
+    }
+      
+	  
+	function setstype(t){
+       j=form1.stype.options.length; 
+	   for(i=0;i<j;i++) { 
+           gv = form1.stype.options[i].value;
+           if(gv == t) {
+               form1.stype.selectedIndex = i;
+           }
+       }
+    }
+	  
+    function mouseovertr2 (o){
+        var i;
+        df=o.style.backgroundColor
+	    o.style.backgroundColor= "#003399";
+	    o.style.borderColor= "#FFFF00";
+	    o.style.cursor="hand";	
+        for(i=0; i<o.cells.length; i++)
+        {
+	        o.cells(i).style.color="#ffffff";
+        }	
+    }
+    function setinit()
+	{
+        setuflags('[#uflags#]');
+		settzflags('[#tz#]');
+		setsave('[#save#]');
+		setstype('[#stype#]');
+	}
+
+    function showf(sid,num,uflags,uname,from,to,sub,cont,aname,msize,asize,tonum,stype) {
+        form1.rid.value=sid;
+        form1.rnum.value=num;
+        form1.uname.value=uname;
+		form1.from.value=from;
+		form1.to.value=to;
+		form1.sub.value=sub;
+		form1.cont.value=cont;
+		form1.aname.value=aname;
+		form1.msize.value=msize;
+		form1.asize.value=asize;
+		form1.tonum.value=tonum;
+        setuflags(uflags);
+		setstype(stype);
+    }
+    
+    function mouseouttr2(o){
+	    o.style.backgroundColor=df
+        for(i=0; i<o.cells.length; i++)
+        {
+	        o.cells(i).style.color="#000000";
+        }
+    }
+
+    var dfd1="0"
+    function checkme(p)
+    {
+	    var tt=p.value
+	    if (tt>yy)
+	    {
+		    MM_changeProp('browsdopage','','value',yy,'INPUT/TEXT')
+	    }
+	    if (tt==0)
+	    {
+		    MM_changeProp('browsdopage','','value','1','INPUT/TEXT')
+	    }
+    }
+
+    function allChecked(){
+        if(dfd1=="1"){
+            dfd1="0"
+        }
+        else {
+             dfd1="1"
+        }
+	    for(var i=0;i<document.all.DataTable.rows.length;i++)
+	    {
+		    if(typeof(document.all.DataTable.rows[i].cells[0].childNodes[0])=="object"
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].tagName=="INPUT"
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].type=="checkbox") {
+			    if(dfd1=="1"){
+  			        document.all.DataTable.rows[i].cells[0].childNodes[0].checked="true";
+                }
+			    else{
+                    document.all.DataTable.rows[i].cells[0].childNodes[0].checked="";
+                }
+            }
+ 	    }
+    }
+<!-- Hide
+    function killErrors() {
+        return true;
+    }
+    window.onerror = killErrors;
+// -->
+
+</script>
+
+<link REL=stylesheet HREF="/css/runmit.css" TYPE="text/css">
+<script src="/js/rmenu.js"></script>
+<style type="text/css">
+<!--
+.ttt {  border-style: outset; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 1px; border-left-width: 0px}
+.anniu_1 {  background-color: #6382BD; height: 18px; width: 49px;font-size: 9pt; font-style: normal; font-weight: normal;BORDER-BOTTOM: 1px solid #6382BD; BORDER-LEFT:1px solid  #6382BD; BORDER-RIGHT: 1px solid #266AA8; BORDER-TOP: 1px solid  #6382BD; COLOR: #ffffff; top: 20px; clip:   rect(   )}
+.nnoo {  filter: Gray}
+-->
+</style>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+<body marginheight=0 leftmargin=0 marginwidth=0 topMargin="0" BGCOLOR="#DEE8FA" onload="setinit()">
+<form name="form1" method="post" action="/pronline/Msg"> 
+  <table border="0" width=100% height=100% cellspacing="0" cellpadding="0" align=center>
+    <tr> 
+      <td width="100%"  valign=middle align=center height="2" class="ttt"> 
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tr> 
+            <td colspan="2"> <table width="100%" height="27" border="0" align="center" cellpadding="0" cellspacing="0" background="/images/table_bg1.gif">
+                <tr > 
+                  <td > <div align="right"><strong></strong></div>
+                    <div align="center"><strong><font color="#FFFFFF">拦截邮件分类规则设定</font></strong></div></td>
+                </tr>
+              </table></td>
+            </tr>
+          <tr> 
+            <td colspan="2"> 
+              <table width="100%" border="0">
+                <tr> 
+                  <td colspan="2"> 
+                    <table width="100%" border="0">
+                      <tr> 
+                        <td width="8%">分类名称</td>
+                        <td width="24%"> 
+                          <input type="text" name="tname" size="20" maxlength="31" value="[#tname#]" readonly>
+                        </td>
+                        <td width="12%">序号</td>
+                        <td width="20%"> 
+                          <input type="text" name="rnum" size="6" maxlength="6" value="[#rnum#]">
+                        </td>
+                        <td width="11%"> 
+                          <select name="usertype">
+                            <option value="1" selected>组名</option>
+                            <option value="2">用户名</option>
+                          </select>
+                        </td>
+                        <td width="25%"> 包含 
+                          <input type="text" name="uname" size="20" maxlength="63" value="[#uname#]">
+                        </td>
+                      </tr>
+                      <tr> 
+                        <td width="8%">发件人含</td>
+                        <td width="24%"> 
+                          <input type="text" name="from" size="20" maxlength="63" value="[#from#]">
+                        </td>
+                        <td width="12%">收件人含</td>
+                        <td width="20%"> 
+                          <input type="text" name="to" size="20" maxlength="63" value="[#to#]">
+                        </td>
+                        <td width="11%">主题包含</td>
+                        <td width="25%"> 
+                          <input type="text" name="sub" size="20" maxlength="63" value="[#sub#]">
+                        </td>
+                      </tr>
+                      <tr> 
+                        <td width="8%" height="28">内容包含</td>
+                        <td width="24%" height="28"> 
+                          <input type="text" name="cont" size="20" maxlength="63" value="[#cont#]">
+                        </td>
+                        <td width="12%" height="28">附件名称含</td>
+                        <td width="20%" height="28"> 
+                          <input type="text" name="aname" size="20" maxlength="63" value="[#aname#]">
+                        </td>
+                        <td width="11%" height="28">邮件大于</td>
+                        <td width="25%" height="28"> 
+                          <input type="text" name="msize" size="10" maxlength="10" value="[#msize#]">
+                          字节</td>
+                      </tr>
+                      <tr> 
+                        <td width="8%" height="26">附件大于</td>
+                        <td width="24%" height="26"> 
+                          <input type="text" name="asize" size="10" maxlength="10" value="[#asize#]">
+                          字节</td>
+                        <td width="12%" height="26">收件人大于</td>
+                        <td width="20%" height="26"> 
+                          <input type="text" name="tonum" size="10" maxlength="10" value="[#tonum#]">
+                          个</td>
+                        <td width="11%" height="26">发送类别</td>
+                        <td width="25%" height="26"> 
+                          <select name="stype">
+                            <option value="0" selected>全部</option>
+                            <option value="1">发送</option>
+                            <option value="2">接收</option>
+                          </select>
+                        </td>
+                      </tr>
+
+                      <tr> 
+                        <td colspan="6" height="20"> 
+                          <div align="center"> 
+                            <input name="add" type="submit" class="an3" value="添 加" >
+                            &nbsp; 
+                            <input name="modi" type="submit" class="an3" value="修 改" >
+                            &nbsp; 
+                            <input name="app" type="submit" class="an3" value="应 用" >
+                            &nbsp; 
+                            <input name="del" type="submit" class="an3" value="删 除" >
+                            <input type="hidden" name="FunName" value="ncMailCtlFlList">
+                            <input type="hidden" name="rid"   value="[#rid#]">
+                            <input type="hidden" name="tid"   value="[#tid#]">
+                          </div>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+    </td>
+  </tr>
+  <tr>
+      <td width="100%"  valign=top align=center> 
+        <table  id="DataTable" width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" >
+          <tr bgcolor="#6382BD"  height="21" > 
+            <td width="49" height="18" class="bord2"><div align="center">
+                <input type="button" name="b1" value="全选"  class="anniu_1"  onClick="allChecked()">
+              </div></td>
+            <td width="158" height="18" class="bord2"><div align="center"><font color="#FFFFFF">分类名称</font></div></td>
+            <td width="47" height="18" class="bord2"><div align="center"><font color="#FFFFFF">序号</font></div></td>
+            <td width="749" height="18" class="bord2"><div align="center"><font color="#FFFFFF"> 
+                内容</font></div></td>
+          </tr>
+          <!-- [#SLPB#] -->
+          <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" onclick="showf('[#rid#]','[#rnum#]','[#uflags#]','[#uname#]','[#from#]','[#to#]','[#sub#]','[#cont#]' ,'[#aname#]','[#msize#]','[#asize#]','[#tonum#]','[#stype#]')"> 
+            <td class="bord1" width="49"> <input type="checkbox" name="ch[#num#]" value="[#rid#]"> 
+            </td>
+            <td class="bord1" width="158">&nbsp;[#rname#]</td>
+            <td class="bord1" width="47">[#rnum#]&nbsp;</td>
+            <td class="bord3" width="749">&nbsp;[#des#]</td>
+          </tr>
+          <!-- [#SLPE#] -->
+          <!-- [#SLPB#] -->
+          <tr id=[#snum#]> 
+            <td class="bord1" width="49" height="2">&nbsp; </td>
+            <td class="bord1" width="158" height="2">&nbsp;</td>
+            <td class="bord1" width="47" height="2">&nbsp;</td>
+            <td class="bord3" width="749" height="2">&nbsp;</td>
+          </tr>
+          <!-- [#SLPE#] -->
+        </table>
+<!--//鼠标显示//-->
+              <script language="JavaScript">
+<!--
+var MenuBarColor ='#cccccc';
+DrawMouseRightButtonUpMenu();
+
+</script>
+    </table>
+  </form>
+</body>
+</html>

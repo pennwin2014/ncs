@@ -1,0 +1,468 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" /> 
+<style type="text/css">
+	.icon-grid 
+	{
+		background-image:url(/newver/resources/themes/images/share/grid.png) !important;
+	}
+	.add 
+	{
+ 		background-image:url(/newver/resources/themes/images/share/add.gif) !important;
+	}
+	.option 
+	{
+        	background-image:url(/newver/resources/themes/images/share/plugin.gif) !important;
+	}
+	.remove 
+	{
+		background-image:url(/newver/resources/themes/images/share/delete.gif) !important;
+	}
+	.exp 
+	{
+		background-image:url(/newver/resources/themes/images/share/application_go.png) !important;
+	}
+	.accept 
+	{
+		background-image:url(/newver/resources/themes/images/share/accept.png) !important;
+	}
+	.x-form-clear-trigger 
+	{
+        	background-image: url(/newver/resources/themes/images/default/form/clear-trigger.gif);
+	}
+	.x-form-search-trigger 
+	{
+        	background-image: url(/newver/resources/themes/images/default/form/search-trigger.gif);
+	}
+	.x-selectable, .x-selectable * 
+	{   
+    		-moz-user-select: text!important;   
+		-khtml-user-select: text!important;   
+	}   
+</style>
+<script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+<script>  
+  		
+	Ext.Loader.setConfig({enabled: true});
+	Ext.Loader.setPath('Ext.ux', '/newver/ux/');
+	Ext.require([
+    		'Ext.form.*',
+    		'Ext.window.*',
+    		'Ext.grid.*',
+    		'Ext.data.*',
+    		'Ext.util.*',
+    		'Ext.window.MessageBox',
+    		'Ext.toolbar.Paging',
+    		'Ext.ux.PreviewPlugin',
+	]);
+	
+	var store;
+	var store1;
+	var adv = "0";//标记
+	function reflash()
+	{
+
+	var groupid = parent.document.getElementById("form1").groupid.value;
+ 	var did = parent.document.getElementById("form1").did.value;
+
+		var sdate=document.getElementById("form1").sdate.value;
+  		var edate=document.getElementById("form1").edate.value;
+
+  		store.load({params: {groupid:groupid,did:did,sdate:sdate,edate:edate}});  
+	}
+	
+  
+	
+	function _show_enduser(did, uid)
+	{
+	      var aa=parent.document.getElementById('form1').time_flag.value;
+         var htmlvar='<iframe src="/pronline/Msg?FunName@ncsWebShowUserBh&did@'+did+'+uid@'+uid+'&time_flag@'+aa+';" scrolling="no" name="moduleIframe" frameborder="no" style="width:100%;height:100%;"></iframe>'; 
+          parent.parent.show_enduserinfo(htmlvar);
+          /*
+         var win = new Ext.Window ({
+                             id:"userwindow",
+                             title:"用户上网行为统计报告",
+                             x:0,
+                             y:0,
+                             width:670,
+                             height:700,
+                             bodyPadding: 0,
+                             modal:false,
+                             resizable:true,
+                             draggable:true,
+                             html:htmlvar
+                                               
+         }
+        )
+        win.show();
+        */
+  }
+	
+	function  show_enduser(value,p,record)
+	{
+		 var oArr = record.data.dispname.split("_");
+       		 return Ext.String.format( '<a href="#xxm" onclick=_show_enduser("{0}","{1}")>{2}</a>',oArr[1], oArr[2], oArr[0]);
+    	}
+    	
+    	function _show_corpinfo(did)
+    	{
+    		var htmlvar='<iframe src="/pronline/Msg?FunName@ncsWebDispClientAddForm_v4&plate@v4/nc_form_clientinfo.htm&userid@'+did+'" scrolling="no" name="moduleIframe" frameborder="no" style="width:100%;height:100%;"></iframe>';  
+  //  		alert(htmlvar);            
+         	 var win = new Ext.Window ({
+                             id:"addwindow",
+                             title:"联网单位信息",
+                             x:0,
+                             y:0,
+                             width:670,
+                             height:600,
+                             bodyPadding: 0,
+                             modal:false,
+                             resizable:true,
+                             draggable:true,
+                     	     html:htmlvar})
+        	 win.show();
+    	}
+    	
+    	function show_corpinfo(value, p, record)
+    	{
+    		var oArr = record.data.corpname.split("_");
+    		return Ext.String.format( '<a href="#xxm" onclick=_show_corpinfo("{0}")>{1}</a>',oArr[1],oArr[0]);
+    	}
+    	
+    	function gotourl(value,p,record)
+    	{
+    		return Ext.String.format( '<a href="{0}" target="new">{1}</a>',record.data.url, record.data.url);
+    	}
+    	
+    	function _show_othlog(sdate,edate, did, uid)
+    	{
+    		 var width1 = screen.width;
+    		 var htmlvar='<iframe src="/pronline/Msg?FunName@ncupWebReplace&plate@v4/ncs_yjcx_tab.html&tab@4&sdate@'+sdate + '&edate@' + edate + '&did@' + did + '&uid@' + uid + '" scrolling="no" name="moduleIframe" frameborder="no" style="width:100%;height:100%;"></iframe>';              
+         	 var win = new Ext.Window ({
+                             id:"addwindow3",
+                             title:"其他日志",
+                             x:0,
+                             y:0,
+                             width:width1,
+                             height:580,
+                             bodyPadding: 0,
+                             modal:false,
+                             resizable:true,
+                             draggable:true,
+                     	     html:htmlvar})
+        	  win.show();
+    	}
+    	
+    	function show_othlog(value, p, record)
+    	{
+    		var oArr = record.data.othlog_param.split("_");
+    		return Ext.String.format( '<a href="#xxm" onclick=_show_othlog("{0}","{1}","{2}","{3}")>其他日志</a>', oArr[0], oArr[1], oArr[2],oArr[3]);
+    	}
+		 var fp2;
+ 
+
+	
+	Ext.onReady(function()
+	{
+		Ext.define("Corp", 
+    		{
+        		extend: 'Ext.data.Model',
+        		proxy: 
+        		{
+        			type: 'ajax',
+        			url: '/pronline/Msg?FunName@ncsSearchCorp_v4',
+        			reader: new Ext.data.JsonReader(
+        			{
+               				type:'json',
+                			root: 'eimdata1',
+                			totalProperty: 'totalCount'
+            			}),        
+            			simpleSortMode: true
+        		},
+        		fields: [
+            			{name: 'username', mapping: 'username'},
+            			{name: 'dispname', mapping: 'dispname'}
+        		]
+    		});
+    		store1 = Ext.create('Ext.data.Store', {
+        		pageSize: 10000,
+        		model: 'Corp'
+    		});
+		
+    		Ext.define('EimData', 
+    		{
+        		extend: 'Ext.data.Model',
+        		fields: 
+        		[
+            			'cname' [#SLPB#],'[#sservice#]'[#SLPE#]
+        		]
+        	});
+       		store = Ext.create('Ext.data.Store', 
+       		{
+        		pageSize: 37,
+        		model: 'EimData',
+        		remoteSort: true,
+        		proxy: 
+        		{
+            			type: 'ajax',
+            			url: '/pronline/Msg?FunName@ncsVid_statdet_v4&services@[#services#]',
+            			reader: {
+                			type:'json',
+                			root: 'eimdata',
+                			totalProperty: 'totalCount'
+            			},         
+            			simpleSortMode: true
+        		},
+        		sorters: 
+        		[{
+            			property: 'stime',
+            			direction: 'DESC'
+        		}]
+    		});
+		
+    		var handleAction = function(action)
+    		{
+       			if(action=='cx')
+       			{
+       			}
+    		};
+    		
+    		var myDate = new Date();
+  		var yy = ( myDate.getYear() < 1900 ) ? ( 1900 + myDate.getYear() ) : myDate.getYear();
+  		var mm=myDate.getMonth()+1;
+  		if(mm<10)
+  		{
+  			mm='0'+mm;
+  		}
+  		var dd=myDate.getDate();
+  		if(dd<10)
+  		{
+  			dd='0'+dd;
+  		}
+  		var today=yy+'/'+mm+'/'+dd;
+  		var startday=yy+'/'+mm+'/'+'01';
+ 		
+
+                  
+
+  
+		//对翻页工具条重新构建，替换翻页函数    
+  		Ext.PagingToolbar1 = Ext.extend(Ext.PagingToolbar, 
+  		{
+     			doRefresh:function()
+     			{
+     				reflash();
+    			},
+    			onPagingKeyDown:function(i,h)
+    			{
+     				var d=this,b=h.getKey(),c=d.getPageData(),a=h.shiftKey?10:1,g;
+     				if(b==h.RETURN)
+     				{
+     					h.stopEvent();
+     					g=d.readPageFromInput(c);
+        				if(g!==false)
+        				{
+         					g=Math.min(Math.max(1,g),c.pageCount);
+         					if(d.fireEvent("beforechange",d,g)!==false)
+         					{
+         						d.store.currentPage=g;
+         						reflash();
+        					}        
+      					}
+    				}
+    				else
+    				{
+       					if(b==h.HOME||b==h.END)
+       					{
+    						h.stopEvent();
+    						g=b==h.HOME?1:c.pageCount;i.setValue(g)
+       					}
+       					else
+       					{
+         					if(b==h.UP||b==h.PAGEUP||b==h.DOWN||b==h.PAGEDOWN)
+         					{
+          						h.stopEvent();
+          						g=d.readPageFromInput(c);
+           						if(g)
+           						{
+             							if(b==h.DOWN||b==h.PAGEDOWN)
+             							{
+             								a*=-1
+             							}
+             							g+=a;
+             							if(g>=1&&g<=c.pages)
+             							{
+             								i.setValue(g)
+             							}
+             						}
+            					}
+           				}
+         			}  
+      			},
+    			moveLast:function()
+    			{
+    				var b=this;
+    				var a=b.getPageData().pageCount;
+    				if(b.fireEvent("beforechange",b,a)!==false)
+    				{
+    					store.currentPage=a;
+    					reflash();
+       				}
+       			},
+     			moveFirst:function()
+     			{
+      				if(this.fireEvent("beforechange",this,1)!==false)
+      				{
+      					store.currentPage=1;
+      					reflash();
+      				}
+      			}, 
+     			movePrevious:function()
+     			{
+     				var b=this;
+     				var a=b.store.currentPage-1;
+     				if(a>0)
+     				{
+     					if(b.fireEvent("beforechange",b,a)!==false)
+     					{
+     						store.currentPage=a;
+     						reflash();
+     					}
+     				}
+     			},
+     			moveNext:function()
+     			{
+     				var c=this;
+     				var b=c.getPageData().pageCount;
+     				var a=c.store.currentPage+1;
+     				if(a<=b)
+     				{
+     					if(c.fireEvent("beforechange",c,a)!==false)
+     					{
+     						store.currentPage=a;
+     						reflash();
+     					}
+     				}
+     			}
+		});
+
+    		var width1=screen.width;
+    		var height1 = screen.height;
+    		var grid = Ext.create('Ext.grid.Panel', 
+    		{
+//        		width: width1,
+        		height:parent.grid_height-300,
+        		autoScroll: true,
+        		store: store,
+        		frame:true,
+        		columns:[
+        		{
+            			text: "单位名称",
+            			dataIndex: 'cname',
+            			width: 100,
+            			flex: 1,
+            			sortable: false
+//            			renderer: show_corpinfo
+        		}
+        		[#SLPB#]
+        		,
+        		{
+           			text: "[#sname#]",
+            			dataIndex: '[#sservice#]', 
+           			  width: 100,
+            			flex: 1,
+            			sortable: false
+  //          			renderer: show_enduser
+        		}
+        		[#SLPE#]
+        		
+        	],
+        	columnLines: true,
+        	tbar: Ext.create('Ext.PagingToolbar1', 
+        	{
+            		store: store,
+            		displayInfo: true,
+            		displayMsg: '显示{0} - {1}条记录 共{2}条记录',
+            		emptyMsg: "没有记录可显示",
+                                       
+            	items: [
+            	'-',
+               {                        
+                        	fieldLabel:'起始日期',
+                        	xtype: 'datefield',
+                        	format: "Y/m/d",
+                        	labelWidth: 65,
+                          value:'',
+                        	name:'sdate',
+                        	id:'sdate'
+                        	
+                    	},
+                    	{
+                        	fieldLabel:'结束日期',
+                        	labelWidth: 65,
+                        	xtype: 'datefield',
+                        	id:'edate',
+                        	format: "Y/m/d",
+                        	value:'',
+                        	name:'edate'
+                    	},
+
+              	{
+                	text:'确认',
+                	iconCls:'accept',
+                	handler: function()
+                	{
+                	        var sdate=Ext.getCmp('sdate').value; 
+                	        if(sdate){
+                          var sdate_t=Ext.Date.format(sdate, 'Y/m/d');
+                          document.getElementById("form1").sdate.value =sdate_t;
+                          }
+                          else{
+                          document.getElementById("form1").sdate.value ='';
+                          }
+                          var edate=Ext.getCmp('edate').value;
+                          if(edate){
+                          var edate_t=Ext.Date.format(edate, 'Y/m/d');
+                          document.getElementById("form1").edate.value =edate_t;
+                          }
+                          else{
+                          document.getElementById("form1").edate.value ='';
+                          }
+                         
+                 		store.currentPage=1;
+                 		adv = "0";
+                 		reflash();
+                	}
+            	},
+            '-',{
+                text:'导出',
+                iconCls:'exp',
+                handler:function(){
+
+                document.getElementById('form1').exp.value='exp';
+               document.getElementById("form1").submit();
+               document.getElementById("form1").exp.value="";
+              
+                }
+            }]
+        	}),
+        	renderTo: 'grid-corp'
+    		});
+    		reflash();
+	});
+</script>
+</head>
+<body onload="gettime()">
+	<form name="form1" id="form1" action="/pronline/Msg">
+	<input type="hidden" name="FunName" value="ncsVid_statdet_v4">
+	<input type="hidden" name="services" value="[#services#]">
+		<input type="hidden" name="sdate" value="">
+		<input type="hidden" name="edate" value="">
+		<input type="hidden" name="groupid" value="">
+		<input type="hidden" name="did" value="">
+		<input type="hidden" name="exp" value="">
+	</form>
+    	<div id="grid-corp"></div>
+</body>
+</html>

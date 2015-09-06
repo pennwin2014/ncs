@@ -1,0 +1,156 @@
+<html>
+<head>
+<title>系统功能选项</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<script>
+	function resetfac(){
+	if(confirm("执行该操作将清除所有的数据，您真的要这样做吗?")) {
+		if(confirm("请再次确认?")){
+		return true;
+		}
+	}
+	return false;
+	}
+</script>
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" align="center"  style="overflow:hidden">
+<form name="form1" method="post" action="/pronline/Msg">
+
+  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td valign="top" ><table width="100%" height="35" border="0" align="center" cellpadding="0" cellspacing="0" >
+          <tr > 
+            <td colspan="2"> <div style="font-size:11pt;color:#00237e;font-weight:bold;text-align: center;">VPN服务器参数设置</div></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr> 
+      <td >
+        <table width="90%" height="0%" border="1"  bordercolorlight=#89ACED   bordercolordark=#ffffff   align="center" cellpadding="0" cellspacing="0">
+          <tr> 
+            <td valign="top" height="411" width="50%"> 
+            	<table width="95%" border="0" align="center">
+            		<tr height="40px">
+            			<td colspan="3" align="center" style="font-size:11pt;color:#00237e;font-weight:bold;text-align: center;">网关到网关接入服务设置</td>
+            		</tr>
+                <tr height="30"> 
+                  <td width="24%">&nbsp;服务状态</td>
+                  <td width="74%">&nbsp;<select name="state_s" style="width:120px;"><option value="0">停用</option><option value="1">启用</option></select></td>
+                  <td width="2%">&nbsp;</td>
+                </tr>
+                <tr height="30"> 
+                  <td >&nbsp;TCP/UDP协议</td>
+                  <td >&nbsp;<select name="prot_s" style="width:120px;"><option value="17">UDP</option><option value="6">TCP</option></select></td>
+                  <td >&nbsp;</td>
+                </tr>
+                <tr height="30"> 
+                  <td >&nbsp;服务端口</td>
+                  <td >&nbsp;<input type="text" name="port_s" style="width:120px;" value="[#port_s#]" maxlength="6"></td>
+                  <td >&nbsp;</td>
+                </tr>
+               <tr height="30"> 
+                  <td >&nbsp;接入端并发数量</td>
+                  <td >&nbsp;<input type="text" name="connect_s" style="width:120px;" value="[#connect_s#]" maxlength="3"></td>
+                  <td >&nbsp;</td>
+                </tr>
+               <tr height="30"> 
+                  <td >&nbsp;接入网段</td>
+                  <td >&nbsp;<input type="text" name="ip_s" style="width:120px;" value="[#ip_s#]" maxlength="16">&nbsp;掩码&nbsp<input type="text" name="mask_s" style="width:120px;" value="[#mask_s#]" maxlength="16"></td>
+                  <td >&nbsp;</td>
+                </tr>
+               
+               <tr height="30"> 
+                  <td >&nbsp;上网流量通过VPN</td>
+                  <td >&nbsp;<select name="redir_s" style="width:120px;"><option value="0">否</option><option value="1">是</option></select></td>
+                  <td >&nbsp;</td>
+                </tr>
+               
+               
+              </table>
+              </td>
+              
+              
+              <td valign="top" width="50%" height="411"> 
+            	<table width="95%" border="0" align="center">
+            		<tr height="40px">
+            			<td colspan="3" align="center" style="font-size:11pt;color:#00237e;font-weight:bold;text-align: center;">客户端拨号接入服务设置</td>
+            		</tr>
+                <tr height="30"> 
+                  <td width="24%">&nbsp;服务状态</td>
+                  <td width="74%">&nbsp;<select name="state_c" style="width:120px;"><option value="0">停用</option><option value="1">启用</option></select></td>
+                  <td width="2%">&nbsp;</td>
+                </tr>
+                <tr height="30"> 
+                  <td >&nbsp;TCP/UDP协议</td>
+                  <td >&nbsp;<select name="prot_c" style="width:120px;"><option value="17">UDP</option><option value="6">TCP</option></select></td>
+                  <td >&nbsp;</td>
+                </tr>
+                <tr height="30"> 
+                  <td >&nbsp;服务端口</td>
+                  <td >&nbsp;<input type="text" name="port_c" style="width:120px;" value="[#port_c#]" maxlength="6"></td>
+                  <td >&nbsp;</td>
+                </tr>
+               <tr height="30"> 
+                  <td >&nbsp;接入端并发数量</td>
+                  <td >&nbsp;<input type="text" name="connect_c" style="width:120px;" value="[#connect_c#]" maxlength="3"></td>
+                  <td >&nbsp;</td>
+                </tr>
+               <tr height="30"> 
+                  <td >&nbsp;接入网段</td>
+                  <td >&nbsp;<input type="text" name="ip_c" style="width:120px;" value="[#ip_c#]" maxlength="16">&nbsp;掩码&nbsp;<input type="text" name="mask_c"  value="[#mask_s#]" style="width:120px;" maxlength="16"></td>
+                  <td >&nbsp;</td>
+                </tr>
+               
+               <tr height="30"> 
+                  <td >&nbsp;上网流量通过VPN</td>
+                  <td >&nbsp;<select name="redir_c" style="width:120px;"><option value="0">否</option><option value="1">是</option></select></td>
+                  <td >&nbsp;</td>
+                </tr>
+               
+              </table>
+              </td>
+              
+              
+              
+              
+              
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td height="70" ><table width="100%" border="0" align="center">
+          <tr> 
+            <td> <div align="center"> 
+                <input type="hidden" name="FunName" value="vpnServerSave_par">
+                <input type="submit" name="next" value="确 认" class="an3">
+                &nbsp; 
+
+                <input type="reset" name="cancel" value="取 消" class="an3-1" >
+                &nbsp;
+                <input type="submit" name="app" value="应 用" class="an3">
+                &nbsp; 
+              </div></td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+</form>
+<script>
+	form1.state_s.value='[#state_s#]';
+	form1.prot_s.value='[#prot_s#]';
+	form1.redir_s.value='[#redir_s#]';
+
+	form1.state_c.value='[#state_c#]';
+	form1.prot_c.value='[#prot_c#]';
+	form1.redir_c.value='[#redir_c#]';
+	
+	</script>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<html>
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<title>main</title>
+<script>
+var dfd1="0"
+function showuser(did,uid)
+{
+var temp_var="/pronline/Msg?FunName@ncsWebShowUserinfo&did@"+did+"+uid@"+uid;
+	showModalDialog(temp_var, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:520px;scroll:yes;dialogHeight:640px');
+}
+
+function gotoPage(pagenum)
+{
+
+    form1.CurPg.value = pagenum;
+}
+
+function goto(t){
+ tt=showModalDialog(t, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:520px;scroll:yes;dialogHeight:480px');
+}
+
+
+
+function caxun(){
+form1.CurPg.value='1';
+form1.FunName.value='ncsWebReplace';
+form1.submit();
+}
+function clearcon(){
+form1.vname.value='';
+form1.ntype.value='';
+form1.cname.value='';
+form1.uname.value='';
+form1.sdate.value='';
+form1.edate.value='';
+form1.stime.value='';
+form1.etime.value='';
+form1.userid.value='';
+form1.idno.value='';
+form1.mac.value='';
+form1.ip.value='';
+
+}
+// -->
+<!-- Hide
+var ll=[#CurPg#]
+var yy=[#TotPg#]
+function killErrors() {
+return true;
+}
+window.onerror = killErrors;
+// -->
+
+</script>
+
+<script src="/js/drawtable.js"></script>
+<SCRIPT language=JavaScript>
+<!--
+
+var recordID = null;
+var Table = new FlexibleTable ('DataTable', '100%', '600', 'center', 32, 'flexibleTableSpan');
+
+Table.Header ('网络账号','类别','开始时间','结束时间','上网IP','操作','单位名称', '用户名', '备注');
+Table.ColumnsWidth ('120', '50', '110', '110','110', '50', '110','100','70');
+Table.HeaderAligment ('center', 'center','center','center', 'center', 'center', 'center','center','center');
+Table.BodyAligment ('left', 'left', 'left','left', 'center', 'center','left','left');
+
+Table.SetRowsTemplate (" onMouseOver=\"javascript:mouseovertr2(this);\" onMouseOut=\"javascript:mouseouttr2(this);\" onClick=\"setSelect(this);\"  ");
+[#SLPB#]
+Table.Row('<a href="#xxm" onclick=showvname("[#name#]","[#lNtype#]")>&nbsp;[#name#] </a>&nbsp;','&nbsp;[#ntype#] ','&nbsp;[#sdate#]','&nbsp;[#etime#]','&nbsp;[#ip#]','&nbsp;[#ctime#] ','&nbsp;[#cname#]','<a href="#xxm" onclick=showuser("[#did#]","[#uid#]")>&nbsp;[#udisp#]</a>','&nbsp;[#mac#]');
+[#SLPE#]
+
+//-->
+</SCRIPT>
+
+
+<style type="text/css">
+<!--
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+-->
+
+</style>
+<script src="/js/calendar.js"></script>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+<BODY style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px" bgcolor="#DEE8FA" leftMargin=2 topMargin=2 scroll=no onload="Table.Draw()">
+	<form name="form1" method="post" action="/pronline/Msg">
+			 <input type="hidden" name="FunName" value="ncsWebNetIdOneUser">
+
+      <input type="hidden" name="CurPg"      value="[#CurPg#]">
+      <input type="hidden" name="TotPg"      value="[#TotPg#]">
+      <input type="hidden" name="lcount"      value="[#TotRec#]">
+      <input type="hidden" name="userid"  value="[#userid#]">
+      <input type="hidden" name="uid" value="[#uid#]">
+		
+		<TABLE  cellSpacing=0 cellPadding=0 width="100%" border=0>
+			
+				<tr>
+	   <td valign="top"><table width="100%" cellspacing="0" cellpadding="0">
+         <tr height="30"> 
+         <td class="tabtitle" >虚拟身份轨迹&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+         <td background="/images/images2/chaxun2-1.gif" > <input name="exp" type="submit" class="an3" value="导 出" ></td>
+         <td background="/images/images2/chaxun2-1.gif" align="right">        	
+         	 <table align=right border=0 cellpadding=0 cellspacing=0 class=main width=111>
+                <tbody> 
+                <td width="10%"><script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-06.gif' border=0 height=17 width=35 class='gray1'>")}
+                      else{
+                        document.write("<a href='#xxm'><img src='/images/zbuyer-06.gif' border=0 height=17 width=35 onClick='gotoPage(1);form1.submit()' class='hand'>")}
+                   </script></td>
+                <td width="10%"><script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 class='gray1'>")}
+                      else {
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]-1);form1.submit()' class='hand'>")}
+                   </script></td>
+                <td width="20%"><img src="/images/zbuyer-08.gif" border=0 height=17 width=32></td>
+                <td align=middle background="" width=92>
+                    <input class=Main id=browsdopage maxlength=3  name=browsdopage size=3 style="FONT-SIZE: 12px; HEIGHT: 17px; TEXT-ALIGN: center; WIDTH: 50px" value=[#CurPg#] onKeyPress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" onBlur="checkme(this)">
+                </td>
+                <td width="10%"><img src="/images/zbuyer-09.gif" border=0 height=17 width=16></td>
+                <td width="10%"><img align=middle border=0 height=17 src="/images/zbuyer-10.gif" width=17 onClick="gotoPage(form1.browsdopage.value);form1.submit()" class="hand"><img align=middle height=17 src="/images/zbuyer-11.gif" width=3></td>
+                
+                
+                <td width="10%"><img border=0 height=17 src="/images/zin1.gif" width=17 ></td>
+                <td align=middle background="" width=92> 
+                  <input  class=Main id=browsdopage1 maxlength=5 name=browsdopage12 size=3 style="FONT-SIZE: 12px; HEIGHT: 17px; TEXT-ALIGN: center; WIDTH: 50px" value='[#TotPg#]'>
+                </td>
+					    <td width="10%"><img align=middle height=17 src="/images/zbuyer-09.gif" width=16></td>
+					    <td align=middle background="" width=92> 
+					      <input  class=Main id=browsdopage1 maxlength=5 name=browsdopage12 size=3 style="FONT-SIZE: 12px; HEIGHT: 17px; TEXT-ALIGN: center; WIDTH: 50px;" value='[#TotRec#]'>
+					    </td>
+					    <td width="10%"><img border=0 height=17 src="/images/zin3.gif" width=17 align="middle" ><img align=middle height=17  src="/images/zbuyer-11.gif" width=3></td>
+                
+                <td width="10%"><script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]+1);form1.submit()' class='hand'>")}
+                    </script></td>
+                <td width="10%"><script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 onClick='gotoPage([#TotPg#]);form1.submit()' class='hand'>")}
+                    </script></td>
+              </tbody>
+            </table>  
+         	         	
+         	</td>
+         </tr>
+         
+         
+         </table>
+      </td>
+  </tr>
+					
+    <tr> 
+      <td valign="top" width="100%"  align=center height="28" bgcolor="#DEE8FA" > 
+        <table width="100%" border="0" cellspacing="0">
+  	<TR>
+    		<TD valign="top" colspan="2"><SPAN id=flexibleTableSpan></SPAN></TD>
+  	</TR>
+ 	</TABLE>
+ 	</td>
+</tr>
+
+
+</table>
+ </form>	
+ 
+ 	
+</BODY>
+</html>

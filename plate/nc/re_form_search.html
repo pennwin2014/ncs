@@ -1,0 +1,51 @@
+<html><head> 
+<meta http-equiv="content-type" content="text/html;charset=UTF-8"> 
+<title>搜索_[#query#]</title> 
+
+
+<STYLE> 
+<!--
+body,td{font-family:arial}
+TD{FONT-SIZE:9pt;LINE-HEIGHT:18px;}
+body{width:100%;margin:auto 0px 0px;}
+.bi {background-color:#D9E1F7;height:20px;margin-bottom:12px}
+#ft{clear:both;line-height:20px;background:#e6e6e6;text-align:center}
+#ft,#ft *{color:#77C;font-size:12px;font-family:Arial}
+#ft span{color:#666}
+em{font-style:normal;color:#c60a00}
+a em{text-decoration:underline;}
+--> 
+</STYLE> 
+
+<script language="javascript"> 
+<!--
+
+function bq(form)
+{
+    form.wd.value = '[#query#] ' + form.wd.value;
+	  form.submit();
+}
+-->
+</script> 
+
+
+</head> 
+<body link="#0000cc"> 
+
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="bi"> 
+
+</table> 
+<div style="margin:0 0 139px 15px;font-size:15px;line-height:22px;"> 
+您刚刚使用关键字<span style="font-family:宋体">“</span><em>[#query#]</em><span style="font-family:宋体">”</span>进行检索，返回了[#total#]个结果。<br> 
+在下面搜索框里填写<strong>新的词语</strong>，您就可以在这些结果内进行搜索。<br> 
+<br> 
+<form action="/pronline/Msg" name="f1" method="post" onsubmit="return bq(this)"> 
+	  <input type="hidden" name="FunName" value="ncFormLog">
+	  <input type="hidden" name="rn" value="[#rn#]">
+      <input type="hidden" name="lm" value="[#lm#]">
+    <input type="text" size="42" name="wd"> 
+    <input type="submit" value="结果中找"> 
+</form> 
+</div> 
+</body> 
+</html>

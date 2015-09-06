@@ -1,0 +1,682 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+		<META HTTP-EQUIV="Expires" CONTENT="0">
+		<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache,must-revalidate">
+		<META HTTP-EQUIV="Pragma"  		CONTENT="no-cache">
+		<META HTTP-EQUIV="Jon Eyrick"  CONTENT="no-cache">
+<title>百度地图</title>
+<link rel="stylesheet" rev="stylesheet" href="/css/Map2_Baidu_Findding.css" type="text/css" />
+
+<style>
+.marker div { position:absolute;  min-width:51px;}
+.marker .marker_hover{z-index:0}
+.marker_0 { height:34px; white-space:nowrap;width:50px;}
+.marker_0 .marker_word, .marker_0 .marker_r { background:url()  0px 0 no-repeat; }
+
+.marker_0 .marker_word { height:34px; line-height:23px; padding:0 1px; cursor:pointer;color: white;text-align: center;font-family:simsun }
+.marker_0 .marker_word { padding-top:1px;*padding-top:0; }
+
+.marker {    position: absolute;   display: none;  min-width:51px; height: 34px;padding: 0 1px; color: white;text-align: center; font-size: 12px;cursor: pointer; line-height: 23px; 
+				background: url(/images/normal.png) 1px 0 no-repeat;}
+.marker_hover {z-index:10; background-image: url(/images/open_hover.png);}
+
+.label_init { display:block;/*统一转化为块级元素*/ overflow: hidden; width: 0; height: 0; }
+.texthidden{display:;position: absolute; -moz-user-select: none; display: inline; cursor: inherit; border: 0px none; padding: 2px 1px 1px; white-space: nowrap; font: 12px arial,simsun;text-align: center; z-index: 0; color: rgb(255, 102, 0); left: 15px; top: -35px;}
+.label_over{z-index:100;width:60;height:34; background-image:url(/images/mouse_o_a.png);position: absolute; -moz-user-select: none;background-position: top right;background-repeat: no-repeat;  display: inline; cursor: inherit; border: 0px none; padding: 5px 4px 4px; white-space: nowrap; font: 12px arial,simsun;text-align: center;  color: rgb(255, 255, 255); left: 6px; top: -35px;}
+* html .label_over { background: none;  filter:progid:DXImageTransform.Microsoft.AlphaImageLoader (src='/images/mouse_o_a.png');}
+.label_out{z-index:1;position: absolute; -moz-user-select: none; display: inline; cursor: inherit; border: 0px none; padding: 2px 1px 1px; white-space: nowrap; font: 12px arial,simsun;text-align: center;  color: rgb(255, 102, 0); left: 15px; top: -35px;}
+.marker_b{border:none;left:0px; top:0px; position:absolute;z-index:1;}
+.marker_a{border:none;left:0px; top:0px; position:absolute;width:40;height:34;z-index:100;}
+.marker_sm{border:none;left:0px; top:0px; position:absolute;z-index:1;}
+
+.label_off{z-index:100;width:60;height:34; background-image:url(/images/mouse_o_off2.png);position: absolute; -moz-user-select: none;background-position: top right;background-repeat: no-repeat;  display: inline; cursor: inherit; border: 0px none; padding: 5px 4px 4px; white-space: nowrap; font: 12px arial,simsun;text-align: center;  color:DeepSkyBlue; left: 6px; top: -35px;}
+</style> 
+<!-- api -->
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.2"></script>
+</head>
+<body onload="init();">
+<form id="form1" name="form1" method="post" action="/pronline/Msg">
+		<input type="hidden" name="FunName" value="ncsShow_hotel_map">
+		<input type="hidden" name="maxlon" value="">
+    <input type="hidden" name="minlon" value="">
+    <input type="hidden" name="maxlat" value="">
+    <input type="hidden" name="minlat" value="">
+    <input type="hidden" name="uid" value="">
+    <input type="hidden" name="sea_flag" value="">
+<div align="center">
+	<input size="50" type="text" name="search_m" value='' onkeypress="if(event.keyCode==13||event.which==13){return false;}"/>&nbsp;<input type="button" name="sou" value="&nbsp;搜&nbsp;索&nbsp;" onclick="mark_search();" />	<br></br>	
+</div>
+<div style="width:1240px;height:570px;border:1px solid gray" id="container"></div>
+</form>
+</body>
+</html>
+<script type="text/javascript">
+	
+var map = new BMap.Map("container");
+map.zoomLevelMin=18;
+map.zoomLevelMax=9;
+var MAX=0;             //酒店宾馆数量 
+var userid=new Array();     //id
+var aname_desc=new Array(); //酒店宾馆名称
+var sname_desc=new Array(); //酒店宾馆简称
+var lon_data=new Array();   //经度
+var lat_data=new Array();   //纬度
+var hostatus=new Array();   //状态 
+var sflag=new Array(); 		  //查询结果
+var username=new Array(); 	//场所端代码
+var markers = [];
+var pt = null;
+var i = 0;
+var address=null;
+var contact=null;
+var telphone=null;
+var email=null;
+var onuser=null;
+var cen_lon=null;
+var cen_lat=null;
+
+var cAddress=new Array();
+
+var panel_flag=0;           //panel定位查询标志
+
+var intervalid1=null;
+//    var newMarkers = [];
+    var label4;
+    var marker;
+    var infoWindow;
+    
+    var city_lon='[#city_lon#]';           //市中心点经度
+    var city_lat='[#city_lat#]';					 //市中心点纬度
+    var cty_lev='[#cty_lev#]';						 //市中心点放大级别
+    var sum_area='[#SumAreaNum#]';         //区总数
+    
+    var are_name=new Array();              //区名称
+    var are_lon=new Array();               //区经度
+    var are_lat=new Array();               //区纬度
+    var are_lev=new Array();               //区级别
+		[#SLPB#]
+			are_name[[#mNum#]]='[#are_name#]';
+			are_lon[[#mNum#]]='[#are_lon#]';
+			are_lat[[#mNum#]]='[#are_lat#]';
+			are_lev[[#mNum#]]='[#are_lev#]';
+		[#SLPE#]
+
+		//map.centerAndZoom(new BMap.Point(114.1897705078125,29.63522956294847), 10);  
+		map.centerAndZoom(new BMap.Point(parseFloat(city_lon),parseFloat(city_lat)), parseInt(cty_lev));  
+		var opts = {type: BMAP_NAVIGATION_CONTROL_LARGE}; 
+		map.addControl(new BMap.NavigationControl(opts));  
+		map.addControl(new BMap.ScaleControl()); 
+		map.enableScrollWheelZoom();
+		
+   function mark_search(){
+   			if(form1.search_m.value!=''){
+   				form1.sea_flag.value=1;
+   				form1.uid.value='';
+   			}else{
+   				form1.sea_flag.value=0;
+   			}
+   			//调ajax  同时加个参数
+   			map.clearOverlays();         //一次性清除所有覆盖物	
+   			
+   			callServer2(this);
+   			if(map.getZoom()>=14){
+   				if(cen_lon==''||cen_lat==''){
+   				}else{
+	   				map.centerAndZoom(new BMap.Point(cen_lon,cen_lat), map.getZoom()); 
+   				}
+   			}else if(map.getZoom()<14){//alert(MAX);
+					if(cen_lon==''||cen_lat==''){
+					}else{
+						map.centerAndZoom(new BMap.Point(cen_lon,cen_lat), 14); 
+   				}
+   			}else{}
+   			form1.sea_flag.value==0;
+   }
+   
+   //循环区县
+   var m=0;
+   for(m=0;m<sum_area;m++){
+   		function ZoomControl(){  
+		 	// 设置默认停靠位置和偏移量  
+			 this.defaultAnchor = BMAP_ANCHOR_TOP_LEFT;  
+		 	 this.defaultOffset = new BMap.Size(69+m*39, 15);  
+			}  
+			 ZoomControl.prototype = new BMap.Control();  
+		   ZoomControl.prototype.initialize = function(map){  
+				 // 创建一个DOM元素  
+				 var div = document.createElement("div");  
+				 // 添加文字说明  
+				 div.appendChild(document.createTextNode(are_name[m]));  
+				 // 设置样式  
+				 div.style.cursor = "pointer";  
+				 div.style.border = "1px solid gray";  
+				 div.style.backgroundColor = "RoyalBlue";  
+				 div.style.color="white";
+				 // 绑定事件，点击一次放大两级 
+				 div.id=m; 
+				 div.onclick = function(e){  //alert("id="+this.id+"  are_lev="+are_lev[this.id]);
+				 	//重设中心点 和 显示等级直接定位区 重新查询区
+				   map.centerAndZoom(new BMap.Point(parseFloat(are_lon[this.id]),parseFloat(are_lat[this.id])), parseInt(are_lev[this.id])); 
+				   panel_flag=1;
+				   //map.zoomTo(12);  
+				 }  
+				 // 添加DOM元素到地图中  
+				 map.getContainer().appendChild(div);  
+				 // 将DOM元素返回  
+				 return div;  
+			  }
+				var myZoomCtrl = new ZoomControl();  // 创建控件实例  
+				map.addControl(myZoomCtrl); // 添加到地图当中  
+   }
+  
+   //最简单的用法，生成一个marker数组，然后调用markerClusterer类即可。
+  // var markerClusterer = new BMapLib.MarkerClusterer(map, {markers:markers});
+   
+	 function show_mark(MAX){
+	 	
+	 	if(map.getZoom()>=14){
+	   //添加和删除Markers
+	   	var newMarkers = getNewMarkers(MAX);
+	   	var newMarkers2 = newMarkers;
+	 	
+	 	  for (i = 0; i <MAX; i++) {
+	//           map.addOverlay(newMarkers2[i]);
+	          // alert("i="+i+"  newMarkers2"+newMarkers2[i]);
+	
+					//	var result = BMapLib.GeoUtils.isPointInRect(newMarkers2[i].point, map.getBounds());     //显示可视区域内的标注
+	 	   	  //  alert("i="+i+"  newMarkers2="+newMarkers2[i]+"  result="+result+" lng="+newMarkers2[i].point.lng+"  lat="+newMarkers2[i].point.lat);
+	 	   	  //  if(result == true) 
+	 	   	    	map.addOverlay(newMarkers2[i]);  
+	 	   	  //  else 
+	 	   	   // 	map.removeOverlay(newMarkers2[i]); 
+	 	   	    
+//	 	   	    window.setTimeout(function(){
+//	//            canvas.setStyle({"height":canvasHeight+"px"});
+//	//            container.setStyle({"width":containerWidth});
+//	        	}, i*30);  //i++*30
+	
+	    }
+	  }else if(map.getZoom()>12&&map.getZoom()<14){
+	  	 //map.clearOverlays();         //一次性清除所有覆盖物
+	  	 //此等级应显示圆点
+	  		var newMarkers = getNewMarkers(MAX);
+	   		var newMarkers2 = newMarkers;
+	 			
+	 	  	for (i = 0; i < MAX; i++) {
+//						var result = BMapLib.GeoUtils.isPointInRect(newMarkers2[i].point, map.getBounds());     //显示可视区域内的标注
+//	 	   	   // alert("i="+i+"  newMarkers2="+newMarkers2[i]+"  result="+result+" lng="+newMarkers2[i].point.lng+"  lat="+newMarkers2[i].point.lat);
+//	 	   	    if(result == true) 
+	 	   	    	map.addOverlay(newMarkers2[i]);  
+//	 	   	    else 
+//	 	   	    	map.removeOverlay(newMarkers2[i]); 
+//	 	   	    window.setTimeout(function(){
+//	        	}, i*30);  //i++*30
+	
+	    	}	
+	  }else{
+	  	 //9等级以上什么也不显示
+	  	 map.clearOverlays();         //一次性清除所有覆盖物
+	  }
+  }
+ 
+ function select_mark(){
+ 		var b=map.getBounds();		 
+	  var ne = b.getNorthEast() // 东北点
+		var sw = b.getSouthWest() // 西南点
+//		alert("东北点" + ne .lng + " " + ne .lat)
+//		alert("西南点" + sw .lng + " " + sw .lat)
+	  document.getElementById("form1").minlon.value=sw .lng;
+		document.getElementById("form1").minlat.value=sw .lat;
+		document.getElementById("form1").maxlon.value=ne .lng;
+		document.getElementById("form1").maxlat.value=ne .lat;
+		if(map.getZoom()>12){
+			map.clearOverlays();         //一次性清除所有覆盖物	
+			if(panel_flag==1){					 //panel查询
+				callServer(this);
+				panel_flag=0;
+			}else{    //拖动查询
+	   			window.clearTimeout(intervalid1); 
+	   			intervalid1=setTimeout('callServer(this)',1000);
+			}
+			//show_mark(MAX);         //和callServer重复调用了会导致卡
+		}else{
+			map.clearOverlays();         //一次性清除所有覆盖物	
+		}
+ }
+ map.addEventListener("moveend", function(){
+ 		form1.uid.value="";
+ 		select_mark();
+ 	});
+ 	//放大缩小时触发
+ 	map.addEventListener("zoomend", function(){ 
+ 		form1.uid.value="";
+ 		select_mark();
+ 	});
+ 
+   /**
+   * 得到一个随机的marker数组。
+   * @param  {Number} 数组的长度
+   * @return {Array} 随机marker数组
+   */
+   var initflag=0;
+   function getNewMarkers(MAX){
+   			if(initflag==1){  //第一次加载
+   					
+   			}else{
+   					map.clearOverlays();         //一次性清除所有覆盖物
+   					for(i=0;i<MAX;i++){					 //释放内存
+//   						map.removeOverlay(marker[i]); 
+//   						map.removeOverlay(label4[i]); 
+//   						map.removeOverlay(infoWindow[i]); 
+	        		marker[i].dispose();
+	        		label4[i].dispose();
+	        		infoWindow[i].dispose();
+	        		initflag=0;
+        		}
+        		CollectGarbage();
+        }
+        
+   			var xx=0.0;
+   			var yy=0.0;
+        var newMarkers = [];
+        var ct=null;
+        var pt=null;
+        
+        label4=new Array();
+        marker=new Array();
+        infoWindow=new Array();
+        
+        for (i = 0; i < MAX; i++) {
+								if(map.getZoom()>16){
+									if(parseInt(sflag[i])==1){
+											var icon = new BMap.Icon("/images/bm_on.png",  new BMap.Size(21,32),{offset: new BMap.Size(10,14)}); 
+									 }else{
+											if(hostatus[i]==1){   
+			                	var icon = new BMap.Icon("/images/bm_on_b.png",  new BMap.Size(21,32),{offset: new BMap.Size(10,14)}); 
+			                }else{																						//偏移 x y
+			                	var icon = new BMap.Icon("/images/bm_out.png", new BMap.Size(21,32),{offset: new BMap.Size(10,14)});
+			                }	
+		              	}
+		                pt = new BMap.Point(lon_data[i],lat_data[i]);
+		                label4[i] = new BMap.Label('',{offset:new BMap.Size(25,0),point:pt });
+		                label4[i].setContent(aname_desc[i]);
+                		 label4[i].setStyle({            //给label设置样式，任意的CSS都是可以的    
+		                	color:"red",                   //颜色    
+		                	fontSize:"12px",               //字号    
+		                	border:"0",                    //边    
+		                	//height:"120px",                //高度    
+		                	//width:"125px",                 //宽    
+		                	textAlign:"center",            //文字水平居中显示    
+		                	//lineHeight:"120px",            //行高，文字垂直居中显示    
+		                	//	background:"url(/images/open_hover.png)",    //背景图片，这是房产标注的关键！    
+		                	cursor:"pointer",
+		                	zIndex:'1'});     
+										marker[i] =new BMap.Marker(pt);
+		                marker[i].setIcon(icon);
+		                marker[i].setLabel(label4[i]);
+								}else if(map.getZoom()==16){
+									 if(parseInt(sflag[i])==1){
+											var icon = new BMap.Icon("/images/bm_on.png",  new BMap.Size(21,32),{offset: new BMap.Size(10,14)}); 
+									 }else{
+											if(hostatus[i]==1){   
+			                	var icon = new BMap.Icon("/images/bm_on_b.png",  new BMap.Size(21,32),{offset: new BMap.Size(10,14)}); 
+			                }else{																						//偏移 x y
+			                	var icon = new BMap.Icon("/images/bm_out.png", new BMap.Size(21,32),{offset: new BMap.Size(10,14)});
+			                }	
+		              	}
+		                pt = new BMap.Point(lon_data[i],lat_data[i]);
+										marker[i] =new BMap.Marker(pt);
+		                marker[i].setIcon(icon);
+		                //var shadow=new BMap.Shadow();
+		                //marker[i].setShadow(shadow);
+//		                marker[i].setLabel(label4[i]);
+								}else if(map.getZoom()>8&&map.getZoom()<16){
+										if(parseInt(sflag[i])==1){
+											var icon = new BMap.Icon("/images/bm_on.png",  new BMap.Size(21,32),{offset: new BMap.Size(10,14)}); 
+										}else{
+											if(hostatus[i]==1){     
+			                	var icon = new BMap.Icon("/images/m_on.png",  new BMap.Size(10,14),{offset: new BMap.Size(10,14)}); 
+			                }else{																						//偏移 x y
+			                	var icon = new BMap.Icon("/images/m_off.png", new BMap.Size(10,14),{offset: new BMap.Size(10,14)});
+			                }	
+		              	}
+		                pt = new BMap.Point(lon_data[i],lat_data[i]);
+		                label4[i] = new BMap.Label('',{ point:pt });
+		                //label4[i] .setContent("");
+										label4[i].setStyle({position:'absolute',border:'none',background:'none',zIndex:'1'});
+										marker[i] =new BMap.Marker(pt);
+		                marker[i].setIcon(icon);
+		                //var shadow=new BMap.Shadow();
+		                //marker[i].setShadow(shadow);
+		                marker[i].setLabel(label4[i]);
+								}else{
+								}
+
+								marker[i].id=i;
+								marker[i].addEventListener("onclick", function(e) {
+										//调ajax查此点信息
+										if(userid[this.id]>0)
+										form1.uid.value=userid[this.id];
+										callServer2(this);	
+										//alert(address);
+										
+										var opts = {  
+										 width : 120,     // 信息窗口宽度  
+										 height: 125,     // 信息窗口高度  
+										 title : "<div align=\"center\"><font align=center style=\"size:13px;color:red;font-weight:border;\"><a href=\"#xxm\" onclick=\"show_edit('"+userid[this.id]+"')\">"+aname_desc[this.id]+"</a></font></div>"  // 信息窗口标题  
+										}  
+										//var content="<a target='_blank' href='http://www.ui-love.com/su/'><img title='测试图片' alt='测试图片' src='http://ui-love.com/static/img/subslogan.jpg' /></a><br>";
+			 	   	    		var content="";
+			 	   	    		content+="<table border=\"0\" align=\"left\" cellpadding=\"0\" cellspacing=\"1\" bgcolor=\"white\"  style=\"overflow:hidden\" >";
+			 	   	    		//content+="<tr align=left><td align=left>&nbsp;名&nbsp;&nbsp;称&nbsp;：<a href=\"#xxm\" onclick=\"show_edit('"+aname_desc[this.id]+"')\">"+aname_desc[this.id]+"</a></td></tr>";
+			 	   	    		content+="<tr align=left><td align=left><font color=black>场所代码：</font>"+username[this.id]+"</td></tr>";
+			 	   	    		content+="<tr align=left><td align=left><font color=black>在线用户：</font>"+onuser+"</td></tr>";
+			 	   	    		content+="<tr align=left><td align=left><font color=black>&nbsp;&nbsp;&nbsp;&nbsp;联系人：</font>"+contact+"</td></tr>";
+			 	   	    		content+="<tr align=left><td align=left><font color=black>联系电话：</font>"+telphone+"</td></tr>";
+			 	   	    		content+="<tr align=left><td align=left><font color=black>单位地址：</font>"+address+"</td></tr>";
+			 	   	    		content+="<tr align=right><td align=right>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"#xxm\" onclick=\"show_log('"+userid[this.id]+"')\">上网日志</a></td></tr>";
+			 	   	    		content+="</table>";
+	 	   	    		
+										infoWindow[this.id] = new BMap.InfoWindow(content, opts);  // 创建信息窗口对象  
+										if(map.getZoom()>8&&map.getZoom()<16){
+											map.openInfoWindow(infoWindow[this.id], new BMap.Point(lon_data[this.id],lat_data[this.id]));      // 打开信息窗口  
+										}else if(map.getZoom()>=16){ //富marker    pop偏移
+											map.openInfoWindow(infoWindow[this.id], new BMap.Point(lon_data[this.id],lat_data[this.id]));      
+										}else{}
+											
+								});
+								
+                marker[i].addEventListener("onmouseover", function(e) {
+                	form1.uid.value="";
+                	if(map.getZoom()>8&&map.getZoom()<16){
+                		var label;
+                		if(parseInt(sflag[this.id])==1){
+                			var icon = new BMap.Icon("/images/bm_over.png", new BMap.Size(23,36),new BMap.Size(0,-15));
+                																										//偏移
+                			label= new BMap.Label('',{offset:new BMap.Size(25,0), point:new BMap.Point(lon_data[this.id],lat_data[this.id]) });
+                		}else{
+                			var icon = new BMap.Icon("/images/m_over.png", new BMap.Size(11,15),new BMap.Size(0,-15));
+                			label= new BMap.Label('',{offset:new BMap.Size(15,-5), point:new BMap.Point(lon_data[this.id],lat_data[this.id]) });
+                		}
+                		this.setIcon(icon);
+                		label.setContent(aname_desc[this.id]);
+                		 label.setStyle({            //给label设置样式，任意的CSS都是可以的    
+		                	color:"red",                   //颜色    
+		                	fontSize:"12px",               //字号    
+		                	border:"0",                    //边    
+		                	//height:"120px",                //高度    
+		                	//width:"125px",                 //宽    
+		                	textAlign:"center",            //文字水平居中显示    
+		                	//lineHeight:"120px",            //行高，文字垂直居中显示    
+		                	//	background:"url(/images/open_hover.png)",    //背景图片，这是房产标注的关键！    
+		                	cursor:"pointer",
+		                	zIndex:'1'});              
+                		this.setLabel(label);
+                		this.setTop(true,26000000);         //处理重叠问题 目前只支持普通marker
+									}else if(map.getZoom()<=8){
+										
+									}else if(map.getZoom()>=16){
+										  this.setTop(true,26000000);        
+								
+                			var icon = new BMap.Icon("/images/bm_over.png", new BMap.Size(23,36),new BMap.Size(0,-15));
+                			this.setIcon(icon);
+									}
+									
+								});
+								marker[i].addEventListener("onmouseout", function(e) {
+									if(map.getZoom()>=16){
+										this.setTop(false);                     
+										if(parseInt(sflag[this.id])==1){
+													var icon = new BMap.Icon("/images/bm_on.png", new BMap.Size(21,32),new BMap.Size(0,-15));
+										}else{
+											if(hostatus[this.id]==1){     
+													var icon = new BMap.Icon("/images/bm_on_b.png", new BMap.Size(21,32),new BMap.Size(0,-15));
+	                		}else{
+	                				var icon = new BMap.Icon("/images/bm_out.png", new BMap.Size(21,32),new BMap.Size(0,-15));
+	                		}
+	                	}
+                			this.setIcon(icon);
+									}else if(map.getZoom()>8&&map.getZoom()<16){
+                			//marker与label绑定的  隐藏label   处理marker时一起删除
+											this.getLabel().hide();
+											//this.remove(this.getLabel());
+											//下面可判断是否离线更好图片
+											if(parseInt(sflag[this.id])==1){
+													var icon = new BMap.Icon("/images/bm_on.png", new BMap.Size(21,32),new BMap.Size(0,-15));
+											}else{
+												if(hostatus[this.id]==1){   
+													var icon = new BMap.Icon("/images/m_on.png", new BMap.Size(10,14),new BMap.Size(0,-15));
+	                			}else{
+	                				var icon = new BMap.Icon("/images/m_off.png", new BMap.Size(10,14),new BMap.Size(0,-15));
+	                			}
+                			}
+                			this.setIcon(icon);
+											this.setTop(false);    
+									}else{}
+								});
+                newMarkers.push(marker[i]);               
+                //newMarkers.push(new BMap.Marker(pt));               
+        }
+        return newMarkers;   
+  }
+function show_edit(userid){
+	//alert(aname_desc);
+	var temp="/pronline/Msg?FunName@ncsVistNetTrac&userid@"+userid;
+	window.open(temp,'','top=100,left=200,width=500px,height=768','toolsbar=no');
+	//var oDia=showModalDialog(temp,window,
+	//	 "status:no;center:yes;help:no;minimize:no;maximize:no;border:thick;statusbar:no;dialogWidth:1024px;scroll:none;dialogHeight:768px;overflow:none");	
+ 
+}
+
+function show_log(userid){
+	var temp="/pronline/Msg?FunName@ncsWebReplace&plate@baidu/main_Gdrz_Mon_map.htm&userid@"+userid;
+	//temp="/pronline/Msg?FunName@ncsWebReplace&plate@ncs/ncs_gdrz_lab.htm&s_flag@[#s_flag#]&userid@"+userid;
+	window.open(temp,'','top=100,left=200,width=1024,height=600','toolsbar=no');
+}
+var intervalid;
+function init(){ 
+	  initflag=1;
+		var b=map.getBounds();		 
+	  var ne = b.getNorthEast(); // 东北点
+		var sw = b.getSouthWest(); // 西南点
+		//alert("东北点" + ne .lng + " " + ne .lat+" 西南点" + sw .lng + " " + sw .lat)
+		//alert("西南点" + sw .lng + " " + sw .lat)
+	  document.getElementById("form1").minlon.value=sw .lng;
+		document.getElementById("form1").minlat.value=sw .lat;
+		document.getElementById("form1").maxlon.value=ne .lng;
+		document.getElementById("form1").maxlat.value=ne .lat;
+		
+		//callServer(this);	              //测试时用。登进去在没有marker层时不用
+}  
+function getxmlbyname(ins,names,namee){
+		var start;
+		var end;
+		var ret='';
+	
+		start=ins.indexOf(names);
+		end=ins.indexOf(namee);
+		
+		if(start!=-1&&end!=-1){
+			ret=ins.substr(start+names.length,end-start-names.length);
+		}
+		return ret;	
+  }  
+var xmlHttp = false;
+
+ 	//创建XMLHttpRequest对象       
+function createXMLHttpRequest() {
+	var C=null;
+		if(window.XMLHttpRequest) { //Mozilla 浏览器
+			C = new XMLHttpRequest();
+		}else if (window.ActiveXObject) { // IE浏览器
+			try {
+				C = new ActiveXObject("Msxml2.XMLHTTP");
+			} catch (e) {
+				try {
+					C = new ActiveXObject("Microsoft.XMLHTTP");
+				} catch (e) {}
+			}
+		}
+		return C;
+	}
+	
+function callServer2(e) {  //alert(1);
+  try{
+  if( xmlHttp && xmlHttp .readyState != 0 ){
+    xmlHttp.abort();
+  }
+   xmlHttp = createXMLHttpRequest();
+   if( xmlHttp ){
+		 var url;
+		// var dev_value=allselect();
+		 //url="/pronline/Msg?FunName@nc_macalocation_map&id@"+Math.random()*999+"&av_un@"+form1.av_un.value;
+		 url="/pronline/Msg?FunName@ncsShow_hotel_map&id@"+Math.random()*999+"&minlon@"+form1.minlon.value+"&maxlon@"+form1.maxlon.value+"&minlat@"+form1.minlat.value+"&maxlat@"+form1.maxlat.value+"&search_m@"+form1.search_m.value+"&uid@"+form1.uid.value+"&sea_flag@"+form1.sea_flag.value;
+    //打开连接
+     xmlHttp.open("GET",url, false);
+    //设置回调函数
+     xmlHttp.onreadystatechange = updatePage;//alert("3  "+intervalid);
+     xmlHttp.send(null);
+   }else{
+		//document.getElementById("flag").innerHTML = "XMLHTTP对象创建失败";
+   }
+  }catch (e){
+	 //  document.getElementById("flag").innerHTML = "查询错误:" + e;
+  }
+ }
+	 //调用AJAX
+ function callServer(e) {  //alert(1);
+  try{
+  if( xmlHttp && xmlHttp .readyState != 0 ){
+    xmlHttp.abort();
+  }
+   xmlHttp = createXMLHttpRequest();
+   if( xmlHttp ){
+		 var url;
+		// var dev_value=allselect();
+		 //url="/pronline/Msg?FunName@nc_macalocation_map&id@"+Math.random()*999+"&av_un@"+form1.av_un.value;
+		 url="/pronline/Msg?FunName@ncsShow_hotel_map&id@"+Math.random()*999+"&minlon@"+form1.minlon.value+"&maxlon@"+form1.maxlon.value+"&minlat@"+form1.minlat.value+"&maxlat@"+form1.maxlat.value+"&search_m@"+form1.search_m.value+"&uid@"+form1.uid.value;
+    //打开连接
+     xmlHttp.open("GET",url, true);
+    //设置回调函数
+    
+     xmlHttp.onreadystatechange = updatePage;//alert("3  "+intervalid);
+     xmlHttp.send(null);
+   }else{
+		//document.getElementById("flag").innerHTML = "XMLHTTP对象创建失败";
+   }
+  }catch (e){
+	 //  document.getElementById("flag").innerHTML = "查询错误:" + e;
+  }
+ }
+ 
+  //回调处理函数
+ function updatePage() {
+
+  try {
+   if (xmlHttp.readyState == 1){
+//    document.getElementById("flag").innerHTML = "正在加载连接对象......";
+   }
+   if (xmlHttp.readyState == 2){
+//    document.getElementById("flag").innerHTML = "连接对象加载完毕。";
+   }
+   if (xmlHttp.readyState == 3){
+ //   document.getElementById("flag").innerHTML = "数据获取中......";
+   }
+   if (xmlHttp.readyState == 4){
+    var response = xmlHttp.responseText;
+	 
+	 
+		
+    //酒店宾馆数量
+    var temp_num=getxmlbyname(response,"<snum>","</snum>");
+    MAX=parseInt(temp_num);
+    //地址
+  	var tmpuser=getxmlbyname(response,"<user>","</user>");
+  	onuser=tmpuser;
+  	//地址
+  	var tmpaddre=getxmlbyname(response,"<addr>","</addr>");
+    address=tmpaddre;
+  	//联系人
+  	var tmpcont=getxmlbyname(response,"<cont>","</cont>");
+    contact=tmpcont;
+    //联系人电话
+    var tmptel=getxmlbyname(response,"<tel>","</tel>");
+    telphone=tmptel;
+    //邮箱
+    var tmpeml=getxmlbyname(response,"<eml>","</eml>");
+    email=tmpeml;
+     //查询中心点经度
+    var tmplon=getxmlbyname(response,"<se_lon>","</se_lon>");
+    cen_lon=tmplon;
+     //查询中心点纬度
+    var tmplat=getxmlbyname(response,"<se_lat>","</se_lat>");
+    cen_lat=tmplat;
+    
+  	//取酒店宾馆id
+	  for(i=0;i<parseInt(temp_num);i++){
+	  	  var st_name="<userid"+i+">";
+	  	  var en_name="</userid"+i+">";
+	      var pro_na=getxmlbyname(response,st_name,en_name);
+	      userid[i]=pro_na;
+	  }
+	  //取酒店宾馆名称 
+	  for(i=0;i<parseInt(temp_num);i++){
+	  	  var st_name="<aname"+i+">";
+	  	  var en_name="</aname"+i+">";
+	      var pro_na=getxmlbyname(response,st_name,en_name);
+	      aname_desc[i]=pro_na;
+	  }
+	  //取酒店宾馆场所端代码
+	  for(i=0;i<parseInt(temp_num);i++){
+	  	  var st_name="<username"+i+">";
+	  	  var en_name="</username"+i+">";
+	      var pro_na=getxmlbyname(response,st_name,en_name);
+	      username[i]=pro_na;
+	  }
+	  //取酒店宾馆简称 
+	  for(i=0;i<parseInt(temp_num);i++){
+	  	  var st_name="<sname"+i+">";
+	  	  var en_name="</sname"+i+">";
+	      var pro_na=getxmlbyname(response,st_name,en_name);
+	      sname_desc[i]=pro_na;
+	  }
+	  //取查询结果
+	  for(i=0;i<parseInt(temp_num);i++){
+	  	  var st_name="<sflag"+i+">";
+	  	  var en_name="</sflag"+i+">";
+	      var pro_na=getxmlbyname(response,st_name,en_name);
+	      sflag[i]=pro_na;
+	  }
+	  //取经度
+	  for(i=0;i<parseInt(temp_num);i++){
+	  	  var st_name="<longitude"+i+">";
+	  	  var en_name="</longitude"+i+">";
+	      var pro_na=getxmlbyname(response,st_name,en_name);
+	      lon_data[i]=pro_na;
+	  }
+	  //取纬度
+	  for(i=0;i<parseInt(temp_num);i++){
+	  	  var st_name="<latitude"+i+">";
+	  	  var en_name="</latitude"+i+">";
+	      var pro_na=getxmlbyname(response,st_name,en_name);
+	      lat_data[i]=pro_na;
+	  }
+	  //取状态
+	  for(i=0;i<parseInt(temp_num);i++){
+	  	  var st_name="<hostatus"+i+">";
+	  	  var en_name="</hostatus"+i+">";
+	      var pro_na=getxmlbyname(response,st_name,en_name);
+	      hostatus[i]=pro_na;
+	  }
+	  
+		show_mark(MAX);
+   }
+  }catch (e){
+ 		// document.getElementById("flag").innerHTML = "回调处理错误:" + e;
+  }
+ }   
+
+   
+</script>

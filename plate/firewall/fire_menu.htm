@@ -1,0 +1,72 @@
+<html>
+
+<head>
+
+<title>Untitled Document</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script>
+function goto(t){
+ftop.location.href=t
+}
+function goto2(t){
+self.location.href=t
+}
+</script>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+
+
+<body bgcolor="#CCCCCC" text="#000000" leftmargin="0" topmargin="0">
+<table width="100%" border="0" cellspacing="0">
+  <tr>
+
+    <td> 
+      <table width="100%" border="0" cellspacing="0">
+        <tr> 
+          <td> 
+            <div align="center"><b>ProFirewall配置</b></div>
+          </td>
+        </tr>
+        <tr> 
+          <td> 
+            <div align="right"> 
+              <input type="button" name="Button" value="重新排序" class="an3" onclick="goto('/profire/Msg?FunName@fireWebRuleSort')">
+              <input type="button" name="Button2" value="默认策略" class="an3" onClick="goto('/profire/Msg?FunName@fireWebDispDefault')">
+              <input type="button" name="Button22" value="基本信息" class="an3" onClick="goto('/profire/Msg?FunName@fireWebDispDefineInfo')">
+              <input type="button" name="Button22" value="标准规则" class="an3" onClick="goto('/profire/Msg?FunName@fireWebDispTables')">
+              <input type="button" name="Button22" value="高级规则" class="an3" onClick="goto('/profire/Msg?FunName@fireWebDispTables2')">
+              <input type="button" name="Button22" value="运行" class="an3" onClick="goto('/profire/Msg?FunName@fireWebRunScript')">
+              <input type="button" name="Button22" value="重置" class="an3" onClick="goto('/profire/Msg?FunName@fireWebReset')">
+              <input type="button" name="Button22" value="保存设置" class="an3" onClick="goto2('/profire/Msg?FunName@fireWebSave')">
+              <input type="button" name="Button22" value="查看日志" class="an3" onClick="goto2('/profire/Msg?FunName@fireWebShowLog')">
+            </div>
+          </td>
+        </tr>
+      </table>
+
+    </td>
+
+  </tr>
+
+  <tr>
+
+            
+    <td height="200"><iframe name="ftop" src="/profire/Msg?FunName@fireWebDispDefault" width="100%" height="100%" border="1" frameborder="1" scrolling="yes"></iframe></td>
+
+  </tr>
+
+  <tr>
+
+            
+    <td height="350"><iframe name="fbot" src="/profire/Msg?FunName@fireWebDispRuleLst" width="100%" height="100%" border="1" frameborder="1" scrolling="yes"></iframe></td>
+
+  </tr>
+
+</table>
+
+</body>
+
+</html>
+

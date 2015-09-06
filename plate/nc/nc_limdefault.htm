@@ -1,0 +1,97 @@
+<html>
+<head>
+<title>分类管理</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0"  oncontextmenu="return false" >
+
+<table width="100%" border="0"  align="center" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td ><table width="100%" height="27" border="0" align="center" cellpadding="0" cellspacing="0" background="/images/table_bg1.gif">
+        <tr > 
+          <td colspan="2"> <div align="center"><strong><font color="#FFFFFF"> 
+              <input type="hidden" name="FunName" value="ncWebLimSaveDefault" >
+              缺省访问控制参数</font></strong></div></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr> 
+    <td > <form name="form1" method="post" action="/pronline/Msg">
+        <div align="center"><br>
+          <table width="70%" height="100%" border="1"    bordercolorlight=#89ACED   bordercolordark=#ffffff   cellpadding="0" cellspacing="0">
+            <tr> 
+              <td> 
+                <table width="90%" border="0" align="center">
+                  <tr> 
+                    <td height="8
+" colspan="2" align="center" valign="middle">&nbsp;</td>
+                  </tr>
+                  <tr> 
+                    <td height="28" align="center" valign="middle" width="45%"><div align="left"><strong>参数名称</strong></div></td>
+                    <td height="28" width="55%"> <div align="left"><strong>说明</strong></div></td>
+                  </tr>
+                  <tr> 
+                    <td height="40" align="center" valign="middle" width="45%"> 
+                      <div align="left"> 
+                        <input type="checkbox" name="adduser" value="adduser" [#adduser#]>
+                        自动增加用户</div></td>
+                    <td height="22" width="55%">当出现系统中不存在的用户时，系统将自动添加一个。</td>
+                  </tr>
+                  <tr> 
+                    <td height="40" width="45%"> 新增用户命名方式 [#defusername#]</td>
+                    <td height="30" width="55%">自动增加的用户的命名方式。</td>
+                  </tr>
+                  <tr> 
+                    <td height="40" width="45%"> <input type="checkbox" name="defaultaccess" value="defaultaccess" [#defaultaccess#]>
+                      缺省时禁止访问外部网</td>
+                    <td height="30" width="55%">当访问控制中没有设定时缺省的访问策略。</td>
+                  </tr>
+                  <tr> 
+                    <td height="40" width="45%"> <input type="checkbox" name="checkmac" value="checkmac" [#checkmac#]>
+                      检查IP地址和MAC地址</td>
+                    <td height="30" width="55%">根据用户信息检查IP和MAC地址，若不一致，将禁止该用户访问外部网</td>
+                  </tr>
+                  <tr> 
+                    <td height="40" width="45%"> <input type="checkbox" name="postflags" value="postflags"  [#postflags#]>
+                      检查是否是“网站访问表单的提交”</td>
+                    <td height="28" width="55%">只有选择该选项，访问控制中“在网站访问时禁用表单提交”的功能才起作用。</td>
+                  </tr>
+                  <tr> 
+                    <td height="40" width="45%"> <input type="checkbox" name="webip" value="webip"  [#webip#]>
+                      检查是否是“用IP地址访问网站”</td>
+                    <td height="28" width="55%">只有选择该选项，访问控制中“限制通过IP地址访问网站”的功能才起作用。</td>
+                  </tr>
+                  <tr> 
+                    <td height="40" colspan="2">&nbsp;</td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </form></td>
+  </tr>
+  <tr>
+    <td height="70" ><table width="70%" border="0" align="center">
+        <tr> 
+          <td> <div align="right"> 
+              <input type="submit" name="ok" class="an3" value="保 存">
+              &nbsp; 
+              <input type="submit" name="ok2" class="an3" value="应 用">
+              &nbsp; 
+              <input type="reset" name="cancel"  class="an3" value="放 弃">
+              只有按 
+              <input type="submit" name="ok22" class="an3" value="应 用">
+              设定的参数才起作用 &nbsp; </div></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+</body>
+</html>

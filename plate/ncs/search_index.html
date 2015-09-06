@@ -1,0 +1,208 @@
+<html>
+<head><title>搜索_</title> 
+<META http-equiv="Content-Type" content="text/html; charset=GBK">
+<link REL=stylesheet HREF="/css/css_s2.css" TYPE="text/css">
+<SCRIPT>
+	
+function checkWd()
+{
+        if(f.wd.value == "")
+        {
+                return false;
+        }
+        return true;
+}
+
+function adv_search()
+{
+        self.location.href="/advanced.html";
+}
+
+</SCRIPT>
+
+
+</head>
+<br><body onLoad="f.wd.focus();">
+ <center>
+
+
+	<div id="m">
+
+                <p id="nv">
+                        <nobr>
+                        <a href="/pronline/Msg?FunName@ncsformmon_v4" class=gb1>表单</a>&nbsp;<b class=gb1>BBS</b>&nbsp;<a href="/pronline/Msg?FunName@ncsmailmon_v4" class=gb1>邮件</a>&nbsp;<a href="/pronline/Msg?FunName@ncsimlog_v4" class=gb1>即时通讯</a>
+                        </nobr>
+                </p>
+                <div id="fm">
+                        <form method="post" name="f" action="/pronline/Msg" onSubmit="return checkWd()">
+                                <input type="hidden" name="FunName" value="ncsbbsmon_v4">
+                                <input type="text" name="wd" value="" id="kw"  size ="80" maxlength="80">
+                                <br>
+                                <input type="submit" value="搜索" id="su">
+                                 <input type="button" value="&nbsp;&nbsp;高&nbsp;&nbsp;级&nbsp;&nbsp;" id="adv" onClick="adv_search()">
+                        </form>
+                </div>
+                
+       <br>
+       <br>
+       <br>
+       <b class=gb1>BBS统计(<a href = "/pronline/Msg?FunName@ncStatDay&t@b" target="_blank">统计全部</a>)</b><br>      
+       <table> 
+        <tr>
+                <th><a href = "/pronline/Msg?FunName@ncStatDay&f@0&t@b" target="_blank">一天BBS统计([#sdate#])</a></th> 
+                <th><a href = "/pronline/Msg?FunName@ncStatDay&f@1&t@b" target="_blank">一周BBS统计([#sdate1#]-[#sdate#])</a></th> 
+                <th><a href = "/pronline/Msg?FunName@ncStatDay&f@2&t@b" target="_blank">一月BBS统计([#sdate2#]-[#sdate#])</a></th> 
+        </tr> 
+        <tr> 
+                <td><img src="http://0.chart.apis.google.com/chart?cht=p3&amp;chd=t:[#SLPB#][#lcount0#][#SLPE#]&amp;chs=375x185&amp;chdl=[#SLPB#][#bbsname0#][#SLPE#]&chco=[#SLPB#][#color0#][#SLPE#]"/><br> 
+                </td> 
+                <td><img src="http://1.chart.apis.google.com/chart?cht=p3&amp;chd=t:[#SLPB#][#lcount1#][#SLPE#]&amp;chs=375x185&amp;chdl=[#SLPB#][#bbsname1#][#SLPE#]&chco=[#SLPB#][#color1#][#SLPE#]"/><br> 
+                </td> 
+                <td><img src="http://2.chart.apis.google.com/chart?cht=p3&amp;chd=t:[#SLPB#][#lcount2#][#SLPE#]&amp;chs=375x185&amp;chdl=[#SLPB#][#bbsname2#][#SLPE#]&chco=[#SLPB#][#color2#][#SLPE#]"/><br> 
+                </td> 
+        </tr>
+        <tr>
+                <th><a href = "/pronline/Msg?FunName@ncStatDay&f@3&t@b" target="_blank">上一天BBS统计([#sdate3#])</a></th> 
+                <th><a href = "/pronline/Msg?FunName@ncStatDay&f@4&t@b" target="_blank">上一周BBS统计([#sdate4#]-[#sdate5#])</a></th> 
+                <th><a href = "/pronline/Msg?FunName@ncStatDay&f@5&t@b" target="_blank">上一月BBS统计([#sdate6#]-[#sdate7#])</a></th> 
+        </tr>  
+        <tr> 
+                <td><img src="http://0.chart.apis.google.com/chart?cht=p3&amp;chd=t:[#SLPB#][#lcount9#][#SLPE#]&amp;chs=375x185&amp;chdl=[#SLPB#][#bbsname9#][#SLPE#]&chco=[#SLPB#][#color9#][#SLPE#]"/><br> 
+                </td> 
+                <td><img src="http://1.chart.apis.google.com/chart?cht=p3&amp;chd=t:[#SLPB#][#lcount10#][#SLPE#]&amp;chs=375x185&amp;chdl=[#SLPB#][#bbsname10#][#SLPE#]&chco=[#SLPB#][#color10#][#SLPE#]"/><br> 
+                </td> 
+                <td><img src="http://2.chart.apis.google.com/chart?cht=p3&amp;chd=t:[#SLPB#][#lcount11#][#SLPE#]&amp;chs=375x185&amp;chdl=[#SLPB#][#bbsname11#][#SLPE#]&chco=[#SLPB#][#color11#][#SLPE#]"/><br> 
+                </td> 
+        </tr> 
+        </table> 
+        
+        
+  <br>
+  <br>
+  <br>
+       <b class=gb1>邮件统计(<a href = "/pronline/Msg?FunName@ncStatDay&t@m" target="_blank">统计全部</a>)</b><br>      
+       <table> 
+        <tr>
+                <th><a href = "/pronline/Msg?FunName@ncStatDay&f@0&t@m" target="_blank">一天邮件统计([#sdate#])</a></th> 
+                <th><a href = "/pronline/Msg?FunName@ncStatDay&f@1&t@m" target="_blank">一周邮件统计([#sdate1#]-[#sdate#])</a></th> 
+                <th><a href = "/pronline/Msg?FunName@ncStatDay&f@2&t@m" target="_blank">一月邮件统计([#sdate2#]-[#sdate#])</a></th> 
+        </tr> 
+        <tr> 
+                <td><img src="http://3.chart.apis.google.com/chart?cht=p3&amp;chd=t:[#SLPB#][#lcount3#][#SLPE#]&amp;chs=375x185&amp;chdl=[#SLPB#][#bbsname3#][#SLPE#]&chco=[#SLPB#][#color3#][#SLPE#]"/><br> 
+                </td> 
+                <td><img src="http://4.chart.apis.google.com/chart?cht=p3&amp;chd=t:[#SLPB#][#lcount4#][#SLPE#]&amp;chs=375x185&amp;chdl=[#SLPB#][#bbsname4#][#SLPE#]&chco=[#SLPB#][#color4#][#SLPE#]"/><br> 
+                </td> 
+                <td><img src="http://5.chart.apis.google.com/chart?cht=p3&amp;chd=t:[#SLPB#][#lcount5#][#SLPE#]&amp;chs=375x185&amp;chdl=[#SLPB#][#bbsname5#][#SLPE#]&chco=[#SLPB#][#color5#][#SLPE#]"/><br> 
+                </td> 
+        </tr> 
+        <tr>
+                <th><a href = "/pronline/Msg?FunName@ncStatDay&f@3&t@m" target="_blank">上一天邮件统计([#sdate3#])</a></th> 
+                <th><a href = "/pronline/Msg?FunName@ncStatDay&f@4&t@m" target="_blank">上一周邮件统计([#sdate4#]-[#sdate5#])</a></th> 
+                <th><a href = "/pronline/Msg?FunName@ncStatDay&f@5&t@m" target="_blank">上一月邮件统计([#sdate6#]-[#sdate7#])</a></th> 
+        </tr> 
+        <tr> 
+                <td><img src="http://3.chart.apis.google.com/chart?cht=p3&amp;chd=t:[#SLPB#][#lcount12#][#SLPE#]&amp;chs=375x185&amp;chdl=[#SLPB#][#bbsname12#][#SLPE#]&chco=[#SLPB#][#color12#][#SLPE#]"/><br> 
+                </td> 
+                <td><img src="http://4.chart.apis.google.com/chart?cht=p3&amp;chd=t:[#SLPB#][#lcount13#][#SLPE#]&amp;chs=375x185&amp;chdl=[#SLPB#][#bbsname13#][#SLPE#]&chco=[#SLPB#][#color13#][#SLPE#]"/><br> 
+                </td> 
+                <td><img src="http://5.chart.apis.google.com/chart?cht=p3&amp;chd=t:[#SLPB#][#lcount14#][#SLPE#]&amp;chs=375x185&amp;chdl=[#SLPB#][#bbsname14#][#SLPE#]&chco=[#SLPB#][#color14#][#SLPE#]"/><br> 
+                </td> 
+        </tr> 
+        
+        </table> 
+                
+        
+        
+<br>
+<br>
+<br>
+       <b class=gb1>即时通讯统计(<a href = "/pronline/Msg?FunName@ncStatDay&t@i" target="_blank">统计全部</a>)</b><br>
+       <table>
+        <tr>
+                <th><a href = "/pronline/Msg?FunName@ncStatDay&f@0&t@i" target="_blank">一天即时通讯统计([#sdate#])</a></th>
+                <th><a href = "/pronline/Msg?FunName@ncStatDay&f@1&t@i" target="_blank">一周即时通讯统计([#sdate1#]-[#sdate#])</a></th>
+                <th><a href = "/pronline/Msg?FunName@ncStatDay&f@2&t@i" target="_blank">一月即时通讯统计([#sdate2#]-[#sdate#])</a></th>
+        </tr>
+        <tr>
+                <td><img src="http://6.chart.apis.google.com/chart?cht=p3&amp;chd=t:[#SLPB#][#lcount6#][#SLPE#]&amp;chs=375x185&amp;chdl=[#SLPB#][#bbsname6#][#SLPE#]&chco=[#SLPB#][#color6#][#SLPE#]"/><br>
+                </td>
+                <td><img src="http://7.chart.apis.google.com/chart?cht=p3&amp;chd=t:[#SLPB#][#lcount7#][#SLPE#]&amp;chs=375x185&amp;chdl=[#SLPB#][#bbsname7#][#SLPE#]&chco=[#SLPB#][#color7#][#SLPE#]"/><br>
+                </td>
+                <td><img src="http://8.chart.apis.google.com/chart?cht=p3&amp;chd=t:[#SLPB#][#lcount8#][#SLPE#]&amp;chs=375x185&amp;chdl=[#SLPB#][#bbsname8#][#SLPE#]&chco=[#SLPB#][#color8#][#SLPE#]"/><br>
+                </td>
+        </tr>
+        
+        <tr>
+                <th><a href = "/pronline/Msg?FunName@ncStatDay&f@3&t@i" target="_blank">上一天即时通讯统计([#sdate3#])</a></th>
+                <th><a href = "/pronline/Msg?FunName@ncStatDay&f@4&t@i" target="_blank">上一周即时通讯统计([#sdate4#]-[#sdate5#])</a></th>
+                <th><a href = "/pronline/Msg?FunName@ncStatDay&f@5&t@i" target="_blank">上一月即时通讯统计([#sdate6#]-[#sdate7#])</a></th>
+        </tr>
+        <tr>
+                <td><img src="http://6.chart.apis.google.com/chart?cht=p3&amp;chd=t:[#SLPB#][#lcount15#][#SLPE#]&amp;chs=375x185&amp;chdl=[#SLPB#][#bbsname15#][#SLPE#]&chco=[#SLPB#][#color15#][#SLPE#]"/><br>
+                </td>
+                <td><img src="http://7.chart.apis.google.com/chart?cht=p3&amp;chd=t:[#SLPB#][#lcount16#][#SLPE#]&amp;chs=375x185&amp;chdl=[#SLPB#][#bbsname16#][#SLPE#]&chco=[#SLPB#][#color16#][#SLPE#]"/><br>
+                </td>
+                <td><img src="http://8.chart.apis.google.com/chart?cht=p3&amp;chd=t:[#SLPB#][#lcount17#][#SLPE#]&amp;chs=375x185&amp;chdl=[#SLPB#][#bbsname17#][#SLPE#]&chco=[#SLPB#][#color17#][#SLPE#]"/><br>
+                </td>
+        </tr>
+        </table>
+
+
+
+
+
+</center>
+
+
+
+
+
+</body>
+<script>
+        var w=window;
+        var d=document;
+        var n=navigator;
+        var k=d.f.wd;
+        var a=d.getElementById("nv").getElementsByTagName("a");
+        var isIE=n.userAgent.indexOf("MSIE")!=-1;
+
+        if(!isIE||window.opera){
+                d.getElementById("st").style.display="none";
+        }
+        for(var i=0;i<a.length;i++){
+                a[i].onclick=function(){
+                        if(k.value.length>0){
+                                var C=this;
+                                var A=C.href;
+                                if(A.indexOf("&wd@")!=-1){
+                                        C.href=A.replace(/q=[^&$]*/,"&wd@"+k.value);
+                                }else{
+                                        this.href+="&wd@"+k.value;
+                                }
+                        }
+                }
+        }
+        (function(){
+                if(/q=([^&]+)/.test(location.search)){
+                        k.value=decodeURIComponent(RegExp.$1);
+                }
+        })();
+
+
+
+        function addEV(C,B,A){
+                if(w.attachEvent){
+                        C.attachEvent("on"+B,A);
+                }else{
+                        if(w.addEventListener){
+                                C.addEventListener(B,A,false);
+                        }
+                }
+        }
+
+        function G(A){
+                return d.getElementById(A);
+        }
+
+</script>
+</html>

@@ -1,0 +1,64 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<title>Web地址列表</title>
+<script>
+    function goto(t){
+        nclim_main.location.href=t;
+    }
+</script>
+<style type="text/css">
+<!--
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+-->
+</style>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+<body marginheight=0 leftmargin=0 marginwidth=0 topMargin="0" bordercolor="#D4D4D4" bgcolor="#BCBCBC">
+<form name="form1" method="post" action="/pronline/Msg"> 
+  <table border="0" width=92% height=23 cellspacing="0" cellpadding="0" align=center>
+    <tr> 
+      <td height="23" colspan="8"> 
+        <div align="center"><b><font color="#0000FF">[#appname#]</font>访问控制设置</b></div>
+      </td>
+    </tr>
+    <tr> 
+      <td height="23" width="11%"> 
+        <input type="button" name="base" value="全部规则" onclick="goto('/pronline/Msg?FunName@ncWebLim_Listbase&gtype@[#gtype#]&id@[#id#]')">
+      </td>
+      <td height="23" width="11%"> 
+        <input type="button" name="out" value="上网控制" onclick="goto('/pronline/Msg?FunName@ncWebLim_Listout&flags@1&gtype@[#gtype#]&id@[#id#]')">
+      </td>
+      <td height="23" width="11%"> 
+        <input type="button" name="web" value="网站访问" onclick="goto('/pronline/Msg?FunName@ncWebLim_Listout&flags@6&gtype@[#gtype#]&id@[#id#]')">
+      </td>
+      <td height="23" width="11%"> 
+        <input type="button" name="service" value="应用控制" onclick="goto('/pronline/Msg?FunName@ncWebLim_Listout&flags@2&gtype@[#gtype#]&id@[#id#]')">
+      </td>
+      <td height="23" width="14%"> 
+        <input type="button" name="ip" value="IP地址限制"  onclick="goto('/pronline/Msg?FunName@ncWebLim_Listout&flags@3&gtype@[#gtype#]&id@[#id#]')">
+      </td>
+      <td height="23" width="17%"> 
+        <input type="button" name="weblist" value="网站访问策略" onclick="goto('/pronline/Msg?FunName@ncWebLim_Listout&flags@5&gtype@[#gtype#]&id@[#id#]')">
+      </td>
+      <td height="23" width="15%"> 
+        <input type="button" name="iplist2" value="应用控制策略" onClick="goto('/pronline/Msg?FunName@ncWebLim_Listout&flags@4&gtype@[#gtype#]&id@[#id#]')">
+      </td>
+      <td height="23" width="10%"> 
+        <input type="button" name="iplist" value="应用" onclick="goto('/pronline/Msg?FunName@ncWebLimApp&option@0')">
+      </td>
+    </tr>
+  </table>
+</form>
+<table width="100%" border="0" height="500" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>&nbsp;<iframe name="nclim_main" src="/pronline/Msg?FunName@ncWebLim_Listbase&gtype@[#gtype#]&id@[#id#]" width="99%" height="100%"  scrolling="yes" FrameBorder=1> 
+      </iframe> </td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<html>
+
+<head>
+<title>查询</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<!-- Infrastructure code for the tree -->
+<script>
+	function init()
+	{
+
+	form1.message.value=dialogArguments.form1.mesg.value;
+	form1.service.value=dialogArguments.form1.service.value;
+	form1.mfrom.value=dialogArguments.form1.mfrom.value;
+	form1.mto.value=dialogArguments.form1.mto.value;
+	form1.sip.value=dialogArguments.form1.sip.value;
+	form1.funcode.value=dialogArguments.form1.funcode.value;
+	form1.username.value=dialogArguments.form1.username.value;
+
+		}
+function queren()
+{
+dialogArguments.form1.mesg.value=form1.message.value;
+dialogArguments.form1.service.value=form1.service.value;
+dialogArguments.form1.mfrom.value=form1.mfrom.value;
+dialogArguments.form1.sip.value=form1.sip.value;
+dialogArguments.form1.mto.value=form1.mto.value;
+dialogArguments.form1.funcode.value=form1.funcode.value;
+dialogArguments.form1.username.value=form1.username.value;
+dialogArguments.form1.submit();
+self.close();
+
+}
+function clear1()
+{
+	form1.message.value='';
+	form1.service.value='';
+	form1.mfrom.value='';
+	form1.mto.value='';
+	form1.sip.value='';
+	form1.funcode.value='';
+	form1.username.value='';
+	}
+</script>
+
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginheight="0"  oncontextmenu="return true" onload="init()">
+  <form name="form1" method="post" action="/pronline/Msg" target="main">
+  <input type="hidden" name="FunName" value="ncsWebImOnline">
+
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+
+  <tr> 
+    <td colspan="2"><table width="100%" height="27" border="0" align="center" cellpadding="0" cellspacing="0" background="/images/table_bg1.gif">
+        <tr > 
+          <td colspan="2" > <div align="center"><strong><font color="#FFFFFF">             
+              当前即时通讯信息过滤条件</font></strong></div></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr> 
+    <td colspan="2"> 
+        <br>
+        <table width="95%" border="1"    bordercolorlight=#89ACED   bordercolordark=#ffffff    align="center" cellpadding="0" cellspacing="0" >
+          <tr> 
+            <td> 
+             <table width="100%" border="0" align="center" >
+               <tr height="35">
+                  <td ></td>
+                  <td > <font color="#000000"><b><font size="2">内容</font></b></font></td>
+                  <td > <input type="text" name="message" size="27"></td>
+                  <td > </td>
+                </tr> 
+                  <tr height="35">
+                  <td ></td>
+                  <td > <font color="#000000"><b><font size="2">服务类型</font></b></font></td>
+                  <td > <select name="service" style="width:200">
+                  	<option value="">全部</option>
+                  	<option value="6">QQ</option>
+                  	<option value="7">雅虎通 </option>
+                  	<option value="10">MSN</option>
+                  	<option value="11">ICQ</option>
+                  	</select>
+                  	</td>
+                  <td > </td>
+                </tr> 
+                <tr height="35">
+                  <td ></td>
+                  <td > <font color="#000000"><b><font size="2">发件人</font></b></font></td>
+                  <td > <input type="text" name="mfrom" size="27"></td>
+                  <td > </td>
+                </tr>             
+                <tr height="35">
+                  <td ></td>
+                  <td > <font color="#000000"><b><font size="2">收件人</font></b></font></td>
+                  <td > <input type="text" name="mto" size="27"></td>
+                  <td > </td>
+                </tr> 
+                <tr height="35"> 
+                  <td ></td>
+                  <td > <font color="#000000"><b><font size="2">源IP地址</font></b></font></td>
+                  <td > <input type="text" name="sip" size="27"></td>
+                  <td >&nbsp;&nbsp;</td>
+                </tr>
+               <tr height="35"> 
+                  <td ></td>
+                  <td > <font color="#000000"><b><font size="2">动作类型</font></b></font></td>
+                  <td ><select name="funcode" style="width:200">
+                  	<option value="">全部</option>
+                  	<option value="1">登陆</option>
+                  	<option value="2">退出 </option>
+                  	<option value="3">发送消息</option>
+                  	<option value="4">发送文件</option>
+                  	</select></td>
+                  <td >&nbsp;&nbsp; </td>
+                </tr> 
+              
+                <tr height="35"> 
+                  <td ></td>
+                  <td> <font color="#000000"><b><font size="2">用户名</font></b></font></td>
+                  <td > <input type="text" name="username" size="27"></td>
+                  <td >&nbsp;&nbsp;</td>
+                </tr> 
+       
+              </table>
+            </td>
+          </tr>
+ 
+        </table>
+
+      </td>
+  </tr>
+           
+</table>
+          <p align="center"><input name='Button' type='button' class='an3' onClick='queren()' value='确 认'>
+          	<input name='Button' type='button' class='an3' onClick='clear1()' value='清零'>
+          	 </p>
+ </form>
+</body>
+</html>

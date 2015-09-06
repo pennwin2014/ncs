@@ -1,0 +1,133 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<body bgcolor="#dfdfdf" text="#000000" topmargin="2" align="center" oncontextmenu="return false" >
+<form name="form1" method="post" action="/pronline/Msg">
+<table width="80%" border="0" height="80%">
+  <tr> 
+      <td valign="top" height="308"> 
+        <table width="98%" border="0" align="center">
+          <tr> 
+            <td height="9"> 
+              <div align="center"><b>将备份数据导出到远端机器</b></div>
+            </td>
+          </tr>
+        </table>
+        <table width="96%" border="0" align="center">
+          <tr> 
+            <td colspan="2"><img src="/images/hr.gif" width="100%" height="2"></td>
+          </tr>
+          <tr> 
+            <td colspan="2" height="21">选择需要导出的数据：</td>
+          </tr>
+          <tr> 
+            <td colspan="2" height="21"> 
+              <table width="99%" border="0">
+                <tr> 
+                  <td width="27%"> 
+                    <div align="right"> 
+                      <input type="checkbox" name="mailmon" value="checkbox">
+                    </div>
+                  </td>
+                  <td width="21%">拦截邮件</td>
+                  <td width="15%"> 
+                    <div align="right"> 
+                      <input type="checkbox" name="mailctl" value="checkbox">
+                    </div>
+                  </td>
+                  <td width="37%">监控邮件</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr> 
+            <td colspan="2" height="21">远端服务器设置：</td>
+          </tr>
+          <tr> 
+            <td> 
+              <div align="right">主机IP:</div>
+            </td>
+            <td width="77%"> 
+              <input type="text" name="rip" value="[#rip#]" size="31" maxlength="63">
+            </td>
+          </tr>
+          <tr> 
+            <td height="15"> 
+              <div align="right">主机名称:</div>
+            </td>
+            <td width="77%" height="15"> 
+              <input type="text" name="rhost" value="[#rhost#]" size="31" maxlength="63">
+            </td>
+          </tr>
+          <tr> 
+            <td height="15"> 
+              <div align="right">共享名:</div>
+            </td>
+            <td width="77%" height="15"> 
+              <input type="text" name="rshare" value="[#rshare#]" size="31" maxlength="63">
+            </td>
+          </tr>
+          <tr> 
+            <td height="15"> 
+              <div align="right">帐号:</div>
+            </td>
+            <td width="77%" height="15"> 
+              <input type="text" name="ruser" value="[#ruser#]" size="31" maxlength="63">
+            </td>
+          </tr>
+          <tr> 
+            <td height="28"> 
+              <div align="right">密码:</div>
+            </td>
+            <td width="77%" height="28"> 
+              <p> 
+                <input type="password" name="rpass"  size="31" maxlength="63" value="[#rpass#]">
+              </p>
+            </td>
+          </tr>
+          <tr> 
+            <td colspan="2" ><img src="/images/hr.gif" width="100%" height="2"></td>
+          </tr>
+          <tr> 
+            <td height="15"> 
+              <div align="right">导出数据时间:</div>
+            </td>
+            <td width="77%" height="15"> 
+              <input type="text" name="sdate" size="10" maxlength="10" value="[#sdate#]">
+              到 
+              <input type="text" name="edate" size="10" maxlength="10" value="[#edate#]">
+              (格式: YYYY-MM-DD)</td>
+          </tr>
+          <tr> 
+            <td colspan="2" ><img src="/images/hr.gif" width="100%" height="2"></td>
+          </tr>
+        </table>
+        <p><br>
+          <img src="/images/hr.gif" width="100%" height="2"><br>
+        </p>
+        </td>
+  </tr>
+  <tr> 
+    <td height="20"> 
+      <div align="center">
+          <input type="hidden" name="FunName" value="ncWebMailDoExport">
+          <input type="submit" name="next" value="开始" class="an3">
+          <input type="reset" name="cancel" value="取消返回" class="an3" onClick="history.back()">
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td height="20">&nbsp;</td>
+  </tr>
+</table>
+</form>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/css.css" type="text/css">
+</head>
+
+<body bgcolor="#cccccc" text="#000000" leftmargin="12" topmargin="0">
+<table width="770" border="0" bgcolor="#cccccc" height="100" class="bord4">
+  <tr> 
+    <td height="108"> 
+      <form name="form1" method="post" action="/pronline/Msg" target="mainFrame">
+        <input type="hidden" name="FunName" value="dsCltWebDictModi">
+        <input type="hidden" name="dsid"    value="[#id#]">
+        <input type="hidden" name="dsname"  value="dsuser">
+        <table width="100%" border="0" bgcolor="#AFAFC0" cellspacing="0" cellpadding="4">
+          <tr bgcolor="#8C8CA6"> 
+            <td colspan="7" class="bord4"> 
+              <div align="center"><b> <font color="#FFFFFF">数据字典描述</font></b></div>
+            </td>
+            <td class="bord4"><a href="/pronline/Msg?FunName@dsCltWebDictForm"><img src="/images/ladd.gif" width="99" height="33" border="0"></a></td>
+          </tr>
+          <tr> 
+            <td width="8%" valign="bottom" height="21" class="bord1">字段名</td>
+            <td width="15%" valign="bottom" height="21" class="bord1"> 
+              <input type="text" name="fname" maxlength="32" size="16" value="[#fname#]">
+            </td>
+            <td width="11%" valign="bottom" height="21" class="bord1">数据类型</td>
+            <td width="16%" valign="bottom" height="21" class="bord1"> 
+              <select name="ftype">
+                <option selected value="[#ftype#]">[#ftypename#]</option>
+                <option value="3">整型</option>
+                <option value="6">字符串</option>
+                <option value="5">浮点型</option>
+              </select>
+            </td>
+            <td width="11%" valign="bottom" height="21" class="bord1">长度</td>
+            <td width="12%" valign="bottom" height="21" class="bord1"> 
+              <input type="text" name="fbytes" size="10" maxlength="10" value="[#fbytes#]">
+            </td>
+            <td width="11%" valign="bottom" height="21" class="bord1">字段类型 </td>
+            <td width="16%" valign="bottom" height="21" class="bord1"> 
+              <select name="dtype">
+                <option  selected value="[#dtype#]">[#dtypename#]</option>
+                <option value="1">基本</option>
+                <option value="2">扩展</option>
+              </select>
+            </td>
+          </tr>
+          <tr> 
+            <td colspan="8" valign="top" height="49" class="bord1"> 
+              <table width="100%" border="0">
+                <tr> 
+                  <td width="8%" height="36" class="bord4">权限</td>
+                  <td width="20%" height="36" class="bord4">管理员 
+                    <select name="right0">
+                      <option selected value="[#rcode0#]">[#rname0#]</option>
+                      <option value="2">查询</option>
+                      <option value="1">无</option>
+                      <option value="3">修改</option>
+                    </select>
+                  </td>
+                  <td width="22%" height="36" class="bord4">组管理员 
+                    <select name="right1">
+                      <option  selected value="[#rcode1#]">[#rname1#]</option>
+                      <option value="2">查询</option>
+                      <option value="1">无</option>
+                      <option value="3">修改</option>
+                    </select>
+                  </td>
+                  <td width="16%" height="36" class="bord4">自己 
+                    <select name="right2">
+                      <option  selected value="[#rcode2#]">[#rname2#]</option>
+                      <option value="2">查询</option>
+                      <option value="1">无</option>
+                      <option value="3">修改</option>
+                    </select>
+                  </td>
+                  <td width="14%" height="36" class="bord4">同组 
+                    <select name="right3">
+                      <option  selected value="[#rcode3#]">[#rname3#]</option>
+                      <option value="2">查询</option>
+                      <option value="1">无</option>
+                      <option value="3">修改</option>
+                    </select>
+                  </td>
+                  <td width="20%" height="36" class="bord4">别人 
+                    <select name="right4">
+                      <option  selected value="[#rcode4#]">[#rname4#]</option>
+                      <option value="2">查询</option>
+                      <option value="1">无</option>
+                      <option value="3">修改</option>
+                    </select>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr> 
+            <td colspan="8" height="28" class="bord4"> 
+              <div align="right"> 
+                <input type="submit" name="add"   value="增加" [#addflags#]>
+                <input type="submit" name="mod"   value="修改" [#modflags#]>
+                <a href="/pronline/Msg?FunName@dsCltWebDictForm"> </a> </div>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

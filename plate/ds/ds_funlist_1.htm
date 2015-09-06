@@ -1,0 +1,65 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+</head>
+
+<body bgcolor="#C0C0C0" text="#000000">
+<form name="form1" method="post" action="">
+  <table width="99%" border="1">
+    <tr> 
+      <td> 
+        <div align="center">
+          <input type="hidden" name="FunName" value="dsCltWebFunGen">
+          <input type="hidden" name="sum" value="[#sum#]">
+          PAS功能代码</div>
+      </td>
+    </tr>
+    <tr> 
+      <td height="95"> 
+        <table width="88%" border="1">
+          <tr> 
+            <td width="5%" height="35">序号</td>
+            <td width="8%" height="35">FunCode</td>
+            <td width="9%" height="35">FunName</td>
+            <td width="17%" height="35">说明</td>
+            <td width="18%" height="35">权限</td>
+            <td width="7%" height="35">验证类别</td>
+            <td width="5%" height="35">超时</td>
+          </tr>
+          <!-- [#SLPB#] -->
+          <tr> 
+            <td width="5%" height="33">[#num#]</td>
+            <td width="8%" height="33">[#funcode#]</td>
+            <td width="9%" height="33"> 
+              <input type="hidden" name="f[#num#]" value="[#funcode#]">
+              [#funname#]</td>
+            <td width="17%" height="33"> 
+              <input type="text" name="d[#num#]" value="[#desc#]" size="20" maxlength="63">
+            </td>
+            <td width="18%" height="33"> 
+              <input type="text" name="r[#num#]" value="[#right#]" size="16" maxlength="31">
+            </td>
+            <td width="7%" height="33"> 
+              <input type="text" name="a[#num#]" value="[#auth#]" size="12" maxlength="12">
+            </td>
+            <td width="5%" height="33"> 
+              <input type="text" name="t[#num#]" value="[#maxtime#]" size="8" maxlength="8">
+            </td>
+          </tr>
+          <!-- [#SLPE#] -->
+        </table>
+      </td>
+    </tr>
+    <tr> 
+      <td height="21"> 
+        <div align="center">
+          <input type="submit" name="save" value="保存">
+          <input type="submit" name="gen" value="生成配置文件">
+        </div>
+      </td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

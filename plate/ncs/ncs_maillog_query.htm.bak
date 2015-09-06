@@ -1,0 +1,209 @@
+<html>
+
+<head>
+<title>查询</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<!-- Infrastructure code for the tree -->
+<script>
+	function clear1()
+{
+	form1.groupid.value='';
+	form1.userid.value='';
+	form1.mailsub.value='';
+	form1.host.value='';
+	
+	form1.sdate.value='';
+	form1.edate.value='';
+	form1.mailfrom.value='';
+	form1.mailto.value='';
+	form1.username.value='';
+	form1.sip.value='';
+	form1.ysf.value='';
+	
+	form1.mailsize.value='';
+	
+	}
+function init()
+{
+	form1.groupid.value=dialogArguments.frames.main_t.form1.groupid.value;
+	form1.userid.value=dialogArguments.frames.main_t.form1.userid.value;
+	form1.mailsub.value=dialogArguments.frames.main_t.form1.mailsub.value;
+	form1.host.value=dialogArguments.frames.main_t.form1.host.value;	
+	form1.mailfrom.value=dialogArguments.frames.main_t.form1.mailfrom.value;
+	
+	form1.mailto.value=dialogArguments.frames.main_t.form1.mailto.value;
+	form1.sip.value=dialogArguments.frames.main_t.form1.sip.value;	
+	form1.ysf.value=dialogArguments.frames.main_t.form1.ysf.value;
+	
+	form1.mailsize.value=dialogArguments.frames.main_t.form1.mailsize.value;
+	form1.fjflag.value=dialogArguments.frames.main_t.form1.fjflag.value;	
+	
+  if(dialogArguments.frames.main_t.form1.edate.value!='')
+	form1.edate.value=dialogArguments.frames.main_t.form1.edate.value;
+	if(dialogArguments.frames.main_t.form1.sdate.value!='')
+	form1.sdate.value=dialogArguments.frames.main_t.form1.sdate.value;
+	
+	
+	form1.username.value=dialogArguments.frames.main_t.form1.username.value;
+	if(dialogArguments.frames.main_t.form1.sorta.value==1)
+		form1.sorta[0].checked=true;
+	else if(dialogArguments.frames.main_t.form1.sorta.value==2) 
+		form1.sorta[1].checked=true;      
+	else if(dialogArguments.frames.main_t.form1.sorta.value==3) 
+		form1.sorta[2].checked=true;
+	else if(dialogArguments.frames.main_t.form1.sorta.value==4) 
+		form1.sorta[3].checked=true;   
+	else if(dialogArguments.frames.main_t.form1.sorta.value==5) 
+		form1.sorta[4].checked=true;      
+	
+	form1.ordera.value=dialogArguments.frames.main_t.form1.ordera.value;
+}		
+function queren()
+{
+form1.submit();
+self.close();
+
+}
+</script>
+
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginheight="0"  oncontextmenu="return true" onload="init()">
+  <form name="form1" method="post" action="/pronline/Msg" target="main">
+  <input type="hidden" name="FunName" value="ncsWebMailLog">
+  <input type="hidden" name="plate" value="ncsmsg_showinfo.htm">
+  <input type="hidden" name="fun" value="ncsWebMailLog">
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+
+  <tr> 
+    <td colspan="2"><table width="100%" height="27" border="0" align="center" cellpadding="0" cellspacing="0" background="/images/table_bg1.gif">
+        <tr > 
+          <td colspan="2" > <div align="center"><strong><font color="#FFFFFF">             
+              收发邮件日志查询</font></strong></div></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr> 
+    <td colspan="2"> 
+        <br>
+        <table width="95%" border="1"    bordercolorlight=#89ACED   bordercolordark=#ffffff    align="center" cellpadding="0" cellspacing="0" >
+          <tr> 
+            <td> 
+             <table width="100%" border="0" align="center" >
+
+                <tr height="27"> 
+                  <td width="8%"></td>
+                  <td width="20%" > <font color="#000000"><b><font size="2">公司类别</font></b></font></td>
+                  <td width="40%" align="left">
+                  <select name="groupid" style="width:200">
+                  <option value="">全部</option>
+                  [#SLPB#]
+                  <option value="[#groupid#]">[#grouname#]</option>
+                  [#SLPE#]
+                  </select>
+                  </td>
+                  <td width="32%">                   
+                  </td>
+                </tr>
+                <tr height="27"> 
+                  <td ></td>
+                  <td ><font color="#000000"><b><font size="2">单位名称</font></b></td>
+                  <td ><select name="userid" style="width:200">
+                  <option value="">全部</option>
+                  [#SLPB#]
+                  <option value="[#userid#]">[#dispname#]</option>
+                  [#SLPE#]
+                  </select></td>
+                  <td >&nbsp;</td>
+                </tr> 
+               <tr height="27">
+                  <td ></td>
+                  <td > <font color="#000000"><b><font size="2">主题</font></b></font></td>
+                  <td > <input type="text" name="mailsub" size="27"></td>
+                  <td > </td>
+                </tr> 
+                  <tr height="27">
+                  <td ></td>
+                  <td > <font color="#000000"><b><font size="2">主机名</font></b></font></td>
+                  <td > <input type="text" name="host" size="27"></td>
+                  <td > </td>
+                </tr> 
+                <tr height="27">
+                  <td ></td>
+                  <td > <font color="#000000"><b><font size="2">发件人</font></b></font></td>
+                  <td > <input type="text" name="mailfrom" size="27"></td>
+                  <td > </td>
+                </tr>             
+                <tr height="27">
+                  <td ></td>
+                  <td > <font color="#000000"><b><font size="2">收件人</font></b></font></td>
+                  <td > <input type="text" name="mailto" size="27"></td>
+                  <td > </td>
+                </tr> 
+                <tr height="27"> 
+                  <td ></td>
+                  <td > <font color="#000000"><b><font size="2">源IP地址</font></b></font></td>
+                  <td > <input type="text" name="sip" size="27"></td>
+                  <td >&nbsp;&nbsp;</td>
+                </tr>
+               <tr height="27"> 
+                  <td ></td>
+                  <td > <font color="#000000"><b><font size="2">邮件大小</font></b></font></td>
+                  <td > <select name="ysf"><option value="1">大于</option>
+                  <option value="2">小于</option><option value="3">等于</option></select><input type="text" name="mailsize" size="19"></td>
+                  <td >&nbsp;&nbsp; </td>
+                </tr> 
+                <tr height="27"> 
+                  <td ></td>
+                  <td > <font color="#000000"><b><font size="2">日期</font></b></font></td>
+                  <td > <input type="text" name="sdate" size="27" maxlength="20" value="[#sdate#]"></td>
+                  <td >(YYYY-MM-DD HH:MI)</td>
+                </tr> 
+               <tr height="27"> 
+                  <td ></td>
+                  <td > <font color="#000000"><b><font size="2">到&nbsp;&nbsp;&nbsp;&nbsp;</font></b></font></td>
+                  <td > <input type="text" name="edate" size="27" maxlength="20" value="[#edate#]"></td>
+                  <td >(YYYY-MM-DD HH:MI)</td>
+                </tr> 
+
+                <tr height="27"> 
+                  <td ></td>
+                  <td> <font color="#000000"><b><font size="2">用户名</font></b></font></td>
+                  <td > <input type="text" name="username" size="27"></td>
+                  <td >&nbsp;&nbsp;</td>
+                </tr> 
+                <tr height="27"> 
+                  <td ></td>
+                  <td> <font color="#000000"><b><font size="2">有无附件</font></b></font></td>
+                  <td ><select name="fjflag" style="width:200"><option value="">不限</option>
+                  <option value="1">无</option><option value="2">有</option></select></td>
+                  <td >&nbsp;&nbsp;</td>
+                </tr> 
+                <tr height="27"> 
+                  <td ></td>
+                  <td > <font color="#000000"><b><font size="2">排&nbsp;&nbsp;序</font></b></font></td>
+                  <td colspan="2"> <input type="radio" name="sorta" value="1">用户名<input type="radio" name="sorta" value="2">公司<input type="radio" name="sorta" value="3">收发时间<input type="radio" name="sorta" value="4">收件人<input type="radio" name="sorta" value="5">发件人
+                  <select name="ordera"><option value="1">升序</option>
+                                        <option value="2">降序</option>
+                  </select>
+                  </td>                 
+                </tr> 
+              </table>
+            </td>
+          </tr>
+ 
+        </table>
+
+      </td>
+  </tr>
+           
+</table>
+  <p align="center"><input name='Button' type='button' class='an3' onClick='queren()' value='确 认'> &nbsp;<input name='Button' type='button' class='an3' onClick='clear1()' value='清零'></p>
+ </form>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+<table width="99%" border="2" bgcolor="#99CCFF">
+  <tr bordercolor="#CCCCCC"> 
+    <td height="6" colspan="4"> 
+      <div align="right"> 
+        <input type="submit" name="Submit" value="新增">
+      </div>
+    </td>
+  </tr>
+  <tr> 
+    <td width="23%">标识</td>
+    <td width="22%">频度</td>
+    <td width="25%">起始</td>
+    <td width="30%">终止</td>
+  </tr>
+  <tr> 
+    <td width="23%">001021</td>
+    <td width="22%">每天</td>
+    <td width="25%">00:00:00</td>
+    <td width="30%">23:59:59</td>
+  </tr>
+  <tr> 
+    <td width="23%">001021</td>
+    <td width="22%">每天</td>
+    <td width="25%">00:00:00</td>
+    <td width="30%">23:59:59</td>
+  </tr>
+</table>
+</body>
+</html>

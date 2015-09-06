@@ -1,0 +1,240 @@
+<html>
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<title>main</title>
+<script>
+var dfd1="0"
+function gotoPage(pagenum)
+
+{
+    form1.CurPg.value = pagenum;
+}
+
+function userdel()
+{
+    form1.FunName.value = "ncWebMailCtlDel";
+    form1.submit();
+}
+
+// function goto(t){
+// self.location.href=t
+// }
+
+function goto(t){
+ tt=showModalDialog(t, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:500px;scroll:yes;dialogHeight:480px');
+}
+
+
+function goto1(t){
+ tt=showModalDialog(t, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:500px;scroll:no;dialogHeight:280px');
+}
+
+function mouseovertr2 (o){
+var i;
+df=o.style.backgroundColor
+	o.style.backgroundColor= "#003399";
+	o.style.borderColor= "#FFFF00";
+	o.style.cursor="hand";	
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#ffffff";
+}	
+}
+
+function mouseouttr2(o){
+	o.style.backgroundColor=df
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#000000";
+}
+	
+	
+}
+
+function checkme(p)
+{
+	var tt=p.value
+	if (tt>yy)
+	{
+		MM_changeProp('browsdopage','','value',yy,'INPUT/TEXT')
+	}
+	if (tt==0)
+	{
+		MM_changeProp('browsdopage','','value','1','INPUT/TEXT')
+	}
+}
+
+function allChecked(){
+    if(dfd1=="1"){
+        dfd1="0"
+    }
+    else {
+         dfd1="1"
+    }
+	for(var i=0;i<document.all.DataTable.rows.length;i++)
+	{
+		if(typeof(document.all.DataTable.rows[i].cells[0].childNodes[1])=="object"
+
+				&&document.all.DataTable.rows[i].cells[0].childNodes[1].tagName=="INPUT"
+
+				&&document.all.DataTable.rows[i].cells[0].childNodes[1].type=="checkbox") {
+			if(dfd1=="1"){
+  			    document.all.DataTable.rows[i].cells[0].childNodes[1].checked="true";
+            }
+			else{
+                document.all.DataTable.rows[i].cells[0].childNodes[1].checked="";
+            }
+        }
+ 	}
+}
+
+
+// -->
+<!-- Hide
+var ll=[#CurPg#]
+var yy=[#TotPg#]
+function killErrors() {
+return true;
+}
+window.onerror = killErrors;
+// -->
+
+</script>
+
+<link REL=stylesheet HREF="file:///C|/Program%20Files/Macromedia/Dreamweaver%204/Lessons/Lesson%20Files/css/listdatetable.css" TYPE="text/css">
+<script src="file:///C|/Program%20Files/Macromedia/Dreamweaver%204/Lessons/Lesson%20Files/js/tablecssall.js"></script>
+<script src="file:///C|/Program%20Files/Macromedia/Dreamweaver%204/Lessons/Lesson%20Files/js/rmenu.js"></script>
+<style type="text/css">
+<!--
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+-->
+</style>
+<link rel="stylesheet" href="file:///C|/Program%20Files/Macromedia/Dreamweaver%204/Lessons/Lesson%20Files/css/css.css" type="text/css">
+</head>
+<body marginheight=0 leftmargin=0 marginwidth=0 topMargin="0" BGCOLOR="Menu">
+<form name="form1" method="post" action="file:///C|/Program%20Files/Macromedia/Dreamweaver%204/Lessons/Lesson%20Files/pronline/Msg">
+  <table border="0" width=92% height=100% cellspacing="0" cellpadding="0" align=center bgcolor='#ffffff'>
+    <tr> 
+    <td width="100%"  valign=middle align=center height="25" bgcolor="#dfdfdf" class="ttt">
+        <table width="100%" border="0" cellspacing="0">
+          <tr> 
+            <td width="27%" height="23">&nbsp;&nbsp; 
+              <input type="button" name="hsear" value="查询"  onclick="goto1('/pronline/Msg?FunName@ncWebHttpDispSform&dispname@[#dispname#]&groupid@[#groupid#]')">
+              <input type="hidden" name="FunName" value="ncWebQyehttp">
+              <input type="hidden" name="CurPg"      value="[#CurPg#]">
+              <input type="hidden" name="lcount"      value="[#TotRec#]">
+              <input type="hidden" name="TotPg"      value="[#TotPg#]">
+              <input type="hidden" name="where"      value="[#where#]">
+            <td width="28%" height="23"> 网站访问记录
+            <td width="45%" height="23"> 
+              <table  border=0 cellpadding=0 cellspacing=0 class=main width="317">
+                <tbody> 
+                  <td width="17"> 
+                    <script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-06.gif' border=0 height=17 width=35 class='gray1'>")}
+                      else{
+                        document.write("<a href='#'><img src='/images/zbuyer-06.gif' border=0 height=17 width=35 onClick='gotoPage(1);form1.submit()' class='hand'>")}
+                   </script></td>
+                  <td width="17"> 
+                    <script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 class='gray1'>")}
+                      else {
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]-1);form1.submit()' class='hand'>")}
+                   </script></td>
+                  <td width="32"><img src="file:///C|/Program%20Files/Macromedia/Dreamweaver%204/Lessons/Lesson%20Files/images/zbuyer-08.gif" border=0 height=17 width=32></td>
+                  <td align=middle background="" width=40> 
+                    <input class=Main id=browsdopage maxlength=3  name=browsdopage size=3 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 30px" value=[#CurPg#] onKeyPress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" onBlur="checkme(this)">
+                </td>
+                  <td width="16"><img src="file:///C|/Program%20Files/Macromedia/Dreamweaver%204/Lessons/Lesson%20Files/images/zbuyer-09.gif" border=0 height=17 width=16></td>
+                  <td width="20"><img align=middle border=0 height=17 src="file:///C|/Program%20Files/Macromedia/Dreamweaver%204/Lessons/Lesson%20Files/images/zbuyer-10.gif" width=17 onClick="gotoPage(form1.browsdopage.value);form1.submit()" class="hand"><img align=middle height=17 src="file:///C|/Program%20Files/Macromedia/Dreamweaver%204/Lessons/Lesson%20Files/images/zbuyer-11.gif" width=3></td>
+                
+                
+                  <td width="17"><img border=0 height=17 src="file:///C|/Program%20Files/Macromedia/Dreamweaver%204/Lessons/Lesson%20Files/images/zin1.gif" width=17 ></td>
+                  <td align=middle background="" width=40> 
+                    <input  class=Main id=browsdopage1 maxlength=7 name=browsdopage12 size=7 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 30px" value='[#TotPg#]'>
+    </td>
+                  <td width="16"><img align=middle height=17 src="file:///C|/Program%20Files/Macromedia/Dreamweaver%204/Lessons/Lesson%20Files/images/zbuyer-09.gif" width=16></td>
+                  <td align=middle background="" width=40> 
+                    <input  class=Main id=browsdopage1 maxlength=7 name=browsdopage12 size=7 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 30px" value='[#TotRec#]'>
+    </td>
+                  <td width="20"><img border=0 height=17 src="file:///C|/Program%20Files/Macromedia/Dreamweaver%204/Lessons/Lesson%20Files/images/zin3.gif" width=17 align="middle" ><img align=middle height=17  src="images/zbuyer-11.gif" width=3></td>
+                
+                  <td width="17"> 
+                    <script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]+1);form1.submit()' class='hand'>")}
+                    </script></td>
+                  <td width="49"> 
+                    <script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 onClick='gotoPage([#TotPg#]);form1.submit()' class='hand'>")}
+                    </script></td>
+              </tbody> 
+			  </table>
+            </td>
+          </tr>
+        </table>
+    </td>
+  </tr>
+  <tr>
+      <td width="100%"  valign=top align=center bgcolor="#BBBBBB"> 
+        <table id="DataTable" class="listDataTable" width="99%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+          <tr> 
+            <td class="bord2" background="file:///C|/Program%20Files/Macromedia/Dreamweaver%204/Lessons/Lesson%20Files/images/ttt.gif" height="21" width="95"> 
+              <img src="file:///C|/Program%20Files/Macromedia/Dreamweaver%204/Lessons/Lesson%20Files/images/lline.gif" width="1" height="18" align="absmiddle">&nbsp;姓名</td>
+            <td class="bord2" height="21" background="file:///C|/Program%20Files/Macromedia/Dreamweaver%204/Lessons/Lesson%20Files/images/ttt.gif" width="119"> 
+              <img src="file:///C|/Program%20Files/Macromedia/Dreamweaver%204/Lessons/Lesson%20Files/images/lline.gif" width="1" height="18" align="absmiddle">源地址</td>
+            <td class="bord2" height="21" background="file:///C|/Program%20Files/Macromedia/Dreamweaver%204/Lessons/Lesson%20Files/images/ttt.gif" width="395"> 
+              <img src="file:///C|/Program%20Files/Macromedia/Dreamweaver%204/Lessons/Lesson%20Files/images/lline.gif" width="1" height="18" align="absmiddle">&nbsp;网址</td>
+            <td class="bord2" height="21" background="file:///C|/Program%20Files/Macromedia/Dreamweaver%204/Lessons/Lesson%20Files/images/ttt.gif" width="168"> 
+              <img src="file:///C|/Program%20Files/Macromedia/Dreamweaver%204/Lessons/Lesson%20Files/images/lline.gif" width="1" height="18" align="absmiddle">&nbsp;访问时间</td>
+            <td class="bord4" height="21" background="file:///C|/Program%20Files/Macromedia/Dreamweaver%204/Lessons/Lesson%20Files/images/ttt.gif" width="107"><img src="file:///C|/Program%20Files/Macromedia/Dreamweaver%204/Lessons/Lesson%20Files/images/lline.gif" width="1" height="18" align="absmiddle">&nbsp;流量</td>
+          </tr>
+          <!-- [#SLPB#] -->
+          <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" > 
+            <td class="bord1"  nowrap width="95">&nbsp;[#name#]</td>
+            <td class="bord1"  nowrap width="119">&nbsp;[#sip#] </td>
+            <td class="bord1"   nowrap width="395">&nbsp;<a href="[#urllnk#]" target="_blank">[#url#]</a></td>
+            <td class="bord1"  nowrap width="168">&nbsp;[#sdate#] &nbsp;[#stime#]</td>
+            <td class="bord1"  nowrap width="107">&nbsp;[#bytes#]</td>
+          </tr>
+          <!-- [#SLPE#] -->
+          <!-- [#SLPB#] -->
+          <tr id=[#snum#] onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)"> 
+            <td class="bord1" width="95">&nbsp;</td>
+            <td class="bord1" width="119">&nbsp; </td>
+            <td class="bord1" width="395">&nbsp;</td>
+            <td class="bord1" width="168">&nbsp;</td>
+            <td class="bord1" width="107">&nbsp;</td>
+          </tr>
+          <!-- [#SLPE#] -->
+        </table>
+        <!--//鼠标显示//-->
+        <script language="JavaScript">
+<!--
+var MenuBarColor ='#cccccc';
+DrawMouseRightButtonUpMenu();
+
+</script></td>
+  </tr>
+</table>
+ </form>
+</body>
+
+</html>

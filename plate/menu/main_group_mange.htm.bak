@@ -1,0 +1,124 @@
+<html>
+<head>
+<title>单位分组管理</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+
+<script type="text/javascript">
+var Nav = {
+    "init":""
+    ,"close":function() {
+        var obj = document.getElementById("left_menu_img");
+        obj.alt = "open";
+        obj.src = "/images/new/left_close.jpg";
+        document.getElementById("left").style.display="none";
+    }
+    ,"open":function() {
+        var obj = document.getElementById("left_menu_img");
+        obj.alt = "close";
+	    obj.src = "/images/new/left_open.jpg";
+        document.getElementById("left").style.display="";
+    }
+    ,"isOpen":function() {
+        var obj = document.getElementById("left_menu_img");
+        return (obj.alt == "close");
+    }
+    ,"switchSysBar":function(){
+        if (this.isOpen()){
+            this.close();
+        }
+        else{
+            this.open();
+        }
+	}
+    ,"switchImg":function(){
+        var obj = document.getElementById("left_menu_img");
+        if (this.isOpen()){
+			obj.src="/images/new/left_open1.jpg";
+        }
+        else{
+			obj.src="/images/new/left_close1.jpg";
+        }
+	}
+    ,"switchImgRestore":function(){
+        var obj = document.getElementById("left_menu_img");
+        if (this.isOpen()){
+			obj.src="/images/new/left_open.jpg";
+        }
+        else{
+			obj.src="/images/new/left_close.jpg";
+        }
+    }
+}
+</Script>
+<style type="text/css">  
+TABLE.colorTest{   
+    border-top: 0px solid #abacae;   
+    border-left: 0px solid #abacae;    
+    border-right: 0px solid #abacae;    
+    border-bottom: 0px  solid #abacae;    
+}   
+  
+</style>  
+</head>
+
+<body bgcolor="#fbfbfb" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" align="center"   >
+<form name="form1" method="post" action="/pronline/Msg">
+
+  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  	<tr>
+          <td  width="24"><img src="/images/tbbg/tb_left.jpg"></td>
+         
+          <td   style="background:url(/images/tbbg/tb_center.jpg);height:19;"></td>
+          <td  width="20"><img src="/images/tbbg/tb_right.jpg" width="20" height="19"></td>
+        
+            
+      </tr>
+  	<tr>
+  		<td width="24" height="[#cy#]" style="background:url(/images/tbbg/mid_left.jpg);"></td>
+       
+  		<td style="background:url(/images/tbbg/mid_leftw.jpg);">
+        <table width="100%" height="[#cy#]" class="colorTest"   align="left" cellpadding="0" cellspacing="0">
+         <tr>
+         	<td width=131 id="left">
+         		   <iframe name="sbpm_left" src="/pronline/Msg?FunName@ncsWebTreeDispGroup_nolimit&fname@ncsWebDispDeptForm_new&plate@tree/tree_group_nolimit.htm" width=131 height=[#cy#] FrameBorder=0 ></iframe>
+         		</td>
+         		
+         		  <td style="border-top:0px solid #abacae;border-right:1px solid #abacae;width:8px;vertical-align: middle;background-color:#fbfbfb;""><a href=# onClick="javascript:Nav.switchSysBar();" onMouseOver="javascript:Nav.switchImg()" onMouseOut="javascript:Nav.switchImgRestore()" onFocus="this.blur()"><img src="/images/new/left_open.jpg" width="8" height="247" border=0 id=left_menu_img alt='close'></a></td> 
+         		
+         		
+         		
+         	<td>
+         		<iframe name="sbpm_right" src="/pronline/Msg?FunName@ncsWebDispDeptForm_new" scrolling="no" width=100% height=[#cy#] FrameBorder=0></iframe>
+         		</td>
+        </tr>
+
+
+        </table>
+     
+  	</td>
+  	<td style="background:url(/images/tbbg/mid_right.jpg);position:relative;left:0px;top:-2px;">&nbsp;
+  	</td>
+    </tr>
+  	
+  	
+  	  	<tr>
+          <td width="24"><img src="/images/tbbg/bottom_left.jpg" style="position:relative;top:-2px;left:-1px;"></td>
+         
+          <td  valign="top" style="background:url(/images/tbbg/bottom_center.jpg);position:relative;left:-4px;top:-2px;"></td>
+          <td  width="20"><img src="/images/tbbg/bottom_right.jpg" width="20" height="19" style="position:relative;top:-2px;"></td>
+        
+            </td>
+      </tr>
+  	
+
+  </table>
+</form>
+
+</script>
+</body>
+</html>

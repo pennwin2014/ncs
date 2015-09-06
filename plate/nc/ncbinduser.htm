@@ -1,0 +1,126 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/css.css" type="text/css">
+<script language="JavaScript">
+<!--
+function myclose() {
+    window.close();
+}
+
+
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_findObj(n, d) { //v4.0
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && document.getElementById) x=document.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+</script>
+</head>
+
+<body bgcolor="#AFAFC0" text="#000000" oncontextmenu="return false" topmargin="0" leftmargin="0" onLoad="MM_preloadImages('ADDUSER/images/an2a.gif','ADDUSER/images/an2b.gif')">
+<form method="post" id="moduser" name="moduser" action="/pronline/Msg" >
+
+<table border=0 cellspacing=0 width="96%" cellpadding=0 align="center">
+  <tbody> 
+  <tr> 
+    <input type="hidden" name="FunName" value="ncWebUserBindAdd">
+    <input type="hidden" name="userid" value="[#userid#]">
+    <input type="hidden" name="ip"     value="[#ip#]">
+    <input type="hidden" name="mac" value="[#mac#]">
+    <td id=clearStart height="500" valign="top"> 
+      <p>&nbsp;</p>
+        <table width="73%" border="0" align="center" cellpadding="5">
+          <tr> 
+            <td colspan="6"> 
+              <div align="center">绑定用户信息</div>
+            </td>
+          </tr>
+          <tr> 
+            <td colspan="6"> 
+              <div align="center">[#message#]</div>
+            </td>
+          </tr>
+          <tr> 
+            <td class="bord2" width="10%">用户名</td>
+            <td class="bord2" width="27%"> 
+              <input type="text" name="username" value="[#username#]" >
+            </td>
+            <td class="bord2" width="14%">部门</td>
+            <td class="bord4" width="17%"> 
+              <select name="groupid">
+                <option selected value="[#groupid#]">[#groupname#]</option>
+                <!--[#SLPB#] -->
+                <option value="[#gid#]">[#glist#]</option>
+                <!--[#SLPE#] -->
+              </select>
+            </td>
+            <td class="bord4" width="11%"> 
+              <div align="right">状态</div>
+            </td>
+            <td class="bord4" width="21%" valign="middle" align="left"> 
+              <select name="use">
+                <option select value="[#use#]">[#use#]</option>
+                <option value="正常">正常</option>
+                <option value="禁用">禁用</option>
+                <option value="免监控">免监控</option>
+              </select>
+            </td>
+          </tr>
+          <tr> 
+            <td class="bord1" width="10%">原IP地址</td>
+            <td class="bord1" width="27%"> 
+              <input type="text" name="oip" value="[#oip#]" disabled>
+            </td>
+            <td class="bord1" width="14%">原MAC地址</td>
+            <td class="bord3" colspan="3"> 
+              <input type="text" name="omac" value="[#omac#]" disabled>
+            </td>
+          </tr>
+          <tr> 
+            <td class="bord1" width="10%">&nbsp;当前IP地址</td>
+            <td class="bord1" width="27%"> 
+              <input type="text" name="ip1" value="[#ip#]"  disabled>
+            </td>
+            <td class="bord1" width="14%">当前MAC地址</td>
+            <td class="bord3" colspan="3"> 
+              <input type="text" name="mac1" value="[#mac#]" disabled>
+            </td>
+          </tr>
+          <tr> 
+            <td colspan="6" height="68"> 
+              <div align="center"> 
+                <p><br>
+                  <input type="image" border="0" img name="confirm" src="/images/anxian13.gif" width="79" height="28">
+                  <img src="/images/anxian15.gif"  border="0" width="79" height="28" onclick="myclose()"></p>
+              </div>
+            </td>
+          </tr>
+        </table>
+    </td>
+              </tr>
+              </tbody> 
+            </table>
+            
+  </form>
+<p>&nbsp;</p>
+</body>
+</html>

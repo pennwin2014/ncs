@@ -1,0 +1,448 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>管理中心</title>
+<link href="/css/new/css_main.css" rel="stylesheet" type="text/css">
+<link href="css/new/common_css.css" rel="stylesheet" type="text/css">
+
+   
+
+<script>
+function reflesh(){
+
+  frames.document.all.moduleIframe.src='/ncsmsg_goto.htm';
+}
+
+
+var tree_menu_data = [
+{
+  id: '',
+  level: 0,
+  title: '在线单位',
+  url: '/ncs_list_onlineuser_lab.htm'
+},
+{
+  id: 'qgqp',
+  level: 0,
+  title: '实时告警',
+  url: '/ncs_list_onlinewarn_lab.htm'
+},
+{
+  level: 1,
+  title: '管理模块',
+  children: [{
+    id: 'ljzf',
+    title: '单位管理',
+    url: '/main_user.htm'
+  },
+  {
+    id: 'lxsz',
+    title: '在线率统计',
+    url: '/pronline/Msg?FunName@ncs_Areaonline_Stat'
+  },
+  {
+    id: 'lxxd',
+    title: '行政区划管理',
+    url: '/main_group.htm'
+  },
+  {
+    id: 'hsl',
+    title: '行政区域代码设置',
+    url: '/pronline/Msg?FunName@ncsWebDeptCode'
+  },
+  {
+    id: 'ddmcpx',
+    title: '单位离线告警设置',
+    url: '/pronline/Msg?FunName@ncs_offline_warnset'
+  },
+  {
+    id: 'ddmrpx',
+    title: '短信平台设置',
+    url: '/pronline/Msg?FunName@ncs_smpptset'
+  },
+  {
+    id: 'cjtz',
+    title: '单位登录日志',
+    url: '/pronline/Msg?FunName@ncsWebLoginLog'
+  },
+  {
+    id: 'ylcb',
+    title: '上网用户信息',
+    url: '/pronline/Msg?FunName@ncsWebRealUserSearch'
+  }]
+},
+{
+  level: 1,
+  title: '虚拟身份库',
+  children: [{
+    id: 'dpzjlx',
+    title: '虚拟身份统计信息',
+    url: '/pronline/Msg?FunName@ncsWebShowNetidBt'
+  },
+  {
+    id: 'bkzjlx',
+    title: 'QQ帐号库',
+    url: '/pronline/Msg?FunName@ncsWebQQSearch&ntype@1001'
+  },
+  {
+    id: 'ggzjlx',
+    title: 'MAC地址库',
+    url: '/pronline/Msg?FunName@ncsWebMacSearch'
+  },
+  {
+    id: 'qtimk',
+    title: '其它IM帐号库',
+    url: '/pronline/Msg?FunName@ncsWebOthIMSearch'
+  },
+  {
+    id: 'bbszhk',
+    title: 'BBS账号库',
+    url: '/pronline/Msg?FunName@ncsWebBBSVidSearch'
+  },
+  {
+    id: 'yxzhk',
+    title: '游戏帐号库',
+    url: '/pronline/Msg?FunName@ncsWebGameVidSearch'
+  },
+  {
+    id: 'yjzhk',
+    title: '邮件帐号库',
+    url: '/pronline/Msg?FunName@ncsWebMailVidSearch'
+  }
+  ]
+},
+{
+  level: 1,
+  title: '重点管控',
+  children: [{
+    id: 'dpzjlx',
+    title: '重点网址库',
+    url: '/main_website.htm'
+  },
+  {
+    id: 'bkzjlx',
+    title: '敏感关键字库',
+    url: '/main_sentive.htm'
+  },
+  {
+    id: 'ggzjlx',
+    title: '重点关注虚拟身份',
+    url: '/main_zdvid.htm'
+  },
+  {
+    id: 'rzscgz',
+    title: '日志上传规则',
+    url: '/main_sendrule.htm'
+  },
+  {
+    id: 'zdjk',
+    title: '重点监控人员规则',
+    url: '/pronline/Msg?FunName@ncsWebZdjkSet_rule'
+  },
+  {
+    id: 'zdjk',
+    title: '重点监控人员库',
+    url: '/pronline/Msg?FunName@ncsWebZdjkUser'
+  },
+  {
+    id: 'yjcx',
+    title: '一键快速查询',
+    url: '/pronline/Msg?FunName@ncsYjcx_Con&plate@ncs/ncs_yjcx_lab.htm'
+  },
+  {
+    id: 'gdrz',
+    title: '归档日志',
+    url: '/pronline/Msg?FunName@ncsWebReplace&plate@ncs/ncs_gdrz_lab.htm'
+  }]
+},
+{
+  level: 1,
+  title: '案件侦查',
+  children: [{
+    id: 'zxyjgg',
+    title: '布控信息查询',
+    url: '/pronline/Msg?FunName@ncsCaseRuleSearch'
+  },
+  {
+    id: 'yjyg',
+    title: '当前布控',
+    url: '/pronline/Msg?FunName@ncsCaseList&flags@1'
+  },
+  {
+    id: 'meigushouyi',
+    title: '已撤布控',
+    url: '/pronline/Msg?FunName@ncsCaseList&flags@9'
+  },
+  {
+    id: 'meigujzc',
+    title: '未实施布控',
+    url: '/pronline/Msg?FunName@ncsCaseList&flags@0'
+  },
+  {
+    id: 'meiguxjl',
+    title: '必报手机设置',
+    url: '/pronline/Msg?FunName@ncsMovTelSet'
+  },
+  {
+    id: 'jzcsy',
+    title: '布控告警查询',
+    url: '/pronline/Msg?FunName@ncsCaseWarnlist&flag@1'
+  },
+  {
+    id: 'zylrzz',
+    title: 'CCIC库管理',
+    url: '/pronline/Msg?FunName@ncs_CCIC'
+  }]
+},
+{
+  level: 1,
+  title: '系统管理',
+  children: [{
+    id: 'xtyh',
+    title: '系统用户管理',
+    url: '/pronline/Msg?FunName@ncsWebAdminUserList'
+  },
+  {
+    id: 'jsgl',
+    title: '权限角色管理',
+    url: '/pronline/Msg?FunName@ncsDispRolelist'
+  },
+  {
+    id: 'ydmb',
+    title: '移动密保管理',
+    url: '/pronline/Msg?FunName@ncsWebReplace&plate@ds/ds_mbauth.htm&fname@ncWebDisplayMbManager'
+  },
+  {
+    id: 'xtfwrz',
+    title: '系统访问日志',
+    url: '/pronline/Msg?FunName@ncsWebAdmQyeSysLog'
+  },
+  {
+    id: 'meiguxjl',
+    title: '系统参数设置',
+    url: '/pronline/Msg?FunName@ncsWebSystemSet_par'
+  },
+  {
+    id: 'jzcsy',
+    title: '系统备份设置',
+    url: '/pronline/Msg?FunName@ncsWebSystemSet_back'
+  }]
+}];
+
+
+
+//根据树形图数据，构建左侧树形列表
+function init_tree_menu(menu_data, ctn) {
+  var TMPLT = '<dl><dt style="@DTSTL@" onclick="@ONCLICK@">@TITLE@</dt><dd class="undis">@LIST@</dd></dl>';
+  var DECORATE_TITLE = '<a href="javascript:void(0);" onclick="onClickLeafNode(\'@URL@\',\'@TITLE@\');" id="leaf_@ID@_a">@TITLE@</a>';
+
+  var LEVEL_0_TITLE = '<a href="javascript:void(0);" onclick="onClickLeafNode(\'@URL@\',\'@TITLE@\');" style="background-image:none;color:#494949;">@TITLE@</a>';
+  var LI_TMPLT = '<li id="leaf_@ID@">' + DECORATE_TITLE + '</li>';
+  var id_url_mapper = {};
+  var result = [];
+  for (var i = 0; i < menu_data.length; i++) {
+    var data = menu_data[i];
+    var level = data['level'];
+    var html = '';
+    switch (level) {
+    case 0:
+      {
+        var html = TMPLT.replace(/@TITLE@/ig, LEVEL_0_TITLE).replace(/@TITLE@/ig, data['title']).replace(/@LIST@/ig, '').replace(/@URL@/ig, data['url']).replace(/@ONCLICK@/ig, "").replace(/@DTSTL@/ig, "background:url(http://img1.gtimg.com/finance/pics/hv1/212/189/758/49337357.gif);");
+        id_url_mapper['l' + data['id']] = data['url'];
+        break
+      }
+    case 1:
+      var li_html = [];
+      li_html.push('<ul>');
+      for (var j = 0; j < data['children'].length; j++) {
+        var child = data['children'][j];
+        li_html.push(LI_TMPLT.replace(/@TITLE@/ig, child['title']).replace(/@URL@/ig, child['url']).replace(/@ID@/ig, child['id']))
+        id_url_mapper['l' + child['id']] = child['url'];
+      }
+      li_html.push('</ul>');
+      html = TMPLT.replace(/@TITLE@/ig, data['title']).replace(/@LIST@/ig, li_html.join('')).replace(/@ONCLICK@/ig, "leftmenu(this,'dd');");
+      break;
+    }
+    result.push(html);
+  } !! $(ctn) ? $(ctn).innerHTML = result.join('') : '';
+  return id_url_mapper;
+}
+
+
+</script>
+
+</head>
+
+<body style="background-color:#fff;"  marginheight=0 leftmargin=0 marginwidth=0 topMargin="0">
+
+<table width="800" height="58" border="0" cellpadding="0" cellspacing="0" align="center">
+      <tr>
+        <td width="479"  background="/images/new/logo_center.jpg"><img src="/images/new/logo_left.jpg" ></td>
+        <td  background="/images/new/logo_center.jpg">&nbsp;&nbsp;</td>
+        <td width="500" ><img src="/images/new/logo_right.jpg" ></td>
+      </tr>
+</table>
+
+      <table width="1024" align="center" height="24" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="150"><img src="/images/new/top_left.jpg" width="150" height="24"></td>
+          <td width="30"><img src="/images/new/top_center.jpg" width="30" height="24"></td>
+          <td style="background:url(/images/new/top_mid_bg.jpg);color:#dddddd;padding-left:19px;padding-top:3px;">您的当前位置是：		  <span id=link_tip></span></td>
+          <td width="52"><img src="/images/new/top_mid_right.jpg" width="52" height="24"></td>
+          <td width="60" style="background:url(/images/new/top_mid_right5.jpg)">&nbsp;</td>
+
+           <td width="40" style="background:url(/images/new/top_mid_right5.jpg)"><a href="#xxm" onclick="javaScript:reflesh()" ><img src="/images/new/exit.gif" width="15" height="15" title="刷新" border=0></a></td>
+      
+            </td>
+
+     
+     </tr>
+  </table>
+
+
+
+<div class="page"><div class="page_wb">
+<div id="left">
+  <div class="left_wrap" id="left_wrap"></div>
+</div>
+
+<div id="right">
+  <div class="right_wrap" id="right_wrap">
+    <iframe src="" scrolling="no" id="moduleIframe" name="moduleIframe" frameborder="no" style="width:828px;height:720px;display:block;"></iframe>
+  </div>
+</div>
+
+
+<div class="clear"></div>
+</div></div>
+
+
+<script>
+	var $=function(objectId){
+	if(document.getElementById&&document.getElementById(objectId)){
+		return document.getElementById(objectId)}
+	else if(document.all&&document.all(objectId)){
+		return document.all(objectId)}
+	else if(document.layers&&document.layers[objectId]){
+		return document.layers[objectId];}
+	else{
+		return false;}
+	};
+
+  			
+</script>
+<script language="javascript">
+
+//重新给颜色切换设置事件响应函数，以便支持iframe内的颜色切换
+var g_deltaHeight = 30;
+function getColor() {
+  if ($('ipt_fc_cn') && $('ipt_fc_en')) {
+    if ($('ipt_fc_cn').checked) return 0;
+    else return 1
+  } else return 0
+}
+function onInitColorChange() {
+  var _onChangeColor = function(color) {
+    if (typeof colorset == 'function') colorset(color);
+    if ($('moduleIframe')) {
+      try {
+        $('moduleIframe').contentWindow['onChangeColor'](color)
+      } catch(e) {
+        if (window.console) window.console.log('error in onOpenModuleInParent' + e)
+      }
+    }
+  };
+  if ($('ipt_fc_cn') && $('ipt_fc_en')) {
+    $('ipt_fc_cn').onclick = function() {
+      _onChangeColor(0)
+    }
+    $('ipt_fc_en').onclick = function() {
+      _onChangeColor(1)
+    }
+  }
+}
+
+//更改选中的左侧叶子节点的背景
+function setLeftNavBg(leaf_id)
+{
+    var p = $('left_wrap');
+    var pcli = p.getElementsByTagName('li');
+    for (var i=0; i<pcli.length; i++)
+    {
+        if (pcli[i].id == 'leaf_'+leaf_id)
+        {
+            pcli[i].style.background='url(/images/new/bg_4.gif) no-repeat';
+           
+        }
+        else
+        {
+            pcli[i].style.background='url(/images/new/bg_3.gif) no-repeat scroll 15px 0 transparent';
+        }
+    }
+    
+}
+
+//点击左侧列表的叶节点，叶节点表示可以直接打开页面的节点
+function onClickLeafNode(url,title){
+
+  var leaf_id = onOpenModule(url,title);
+  setLeftNavBg(leaf_id);
+  if(bossLog)
+    bossLog({sOp:1100,iParam:leaf_id});
+}
+
+var g_ahref= $('T');
+function onOpenModule(url,title) {
+document.all.link_tip.innerHTML=title;
+  var moduleIframe = $('moduleIframe');
+  var color = getColor();
+  var changeColorQuery = '';
+  if(url.indexOf('?')!=-1)
+    changeColorQuery = '&change_color_' + color;
+  else
+    changeColorQuery = '?change_color_' + color;
+  moduleIframe.src = url + changeColorQuery;
+  var leaf_id = '',
+      leafHash = '';
+
+  return leaf_id;
+}
+
+
+function leftmenu(obj, tag, n) {
+  var dls = $("left").getElementsByTagName("dl");
+  if (n == 1) dls = $("A_index").getElementsByTagName("dd");
+  for (var i = 0; i < dls.length; i++) {
+    var Pdiv = dls[i].getElementsByTagName(tag);
+    if (obj == dls[i].firstChild) {
+      for (var j = 0; j < Pdiv.length; j++) {
+        if (Pdiv[j].className == "") {
+          dls[i].firstChild.className = "";
+          Pdiv[j].className = "undis"
+        } else if (Pdiv[j].className == "undis") {
+          dls[i].firstChild.className = "yk_on";
+          Pdiv[j].className = ""
+        }
+      }
+    } else {
+      for (var j = 0; j < Pdiv.length; j++) {
+        dls[i].firstChild.className = "";
+        Pdiv[j].className = "undis"
+      }
+    }
+  }
+}
+
+var g_id_url_mapper = init_tree_menu(tree_menu_data, 'left_wrap');
+onOpenModule('/ncs_list_onlineuser_lab.htm');
+
+document.all.link_tip.innerHTML="单位在线信息";
+
+</script>
+
+
+
+
+</body>
+</html>

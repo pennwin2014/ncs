@@ -1,0 +1,188 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<title>Web地址列表</title>
+<script>
+    function goto(t){
+        self.location.href=t;
+    }
+    
+    function setdate(t){
+       j=form1.dateid.options.length; 
+       for(i=0;i<j;i++) { 
+           gv = form1.dateid.options[i].value;
+           if(gv == t) {
+               form1.dateid.selectedIndex = i;
+           }
+       }
+    }
+      
+	function setctl(t){
+       j=form1.limctl.options.length; 
+       for(i=0;i<j;i++) { 
+           gv = form1.limctl.options[i].value;
+           if(gv == t) {
+               form1.limctl.selectedIndex = i;
+           }
+       }
+    }
+
+	function setlistid(t){
+       j=form1.listid.options.length; 
+	   for(i=0;i<j;i++) { 
+           gv = form1.listid.options[i].value;
+           if(gv == t) {
+               form1.listid.selectedIndex = i;
+           }
+       }
+    }
+	  
+    function mouseovertr2 (o){
+        var i;
+        df=o.style.backgroundColor
+	    o.style.backgroundColor= "#003399";
+	    o.style.borderColor= "#FFFF00";
+	    o.style.cursor="hand";	
+        for(i=0; i<o.cells.length; i++)
+        {
+	        o.cells(i).style.color="#ffffff";
+        }	
+    }
+
+    function showf(lff,sid,num) {
+        form1.sid.value=sid;
+        form1.cnum.value=num;
+		form1.ctype.value=lff;
+    }
+    
+    function mouseouttr2(o){
+	    o.style.backgroundColor=df
+        for(i=0; i<o.cells.length; i++)
+        {
+	        o.cells(i).style.color="#000000";
+        }
+    }
+
+    var dfd1="0"
+    function checkme(p)
+    {
+	    var tt=p.value
+	    if (tt>yy)
+	    {
+		    MM_changeProp('browsdopage','','value',yy,'INPUT/TEXT')
+	    }
+	    if (tt==0)
+	    {
+		    MM_changeProp('browsdopage','','value','1','INPUT/TEXT')
+	    }
+    }
+
+    function allChecked(){
+        if(dfd1=="1"){
+            dfd1="0"
+        }
+        else {
+             dfd1="1"
+        }
+	    for(var i=0;i<document.all.DataTable.rows.length;i++)
+	    {
+		    if(typeof(document.all.DataTable.rows[i].cells[0].childNodes[0])=="object"
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].tagName=="INPUT"
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].type=="checkbox") {
+			    if(dfd1=="1"){
+  			        document.all.DataTable.rows[i].cells[0].childNodes[0].checked="true";
+                }
+			    else{
+                    document.all.DataTable.rows[i].cells[0].childNodes[0].checked="";
+                }
+            }
+ 	    }
+    }
+<!-- Hide
+    function killErrors() {
+        return true;
+    }
+    window.onerror = killErrors;
+// -->
+
+</script>
+
+<style type="text/css">
+<!--
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+.anniu_1 {  background-color: #6382BD; height: 18px; width: 48px;font-size: 9pt; font-style: normal; font-weight: normal;BORDER-BOTTOM: 1px solid #6382BD; BORDER-LEFT:1px solid  #6382BD; BORDER-RIGHT: 1px solid #266AA8; BORDER-TOP: 1px solid  #6382BD; COLOR: #ffffff; top: 20px; clip:   rect(   )}
+-->
+</style>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+<body marginheight=0 leftmargin=0 marginwidth=0 topMargin="0" BGCOLOR="#DEE8FA">
+<form name="form1" method="post" action="/pronline/Msg">
+  <table width="100%" height="40" border="0" cellpadding="0" cellspacing="0" class="ttt">
+    <tr> 
+      <td height="26"> <div align="center">使用策略[#limitid#] 
+        [#postflags#]POST发送表单
+        [#webip#]通过IP访问网站 
+        序号 
+        <input type="text" name="cnum" maxlength="5" size="5"> <input type="hidden" name="FunName" value="ncWebLim_Listbase"> 
+        <input type="hidden" name="flags" value="[#flags#]"> <input type="hidden" name="ctype" > 
+        <input type="hidden" name="sum"   value="[#sum#]"> <input type="hidden" name="gtype"   value="[#gtype#]"> 
+        <input type="hidden" name="id"   value="[#id#]"> <input type="hidden" name="sid" > </div >
+      </td>
+      <td height="26" width="28%"> <div align="center"> 
+          <input name="ok" type="submit" class="an3" value="确 定" >
+          <input name="can" type="reset" class="an3" value="取 消" >
+          <input name="del" type="submit" class="an3" value="删 除" >
+        </div></td>
+    </tr>
+  </table>
+  <table border="0" width=100% cellspacing="0" cellpadding="0" align=center bgcolor='#ffffff'>
+    <tr>
+      <td width="100%"  valign=top align=center> 
+        <table  id="DataTable" width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" >
+          <tr bgcolor="#6382BD"  height="21" > 
+            <td width="49" height="18" class="bord2"> 
+              <div align="center"><font color="#FFFFFF">
+                <input type="button" name="b1" value="全选"    class="anniu_1" onClick="allChecked()">
+                </font></div></td>
+            <td width="113" height="18" class="bord2"> 
+              <div align="center"><font color="#FFFFFF">序号</font></div></td>
+            <td width="117" height="18" class="bord2"> 
+              <div align="center"><font color="#FFFFFF">控制</font></div></td>
+            <td width="169" height="18" class="bord2"> 
+              <div align="center"><font color="#FFFFFF">日期</font></div></td>
+            <td width="225" height="18" class="bord2"> 
+              <div align="center"><font color="#FFFFFF">&nbsp;时间</font></div></td>
+            <td width="320" height="18" class="bord4"> 
+              <div align="center"><font color="#FFFFFF">限制内容</font></div></td>
+          </tr>
+          <!-- [#SLPB#] -->
+          <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" onclick="showf('[#lff#]','[#lsid#]','[#lrnum#]')"> 
+            <td class="bord1" width="49"> <input type="checkbox" name="ch[#lff#][#lnum#]" value="[#lsid#]"> 
+            </td>
+            <td class="bord1" width="113">&nbsp;[#lrnum#]</td>
+            <td class="bord1" width="117">&nbsp;[#llimctl#]</td>
+            <td class="bord1" width="169">&nbsp;[#ldatename#]</td>
+            <td class="bord1" width="225">&nbsp;[#lstime#]-[#letime#]</td>
+            <td class="bord3" width="320">&nbsp;[#lctldes#]</td>
+          </tr>
+          <!-- [#SLPE#] -->
+          <!-- [#SLPB#] -->
+          <tr id=[#snum#]> 
+            <td class="bord1" width="49">&nbsp; </td>
+            <td class="bord1" width="113">&nbsp;</td>
+            <td class="bord1" width="117">&nbsp;</td>
+            <td class="bord1" width="169">&nbsp;</td>
+            <td class="bord1" width="225">&nbsp;</td>
+            <td class="bord3" width="320">&nbsp;</td>
+          </tr>
+          <!-- [#SLPE#] -->
+        </table>
+
+</table>
+  </form>
+</body>
+</html>

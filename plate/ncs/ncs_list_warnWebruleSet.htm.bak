@@ -1,0 +1,388 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<title>Web地址列表</title>
+<script language="JavaScript" src="/js/weblisttype.js"> </script>	
+<script>
+     function goto(t){
+        self.location.href=t;
+    }
+    
+    function setstatus(t){
+       j=form1.vister.options.length; 
+       for(i=0;i<j;i++) { 
+           gv = form1.vister.options[i].value;
+           if(gv == t) {
+               form1.vister.selectedIndex = i;
+           }
+       }
+    }
+        
+	
+    function showf(sid,no,timetype,starttime,stoptime,flags,warntype,url,rule_id,rule_name,validation_time) {
+        form1.sid.value=sid;
+       form1.num.value=no;
+      form1.starttime.value=starttime;
+      form1.stoptime.value=stoptime;
+      form1.flags.value=flags;   
+      form1.warntype.value=warntype;
+      form1.timetype.value=timetype;
+    
+      form1.url.value=url;
+      form1.rule_id.value=rule_id;
+      form1.rule_name.value=rule_name;
+      form1.validation_time.value=validation_time;
+    }
+    
+ function mouseovertr2 (o){
+        var i;
+        df=o.style.backgroundColor
+	    o.style.backgroundColor= "#003399";
+	    o.style.borderColor= "#FFFF00";
+	    o.style.cursor="hand";	
+        for(i=0; i<o.cells.length; i++)
+        {
+	        o.cells(i).style.color="#ffffff";
+        }	
+    }
+    function Add()
+    {
+	    if(form1.num.value=='')
+	    {
+	    	alert('请输入审计级别');
+	    	return false;
+	    	}
+           if(form1.url.value=='')
+	    {
+	    	alert('请输入网址');
+	    	return false;
+	    	}
+	    	return true;
+    }
+    function Mod()
+    {
+	    if(form1.num.value=='')
+	    {
+	    	alert('请输入级别');
+	    	return false;
+	    	}
+	    	return true;
+    }
+    function Del()
+    {
+    var flag=0;
+    	    for(var i=1;i<document.all.DataTable.rows.length;i++)
+	    {
+	    if(document.all.DataTable.rows[i].cells[0].childNodes[0].checked)
+	    {
+		    flag=1;
+		    break;
+	    }
+	    }
+	    if(flag==0)
+	    {
+	    	alert('请先选择要删除的规则');
+	    	return false;
+	    }
+	    	return true;
+    }
+    
+
+    function mouseouttr2(o){
+	    o.style.backgroundColor=df
+        for(i=0; i<o.cells.length; i++)
+        {
+	        o.cells(i).style.color="#000000";
+        }
+    }
+
+    var dfd1="0"
+    function gotoPage(pagenum)
+    {
+        form1.CurPg.value = pagenum;
+    }
+
+    function checkme(p)
+    {
+	    var tt=p.value
+	    if (tt>yy)
+	    {
+		    MM_changeProp('browsdopage','','value',yy,'INPUT/TEXT')
+	    }
+	    if (tt==0)
+	    {
+		    MM_changeProp('browsdopage','','value','1','INPUT/TEXT')
+	    }
+    }
+
+    function allChecked(){
+        if(dfd1=="1"){
+            dfd1="0"
+        }
+        else {
+             dfd1="1"
+        }
+	    for(var i=0;i<document.all.DataTable.rows.length;i++)
+	    {
+		    if(typeof(document.all.DataTable.rows[i].cells[0].childNodes[0])=="object"
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].tagName=="INPUT"
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].type=="checkbox") {
+			    if(dfd1=="1"){
+  			        document.all.DataTable.rows[i].cells[0].childNodes[0].checked="true";
+                }
+			    else{
+                    document.all.DataTable.rows[i].cells[0].childNodes[0].checked="";
+                }
+            }
+ 	    }
+    }
+    
+
+<!-- Hide
+var ll=[#CurPg#]
+var yy=[#TotPg#]
+    function killErrors() {
+        return true;
+    }
+    window.onerror = killErrors;
+// -->
+
+</script>
+
+<link REL=stylesheet HREF="/css/runmit.css" TYPE="text/css">
+<script src="/js/rmenu.js"></script>
+<style type="text/css">
+<!--
+.tScrollw {
+    overflow: scroll;
+    overflow-x:hidden;
+    height:437px;
+    cursor: default;
+    }
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+-->
+</style>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+<body marginheight=0 leftmargin=0 marginwidth=0 topMargin="0" BGCOLOR="#DEE8FA" style="overflow:hidden">
+<form name="form1" method="post" action="/pronline/Msg"> 
+     <input type="hidden" name="userid" value="[#userid#]" >				     
+     <input type="hidden" name="uflags" value="[#uflags#]">
+     <input type="hidden" name="sid"    value="[#sid#]">
+     <input type="hidden" name="FunName" value="ncswarnWebruleSet">
+     <input type="hidden" name="CurPg"      value="[#CurPg#]">
+     <input type="hidden" name="TotPg"      value="[#TotPg#]">
+     <input type="hidden" name="TotRec"     value="[#TotRec#]">
+     <input type="hidden" name="conflags"  value="0">
+     <input type="hidden" name="warntype" value="0">
+  <table border="0" width=100%  cellspacing="0" cellpadding="0" align=center>
+    <tr> 
+      <td width="100%" valign="top" class="ttt"> 
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+
+          <tr> 
+            <td > 
+              <table width="100%" border="0">
+              <tr height="10"><td colspan="3"></td></tr>
+                <tr height="30"> 
+                 
+                  <td colspan="3">级别
+                   <select name="num" style="width:70">
+                   	  <option value="">选择</option>
+                   	  <option value="1">严重</option>
+                   	  <option value="2">中度</option>
+                   	  <option value="3">一般</option>
+                   	  <option value="9">其他</option>
+                   </select> 	  
+                  
+                   策略名称
+                   <input type="text" name="rule_name" size="20" value="" maxlength="100"> 
+                     策略代码
+                    <input type="text" name="rule_id" size="20" value="[#rule_id#]" maxlength="20">
+                   策略失效日期
+                   <input type="text" name="validation_time" size="10" value="[#validation_time#]" maxlength="100"> &nbsp;&nbsp;(格式YYYY-MM-DD) 
+                   <br>
+                    日期
+                   <select name="timetype" style="width:70">
+                   <option value="0">每天</option>
+                   [#SLPB#]
+                   <option value="[#idd#]">[#named#]</option>
+                   [#SLPE#]
+                  
+                   </select>
+                   时间段
+                    <input type="text" name="starttime" size="8" value="00:00:00" maxlength="8">
+                   到
+                   <input type="text" name="stoptime" size="8" value="23:59:59" maxlength="8">
+                  (格式HH:MM:SS)
+                  &nbsp;&nbsp;规则动作
+                  <select name="flags" style="width:84">
+                   <option value="1">不控制</option>
+                   <option value="0">禁止</option>
+                   <option value="3">告警</option>
+                   <option value="2">告警阻断</option>
+                   </select>
+                 </td>
+                </tr>
+                
+                 <tr height="30"> 
+                 
+                  <td colspan="3" >
+                   访问网址包含
+                    
+                  <input type="text" name="url" size="57" value="[#url#]" maxlength="64">
+                
+
+                 </td>
+                </tr>
+                
+              <tr>
+              	<td>
+          	    <table  border=1 cellspacing="0" cellpadding="0" bordercolorlight=#89ACED   bordercolordark=#ffffff>
+                <tr height="30">                             
+                  <td colspan="2">         
+                    <input name="add" type="submit" class="an3" onClick="return Add()" value="添 加" >
+                    <input name="modi" type="submit" class="an3" value="修 改" onClick="return Mod()">
+  <!--                   <input name="del" type="submit" class="an3" value="删 除"  Onclick="return Del()">                 -->
+                     <input name="ret" type="reset" class="an3" value="清零"  >
+              
+                     
+                  </td>
+                  
+                  <td   valign="bottom" width="40%"> <div align="center">
+                    <table align=right border=0 cellpadding=0 cellspacing=0 class=main width=111>
+                      <tbody>
+                      <td width="10%" >
+                          <script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-06.gif' border=0 height=17 width=35 class='gray1'>")}
+                      else{
+                        document.write("<a href='#'><img src='/images/zbuyer-06.gif' border=0 height=17 width=35 onClick='gotoPage(1);form1.submit()' class='hand'>")}
+                    </script>
+                        </td>
+                          <td width="10%">
+                            <script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 class='gray1'>")}
+                      else {
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]-1);form1.submit()' class='hand'>")}
+                      </script>
+                          </td>
+                          <td width="20%" valign="top"><img src="/images/zbuyer-08.gif" border=0 height=17 width=32></td>
+                          <td align=middle background="" width=92>
+                            <input class=Main id=browsdopage maxlength=7  name=browsdopage size=7 style="FONT-SIZE: 12px; HEIGHT: 17px; TEXT-ALIGN: center; WIDTH: 50px;position:relative;left:0px;top:-2px;" value=[#CurPg#] onKeyPress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" onBlur="checkme(this)">
+                          </td>
+                          <td width="10%" valign="top"><img src="/images/zbuyer-09.gif" border=0 height=17 width=16></td>
+                          <td width="10%" valign="top"><img align=middle border=0 height=17 src="/images/zbuyer-10.gif" width=17 onClick="gotoPage(form1.browsdopage.value);form1.submit()" class="hand"><img align=middle height=17 src="/images/zbuyer-11.gif" width=3></td>
+                          <td width="10%" valign="top"><img border=0 height=17 src="/images/zin1.gif" width=17 ></td>
+                          <td align=middle background="" width=92>
+                            <input  class=Main id=browsdopage12 maxlength=7 name=browsdopage12 size=7 style="FONT-SIZE: 12px; HEIGHT: 17px; TEXT-ALIGN: center; WIDTH: 50px;position:relative;left:0px;top:-2px;" value='[#TotPg#]'>
+                          </td>
+                          <td width="10%" valign="top"><img align=middle height=17 src="/images/zbuyer-09.gif" width=16></td>
+                          <td align=middle background="" width=92>
+                            <input  class=Main id=browsdopage12 maxlength=7 name=browsdopage12 size=7 style="FONT-SIZE: 12px; HEIGHT: 17px; TEXT-ALIGN: center; WIDTH: 50px;position:relative;left:0px;top:-2px;" value='[#TotRec#]'>
+                          </td>
+                          <td width="10%" valign="top"><img border=0 height=17 src="/images/zin3.gif" width=17 align="middle" ><img align=middle height=17  src="/images/zbuyer-11.gif" width=3></td>
+                          <td width="10%">
+                            <script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]+1);form1.submit()' class='hand'>")}
+                      </script>
+                          </td>
+                          <td width="10%">
+                            <script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 onClick='gotoPage([#TotPg#]);form1.submit()' class='hand'>")}
+                      </script>
+                          </td>
+                      </tbody>
+                    </table> 
+                   </div></td>
+                </tr>
+            </table>            </td>
+          </tr>
+      </table>      </td>
+  </tr>
+  <tr  >
+      <td width="100%"  valign=top align=center> 
+      	<div class="tScrollw" id="tC">
+        <table  id="DataTable" width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" >
+          <tr bgcolor="#6382BD" class="tableHead"  style="top:expression(document.getElementById('tC').scrollTop)"> 
+            <td width="40" height="18" class="bord2"> 
+              <div align="center"><font color="#FFFFFF">
+                <input type="button" name="b1" value="全选"    class="anniu_1" onClick="allChecked()">
+                </font></div></td>
+            <td width="150" height="18" class="bord2"> 
+              <div align="center"><font color="#FFFFFF">策略名称</font></div></td>   	
+            <td width="55" height="18" class="bord2"> 
+              <div align="center"><font color="#FFFFFF">级别</font></div></td>
+            <td width="55" height="18" class="bord2"> 
+              <div align="center"><font color="#FFFFFF">日期</font></div></td>
+            <td width="230" height="18" class="bord2"> 
+            	 <div align="center"><font color="#FFFFFF">时间范围</font></div></td>
+            <td width="100" height="18" class="bord2"> 
+              <div align="center"><font color="#FFFFFF">控制</font></div></td> 
+ 
+           <td width="700" bgcolor="#6382BD" class="bord4"><div align="center">
+            	<font color="#FFFFFF">&nbsp;内容</font></div>
+            </td>
+            <td width="280" height="18" class="bord2"> 
+              <div align="center"><font color="#FFFFFF">设置时间</font></div></td>   	   	
+
+            <td width="150" height="18" class="bord2"> 
+              <div align="center"><font color="#FFFFFF">失效日期</font></div></td>   	 	 	
+ 
+           
+          </tr>
+          <!-- [#SLPB#] -->
+          <tr bgcolor=[#color#] height="18" onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" onClick="showf('[#sid#]','[#no1#]','[#timetype#]','[#starttime#]','[#stoptime#]','[#flags#]','[#warntype#]','[#url#]','[#rule_id#]','[#rule_name#]','[#validation_time#]')"> 
+            <td   class="bord1" align="center"> <input type="checkbox" name="ch[#num#]" value="[#sid#]"> 
+            </td>
+            <td   class="bord1">&nbsp;[#rule_name#]</td>
+            <td   class="bord1">&nbsp;[#no#]</td>
+            <td   class="bord1">&nbsp;[#namet#]</td>
+            <td   class="bord1">&nbsp;[#tp#]</td>
+            <td   class="bord1">&nbsp;[#cmsg#]</td>           
+            <td   class="bord1" >&nbsp;[#msg#]</td>
+            <td   class="bord1">&nbsp;[#set_time#]</td>           
+             <td   class="bord3">&nbsp;[#validation_time#]</td>
+           
+           
+          </tr>
+          <!-- [#SLPE#] -->
+          <!-- [#SLPB#] -->
+          <tr id=[#snum#] height="18"> 
+            <tr id=[#snum#] height="18"> 
+            <td   class="bord1">&nbsp; </td>
+            <td   class="bord1">&nbsp; </td>
+            <td   class="bord1">&nbsp; </td>
+            <td   class="bord1">&nbsp;</td>      
+            <td   class="bord1">&nbsp;</td>       
+            <td   class="bord1">&nbsp;</td>
+            <td   class="bord1">&nbsp;</td>      
+            <td   class="bord1">&nbsp;</td>       
+            <td   class="bord3">&nbsp;</td>
+          </tr>
+          </tr>
+          <!-- [#SLPE#] -->
+        </table>
+      </div>
+      </td>
+    </tr>
+  </table>
+</form>
+
+</body>
+</html>

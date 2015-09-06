@@ -1,0 +1,98 @@
+<html>
+
+<head>
+
+<title>设置上网</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+
+<script>
+
+function goto(t){
+
+self.location.href=t
+
+}
+function mouseovertr2 (o)
+{
+	var i;
+	df=o.style.backgroundColor
+	o.style.backgroundColor= "#F2F2F2";
+	o.style.borderColor= "#3399ff";
+		
+	for(i=0; i<o.cells.length; i++)
+	{
+		o.cells(i).style.color="#000000";
+	}	
+}
+
+function mouseouttr2(o)
+{
+	o.style.backgroundColor=df
+	for(i=0; i<o.cells.length; i++)
+	{
+		o.cells(i).style.color="#000000";
+	}
+}
+</script>
+<link rel="stylesheet" href="/css.css" type="text/css">
+</head>
+
+
+
+<body bgcolor="#CCCCCC" text="#000000" oncontextmenu="return false" leftmargin="1" topmargin="1">
+<table width="100%" border="0" cellspacing="0" cellpadding="3" bgcolor="#C0C0C0">
+  <tr > 
+    <td width="8%" class="bord2" height="18" background="/images/ttt.gif"> 
+      <div align="center"><b>索引</b></div>
+    </td>
+    <td width="11%" class="bord2" height="18" background="/images/ttt.gif"> 
+      <div align="center"><b>执行序号</b></div>
+    </td>
+    <td width="16%" class="bord2" height="18" background="/images/ttt.gif"> 
+      <div align="center"><b>网络接口</b></div>
+    </td>
+    <td width="13%" class="bord2" height="18" background="/images/ttt.gif"> 
+      <div align="center"><b>掩码地址</b></div>
+    </td>
+    <td width="16%" class="bord2" height="18" background="/images/ttt.gif"> 
+      <div align="center"><b>源IP地址</b></div>
+    </td>
+    <td width="16%" class="bord2" height="18" background="/images/ttt.gif"> 
+      <div align="center"><b>转换IP地址</b></div>
+    </td>
+    <td width="20%" class="bord4" height="18" background="/images/ttt.gif"> 
+      <div align="center"><b>删除</b></div>
+    </td>
+  </tr>
+  <!-- [#SLPB#] -->
+  <tr onmouseover="mouseovertr2(this)" onmouseout="mouseouttr2(this)"> 
+    <td width="8%" class="bord1"> <a name=[#num#] href="/profire/Msg?FunName@fireWebDispNatForm&index@[#index#]&type@[#type#]" target="ftop"> 
+      <div align="center">&nbsp;[#index#]</div>
+      </a> </td>
+    <td width="11%" class="bord1"><a href="/profire/Msg?FunName@fireWebDispNatForm&index@[#index#]&type@[#type#]" target="ftop">[#num#] 
+      </a></td>
+    <td width="16%" class="bord1"> 
+      <div align="left"><a href="/profire/Msg?FunName@fireWebDispNatForm&index@[#index#]&type@[#type#]" target="ftop"> 
+        &nbsp;[#outdev#]</a> </div>
+    </td>
+    <td width="13%" class="bord1"><a href="/profire/Msg?FunName@fireWebDispNatForm&index@[#index#]&type@[#type#]" target="ftop">&nbsp;[#netmask#]</a> 
+    </td>
+    <td width="16%" class="bord1"><a href="/profire/Msg?FunName@fireWebDispNatForm&index@[#index#]&type@[#type#]" target="ftop">&nbsp;[#sip#]</a> 
+    </td>
+    <td width="16%" class="bord1"><a href="/profire/Msg?FunName@fireWebDispNatForm&index@[#index#]&type@[#type#]" target="ftop"> 
+      &nbsp;[#to#]</a> </td>
+    <td width="20%" class="bord3"> 
+      <div align="center"><a href="/profire/Msg?FunName@fireWebDispNatForm&index@[#index#]&type@[#type#]"> 
+        </a><a href="/profire/Msg?FunName@fireWebDelNat&index@[#index#]&type@[#type#]"><img src="/images/ChromeClose_Down.gif" width="22" height="22" border="0"></a></div>
+    </td>
+  </tr>
+  <!-- [#SLPE#] -->
+</table>
+
+  
+<div align="center"></div>
+
+</body>
+
+</html>

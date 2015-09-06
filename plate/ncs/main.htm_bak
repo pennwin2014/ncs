@@ -1,0 +1,397 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>管理中心</title>
+<link href="/css/new/css_main.css" rel="stylesheet" type="text/css">
+<link href="css/new/common_css.css" rel="stylesheet" type="text/css">
+
+    <!-- Ext includes -->
+    <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" /> 
+    <script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+    <!-- Shared example includes -->
+    <link rel="stylesheet" type="text/css" href="/newver/resources/css/example.css" /> 
+    <script type="text/javascript" src="/newver/resources/js/examples.js"></script>
+    <script type="text/javascript" src="/newver/resources/js/states.js"></script>
+
+    <script type="text/javascript" src="/newver/resources/js/menus.js"></script>
+    <link rel="stylesheet" type="text/css" href="menus.css" />
+
+
+<script>
+
+var tree_menu_data = [
+{
+  id: '',
+  level: 0,
+  title: '在线单位',
+  url: '/pstock.htm'
+},
+{
+  id: 'qgqp',
+  level: 0,
+  title: '实时告警',
+  url: 'dctr_modules/qgqp.htm'
+},
+{
+  level: 1,
+  title: '单位管理',
+  children: [{
+    id: 'ljzf',
+    title: '单位管理',
+    url: '/v4/ncs_user_list.htm'
+  },
+  {
+    id: 'lxsz',
+    title: '连续上涨个股',
+    url: 'dctr_modules/ggsj.htm?t=2'
+  },
+  {
+    id: 'lxxd',
+    title: '连续下跌个股',
+    url: 'dctr_modules/ggsj.htm?t=3'
+  },
+  {
+    id: 'hsl',
+    title: '换手率统计',
+    url: 'dctr_modules/ggsj.htm?t=4'
+  },
+  {
+    id: 'ddmcpx',
+    title: '大卖单频现个股',
+    url: 'dctr_modules/ggsj.htm?t=5'
+  },
+  {
+    id: 'ddmrpx',
+    title: '大买单频现个股',
+    url: 'dctr_modules/ggsj.htm?t=6'
+  },
+  {
+    id: 'cjtz',
+    title: '成交突增个股',
+    url: 'dctr_modules/ggsj.htm?t=7'
+  },
+  {
+    id: 'ylcb',
+    title: '远离成本个股',
+    url: 'dctr_modules/ggsj.htm?t=8'
+  },
+  {
+    id: 'lzjz',
+    title: '量增价涨个股',
+    url: 'dctr_modules/ggsj.htm?t=9'
+  }]
+},
+{
+  level: 1,
+  title: '资金流向',
+  children: [{
+    id: 'dpzjlx',
+    title: '大盘资金流向',
+    url: 'dctr_modules/flow_dapan.htm'
+  },
+  {
+    id: 'bkzjlx',
+    title: '板块资金流向',
+    url: 'dctr_modules/flow_board.htm'
+  },
+  {
+    id: 'ggzjlx',
+    title: '个股资金流向',
+    url: 'dctr_modules/flow_stock.htm'
+  }]
+},
+{
+  level: 1,
+  title: '业绩报告大全',
+  children: [{
+    id: 'zxyjgg',
+    title: '最新业绩公告',
+    url: 'dctr_modules/nbyj.htm'
+  },
+  {
+    id: 'yjyg',
+    title: '业绩预告',
+    url: 'http://stock.finance.qq.com/cgi-bin/sstock/performance?t=2'
+  },
+  {
+    id: 'meigushouyi',
+    title: '年报每股收益排名',
+    url: 'dctr_modules/nbph.htm?t=1'
+  },
+  {
+    id: 'meigujzc',
+    title: '年报每股净资产排名',
+    url: 'dctr_modules/nbph.htm?t=2'
+  },
+  {
+    id: 'meiguxjl',
+    title: '年报每股现金流排名',
+    url: 'dctr_modules/nbph.htm?t=3'
+  },
+  {
+    id: 'jzcsy',
+    title: '年报净资产收益率排名',
+    url: 'dctr_modules/nbph.htm?t=4'
+  },
+  {
+    id: 'zylrzz',
+    title: '年报主营利润增长排名',
+    url: 'dctr_modules/nbph.htm?t=5'
+  }]
+},
+{
+  id: 'lhb',
+  level: 0,
+  title: '龙虎榜',
+  url: 'dctr_modules/lhb.htm'
+},
+{
+  id: 'dzjy',
+  level: 0,
+  title: '大宗交易数据',
+  url: 'dctr_modules/dzjy.htm'
+},
+{
+  id: 'dxf',
+  level: 0,
+  title: '大小非解禁',
+  url: 'dctr_modules/dxf.htm'
+},
+{
+  id: 'rzrq',
+  level: 0,
+  title: '融资融券',
+  url: 'http://stock.finance.qq.com/sstock/view/show.php?t=rzrq&c=show_default_info2'
+},
+{
+  id: 'xg',
+  level: 0,
+  title: '新股数据',
+  url: 'dctr_modules/xg.htm'
+},
+{
+  id: 'qzsj',
+  level: 0,
+  title: '期指数据',
+  url: 'http://stock.finance.qq.com/money/view/easyweb-show.php?t=lhb&c=show_if_lhb2'
+}];
+
+
+
+//根据树形图数据，构建左侧树形列表
+function init_tree_menu(menu_data, ctn) {
+  var TMPLT = '<dl><dt style="@DTSTL@" onclick="@ONCLICK@">@TITLE@</dt><dd class="undis">@LIST@</dd></dl>';
+  var DECORATE_TITLE = '<a href="javascript:void(0);" onclick="onClickLeafNode(\'@URL@\');" id="leaf_@ID@_a">@TITLE@</a>';
+  var LEVEL_0_TITLE = '<a href="javascript:void(0);" onclick="onClickLeafNode(\'@URL@\');" style="background-image:none;color:#494949;">@TITLE@</a>';
+  var LI_TMPLT = '<li id="leaf_@ID@">' + DECORATE_TITLE + '</li>';
+  var id_url_mapper = {};
+  var result = [];
+  for (var i = 0; i < menu_data.length; i++) {
+    var data = menu_data[i];
+    var level = data['level'];
+    var html = '';
+    switch (level) {
+    case 0:
+      {
+        var html = TMPLT.replace(/@TITLE@/ig, LEVEL_0_TITLE).replace(/@TITLE@/ig, data['title']).replace(/@LIST@/ig, '').replace(/@URL@/ig, data['url']).replace(/@ONCLICK@/ig, "").replace(/@DTSTL@/ig, "background:url(http://img1.gtimg.com/finance/pics/hv1/212/189/758/49337357.gif);");
+        id_url_mapper['l' + data['id']] = data['url'];
+        break
+      }
+    case 1:
+      var li_html = [];
+      li_html.push('<ul>');
+      for (var j = 0; j < data['children'].length; j++) {
+        var child = data['children'][j];
+        li_html.push(LI_TMPLT.replace(/@TITLE@/ig, child['title']).replace(/@URL@/ig, child['url']).replace(/@ID@/ig, child['id']))
+        id_url_mapper['l' + child['id']] = child['url'];
+      }
+      li_html.push('</ul>');
+      html = TMPLT.replace(/@TITLE@/ig, data['title']).replace(/@LIST@/ig, li_html.join('')).replace(/@ONCLICK@/ig, "leftmenu(this,'dd');");
+      break;
+    }
+    result.push(html);
+  } !! $(ctn) ? $(ctn).innerHTML = result.join('') : '';
+  return id_url_mapper;
+}
+
+
+</script>
+
+</head>
+
+<body style="background-color:#fff;"  marginheight=0 leftmargin=0 marginwidth=0 topMargin="0">
+<!--
+<table width="1024" height="58" border="0" cellpadding="0" cellspacing="0" align="center">
+      <tr>
+        <td width="479"  background="/images/new/logo_center.jpg"><img src="/images/new/logo_left.jpg" ></td>
+        <td  background="/images/new/logo_center.jpg">&nbsp;&nbsp;</td>
+        <td width="500" ><img src="/images/new/logo_right.jpg" ></td>
+      </tr>
+</table>
+
+      <table width="1024" align="center" height="24" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="150"><img src="/images/new/top_left.jpg" width="150" height="24"></td>
+          <td width="30"><img src="/images/new/top_center.jpg" width="30" height="24"></td>
+          <td style="background:url(/images/new/top_mid_bg.jpg);color:#dddddd;padding-left:19px;padding-top:3px;">您的当前位置是		  <span id=link_tip></span></td>
+          <td width="52"><img src="/images/new/top_mid_right.jpg" width="52" height="24"></td>
+          <td width="60" style="background:url(/images/new/top_mid_right5.jpg)">&nbsp;</td>
+          <td width="40" style="background:url(/images/new/top_mid_right5.jpg)"><a href="javascript:void(0)" id="id_a_help"><img src="/images/new/help.gif" width="10" height="14" title="帮助" border=0></a></td>
+           <td width="40" style="background:url(/images/new/top_mid_right5.jpg)"><a href="#" onclick="javaScript:logout()" onFocus="this.blur()"><img src="/images/new/exit.gif" width="15" height="15" title="退出" border=0></a></td>
+      
+            </td>
+
+     
+     </tr>
+  </table>
+
+-->
+<table width="1024" align="center" height="24" border="0" cellpadding="0" cellspacing="0">
+	<tr><td>
+    <div id="container" style="width:1024;align:center;">
+        <div id="toolbar"></div>
+    </div>
+  </td>
+</tr>
+	</table>
+<div class="page"><div class="page_wb">
+<div id="left">
+  <div class="left_wrap" id="left_wrap"></div>
+</div>
+
+<div id="right">
+  <div class="right_wrap" id="right_wrap">
+    <iframe src="" scrolling="no" id="moduleIframe" name="moduleIframe" frameborder="no" style="width:828px;height:720px;display:block;"></iframe>
+  </div>
+</div>
+
+
+<div class="clear"></div>
+</div></div>
+
+
+<script>
+	var $=function(objectId){
+	if(document.getElementById&&document.getElementById(objectId)){
+		return document.getElementById(objectId)}
+	else if(document.all&&document.all(objectId)){
+		return document.all(objectId)}
+	else if(document.layers&&document.layers[objectId]){
+		return document.layers[objectId];}
+	else{
+		return false;}
+	};
+
+  			
+</script>
+<script language="javascript">
+
+//重新给颜色切换设置事件响应函数，以便支持iframe内的颜色切换
+var g_deltaHeight = 30;
+function getColor() {
+  if ($('ipt_fc_cn') && $('ipt_fc_en')) {
+    if ($('ipt_fc_cn').checked) return 0;
+    else return 1
+  } else return 0
+}
+function onInitColorChange() {
+  var _onChangeColor = function(color) {
+    if (typeof colorset == 'function') colorset(color);
+    if ($('moduleIframe')) {
+      try {
+        $('moduleIframe').contentWindow['onChangeColor'](color)
+      } catch(e) {
+        if (window.console) window.console.log('error in onOpenModuleInParent' + e)
+      }
+    }
+  };
+  if ($('ipt_fc_cn') && $('ipt_fc_en')) {
+    $('ipt_fc_cn').onclick = function() {
+      _onChangeColor(0)
+    }
+    $('ipt_fc_en').onclick = function() {
+      _onChangeColor(1)
+    }
+  }
+}
+
+//更改选中的左侧叶子节点的背景
+function setLeftNavBg(leaf_id)
+{
+    var p = $('left_wrap');
+    var pcli = p.getElementsByTagName('li');
+    for (var i=0; i<pcli.length; i++)
+    {
+        if (pcli[i].id == 'leaf_'+leaf_id)
+        {
+            pcli[i].style.background='url(/images/new/bg_4.gif) no-repeat';
+           
+        }
+        else
+        {
+            pcli[i].style.background='url(/images/new/bg_3.gif) no-repeat scroll 15px 0 transparent';
+        }
+    }
+    
+}
+
+//点击左侧列表的叶节点，叶节点表示可以直接打开页面的节点
+function onClickLeafNode(url){
+  var leaf_id = onOpenModule(url);
+  setLeftNavBg(leaf_id);
+  if(bossLog)
+    bossLog({sOp:1100,iParam:leaf_id});
+}
+
+var g_ahref= $('T');
+function onOpenModule(url) {
+  var moduleIframe = $('moduleIframe');
+  var color = getColor();
+  var changeColorQuery = '';
+  if(url.indexOf('?')!=-1)
+    changeColorQuery = '&change_color_' + color;
+  else
+    changeColorQuery = '?change_color_' + color;
+  moduleIframe.src = url + changeColorQuery;
+  var leaf_id = '',
+      leafHash = '';
+
+  return leaf_id;
+}
+
+
+function leftmenu(obj, tag, n) {
+  var dls = $("left").getElementsByTagName("dl");
+  if (n == 1) dls = $("A_index").getElementsByTagName("dd");
+  for (var i = 0; i < dls.length; i++) {
+    var Pdiv = dls[i].getElementsByTagName(tag);
+    if (obj == dls[i].firstChild) {
+      for (var j = 0; j < Pdiv.length; j++) {
+        if (Pdiv[j].className == "") {
+          dls[i].firstChild.className = "";
+          Pdiv[j].className = "undis"
+        } else if (Pdiv[j].className == "undis") {
+          dls[i].firstChild.className = "yk_on";
+          Pdiv[j].className = ""
+        }
+      }
+    } else {
+      for (var j = 0; j < Pdiv.length; j++) {
+        dls[i].firstChild.className = "";
+        Pdiv[j].className = "undis"
+      }
+    }
+  }
+}
+
+var g_id_url_mapper = init_tree_menu(tree_menu_data, 'left_wrap');
+onOpenModule('/pstock.htm');
+
+</script>
+
+
+
+
+</body>
+</html>

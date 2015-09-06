@@ -1,0 +1,125 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/css.css" type="text/css">
+<script language="JavaScript">
+<!--
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_findObj(n, d) { //v4.0
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && document.getElementById) x=document.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+</script>
+</head>
+
+<body bgcolor="#AFAFC0" text="#000000" oncontextmenu="return false" topmargin="0" leftmargin="0" onLoad="MM_preloadImages('images/an2a.gif','images/an2b.gif')">
+<form method="post" id="moduser" name="moduser" action="/pronline/Msg" >
+
+<table border=0 cellspacing=0 width="96%" cellpadding=0 align="center">
+  <tbody> 
+  <tr> 
+    <input type="hidden" name="FunName" value="ncWebUserModi">
+    <input type="hidden" name="userid" value="[#userid#]">
+  
+    <td id=clearStart height="500" valign="top"> 
+      <p>&nbsp;</p>
+        <table width="80%" border="0" align="center" cellpadding="5">
+          <tr> 
+            <td colspan="4"><img src="/images/edituser.gif" width="141" height="35"></td>
+          </tr>
+          <tr> 
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr> 
+            <td class="bord2">用户名</td>
+            <td class="bord2"> 
+              <input type="text" name="username" value="[#username#]" >
+            </td>
+            <td class="bord2">加入时间</td>
+            <td class="bord4"> 
+              <input type="text" name="addtime" value="[#addtime#]" disabled >
+            </td>
+          </tr>
+          <tr>
+            <td class="bord1">密码</td>
+            <td class="bord1">
+              <input type="password" name="password" maxlength="16" size="16">
+            </td>
+            <td class="bord1">密码确认</td>
+            <td class="bord3">
+              <input type="password" name="password1" size="16" maxlength="16">
+            </td>
+          </tr>
+          <tr> 
+            <td class="bord1">&nbsp;IP 地址</td>
+            <td class="bord1"> 
+              <input type="text" name="ip" value="[#ip#]" [#ipmod#]>
+            </td>
+            <td class="bord1">MAC 地址</td>
+            <td class="bord3"> 
+              <input type="text" name="mac" value="[#mac#]" [#macmod#] >
+            </td>
+          </tr>
+          <tr> 
+            <td class="bord1">部门</td>
+            <td class="bord1"> 
+              <select name="groupid">
+                <option selected value="[#groupid#]">[#groupname#]</option>
+                <!--[#SLPB#] -->
+                <option value="[#gid#]">[#glist#]</option>
+                <!--[#SLPE#] -->
+              </select>
+            </td>
+            <td class="bord1">状态</td>
+            <td class="bord3"> 
+              <select name="use">
+                <option selected value="[#use#]">[#use#]</option>
+                <option value="正常">正常</option>
+                <option value="禁用">禁用</option>
+                <option value="免监控">免监控</option>
+              </select>
+            </td>
+          </tr>
+          <tr> 
+            <td colspan="4"> 
+              <div align="center"> 
+                <p><br>
+                  <input type="image" border="0" img name="Image1" src="/images/an1a.gif" width="99" height="33" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image1','','/images/an2a.gif',1)">
+                  <a href="/pronline/Msg?FunName@ncWebUserDel&userid@[#userid#]" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image2','','/images/an2g.gif',1)"><img name="Image2" border="0" src="/images/an1g.gif" width="99" height="33"></a> 
+                  <a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image3','','/images/an2b.gif',1)"><img name="Image3" border="0" src="/images/an1b.gif" width="99" height="33" onclick="moduser.reset()"></a> 
+                </p>
+              </div>
+            </td>
+          </tr>
+        </table>
+    </td>
+              </tr>
+              </tbody> 
+            </table>
+            
+  </form>
+<p>&nbsp;</p>
+</body>
+</html>

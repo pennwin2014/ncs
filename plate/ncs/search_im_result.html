@@ -1,0 +1,296 @@
+<html>
+<head><title>即时通讯_关键字搜索_[#query#]</title> 
+<META http-equiv="Content-Type" content="text/html; charset=GBK">
+<link REL=stylesheet HREF="/css/css_s.css" TYPE="text/css">
+<SCRIPT>
+	
+	function checkWd(){
+    		if(f.wd.value == ""){
+      			return false;
+    		}
+    		return true;
+ 	}
+ 
+  
+ 	function checkWd2(){
+    		if(form2.wd.value == ""){
+      			return false;
+    		}
+    		return true;
+ 	}
+ 
+ 	function adv_search(){
+   		self.location.href="/advanced_im_search.html";
+ 	}
+ 
+ 	function re_search(){
+   		self.location.href="/pronline/Msg?FunName@ncsimlog_v4&f@re&q@[#query#]&t@[#total#]&rn@[#rn#]&lm@[#lm#]";
+ 	}
+ 	
+ 	var td_width = 0;
+        if(screen.width == 1280)
+        {
+                td_width = 830;
+        }
+        else if(screen.width == 1024)
+        {
+                td_width = 610;
+        }
+        else {
+                td_width = screen.width * 0.622;
+        }
+</SCRIPT>
+
+
+
+
+</head>
+<br><body onLoad="f.wd.focus();">
+ <center>
+       
+       <div id="m">
+		
+		<p id="nv">
+			<nobr>
+			<a href="/pronline/Msg?FunName@ncsfulltext_v4&wd@[#query#]" class=gb1>全部</a>&nbsp;<a href="/pronline/Msg?FunName@ncsformmon_v4&wd@[#query#]" class=gb1>表单</a>&nbsp;<a href="/pronline/Msg?FunName@ncsbbsmon_v4&wd@[#query#]" class=gb1>BBS</a>&nbsp;<a href="/pronline/Msg?FunName@ncsmailmon_v4&wd@[#query#]" class=gb1>邮件</a>&nbsp;<b class=gb1>即时通讯</b>&nbsp;
+			</nobr>
+		</p>
+		<div id="fm">
+			<form method="post" name="f" action="/pronline/Msg" onSubmit="return checkWd()">
+				<input type="hidden" name="FunName" value="ncsimlog_v4">     
+				<!--
+				<input type="hidden" name="q1" value="[#q1#]">
+              			<input type="hidden" name="q2" value="[#q2#]">
+              			<input type="hidden" name="q3" value="[#q3#]">
+              			<input type="hidden" name="q4" value="[#q4#]">  -->
+				<input type="text" name="wd" value="[#query#]" id="kw"  size ="80" maxlength="80">
+				<br>
+				<input type="submit" value="搜索" id="su">
+				 <input type="button" value="&nbsp;&nbsp;高&nbsp;&nbsp;级&nbsp;&nbsp;" id="adv" onClick="adv_search()">
+			</form>
+		</div>
+	</div>
+       
+ 
+ 
+ 
+ 
+ <table cellSpacing=0 cellPadding=0 width="95%">
+	 <tr>
+  		 <td>
+  		  	<div id="top2" style="display:[#display2#]">
+  		 		<p align="right">
+  		 			搜索 <b>[#query#]</b> [#service#] 获得 <b>[#total#]</b> 个结果, 以下第 <b>[#start#]</b>-<b>[#end#]</b> 条(用时 [#total_times#] 秒)
+  		 			<br>[#sort1#]   [#sort2#]
+  		 		</p>
+  		 
+  		 	</div>
+  		 <td>
+  		 <td>
+  		 	<div id="top1" style="display:[#display1#]">
+  		 		<p align="right">
+  		 			没有找到与 <b>"[#query#]"</b> 相符的内容或信息
+  		 		</p>
+  		 	</div>
+  		<td>
+     </tr>	
+  </table>  
+    
+    
+    
+    
+    
+  
+ <table cellSpacing=0 cellPadding=0 width="85%" style="word-break:break-all" border=0>
+ 
+  [#SLPB#]
+  <tr [#class#]>
+ 
+   <td>
+     <table cellSpacing=0 cellPadding=0  style="word-break:break-all">
+     	
+     	
+     	<tr>
+		<br>
+    		<script>                        
+                        document.write("<td width=\""+ td_width + "\">");
+                </script>
+    			<h4>&nbsp;&nbsp;[#iNum#].</h4>
+    		</td>
+    		<td>
+    			
+    		</td>
+    	</tr>
+        
+        <tr>
+    		<script>                        
+                        document.write("<td width=\""+ td_width + "\">");
+                </script>
+    			<b>&nbsp;&nbsp;服务类型</b>:&nbsp;&nbsp;[#service#]
+    		</td>
+    		<td>
+    			<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;记录时间</b>:&nbsp;&nbsp;[#stime#]
+    		</td>
+    	</tr>
+       
+    	<tr>
+    		
+    		<script>                        
+                        document.write("<td width=\""+ td_width + "\">");
+                </script>
+       			<b>&nbsp;&nbsp;发送ID</b>:&nbsp;&nbsp;&nbsp;&nbsp;[#mfrom#]
+       			
+       		</td>
+    		<td>
+    			<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;场所代码</b>:&nbsp;&nbsp;[#servicecode#]
+    		</td>
+    	</tr>
+    	
+       	<tr>
+       		
+       		<script>                        
+                        document.write("<td width=\""+ td_width + "\">");
+                </script>
+       			<b>&nbsp;&nbsp;接收ID</b>:&nbsp;&nbsp;&nbsp;&nbsp;[#mto#]
+       			
+       		</td>
+       		<td>
+       			<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;场所名称</b>:&nbsp;&nbsp;[#servicename#]
+       		</td>
+       	
+       	</tr>
+       	
+       	<tr>
+       		
+       		<script>                        
+                        document.write("<td width=\""+ td_width + "\">");
+                </script>
+       			<b>&nbsp;&nbsp;消息</b>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#mesg#]
+       			
+       			
+       		</td>
+       		<td>
+       			<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位置</b>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#position#]
+       		</td>
+       		
+       	</tr>
+       	
+       	
+      
+       	
+       	
+       	
+       	<tr>
+       		<script>                        
+                        document.write("<td width=\""+ td_width + "\">");
+                </script>
+       			
+       		</td>
+       		
+       		<td>
+       			<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MAC地址</b>:&nbsp;&nbsp;&nbsp;[#mac#]
+       			
+       		</td>
+       		
+       	</tr>
+       	
+       	
+       
+       	
+       	<tr>
+       		<script>                        
+                        document.write("<td width=\""+ td_width + "\">");
+                </script>
+       			
+       		</td>
+       		
+       		<td>
+       			<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;显示姓名</b>:&nbsp;&nbsp;[#udisp#]
+       		</td>
+       		
+       	</tr>
+       	
+       	<tr>
+       		<script>                        
+                        document.write("<td width=\""+ td_width + "\">");
+                </script>
+       			
+       		</td>
+       		
+       		<td>
+       			<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;源IP地址</b>:&nbsp;&nbsp;[#sip#]
+       		</td>
+       		
+       	</tr>
+       	
+       	<tr>
+       		<script>                        
+                        document.write("<td width=\""+ td_width + "\">");
+                </script>
+       			
+       		</td>
+       		
+       		<td>
+       			<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;目的IP地址</b>:[#dip#]
+       		</td>
+       		
+       	</tr>
+       	
+        
+       	
+       	
+        
+        </table>
+ 
+   </td>
+ 	
+   
+   
+   
+  </tr>
+  
+  
+  
+  
+  [#SLPE#]
+  
+  
+  
+  
+ </table>
+  <br>
+  <table cellSpacing=0 cellPadding=0 width="80%" border=0>
+		<tr>
+  	<td><p align="center">
+	      <a href="/pronline/Msg?FunName@ncsimlog_v4&wd@[#wd_prev#]&q1@[#q1_prev#]&q2@[#q2_prev#]&q3@[#q3_prev#]&q4@[#q4_prev#]&q5@[#q5_prev#]&q6@[#q6_prev#]&cp@[#CurPg_prev#]&rn@[#rn_prev#]&lm@[#lm_prev#]&sf@[#sf_prev#]" target="_self">[#prev#]</a>
+        [#SLPB#]
+        <a href="/pronline/Msg?FunName@ncsimlog_v4&wd@[#wd_page1#]&q1@[#q1_page1#]&q2@[#q2_page1#]&q3@[#q3_page1#]&q4@[#q4_page1#]&q5@[#q5_page1#]&q6@[#q6_page1#]&cp@[#CurPg_page1#]&rn@[#rn_page1#]&lm@[#lm_page1#]&sf@[#sf_page1#]" target="_self">[#page1#]</a>
+        [#SLPE#]
+  [#page#]
+        [#SLPB#]
+        <a href="/pronline/Msg?FunName@ncsimlog_v4&wd@[#wd_page2#]&q1@[#q1_page2#]&q2@[#q2_page2#]&q3@[#q3_page2#]&q4@[#q4_page2#]&q5@[#q5_page2#]&q6@[#q6_page2#]&cp@[#CurPg_page2#]&rn@[#rn_page2#]&lm@[#lm_page2#]&sf@[#sf_page2#]" target="_self">[#page2#]</a>
+        [#SLPE#]
+        <a href="/pronline/Msg?FunName@ncsimlog_v4&wd@[#wd_next#]&q1@[#q1_next#]&q2@[#q2_next#]&q3@[#q3_next#]&q4@[#q4_next#]&q5@[#q5_next#]&q6@[#q6_next#]&cp@[#CurPg_next#]&rn@[#rn_next#]&lm@[#lm_next#]&sf@[#sf_next#]" target="_self">[#next#]</a>
+        </p></td>
+    </tr>	
+   </table><div id="bot" style="display:[#display2#]">
+       <p align="center">
+       <form method="post" action="/pronline/Msg" name="form2" onSubmit="return checkWd2()">
+              <input type="hidden" name="FunName" value="ncsimlog_v4">
+              <span id="in">
+              	<!--
+              	<input type="hidden" name="q1" value="[#q1#]">
+              	<input type="hidden" name="q2" value="[#q2#]">
+              	<input type="hidden" name="q3" value="[#q3#]">
+              	<input type="hidden" name="q4" value="[#q4#]"> -->
+                <input type="text" name="wd" value="[#query#]" id="kw" size="80" maxlength="255">
+                <br>
+                <input type="submit" value="搜索" id="sb">
+                <input type="button" value="结果中找" id="adv" onClick="re_search()">
+              </span>
+       </form>
+     </p>
+  </div>
+ </center>
+</body>
+</html>

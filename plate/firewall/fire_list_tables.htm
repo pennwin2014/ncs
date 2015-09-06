@@ -1,0 +1,93 @@
+<html>
+
+<head>
+
+<title>Untitled Document</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+
+<script>
+
+function goto(t){
+
+self.location.href=t
+
+}
+function mouseovertr2 (o)
+{
+	var i;
+	df=o.style.backgroundColor
+	o.style.backgroundColor= "#F2F2F2";
+	o.style.borderColor= "#3399ff";
+		
+	for(i=0; i<o.cells.length; i++)
+	{
+		o.cells(i).style.color="#000000";
+	}	
+}
+
+function mouseouttr2(o)
+{
+	o.style.backgroundColor=df
+	for(i=0; i<o.cells.length; i++)
+	{
+		o.cells(i).style.color="#000000";
+	}
+}
+</script>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+
+
+<body bgcolor="#CCCCCC" text="#000000" oncontextmenu="return false" leftmargin="1" topmargin="1">
+<table width="100%" border="0" cellspacing="0" bgcolor="#C0C0C0">
+  <tr > 
+    <td width="7%" class="bord2" height="18" background="/images/ttt.gif">索引</td>
+
+    <td width="7%" class="bord2" height="18" background="/images/ttt.gif"> 
+      <div align="center">执行序号</div>
+
+    </td>
+
+    <td width="80%" class="bord2" height="18" background="/images/ttt.gif"> 
+      <div align="center">名称</div>
+
+    </td>
+
+    <td width="6%" class="bord4" height="18" background="/images/ttt.gif"> 
+      <div align="center">删除</div>
+
+    </td>
+
+  </tr>
+
+  <!-- [#SLPB#] -->
+
+  <tr onmouseover="mouseovertr2(this)" onmouseout="mouseouttr2(this)">
+  <a name="[#index#]">
+    <td width="7%" class="bord1">
+      <div align="center">[#index#]</div>
+    </td>
+
+    <td width="7%" class="bord1">
+      <div align="center">[#num#]</div>
+    </td>
+
+    <td width="80%" class="bord1"> <a target="ftop" title="[#dispname#]" href="/profire/Msg?FunName@fireWebDispFormTables&index@[#index#]">[#des#]</a></td>
+
+    <td width="6%" class="bord3">
+<input type="button" name="Button" value="删除" class="anniu101" onclick="goto('/profire/Msg?FunName@fireWebDelTables&index@[#index#]')"> </td>
+ </a>
+
+  </tr>
+  <!-- [#SLPE#] -->
+
+</table>
+
+  
+<div align="center"></div>
+
+</body>
+
+</html>

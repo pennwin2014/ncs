@@ -1,0 +1,278 @@
+<html>
+<head><title>IM_关键字查询_[#query#]</title> 
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link REL=stylesheet HREF="/css/css_s.css" TYPE="text/css">
+<SCRIPT>
+	
+	function checkWd(){
+    		if(f.wd.value == ""){
+      			return false;
+    		}
+    		return true;
+ 	}
+ 
+  
+ 	function checkWd2(){
+    		if(form2.wd.value == ""){
+      			return false;
+    		}
+    		return true;
+ 	}
+ 
+ 	function adv_search(){
+   		self.location.href="/advanced_http_search.html";
+ 	}
+ 
+ 	function re_search(){
+   		self.location.href="/pronline/Msg?FunName@ncHttpLog&f@re&q@[#query_text#]&t@[#total#]&rn@[#rn#]&lm@[#lm#]";
+ 	}
+
+  
+</SCRIPT>
+
+
+
+
+</head>
+<body onLoad="f.wd.focus();"><p id="u" align="right"><table><tr><td><a href="/pronline/Msg?FunName@ncSetup">设置</a>&nbsp;</td></tr></table></p>
+ <center>
+       
+       <div id="m">
+		
+		<p id="nv">
+			<nobr>
+			<b class=gb1>网站访问</b> <a href="/pronline/Msg?FunName@ncFormLog" class=gb1>表单</a> <a href="/pronline/Msg?FunName@ncMailLog" class=gb1>邮件</a> <a href="/pronline/Msg?FunName@ncImLog" class=gb1>即时通讯</a>
+			</nobr>
+		</p>
+		<div id="fm">
+			<form method="post" name="f" action="/pronline/Msg" onSubmit="return checkWd()">
+				<input type="hidden" name="FunName" value="ncHttpLog">       
+				<input type="text" name="wd" value="[#query#]" id="kw"  size ="80" maxlength="80">
+				<br>
+				<input type="submit" value="搜索" id="su">
+				 <input type="button" value="&nbsp;&nbsp;高&nbsp;&nbsp;级&nbsp;&nbsp;" id="adv" onClick="adv_search()">
+			</form>
+		</div>
+	</div>
+       
+ 
+ 
+ 
+ 
+ <table cellSpacing=0 cellPadding=0 width="95%">
+	 <tr>
+  		 <td>
+  		  	<div id="top2" style="display:[#display2#]">
+  		 		<p align="right">
+  		 			搜索 <b>[#query#]</b> 获得 <b>[#total#]</b> 个结果, 以下第 <b>[#start#]</b>-<b>[#end#]</b> 条(用时 [#total_times#] 秒)
+  		 			<br>[#sort1#]   [#sort2#]
+  		 		</p>
+  		 
+  		 	</div>
+  		 <td>
+  		 <td>
+  		 	<div id="top1" style="display:[#display1#]">
+  		 		<p align="right">
+  		 			找不到和您的查询<b>"[#query#]"</b>相符的内容或信息
+  		 		</p>
+  		 	</div>
+  		<td>
+     </tr>	
+  </table>  
+    
+    
+    
+    
+    
+  
+ <table cellSpacing=0 cellPadding=0 width="85%" style="word-break:break-all" border=0>
+ 
+  [#SLPB#]
+  <tr [#class#]>
+ 
+   <td>
+     <table cellSpacing=0 cellPadding=0  style="word-break:break-all">
+     	
+     	
+     	<tr>
+    		<td width="800">
+    			<h3>[#iNum#].<a href="[#url_no_highlighter#]" target="_blank"><font color="green">[#url#]</font></a></h3>
+    		</td>
+    		<td>
+    			
+    		</td>
+    	</tr>
+        
+        <tr>
+    		<td width="800">
+    			<b>&nbsp;&nbsp;用户名</b>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#username#]
+    		</td>
+    		<td>
+    			<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;记录时间</b>:&nbsp;&nbsp;[#vtime#]
+    		</td>
+    	</tr>
+       
+    	<tr>
+    		<td width="800">
+    			<b>&nbsp;&nbsp;源IP</b>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#sip#]
+    		</td>
+    		<td>
+    			<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;场所代码</b>:&nbsp;&nbsp;[#servicecode#]
+    		</td>
+    	</tr>
+    	
+       	<tr>
+       		<td width="800">
+       			<b>&nbsp;&nbsp;目的IP</b>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#dip#]
+       			
+       		</td>
+       		
+       		<td>
+       			<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;场所名称</b>:&nbsp;&nbsp;[#servicename#]
+       		</td>
+       	
+       	</tr>
+       	
+       	<tr>
+       		<td width="800">
+       			<b>&nbsp;&nbsp;访问地址</b>:&nbsp;&nbsp;&nbsp;[#url#]
+       			
+       		</td>
+       		
+       		<td>
+       			<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位置</b>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#position#]
+       		</td>
+       		
+       	</tr>
+       	
+       	
+      
+       	
+       	
+       	
+       	<tr>
+       		<td width="800">
+       			<b>&nbsp;&nbsp;网页标题</b>:&nbsp;&nbsp;&nbsp;[#title#]
+       			
+       			
+       		</td>
+       		
+       		<td>
+       			<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MAC地址</b>:&nbsp;&nbsp;&nbsp;[#mac#]
+       			
+       		</td>
+       		
+       	</tr>
+       	
+       	
+       
+       	
+       	<tr>
+       		<td width="800">
+       			
+       		</td>
+       		
+       		<td>
+       			<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;显示姓名</b>:&nbsp;&nbsp;[#dispname#]
+       		</td>
+       		
+       	</tr>
+       	
+        
+       	
+       	
+        
+        </table>
+ 
+   </td>
+ 	
+   
+   
+   
+  </tr>
+  
+  
+  [#SLPE#]
+  
+  
+  
+  
+ </table>
+  <br>
+  <table cellSpacing=0 cellPadding=0 width="80%" border=0>
+		<tr>
+  	<td><p align="center">
+	      <a href="/pronline/Msg?FunName@ncHttpLog&wd@[#wd_prev#]&cp@[#CurPg_prev#]&rn@[#rn_prev#]&lm@[#lm_prev#]&sf@[#sf_prev#]" target="_self">[#prev#]</a>
+        [#SLPB#]
+        <a href="/pronline/Msg?FunName@ncHttpLog&wd@[#wd_page1#]&cp@[#CurPg_page1#]&rn@[#rn_page1#]&lm@[#lm_page1#]&sf@[#sf_page1#]" target="_self">[#page1#]</a>
+        [#SLPE#]
+  [#page#]
+        [#SLPB#]
+        <a href="/pronline/Msg?FunName@ncHttpLog&wd@[#wd_page2#]&cp@[#CurPg_page2#]&rn@[#rn_page2#]&lm@[#lm_page2#]&sf@[#sf_page2#]" target="_self">[#page2#]</a>
+        [#SLPE#]
+        <a href="/pronline/Msg?FunName@ncHttpLog&wd@[#wd_next#]&cp@[#CurPg_next#]&rn@[#rn_next#]&lm@[#lm_next#]&sf@[#sf_next#]" target="_self">[#next#]</a>
+        </p></td>
+    </tr>	
+   </table><div id="bot" style="display:[#display2#]">
+       <p align="center">
+       <form method="post" action="/pronline/Msg" name="form2" onSubmit="return checkWd2()">
+              <input type="hidden" name="FunName" value="ncHttpLog">
+              <span id="in">
+                <input type="text" name="wd" value="[#query#]" id="kw" size="80" maxlength="255">
+                <br>
+                <input type="submit" value="搜索" id="sb">
+                <input type="button" value="结果中找" id="adv" onClick="re_search()">
+              </span>
+       </form>
+     </p>
+  </div>
+ </center>
+</body>
+<script>
+	var w=window;
+	var d=document;
+	var n=navigator;
+	var k=d.f.wd;
+	var a=d.getElementById("nv").getElementsByTagName("a");
+	var isIE=n.userAgent.indexOf("MSIE")!=-1;
+	
+	if(!isIE||window.opera){
+		d.getElementById("st").style.display="none";
+	}
+	for(var i=0;i<a.length;i++){
+		a[i].onclick=function(){
+			if(k.value.length>0){
+				var C=this;
+				var A=C.href;
+				if(A.indexOf("&wd@")!=-1){
+					C.href=A.replace(/q=[^&$]*/,"&wd@"+k.value);
+				}else{
+					this.href+="&wd@"+k.value;
+				}
+			}
+		}
+	}
+	(function(){
+		if(/q=([^&]+)/.test(location.search)){
+			k.value=decodeURIComponent(RegExp.$1);
+		}
+	})();
+	
+	
+	
+	function addEV(C,B,A){
+		if(w.attachEvent){
+			C.attachEvent("on"+B,A);
+		}else{
+			if(w.addEventListener){
+				C.addEventListener(B,A,false);
+			}
+		}
+	}
+	
+	function G(A){
+		return d.getElementById(A);
+	}
+	
+</script>
+</html>

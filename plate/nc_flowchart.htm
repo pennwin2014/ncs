@@ -1,0 +1,173 @@
+<!-- saved from url=(0022)http://internet.e-mail -->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>流量分析</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta http-equiv="refresh" content="30;url=/pronline/Msg?FunName@ncWebCountTotalFlow&unit@[#unit#]&ctype@[#charttype#]&sdate@[#sdate#]&stime@[#stime#]">
+<script language = "Javascript" src = "/js/selecttime.js"></script>
+<script>
+function lprint(){
+  MM_showHideLayers('plabel','','hide')
+  window.print()
+  MM_showHideLayers('plabel','','show')
+}
+</script>
+<script language="JavaScript">
+<!--
+
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+
+
+function MM_findObj(n, d) { //v4.0
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && document.getElementById) x=document.getElementById(n); return x;
+}
+
+function MM_showHideLayers() { //v3.0
+  var i,p,v,obj,args=MM_showHideLayers.arguments;
+  for (i=0; i<(args.length-2); i+=3) if ((obj=MM_findObj(args[i]))!=null) { v=args[i+2];
+    if (obj.style) { obj=obj.style; v=(v=='show')?'visible':(v='hide')?'hidden':v; }
+    obj.visibility=v; }
+}
+//-->
+</script>
+
+<style type="text/css">
+<!--
+.handhand {  cursor: hand}
+-->
+</style>
+</head>
+
+<body bgcolor="#CCCCCC">
+<!--
+!!! Do not put the applet into a form !!!
+-->
+<table width="93%" border="0" cellspacing="0" cellpadding="0" bgcolor="#CCCCCC">
+  <tr>
+    <td>
+      <form name="form1" id="form1" method="post" action="/pronline/Msg">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#CCCCCC">
+		  <div id="plabel">
+          <tr> 
+            <td width="167"> 
+              <div align="center"> 
+                <input type="hidden" name="FunName" value="ncWebCountTotalFlow">
+                起始日期</div>
+            </td>
+            <td width="79"> 
+              <div align="center"> 
+                <input type="hidden" name="opt" value="[#opt#]">
+                <input type="text" name="sdate" size="10" maxlength="10" value="[#sdate#]">
+              </div>
+            </td>
+            <td width="49"> 
+              <div align="center"><a href="#"><img src="/images/date.gif"  border="0" onClick=show_calendar('form1.sdate')></a></div>
+            </td>
+            <td width="51"> 
+              <div align="center">时间</div>
+            </td>
+            <td width="71"> 
+              <div align="center"> 
+                <input type="text" name="stime" size="8" maxlength="8" value="[#stime#]">
+              </div>
+            </td>
+            <td width="91"> 
+              <div align="center">统计单位</div>
+            </td>
+            <td width="59"> 
+              <div align="center"> 
+                <select name="unit">
+                  <option value="[#unit#]" selected>[#unit#]</option>
+                  <option value="日">日</option>
+                  <option value="时">时</option>
+                  <option value="10分">10分</option>
+                  <option value="分">分</option>
+                </select>
+              </div>
+            </td>
+            <td width="37"> 
+              <div align="center">图表</div>
+            </td>
+            <td width="94"> 
+              <div align="center"> 
+                <select name="ctype">
+                  <option value="[#ctype#]" selected>[#cname#]</option>
+                  <option value="2">趋势图</option>
+                  <option value="1">柱状图</option>
+                </select>
+              </div>
+            </td>
+            <td width="95"> 
+              <div align="center"><img src="/images/anxian1221.gif"  border="0" onClick="form1.submit()" class="handhand"> 
+              </div>
+            </td>
+            <td width="140"> 
+                <div align="center"></div>
+            </td>
+          </tr>
+		  </div>
+        </table>
+      </form>
+    </td>
+  </tr>
+  <tr>
+    <td bgcolor="#CCCCCC"> 
+      <div align="center"><b>网络出口流量情况分析</b></div>
+    </td>
+  </tr>
+  <tr>
+    <td bgcolor="#CCCCCC"> 
+      <div align="center">([#sdate1#] [#stime1#] --- [#sdate2#] [#stime2#])</div>
+    </td>
+  </tr>
+  <tr>
+    <td bgcolor="#CCCCCC"> 
+      <div align="center"><applet
+code="JavaChart.class"
+id=JavaChart
+name=JavaChart
+width=800
+height=500 codebase="/java/"
+>
+          <!--  these must be input -->
+          <param name=ChartType value="[#charttype#]">
+          <param name=RowCount value="[#row#]">
+          <param name=ColumnCount value="3">
+          <param name=groupGaps value="1">
+          <param name=leftGaps value="40">
+          <!--
+<PARAM NAME=ColumnColor value="blue;red;green;black;cyan;darkGray;gray;lightGray;magenta;orange;pink;yellow;">
+-->
+          <param name=ColumnColor value="16,14,241,;237,4,123,;96,187,70,;155,155,255,;215,155,215,;155,155,255,;255,255,255,;155,255,155,;155,155,55,;55,55,55,;">
+          <param name=Data value="[#data#]">
+          <!-- thest must be input or not 
+     according to the ChartType
+-->
+          <param name=Diameter value="80">
+          <param name=barWidth value="1">
+          <param name=barGaps value="8">
+          <!-- these need not be input if you donot like to  -->
+          <param name=FontSize  value="10">
+          <param name=TitleText  value="">
+          <param name=showLegend value="true">
+          <param name=showControlBar value="true1">
+          <param name=ColumnLabel value="下行;上行;总流量;">
+          <param name=RowLabel value="[#rowlabel#]">
+          <param name=YAxisUnit  value="[#ylabel#]">
+          <param name=XAxisUnit  value="[#xlabel#]">
+        </applet></div>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

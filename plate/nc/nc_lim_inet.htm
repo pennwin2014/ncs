@@ -1,0 +1,376 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<title>Web地址列表</title>
+<script>
+    function goto(t){
+        self.location.href=t;
+    }
+    
+    function setgroup(t){
+       j=form1.group.options.length; 
+       for(i=0;i<j;i++) { 
+           gv = form1.group.options[i].value;
+           if(gv == t) {
+               form1.group.selectedIndex = i;
+           }
+       }
+    }
+      
+	function settype(t){
+       j=form1.type.options.length; 
+       for(i=0;i<j;i++) { 
+           gv = form1.type.options[i].value;
+           if(gv == t) {
+               form1.type.selectedIndex = i;
+           }
+       }
+    }
+	  
+    function mouseovertr2 (o){
+        var i;
+        df=o.style.backgroundColor
+	    o.style.backgroundColor= "#003399";
+	    o.style.borderColor= "#FFFF00";
+	    o.style.cursor="hand";	
+        for(i=0; i<o.cells.length; i++)
+        {
+	        o.cells(i).style.color="#ffffff";
+        }	
+    }
+
+    function showf(s1,s2,s3,s4,s5) {
+        form1.sid.value=s1;
+        form1.ldate.value=s2;
+        form1.udate.value=s3;
+		settype(s4);
+		setgroup(s5);
+    }
+    
+    function mouseouttr2(o){
+	    o.style.backgroundColor=df
+        for(i=0; i<o.cells.length; i++)
+        {
+	        o.cells(i).style.color="#000000";
+        }
+    }
+
+    var dfd1="0"
+    function checkme(p)
+    {
+	    var tt=p.value
+	    if (tt>yy)
+	    {
+		    MM_changeProp('browsdopage','','value',yy,'INPUT/TEXT')
+	    }
+	    if (tt==0)
+	    {
+		    MM_changeProp('browsdopage','','value','1','INPUT/TEXT')
+	    }
+    }
+
+    function allChecked(){
+        if(dfd1=="1"){
+            dfd1="0"
+        }
+        else {
+             dfd1="1"
+        }
+	    for(var i=0;i<document.all.DataTable.rows.length;i++)
+	    {
+		    if(typeof(document.all.DataTable.rows[i].cells[0].childNodes[0])=="object"
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].tagName=="INPUT"
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].type=="checkbox") {
+			    if(dfd1=="1"){
+  			        document.all.DataTable.rows[i].cells[0].childNodes[0].checked="true";
+                }
+			    else{
+                    document.all.DataTable.rows[i].cells[0].childNodes[0].checked="";
+                }
+            }
+ 	    }
+    }
+<!-- Hide
+    function killErrors() {
+        return true;
+    }
+    window.onerror = killErrors;
+// -->
+
+</script>
+
+<link REL=stylesheet HREF="/css/runmit.css" TYPE="text/css">
+<script src="/js/rmenu.js"></script>
+<style type="text/css">
+<!--
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+-->
+</style>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+<body marginheight=0 leftmargin=0 marginwidth=0 topMargin="0" BGCOLOR="Menu">
+
+<form name="form1" method="post" action="/pronline/Msg"> 
+<table border="0" width=100% height=100% cellspacing="0" cellpadding="0" align=center bgcolor='#ffffff'>
+ <tr> 
+    <td width="100%"  valign=middle align=center height="25" bgcolor="#dfdfdf" class="ttt">
+        <table width="100%" border="0" cellspacing="0">
+          <tr> 
+            <td width="12%" height="32"> 
+              <div align="right"> </div>
+            </td>
+            <td width="57%" height="32"> 
+              <div align="right"><b> 访问控制</b></div>
+            </td>
+            <td width="31%" height="32"> 
+              <input type="hidden" name="FunName" value="ncWebLimDateList">
+              <input type="hidden" name="sid"   value="[#sid#]">
+            </td>
+          </tr>
+          <td colspan="3" height="2" bgcolor="#BDC0C4"><img src="/images/hr" width="100%"  height="2"></td>
+          <tr> 
+            <td colspan="3"> 
+              <table width="84%" border="0">
+                <tr> 
+                  <td> 
+                    <input type="submit" name="Submit" value="基本规则">
+                  </td>
+                  <td> 
+                    <input type="submit" name="Submit2" value="上网控制">
+                  </td>
+                  <td> 
+                    <input type="submit" name="Submit3" value="网站访问">
+                  </td>
+                  <td> 
+                    <input type="submit" name="Submit4" value="服务控制">
+                  </td>
+                  <td> 
+                    <input type="submit" name="Submit5" value="IP地址限制">
+                  </td>
+                  <td> 
+                    <input type="submit" name="Submit6" value="网站地址列表">
+                  </td>
+                  <td> 
+                    <input type="submit" name="Submit7" value="IP地址列表">
+                  </td>
+                  <td>&nbsp; </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2"> 使用已定义好的规则 
+              <input type="text" name="ldate222222" size="10" value="[#ldate#]" maxlength="10">
+              <select name="select9">
+                <option value="0" selected>禁止</option>
+                <option value="1">允许</option>
+              </select>
+              在网页中使用表单 
+              <select name="select10">
+                <option value="0" selected>禁止</option>
+                <option value="1">允许</option>
+              </select>
+              使用IP地址访问网站</td>
+            <td width="31%">&nbsp;</td>
+          </tr>
+          <tr> 
+            <td colspan="2"> 
+              <select name="select8">
+                <option value="1" selected>某日</option>
+                <option value="2">每周</option>
+                <option value="3">每月</option>
+                <option value="4">每年</option>
+              </select>
+              <input type="text" name="ldate22222" size="10" value="[#ldate#]" maxlength="10">
+              到 
+              <input type="text" name="udate22632" size="10" value="[#udate#]" maxlength="10">
+              控制 
+              <select name="select8">
+                <option value="0" selected>禁止</option>
+                <option value="1">允许</option>
+              </select>
+              访问IP列表 
+              <select name="select8">
+                <option value="0" selected>禁止</option>
+                <option value="1">允许</option>
+              </select>
+              中的IP地址</td>
+            <td width="31%">&nbsp;</td>
+          </tr>
+          <tr> 
+            <td colspan="2"> 
+              <select name="select6">
+                <option value="1" selected>某日</option>
+                <option value="2">每周</option>
+                <option value="3">每月</option>
+                <option value="4">每年</option>
+              </select>
+              <input type="text" name="ldate2222" size="10" value="[#ldate#]" maxlength="10">
+              到 
+              <input type="text" name="udate2263" size="10" value="[#udate#]" maxlength="10">
+              控制 
+              <select name="select6">
+                <option value="0" selected>禁止</option>
+                <option value="1">允许</option>
+              </select>
+              访问Web列表 
+              <select name="select7">
+                <option value="0" selected>禁止</option>
+                <option value="1">允许</option>
+              </select>
+              中的网址</td>
+            <td width="31%">&nbsp;</td>
+          </tr>
+          <tr> 
+            <td colspan="2"> 
+              <select name="select5">
+                <option value="1" selected>某日</option>
+                <option value="2">每周</option>
+                <option value="3">每月</option>
+                <option value="4">每年</option>
+              </select>
+              <input type="text" name="ldate222" size="10" value="[#ldate#]" maxlength="10">
+              到 
+              <input type="text" name="udate226" size="10" value="[#udate#]" maxlength="10">
+              控制 
+              <select name="select5">
+                <option value="0" selected>禁止</option>
+                <option value="1">允许</option>
+              </select>
+              访问网址包含 
+              <input type="text" name="udate2262" size="16" value="[#udate#]" maxlength="32">
+            </td>
+            <td width="31%">&nbsp;</td>
+          </tr>
+          <tr> 
+            <td colspan="2" height="51"> 
+              <p align="center"> 
+                <select name="select3">
+                  <option value="1" selected>某日</option>
+                  <option value="2">每周</option>
+                  <option value="3">每月</option>
+                  <option value="4">每年</option>
+                </select>
+                <input type="text" name="ldate22" size="10" value="[#ldate#]" maxlength="10">
+                到 
+                <input type="text" name="udate22" size="10" value="[#udate#]" maxlength="10">
+                控制 
+                <select name="select3">
+                  <option value="0" selected>禁止</option>
+                  <option value="1">允许</option>
+                </select>
+              </p>
+              <p align="center">访问IP地址 
+                <input type="text" name="udate222" size="10" value="[#udate#]" maxlength="10">
+                到 
+                <input type="text" name="udate223" size="10" value="[#udate#]" maxlength="10">
+                端口 
+                <input type="text" name="udate224" size="10" value="[#udate#]" maxlength="10">
+                到 
+                <input type="text" name="udate225" size="10" value="[#udate#]" maxlength="10">
+                协议 
+                <select name="select4">
+                  <option value="0" selected>禁止</option>
+                  <option value="1">允许</option>
+                </select>
+              </p>
+            </td>
+            <td width="31%" height="51">&nbsp;</td>
+          </tr>
+          <tr> 
+            <td colspan="2"> 
+              <select name="select">
+                <option value="1" selected>某日</option>
+                <option value="2">每周</option>
+                <option value="3">每月</option>
+                <option value="4">每年</option>
+              </select>
+              <input type="text" name="ldate2" size="10" value="[#ldate#]" maxlength="10">
+              到 
+              <input type="text" name="udate2" size="10" value="[#udate#]" maxlength="10">
+              控制 
+              <select name="select">
+                <option value="0" selected>禁止</option>
+                <option value="1">允许</option>
+              </select>
+              访问服务 
+              <select name="select2">
+                <option value="0" selected>ICQ</option>
+                <option value="1">Telnet</option>
+              </select>
+            </td>
+            <td width="31%">&nbsp;</td>
+          </tr>
+          <tr> 
+            <td colspan="2">&nbsp;&nbsp; 
+              <select name="type">
+                <option value="1" selected>某日</option>
+                <option value="2">每周</option>
+                <option value="3">每月</option>
+                <option value="4">每年</option>
+              </select>
+              <input type="text" name="ldate" size="10" value="[#ldate#]" maxlength="10">
+              到 
+              <input type="text" name="udate" size="10" value="[#udate#]" maxlength="10">
+              控制 
+              <select name="limctl">
+                <option value="0" selected>禁止</option>
+                <option value="1">允许</option>
+              </select>
+              访问外部网 </td>
+            <td width="31%"> 
+              <input type="submit" name="add" value="添加" >
+              <input type="submit" name="modi" value="修改" >
+              <input type="submit" name="del" value="删除" >
+            </td>
+          </tr>
+        </table>
+    </td>
+  </tr>
+  <tr>
+      <td width="100%"  valign=top align=center bgcolor="#BBBBBB"> 
+        <table  id="DataTable" width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" height="100%">
+          <tr> 
+            <td class="bord2" background="/images/ttt.gif" height="21" width="69"><img src="/images/lline.gif" width="1" height="18" align="absmiddle">&nbsp;&nbsp;<a href="#" onClick="allChecked()" >全选</a> 
+            </td>
+            <td class="bord2" height="21" background="/images/ttt.gif" width="152">类别</td>
+            <td class="bord2" height="21" background="/images/ttt.gif" width="167">频度</td>
+            <td class="bord2" height="21" background="/images/ttt.gif" width="159"><img src="/images/lline.gif" width="1" height="18" align="absmiddle">&nbsp;下限</td>
+            <td class="bord4" height="21" background="/images/ttt.gif" width="304"><img src="/images/lline.gif" width="1" height="18" align="absmiddle">上限</td>
+          </tr>
+          <!-- [#SLPB#] -->
+          <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" onclick="showf('[#lsid#]','[#sdate#]','[#edate#]','[#ltype#]','[#id#]')" > 
+            <td class="bord1" width="69"> 
+              <input type="checkbox" name="ch[#num#]" value="[#lsid#]">
+            </td>
+            <td class="bord1" width="152">[#lname#]</td>
+            <td class="bord1" width="167">[#stype#]</td>
+            <td class="bord1" width="159">&nbsp;[#sdate#]</td>
+            <td class="bord3" width="304">&nbsp;[#edate#]</td>
+          </tr>
+          <!-- [#SLPE#] -->
+          <!-- [#SLPB#] -->
+          <tr id=[#snum#]> 
+            <td class="bord1" width="69">&nbsp; </td>
+            <td class="bord1" width="152">&nbsp;</td>
+            <td class="bord1" width="167">&nbsp;</td>
+            <td class="bord1" width="159">&nbsp;</td>
+            <td class="bord3" width="304">&nbsp;</td>
+          </tr>
+          <!-- [#SLPE#] -->
+        </table>
+<!--//鼠标显示//-->
+              <script language="JavaScript">
+<!--
+var MenuBarColor ='#cccccc';
+DrawMouseRightButtonUpMenu();
+
+</script>
+</table>
+  </form>
+</body>
+</html>

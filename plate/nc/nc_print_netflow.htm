@@ -1,0 +1,109 @@
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<script>
+function gotoPg(t){
+      self.location.href="/pronline/Msg?FunName@ncWebPrintNetUseBm&sdate@[#sdate#]&edate@[#edate#]&sort@[#sort#]&groupid@[#groupid#]&rownum@[#rownum#]&startpg@"+t+"&sumpage@[#sumpage#]&groupname@[#groupname#]&time@[#time#]";
+}
+
+function  doExport(){
+  self.location.href="/pronline/Msg?FunName@ncWebPrintNetUseBm&daochu@dc&sdate@[#sdate#]&edate@[#edate#]&sort@[#sort#]&groupid@[#groupid#]&rownum@[#rownum#]&groupname@[#groupname#]&time@[#time#]";
+}
+
+function llprint(){
+// document.all.pprint.style.display="none"
+  window.print()
+
+}
+</script>
+</head>
+<!-- [#SLPB#] -->
+<table border="0" align="center" cellpadding="0" cellspacing="0" width="93%" bgcolor="#FFFFFF">
+  <tr bgcolor="#CCCCCC"> 
+    <td colspan="8" height="37"> 
+      <table width="100%" border="0">
+        <tr bgcolor="#CCCCCC" bordercolor="#99CC99"> 
+          <td height="41" width="62%"> 
+            <p align="right"><b>用户网络流量统计([#sdate#]--[#edate#]) </b></p>
+          </td>
+          <td height="41" width="7%">
+            <input type="button" name="exp" value="导出" onClick="doExport()">
+          </td>
+          <td height="41" width="31%" id="pprint"> [#SLPB#] 
+            <input type="button" name="B[#pnum#]" value="[#butname#]" onClick="[#prun#]">
+            [#SLPE#] </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr align="center" valign="middle" bgcolor="#CCCCCC">
+    <td width="52" rowspan="2"  class="bord2"> 
+    <div align="center"><b>序号</b></div></td>
+    <td  width="55" rowspan="2"  class="bord2">姓名</td>
+    <td  width="104" rowspan="2"  class="bord2"> 
+      <div align="center"><b>部门</b></div></td>
+    <td colspan="2"  class="bord2">2004/12/12 11:10 </td>
+    <td height="20" colspan="2"  class="bord2">2004/12/12 11:20</td>
+    <td  class="bord2" height="20">&nbsp;</td>
+  </tr>
+  <tr align="center" valign="middle" bgcolor="#CCCCCC"> 
+    <td  class="bord2" width="67">流量</td>
+    <td  class="bord2" width="75">带宽比例</td>
+    <td  class="bord2" width="59">流量</td>
+    <td  class="bord2" height="20" width="79"><div align="center">带宽比例</div>
+    </td>
+    <td  class="bord2" height="20"  width="398"> 
+      <div align="center"><b>流量</b></div>
+    </td>
+  </tr>
+  <!-- [#SLPB#] -->
+  <tr bgcolor="#CCCCCC">
+    <td  class="bord1" height="10">&nbsp;</td>
+    <td width="55"  class="bord1">&nbsp;</td>
+    <td height="10"  class="bord1">&nbsp;</td>
+    <td  class="bord1">&nbsp;</td>
+    <td  class="bord1">&nbsp;</td>
+    <td  class="bord1">&nbsp;</td>
+    <td  class="bord1" height="10">&nbsp;</td>
+    <td  class="bord1" height="10">&nbsp;</td>
+  </tr>
+  <tr bgcolor="#CCCCCC"> 
+    <td width="52"  class="bord1" height="10"> 
+      <div align="center"><b>&nbsp; [#num#]</b></div>
+    </td>
+    <td width="55"  class="bord1">&nbsp;</td>
+    <td height="10"  class="bord1"><b>&nbsp; [#groupname#]</b></td>
+    <td  class="bord1" width="67"><div align="right">12,345</div></td>
+    <td  class="bord1" width="75"><div align="right">12.12%</div></td>
+    <td  class="bord1" width="59">&nbsp;</td>
+    <td  class="bord1" height="10" width="79"> 
+      <div align="right"><b>[#ltime#]&nbsp;</b></div>
+    </td>
+    <td  class="bord1" height="10" width="398"> 
+      <div align="right"><b>[#lbytes#]&nbsp;</b></div>
+    </td>
+  </tr>
+  <!-- [#SLPE#] -->
+</table>
+<table border="0" align="center" cellpadding="0" cellspacing="0" width="88%" bgcolor="#FFFFFF">
+  <!-- [#SLPB#] -->
+  <tr bgcolor="#CCCCCC"> 
+    <td width="46%" height="10"  class="bord1"> 
+    <div align="center"><b>合 计</b></div>      <b>&nbsp; </b></td>
+    <td  class="bord1" height="10" width="29%"> 
+      <div align="right"><b>[#sumtime#]&nbsp;</b></div>
+    </td>
+    <td  class="bord1" height="10" width="25%"> 
+      <div align="right"><b>[#sumbytes#]&nbsp;</b></div>
+    </td>
+  </tr>
+  <!-- [#SLPE#] -->
+</table>
+<p>&nbsp;</p>
+<p align="center">第 [#pages#]页</p>
+<xmp style='page-break-after:always'></xmp>
+<!-- [#SLPE#] -->
+</body>
+</html>

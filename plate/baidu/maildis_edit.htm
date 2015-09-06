@@ -1,0 +1,216 @@
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<link type="text/css" rel="stylesheet" href="/css/common.css">
+<style type=text/css>
+	<!--
+	.cellwidth{
+		
+		font-weight:bolder;
+		font-family: 华文楷体
+	}
+	.smalltitle{
+		padding-left:10px;
+		padding-top: 3px;
+		padding-bottom: 3px;
+		color: brown;
+		font-size: 20px;
+		font-weight: bold;
+		font-family: 华文楷体
+	}
+	-->
+	.btn {
+	BORDER-RIGHT: #c4c1bd 1px solid; BORDER-TOP: #ffffff 1px solid; FONT-WEIGHT: normal; 
+	FONT-SIZE: 9pt; FILTER: dropshadow(color=#000000, offx=1, offy=1); BORDER-LEFT: #ffffff 1px solid; 
+	CURSOR: default; COLOR: #000000; LINE-HEIGHT: normal; BORDER-BOTTOM: #c4c1bd 1px solid; FONT-STYLE: normal; 
+	HEIGHT: 17px; BACKGROUND-COLOR: yellow; FONT-VARIANT: normal
+}
+</style>
+
+<script language="JavaScript">
+function 	SAVE()
+{
+	if(form1.mail_ds_comp.value=='')
+	{
+		alert('公司名称不能为空');
+		return;
+	}
+	if(form1.mail_ds_name.value=='')
+	{
+		alert('联系人不能为空');
+		return;
+	}	
+	if(form1.mail_ds_tel.value==''&&form1.mail_ds_mot.value=='')
+	{
+		alert('电话或手机至少有一个不能为空');
+		return;
+	}
+	dialogArguments.parent.frames.list.form1.mail_ds_comp.value=form1.mail_ds_comp.value;	
+	dialogArguments.parent.frames.list.form1.mail_ds_name.value=form1.mail_ds_name.value;	
+	dialogArguments.parent.frames.list.form1.mail_ds_post.value=form1.mail_ds_post.value;		
+	dialogArguments.parent.frames.list.form1.mail_ds_tel.value=form1.mail_ds_tel.value;	
+	dialogArguments.parent.frames.list.form1.mail_ds_mot.value=form1.mail_ds_mot.value;		
+	dialogArguments.parent.frames.list.form1.mail_ds_emai.value=form1.mail_ds_emai.value;	
+	dialogArguments.parent.frames.list.form1.mail_ds_fax.value=form1.mail_ds_fax.value;		
+	dialogArguments.parent.frames.list.form1.mail_ds_qmsn.value=form1.mail_ds_qmsn.value;	
+	dialogArguments.parent.frames.list.form1.mail_ds_zip.value=form1.mail_ds_zip.value;		
+	dialogArguments.parent.frames.list.form1.mail_ds_time.value=form1.mail_ds_time.value;		
+	dialogArguments.parent.frames.list.form1.mail_ds_main.value=form1.mail_ds_main.value;		
+	dialogArguments.parent.frames.list.form1.mail_ds_addr.value=form1.mail_ds_addr.value;	
+	if(form1.cheID.value!='')	
+		dialogArguments.parent.frames.list.form1.cheID.value=form1.cheID.value;	
+	if(form1.modi_repeat.value!='')
+		dialogArguments.parent.frames.list.form1.modi_repeat.value=form1.modi_repeat.value;			
+	if(form1.add_flag.value==1)
+		form1.add_flag.value=2;
+	if(form1.modi_flag.value==1)
+		form1.modi_flag.value=2;
+	dialogArguments.parent.frames.list.form1.add_flag.value=form1.add_flag.value;	
+	dialogArguments.parent.frames.list.form1.modi_flag.value=form1.modi_flag.value;	
+	dialogArguments.parent.frames.list.form1.FunName.value='crm_maildis_show';
+	dialogArguments.parent.frames.list.form1.submit();
+	self.close();	
+	//dialogArguments.close();
+}
+
+
+</script>
+
+<script language="javascript" type="text/javascript" src="/js/common.js"></script>
+<script src="/js/xxm_date.js"></script>
+</head>
+
+<body leftmargin="0" topmargin="20" >
+	<script language="javascript">
+        cainit();
+	</script>
+<form name="form1" method="post"   action="/pronline/Msg">
+  <input type="hidden" name="FunName" value="crm_daigen_save">
+<input type="hidden" name="vistlog_day" value="">
+<input type="hidden" name="daily_date" value="[#daily_date#]">
+<input type="hidden" name="cheID" value="[#cheID#]">
+ <input type="hidden" name="modi_flag" value="[#modi_flag#]">
+ <input type="hidden" name="add_flag" value="[#add_flag#]">
+ <input type="hidden" name="modi_repeat" value="[#modi_repeat#]">
+<table id="DataTable" width="90%" height="350" align="center" border="1" bordercolor="#F8C669" cellpadding="0" cellspacing="0">
+   <tr>
+      <td>
+	  <table id="DataTable" height="300" width="100%" align="center" border="0" cellpadding="0" cellspacing="0">
+	    <tr>
+	    	<td>
+	    	  <table border="0" cellpadding="0" cellspacing="0">
+	    	    <tr>
+	      			<td class="smalltitle">窗口测试:</td>
+	      	  </tr>
+	      	</table>
+	      </td>
+	    </tr>
+	    <tr height="30"></tr>
+	    <tr> 
+	      <td width="100%">
+		  <table width="90%" align="center" height="250" border=1 bordercolordark=#ffffff bordercolorlight=purple cellspacing="1" cellpadding="6">
+        <tr> 
+        	<td width="100%">
+           <table width="100%" border="0" bordercolordark=#ffffff bordercolorlight=#000000  cellspacing="0" cellpadding="0">             
+             <tr height="25px">
+               <td width="15%" align="right" class="cellwidth">公司名称:&nbsp;</td>
+               <td width="35%">
+                   <input name="mail_ds_comp" value="[#mail_ds_comp#]" type="text" style="width:100%" >
+               </td>
+               <td width="15%" align="right" class="cellwidth">联&nbsp;系&nbsp;人:&nbsp;</td>
+               <td width="35%">
+               	<input name="mail_ds_name" value="[#mail_ds_name#]" type="text" style="width:100%" >
+               
+               </td>
+             </tr>
+            <tr height="10"></tr>
+            <tr height="25px">
+               <td width="15%" align="right" class="cellwidth">职务:&nbsp;</td>
+               <td width="35%">
+                   <input name="mail_ds_post" value="[#mail_ds_post#]" type="text" style="width:100%" >
+               </td>
+               <td width="15%" align="right" class="cellwidth">电话:&nbsp;</td>
+               <td width="35%">
+                   <input name="mail_ds_tel" value="[#mail_ds_tel#]" type="text" style="width:100%" >
+               </td>
+             </tr>
+              <tr height="25px">
+               <td align="right" class="cellwidth">手机:&nbsp;</td>
+               <td >
+                <input name="mail_ds_mot" value="[#mail_ds_mot#]" type="text" style="width:100%" >
+               </td>
+               <td align="right" class="cellwidth">邮件:&nbsp;</td>
+               <td >
+                <input name="mail_ds_emai" value="[#mail_ds_emai#]" type="text" style="width:100%" >	
+               </td>
+             </tr>
+
+              <tr height="25px">
+               <td align="right" class="cellwidth">传真:&nbsp;</td>
+               <td >
+               		<input name="mail_ds_fax" value="[#mail_ds_fax#]" type="text" style="width:100%" >	
+               </td>
+               <td align="right" class="cellwidth">msn/qq:&nbsp;</td>
+               <td >
+                   <input name="mail_ds_qmsn" value="[#mail_ds_qmsn#]" type="text" style="width:100%" >
+                 
+               </td>
+             </tr>
+             <tr height="25px">
+               <td width="15%" align="right" class="cellwidth">邮编:&nbsp;</td>
+               <td width="35%">
+                   <input name="mail_ds_zip" value="[#mail_ds_zip#]" type="text" style="width:100%" >
+               </td>
+               <td width="15%" align="right" class="cellwidth">&nbsp;&nbsp;联系时间:&nbsp;</td>
+               <td width="35%">
+                  <input name="mail_ds_time" value="[#mail_ds_time#]" type="text" style="width:100%" onclick="show_cele_date(this,'','',this)">
+               </td>
+             </tr>
+             <tr height="25px">
+               <td width="15%" align="right" class="cellwidth">主营方向:&nbsp;</td>
+               <td width="35%">
+                   <input name="mail_ds_main" value="[#mail_ds_main#]" type="text" style="width:100%" >
+               </td>
+               <td width="15%" align="right" class="cellwidth">&nbsp;&nbsp;地址:&nbsp;</td>
+               <td width="35%">
+                 <input name="mail_ds_addr" value="[#mail_ds_addr#]" type="text" style="width:100%" >
+               </td>
+             </tr>
+             </table>
+         </td>
+                             
+           
+         <td width="15%" valign="top">
+          <table width="100%" border=0 bordercolordark=#ffffff bordercolorlight=#000000 cellspacing="0" cellpadding="0">
+
+            <tr height="45"> 
+                <td><input type="button" name="Submit99" value="保存"  class="btn" onclick="SAVE()"></td>
+            </tr>
+			 	    <tr height="45px">
+			 	      <td> <input type="button" name="Button2" value="返回" class="btn" onClick="self.close();">
+			 	      </td>
+				    </tr>
+          </table>
+         </td>
+           
+        </tr>
+	
+  			 </table>
+	      </td>
+	    </tr>
+	    
+				<td height="10"></td>
+	    </tr>
+	  </table>
+	  
+   </td>
+  </tr>
+ </table>
+  <br>
+	<iframe id="iframegetselect" name="iframegetselect" src="" style="width:100%; height:300px; display:none"></iframe>
+</form>
+
+</body>
+</html>                                                                                 

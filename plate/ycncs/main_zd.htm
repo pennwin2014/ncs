@@ -1,0 +1,148 @@
+<html>
+<head>
+<META content="text/html; charset="gb2312" http-equiv=Content-Type>
+<title>联网使用单位安全监管系统</title>
+<link REL=stylesheet HREF="/css/runmit.css" TYPE="text/css">
+<script>
+<!--
+function go_hide()
+{
+	index_left.style.display='none';
+}
+function go_show()
+{
+	index_left.style.display='block';
+}
+function hide_bar()
+{
+	//sbpm_top.style.display='none';
+
+	document.all.main_header.height=1;
+}
+function show_bar()
+{
+//sbpm_top.document.all.toolbar.style.display='block';
+	document.all.main_header.height=35;
+}
+
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_findObj(n, d) { //v4.0
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && document.getElementById) x=document.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+function changeWin(){
+	if(index_left.style.display=='none'){
+		go_show();
+	document.all.menuSwitch1.innerHTML = "<img src='/images/arrow1.gif' width='8' height='50' border='0' alt='隐藏树结构' name='Image7' onMouseOut=\"MM_swapImgRestore();window.status='网络督察'\" onMouseOver=\"MM_swapImage('Image7','','/images/arrow1-1.gif',1);window.status='隐藏树结构'\" onclick='changeWin()' >";
+	}
+	else{
+		go_hide();
+		document.all.menuSwitch1.innerHTML = "<img src='/images/arrow2.gif' width='8' height='50' border='0' alt='显示树结构' name='Image8' onMouseOut=\"MM_swapImgRestore();window.status='网络督察'\" onMouseOver=\"MM_swapImage('Image8','','/images/arrow2-1.gif',1);window.status='显示树结构'\" onclick='changeWin()' >";
+	}
+}
+function changeWin2(){
+	if(document.all.main_header.height==1){
+		show_bar();
+	document.all.menuSwitch2.innerHTML = "<img src='/images/arrow4.gif' width='8' height='50' border='0' alt='隐藏工具条' name='Image5' onMouseOut=\"MM_swapImgRestore();window.status='网络督察'\" onMouseOver=\"MM_swapImage('Image5','','/images/arrow4-1.gif',1);window.status='隐藏工具条'\" onclick='changeWin2()' >";
+	}
+	else{
+		hide_bar();
+	document.all.menuSwitch2.innerHTML = "<img src='/images/arrow3.gif' width='8' height='50' border='0' alt='显示工具条' name='Image6' onMouseOut=\"MM_swapImgRestore();window.status='网络督察'\" onMouseOver=\"MM_swapImage('Image6','','/images/arrow3-1.gif',1);window.status='显示工具条'\" onclick='changeWin2()' >";
+	}
+}
+//-->
+</script>
+<style type="text/css">
+<!--
+.handme {  cursor: hand}
+.bord4 {  border: #999999; border-style: solid; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px}
+-->
+</style>
+</head>
+<body topMargin=2 leftmargin=0 marginheight="0" bgColor=#c1d8f9 oncontextmenu="return false" >
+<script>
+var openwinflag;
+function wqp()
+{
+// a=screen.width-3;
+//  b=screen.height;
+
+// window.moveTo(1,1);
+//  window.resizeTo(a,b);
+}
+
+wqp();
+
+</script>
+
+<table  border="0" width="100%" height="98%" cellspacing="0" cellpadding="0" bgcolor="#e1e5e8">
+  <tr > 
+    <td id="main_header"  width="100%" height="33" colspan="4"> 
+      <iframe name="sbpm_top" scrolling="no" noresize target="contents" src="/main_header_zd.htm" width=100% height=100% FrameBorder=0></iframe> 
+    </td>
+  </tr>
+   <tr bgcolor="#8cb4e8" ><td height="4" colspan="4"></td></tr>
+  <tr height=612> 
+    <td width="145"  id="td_index_left"  valign="top" > 
+      <div id="index_left" > 
+        <iframe name="sbpm_left" src="/pronline/Msg?FunName@ncsWebTreeDispGroupCorp_nolimit&plate@ycncs/tree_groupcorp_zduser.htm" width=145 height=612 frameborder="no"  ></iframe>
+      </div>
+    </td>
+    <td valign="top" width="16"  align="center" bgcolor="#0148b2" background="/images/images2/bg2.gif" valign="top"> 
+	   <img border="0" src="/images/images2/yuanjiao.gif" style="position:relative;top:-6;"  >
+	   
+       
+	   <table border="0" cellpadding="0" cellspacing="0" >
+        <tr> 
+          <td height="180" > 
+          &nbsp;
+          </td>
+        </tr>
+       
+         <tr> <td><img border="0" name="changyj" src="/images/images2/yuanjiao2-1.gif" style="position:relative;top:-102;"  ></td>
+        </tr>
+        
+         <tr><td> <img border="0" name="xyj1" src="/images/images2/yuanjiao3-1.gif" style="position:relative;top:-175;" ></td></tr>
+        
+         <tr> 
+          <td height="140"> <div align="right" id="menuSwitch1"><img src="/images/images2/arrow1.gif"   border=0 alt="隐藏树结构" name="Image7"  onMouseOut="MM_swapImgRestore();window.status='网络督察'" onMouseOver="MM_swapImage('Image7','','/images/arrow1-1.gif',1);window.status='隐藏树结构'" onclick="changeWin()"></div>
+          </td>
+        </tr>
+        
+      </table>
+      <br>
+    
+   
+      <img border="0" src="/images/images2/yuanjiao-1.gif" style="position:relative;top:220"  >
+    </td>
+
+    <td width="100%" valign="top"> <iframe name="sbpm_right" src="/pronline/Msg?FunName@ncsWebRealUserSearch&flag@1&plate@ycncs/ncs_realuser_search_zd.htm" scrolling="no" width=100% height=612  FrameBorder=0></iframe> 
+    </td>
+  </tr>
+   <tr bgcolor="#8cb4e8" height="5"><td  colspan="4"></td></tr>
+  <tr bgcolor="#0148b2" ><td height="6" colspan="4"></td></tr>
+  <tr bgcolor="#e1e5e8" ><td  colspan="4">　</td></tr>
+</table>
+  <noframes>
+  <p>此网页使用了框架，但您的浏览器不支持框架。</p>
+  </noframes>
+</body>
+
+</html>

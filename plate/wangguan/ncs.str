@@ -1,0 +1,1434 @@
+<table dsappsrv>
+1;id;int(11);;PRI;0;;
+1;name;char(32);YES;MUL;NULL;;
+1;dispname;char(32);YES;;NULL;;
+1;addtime;int(10) unsigned;YES;;NULL;;
+1;moditime;int(10) unsigned;YES;;NULL;;
+1;righttime;int(10) unsigned;YES;;NULL;;
+1;lkey;char(24);YES;;NULL;;
+1;clttype;smallint(6);YES;;NULL;;
+1;timeout;int(11);YES;;NULL;;
+1;lasttime;int(10) unsigned;YES;;NULL;;
+1;logcount;int(11);YES;;NULL;;
+1;useflags;smallint(6);YES;;NULL;;
+1;status;smallint(6);YES;;NULL;;
+2;PRIMARY;0;1;id;
+2;dsappsrv_01;0;1;name;
+</table>
+<table dscltright>
+1;pasid;int(11);YES;;NULL;;
+1;name;char(32);YES;;NULL;;
+1;dispname;char(32);YES;;NULL;;
+</table>
+<table dsdictlist>
+1;sid;int(11);;PRI;0;;
+1;dname;char(32);YES;MUL;NULL;;
+1;dtype;smallint(6);YES;;NULL;;
+1;fname;char(32);YES;;NULL;;
+1;ftype;smallint(6);YES;;NULL;;
+1;fbytes;int(11);YES;;NULL;;
+1;fright;char(8);YES;;NULL;;
+2;PRIMARY;0;1;sid;
+2;dsdictlist_ind1;0;1;dname;
+2;dsdictlist_ind1;0;2;fname;
+</table>
+<table dslogs>
+1;dotime;int(10) unsigned;YES;MUL;NULL;;
+1;name;char(32);YES;;NULL;;
+1;ip;char(16);YES;;NULL;;
+1;command;char(132);YES;;NULL;;
+2;dslogs_index;1;1;dotime;
+</table>
+<table dspasrole>
+1;roleid;int(11);;PRI;0;;
+1;pasid;int(11);;PRI;0;;
+2;PRIMARY;0;1;roleid;
+2;PRIMARY;0;2;pasid;
+</table>
+<table dsrole>
+1;id;int(11);;PRI;0;;
+1;name;char(32);;UNI;;;
+1;dispname;char(32);YES;;NULL;;
+1;descr;char(128);YES;;NULL;;
+1;addtime;int(10) unsigned;YES;;NULL;;
+1;moditime;int(10) unsigned;YES;;NULL;;
+2;PRIMARY;0;1;id;
+2;dsrole_01;0;1;name;
+</table>
+<table dsroleattr>
+1;roleid;int(11);YES;;NULL;;
+1;pasid;int(11);YES;;NULL;;
+1;flags;smallint(6);YES;;NULL;;
+1;lright;char(32);YES;;NULL;;
+</table>
+<table dssequen>
+1;id;int(10) unsigned;YES;;NULL;;
+</table>
+<table dsuser>
+1;id;int(11);;PRI;0;;
+1;name;varchar(32);YES;MUL;NULL;;
+1;dispname;varchar(32);YES;;NULL;;
+1;groupid;int(11);YES;;NULL;;
+1;groupname;varchar(32);YES;;NULL;;
+1;addtime;int(10) unsigned;YES;;NULL;;
+1;moditime;int(10) unsigned;YES;;NULL;;
+1;lkey;varchar(24);YES;;NULL;;
+1;lasttime;int(10) unsigned;YES;;NULL;;
+1;logcount;int(11);YES;;NULL;;
+1;useflags;smallint(6);YES;;NULL;;
+1;status;smallint(6);YES;;NULL;;
+1;usrlevel;smallint(6);YES;;NULL;;
+1;address;varchar(128);YES;;;;
+1;telphone;varchar(64);YES;;;;
+1;handphone;varchar(32);YES;;;;
+1;opt;varchar(255);YES;;all;;
+1;email;varchar(64);YES;;NULL;;
+2;PRIMARY;0;1;id;
+2;dsuser_01;0;1;name;
+</table>
+<table dsuserrole>
+1;id;int(11);YES;;NULL;;
+1;roleid;int(11);YES;;NULL;;
+1;addtime;int(10) unsigned;YES;;NULL;;
+1;addby;char(32);YES;;NULL;;
+</table>
+<table ncccasectl>
+1;cfrom;int(10) unsigned;YES;MUL;NULL;;
+1;ctype;int(10) unsigned;YES;;NULL;;
+1;sid;int(10) unsigned;YES;;NULL;;
+1;cid;int(10) unsigned;YES;;NULL;;
+1;context;text;YES;;NULL;;
+1;lasttime;int(10) unsigned;YES;;NULL;;
+2;ncccasectl_ind1;0;1;cfrom;
+2;ncccasectl_ind1;0;2;ctype;
+2;ncccasectl_ind1;0;3;sid;
+2;ncccasectl_ind2;1;1;cfrom;
+2;ncccasectl_ind2;1;2;cid;
+</table>
+<table ncipindex>
+1;id;int(11);;PRI;NULL;auto_increment;
+1;name;char(64);YES;;NULL;;
+1;flags;int(11);YES;;0;;
+2;PRIMARY;0;1;id;
+</table>
+<table nciplist>
+1;sid;int(11);;PRI;0;;
+1;id;int(11);YES;MUL;NULL;;
+1;prot;int(11);YES;MUL;NULL;;
+1;lip;int(10) unsigned;YES;;NULL;;
+1;uip;int(10) unsigned;YES;;NULL;;
+1;lport;int(10) unsigned;YES;;NULL;;
+1;uport;int(10) unsigned;YES;;NULL;;
+1;name;char(64);YES;;NULL;;
+1;flags;int(11);YES;;0;;
+2;PRIMARY;0;1;sid;
+2;nciplist_index_1;1;1;id;
+2;nciplist_index_2;1;1;prot;
+</table>
+<table ncippol>
+1;pid;int(11);YES;MUL;NULL;;
+1;tid;int(11);YES;;NULL;;
+1;vflags;int(11);YES;;NULL;;
+1;warnid;int(10) unsigned;YES;;NULL;;
+1;flags;int(11);YES;;0;;
+2;ncippol_index_1;1;1;pid;
+</table>
+<table nclimdate>
+1;sid;int(11);;PRI;NULL;auto_increment;
+1;id;int(11);YES;MUL;NULL;;
+1;ltype;int(11);YES;;NULL;;
+1;llower;int(10) unsigned;YES;;NULL;;
+1;lupper;int(10) unsigned;YES;;NULL;;
+2;PRIMARY;0;1;sid;
+2;nclimdate_index1;1;1;id;
+</table>
+<table nclimdatedes>
+1;id;int(11);;PRI;0;;
+1;name;char(32);YES;;NULL;;
+2;PRIMARY;0;1;id;
+</table>
+<table nclimwarnnotice>
+1;id;int(11);;PRI;0;;
+1;name;char(32);YES;;NULL;;
+1;email;char(64);YES;;NULL;;
+1;mobphone;char(32);YES;;NULL;;
+1;typeid;int(11);YES;;NULL;;
+1;mesgnote;int(11);YES;;NULL;;
+1;mailnote;int(11);YES;;NULL;;
+1;mobile;int(11);YES;;NULL;;
+2;PRIMARY;0;1;id;
+</table>
+<table nclimwarntype>
+1;id;int(11);;PRI;NULL;auto_increment;
+1;name;char(32);YES;;NULL;;
+1;localwanr;int(11);YES;;NULL;;
+1;admcenter;int(11);YES;;NULL;;
+2;PRIMARY;0;1;id;
+</table>
+<table ncmailaddr>
+1;sid;int(11);;PRI;NULL;auto_increment;
+1;id;int(11);YES;MUL;NULL;;
+1;mail;char(64);YES;MUL;NULL;;
+1;name;char(64);YES;;NULL;;
+1;modtime;int(10) unsigned;YES;;NULL;;
+1;flags;int(11);YES;;1;;
+2;PRIMARY;0;1;sid;
+2;ncmailaddr_index_1;0;1;mail;
+2;ncmailaddr_index_1;0;2;flags;
+2;cmailadd_index_2;1;1;id;
+</table>
+<table ncmailclass>
+1;id;int(11);;PRI;NULL;auto_increment;
+1;name;char(32);YES;;NULL;;
+1;modtime;int(10) unsigned;YES;;NULL;;
+1;status;int(11);YES;;1;;
+1;flags;int(11);YES;MUL;1;;
+2;PRIMARY;0;1;id;
+2;ncmailclass_index_1;0;1;flags;
+2;ncmailclass_index_1;0;2;name;
+</table>
+<table ncmessage>
+1;sid;int(10) unsigned;;PRI;NULL;auto_increment;
+1;message_code;varchar(15);YES;;NULL;;
+1;service_code;text;YES;;NULL;;
+1;send_time;int(10) unsigned;YES;MUL;0;;
+1;message_title;varchar(100);YES;;NULL;;
+1;message_content;text;YES;;NULL;;
+1;flags;int(11);YES;;2;;
+1;qs_flag;int(11);YES;;0;;
+1;message_ip;varchar(16);YES;;NULL;;
+1;message_man;varchar(16);YES;;NULL;;
+2;PRIMARY;0;1;sid;
+2;ncmessage_ind1;1;1;send_time;
+</table>
+<table ncmessagelog>
+1;sid;int(10) unsigned;;PRI;NULL;auto_increment;
+1;sip;int(10) unsigned;YES;;NULL;;
+1;message_code;char(15);YES;MUL;NULL;;
+1;service_code;char(16);YES;;NULL;;
+1;send_time;int(10) unsigned;YES;MUL;0;;
+1;message_title;char(100);YES;;NULL;;
+1;flags;int(11);YES;;0;;
+2;PRIMARY;0;1;sid;
+2;ncmessagelog_ind1;1;1;send_time;
+2;ncmessagelog_ind2;1;1;message_code;
+</table>
+<table ncrerrlog>
+1;sid;int(10) unsigned;;PRI;NULL;auto_increment;
+1;did;int(10) unsigned;YES;MUL;NULL;;
+1;uid;int(10) unsigned;YES;;NULL;;
+1;tid;int(10) unsigned;YES;;NULL;;
+1;udisp;char(32);YES;;NULL;;
+1;sdate;char(20);YES;;NULL;;
+1;vtime;int(10) unsigned;YES;MUL;NULL;;
+1;sip;char(15);YES;;NULL;;
+1;dip;char(15);YES;;NULL;;
+1;dport;int(10) unsigned;YES;;NULL;;
+1;prot;smallint(6);YES;;NULL;;
+1;level;int(11);YES;;NULL;;
+1;lcount;int(11);YES;;NULL;;
+1;service;int(11);YES;;NULL;;
+1;mesg;char(128);YES;;NULL;;
+2;PRIMARY;0;1;sid;
+2;ncrerrlog_ind1;1;1;did;
+2;ncrerrlog_ind1;1;2;uid;
+2;ncrerrlog_ind1;1;3;vtime;
+2;ncrerrlog_ind2;1;1;vtime;
+</table>
+<table ncrformmon>
+1;sid;int(10) unsigned;;PRI;NULL;auto_increment;
+1;did;int(10) unsigned;YES;MUL;NULL;;
+1;uid;int(10) unsigned;YES;;NULL;;
+1;tid;int(10) unsigned;YES;;NULL;;
+1;udisp;char(32);YES;;NULL;;
+1;sip;char(15);YES;;NULL;;
+1;sdate;char(20);YES;;NULL;;
+1;vtime;int(10) unsigned;YES;MUL;NULL;;
+1;host;char(64);YES;;NULL;;
+1;url;char(64);YES;;NULL;;
+1;upfile;char(64);YES;;NULL;;
+1;asize;bigint(20);YES;;NULL;;
+1;msize;bigint(20);YES;;NULL;;
+1;ccode;int(11);YES;;0;;
+2;PRIMARY;0;1;sid;
+2;ncrformmon_ind1;1;1;did;
+2;ncrformmon_ind1;1;2;uid;
+2;ncrformmon_ind1;1;3;vtime;
+2;ncrformmon_ind2;1;1;vtime;
+</table>
+<table ncrhttplog>
+1;did;int(10) unsigned;YES;MUL;NULL;;
+1;uid;int(10) unsigned;YES;;NULL;;
+1;tid;int(10) unsigned;YES;;NULL;;
+1;udisp;varchar(32);YES;;NULL;;
+1;vtime;int(10) unsigned;YES;MUL;NULL;;
+1;sdate;varchar(20);YES;;NULL;;
+1;conntime;int(10) unsigned;YES;;NULL;;
+1;sip;varchar(15);YES;;NULL;;
+1;dip;varchar(15);YES;;NULL;;
+1;dport;int(10) unsigned;YES;;0;;
+1;host;varchar(64);YES;;NULL;;
+1;uri;varchar(128);YES;;NULL;;
+1;title;varchar(128);YES;;;;
+1;urlid;int(10) unsigned;YES;;0;;
+1;sid;int(10) unsigned;YES;;0;;
+1;webid;int(10) unsigned;YES;;0;;
+1;bytes;bigint(20);YES;;NULL;;
+1;flags;smallint(6);YES;;NULL;;
+2;ncrhttplog_ind1;1;1;did;
+2;ncrhttplog_ind1;1;2;uid;
+2;ncrhttplog_ind1;1;3;vtime;
+2;ncrhttplog_ind2;1;1;vtime;
+</table>
+<table ncrimlog>
+1;sid;int(10) unsigned;;PRI;NULL;auto_increment;
+1;did;int(10) unsigned;YES;MUL;NULL;;
+1;uid;int(10) unsigned;YES;;NULL;;
+1;tid;int(10) unsigned;YES;;NULL;;
+1;udisp;varchar(32);YES;;NULL;;
+1;sip;varchar(15);YES;;NULL;;
+1;dip;varchar(15);YES;;NULL;;
+1;dport;int(10) unsigned;YES;;NULL;;
+1;vtime;int(10) unsigned;YES;MUL;NULL;;
+1;sdate;varchar(20);YES;;NULL;;
+1;service;int(11);YES;;NULL;;
+1;funcode;int(11);YES;;NULL;;
+1;num;int(11);YES;;NULL;;
+1;mfrom;varchar(48);YES;;NULL;;
+1;mto;varchar(48);YES;;NULL;;
+1;mesg;varchar(255);YES;;NULL;;
+1;attfile;varchar(64);YES;;;;
+2;PRIMARY;0;1;sid;
+2;ncrimlog_ind1;1;1;did;
+2;ncrimlog_ind1;1;2;uid;
+2;ncrimlog_ind1;1;3;vtime;
+2;ncrimlog_ind2;1;1;vtime;
+</table>
+<table ncriplog>
+1;did;int(10) unsigned;YES;MUL;NULL;;
+1;uid;int(11);YES;;NULL;;
+1;tid;int(10) unsigned;YES;;NULL;;
+1;udisp;char(32);YES;;NULL;;
+1;vtime;int(10) unsigned;YES;MUL;NULL;;
+1;sdate;char(20);YES;;NULL;;
+1;conntime;int(11);YES;;NULL;;
+1;sip;char(15);YES;;NULL;;
+1;dip;char(15);YES;;NULL;;
+1;trantype;smallint(6);YES;;NULL;;
+1;port;int(11);YES;;NULL;;
+1;service;smallint(6);YES;;NULL;;
+1;ubytes;bigint(20);YES;;NULL;;
+1;dbytes;bigint(20);YES;;NULL;;
+1;flags;smallint(6);YES;;NULL;;
+2;ncriplog_ind1;1;1;did;
+2;ncriplog_ind1;1;2;uid;
+2;ncriplog_ind1;1;3;vtime;
+2;ncsiplog_ind2;1;1;vtime;
+</table>
+<table ncrmailmon>
+1;sid;int(10) unsigned;;PRI;NULL;auto_increment;
+1;did;int(10) unsigned;YES;MUL;NULL;;
+1;uid;int(10) unsigned;YES;;NULL;;
+1;tid;int(10) unsigned;YES;;NULL;;
+1;udisp;char(32);YES;;NULL;;
+1;sip;char(15);YES;;NULL;;
+1;vtime;int(10) unsigned;YES;MUL;NULL;;
+1;sdate;char(20);YES;;NULL;;
+1;mailfile;char(64);YES;;NULL;;
+1;mailfrom;char(128);YES;;NULL;;
+1;mailto;char(128);YES;;NULL;;
+1;mailsub;char(128);YES;;NULL;;
+1;mailasize;bigint(20);YES;;NULL;;
+1;mailsize;bigint(20);YES;;NULL;;
+1;flags;int(11);YES;;NULL;;
+1;host;char(64);YES;;;;
+1;ccode;int(11);YES;;0;;
+2;PRIMARY;0;1;sid;
+2;ncrmailmon_ind1;1;1;did;
+2;ncrmailmon_ind1;1;2;uid;
+2;ncrmailmon_ind1;1;3;vtime;
+2;ncrmailmon_ind2;1;1;vtime;
+</table>
+<table ncrnetlog>
+1;sid;int(10) unsigned;;PRI;NULL;auto_increment;
+1;ntype;int(10) unsigned;YES;;NULL;;
+1;name;char(64);YES;;NULL;;
+1;sdate;char(20);YES;;NULL;;
+1;vtime;int(10) unsigned;YES;MUL;NULL;;
+1;did;int(10) unsigned;YES;MUL;NULL;;
+1;uid;int(10) unsigned;YES;;NULL;;
+1;tid;int(10) unsigned;YES;;NULL;;
+1;udisp;char(32);YES;;NULL;;
+1;sip;int(10) unsigned;YES;;NULL;;
+1;netid;int(11);YES;;0;;
+1;fun;int(10) unsigned;YES;;NULL;;
+1;flags;smallint(6);YES;;NULL;;
+2;PRIMARY;0;1;sid;
+2;ncrnetlog_ind1;1;1;did;
+2;ncrnetlog_ind1;1;2;uid;
+2;ncrnetlog_ind1;1;3;vtime;
+2;ncrnetlog_ind2;1;1;vtime;
+</table>
+<table ncrnetseslog>
+1;did;int(10) unsigned;YES;MUL;NULL;;
+1;uid;int(11);YES;;NULL;;
+1;tid;int(10) unsigned;YES;;NULL;;
+1;udisp;varchar(32);YES;;NULL;;
+1;sdate;varchar(20);YES;;NULL;;
+1;vtime;int(10) unsigned;YES;MUL;NULL;;
+1;sip;varchar(15);YES;;NULL;;
+1;dip;varchar(15);YES;;NULL;;
+1;dport;int(10) unsigned;YES;;NULL;;
+1;service;smallint(6);YES;;NULL;;
+1;funcode;int(11);YES;;NULL;;
+1;mesg;varchar(255);YES;;NULL;;
+2;ncrnetseslog_ind1;1;1;did;
+2;ncrnetseslog_ind1;1;2;uid;
+2;ncrnetseslog_ind1;1;3;vtime;
+2;ncrnetseslog_ind2;1;1;vtime;
+</table>
+<table ncrnetuser>
+1;ntype;int(10) unsigned;YES;MUL;NULL;;
+1;name;char(48);YES;;NULL;;
+1;descr;char(64);YES;;NULL;;
+1;did;int(10) unsigned;YES;;NULL;;
+1;uid;int(10) unsigned;YES;;NULL;;
+1;tid;int(10) unsigned;YES;;NULL;;
+1;udisp;char(32);YES;;NULL;;
+1;ip;char(15);YES;;NULL;;
+1;mac;char(18);YES;;NULL;;
+1;lasttime;int(10) unsigned;YES;;NULL;;
+2;ncrnetuser_ind2;0;1;ntype;
+2;ncrnetuser_ind2;0;2;name;
+</table>
+<table ncruseronline>
+1;sdate;char(20);YES;;NULL;;
+1;did;int(10) unsigned;YES;;NULL;;
+1;uid;int(10) unsigned;YES;;NULL;;
+1;tid;int(10) unsigned;YES;;NULL;;
+1;udisp;char(32);YES;;NULL;;
+1;ip;int(10) unsigned;YES;;NULL;;
+1;mac;char(18);YES;;NULL;;
+1;conntime;int(10) unsigned;YES;;NULL;;
+1;sumflow;bigint(20);YES;;NULL;;
+</table>
+<table ncrwarnlog>
+1;sid;int(10) unsigned;;PRI;NULL;auto_increment;
+1;did;int(10) unsigned;YES;MUL;NULL;;
+1;uid;int(10) unsigned;YES;;NULL;;
+1;tid;int(10) unsigned;YES;;NULL;;
+1;udisp;char(32);YES;;NULL;;
+1;sdate;char(20);YES;;NULL;;
+1;vtime;int(10) unsigned;YES;MUL;NULL;;
+1;sip;char(15);YES;;NULL;;
+1;dip;char(15);YES;;NULL;;
+1;dport;int(10) unsigned;YES;;NULL;;
+1;warntype;int(11);YES;;NULL;;
+1;msgtype;int(11);YES;;NULL;;
+1;mid;int(10) unsigned;YES;;NULL;;
+1;mesg;char(128);YES;;NULL;;
+2;PRIMARY;0;1;sid;
+2;ncrwarnlog_ind1;1;1;did;
+2;ncrwarnlog_ind1;1;2;uid;
+2;ncrwarnlog_ind1;1;3;vtime;
+2;ncrwarnlog_ind2;1;1;vtime;
+</table>
+<table ncsadminlog>
+1;sid;int(11);;PRI;NULL;auto_increment;
+1;sdate;varchar(20);YES;MUL;NULL;;
+1;name;varchar(16);YES;;NULL;;
+1;ipaddr;varchar(16);YES;;NULL;;
+1;descr;text;YES;;NULL;;
+1;action;varchar(4);YES;;99;;
+1;result;varchar(10);YES;;NULL;;
+2;PRIMARY;0;1;sid;
+2;ncsadminlog_index1;1;1;sdate;
+</table>
+<table ncsbackuplog>
+1;sid;int(11);;PRI;NULL;auto_increment;
+1;backtime;int(10) unsigned;YES;;NULL;;
+1;sdate;char(12);YES;MUL;NULL;;
+1;bakpath;char(128);YES;;NULL;;
+1;filename;char(128);YES;;NULL;;
+1;fsize;bigint(20);YES;;NULL;;
+1;backtype;char(8);YES;;NULL;;
+1;lcount;int(11);YES;;0;;
+1;flags;int(11);YES;;0;;
+2;PRIMARY;0;1;sid;
+2;ncsbackuplog_i;1;1;sdate;
+</table>
+<table ncsbbsindex>
+1;id;int(10) unsigned;;PRI;0;;
+1;name;char(32);YES;;NULL;;
+1;lasttime;int(10) unsigned;YES;;0;;
+1;ntype;int(11);YES;;0;;
+1;flags;int(11);YES;;1;;
+2;PRIMARY;0;1;id;
+</table>
+<table ncsbbsvar>
+1;sid;int(10) unsigned;;PRI;NULL;auto_increment;
+1;tid;int(10) unsigned;YES;;NULL;;
+1;host;char(64);YES;;NULL;;
+1;url;char(64);YES;;NULL;;
+1;varname;char(32);YES;;NULL;;
+2;PRIMARY;0;1;sid;
+</table>
+<table ncscasectllog>
+1;sid;int(10) unsigned;;PRI;NULL;auto_increment;
+1;cid;int(10) unsigned;YES;MUL;NULL;;
+1;stime;int(10) unsigned;YES;;NULL;;
+1;cname;char(64);YES;;NULL;;
+1;did;int(10) unsigned;YES;;NULL;;
+1;flags;int(11);YES;;0;;
+1;sessid;int(10) unsigned;YES;MUL;NULL;;
+2;PRIMARY;0;1;sid;
+2;ncscasectllog_ind2;0;1;cid;
+2;ncscasectllog_ind2;0;2;did;
+2;ncscasectllog_ind1;1;1;cid;
+2;ncscasectllog_ind3;1;1;sessid;
+</table>
+<table ncscaseim>
+1;sid;int(10) unsigned;;PRI;NULL;auto_increment;
+1;cid;int(10) unsigned;YES;MUL;NULL;;
+1;nettype;int(10) unsigned;YES;;NULL;;
+1;cont;char(128);YES;;NULL;;
+1;contid;int(10) unsigned;YES;;NULL;;
+1;flags;int(11);YES;;0;;
+1;lasttime;int(10) unsigned;YES;;NULL;;
+2;PRIMARY;0;1;sid;
+2;ncscaseim_ind1;1;1;cid;
+</table>
+<table ncscaseinfo>
+1;sid;int(10) unsigned;;PRI;NULL;auto_increment;
+1;casecode;varchar(15);YES;MUL;NULL;;
+1;casename;varchar(32);YES;;NULL;;
+1;casetype;int(11);YES;;NULL;;
+1;caseclass;int(11);YES;;NULL;;
+1;groupid;int(10) unsigned;YES;MUL;NULL;;
+1;casedept;varchar(64);YES;;NULL;;
+1;casedate;int(10) unsigned;YES;;NULL;;
+1;addby;varchar(16);YES;;NULL;;
+1;cmemo;text;YES;;NULL;;
+1;lasttime;int(10) unsigned;YES;;NULL;;
+1;expiretime;int(10) unsigned;YES;;0;;
+1;flags;int(11);YES;;0;;
+2;PRIMARY;0;1;sid;
+2;ncscase_ind1;0;1;casecode;
+2;ncscase_ind2;1;1;groupid;
+</table>
+<table ncscaseip>
+1;sid;int(10) unsigned;;PRI;NULL;auto_increment;
+1;cid;int(10) unsigned;YES;MUL;NULL;;
+1;slip;int(10) unsigned;YES;;NULL;;
+1;suip;int(10) unsigned;YES;;NULL;;
+1;dlip;int(10) unsigned;YES;;NULL;;
+1;duip;int(10) unsigned;YES;;NULL;;
+1;prot;int(11);YES;;NULL;;
+1;dlport;int(11);YES;;NULL;;
+1;duport;int(11);YES;;NULL;;
+1;service;int(11);YES;;NULL;;
+1;flags;int(11);YES;;0;;
+1;lasttime;int(10) unsigned;YES;;NULL;;
+2;PRIMARY;0;1;sid;
+2;ncscaseip_ind1;1;1;cid;
+</table>
+<table ncscasemail>
+1;sid;int(10) unsigned;;PRI;NULL;auto_increment;
+1;cid;int(10) unsigned;YES;MUL;NULL;;
+1;ctype;int(11);YES;;0;;
+1;mfrom;char(64);YES;;NULL;;
+1;mto;char(64);YES;;NULL;;
+1;subj;char(128);YES;;NULL;;
+1;cont;char(128);YES;;NULL;;
+1;contid;int(10) unsigned;YES;;NULL;;
+1;flags;int(11);YES;;0;;
+1;lasttime;int(10) unsigned;YES;;NULL;;
+2;PRIMARY;0;1;sid;
+2;ncscasemail_ind1;1;1;cid;
+</table>
+<table ncscasemesg>
+1;sid;int(10) unsigned;;PRI;NULL;auto_increment;
+1;stime;int(10) unsigned;YES;MUL;NULL;;
+1;did;int(10) unsigned;YES;;NULL;;
+1;uid;int(10) unsigned;YES;;NULL;;
+1;udisp;char(32);YES;;NULL;;
+1;sip;int(10) unsigned;YES;;NULL;;
+1;position;char(64);YES;;NULL;;
+1;cid;int(10) unsigned;YES;MUL;NULL;;
+1;message;char(255);YES;;NULL;;
+1;flags;int(11);YES;;0;;
+2;PRIMARY;0;1;sid;
+2;ncscasemesg_ind1;1;1;cid;
+2;ncscasemesg_ind1;1;2;stime;
+2;ncscasemesg_ind2;1;1;stime;
+</table>
+<table ncscasenetid>
+1;sid;int(10) unsigned;;PRI;NULL;auto_increment;
+1;cid;int(10) unsigned;YES;MUL;NULL;;
+1;nettype;int(11);YES;;NULL;;
+1;name;char(64);YES;;NULL;;
+1;flags;int(11);YES;;0;;
+1;lasttime;int(10) unsigned;YES;;NULL;;
+2;PRIMARY;0;1;sid;
+2;ncscasenetid_ind1;1;1;cid;
+</table>
+<table ncscaseobj>
+1;sid;int(10) unsigned;;PRI;NULL;auto_increment;
+1;cid;int(10) unsigned;YES;MUL;NULL;;
+1;ctype;int(11);YES;;0;;
+1;did;int(10) unsigned;YES;;NULL;;
+1;lasttime;int(10) unsigned;YES;;NULL;;
+1;flags;int(11);YES;;0;;
+2;PRIMARY;0;1;sid;
+2;ncscaseobj_ind1;1;1;cid;
+</table>
+<table ncscasepost>
+1;sid;int(10) unsigned;;PRI;NULL;auto_increment;
+1;cid;int(10) unsigned;YES;MUL;NULL;;
+1;url;char(128);YES;;NULL;;
+1;urlid;int(10) unsigned;YES;;NULL;;
+1;cont;char(128);YES;;NULL;;
+1;contid;int(10) unsigned;YES;;NULL;;
+1;flags;int(11);YES;;0;;
+1;lasttime;int(10) unsigned;YES;;NULL;;
+2;PRIMARY;0;1;sid;
+2;ncscasepost_ind1;1;1;cid;
+</table>
+<table ncscaseuser>
+1;sid;int(10) unsigned;;PRI;NULL;auto_increment;
+1;cid;int(10) unsigned;YES;MUL;NULL;;
+1;flags;int(11);YES;;0;;
+1;lasttime;int(10) unsigned;YES;;NULL;;
+1;ctype;int(11);YES;;1;;
+1;cvalue;char(32);YES;;NULL;;
+2;PRIMARY;0;1;sid;
+2;ncscaseuser_ind1;1;1;cid;
+</table>
+<table ncscasewarn>
+1;sid;int(10) unsigned;;PRI;NULL;auto_increment;
+1;cid;int(10) unsigned;YES;MUL;NULL;;
+1;uid;int(10) unsigned;YES;;NULL;;
+1;wtype;int(11);YES;;NULL;;
+1;waddr;char(64);YES;;NULL;;
+1;flags;int(11);YES;;0;;
+1;lasttime;int(10) unsigned;YES;;NULL;;
+2;PRIMARY;0;1;sid;
+2;ncscasewarn_ind1;1;1;cid;
+</table>
+<table ncscaseweb>
+1;sid;int(10) unsigned;;PRI;NULL;auto_increment;
+1;cid;int(10) unsigned;YES;MUL;NULL;;
+1;url;char(128);YES;;NULL;;
+1;urlid;int(10) unsigned;YES;;NULL;;
+1;flags;int(11);YES;;0;;
+1;lasttime;int(10) unsigned;YES;;NULL;;
+2;PRIMARY;0;1;sid;
+2;ncscaseweb_ind1;1;1;cid;
+</table>
+<table ncscltlog>
+1;sid;int(11);;PRI;NULL;auto_increment;
+1;sdate;char(20);YES;MUL;NULL;;
+1;userid;int(10) unsigned;YES;MUL;NULL;;
+1;ip;int(10) unsigned;YES;;NULL;;
+1;optid;int(11);YES;;NULL;;
+1;message;char(128);YES;;NULL;;
+2;PRIMARY;0;1;sid;
+2;ncscltlog_ind1;1;1;sdate;
+2;ncscltlog_ind2;1;1;userid;
+2;ncscltlog_ind2;1;2;sdate;
+</table>
+<table ncsendgroup>
+1;sid;int(10) unsigned;;PRI;NULL;auto_increment;
+1;did;int(10) unsigned;YES;MUL;NULL;;
+1;gid;int(10) unsigned;YES;;NULL;;
+1;gname;char(16);YES;;NULL;;
+1;dispname;char(32);YES;;NULL;;
+1;lasttime;int(10) unsigned;YES;;NULL;;
+2;PRIMARY;0;1;sid;
+2;ncsenduser_i1;0;1;did;
+2;ncsenduser_i1;0;2;gid;
+</table>
+<table ncsenduser>
+1;sid;int(10) unsigned;;PRI;NULL;auto_increment;
+1;did;int(10) unsigned;YES;MUL;NULL;;
+1;uid;int(10) unsigned;YES;;NULL;;
+1;gid;int(10) unsigned;YES;;NULL;;
+1;username;char(16);YES;;NULL;;
+1;dispname;char(32);YES;;NULL;;
+1;namepy;char(64);YES;;;;
+1;ip;int(10) unsigned;YES;;NULL;;
+1;mac;char(18);YES;;;;
+1;compname;char(32);YES;;;;
+1;email;char(64);YES;;;;
+1;idcard;char(20);YES;;;;
+1;position;char(32);YES;;;;
+1;usebase;int(11);YES;;0;;
+1;syntime;int(10) unsigned;YES;;0;;
+1;lasttime;int(10) unsigned;YES;;0;;
+1;flag;int(10) unsigned;YES;MUL;0;;
+1;endname;char(16);YES;;;;
+1;country;char(3);YES;;;;
+1;idfytype;char(3);YES;;;;
+1;idfyunit;char(30);YES;;;;
+1;sex;char(1);YES;;9;;
+2;PRIMARY;0;1;sid;
+2;ncsenduser_i1;0;1;did;
+2;ncsenduser_i1;0;2;uid;
+2;ncsenduser_i2;1;1;flag;
+</table>
+<table ncsequen>
+1;id;int(10) unsigned;YES;;NULL;;
+</table>
+<table ncserrlog>
+1;sid;int(10) unsigned;;PRI;NULL;auto_increment;
+1;did;int(10) unsigned;YES;MUL;NULL;;
+1;uid;int(10) unsigned;YES;;NULL;;
+1;tid;int(10) unsigned;YES;;NULL;;
+1;udisp;char(32);YES;;NULL;;
+1;sdate;char(20);YES;MUL;NULL;;
+1;edate;int(10) unsigned;YES;;0;;
+1;sip;int(10) unsigned;YES;;NULL;;
+1;dip;int(10) unsigned;YES;;NULL;;
+1;dport;int(10) unsigned;YES;;NULL;;
+1;prot;smallint(6);YES;;NULL;;
+1;level;int(11);YES;;NULL;;
+1;lcount;int(11);YES;;NULL;;
+1;service;int(11);YES;;NULL;;
+1;csid;int(10) unsigned;YES;;0;;
+1;rule_id;int(10) unsigned;YES;;0;;
+1;action;int(11);YES;;0;;
+1;warnid;int(10) unsigned;YES;;0;;
+1;mesg;char(96);YES;;NULL;;
+2;PRIMARY;0;1;sid;
+2;ncserrlog_ind1;1;1;did;
+2;ncserrlog_ind1;1;2;uid;
+2;ncserrlog_ind2;1;1;sdate;
+2;ncserrlog_ind3;1;1;did;
+2;ncserrlog_ind3;1;2;csid;
+</table>
+<table ncsformmon>
+1;sid;int(10) unsigned;;PRI;NULL;auto_increment;
+1;did;int(10) unsigned;YES;MUL;NULL;;
+1;uid;int(10) unsigned;YES;;NULL;;
+1;tid;int(10) unsigned;YES;;NULL;;
+1;udisp;char(32);YES;;NULL;;
+1;sip;int(10) unsigned;YES;;0;;
+1;sdate;char(20);YES;MUL;NULL;;
+1;host;char(64);YES;;NULL;;
+1;url;char(64);YES;;NULL;;
+1;upfile;char(64);YES;;NULL;;
+1;asize;bigint(20);YES;;NULL;;
+1;msize;bigint(20);YES;;NULL;;
+1;ccode;int(11);YES;;0;;
+2;PRIMARY;0;1;sid;
+2;ncsformmon_ind1;1;1;did;
+2;ncsformmon_ind1;1;2;uid;
+2;ncsformmon_ind2;1;1;sdate;
+</table>
+<table ncsgroup>
+1;groupid;int(11);;PRI;0;;
+1;groupname;char(32);YES;MUL;NULL;;
+1;descr;char(128);YES;;NULL;;
+2;PRIMARY;0;1;groupid;
+2;ncsgroup_index;0;1;groupname;
+</table>
+<table ncshttplog>
+1;did;int(10) unsigned;YES;MUL;NULL;;
+1;uid;int(10) unsigned;YES;;NULL;;
+1;tid;int(10) unsigned;YES;;NULL;;
+1;udisp;varchar(32);YES;;NULL;;
+1;sdate;varchar(20);YES;MUL;NULL;;
+1;conntime;int(10) unsigned;YES;;NULL;;
+1;sip;int(10) unsigned;YES;;NULL;;
+1;dip;int(10) unsigned;YES;;0;;
+1;dport;int(10) unsigned;YES;;0;;
+1;host;varchar(64);YES;;NULL;;
+1;uri;varchar(128);YES;;NULL;;
+1;title;varchar(128);YES;;;;
+1;urlid;int(10) unsigned;YES;;0;;
+1;sid;int(10) unsigned;YES;;0;;
+1;bytes;bigint(20);YES;;NULL;;
+1;flags;smallint(6);YES;;NULL;;
+2;ncshttplog_ind1;1;1;did;
+2;ncshttplog_ind1;1;2;uid;
+2;ncshttplog_ind2;1;1;sdate;
+</table>
+<table ncsimlog>
+1;sid;int(10) unsigned;;PRI;NULL;auto_increment;
+1;did;int(10) unsigned;YES;MUL;NULL;;
+1;uid;int(10) unsigned;YES;;NULL;;
+1;tid;int(10) unsigned;YES;;NULL;;
+1;udisp;varchar(32);YES;;NULL;;
+1;sip;int(10) unsigned;YES;;0;;
+1;sdate;varchar(20);YES;MUL;NULL;;
+1;service;int(11);YES;;NULL;;
+1;funcode;int(11);YES;;NULL;;
+1;num;int(11);YES;;NULL;;
+1;mfrom;varchar(48);YES;;NULL;;
+1;mto;varchar(48);YES;;NULL;;
+1;mesg;varchar(255);YES;;NULL;;
+2;PRIMARY;0;1;sid;
+2;ncsimlog_ind1;1;1;did;
+2;ncsimlog_ind1;1;2;uid;
+2;ncsimlog_ind2;1;1;sdate;
+</table>
+<table ncsiplog>
+1;did;int(10) unsigned;YES;MUL;NULL;;
+1;uid;int(11);YES;;NULL;;
+1;tid;int(10) unsigned;YES;;NULL;;
+1;udisp;char(32);YES;;NULL;;
+1;sdate;char(20);YES;MUL;NULL;;
+1;conntime;int(11);YES;;NULL;;
+1;sip;int(10) unsigned;YES;;NULL;;
+1;dip;int(10) unsigned;YES;;NULL;;
+1;trantype;smallint(6);YES;;NULL;;
+1;port;int(11);YES;;NULL;;
+1;service;smallint(6);YES;;NULL;;
+1;ubytes;bigint(20);YES;;NULL;;
+1;dbytes;bigint(20);YES;;NULL;;
+1;flags;smallint(6);YES;;NULL;;
+2;ncsiplog_ind1;1;1;did;
+2;ncsiplog_ind1;1;2;uid;
+2;ncsiplog_ind1;1;3;sdate;
+2;ncsiplog_ind2;1;1;sdate;
+</table>
+<table ncsippoltype>
+1;pid;int(11);;PRI;NULL;auto_increment;
+1;name;char(64);YES;;NULL;;
+1;vister;int(11);YES;;9;;
+1;warnid;int(10) unsigned;YES;;NULL;;
+1;flags;int(11);YES;;0;;
+2;PRIMARY;0;1;pid;
+</table>
+<table ncskeycont>
+1;sid;int(10) unsigned;;PRI;NULL;auto_increment;
+1;tid;int(10) unsigned;YES;;NULL;;
+1;content;char(64);YES;;NULL;;
+1;ktype;int(11);YES;;0;;
+1;caseflags;int(11);YES;;0;;
+2;PRIMARY;0;1;sid;
+</table>
+<table ncskeyindex>
+1;id;int(10) unsigned;;PRI;0;;
+1;name;char(32);YES;;NULL;;
+1;lasttime;int(10) unsigned;YES;;NULL;;
+1;flags;int(11);YES;;1;;
+2;PRIMARY;0;1;id;
+</table>
+<table ncslastinfo>
+1;name;char(16);;PRI;;;
+1;lasttime;int(10) unsigned;YES;;NULL;;
+2;PRIMARY;0;1;name;
+</table>
+<table ncslimform>
+1;sid;int(11);;PRI;NULL;auto_increment;
+1;gtype;int(11);YES;MUL;NULL;;
+1;id;int(11);YES;;NULL;;
+1;num;int(11);YES;;NULL;;
+1;timetype;int(11);YES;;NULL;;
+1;starttime;int(11);YES;;NULL;;
+1;stoptime;int(11);YES;;NULL;;
+1;url;char(64);YES;;NULL;;
+1;urllist;int(10) unsigned;YES;;NULL;;
+1;varname;char(255);YES;;NULL;;
+1;content;char(255);YES;;NULL;;
+1;attname;char(255);YES;;NULL;;
+1;flags;smallint(6);YES;;NULL;;
+1;warntype;int(11);YES;;0;;
+1;rule_id;char(20);YES;;;;
+1;rule_name;char(100);YES;;;;
+1;set_time;int(10) unsigned;YES;;0;;
+1;validation_time;int(10) unsigned;YES;;0;;
+1;cfflag;smallint(6);YES;;1;;
+1;status;int(11);YES;;1;;
+2;PRIMARY;0;1;sid;
+2;ncslimform_ind1;1;1;gtype;
+2;ncslimform_ind1;1;2;id;
+2;ncslimform_ind1;1;3;num;
+</table>
+<table ncslimim>
+1;sid;int(11);;PRI;NULL;auto_increment;
+1;gtype;int(11);YES;MUL;NULL;;
+1;id;int(11);YES;;NULL;;
+1;num;int(11);YES;;NULL;;
+1;timetype;int(11);YES;;NULL;;
+1;starttime;int(11);YES;;NULL;;
+1;stoptime;int(11);YES;;NULL;;
+1;service;int(11);YES;;NULL;;
+1;fun;int(11);YES;;NULL;;
+1;uid;char(64);YES;;NULL;;
+1;uidlist;int(10) unsigned;YES;;NULL;;
+1;content;char(255);YES;;NULL;;
+1;flags;smallint(6);YES;;NULL;;
+1;warntype;int(11);YES;;0;;
+1;rule_id;char(20);YES;;;;
+1;rule_name;char(100);YES;;;;
+1;set_time;int(10) unsigned;YES;;0;;
+1;validation_time;int(10) unsigned;YES;;0;;
+1;cfflag;smallint(6);YES;;1;;
+1;status;int(11);YES;;1;;
+2;PRIMARY;0;1;sid;
+2;ncslimim_ind1;1;1;gtype;
+2;ncslimim_ind1;1;2;id;
+2;ncslimim_ind1;1;3;num;
+</table>
+<table ncslimip>
+1;sid;int(11);;PRI;NULL;auto_increment;
+1;gtype;int(11);YES;MUL;NULL;;
+1;id;int(11);YES;;NULL;;
+1;num;int(11);YES;;NULL;;
+1;lowerip;int(10) unsigned;YES;;NULL;;
+1;upperip;int(10) unsigned;YES;;NULL;;
+1;trantype;smallint(6);YES;;NULL;;
+1;service;int(11);YES;;NULL;;
+1;lowerport;int(11);YES;;NULL;;
+1;upperport;int(11);YES;;NULL;;
+1;timetype;int(11);YES;;NULL;;
+1;starttime;int(11);YES;;NULL;;
+1;stoptime;int(11);YES;;NULL;;
+1;conflags;smallint(6);YES;;NULL;;
+1;flags;smallint(6);YES;;0;;
+1;warntype;int(11);YES;;0;;
+1;rule_id;char(20);YES;;;;
+1;rule_name;char(100);YES;;;;
+1;set_time;int(10) unsigned;YES;;0;;
+1;status;int(11);YES;;1;;
+1;validation_time;int(10) unsigned;YES;;0;;
+1;cfflag;smallint(6);YES;;1;;
+2;PRIMARY;0;1;sid;
+2;ncslimip_ind1;1;1;gtype;
+2;ncslimip_ind1;1;2;id;
+2;ncslimip_ind1;1;3;num;
+</table>
+<table ncslimmail>
+1;sid;int(11);;PRI;NULL;auto_increment;
+1;gtype;int(11);YES;MUL;NULL;;
+1;id;int(11);YES;;NULL;;
+1;num;int(11);YES;;NULL;;
+1;timetype;int(11);YES;;NULL;;
+1;starttime;int(11);YES;;NULL;;
+1;stoptime;int(11);YES;;NULL;;
+1;mfrom;char(64);YES;;NULL;;
+1;mfromlist;int(10) unsigned;YES;;NULL;;
+1;mto;char(64);YES;;NULL;;
+1;mtolist;int(10) unsigned;YES;;NULL;;
+1;subject;char(128);YES;;NULL;;
+1;content;char(255);YES;;NULL;;
+1;attname;char(255);YES;;NULL;;
+1;msize;int(10) unsigned;YES;;NULL;;
+1;flags;smallint(6);YES;;NULL;;
+1;warntype;int(11);YES;;0;;
+1;rule_id;char(20);YES;;;;
+1;rule_name;char(100);YES;;;;
+1;set_time;int(10) unsigned;YES;;0;;
+1;validation_time;int(10) unsigned;YES;;0;;
+1;cfflag;smallint(6);YES;;1;;
+1;status;int(11);YES;;1;;
+2;PRIMARY;0;1;sid;
+2;ncslimmail_ind1;1;1;gtype;
+2;ncslimmail_ind1;1;2;id;
+2;ncslimmail_ind1;1;3;num;
+</table>
+<table ncslimvid>
+1;sid;int(11);;PRI;NULL;auto_increment;
+1;gtype;int(11);YES;MUL;NULL;;
+1;id;int(11);YES;;NULL;;
+1;num;int(11);YES;;NULL;;
+1;timetype;int(11);YES;;NULL;;
+1;starttime;int(11);YES;;NULL;;
+1;stoptime;int(11);YES;;NULL;;
+1;service;int(11);YES;;NULL;;
+1;fun;int(11);YES;;NULL;;
+1;uid;char(64);YES;;NULL;;
+1;uidlist;int(10) unsigned;YES;;NULL;;
+1;flags;smallint(6);YES;;NULL;;
+1;warntype;int(11);YES;;0;;
+1;rule_id;char(20);YES;;;;
+1;rule_name;char(100);YES;;;;
+1;set_time;int(10) unsigned;YES;;0;;
+1;status;int(11);YES;;1;;
+1;validation_time;int(10) unsigned;YES;;0;;
+1;cfflag;smallint(6);YES;;1;;
+2;PRIMARY;0;1;sid;
+2;ncslimvid_ind1;1;1;gtype;
+2;ncslimvid_ind1;1;2;id;
+2;ncslimvid_ind1;1;3;num;
+</table>
+<table ncslimweb>
+1;sid;int(11);;PRI;NULL;auto_increment;
+1;gtype;int(11);YES;MUL;NULL;;
+1;id;int(11);YES;;NULL;;
+1;num;int(11);YES;;NULL;;
+1;url;varchar(64);YES;;NULL;;
+1;urlid;int(10) unsigned;YES;;0;;
+1;timetype;int(11);YES;;NULL;;
+1;starttime;int(11);YES;;NULL;;
+1;stoptime;int(11);YES;;NULL;;
+1;conflags;smallint(6);YES;;NULL;;
+1;flags;smallint(6);YES;;NULL;;
+1;warntype;int(11);YES;;0;;
+1;rule_id;varchar(20);YES;;;;
+1;rule_name;varchar(100);YES;;;;
+1;set_time;int(10) unsigned;YES;;0;;
+1;status;int(11);YES;;1;;
+1;validation_time;int(10) unsigned;YES;;0;;
+1;cfflag;smallint(6);YES;;1;;
+2;PRIMARY;0;1;sid;
+2;ncslimweb_ind1;1;1;gtype;
+2;ncslimweb_ind1;1;2;id;
+2;ncslimweb_ind1;1;3;num;
+</table>
+<table ncsmailmon>
+1;sid;int(10) unsigned;;PRI;NULL;auto_increment;
+1;did;int(10) unsigned;YES;MUL;NULL;;
+1;uid;int(10) unsigned;YES;;NULL;;
+1;tid;int(10) unsigned;YES;;NULL;;
+1;udisp;char(32);YES;;NULL;;
+1;sip;int(10) unsigned;YES;;0;;
+1;sdate;char(20);YES;MUL;NULL;;
+1;mailfile;char(64);YES;;NULL;;
+1;mailfrom;char(128);YES;;NULL;;
+1;mailto;char(128);YES;;NULL;;
+1;mailsub;char(128);YES;;NULL;;
+1;mailasize;bigint(20);YES;;NULL;;
+1;mailsize;bigint(20);YES;;NULL;;
+1;flags;int(11);YES;;NULL;;
+1;host;char(64);YES;;;;
+1;ccode;int(11);YES;;0;;
+2;PRIMARY;0;1;sid;
+2;ncsmailmon_ind1;1;1;did;
+2;ncsmailmon_ind1;1;2;uid;
+2;ncsmailmon_ind2;1;1;sdate;
+</table>
+<table ncsmondefault>
+1;sid;int(10) unsigned;;PRI;NULL;auto_increment;
+1;ftype;int(11);YES;MUL;NULL;;
+1;uflags;smallint(6);YES;;NULL;;
+1;userid;int(11);YES;;NULL;;
+1;mid;int(11);YES;;NULL;;
+1;enable;int(10) unsigned;YES;;0;;
+1;defsend;int(10) unsigned;YES;;0;;
+2;PRIMARY;0;1;sid;
+2;ncsmondefault_ind1;1;1;ftype;
+2;ncsmondefault_ind1;1;2;userid;
+2;ncsmondefault_ind1;1;3;uflags;
+2;ncsmondefault_ind1;1;4;mid;
+</table>
+<table ncsmonform>
+1;sid;int(10) unsigned;;PRI;NULL;auto_increment;
+1;ftype;int(11);YES;MUL;NULL;;
+1;uflags;smallint(6);YES;;NULL;;
+1;userid;int(11);YES;;NULL;;
+1;num;int(11);YES;;NULL;;
+1;url;char(64);YES;;NULL;;
+1;urlid;int(10) unsigned;YES;;NULL;;
+1;varname;char(255);YES;;NULL;;
+1;content;char(255);YES;;NULL;;
+1;flags;int(11);YES;;NULL;;
+2;PRIMARY;0;1;sid;
+2;ncsmonform_ind1;1;1;ftype;
+2;ncsmonform_ind1;1;2;userid;
+2;ncsmonform_ind1;1;3;uflags;
+2;ncsmonform_ind1;1;4;num;
+</table>
+<table ncsmonftp>
+1;sid;int(10) unsigned;;PRI;NULL;auto_increment;
+1;ftype;int(11);YES;MUL;NULL;;
+1;uflags;smallint(6);YES;;NULL;;
+1;userid;int(11);YES;;NULL;;
+1;num;int(11);YES;;NULL;;
+1;service;int(11);YES;;NULL;;
+1;sip;int(10) unsigned;YES;;NULL;;
+1;eip;int(10) unsigned;YES;;NULL;;
+1;flags;int(11);YES;;NULL;;
+2;PRIMARY;0;1;sid;
+2;ncsmonftp_ind1;1;1;ftype;
+2;ncsmonftp_ind1;1;2;userid;
+2;ncsmonftp_ind1;1;3;uflags;
+2;ncsmonftp_ind1;1;4;num;
+</table>
+<table ncsmonim>
+1;sid;int(10) unsigned;;PRI;NULL;auto_increment;
+1;ftype;int(11);YES;MUL;NULL;;
+1;uflags;smallint(6);YES;;NULL;;
+1;userid;int(11);YES;;NULL;;
+1;num;int(11);YES;;NULL;;
+1;service;int(11);YES;;NULL;;
+1;uname;char(64);YES;;NULL;;
+1;uid;int(10) unsigned;YES;;NULL;;
+1;fun;int(11);YES;;NULL;;
+1;content;char(64);YES;;NULL;;
+1;flags;int(11);YES;;NULL;;
+2;PRIMARY;0;1;sid;
+2;ncsmonim_ind1;1;1;ftype;
+2;ncsmonim_ind1;1;2;userid;
+2;ncsmonim_ind1;1;3;uflags;
+2;ncsmonim_ind1;1;4;num;
+</table>
+<table ncsmonip>
+1;sid;int(10) unsigned;;PRI;NULL;auto_increment;
+1;uflags;smallint(6);YES;;NULL;;
+1;userid;int(11);YES;;NULL;;
+1;ftype;int(11);YES;MUL;NULL;;
+1;num;int(11);YES;;NULL;;
+1;sip;int(10) unsigned;YES;;NULL;;
+1;eip;int(10) unsigned;YES;;NULL;;
+1;sport;int(10) unsigned;YES;;NULL;;
+1;dport;int(10) unsigned;YES;;NULL;;
+1;service;int(10) unsigned;YES;;NULL;;
+1;prot;int(11);YES;;0;;
+1;flags;int(11);YES;;0;;
+2;PRIMARY;0;1;sid;
+2;ncsmonip_ind1;1;1;ftype;
+2;ncsmonip_ind1;1;2;userid;
+2;ncsmonip_ind1;1;3;uflags;
+2;ncsmonip_ind1;1;4;num;
+</table>
+<table ncsmonmail>
+1;sid;int(10) unsigned;;PRI;NULL;auto_increment;
+1;ftype;int(11);YES;MUL;NULL;;
+1;uflags;smallint(6);YES;;NULL;;
+1;userid;int(11);YES;;NULL;;
+1;num;int(11);YES;;NULL;;
+1;sender;char(64);YES;;NULL;;
+1;sendid;int(10) unsigned;YES;;NULL;;
+1;toname;char(64);YES;;NULL;;
+1;toid;int(10) unsigned;YES;;NULL;;
+1;subject;char(64);YES;;NULL;;
+1;attname;char(64);YES;;NULL;;
+1;msize;int(10) unsigned;YES;;NULL;;
+1;content;char(64);YES;;NULL;;
+1;flags;int(11);YES;;NULL;;
+2;PRIMARY;0;1;sid;
+2;ncsmonmail_ind1;1;1;ftype;
+2;ncsmonmail_ind1;1;2;userid;
+2;ncsmonmail_ind1;1;3;uflags;
+2;ncsmonmail_ind1;1;4;num;
+</table>
+<table ncsmonweb>
+1;sid;int(10) unsigned;;PRI;NULL;auto_increment;
+1;ftype;int(11);YES;MUL;NULL;;
+1;uflags;smallint(6);YES;;NULL;;
+1;userid;int(11);YES;;NULL;;
+1;num;int(11);YES;;NULL;;
+1;url;char(64);YES;;NULL;;
+1;cond;int(11);YES;;NULL;;
+1;urlid;int(10) unsigned;YES;;0;;
+1;flags;int(11);YES;;NULL;;
+2;PRIMARY;0;1;sid;
+2;ncsmonweb_ind1;1;1;ftype;
+2;ncsmonweb_ind1;1;2;userid;
+2;ncsmonweb_ind1;1;3;uflags;
+2;ncsmonweb_ind1;1;4;num;
+</table>
+<table ncsnetid>
+1;sid;int(10) unsigned;;PRI;NULL;auto_increment;
+1;nid;int(10) unsigned;YES;;0;;
+1;ntype;int(10) unsigned;YES;MUL;NULL;;
+1;name;char(48);YES;;NULL;;
+1;flags;int(11);YES;;0;;
+1;did;int(10) unsigned;YES;MUL;NULL;;
+1;lasttime;int(10) unsigned;YES;;NULL;;
+2;PRIMARY;0;1;sid;
+2;ncrnetid_ind1;0;1;ntype;
+2;ncrnetid_ind1;0;2;name;
+2;ncrnetid_ind1;0;3;did;
+2;ncrnetid_ind1;0;4;nid;
+2;ncrnetid_ind2;1;1;did;
+2;ncrnetid_ind2;1;2;nid;
+2;ncrnetid_ind3;1;1;did;
+</table>
+<table ncsnetlog>
+1;sid;int(10) unsigned;;PRI;NULL;auto_increment;
+1;ntype;int(10) unsigned;YES;MUL;NULL;;
+1;name;char(64);YES;;NULL;;
+1;vtime;int(10) unsigned;YES;MUL;NULL;;
+1;etime;int(10) unsigned;YES;;NULL;;
+1;sdate;char(20);YES;;NULL;;
+1;did;int(10) unsigned;YES;MUL;NULL;;
+1;uid;int(10) unsigned;YES;;NULL;;
+1;tid;int(10) unsigned;YES;;NULL;;
+1;udisp;char(32);YES;;NULL;;
+1;ip;int(10) unsigned;YES;;NULL;;
+1;netid;int(11);YES;;0;;
+1;descr;char(64);YES;;;;
+1;fun;int(10) unsigned;YES;;NULL;;
+1;mac;char(18);YES;;NULL;;
+1;usid;int(10) unsigned;YES;;0;;
+1;csid;int(10) unsigned;YES;;0;;
+1;position;char(32);YES;;;;
+1;flags;smallint(6);YES;;0;;
+2;PRIMARY;0;1;sid;
+2;ncsnetlog_ind1;1;1;ntype;
+2;ncsnetlog_ind1;1;2;name;
+2;ncsnetlog_ind2;1;1;vtime;
+2;ncsnetlog_ind3;1;1;did;
+2;ncsnetlog_ind3;1;2;csid;
+</table>
+<table ncsnetseslog>
+1;did;int(10) unsigned;YES;MUL;NULL;;
+1;uid;int(11);YES;;NULL;;
+1;tid;int(10) unsigned;YES;;NULL;;
+1;udisp;varchar(32);YES;;NULL;;
+1;sdate;varchar(20);YES;MUL;NULL;;
+1;sip;int(10) unsigned;YES;;NULL;;
+1;dip;int(10) unsigned;YES;;NULL;;
+1;service;smallint(6);YES;;NULL;;
+1;funcode;int(11);YES;;NULL;;
+1;mesg;varchar(255);YES;;NULL;;
+2;ncsnetseslog_ind1;1;1;did;
+2;ncsnetseslog_ind1;1;2;uid;
+2;ncsnetseslog_ind1;1;3;sdate;
+2;ncsnetseslog_ind2;1;1;sdate;
+</table>
+<table ncsnettype>
+1;ntype;int(10) unsigned;;PRI;0;;
+1;name;char(32);YES;;NULL;;
+1;descr;char(128);YES;;NULL;;
+1;lasttime;int(10) unsigned;YES;;NULL;;
+1;flags;int(11);YES;;0;;
+2;PRIMARY;0;1;ntype;
+</table>
+<table ncsnetuser>
+1;did;int(10) unsigned;YES;;NULL;;
+1;udisp;char(32);YES;MUL;NULL;;
+1;lasttime;int(10) unsigned;YES;;NULL;;
+1;nid;int(10) unsigned;;PRI;NULL;auto_increment;
+1;uname;char(32);YES;MUL;NULL;;
+1;idtype;int(10) unsigned;YES;MUL;1;;
+1;idcard;char(20);YES;;;;
+1;sex;int(11);YES;;0;;
+1;bdate;char(12);YES;;NULL;;
+1;flags;int(11);YES;;0;;
+2;PRIMARY;0;1;nid;
+2;ncrnetuser_ind2;0;1;uname;
+2;ncrnetuser_ind2;0;2;did;
+2;ncrnetuser_ind4;1;1;udisp;
+2;ncrnetuser_ind1;1;1;idtype;
+2;ncrnetuser_ind1;1;2;idcard;
+</table>
+<table ncsonlineinfo>
+1;id;int(10) unsigned;YES;MUL;NULL;;
+1;stime;int(10) unsigned;YES;MUL;NULL;;
+1;lcount;int(10) unsigned;YES;;NULL;;
+1;lzccount;int(10) unsigned;YES;;0;;
+2;ncsonlineinfo_1;1;1;id;
+2;ncsonlineinfo_2;1;1;stime;
+</table>
+<table ncssearch>
+1;sid;int(10) unsigned;;PRI;0;;
+1;lasttime;int(10) unsigned;YES;MUL;NULL;;
+1;lcount;int(10) unsigned;YES;;NULL;;
+1;stype;int(11);YES;;NULL;;
+1;descr;varchar(255);YES;;NULL;;
+2;PRIMARY;0;1;sid;
+2;ncssearch_ind1;1;1;lasttime;
+</table>
+<table ncstat>
+1;recip;int(10) unsigned;YES;;0;;
+1;rechttp;int(10) unsigned;YES;;0;;
+1;recim;int(10) unsigned;YES;;0;;
+1;recmail;int(10) unsigned;YES;;0;;
+1;recform;int(10) unsigned;YES;;0;;
+1;recwarn;int(10) unsigned;YES;;0;;
+1;recerr;int(10) unsigned;YES;;0;;
+1;recftp;int(10) unsigned;YES;;0;;
+1;recusernet;int(10) unsigned;YES;;0;;
+1;recnetid;int(10) unsigned;YES;;0;;
+1;stime;int(10) unsigned;YES;MUL;0;;
+2;ncstat_ind1;1;1;stime;
+</table>
+<table ncsuser>
+1;userid;int(11);;PRI;0;;
+1;username;char(16);YES;MUL;NULL;;
+1;password;char(32);YES;;NULL;;
+1;groupid;int(11);YES;MUL;0;;
+1;dispname;char(64);YES;;NULL;;
+1;address;char(128);YES;;NULL;;
+1;telphone;char(64);YES;;NULL;;
+1;contact;char(32);YES;;NULL;;
+1;handphone;char(32);YES;;NULL;;
+1;email;char(128);YES;;;;
+1;ip;char(16);YES;;;;
+1;addtime;char(16);YES;;;;
+1;useflags;int(11);YES;;0;;
+1;lasttime;char(16);YES;;NULL;;
+1;gtype;int(11);YES;;9;;
+1;postcode;char(6);YES;;;;
+1;ceoname;char(30);YES;;;;
+1;servicestate;char(1);YES;;9;;
+1;joincode;char(6);YES;;;;
+1;endnum;char(6);YES;;0;;
+1;servernum;char(2);YES;;0;;
+1;jointype;char(2);YES;;99;;
+1;empnum;char(6);YES;;0;;
+1;area;char(70);YES;;;;
+1;areaman;char(30);YES;;;;
+1;areatel;char(30);YES;;;;
+1;demo;char(255);YES;;;;
+1;moditime;int(10) unsigned;YES;;0;;
+1;version;char(16);YES;;;;
+2;PRIMARY;0;1;userid;
+2;ncsuser_ind1;0;1;username;
+2;ncsuser_ind2;1;1;groupid;
+</table>
+<table ncsuserip>
+1;id;int(10) unsigned;;PRI;NULL;auto_increment;
+1;userid;int(11);YES;MUL;NULL;;
+1;lip;int(10) unsigned;YES;;NULL;;
+1;uip;int(10) unsigned;YES;;NULL;;
+1;stime;int(10) unsigned;YES;;NULL;;
+2;PRIMARY;0;1;id;
+2;ncsuserip_ind1;1;1;userid;
+</table>
+<table ncsuserlog>
+1;sdate;char(20);YES;MUL;NULL;;
+1;edate;char(20);YES;;NULL;;
+1;did;int(10) unsigned;YES;MUL;NULL;;
+1;uid;int(10) unsigned;YES;;NULL;;
+1;tid;int(10) unsigned;YES;;NULL;;
+1;udisp;char(32);YES;;NULL;;
+1;ip;int(10) unsigned;YES;;NULL;;
+1;mac;char(18);YES;;NULL;;
+1;position;char(32);YES;;NULL;;
+1;conntime;int(10) unsigned;YES;;NULL;;
+1;sumflow;bigint(20);YES;;NULL;;
+1;usid;int(10) unsigned;YES;;NULL;;
+1;flags;smallint(6);YES;;NULL;;
+1;eip;int(10) unsigned;YES;;0;;
+2;ncsuserlog_ind1;1;1;did;
+2;ncsuserlog_ind1;1;2;uid;
+2;ncsuserlog_ind2;1;1;sdate;
+2;ncsuserlog_ind3;1;1;did;
+2;ncsuserlog_ind3;1;2;usid;
+</table>
+<table ncsuserstat>
+1;did;int(10) unsigned;YES;MUL;NULL;;
+1;uid;int(10) unsigned;YES;;NULL;;
+1;warncount;int(10) unsigned;YES;;0;;
+1;webcount;int(10) unsigned;YES;;0;;
+1;mailcount;int(10) unsigned;YES;;0;;
+1;formcount;int(10) unsigned;YES;;0;;
+1;imcount;int(10) unsigned;YES;;0;;
+2;ncsuserstat_i1;0;1;did;
+2;ncsuserstat_i1;0;2;uid;
+</table>
+<table ncswarnlog>
+1;sid;int(10) unsigned;;PRI;NULL;auto_increment;
+1;did;int(10) unsigned;YES;MUL;NULL;;
+1;uid;int(10) unsigned;YES;;NULL;;
+1;tid;int(10) unsigned;YES;;NULL;;
+1;udisp;char(32);YES;;NULL;;
+1;sdate;char(20);YES;MUL;NULL;;
+1;warntype;int(11);YES;;NULL;;
+1;msgtype;int(11);YES;;NULL;;
+1;mid;int(10) unsigned;YES;;NULL;;
+1;mesg;char(128);YES;;NULL;;
+2;PRIMARY;0;1;sid;
+2;ncswarnlog_ind1;1;1;did;
+2;ncswarnlog_ind1;1;2;uid;
+2;ncswarnlog_ind2;1;1;sdate;
+</table>
+<table ncsxmlfile>
+1;sid;int(10) unsigned;;PRI;NULL;auto_increment;
+1;filename;char(128);YES;;NULL;;
+1;stime;int(10) unsigned;YES;;NULL;;
+2;PRIMARY;0;1;sid;
+</table>
+<table ncszdjkrule>
+1;stime;char(16);YES;;23:00:00;;
+1;flags;int(10) unsigned;YES;;0;;
+1;warncount;int(10) unsigned;YES;;0;;
+1;webcount;int(10) unsigned;YES;;0;;
+1;mailcount;int(10) unsigned;YES;;0;;
+1;formcount;int(10) unsigned;YES;;0;;
+1;imcount;int(10) unsigned;YES;;0;;
+1;netidclass;int(10) unsigned;YES;;0;;
+1;lasttime;int(10) unsigned;YES;;0;;
+1;starttime;int(10) unsigned;YES;;0;;
+</table>
+<table ncuseridclass>
+1;id;int(11);;PRI;NULL;auto_increment;
+1;name;char(32);YES;;NULL;;
+1;modtime;int(10) unsigned;YES;;NULL;;
+1;status;int(11);YES;;1;;
+1;flags;int(11);YES;MUL;1;;
+2;PRIMARY;0;1;id;
+2;ncuidclass_index_1;0;1;flags;
+2;ncuidclass_index_1;0;2;name;
+</table>
+<table ncuseridlist>
+1;sid;int(11);;PRI;NULL;auto_increment;
+1;id;int(11);YES;MUL;NULL;;
+1;uname;char(64);YES;MUL;NULL;;
+1;descr;char(64);YES;;NULL;;
+1;modtime;int(10) unsigned;YES;;NULL;;
+1;flags;int(11);YES;;1;;
+2;PRIMARY;0;1;sid;
+2;ncuseridlist_ind_1;0;1;uname;
+2;ncuseridlist_ind_1;0;2;flags;
+2;ncuseridlist_ind_2;1;1;id;
+</table>
+<table ncwebclass>
+1;id;int(11);;PRI;NULL;auto_increment;
+1;name;char(32);YES;;NULL;;
+1;lcount;int(11);YES;;NULL;;
+1;modtime;int(10) unsigned;YES;;NULL;;
+1;status;int(11);YES;;1;;
+1;flags;int(11);YES;MUL;1;;
+2;PRIMARY;0;1;id;
+2;ncwebclass_index_1;0;1;flags;
+2;ncwebclass_index_1;0;2;name;
+</table>
+<table ncweblist>
+1;sid;int(11);;PRI;NULL;auto_increment;
+1;id;int(11);YES;MUL;NULL;;
+1;url;char(64);YES;MUL;NULL;;
+1;name;char(64);YES;;NULL;;
+1;lcount;int(10) unsigned;YES;;0;;
+1;modtime;int(10) unsigned;YES;;NULL;;
+1;flags;int(11);YES;;1;;
+2;PRIMARY;0;1;sid;
+2;ncweblist_index_1;0;1;url;
+2;ncweblist_index_1;0;2;flags;
+2;ncweblist_index_2;1;1;id;
+</table>
+<table ncwebpolclass>
+1;pid;int(11);;PRI;NULL;auto_increment;
+1;name;char(64);YES;;NULL;;
+1;vister;int(11);YES;;9;;
+1;warnid;int(10) unsigned;YES;;NULL;;
+1;flags;int(11);YES;MUL;1;;
+2;PRIMARY;0;1;pid;
+2;ncwebpolc_index_1;0;1;flags;
+2;ncwebpolc_index_1;0;2;name;
+</table>
+<table ncwebpollist>
+1;pid;int(11);YES;MUL;NULL;;
+1;tid;int(10) unsigned;YES;;NULL;;
+1;vflags;int(11);YES;;NULL;;
+1;warnid;int(10) unsigned;YES;;NULL;;
+1;flags;int(11);YES;;1;;
+2;ncwebpol_ind_1;1;1;pid;
+</table>
+<table punishinfo>
+1;punishinfo_id;int(10) unsigned;;PRI;NULL;auto_increment;
+1;service_code;char(14);YES;;NULL;;
+1;punish_date;int(10) unsigned;YES;;0;;
+1;punish_result;char(9);YES;;;;
+2;PRIMARY;0;1;punishinfo_id;
+</table>
+<table upstatusproperty>
+1;callbackurl;char(128);YES;;;;
+1;verifyid;char(10);YES;;;;
+1;intervalfig;char(5);YES;;60;;
+1;commitstatus;char(1);YES;;N;;
+1;alarmlog;char(1);YES;;N;;
+1;tudlog;char(1);YES;;N;;
+1;onlinelog;char(1);YES;;N;;
+1;realidentity;char(1);YES;;N;;
+1;punishresult;char(1);YES;;N;;
+1;daystat;char(1);YES;;N;;
+1;sendsms;char(1);YES;;N;;
+1;sendtrac;char(1);YES;;N;;
+</table>

@@ -1,0 +1,110 @@
+<html>
+<head>
+<title>系统功能选项</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<script>
+	
+</script>
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" align="center"  style="overflow:hidden">
+<form name="form1" method="post" action="/pronline/Msg">
+<input type="hidden" name="sid" value="[#sid#]">
+  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td valign="top" ><table width="100%" height="35" border="0" align="center" cellpadding="0" cellspacing="0" >
+          <tr > 
+            <td colspan="2"> <div style="font-size:11pt;color:#00237e;font-weight:bold;text-align: center;">VPN网关到网关连接</div></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr> 
+      <td >
+        <table width="90%" height="0%" border="1"  bordercolorlight=#89ACED   bordercolordark=#ffffff   align="center" cellpadding="0" cellspacing="0">
+          <tr> 
+            <td valign="top" height="200" width="100%"> 
+            	<table width="95%" border="0" align="center">
+            		<tr height="20px">
+				          	<td>&nbsp;</td>
+				          	<td>&nbsp;</td>
+				          </tr>
+                <tr height="30"> 
+                  <td width="21%">&nbsp;VPN连接名称</td>
+                  <td width="35%">&nbsp;<input type="text" name="vpnname" style="width:120px;" value="[#gname#]" maxlength="16">&nbsp;&nbsp
+                  <td width="9%">&nbsp;</td>
+                  <td width="35%">&nbsp;</td>
+                </tr>
+               
+                <tr height="30"> 
+                  <td >&nbsp;客户端IP</td>
+                  <td >&nbsp;<select name="ip" style="width:120px;">[#SLPB#]<option value="[#sip#]">[#sip#]</option>[#SLPE#]</select>&nbsp;&nbsp
+                  <td >&nbsp;</td>
+                  <td >&nbsp;</td>
+                </tr>
+               
+                 <tr height="30"> 
+                  <td >&nbsp;客户端局域网</td>
+                  <td >&nbsp;<input type="text" name="lanip" style="width:120px;" value="[#lanip#]">&nbsp;&nbsp
+                  <td >&nbsp;掩码</td>
+                  <td >&nbsp;<input type="text" name="lanmask" style="width:120px;" value="[#lanmask#]"></td>
+                </tr>
+               
+				          <tr height="30px">
+				          	<td>&nbsp;</td>
+				          	<td>&nbsp;</td>
+				          </tr>
+				          
+				          
+                  	</table>
+                  </td>
+                </tr>
+              </table>
+                  	
+                  	</td>
+                  	
+                  	
+                  	
+                  	
+            
+                </tr>
+               
+               
+               
+               
+              </table>
+              </td>
+              
+              
+              
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td height="70" ><table width="100%" border="0" align="center">
+      	<tr><td>&nbsp;</td></tr>
+          <tr> 
+            <td align="center"> 
+                <input type="hidden" name="FunName" value="vpnGate2GateSave_par">
+                <input type="submit" name="next" value="确 认" class="an3">
+                &nbsp; 
+                <input type="button" name="cancel" value="关 闭" class="an3" onclick="self.close()">
+                &nbsp;
+                
+              </td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+</form>
+<script>
+	form1.ip.value='2';
+	alert(form1.ip.value);
+	</script>
+</body>
+</html>

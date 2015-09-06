@@ -1,0 +1,170 @@
+
+{
+  "took" : 20,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 5,
+    "successful" : 5,
+    "failed" : 0
+  },
+  "eimdata111" : {
+    "totalCount" : 7,
+    "max_score" : 1.0,
+    "eimdata1" : [ {
+      "corpname" : "dc",
+      "_type" : "bbs",
+      "_id" : "-h_U16jjR_OdffCg7yl38w",
+      "_score" : 1.0,
+      "fields" : {
+        "partial1" : {
+          "uid" : 149,
+          "dispname" : "WILSON",
+          "stime" : 1402284378,
+          "upfile" : " 962121148",
+          "subject" : "骑行",
+          "did" : 962121148,
+          "bbsname" : "百度贴吧.",
+          "url" : "http://tieba.baidu.com/p/3094002233",
+          "content" : "安全第一",
+          "attfile" : " 962121148",
+          "author" : "",
+          "dip" : "180.97.33.24",
+          "sip" : "192.168.10.207"
+        }
+      }
+    }, {
+      "_index" : "dc",
+      "_type" : "bbs",
+      "_id" : "Oc04Y-RuQe-1RkFqZQpcbw",
+      "_score" : 1.0,
+      "fields" : {
+        "partial1" : {
+          "uid" : 372,
+          "dispname" : "192.168.8.203",
+          "stime" : 1402361590,
+          "upfile" : " 853797578",
+          "subject" : "617157586",
+          "did" : 853797578,
+          "bbsname" : "QQ空间.",
+          "url" : "http://user.qzone.qq.com/568559256/infocenter?ptsig=425nr*p1*0EY2abwwA4EBip1alZc*hcPX5pAIr5K-Lo_",
+          "content" : " ",
+          "attfile" : " 853797578",
+          "author" : "",
+          "dip" : "180.153.8.18",
+          "sip" : "192.168.8.203"
+        }
+      }
+    }, {
+      "_index" : "dc",
+      "_type" : "bbs",
+      "_id" : "C3E8YRBtQ1uNf2NgQ9qvfw",
+      "_score" : 1.0,
+      "fields" : {
+        "partial1" : {
+          "uid" : 149,
+          "dispname" : "WILSON",
+          "stime" : 1402284375,
+          "upfile" : " 962121148",
+          "subject" : "骑行",
+          "did" : 962121148,
+          "bbsname" : "百度贴吧.",
+          "url" : "http://tieba.baidu.com/p/3094002233",
+          "content" : "安全第一",
+          "attfile" : " 962121148",
+          "author" : "",
+          "dip" : "180.97.33.24",
+          "sip" : "192.168.10.207"
+        }
+      }
+    }, {
+      "_index" : "dc",
+      "_type" : "bbs",
+      "_id" : "hE37yxRFQv6XIdxODHldKA",
+      "_score" : 1.0,
+      "fields" : {
+        "partial1" : {
+          "uid" : 149,
+          "dispname" : "WILSON",
+          "stime" : 1402284378,
+          "upfile" : " 962121148",
+          "subject" : "骑行",
+          "did" : 962121148,
+          "bbsname" : "百度贴吧.",
+          "url" : "http://tieba.baidu.com/p/3094002233",
+          "content" : "安全第一",
+          "attfile" : " 962121148",
+          "author" : "",
+          "dip" : "180.97.33.24",
+          "sip" : "192.168.10.207"
+        }
+      }
+    }, {
+      "_index" : "dc",
+      "_type" : "bbs",
+      "_id" : "q7OAmm52R5G75OXnrYBIhg",
+      "_score" : 1.0,
+      "fields" : {
+        "partial1" : {
+          "uid" : 372,
+          "dispname" : "192.168.8.203",
+          "stime" : 1402361430,
+          "upfile" : " 853797578",
+          "subject" : "617157586",
+          "did" : 853797578,
+          "bbsname" : "QQ空间.",
+          "url" : "http://user.qzone.qq.com/568559256/infocenter?ptsig=0RJnhePazfARDvEP6M9*SCH2yASl1h-hH5EQHJfJfbc_",
+          "content" : " ",
+          "attfile" : " 853797578",
+          "author" : "",
+          "dip" : "180.153.8.18",
+          "sip" : "192.168.8.203"
+        }
+      }
+    }, {
+      "_index" : "dc",
+      "_type" : "bbs",
+      "_id" : "a5z2UO39S-266OoaJg16Gw",
+      "_score" : 1.0,
+      "fields" : {
+        "partial1" : {
+          "uid" : 372,
+          "dispname" : "192.168.8.203",
+          "stime" : 1402372583,
+          "upfile" : " 853797578",
+          "subject" : "924212828",
+          "did" : 853797578,
+          "bbsname" : "QQ空间.",
+          "url" : "http://user.qzone.qq.com/568559256/infocenter?ptsig=QzbN3kh-k5VSXStqOmIvfkIWqLI*88ubRAolmg9sH5Y_",
+          "content" : " ",
+          "attfile" : " 853797578",
+          "author" : "",
+          "dip" : "180.153.8.19",
+          "sip" : "192.168.8.203"
+        }
+      }
+    }, {
+      "_index" : "dc",
+      "_type" : "bbs",
+      "_id" : "hLI-8382TyyZ4ARdyeu0ng",
+      "_score" : 1.0,
+      "fields" : {
+        "partial1" : {
+          "uid" : 149,
+          "dispname" : "WILSON",
+          "stime" : 1402284375,
+          "upfile" : " 962121148",
+          "subject" : "骑行",
+          "did" : 962121148,
+          "bbsname" : "百度贴吧.",
+          "url" : "http://tieba.baidu.com/p/3094002233",
+          "content" : "安全第一",
+          "attfile" : " 962121148",
+          "author" : "",
+          "dip" : "180.97.33.24",
+          "sip" : "192.168.10.207"
+        }
+      }
+    } ]
+  }
+}
+

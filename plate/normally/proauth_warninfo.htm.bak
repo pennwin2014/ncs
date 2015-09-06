@@ -1,0 +1,10 @@
+{"totalCount":[#TotRec#],"eimdata":[[#SLPB#][#dh#]{
+"servicecode": "[#servicecode#]",
+"mac": "[#mac#]",
+"flags": "[#flags#]",
+"stime": "[#stime#]",
+"msid": "[#msid#]",
+"ruleid": "[#ruleid#]",
+"message": "[#message#]"
+}[#SLPE#]
+]}

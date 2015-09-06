@@ -1,0 +1,101 @@
+<html>
+
+<head>
+
+<title>Untitled Document</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+
+<script>
+
+function goto(t){
+
+self.location.href=t
+
+}
+
+function custinput(t,y){
+var j=eval("document.all."+y)
+if(t.value.substr(0,5)=="$cust"){
+j.value=t.value.substr(16)
+j.disabled=0
+j.focus()
+}else{
+j.value=t.value.substr(16)
+j.disabled=1
+}
+}
+</script>
+
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+
+
+<body bgcolor="#CCCCCC" text="#000000" oncontextmenu="return false" leftmargin="1" topmargin="1" >
+<form name="form1" method="post" action="/profire/Msg" target="fbot">
+
+  <table width="100%" border="0" cellspacing="0" cellpadding="4" bgcolor="#CECECE" >
+    <tr bgcolor="#999999"> 
+      <td height="26" colspan="5" class="bord4"> 
+        <div align="center"> 
+          <input type="hidden" name="FunName" value="fireWebAddRulePlate">
+          <input type="hidden" name="indexp"  value="[#indexp#]">
+          <input type="hidden" name="indext"  value="[#indext#]">
+          <font color="#FFFFFF"><b>防火墙策略设置</b> </font></div>
+      </td>
+    </tr>
+    <tr> 
+      <td height="28" class="bord1" colspan="5"> 
+        <div align="left"></div>
+        <table width="100%" border="0">
+          <tr> 
+            <td width="9%" class="bord1"> 
+              <div align="center">描述:</div>
+            </td>
+            <td width="38%"  class="bord1"> 
+              <input type="text" name="dispname" size="63" maxlength="63" value="[#dispname#]">
+            </td>
+            <td width="12%"  class="bord1"> 
+              <div align="right">执行顺序</div>
+            </td>
+            <td width="9%"  class="bord1"> 
+              <input type="text" name="num" size="4" maxlength="4" value="[#num#]">
+            </td>
+            <td width="32%"  class="bord1"> 
+              <div align="center"> 
+                <input type="submit" name="add" value="增加" class="an3">
+                <input type="submit" name="mod" value="修改" class="an3"  [#modi#]>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <!-- [#SLPB#] -->
+    <tr> 
+      <!-- [#SLPB#] -->
+      <td width="15%" height="34"  class="bord1"> 
+        <div align="right">[#label#]</div>
+      </td>
+      <td width="35%" height="34" class="bord1"> [#input#]</td>
+      <!-- [#SLPE#] -->
+    </tr>
+    <!-- [#SLPE#] -->
+    <tr> 
+      <td colspan="5" height="24" class="bord1">
+        <table width="100%" border="0">
+          <tr> 
+            <td width="100%" class="bord1" height="36" valign="top" align="left">[#des#]</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+
+</form>
+
+</body>
+
+</html>
+

@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<script>  
+  function gotoRight(t){
+       parent.sbpm_right.location.href=t
+   }   
+function ss()
+{
+if(event.keyCode==13)
+form1.submit();
+}      
+</script>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<style>
+<!--
+
+.css1 {
+	border: 1px solid #C5C5C5;
+	height: 15px;
+	font-size: 12px;
+}
+table {
+	font-size: 12px;
+	font-family: "Arial", "Helvetica", "sans-serif";
+	 "Verdana", "Arial", "Helvetica", "sans-serif", "宋体"; 
+}
+
+
+
+
+a:link {
+	text-decoration: none;	color: #00237e;
+}
+a:visited {
+	text-decoration: none;	color: #00237e;
+}
+a:hover {
+	text-decoration: none;
+	color: #00237e;
+}
+a:active {
+	text-decoration: none;
+	color: #00237e;
+    font-weight: bold;
+}
+
+.style7 {
+  
+	font-size: 12px;
+	color: #00237e;
+	font-weight: bold;
+}
+-->
+</style>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" bgcolor="#ffffff" style="overflow:hidden">
+	<form name="form1" method="post" action="/pronline/Msg" target="sbpm_right"> 
+	<input type="hidden" name="flag" value="1">
+  <input type="hidden" name="FunName" value="ncsOnlinerateStat">
+
+<table width="142" border="1" leftmargin="2" cellspacing="0" cellpadding="0"   bordercolorlight=#888888   bordercolordark=#ffffff>
+	<tr height="25"><td align="center" class="style7">统计条件
+    	</tr>
+	<tr >
+    <td colspan="2" width="164">
+    	<table width="100%">
+       <tr><td>&nbsp;上网场所
+    	</tr>
+    	<tr><td>
+    		<select name="userid" style="width:138">
+    			<option value="">不限</option>
+    			[#SLPB#]
+    			<option value="[#userid#]"> [#dispname#]  </option>
+    			[#SLPE#]
+    		</select>
+       </td>
+    	</tr>
+    	   	
+    </table>
+  </td>
+  </tr>
+  
+ 	<tr >
+    <td colspan="2" width="164">
+    	<table width="100%">
+    	<tr height="35"><td>
+    	起始时间<br>&nbsp;<input type="text" name="sdate1" size="19" value="[#sdate#]" onKeyPress="ss()"></td>
+    	</tr>
+    	
+    	<tr height="35"><td>
+    	结束时间<br>&nbsp;<input type="text" name="sdate2" size="19" value="[#edate#]" onKeyPress="ss()"></td>
+    	</tr>
+    	
+    </table>
+  </td>
+  </tr>
+ 
+  	<tr >
+    <td colspan="2" align="center" height="30" width="164">
+    <input type="submit" name="cx" class="an3" value="统 计">	
+  </td>
+  </tr>
+
+</table>
+</div>
+</td>
+</tr>
+</table>
+</form>
+
+</body>
+</html>

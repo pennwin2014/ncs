@@ -1,0 +1,113 @@
+<html>
+<head>
+<title>部门管理</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<script>
+function doform(f)
+{
+    form1.FunName.value = f;
+    form1.submit();
+}
+
+function domodi()
+{
+    form1.FunName.value = "ncWebDeptModi";
+    form1.submit();
+}
+</script>
+
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0"  oncontextmenu="return false" >
+<form name="form1" method="post" action="/pronline/Msg">
+<input type="hidden" name="FunName">
+
+  <table width="100%"  border="0" cellpadding="0" cellspacing="0"  >
+    <tr>
+      <td><table width="100%" height="27" border="0" align="center" cellpadding="0" cellspacing="0" background="/images/table_bg1.gif">
+          <tr > 
+            <td colspan="2"> <div align="center"><strong><font color="#FFFFFF">部门管理</font></strong></div></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr> 
+      <td><br>
+        <table width="70%" border="1"    bordercolorlight=#89ACED   bordercolordark=#ffffff   align="center" cellpadding="0" cellspacing="0" >
+          <tr> 
+            <td valign="top" > <br> 
+              <table width="85%" border="0" align="center">
+                <tr>
+                  <td height="30" colspan="3"><strong>新建部门</strong></td>
+                </tr>
+                <tr> 
+                  <td height="47" colspan="3"><img src="/images/ans4-1.gif" width="32" height="27" align="absmiddle"> 
+                    您可以添加公司的部门<br> </td>
+                </tr>
+                <tr> 
+                  <td width="20%">部门</td>
+                  <td width="60%"> <input type="text" name="groupname" size="16" maxlength="15"> 
+                  </td>
+                  <td width="20%"> <input type="button" name="addbm" value="新 建" onclick="doform('ncWebDeptAdd')" class="an3"> 
+                  </td>
+                </tr>
+                <tr> 
+                  <td colspan="3"> <div align="center"><br>
+                    </div></td>
+                </tr>
+              </table>
+              <br> 
+              <table width="85%" border="0" align="center">
+                <tr>
+                  <td colspan="5" height="30"><strong>修改部门信息</strong></td>
+                </tr>
+                <tr> 
+                  <td colspan="5" height="37"><img src="/images/ans4-1.gif" width="32" height="27" align="absmiddle"> 
+                    修改部门名称<br> </td>
+                </tr>
+                <tr> 
+                  <td width="20%">要修改的部门</td>
+                  <td>[#mdept#]</td>
+                  <td>改为</td>
+                  <td> <input type="text" name="newname" size="15" maxlength="15"> 
+                  </td>
+                  <td width="20%"> <input type="button" name="bmdel" value="确 认"  onclick="domodi()" class="an3"> 
+                  </td>
+                </tr>
+                <tr> 
+                  <td colspan="5"> <div align="center"><br>
+                    </div></td>
+                </tr>
+              </table>
+              <br> 
+              <table width="85%" border="0" align="center">
+                <tr>
+                  <td colspan="3" height="30"><strong>删除部门</strong></td>
+                </tr>
+                <tr> 
+                  <td colspan="3" height="37"><img src="/images/ans4-1.gif" width="32" height="27" align="absmiddle"> 
+                    删除已经建立的部门<br> </td>
+                </tr>
+                <tr> 
+                  <td width="20%">要删除的部门</td>
+                  <td width="60%"> [#dept#]</td>
+                  <td width="20%"> <input type="button" name="bmdel2" value="删 除"  onClick="doform('ncWebDeptDel')" class="an3"> 
+                  </td>
+                </tr>
+                <tr> 
+                  <td colspan="3"> <div align="center"><br>
+                    </div></td>
+                </tr>
+              </table>
+               </td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

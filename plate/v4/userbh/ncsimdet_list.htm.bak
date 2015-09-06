@@ -1,0 +1,103 @@
+<html>
+<head>
+<title>系统功能选项</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<script>
+
+function gotoPage(pagenum)
+{
+    form1.CurPg.value = pagenum;
+    form1.export1.value="";
+}
+</script>
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" align="center"  style="overflow:hidden">
+<form name="form1" method="post" action="/pronline/Msg">
+<input type="hidden" name="mfrom" value="[#mfrom#]">
+<input type="hidden" name="mto" value="[#mto#]">
+<input type="hidden" name="service" value="[#service#]">
+<input type="hidden" name="time_flag" value="[#time_flag#]">
+<input type="hidden" name="did" value="[#did#]">
+<input type="hidden" name="uid" value="[#uid#]">
+
+<input type="hidden" name="export1" value="">
+<input type="hidden" name="TotPg"      value="[#TotPg#]">
+<input type="hidden" name="CurPg"      value="[#CurPg#]">
+<input type="hidden" name="FunName" value="ncsImdetcontlist">
+  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#DEE8FA">
+    <tr> 
+      <td valign="top" ><table width="100%" height="35" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#DEE8FA">
+          <tr > 
+            <td colspan="2" > <div style="font-size:11pt;color:#00237e;font-weight:bold;text-align: left;">&nbsp;&nbsp;[#mfrom#]<==>[#mto#]&nbsp;<a href="#xxm" onclick="form1.export1.value='exp';form1.submit()">导出</a></div></td>
+            <td align="right" style="font-size:10pt;color:#00237e;font-weight:bold;" >
+         
+                	<span style="cursor:hand" onClick='gotoPage(1);form1.submit()'>|<</span> <span style="cursor:hand" onClick='gotoPage([#CurPg#]-1);form1.submit()'> <</span> 第&nbsp;<input type="text" name="cpg"  value="[#CurPg#]"style="height:18;width:30px;"><span style="cursor:hand" onClick='gotoPage(form1.cpg.value);form1.submit()'>&nbsp;页</span>/[#TotPg#]页&nbsp;<span style="cursor:hand" onClick='gotoPage([#CurPg#]+1);form1.submit()'>></span>   <span style="cursor:hand"  onClick='gotoPage([#TotPg#]);form1.submit()'>>|</span>&nbsp;
+                	共[#TotRec#]条&nbsp;
+                	
+   </td>
+              
+            	</td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr> 
+      <td >
+      	<div style="height:520;overflow:scroll;width:600px;">
+        <table width="98%" height="520" border="1"  bordercolorlight=#89ACED   bordercolordark=#ffffff   align="center" cellpadding="0" cellspacing="0" bgcolor="#ffffff">
+          <tr> 
+            <td valign="top" height="450" width="100%"> 
+            	<table width="100%" border="0" cellspacing=10 align="center" bgcolor="#ffffff">
+            		[#SLPB#]
+            		<tr height="14px">
+				          	<td colspan="2"><font color="[#color#]">[#from#]&nbsp;&nbsp;&nbsp;[#stime#]</font></td>
+				          	<td></td>
+				          </tr>
+				          	<tr height="14px">
+				          	<td colspan="2">[#mesg#]</td>				          	
+				          </tr>
+				          [#SLPE#]
+				         			          
+             
+				          <tr height="30px">
+				          	<td>&nbsp;</td>
+				          	<td>&nbsp;</td>
+				          </tr>
+				          
+				          
+                  	</table>
+                  </td>
+                </tr>
+              </table>
+                </div>
+                 	
+                  	</td>
+                  	
+                  	
+                  	
+                  	
+            
+                </tr>
+               
+               
+               
+               
+              </table>
+              </td>
+              
+              
+          </tr>
+        </table>
+      </td>
+    </tr>
+   
+  </table>
+</form>
+
+</body>
+</html>

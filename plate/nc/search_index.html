@@ -1,0 +1,82 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+		<title>关键字查询</title>
+		<link REL=stylesheet HREF="/css/css_s.css" TYPE="text/css">
+	</head>
+	
+<body><p id="u" align="right"><table><tr><td><a href="/pronline/Msg?FunName@ncSetup">设置</a>&nbsp;</td></tr></table></p>
+	<center>
+	<div id="m">
+		<br>
+		<br>
+		<br>
+		<p><div style="font-size:40pt;font-weight:bold;text-align: center;">关键字查询</div></p>
+		<br>
+		<br>                             
+		<p id="nv">
+			
+			<b>表单</b>　
+			<a href="/pronline/Msg?FunName@ncMailLog">邮件</a>　
+			<a href="/pronline/Msg?FunName@ncImLog">即时通信</a>　
+			
+		</p>
+		<div id="fm">
+			<form name="f" method="post" action="/pronline/Msg">
+				<input type="hidden" name="FunName" value="ncFormLog">       
+				<input type="text" name="wd" id="kw" size ="80" maxlength="80">
+				<input type="submit" value="搜索" id="su">
+			</form>
+		</div>
+	</div>
+</center>
+</body>
+
+<script>
+	var w=window;
+	var d=document;
+	var n=navigator;
+	var k=d.f.wd;
+	var a=d.getElementById("nv").getElementsByTagName("a");
+	var isIE=n.userAgent.indexOf("MSIE")!=-1;
+	
+	if(!isIE||window.opera){
+		d.getElementById("st").style.display="none";
+	}
+	for(var i=0;i<a.length;i++){
+		a[i].onclick=function(){
+			if(k.value.length>0){
+				var C=this;
+				var A=C.href;
+				if(A.indexOf("&wd@")!=-1){
+					C.href=A.replace(/q=[^&$]*/,"&wd@"+k.value);
+				}else{
+					this.href+="&wd@"+k.value;
+				}
+			}
+		}
+	}
+	(function(){
+		if(/q=([^&]+)/.test(location.search)){
+			k.value=decodeURIComponent(RegExp.$1);
+		}
+	})();
+	
+	
+	
+	function addEV(C,B,A){
+		if(w.attachEvent){
+			C.attachEvent("on"+B,A);
+		}else{
+			if(w.addEventListener){
+				C.addEventListener(B,A,false);
+			}
+		}
+	}
+	
+	function G(A){
+		return d.getElementById(A);
+	}
+	
+</script>
+</html>

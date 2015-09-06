@@ -1,0 +1,118 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<title>网络访问报表</title>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<script>
+function lprint(){
+  alert("dddd");
+ // window.print()
+}
+
+function dotj() {
+     form1.FunName.value = "ncWebNetuseDispWeekForm";
+	 form1.submit();
+	 
+}
+
+
+</script>
+</head>
+<body  BGCOLOR="Menu">
+<form name="form1" method="post" action="/pronline/Msg">
+  <input type="button" name="lprint" value="打印"  onClick="document.all.lprint.style.display='none';document.all.lprint2.style.display='none';document.all.intj.style.display='none';window.print();document.all.lprint.style.display='';document.all.lprint2.style.display='';document.all.intj.style.display=''">
+  <input type="submit" name="lprint2" value="导出">
+  <input type="button" name="intj" value="条件" onClick="dotj()">
+  <input type="hidden" name="sdate" value="[#sdate#]" >
+  <input type="hidden" name="recnum" value="[#recnum#]" >
+  <input type="hidden" name="groupid" value="[#groupid#]" >
+  <input type="hidden" name="groupname" value="[#groupname#]" >
+  <input type="hidden" name="FunName" value="ncWebPrintNetUseWeek" >
+  [#SLPB#] 
+  <table border="0"  width=960 bgcolor='#ffffff' align="center">
+    <tr> 
+      <td  valign=middle align=center height="32" bgcolor="#dfdfdf" > 
+        <div align="left"></div>
+        <table  border="0" cellspacing="0" height="21" width="820">
+          <tr> 
+            <td colspan="2" height="25"> 
+              <div align="center"> 
+                <table width="94%" border="0">
+                  <tr> 
+                    <td colspan="3"> 
+                      <div align="center">[#group#]<b>网络访问情况周报表</b>([#sdate#]--[#edate#])</div>
+                    </td>
+                  </tr>
+                  <tr> 
+                    <td width="30%">&nbsp; </td>
+                    <td width="29%"> 
+                      <div align="center">(单位:小时)</div>
+                    </td>
+                    <td width="41%">&nbsp;</td>
+                  </tr>
+                </table>
+              </div>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr> 
+      <td width="100%"  valign=top align=center bgcolor="#BBBBBB" height="62" colspan="2"> 
+        <table id="DataTable" class="listDataTable" width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+          <tr> 
+            <td class="bord2" height="36" rowspan="2" width="72" bgcolor="#C0C0C0"> 
+              <div align="center">姓名</div>
+            </td>
+            <td class="bord2" height="36"  rowspan="2" width="72" bgcolor="#C0C0C0"> 
+              <div align="center">部门</div>
+            </td>
+            <!-- [#SLPB#]  -->
+            <td class="bord2" height="18" background="/images/ttt.gif" colspan="3"> 
+              <div align="center">[#week#][#wdate#]</div>
+            </td>
+            <!-- [#SLPE#] -->
+            <td class="bord4" height="18" background="/images/ttt.gif" width="2">&nbsp;</td>
+
+          </tr>
+          <tr> 
+            <!-- [#SLPB#] -->
+            <td class="bord2" height="18" background="/images/ttt.gif" width="171" id="[#wid#]">工作</td>
+            <td class="bord2" height="18" background="/images/ttt.gif" width="171">非工</td>
+            <td class="bord2" height="18" background="/images/ttt.gif" width="171"> 
+              <div align="center">合计</div>
+            </td>
+            <!-- [#SLPE#] -->
+            <td class="bord3" height="18" background="/images/ttt.gif" width="2">&nbsp;</td>
+          </tr>
+          <!-- [#SLPB#] -->
+          <tr > 
+            <td class="bord1" title="&nbsp;[#username#]" nowrap width="72" height="18"><font size="1">&nbsp;[#username#]</font></td>
+            <td class="bord1" title="&nbsp;[#from#]" nowrap width="72" height="18"><font size="1">&nbsp;[#groupname#] 
+              </font></td>
+            <!--[#SLPB#]-->
+            <td class="bord1"   width="171" height="18"> 
+              <div align="right"><font size="1">[#wtime#]</font></div>
+            </td>
+            <td class="bord1"   width="171" height="18"> 
+              <div align="right"><font size="1">[#ntime#]</font></div>
+            </td>
+            <td class="bord1"   width="171" height="18"> 
+              <div align="right"><font size="1">[#atime#]</font></div>
+            </td>
+            <!-- [#SLPE#] -->
+            <td class="bord3" height="18" background="/images/ttt.gif" width="2">&nbsp;</td>
+          </tr>
+          <!-- [#SLPE#] -->
+        </table>
+    </tr>
+  </table>
+  <p align="center">第 [#pages#]页</p>
+ <xmp style='page-break-after:always'></xmp>
+  <p>[#SLPE#] </p>
+</form>
+</body>
+</html>

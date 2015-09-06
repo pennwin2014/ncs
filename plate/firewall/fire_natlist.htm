@@ -1,0 +1,90 @@
+<html>
+
+<head>
+
+<title>Untitled Document</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+
+<script>
+
+function goto(t){
+
+self.location.href=t
+
+}
+function mouseovertr2 (o)
+{
+	var i;
+	df=o.style.backgroundColor
+	o.style.backgroundColor= "#F2F2F2";
+	o.style.borderColor= "#3399ff";
+		
+	for(i=0; i<o.cells.length; i++)
+	{
+		o.cells(i).style.color="#000000";
+	}	
+}
+
+function mouseouttr2(o)
+{
+	o.style.backgroundColor=df
+	for(i=0; i<o.cells.length; i++)
+	{
+		o.cells(i).style.color="#000000";
+	}
+}
+</script>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+
+</head>
+
+
+
+<body bgcolor="#CCCCCC" text="#000000" oncontextmenu="return false"  leftmargin="1" topmargin="1">
+<form name="form1" method="post" action="">
+
+  <table width="100%" border="0" cellspacing="0" bgcolor="#FFFFFF">
+    <tr> 
+
+      <td width="10%" height="18" background="/images/ttt.gif" class="bord2">索引号</td>
+
+      <td width="12%" height="18" background="/images/ttt.gif" class="bord2">类型</td>
+
+      <td height="18" background="/images/ttt.gif" class="bord2">说明</td>
+
+      <td width="11%" height="18" background="/images/ttt.gif" class="bord4"> 
+  删除
+
+      </td>
+
+    </tr>
+
+    <!-- [#SLPB#] -->
+
+    <tr  onmouseover="mouseovertr2(this)" onmouseout="mouseouttr2(this)"> 
+
+      <td width="10%" class="bord1">[#index#]</td>
+
+      <td width="12%" class="bord1">[#tname#]</td>
+
+      <td class="bord1"><a href="/profire/Msg?FunName@fireWebDispNat&index@[#index#]&type@[#type#]" target="ftop">[#des#]</a></td>
+
+      <td width="11%" class="bord3" bgcolor="dfdfdf">
+<input type="button" name="Button" value="删除" class="anniu101" onClick="goto('/profire/Msg?FunName@fireWebDelNat&index@[#index#]')">
+      </td>
+
+    </tr>
+
+    <!-- [#SLPE#] -->
+
+  </table>
+
+  <div align="center"></div>
+
+</form>
+
+</body>
+
+</html>
+

@@ -1,0 +1,159 @@
+<html>
+<head>
+<title>系统设置</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="/css/css_s.css" type="text/css">
+<script>
+	function handleSubmit(){alert("已保存您的设置");}
+</script>
+</head>
+
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" align="center" oncontextmenu="return false" style="overflow:hidden">
+<form name="form1" method="post" action="/pronline/Msg" onsubmit="handleSubmit()">
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td valign="top" ><table width="100%" height="35" border="0" align="center" cellpadding="0" cellspacing="0" >
+          <tr > 
+            <td colspan="3"> <div style="font-size:12pt;color:#00237e;font-weight:bold;text-align: center;">系统设置</div></td>
+          </tr>
+        </table></td>
+    </tr>
+   
+    <tr> 
+      <td>
+        <table width="70%" border="1" align="center" cellpadding="0" cellspacing="0">
+          <tr> 
+            <td >
+              <table border="0" align="center">
+                
+                
+                 <tr>
+                  <td height="24"><div align="right">网站访问内容保留:</div></td>
+                  <td height="24"><select name="HttpKeepDay"  style="font-size:12px">
+                  	
+                  	<option value="1" >1</option>
+              		<option value="2" >2</option>
+              		<option value="3">3</option>
+              		<option value="4">4</option>
+              		<option value="5">5</option>
+              		<option value="6">6</option>
+              		<option value="7">7</option>
+              		<option value="8">8</option>
+              		<option value="9">9</option>
+              		<option value="10">10</option>
+              		<option value="11">11</option>
+              		<option value="12">12</option>
+              		
+                  	</select></td> 
+                  <td height="24"><div align="left">月</div></td>
+                  </tr>
+               
+                <tr>
+                  <td height="24"><div align="right">监控表单内容保留:</div></td>
+                  <td height="24"><select name="FormKeepDay"  style="font-size:12px">
+                  	
+                  	<option value="1" >1</option>
+              		<option value="2" >2</option>
+              		<option value="3">3</option>
+              		<option value="4">4</option>
+              		<option value="5">5</option>
+              		<option value="6">6</option>
+              		<option value="7">7</option>
+              		<option value="8">8</option>
+              		<option value="9">9</option>
+              		<option value="10">10</option>
+              		<option value="11">11</option>
+              		<option value="12">12</option>
+              		
+                  	</select></td> 
+                  <td height="24"><div align="left">月</div></td>
+                  </tr>
+                
+                <tr>
+                  <td height="24"> <div align="right">监控邮件内容保留:</div></td>
+                  <td height="24"><select name="MailMonKeepDay"  style="font-size:12px">
+                  	
+                  	<option value="1" >1</option>
+              		<option value="2" >2</option>
+              		<option value="3">3</option>
+              		<option value="4">4</option>
+              		<option value="5">5</option>
+              		<option value="6">6</option>
+              		<option value="7">7</option>
+              		<option value="8">8</option>
+              		<option value="9">9</option>
+              		<option value="10">10</option>
+              		<option value="11">11</option>
+              		<option value="12">12</option>
+              		
+                  	</select>
+                  	
+                  	</td>
+                  <td height="24"><div align="left">月</div></td>
+                </tr>
+                
+                <tr>
+                  <td height="24"><div align="right">即时通信内容保留:</div></td>
+                  <td height="24">
+                  	<select name="InstantKeepDay"  style="font-size:12px">
+                  	
+                  	<option value="1" >1</option>
+              		<option value="2" >2</option>
+              		<option value="3">3</option>
+              		<option value="4">4</option>
+              		<option value="5">5</option>
+              		<option value="6">6</option>
+              		<option value="7">7</option>
+              		<option value="8">8</option>
+              		<option value="9">9</option>
+              		<option value="10">10</option>
+              		<option value="11">11</option>
+              		<option value="12">12</option>
+              		
+                  	</select>
+                  	</td>
+                  <td height="24"><div align="left">月</div></td>
+                </tr>
+               
+              </table>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td height="70">
+<table width="50%" border="0" align="center">
+          <tr> 
+            <td> <div align="center"> 
+                <input type="hidden" name="FunName" value="ncSetup">
+                <input type="submit" name="save" value="保存设置">
+                &nbsp; 
+                <input type="reset" name="cancel" value="取消">
+              </div></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+
+</form>
+<script>
+        form1.HttpKeepDay.value="[#HttpKeepDay#]";
+	form1.FormKeepDay.value="[#FormKeepDay#]";
+	form1.MailMonKeepDay.value="[#MailMonKeepDay#]";
+	form1.InstantKeepDay.value="[#InstantKeepDay#]";
+</script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!-- saved from url=(0022)http://internet.e-mail -->
+<html>
+<head>
+<title>选择场所</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META content=no-cache http-equiv=Pragma>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<style type="text/css">
+<!--
+body {  font-size: 9pt}
+.tas {  border-color: black #FFFFFF; border-style: solid; border-top-width: 0px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 1px}
+table {  font-size: 9pt}
+.hand {  cursor: hand}
+.gray1{filter:gray}
+-->
+</style>
+
+<SCRIPT LANGUAGE="JavaScript">
+
+function quren(){
+	var ob;
+	var obname;
+	var cheID='';
+	var cheN='';
+	var m=0;
+	for(var i=1;i<=[#sum#];i++)
+	{
+    ob="form1.chk"+i;
+    obname="form1.name"+i;
+    if(eval(ob).checked){
+    	m++;
+    	if(m==1){
+    	  cheID=cheID+eval(ob).value;
+    	  cheN=cheN+eval(obname).value;
+    	}
+      else{
+    	cheID=cheID+','+eval(ob).value;
+      cheN=cheN+','+eval(obname).value;
+    }
+  }
+		
+        }
+        
+dialogArguments.form1.opt.value=cheN;
+
+dialogArguments.form1.opt1.value=cheID; 
+
+self.close();
+}
+
+
+
+</SCRIPT>
+
+</head>
+<form name="form1" method="post" action="/pronline/Msg">
+  
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" bgcolor="#d0e1fa" style="SCROLLBAR-FACE-COLOR: #c1d8f9; OVERFLOW: scroll; SCROLLBAR-SHADOW-COLOR: #c1d8f9; SCROLLBAR-3DLIGHT-COLOR: #c1d8f9; SCROLLBAR-ARROW-COLOR: #5985ce; SCROLLBAR-DARKSHADOW-COLOR: #c1d8f9;">
+<table width="100%" border="0" align="center"  cellpadding="0" id="DataTable" cellspacing=0 bordercolor="#DFDFDF">
+    
+        <tr><td colspan="2" align="center" style="font-size:11pt;color:#00237e;font-weight:bold;text-align: center;" class="bord4" height="30" bordercolor="#DFDFDF">
+    	选择场所
+    	</td><tr>
+    <!-- [#SLPB#] -->
+    <tr bgcolor="#FFFFFF"  height="24">
+    	[#SLPB#] 
+      <td   class="[#bord#]">&nbsp;<input type="checkbox" name="chk[#num#]" value="[#groupid#]"><input name="name[#num#]" type="hidden" value="[#groupname#]">[#groupname#]</td>
+      [#SLPE#]
+     
+    </tr>
+    <!-- [#SLPE#] -->
+       <tr><td colspan="2" align="center" height="16">
+    	<input name="ok" type="button" class="an3"   value="确 认" onclick="quren()">
+    	<input name="fq" type="button" class="an3" onclick="self.close()"  value="取 消" >
+    	</td><tr>
+ 
+</table>
+ </form>
+
+</body>
+</html>

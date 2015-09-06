@@ -1,0 +1,84 @@
+<!-- saved from url=(0022)http://internet.e-mail -->
+<html>
+<head>
+<title>选择告警通知人</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META content=no-cache http-equiv=Pragma>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<style type="text/css">
+<!--
+.nobordertext{border-width:0px;overflow:hidden;width:85%;height:100%}
+.tScrollw {
+    overflow: scroll;
+    overflow-x:hidden;
+    height:435px;
+    cursor: default;
+    }
+body {  font-size: 9pt}
+.tas {  border-color: black #FFFFFF; border-style: solid; border-top-width: 0px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 1px}
+table {  font-size: 9pt}
+.hand {  cursor: hand}
+.gray1{filter:gray}
+-->
+</style>
+
+<SCRIPT LANGUAGE="JavaScript">
+
+function quren(){
+
+        
+//dialogArguments.form1.FunName.value='ncsCaseWarnNotySave';
+//dialogArguments.form1.opt1.value=cheID;    
+self.close();
+}
+
+
+
+</SCRIPT>
+
+</head>
+<form name="form1" method="post" action="/pronline/Msg" >
+	<input type="hidden" name="FunName" value="ncsCaseWarnNotySave">
+	<input type="hidden" name="cid" value="[#cid#]">
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" style="overflow:hidden" onunload="dialogArguments.form1.submit();">
+<table width="100%" border="0" align="center"  cellpadding="0" id="DataTable" cellspacing=0 bordercolor="#DFDFDF">   
+      <tr><td height="30" colspan="2" style="font-size:11pt;color:#00237e;font-weight:bold;">&nbsp;<input name="ok" type="submit" class="an3"   value="确 认" onclick="quren()">
+      	<input name="fq" type="button" class="an3" onclick="self.close()"  value="关 闭" >    	
+    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;选择告警通知人
+    </td></tr>
+    	<tr><td colspan="2" valign="top">
+    		<div class="tScrollw" id="tC" valign="top">
+    		   <table width="100%"  border="0" align="center" cellpadding="0" cellspacing="0" >
+    		   		<tr bgcolor="#6382BD" id=ignore class="tableHead"  style="top:expression(document.getElementById('tC').scrollTop)"> 
+        
+				      <td width="131" height="18" bgcolor="#6382BD" class="bord2"> 
+				        <div align="center"><font color="#FFFFFF">&nbsp;组名</font></div></td>
+				      <td  width="120" height="18" bgcolor="#6382BD" class="bord2"> 
+				        <div align="center"><font color="#FFFFFF">&nbsp;姓名</font></div></td>
+				      <td  width="190" height="18" bgcolor="#6382BD" class="bord2"> 
+				        <div align="center"><font color="#FFFFFF">&nbsp;邮件通知</font></div></td>
+				      <td  width="190" height="18" bgcolor="#6382BD" class="bord4"> 
+               <div align="center"><font color="#FFFFFF">&nbsp;短信通知</font></div></td>
+      
+        <!-- [#SLPB#] -->
+	    <tr bgcolor="#FFFFFF"  >
+	    	<input type="hidden" name="id[#num#]" value="[#id#]">
+	      
+	      <td  class="bord1">&nbsp;[#groupname#] </td>
+	      <td   class="bord1">&nbsp;[#dispname#] </td>
+	      <td  class="bord1"><input type="checkbox" name="mail_flag[#num#]" value="1"><input type="text" class="nobordertext" name="mail[#num#]" value="[#email#]"></td>
+	      <td  class="bord3"><input type="checkbox" name="hand_flag[#num#]" value="1"><input type="text" class="nobordertext" name="hand[#num#]" value="[#handphone#]"></td>
+	    </tr>
+	    <!-- [#SLPE#] -->
+	  </table>
+	</div>
+	</td>
+	</tr>
+     
+ 
+</table>
+ </form>
+<p>&nbsp;</p>
+</body>
+</html>

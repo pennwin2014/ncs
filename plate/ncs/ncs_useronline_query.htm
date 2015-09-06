@@ -1,0 +1,82 @@
+<html>
+
+<head>
+<title>查询</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<!-- Infrastructure code for the tree -->
+<script>
+	function init()
+	{
+		form1.cond.value=dialogArguments.form1.cond.value;
+
+		}
+function queren()
+{
+dialogArguments.form1.cond.value=form1.cond.value;
+dialogArguments.form1.submit();
+self.close();
+
+}
+
+</script>
+
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginheight="0"  oncontextmenu="return true" onload="init()">
+  <form name="form1" method="post" action="/pronline/Msg" target="main">
+  <input type="hidden" name="FunName" value="ncsIPvistOnline">
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+
+  <tr> 
+    <td colspan="2"><table width="100%" height="27" border="0" align="center" cellpadding="0" cellspacing="0" background="/images/table_bg1.gif">
+        <tr > 
+          <td colspan="2" > <div align="center"><strong><font color="#FFFFFF">             
+              在线用户过滤条件设置</font></strong></div></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr> 
+    <td colspan="2"> 
+        <br>
+        <table width="98%" border="1"    bordercolorlight=#89ACED   bordercolordark=#ffffff    align="center" cellpadding="0" cellspacing="0" >
+          <tr> 
+            <td> 
+             <table width="100%" border="0" align="center" >
+                <tr>
+                  <td colspan="4">&nbsp;</td>
+                </tr>
+
+                <tr height="35"> 
+                  <td width="80">&nbsp;</td>
+                  <td> <font color="#000000"><b><font size="2">关键字</font></b></font></td>
+                  <td > <input type="text" name="cond" size="35"></td>
+                  <td >&nbsp;&nbsp;</td>
+                </tr> 
+                <tr height="35"> 
+                  <td colspan="4" align="center">
+                  	
+                  	<b><font size="2">关键字可以为用户名,部门名,IP地址和Mac地址</font></b>
+                  	</td>
+
+                </tr> 
+              </table>
+              <p align="center"> 
+              	<input name='Button' type='button' class='an3' onClick='queren()' value='确 认'> <input name='Button' type='button' class='an3' onClick='self.close()' value='返回'>
+              	</p>
+              	<br>
+            </td>
+          </tr>          
+        </table>
+
+      </td>
+  </tr>
+</table>
+ </form>
+ <script form1.
+</body>
+</html>

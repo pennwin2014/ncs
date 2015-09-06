@@ -1,0 +1,103 @@
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<meta http-equiv="Content-Language" content="zh-CN" />
+<title>left</title>
+<!-- 调用JS -->
+<link href="/css/left/tree.css" type="text/css" rel="stylesheet">
+<script src="/js/left/ajax.js" type="text/javascript"></script>
+<script src="/js/left/tree.js" type="text/javascript"></script>
+<style type="text/css">
+	.bordleft{border-right:1px solid #abacae;}
+A.MzTreeview
+{
+	font-size: 9pt;
+	padding-left: 3px;
+}
+</style>
+<script type="text/javascript">
+//--------------------------------------------------
+JSErrorFrame="{JSErrorFrame}";
+//--------------------------------------------------
+<!--
+
+function chang(flag)
+{
+  if(flag==2){
+		top.sbpm_right.location.href='/pronline/Msg?FunName@ncs_Factory_Stat';
+		top.sbpm_left.location.href='/pronline/Msg?FunName@ncsWebTreeDispFactory&plate@tree/tree_group_factory.htm';
+  }
+	else if(flag==1){
+		top.sbpm_right.location.href='/pronline/Msg?FunName@ncs_Areaonline_Stat_xm';
+		top.sbpm_left.location.href='/nc_usermgr_left.htm';
+	}
+	else if(flag==3){
+		top.sbpm_right.location.href='/pronline/Msg?FunName@ncs_Type_Stat';
+		top.sbpm_left.location.href='/pronline/Msg?FunName@ncsWebReplace&plate@ncs_corp_type.htm';
+	}
+}
+
+function sendVar(o)
+{
+      self.parent.topFrame.location = "top.htm";
+}
+
+function init(o)
+{
+	sendVar(o);
+	test_a("正在加载...");
+}
+-->
+</script>
+</head>
+<body  marginheight=0 leftmargin=0 marginwidth=0 topMargin="0" >
+<table border="0" cellpadding="0" cellspacing="0" width="179" height="100%">
+		<tr height="20"><td colspan="2">&nbsp;<a href="#xxm" onclick="chang('1')">区县</a>&nbsp;&nbsp;<a href="#xxm" onclick="chang('2')">厂商</a>&nbsp;&nbsp;<a href="#xxm" onclick="chang('3')">场所类型</a></td></tr>
+    <tr>
+    	<td width="5"></td>
+	    <td width="174" valign="top" class="bordleft">
+		    <table border="0" width="100%" cellspacing="0" cellpadding="0" >
+				<tr>
+				    <td >
+					    <script type="text/javascript">
+						<!--
+						window.tree = new MzTreeView("tree");
+
+
+
+
+						tree.icons["property"] = "property.gif";
+						tree.icons["css"] = "collection.gif";
+						tree.icons["book"]  = "book.gif";
+						tree.iconsExpand["book"] = "bookopen.gif"; //展开时对应的图片
+						tree.setIconPath("/images/tree/"); //可用相对路径
+						tree.nodes["-1_0"] = "text:全部单位;url:/pronline/Msg?FunName@ncs_Factory_Stat";
+						
+						tree.nodes["0_1"] = "text:旅店宾馆类; url:/pronline/Msg?FunName@ncsWebClientSearch&gtype@1";
+						
+						tree.nodes["0_2"] = "text:图书馆阅览室; url:/pronline/Msg?FunName@ncsWebClientSearch&gtype@2";
+						
+						tree.nodes["0_3"] = "text:学校; url:/pronline/Msg?FunName@ncsWebClientSearch&gtype@3";
+						
+						tree.nodes["0_4"] = "text:娱乐休闲场所类; url:/pronline/Msg?FunName@ncsWebClientSearch&gtype@4";
+						tree.nodes["0_5"] = "text:企业; url:/pronline/Msg?FunName@ncsWebClientSearch&gtype@5";
+						tree.nodes["0_9"] = "text:其它; url:/pronline/Msg?FunName@ncsWebClientSearch&gtype@9";
+						
+						tree.setTarget("sbpm_right");
+						document.write(tree.toString());    //亦可用 obj.innerHTML = tree.toString();
+						//-->
+						</script>
+					</td>
+					
+				</tr>
+			</table>
+		</td>
+
+
+	</tr>
+</table>
+
+</body>
+</html>

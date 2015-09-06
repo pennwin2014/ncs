@@ -1,0 +1,131 @@
+<!-- saved from url=(0022)http://internet.e-mail -->
+<html>
+<head>
+<title>IP高级查询</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META content=no-cache http-equiv=Pragma>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<style type="text/css">
+<!--
+.cccv {  border-style: inset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.xan3 {  width: 100px; font-size: 12px; font-weight: normal; font-family: "宋体"}
+.anjujue {  background-image: url(/images/anjj.gif); width: 60px; background-repeat: no-repeat; height: 30px}
+.anfasong {  background-image: url(/images/ansend.gif); width: 60px; background-repeat: no-repeat; height: 30px}
+
+-->
+</style>
+<script language="JavaScript">
+<!--
+function gg(){
+ self.close()
+ form1.submit()
+}
+
+//-->
+</script>
+</head>
+
+<body bgcolor="#BED1F5" leftmargin="0" topmargin="0" >
+<form name="form1" method="post" action="/pronline/Msg"  target="sbpm_right">
+  <table width="583" border="0" cellpadding="0" cellspacing="0" >
+    <tr> 
+      <td width="15" height="35" >&nbsp;</td>
+      <td width="494" ><table width="153" height="25" border="1" cellpadding="0"    cellspacing="0"   bordercolorlight=#6B9ADA   bordercolordark=#ffffff background="/images/cell_bg.gif" >
+          <tr> 
+            <td width="149"><strong><font color="#B08500">&nbsp;&nbsp;IP访问记录查询</font></strong> 
+            </td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr> 
+      <td colspan="2" > <table width="576" border="1" cellpadding="4" cellspacing="0"   bordercolorlight=#89ACED   bordercolordark=#ffffff bgcolor="#DEE8FA" >
+          <tr> 
+            <td height="240" > 
+              <table width="549" border="0" cellspacing="0">
+                <tr> 
+                  <td width="64" height="26"> <div align="right">姓 名</div></td>
+                  <td width="192" height="26"> &nbsp; 
+                    <input type="text" name="dispname" size="15" maxlength="32" value="[#dispname#]" > 
+                    <div align="right"></div></td>
+                  <td height="26" colspan="2"><div align="right">部 门&nbsp;</div></td>
+                  <td height="26">[#sgroup#] 
+                    <input type="hidden" name="FunName" value="ncWebIpHSearch"> 
+                  </td>
+                </tr>
+                <tr> 
+                  <td width="64" height="26"> <div align="right">源IP地址</div></td>
+                  <td colspan="2" height="26"> &nbsp; 
+                    <input type="text" name="sip" size="15" maxlength="15" value="[#sip#]" > 
+                  </td>
+                  <td width="58" height="26"> <div align="right">服 务&nbsp;</div></td>
+                  <td width="226" height="26">[#sserv#]</td>
+                </tr>
+                <tr> 
+                  <td width="64" height="32"> <div align="right">目标IP地址</div></td>
+                  <td height="32" colspan="2"> &nbsp; 
+                    <input type="text" name="dip" size="15" maxlength="15" value="[#dip#]" > 
+                  </td>
+                  <td height="32" width="58"> <div align="right">端 口&nbsp;</div></td>
+                  <td height="32" width="226"> 
+                    <input type="text" name="dport" size="5" maxlength="5" value="[#dport#]" > 
+                  </td>
+                </tr>
+                <tr> 
+                  <td rowspan="2" height="65" width="64"> <div align="right">日期范围</div></td>
+                  <td height="32" colspan="4"> <input type="radio" name="dtype" value="unit" checked> 
+                    <input type="text" name="ddd" size="8" maxlength="8"> <select name="unit">
+                      <option value="1" selected>天</option>
+                      <option value="2">周</option>
+                      <option value="3">月</option>
+                    </select> <select name="bef">
+                      <option value="1" selected>以内</option>
+                      <option value="2">以前</option>
+                    </select> </td>
+                </tr>
+                <tr> 
+                  <td colspan="4" height="33"> <input type="radio" name="dtype" value="date">
+                    从 
+                    <input type="text" name="sdate" size="10" maxlength="10" >
+                    到 
+                    <input type="text" name="edate" size="10" maxlength="10" >
+                    (格式:YYYY/MM/DD)</td>
+                </tr>
+                <tr> 
+                  <td width="64" height="26"> <div align="right">协 议</div></td>
+                  <td colspan="4" height="26"> &nbsp; 
+                    <select name="prot">
+                      <option value=" " selected>全部</option>
+                      <option value="17">UDP</option>
+                      <option value="6">TCP</option>
+                    </select>
+                    排 序 <input type="radio" name="osort" value="date">
+                    日期 
+                    <input type="radio" name="osort" value="sip">
+                    源IP地址 
+                    <input type="radio" name="osort" value="dip">
+                    目标IP地址 
+                    <input type="radio" name="osort" value="group">
+                    部门 
+                    <select name="orderby">
+                      <option value="0" selected>升序</option>
+                      <option value="1">降序</option>
+                    </select> <div align="right"></div></td>
+                </tr>
+                <tr> 
+                  <td height="32" colspan="5"> <div align="center"> 
+                      <input name="ok" type="button" class="an3-1" onClick="gg()"  value="开始查询">
+                      &nbsp; 
+                      <input name="can1" type="button" class="an3" onClick="self.close()" value="返回">
+                    </div></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

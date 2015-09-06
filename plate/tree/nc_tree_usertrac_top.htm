@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<script>  
+  function gotoRight(t){
+       top.sbpm_right.location.href=t
+   }   
+function ss()
+{
+if(event.keyCode==13)
+form1.submit();
+}      
+</script>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<style>
+<!--
+
+.css1 {
+	border: 1px solid #C5C5C5;
+	height: 15px;
+	font-size: 12px;
+}
+table {
+	font-size: 12px;
+	font-family: "Arial", "Helvetica", "sans-serif";
+	 "Verdana", "Arial", "Helvetica", "sans-serif", "宋体"; 
+}
+
+
+
+
+a:link {
+	text-decoration: none;	color: #00237e;
+}
+a:visited {
+	text-decoration: none;	color: #00237e;
+}
+a:hover {
+	text-decoration: none;
+	color: #00237e;
+}
+a:active {
+	text-decoration: none;
+	color: #00237e;
+    font-weight: bold;
+}
+
+.tScrollw {
+    SCROLLBAR-FACE-COLOR: #c1d8f9; 
+    OVERFLOW: scroll;
+    SCROLLBAR-SHADOW-COLOR: #c1d8f9; 
+    SCROLLBAR-3DLIGHT-COLOR: #c1d8f9;
+     SCROLLBAR-ARROW-COLOR: #5985ce; 
+     SCROLLBAR-DARKSHADOW-COLOR: #c1d8f9;
+    overflow-x:hidden;
+    height:538px;
+    cursor: default;
+    }
+-->
+</style>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" bgcolor="#d0e1fa" style="overflow-y:hidden">
+	<form name="form1" method="post" action="/pronline/Msg"> 
+  <input type="hidden" name="FunName" value="ncsWebTracUser">
+
+<table width="142" border="1" cellspacing="0" cellpadding="0">
+	<tr >
+    <td colspan="2" width="164">
+    	<table width="100%">
+       <tr><td>字段
+       	<select name="name_type" style="width:60">
+       		<option value="0">姓名</option>
+       		<option value="1">证件号码</option>
+       		<option value="2">MAC地址</option>
+       		<option value="3">IP地址</option>
+       		<option value="4">计算机名</option>
+       	</select>
+       	<input name="cx" type="submit" class="an3-0"   value="查询" >
+    	</tr>
+    	<tr><td>
+    	<input type="text" name="idcard" size="18" value="[#idcard#]" onKeyPress="ss()"></td>
+    	</tr>
+    	
+    </table>
+  </td>
+  </tr>
+ 
+   <tr><td colspan="2" width="100%">
+   	  <div class="tScrollw" id="tC">
+  <table id="DataTable" border="0" cellspacing="0" cellpadding="0">   
+  <tr> 
+    <td colspan="2"><img src="/images/base.gif" width="19" height="16"> <a  href="#xxm">用户列表</a></td>
+  </tr>
+<!-- [#SLPB#] -->
+  <tr  onMouseOut="mouseouttr2(this)" > 
+    <td width="17%"><img src="/images/joinbottom.gif" width="14" height="16"></td>
+    <td width="83%" onClick="gotoRight('/pronline/Msg?FunName@ncsWebReplace&plate@ncs/ncs_userswgj_lab.htm&did@[#did#]&uid@[#uid#]')" ><a href="#xxm">[#dispname#]</a></td>
+  </tr>
+<!-- [#SLPE#] -->
+</table>
+</div>
+</td>
+</tr>
+</table>
+</form>
+<script> form1.name_type.value='[#name_type#]'</script>
+</body>
+</html>

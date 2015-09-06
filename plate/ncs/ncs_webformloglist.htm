@@ -1,0 +1,207 @@
+<html>
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<title>main</title>
+<script>
+var dfd1="0"
+function gotoPage(pagenum)
+
+{
+		form1.FunName.value='ncsWebFormLog';
+    form1.CurPg.value = pagenum;
+}
+function lprint()
+{
+form1.cx.style.display="none";
+form1.rycx.style.display="none";
+form1.hsear.style.display="none";
+form1.pr.style.display="none";
+form1.exp.style.display="none";
+window.print();
+
+form1.cx.style.display="";
+form1.rycx.style.display="";
+form1.hsear.style.display="";
+form1.pr.style.display="";
+form1.exp.style.display="";
+}
+
+function goto1(t){
+ tt=showModalDialog(t, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:520px;scroll:yes;dialogHeight:620px');
+}
+function goto3(t){
+ tt=showModalDialog(t, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:640px;scroll:yes;dialogHeight:620px');
+}
+
+
+
+function showuser(did,uid)
+{
+var temp_var="/pronline/Msg?FunName@ncsWebShowUserinfo&did@"+did+"+uid@"+uid;
+	showModalDialog(temp_var, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:520px;scroll:yes;dialogHeight:640px');
+}
+
+
+
+function goto(o)
+{
+	var did=o.cells[0].childNodes[0].childNodes[1].value;
+	var uid=o.cells[0].childNodes[0].childNodes[2].value;
+	var msgfile=o.cells[0].childNodes[0].childNodes[3].value;
+	var t="/pronline/Msg?FunName@ncsWebPostRead&fname@ncsWebMailMonRead"+"&userid@"+uid+"&msgfile@"+msgfile+"&did@"+did;
+
+  tt=showModalDialog(t, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:540px;scroll:yes;dialogHeight:600px');
+}
+
+
+function passdate()
+{
+parent.form1.CurPg.value='[#CurPg#]';
+parent.form1.TotPg.value='[#TotPg#]';
+parent.form1.TotRec.value='[#TotRec#]';
+
+parent.document.all.wlj.innerHTML='<b style="font-size: 10pt;color:#00237e;">本地日志([#title_name#])</b>';
+	parent.form1.did.value=form1.userid.value;
+	parent.form1.uid.value=form1.uid.value;
+	parent.form1.sdate.value=form1.sdate.value;
+	parent.form1.edate.value=form1.edate.value;
+
+}
+
+
+
+// -->
+<!-- Hide
+var ll=[#CurPg#]
+var yy=[#TotPg#]
+function killErrors() {
+return true;
+}
+window.onerror = killErrors;
+// -->
+
+</script>
+
+<script src="/js/drawtable.js"></script>
+<SCRIPT language=JavaScript>
+<!--
+
+var recordID = null;
+var Table = new FlexibleTable ('DataTable', '100%', '420', 'center', 32, 'flexibleTableSpan');
+
+Table.Header ('<input type="button" name="b1" value="全选"  class="anniu_1"  onClick="allChecked()">', '单位名称', '用户名', '日期','网址/路径','源IP','有无附件','大小');
+Table.ColumnsWidth ('40', '100', '90', '110', '263', '100', '60','70');
+Table.HeaderAligment ('center', 'center', 'center', 'center', 'center', 'center', 'center','center');
+Table.BodyAligment ('center', 'left', 'left', 'center', 'left', 'left','center','right');
+
+Table.SetRowsTemplate (" onMouseOver=\"javascript:mouseovertr2(this);\" onMouseOut=\"javascript:mouseouttr2(this);\" onClick=\"setSelect(this);\" onDblClick=\"goto(this)\" ");
+[#SLPB#]
+Table.Row('<input type="checkbox" name="chk[#num#]" value="[#sid#]"><input type="hidden" name="did[#num#]" value="[#did#]"><input type="hidden" name="userid[#num#]" value="[#uid#]"><input type="hidden" name="msgfile[#num#]" value="[#file#]">','&nbsp;[#cname#]','<a href="#xxm" onclick=showuser("[#did#]","[#uid#]")>&nbsp;[#udisp#]</a>','&nbsp;[#sdate#]','<a href="[#host#]" target="_blank">&nbsp;[#host#] </a>','&nbsp;[#sip#] ','&nbsp;[#asize#]&nbsp;','[#msize#]&nbsp; ');
+[#SLPE#]
+
+//-->
+</SCRIPT>
+
+
+<style type="text/css">
+<!--
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+-->
+
+</style>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<BODY  style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px" bgcolor="#DEE8FA" leftMargin=2 topMargin=2 scroll=no onload=passdate();Table.Draw()>
+	<form name="form1" method="post" action="/pronline/Msg">
+		 <input type="hidden" name="plate" value="ncsmsg_showinfo.htm">
+     <input type="hidden" name="FunName" value="ncsWebReplace">
+     <input type="hidden" name="fun" value="ncsWebFormLog">
+     <input type="hidden" name="CurPg"      value="[#CurPg#]">
+     <input type="hidden" name="TotPg"      value="[#TotPg#]">
+     <input type="hidden" name="lcount"      value="[#TotRec#]">
+     <input type="hidden" name="cond" value="">
+  
+     <input type="hidden" name="uid" value="[#uid#]">
+     <input type="hidden" name="did" value="[#userid#]">
+
+       <input type="hidden" name="exp" value="">
+     
+		<TABLE  height="100%" cellSpacing=0 cellPadding=0 width="100%" border=0>
+  	<TR>
+    		<TD valign="top"><SPAN id=flexibleTableSpan></SPAN></TD>
+  	</TR>
+  	
+  	
+  	  	  	<tr height="110">
+       	        	<td  class="bordnr" valign="top">
+       	        		<table border=0 cellpadding=0 cellspacing=0 width="100%">
+       	             <tr height="40">
+          	  	     	<td width="100" align="center">&nbsp;上网时间</td>
+          	  	     	<td width="150"><input type="text" name="sdate" value="[#sdate#]" size="19" maxlength="19"> </td> 
+          	  	     	<td width="75" align="center">&nbsp;到</td>
+          	  	     	<td width="155"><input type="text" name="edate" value="[#edate#]" size="19" maxlength="19"> </td> 
+          	  	     	<td width="60" align="center">&nbsp;网址</td>
+          	  	     	<td ><input type="text" name="host" value="[#host#]" size="17"></td>
+          	  	     	<td width="80">&nbsp;有无附件</td>
+          	  	     	<td width="90"><select name="fjflag" style="width:105">
+                      <option value="">全部</option>
+                      <option value="1">无附件</option>
+                      <option value="2">有附件</option>
+                    </select></td>
+          	  	     	<td width="110" align="center"><input name="cxx" type="submit"  value="查 询" onclick="qr()"></td> 	  	     	
+          	  	    </tr>
+          	  	     <tr height="30">
+          	  	     	<td  align="center">&nbsp;用户名</td>
+          	  	     	<td ><input type="text" name="username" value="[#username#]" size="20" >
+
+          	  	     		</td>  
+          	  	     	<td  align="center" >&nbsp;单位名称</td>
+          	  	     	<td ><select name="userid" style="width:170">
+			                  <option value="">全部</option>
+			                  [#SLPB#]
+			                  <option value="[#userid#]">[#dispname#]</option>
+			                  [#SLPE#]
+			                  </select></td>
+          	  	     	<td  align="center">&nbsp;路径</td>
+          	  	     	<td ><input type="text" name="url" value="[#url#]" size="17"></td>
+          	  	     	<td >&nbsp;单位组</td>
+          	  	     	<td >	<select name="groupid" style="width:140">
+			                  <option value="">全部</option>
+			                  [#SLPB#]
+			                  <option value="[#groupid#]">[#grouname#]</option>
+			                  [#SLPE#]
+			                  </select></td>  
+          	  	     	<td  align="center"><input name="clearaq" type="button"  value="清除条件" onclick="cleara()"></td>	     	
+          	  	    </tr>
+          	  	     <tr height="30">
+          	  	     	<td align="center">&nbsp;表单大小</td>
+          	  	     	<td > <select name="ysf"><option value="1">大于</option>
+                  <option value="2">小于</option><option value="3">等于</option></select><input type="text" name="msize" size="19"></td>  
+          	  	     	<td  align="center">&nbsp;源IP</td>
+          	  	     	<td  ><input type="text" name="sip" value="[#sip#]" size="17"></td>
+          	  	     	<td  align="center">&nbsp;</td>
+          	  	     	<td colspan="3">
+                    &nbsp;
+                   </td>
+ 
+          	  	     	<td  align="center">&nbsp;</td>	     	
+          	  	    </tr>
+
+          	  	   </table>
+       	        	</td>
+       	        </tr> 
+  	
+  	
+  	
+ 	</TABLE>
+ 		
+ </form>		
+</BODY>
+</html>

@@ -1,0 +1,214 @@
+<html>
+<head>
+<title>敏感内容设定</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<style>
+.conts{visibility:hidden}
+.tab{border-top:solid thin #E0E0E0;
+border-right:solid thin gray;
+border-left:solid thin #E0E0E0;
+font-family:Verdana;
+font-size:10pt;
+text-align:center;
+font-weight:normal}
+.selTab{border-left:solid thin white;
+border-top:solid thin white;
+border-right:solid thin black;
+font-weight:bold;
+text-align:center}
+</style>
+<script language="javascript">
+var a = new Array; 
+function ffg(){
+a[0]=form1.uname.value; 
+a[1]=form1.hname.value;
+a[2]=form1.fname.value;
+a[3]=form1.cname.value;
+a[4]=form1.msize1.value;
+window.returnValue=a
+self.close()
+}
+function goto(o){
+window.open(o,"_self","")
+}
+function ddd(t){
+    showModalDialog(t, window, "status:no;center:yes;help:no;minimize:no;maximize:no;border:thick;statusbar:no;dialogWidth:300px;scroll:auto;dialogHeight:160px");
+
+}
+</script>
+<script LANGUAGE="JavaScript">
+
+function init(){
+//tabContents.innerHTML = t1Contents.innerHTML;
+}
+//this is the tab switching function
+var currentTab;
+var tabBase;
+var firstFlag = true;
+
+function changeTabs(){
+if(firstFlag == true){
+currentTab = t1;
+tabBase = t1base;
+firstFlag = false;
+}
+if(window.event.srcElement.className == "tab"){
+currentTab.className = "tab";
+tabBase.style.backgroundColor = "white";
+currentTab = window.event.srcElement;
+tabBaseID = currentTab.id + "base";
+tabContentID = currentTab.id + "Contents";
+tabBase = document.all(tabBaseID);
+tabContent = document.all(tabContentID);
+currentTab.className = "selTab";
+tabBase.style.backgroundColor = "";
+//tabContents.innerHTML = tabContent.innerHTML;
+if(tabContent.id=="t1Contents"){
+form1.all.xxx.all.as1.style.display=""
+form1.all.xxx.all.as2.style.display="none"
+form1.all.xxx.all.as3.style.display="none"
+form1.all.xxx.all.as4.style.display="none"
+form1.all.xxx.all.as5.style.display="none"
+}
+else if(tabContent.id=="t2Contents"){
+//newWin=window.open("","");
+//for(var prop in form1.all.xxx.all.as1.style)
+//{
+//	newWin.document.writeln(prop+"="+form1.all.xxx.all.as1.style[prop]+"<br>");
+//}
+form1.all.xxx.all.as1.style.display="none"
+form1.all.xxx.all.as2.style.display=""
+form1.all.xxx.all.as3.style.display="none"
+form1.all.xxx.all.as4.style.display="none"
+form1.all.xxx.all.as5.style.display="none"
+}
+else if(tabContent.id=="t3Contents"){
+form1.all.xxx.all.as1.style.display="none"
+form1.all.xxx.all.as2.style.display="none"
+form1.all.xxx.all.as3.style.display=""
+form1.all.xxx.all.as4.style.display="none"
+form1.all.xxx.all.as5.style.display="none"
+}
+else if(tabContent.id=="t4Contents"){
+form1.all.xxx.all.as1.style.display="none"
+form1.all.xxx.all.as2.style.display="none"
+form1.all.xxx.all.as3.style.display="none"
+form1.all.xxx.all.as4.style.display=""
+form1.all.xxx.all.as5.style.display="none"
+}
+else if(tabContent.id=="t5Contents"){
+form1.all.xxx.all.as1.style.display="none"
+form1.all.xxx.all.as2.style.display="none"
+form1.all.xxx.all.as3.style.display="none"
+form1.all.xxx.all.as4.style.display="none"
+form1.all.xxx.all.as5.style.display=""
+}
+}
+}</script>
+<style>
+.conts  {visibility:hidden}
+.tab{border-top:solid thin #E0E0E0;
+border-right:solid thin gray;
+border-left:solid thin #E0E0E0;
+font-family:Verdana;
+font-size:10pt;
+text-align:center;
+font-weight:normal;
+cursor: default}
+.selTab{border-left:solid thin white;
+border-top:solid thin white;
+border-right:solid thin black;
+font-weight:bold;
+text-align:center;
+cursor: default}
+table {  font-size: 9pt}
+</style>
+<script language="JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+// -->
+</script>
+</head>
+
+<body bgcolor="#CCCCCC" text="#330000" leftmargin="0" topmargin="0" onclick="changeTabs()" onload="init()" oncontextmenu="return false">
+<form name="form1" id="form1" method="post" action="/pronline/Msg">
+  <div id="Layer1" style="position:absolute; left:312px; top:285px; width:160px; height:32px; z-index:1"> 
+    <input type="button" name="Button" value=" 确 认 " onclick="ffg()">
+    <input type="button" name="Button2" value=" 取 消 " onClick="self.close()">
+  </div>
+  <table width="98%" border="0" bordercolor="#99FF66" align="center">
+  <tr>
+    <td bgcolor="#CCCCCC"> 
+ 
+        <div id="xxx" STYLE="�
+@"> 
+          <table STYLE="width:460; height:270" CELLPADDING="0" CELLSPACING="0" bgcolor="dfdfdf">
+            <tr> 
+              <td ID="t1" CLASS="selTab" HEIGHT="25" width="70">用户名</td>
+              <td ID="t2" CLASS="tab" width="70">主机</td>
+              <td ID="t3" CLASS="tab" width="70">附件名称</td>
+              <td ID="t4" CLASS="tab" width="70">内容</td>
+              <td ID="t5" CLASS="tab" width="70">大小</td>
+              <td  width="70" bgcolor="#CCCCCC"> 
+                <div align="right"></div>
+              </td>
+            </tr>
+            <tr> 
+              <td ID="t1base" STYLE="height:2; border-left:solid thin white" width="64"></td>
+              <td ID="t2base" STYLE="height:2; background-color:white; border-right:solid thin white" width="79"> 
+              <td ID="t3base" STYLE="height:2; background-color:white; border-right:solid thin white" width="73"> 
+              <td ID="t4base" STYLE="height:2; background-color:white; border-right:solid thin white" width="84"> 
+              <td ID="t5base" STYLE="height:2; background-color:white; border-right:solid thin white" width="96"> 
+              </td>
+              <td  STYLE="height:2; background-color:white;width="19 width="102""> 
+              </td>
+            </tr>
+            <tr> 
+              <td HEIGHT="*" COLSPAN="10" ID="tabContents" STYLE="border-left:solid thin white;border-bottom:solid thin black;border-right:solid thin black"> 
+                <div id="as1" align="center" >若用户名包含下列内容<br>
+                  <textarea name="uname" rows="10" cols="60">[#username#]</textarea>
+                </div>
+                <div id="as2" align="center" STYLE="display: none">若主机名包含下列字段<br>
+                  
+                  <textarea name="hname" rows="10" cols="60">[#hostname#]</textarea>
+                </div>
+                <div id="as3" align="center" STYLE="display: none"> 若附件的文件名中包含下列内容<br>
+                  <textarea name="fname" cols="60" rows="10">[#filename#]</textarea>
+                </div>
+                <div id="as4" align="center" STYLE="display: none"> 若内容中包含下列字段<br>
+                  <textarea name="cname" rows="10" cols="60">[#content#]</textarea>
+                </div>
+                <div id="as5" align="center" STYLE="display: none"> 若文件大于以下字节数<br>
+                  <textarea name="msize1" cols="50" rows="10">[#msize#]</textarea>
+                  字节</div>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <input type="hidden" name="FunName" value="ncUploadSetup">
+        <div CLASS="conts" ID="t1Contents"> 1 </div>
+<div CLASS="conts" ID="t2Contents"> 
+2
+</div>
+<div CLASS="conts" ID="t3Contents"> 
+3
+</div>
+<div CLASS="conts" ID="t4Contents"> 
+4
+</div>
+<div CLASS="conts" ID="t5Contents">5</div>
+      
+    </td>
+  </tr>
+</table>
+<div align="center"></div>  </form>
+</body>
+</html>

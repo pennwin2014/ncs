@@ -1,0 +1,202 @@
+<html>
+<head>
+<title>接口发送规则</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" align="center" oncontextmenu="return false" style="overflow:hidden">
+<form name="form1" method="post" action="/pronline/Msg">
+
+  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td valign="top" ><table width="100%" height="35" border="0" align="center" cellpadding="0" cellspacing="0" >
+          <tr > 
+            <td colspan="2"><div style="font-size:11pt;color:#00237e;font-weight:bold;text-align: center;">WEBSERVICE接口日志发送规则设置</div></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr> 
+      <td >
+        <table width="80%" height="0%" border="1"  bordercolorlight=#89ACED   bordercolordark=#ffffff   align="center" cellpadding="0" cellspacing="0">
+          <tr> 
+            <td valign="top" height="400"> <table width="90%" border="0" align="center">
+                <tr> 
+                  <td width="10%">&nbsp;</td>
+                  <td width="80%">&nbsp;</td>
+                  <td width="10%">&nbsp;</td>
+                </tr>
+               
+                <tr> 
+                  <td width="10%" height="89">&nbsp;</td>
+                  <td height="89" width="90%" align="center"> <table width="100%" border="0"  bordercolorlight=#848284   bordercolordark=#ffffff>
+                  	  <tr> 
+                        <td width="40%"> 功能启用否</td>
+                        <td width="60%"> <input type="text" name="startlog" size="10" value="[#startcommitlog#]"> (启用:Yes;不启用:No)
+                        </td>
+                      </tr>
+                  	
+                      <tr> 
+                        <td width="40%"> 回调URL地址</td>
+                        <td width="60%"> <input type="text" name="callbackurl" size="66" value="[#callbackurl#]"> 
+                        </td>
+                      </tr>
+                      <tr> 
+                        <td > 回调授权码</td>
+                        <td > <input type="text" name="verifyid" size="16" value="[#verifyid#]"> 
+                        </td>
+                      </tr>
+                      <tr> 
+                        <td > 日志发送时间间隔</td>
+                        <td > <input type="text" name="intervalfig" size="10" value="[#intervalfig#]"> (单位秒)
+                        </td>
+                      </tr>
+                     <tr> 
+                        <td > 上报营业场所运行状态</td>
+                        <td > <input type="text" name="commitstatus" size="10" value="[#commitstatus#]"> (发送:Y;不发送:N)
+                        </td>
+                      </tr>
+                      
+                      <tr> 
+                        <td > 报警日志</td>
+                        <td > <input type="text" name="alarmlog" size="10" value="[#alarmlog#]"> (发送:Y;不发送:N)
+                        </td>
+                      </tr>
+                      
+                      <tr> 
+                        <td > 终端上下线日志</td>
+                        <td > <input type="text" name="tudlog" size="10" value="[#tudlog#]"> (发送:Y;不发送:N)
+                        </td>
+                      </tr>
+                      <tr> 
+                        <td > 上网日志</td>
+                        <td > <input type="text" name="onlinelog" size="10" value="[#onlinelog#]"> (发送:Y;不发送:N)
+                        </td>
+                      </tr>
+                      
+                     <tr> 
+                        <td > 真实身份</td>
+                        <td > <input type="text" name="realidentity" size="10" value="[#realidentity#]"> (发送:Y;不发送:N)
+                        </td>
+                      </tr>
+                        <tr> 
+                        <td > 处罚结果</td>
+                        <td > <input type="text" name="punishresult" size="10" value="[#punishresult#]"> (发送:Y;不发送:N)
+                        </td>
+                      </tr> 
+                       <tr> 
+                        <td > 日统计</td>
+                        <td > <input type="text" name="daystat" size="10" value="[#daystat#]"> (发送:Y;不发送:N)
+                        </td>
+                      </tr> 
+                      
+                      <tr> 
+                        <td > 代发手机短信通知</td>
+                        <td > <input type="text" name="sendsms" size="10" value="[#sendsms#]"> (发送:Y;不发送:N)
+                        </td>
+                      </tr> 
+                      <tr> 
+                        <td > 上网轨迹</td>
+                        <td > <input type="text" name="sendtrac" size="10" value="[#sendtrac#]"> (发送:Y;不发送:N)
+                        </td>
+                      </tr> 
+                      
+                      <tr> 
+                        <td > 虚拟身份</td>
+                        <td > <input type="text" name="virtualidentity" size="10" value="[#virtualidentity#]"> (发送:Y;不发送:N)
+                        </td>
+                      </tr> 
+                      <tr> 
+                        <td > 虚拟轨迹</td>
+                        <td > <input type="text" name="virtualtrack" size="10" value="[#virtualtrack#]"> (发送:Y;不发送:N)
+                        </td>
+                      </tr> 
+                      
+                    </table></td>
+                  <td width="10%" >&nbsp;</td>
+                
+          
+                <tr> 
+                  <td width="10%">&nbsp;</td>
+                  <td width="80%"> <p> <font color="red"><br>修改WEBSERVICE接口日志发送功能是否启用的参数,需要重启系统,修改其余参数可以不重启系统.</font></p></td>
+                  <td width="10%">&nbsp;</td>
+                </tr>
+               
+              </table></td>
+          </tr>
+          
+ <!--         
+        <tr>
+      <td height="70" ><table width="98%" border="0" align="center">
+                    <tr> 
+                  <td height="30" colspan="2"> <strong>远端接收主机设定</strong>&nbsp;&nbsp;<select name="Remotexml">
+									<option value="No" selected>停用</option>
+									<option value="Yes">启用</option>
+									</select></td>
+                  <td > <div align="center"> 
+                      <input name="test" type="submit" class="an3-1" value="测试设定参数" >
+                    </div></td>
+                  <td >&nbsp;</td>
+                
+                </tr>
+                
+                <tr> 
+                  <td width="15%" align="right" height="20">主机IP地址</td>
+                  <td width="35%" height="20"> <input type="text" name="rip" value="[#remoteip#]" size="31" maxlength="63"> 
+                  </td>
+                  <td width="15%" align="right"  height="20">主机名称</td>
+                 <td width="35%" height="8"> <input type="text" name="rhost" value="[#remotehost#]" size="31" maxlength="63"> 
+                  </td>
+                </tr>
+                
+                <tr> 
+                  <td width="15%" align="right" height="20">帐号</td>
+                  <td width="35%" height="20"><input type="text" name="ruser" value="[#remoteuser#]" size="31" maxlength="63">
+                  </td>
+                  <td width="15%" align="right"  height="20">口令</td>
+                 <td width="35%" height="8"> <input type="password" name="rpass" value="[#remotepass#]" size="34" maxlength="63"> 
+                  </td>
+                </tr>
+                
+                <tr> 
+                  <td width="15%" align="right" height="20">共享名</td>
+                  <td width="35%" height="20"><input type="text" name="rshare" value="[#remoteshare#]" size="31" maxlength="63">
+                  </td>
+                  <td width="15%" align="right"  height="20">&nbsp;</td>
+                 <td width="35%" height="8">&nbsp;
+                  </td>
+                </tr>
+
+        </table></td>
+    </tr>
+          
+    -->      
+          
+        </table>
+      </td>
+    </tr>
+    
+    
+    
+    
+    <tr>
+      <td height="60" ><table width="50%" border="0" align="center">
+          <tr> 
+            <td> <div align="center"> 
+                <input type="hidden" name="FunName" value="ncsSruleSave">
+                <input type="submit" name="next" value="保存" class="an3">
+                &nbsp; 
+              <input type="button" name="next1" value="刷新" class="an3" onclick="form1.FunName.value='ncsWebServicerule';form1.submit()">
+              </div></td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+</form>
+<script>form1.Remotexml.value='[#remoteflag#]';</script>
+</body>
+</html>

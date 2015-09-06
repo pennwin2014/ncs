@@ -1,0 +1,169 @@
+<html>
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<title>main</title>
+<script>
+var dfd1="0"
+function passpar(){
+  parent.form1.CurPg.value='[#CurPg#]';
+  if('[#next#]'=='下一页'){
+  parent.document.all.xxm2.style.display='';
+  }
+  else{
+    parent.document.all.xxm2.style.display='none';
+  }
+  if('[#pre#]'=='上一页'){
+  parent.document.all.xxm1.style.display='';
+  }
+  else{
+    parent.document.all.xxm1.style.display='none';
+  }
+}
+
+ function Edit(sid)
+ {
+	  t = "/pronline/Msg?FunName@ncsWebReplace&plate@ncs/qq_frm.htm&qq@"+sid+"&fun@qqShowpassword";   
+    var oDia=showModalDialog(t,window,
+		 "status:no;center:yes;help:no;minimize:no;maximize:no;border:thick;statusbar:no;dialogWidth:500px;scroll:none;dialogHeight:340px;overflow:none");	
+ 
+ }
+
+function showuser(did,uid)
+{
+var temp_var="/pronline/Msg?FunName@ncsWebShowUserinfo&did@"+did+"+uid@"+uid;
+	showModalDialog(temp_var, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:520px;scroll:yes;dialogHeight:640px');
+}
+
+function gotoPage(pagenum)
+{
+
+    form1.CurPg.value = pagenum;
+}
+
+function goto(t){
+ tt=showModalDialog(t, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:520px;scroll:yes;dialogHeight:480px');
+}
+
+function showaccount(num)
+{
+var v_did=eval('form1.did'+num).value;
+var v_uid=eval('form1.uid'+num).value;
+var v_sdate=eval('form1.sdate'+num).value;
+var v_edate=eval('form1.edate'+num).value;
+var v_cname=eval('form1.cname'+num).value;
+var v_udisp=eval('form1.udisp'+num).value;
+var v_ntype=eval('form1.ntype'+num).value;
+
+	if((v_ntype=='6')||(v_ntype=='7')||(v_ntype=='10')||(v_ntype=='11'))
+	{
+		var temp='/pronline/Msg?FunName@ncsWebReplace&fname@nccWebImList&plate@ncsmsg_showncc.htm&ProId@'+v_did+'&uid@'+v_uid+'&did@'+v_did+'&sdate@'+v_sdate+'&edate@'+v_edate+'&cname@'+v_cname;
+	  window.open(temp);
+	}
+	else if((v_ntype=='4')||(v_ntype=='5'))
+	{
+			var temp='/pronline/Msg?FunName@ncsWebReplace&fname@nccMailMonList&plate@ncsmsg_showncc.htm&ProId@'+v_did+'&uid@'+v_uid+'&did@'+v_did+'&sdate@'+v_sdate+'&edate@'+v_edate+'&cname@'+v_cname;
+
+			window.open(temp);
+	}
+}
+
+function showQQcont(name,lntype,usid){
+	var temp_var="/pronline/Msg?FunName@ncsWebReplace&plate@ncs/qqvid_det_frm.htm&name1@"+name+"+ntype@"+lntype+"&usid@"+usid;;
+ 
+		showModalDialog(temp_var, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:720px;scroll:yes;dialogHeight:640px');
+}
+
+
+function showvname(name,lntype){
+var temp_var="/pronline/Msg?FunName@ncsDispMtoQQ&name1@"+name+"+ntype@"+lntype;
+ 
+
+
+//	var temp_var="/pronline/Msg?FunName@ncsDispNetidOth&name1@"+name+"+ntype@"+lntype;
+
+		showModalDialog(temp_var, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:620px;scroll:yes;dialogHeight:640px');
+}
+
+	function showgj(did,usid){
+ 
+  var tt="/pronline/Msg?FunName@ncsWebReplace&plate@ncs/ncs_swmx_lab.htm&usid@"+usid+"&did@"+did;
+
+  window.open (tt, 'ww', 'height=620, width=1000, top=100,left=100, toolbar=no, menubar=no, scrollbars=no, resizable=yes,location=no, status=no')
+}
+function caxun(){
+form1.CurPg.value='1';
+form1.FunName.value='ncsWebReplace';
+form1.submit();
+}
+
+// -->
+
+</script>
+
+<script src="/js/drawtable.js"></script>
+<SCRIPT language=JavaScript>
+<!--
+
+var recordID = null;
+var Table = new FlexibleTable ('DataTable', '100%', '545', 'center', 32, 'flexibleTableSpan');
+
+Table.Header ('网络账号','类别','操作时间','上网IP','动作类型','单位名称', '用户名', '发帖情况','其它日志');
+Table.ColumnsWidth ('120', '50', '110', '110', '50', '110','100','60','60');
+Table.HeaderAligment ('center', 'center','center', 'center', 'center', 'center','center','center','center','center');
+Table.BodyAligment ('left', 'left','left', 'center', 'center','left','left','center','center');
+
+Table.SetRowsTemplate (" onMouseOver=\"javascript:mouseovertr2(this);\" onMouseOut=\"javascript:mouseouttr2(this);\" onClick=\"setSelect(this);\"  ");
+[#SLPB#]
+Table.Row('<a href="#xxm" onclick=showvname("[#name#]","[#lNtype#]")>&nbsp;[#name#] </a>&nbsp;','&nbsp;[#ntype#] ','&nbsp;[#sdate#]','&nbsp;[#ip#]','&nbsp;[#ctime#] ','&nbsp;[#cname#]','<a href="#xxm" did="[#did#]" uid="[#uid#]" onclick=showuser("[#did#]","[#uid#]") >&nbsp;[#udisp#]</a>','<a href="#xxm" onclick=showBBScont("[#usid#]")>>发帖情况</a>','<a href="#xxm" onclick=showgj("[#did#]","[#usid#]") >&nbsp;其它日志</a>');
+[#SLPE#]
+
+//-->
+</SCRIPT>
+
+
+<style type="text/css">
+<!--
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+-->
+
+</style>
+<script src="/js/calendar.js"></script>
+<script src="/js/rmenu.js"></script>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+<BODY style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px" bgcolor="#DEE8FA" leftMargin=2 topMargin=2 scroll=no onload="Table.Draw();passpar();">
+	<form name="form1" method="post" action="/pronline/Msg">
+
+<!--		  <input type="hidden" name="fun" value="ncsWebNetIdLog">   -->
+      <input type="hidden" name="CurPg"      value="[#CurPg#]">
+      <input type="hidden" name="TotPg"      value="[#TotPg#]">
+      <input type="hidden" name="lcount"      value="[#TotRec#]">
+      <input type="hidden" name="userid"  value="">
+		
+		<TABLE  cellSpacing=0 cellPadding=0 width="100%" border=0>
+			
+
+					
+    <tr> 
+      <td valign="top" width="100%"  align=center height="28" bgcolor="#DEE8FA" > 
+        <table width="100%" border="0" cellspacing="0">
+  	<TR>
+    		<TD valign="top" colspan="2"><SPAN id=flexibleTableSpan></SPAN></TD>
+  	</TR>
+ 	</TABLE>
+ 	</td>
+</tr>
+
+
+</table>
+ </form>	
+
+ 	
+</BODY>
+</html>

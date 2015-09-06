@@ -1,0 +1,46 @@
+<content>
+      <div class="tScroll5" id="tC" onscroll="setscrollvaue()">	
+        <table id="DataTable"  width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+
+          <tr class="tableHead"  height="20" style="top:expression(document.getElementById('tC').scrollTop)">
+            <td width="140" align="center" bgcolor="#6382BD" class="bord2" ><font color="#FFFFFF">上网场所</font></td>
+            <td width="100" bgcolor="#6382BD" align="center" class="bord2" ><font color="#FFFFFF">上网用户</font></td>
+            <td width="15%" bgcolor="#6382BD" align="center" class="bord2" ><font color="#FFFFFF"> IP地址</font></td>
+            <td width="15%" bgcolor="#6382BD" align="center" class="bord2" ><font color="#FFFFFF"> MAC地址</font></td>
+            <td width="15%" bgcolor="#6382BD" align="center" class="bord2" ><font color="#FFFFFF"> 上线时间</font></td>
+            <td width="15%" bgcolor="#6382BD" align="center" class="bord2" ><font color="#FFFFFF"> 最近时间</font></td>
+
+            <td width="13%" bgcolor="#6382BD" align="center" class="bord2" ><font color="#FFFFFF"> 总流量(KB)</font></td>         
+          </tr> 
+          
+            [#SLPB#]
+           <tr  height="18"  bgcolor="#ffffff">
+            <td   class="bord1" >&nbsp;[#cname#]</td>
+            <td class="bord1" >&nbsp;[#dispname#]</td>
+            <td  class="bord1" >&nbsp;[#ip#]</td>
+            <td  class="bord1" >&nbsp;[#mac#]</td>
+            <td class="bord1" >&nbsp;[#sdate#]</td>
+            <td class="bord1" >&nbsp;[#edate#]</td>
+
+            <td  class="bord3" align="right">[#flow#]&nbsp;</td>         
+          </tr> 
+          [#SLPE#]
+          
+          [#SLPB#]
+           <tr  height="18" id=[#snum#] bgcolor="#ffffff">
+            <td   class="bord1" >&nbsp;</td>
+            <td class="bord1" >&nbsp;</td>
+            <td class="bord1" >&nbsp;</td>
+            <td class="bord1" >&nbsp;</td>
+            <td  class="bord1" >&nbsp;</td>
+            <td  class="bord1" >&nbsp;</td>
+            <td  class="bord3" >&nbsp;</td>         
+          </tr> 
+          [#SLPE#]
+          
+      </TABLE>
+     </div> 
+</content>
+<curpg>[#CurPg#]</curpg>
+<totpg>[#TotPg#]</totpg>
+<totrec>[#TotRec#]</totrec>

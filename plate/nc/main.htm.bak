@@ -1,0 +1,169 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>联网使用单位安全监管系统</title>
+<link href="css/fonts.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="css/ext-all.css" />
+<script type="text/javascript" src="js/ext-base.js"></script></script>
+<script type="text/javascript" src="js/ext-core.js"></script>
+
+<link rel="stylesheet" type="text/css" href="css/CenterMenu.css" />
+<script type="text/javascript" src="js/CenterMenu.js"></script>
+
+<style type="text/css" >
+body {
+	margin: 0px 0px 0px 0px;
+	}
+a:link{TEXT-DECORATION: none;}
+a:visited{TEXT-DECORATION: none;}
+a:hover{TEXT-DECORATION:none;}
+a:active{TEXT-DECORATION:none;}
+
+</style>
+
+
+
+
+
+
+<script type="text/javascript">
+
+function FindObj(n, d) {
+	var p,i,x;
+	if(!d) d=document; 
+	if((p=n.indexOf("?"))>0&&parent.frames.length) 
+	{
+    	d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);
+	}
+	if(!(x=d[n])&&d.all) x=d.all[n]; 
+	for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+	for(i=0;!x&&d.layers&&i<d.layers.length;i++)
+		x=MM_findObj(n,d.layers[i].document);
+	if(!x && d.getElementById)
+		x=d.getElementById(n); 
+	return x;
+}
+
+function PreloadImages()
+{
+	var d=document; 
+	if(d.images)
+	{
+		if(!d.MM_p) d.MM_p=new Array();
+	    var i,j=d.MM_p.length,a=PreloadImages.arguments; for(i=0; i<a.length; i++)
+		    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}
+	}
+}
+function logout()
+{
+	if(confirm("您确认退出吗？"))
+	{
+		
+	}
+}
+
+
+PreloadImages(
+	'images/lvl3-default.gif', 
+	'images/menu2-bg.jpg', 
+	'images/menu2-on.jpg', 
+	'images/menu3-over.jpg', 
+	'images/tri-expanded.gif', 
+	'images/menu1-bg.jpg', 
+	'images/menu2.jpg', 
+	'images/menu3-on.jpg', 
+	'images/tri-collapsed.gif', 
+	'images/tri-grey.gif');
+PreloadImages(
+	'images/left_close1.jpg',
+	'images/left_close.jpg',
+	'images/left_open1.jpg',
+	'images/left_open.jpg',
+	'images/menu1_1_nosel.jpg',
+	'images/menu1_1_sel.jpg',
+	'images/menu1_2_nosel.jpg',
+	'images/menu1_2_sel.jpg',
+	'images/menu1_3_nosel.jpg',
+	'images/menu1_3_sel.jpg',
+	'images/menu1_4_nosel.jpg',
+	'images/menu1_4_sel.jpg',
+	'images/menu1_5_nosel.jpg',
+	'images/menu1_5_sel.jpg');
+
+//-->
+</Script>
+
+</head>
+<body class=bg01>
+<table width="100%" height=100% cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="83" valign="top"><table width="100%" height="83" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="545"><img src="images/logo_left.jpg"></td>
+        <td style="background:url(images/logo_center.jpg)">&nbsp;</td>
+        <td width="542"><img src="images/logo_right.jpg"></td>
+      </tr>
+      </table>
+      
+   
+      
+      
+      <table width="100%" height="24" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="159"><img src="images/head1_left0.jpg"></td>
+          <td width="30"><img src="images/head1_left.jpg" width="30" height="24"></td>
+          <td style="background:url(images/head1_line2.jpg);color:#dddddd;padding-left:19px;padding-top:3px;">您的当前位置是		  <span id=link_tip></span></td>
+          <td width="52"><img src="images/head1_right1.jpg" width="52" height="24"></td>
+          <td width="120" style="background:url(images/head1_line3.jpg)">&nbsp;</td>
+          <td width="84" style="background:url(images/head1_line3.jpg)" nowrap>
+
+            </td>
+
+        <td width="23" style="background:url(images/head1_line3.jpg)"><a href="javascript:void(0)" id="id_a_help"><img src="images/help.gif" width="10" height="14" title="帮助" border=0></a></td>
+        <td width="23" style="background:url(images/head1_line3.jpg)"><a href="#" onclick="javaScript:logout()" onFocus="this.blur()"><img src="images/exit.gif" width="15" height="15" title="退出" border=0></a></td>
+     </tr>
+  </table>
+  
+  
+  
+ 
+  
+  
+  </td>
+  </tr>
+  <tr>
+    <td valign="top" ><table height="100%" width="100%" style="border-collapse:collapse;" >
+      <tr>
+		<td valign="top" class="divleft1-td">
+		  <div id="divleft1" class="divleft1-wrap"></div>
+		</td>
+		<td id="divleft2" valign="top" class="divleft2-td"></td>
+        <td style="border-top:1px solid #3f6d8e;border-right:1px solid #3f6d8e;width:8px;vertical-align: middle;background-color:#fbfbfb;"><a href=# onClick="javascript:Nav.switchSysBar();" onMouseOver="javascript:Nav.switchImg()" onMouseOut="javascript:Nav.switchImgRestore()" onFocus="this.blur()"><img src="images/left_open.jpg" width="8" height="247" border=0 id=left_menu_img alt='close'></a></td>
+        <td valign=top>
+		<iframe name=sbpm_right marginHeight=0 marginWidth=0 noResize scrolling=auto frameBorder=0 src="user_systemstatus.htm" width=100% height=100%></iframe>
+		</td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td height="1" style="background-color:#385b77"><img src="images/trans.gif" width="1" height="1"></td>
+  </tr>
+  <tr>
+    <td height="19" style="background-color:#c1ccde;"><table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+
+    </table></td>
+  </tr>
+</table>
+<script>
+PgMenu.target = window.frames.sbpm_right;
+PgMenu.navBar = document.getElementById('link_tip');
+Menu = new PgMenu({
+	elLvl1: document.getElementById('divleft1'),
+	elLvl2: document.getElementById('divleft2'),
+	menuData: [{"name":"系统设置","onImg":"images/ms1.gif","offImg":"images\/mns1.gif","children":[{"name":"单位分组管理","isDefault":true,"url":"user_systemstatus.htm","help":41},{"name":"联网单位管理","url":"webvist.htm","help":43},{"name":"短信平台设置","url":"\/monitor_monitoring_active\/index\/index","help":45},{"name":"系统备份设置","url":"monitor_monitoring_traffic.htm","help":46},{"name":"数据整理设置","url":"\/monitor_monitoring_app\/index\/index","help":47},{"name":"离线告警设置","url":"\/monitor_monitoring_web\/index\/index","help":48},{"name":"\u641c\u7d22\u5f15\u64ce","url":"\/monitor_monitoring_webs\/index\/index","help":49},{"name":"\u90ae\u4ef6\u6536\u53d1","url":"\/monitor_monitoring_email\/index\/index","help":410},{"name":"\u5728\u7ebf\u804a\u5929","url":"\/monitor_monitoring_im\/index\/index","help":411},{"name":"\u8bba\u575b\u53d1\u5e16","url":"\/monitor_monitoring_post\/index\/index","help":412},{"name":"FTP\u5ba1\u8ba1","url":"\/monitor_monitoring_ftpcommand\/index\/index","help":413},{"name":"TELNET\u5ba1\u8ba1","url":"\/monitor_monitoring_telnet\/index\/index","help":414},{"name":"HTTPS\u5ba1\u8ba1","url":"\/monitor_monitoring_https\/index\/index","help":415},{"name":"\u6587\u4ef6\u5ba1\u8ba1","url":"\/monitor_monitoring_auditfile\/index\/index","help":416},{"name":"\u65f6\u957f\u9650\u989d","url":"\/monitor_monitoring_timelimit\/index\/index","help":417}]},
+	{"name":"日志查询","help":64,"onImg":"images\/ms2.gif","offImg":"images\/mns2.gif","children":[{"name":"\u7b56\u7565\u7f51\u6bb5","url":"\/policy_manager_localtrust\/ext\/index","help":51},{"name":"\u9ed1\u767d\u540d\u5355","children":[{"name":"\u7f51\u5740\u9ed1\u767d\u540d\u5355","url":"\/policy_manager_bnw\/bnw\/index","help":521},{"name":"Bypass\u57df\u540d","url":"\/policy_manager_bnw\/bypass\/index","help":522},{"name":"\u514d\u76d1\u63a7IP","url":"\/policy_manager_bnw\/superuser\/index","help":523},{"name":"\u514d\u7ba1\u63a7\u7528\u6237","url":"\/policy_manager_bnw\/nac\/index","help":525},{"name":"\u5c4f\u853dIP","url":"\/policy_manager_bnw\/blockhost\/index","help":524}]},{"name":"\u5bf9\u8c61\u8bbe\u7f6e","children":[{"name":"\u65f6\u95f4\u5bf9\u8c61","url":"\/policy_manager_object\/when\/index","help":531},{"name":"\u7f51\u7ad9\u5206\u7c7b\u5bf9\u8c61","url":"\/policy_manager_object\/url\/index","help":532},{"name":"\u7f51\u5740\u5339\u914d\u5bf9\u8c61","url":"\/policy_manager_object\/re\/index","help":533},{"name":"\u6587\u4ef6\u7c7b\u578b\u5bf9\u8c61","url":"\/policy_manager_object\/ct\/index","help":534},{"name":"\u5e26\u5bbd\u901a\u9053\u5bf9\u8c61","url":"\/policy_manager_object\/tunnel\/index","help":535},{"name":"\u7528\u6237\u81ea\u5b9a\u4e49\u534f\u8bae","url":"\/policy_manager_object\/udp\/index","help":536},{"name":"\u5ba2\u6237\u7aef\u68c0\u6d4b\u5bf9\u8c61","url":"\/policy_manager_object\/pclient\/index","help":537}]},{"name":"\u7b56\u7565\u8bbe\u7f6e","isDefault":true,"url":"\/policy_manager_policy\/index\/index","help":54},{"name":"\u5ba1\u8ba1\u7b56\u7565\u8bbe\u7f6e","url":"\/policy_manager_policy\/index\/audit","help":55},{"name":"\u5ba2\u6237\u7aef\u7b56\u7565\u8bbe\u7f6e","url":"\/policy_manager_policy\/index\/pclient","help":56},{"name":"\u7528\u6237\u5e26\u5bbd\u4e0a\u9650","url":"\/policy_manager_speedcap\/index\/index","help":57},{"name":"\u9632\u62a4\u8bbe\u7f6e","children":[{"name":"\u5168\u5c40\u8bbe\u7f6e","url":"\/policy_manager_selfdefense\/index\/index","help":581},{"name":"\u7528\u6237\u9632\u62a4\u89c4\u5219","url":"\/policy_manager_selfdefense\/user\/index","help":582},{"name":"\u7cfb\u7edf\u76d1\u63a7\u89c4\u5219","url":"\/policy_manager_selfdefense\/system\/index","help":583},{"name":"\u6682\u65f6\u5c4f\u853d\u5217\u8868","url":"\/policy_manager_selfdefense\/block\/index","help":584}]},{"name":"\u63d0\u793a\u9875\u9762","url":"\/policy_manager_denialpage\/index\/index","help":59},{"name":"\u7b56\u7565\u62a5\u544a","url":"\/policy_manager_policy\/report\/index","help":510}]},{"name":"布控管理","onImg":"images\/ms3.gif","offImg":"images\/mns3.gif","children":[{"name":"\u7528\u6237\u5bfc\u5165","children":[{"name":"IP\u5bfc\u5165","url":"\/user_import_ip","help":611},{"name":"LDAP\u5bfc\u5165","url":"\/user_import_ldap","help":612},{"name":"\u7f51\u5eb7\u81ea\u5b9a\u4e49","url":"\/user_import_custom","help":613}]},{"name":"\u7ec4\u7ec7\u7ba1\u7406","isDefault":true,"url":"\/user_manage","help":62},{"name":"\u7528\u6237\u67e5\u8be2","url":"\/user_query","help":63},{"name":"\u8ba4\u8bc1\u7ba1\u7406","children":[{"name":"\u8ba4\u8bc1\u914d\u7f6e","url":"\/user_auth","help":641},{"name":"\u6df7\u5408\u8ba4\u8bc1","url":"\/user_auth\/mixed","help":642},{"name":"\u767b\u5f55\u754c\u9762","url":"\/user_weblogin_ui\/","help":643},{"name":"\u7f51\u9875\u91cd\u5b9a\u5411","url":"\/user_url_redirect\/","help":644}]}]},{"name":"布控管理","onImg":"images\/ms4.gif","offImg":"images\/mns4.gif","children":[{"name":"\u67e5\u8be2","children":[{"name":"\u7528\u6237\u67e5\u8be2","url":"\/monitor_query_user\/index\/index","help":711},{"name":"\u5e94\u7528\u6d41\u91cf","url":"\/monitor_query_app\/index\/index","help":712},{"name":"\u7f51\u7ad9\u8bbf\u95ee","isDefault":true,"url":"\/monitor_query_web\/index\/index","help":713},{"name":"\u641c\u7d22\u5f15\u64ce","url":"\/monitor_query_webs\/index\/index","help":714},{"name":"\u90ae\u4ef6\u6536\u53d1","url":"\/monitor_query_email\/index\/index","help":715},{"name":"\u5728\u7ebf\u804a\u5929","url":"\/monitor_query_im\/index\/index","help":716},{"name":"\u8bba\u575b\u53d1\u5e16","url":"\/monitor_query_post\/index\/index","help":717},{"name":"\u4e0a\u7ebf\u5386\u53f2","url":"\/monitor_query_auth\/index\/index","help":718},{"name":"\u5e94\u7528\u660e\u7ec6","url":"\/monitor_query_appdb\/index\/index","help":719},{"name":"\u4e0a\u7f51\u65f6\u957f","url":"\/monitor_query_online\/index\/index","help":7110},{"name":"FTP\u5ba1\u8ba1","url":"\/monitor_query_ftpcommand\/index\/index","help":7111},{"name":"TELNET\u5ba1\u8ba1","url":"\/monitor_query_telnet\/index\/index","help":7112},{"name":"HTTPS\u5ba1\u8ba1","url":"\/monitor_query_https\/index\/index","help":7113},{"name":"\u6587\u4ef6\u5ba1\u8ba1","url":"\/monitor_query_auditfile\/index\/index","help":7114}]},{"name":"\u7edf\u8ba1","children":[{"name":"\u7528\u6237\u7edf\u8ba1","url":"\/monitor_statistic_user\/index\/index","help":72},{"name":"\u5e94\u7528\u6d41\u91cf","url":"\/monitor_statistic_app\/index\/index","help":72},{"name":"\u7f51\u7ad9\u8bbf\u95ee","url":"\/monitor_statistic_web\/index\/index","help":72},{"name":"\u641c\u7d22\u5f15\u64ce","url":"\/monitor_statistic_webs\/index\/index","help":72},{"name":"\u90ae\u4ef6\u6536\u53d1","url":"\/monitor_statistic_email\/index\/index","help":72},{"name":"\u5728\u7ebf\u804a\u5929","url":"\/monitor_statistic_im\/index\/index","help":72},{"name":"\u8bba\u575b\u53d1\u5e16","url":"\/monitor_statistic_post\/index\/index","help":72},{"name":"\u4e0a\u7f51\u65f6\u957f","url":"\/monitor_statistic_online\/index\/index","help":72},{"name":"\u6587\u4ef6\u5ba1\u8ba1","url":"\/monitor_statistic_auditfile\/index\/index","help":72}]},{"name":"\u62a5\u544a","children":[{"name":"\u62a5\u544a\u8ba2\u9605\u4e2d\u5fc3","url":"\/monitor_report_subscribe\/index\/index","help":731},{"name":"\u5386\u53f2\u62a5\u544a\u7ba1\u7406","url":"\/monitor_report_report\/index\/index","help":732},{"name":"\u7528\u6237\u6d3b\u52a8\u6458\u8981","url":"\/monitor_report_abstract\/index\/index","help":733},{"name":"\u7528\u6237\u884c\u4e3a\u7edf\u8ba1","url":"\/monitor_report_user\/index\/index","help":734},{"name":"\u5e26\u5bbd\u8d44\u6e90\u4f7f\u7528","url":"\/monitor_report_traffic\/index\/index","help":735},{"name":"\u4e0a\u7f51\u65f6\u957f\u7edf\u8ba1","url":"\/monitor_report_online\/index\/index","help":736}]}]},{"name":"审计策略","onImg":"images\/ms5.gif","offImg":"images\/mns5.gif","children":[{"name":"\u7cfb\u7edf\u72b6\u6001","url":"\/system_info","help":81},{"name":"\u6743\u9650\u914d\u7f6e","url":"\/system_admin","help":82},{"name":"\u7f51\u7edc\u914d\u7f6e","children":[{"name":"\u7ba1\u7406\u53e3\u8bbe\u7f6e","url":"\/system_network\/manageport","help":831},{"name":"\u7f51\u7edc\u914d\u7f6e\u5411\u5bfc","url":"\/system_network\/guide","help":832},{"name":"\u7f51\u7edc\u914d\u7f6e","isDefault":true,"url":"\/system_network\/config","help":833}]},{"name":"\u7cfb\u7edf\u914d\u7f6e","isDefault":true,"url":"\/system_config","help":84},{"name":"\u65e5\u5fd7\u7ba1\u7406","children":[{"name":"\u64cd\u4f5c\u65e5\u5fd7","url":"\/system_log\/eventlog","help":851},{"name":"\u7cfb\u7edf\u62a5\u8b66\u65e5\u5fd7","url":"\/system_log\/index","help":852},{"name":"\u7528\u6237\u9632\u62a4\u65e5\u5fd7","url":"\/system_log\/userproc","help":853},{"name":"\u7cfb\u7edf\u76d1\u63a7\u65e5\u5fd7","url":"\/system_log\/sysproc","help":854},{"name":"WEB\u8bb0\u5f55\u65e5\u5fd7","url":"\/system_log\/weblog","help":855},{"name":"ARP\u62a5\u8b66\u65e5\u5fd7","url":"\/system_log\/arplog","help":856},{"name":"\u8d85\u51fa\u9600\u503c\u65e5\u5fd7","url":"\/system_log\/threshold","help":857},{"name":"\u7f51\u7edc\u72b6\u6001\u76d1\u63a7","url":"\/system_log\/netwatch","help":858},{"name":"\u7528\u6237\u9632\u62a4\u6307\u6807","url":"\/system_log\/userwatch","help":859},{"name":"\u88ab\u76d7\u7528IP\u5217\u8868","url":"\/system_log\/ipmac","help":8510}]},{"name":"\u65e5\u5fd7\u4e2d\u5fc3","url":"\/system_dc","help":86}]},
+	{"name":"系统管理","onImg":"images\/ms6.gif","offImg":"images\/mns6.gif","children":[{"name":"系统状态","isDefault":true,"url":"user_systemstatus.htm","help":91},{"name":"\u7f51\u7edc\u6d3b\u52a8","url":"user_active.htm","help":92},{"name":"\u4e0a\u7ebf\u7528\u6237","url":"webvist.htm","help":93},{"name":"\u6d3b\u8dc3\u7528\u6237","url":"\/monitor_monitoring_active\/index\/index","help":95},{"name":"\u6d41\u91cf\u76d1\u63a7","url":"monitor_monitoring_traffic.htm","help":96},{"name":"\u5e94\u7528\u76d1\u63a7","url":"\/monitor_monitoring_app\/index\/index","help":97},{"name":"\u7f51\u7ad9\u8bbf\u95ee","url":"\/monitor_monitoring_web\/index\/index","help":98},{"name":"\u641c\u7d22\u5f15\u64ce","url":"\/monitor_monitoring_webs\/index\/index","help":99},{"name":"\u90ae\u4ef6\u6536\u53d1","url":"\/monitor_monitoring_email\/index\/index","help":910},{"name":"\u5728\u7ebf\u804a\u5929","url":"\/monitor_monitoring_im\/index\/index","help":911},{"name":"\u8bba\u575b\u53d1\u5e16","url":"\/monitor_monitoring_post\/index\/index","help":912},{"name":"FTP\u5ba1\u8ba1","url":"\/monitor_monitoring_ftpcommand\/index\/index","help":913},{"name":"TELNET\u5ba1\u8ba1","url":"\/monitor_monitoring_telnet\/index\/index","help":914},{"name":"HTTPS\u5ba1\u8ba1","url":"\/monitor_monitoring_https\/index\/index","help":915},{"name":"\u6587\u4ef6\u5ba1\u8ba1","url":"\/monitor_monitoring_auditfile\/index\/index","help":916},{"name":"\u65f6\u957f\u9650\u989d","url":"\/monitor_monitoring_timelimit\/index\/index","help":917}]}]});
+
+</script>
+</body>
+</html>                                                                                                                                                                                                                                                             

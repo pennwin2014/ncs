@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script>
+    function dispFilter(){
+	    form1.FunName.value = "ncWebTestDispPkgFilter";
+	    form1.submit();
+    }
+	
+	function dispText(lpos){
+		t = "/pronline/Msg?FunName@ncWebTestDispContent&pos@"+lpos+"&plate@[#plate#][#cond#]";
+		parent.ccontent.location.href=t;
+    }
+	function mouseovertr2 (o)
+{
+	var i;
+	df=o.style.backgroundColor
+	o.style.backgroundColor= "#F2F2F2";
+	o.style.borderColor= "#3399ff";
+		
+	for(i=0; i<o.cells.length; i++)
+	{
+		o.cells(i).style.color="#000000";
+	}	
+}
+
+function mouseouttr2(o)
+{
+	o.style.backgroundColor=df
+	for(i=0; i<o.cells.length; i++)
+	{
+		o.cells(i).style.color="#000000";
+	}
+}
+
+</script>	
+</head>
+
+<body>
+<table width="1091" border="1">
+  <tr>
+    <td colspan="9"><form name="form1" method="post" action="">
+      <table width="1020" border="0">
+        <tr>
+          <td width="165" height="26">总共:[#cur#]</td>
+          <td width="161">处理:[#do#]</td>
+          <td width="148">转到
+            <input name="pos" type="text" value="[#pos#]" size="8" maxlength="8"></td>
+          <td width="317">格式:
+            <input name="plate" type="text" id="plate" value="[#plate#]" size="31" maxlength="31"></td>
+          <td width="207"><input type="submit" name="Submit" value="确定">
+            <input type="button" name="Submit2" value="过滤"   onClick="dispFilter()"> 
+            <input name="sip" type="hidden" value="[#sip#]">          
+            <input name="dip" type="hidden" value="[#dip#]">
+            <input name="sport" type="hidden" value="[#sport#]">
+            <input name="dport" type="hidden" value="[#dport#]">
+            <input name="ntype" type="hidden" value="[#ntype#]">
+            <input name="flags" type="hidden" value="[#flags#]">
+            <input name="nlen"  type="hidden" value="[#nlen#]">
+            <input name="FunName" type="hidden" value="ncWebTestShowPkgIndex"></td>
+        </tr>
+      </table>
+    </form></td>
+  </tr>
+  <tr>
+    <td width="53">序号</td>
+    <td width="99">位置</td>
+    <td width="77">协议</td>
+    <td width="136">长度</td>
+    <td width="165">源IP地址</td>
+    <td width="108">端口</td>
+    <td width="153">目标IP地址</td>
+    <td width="75">端口</td>
+    <td width="106">ID</td>
+  </tr>
+  <!--  [#SLPB#] -->
+  <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" onDblClick="dispText('[#lpos#]','[#plate#]')"> 
+    <td>[#num#]</td>
+    <td>[#lpos#]</td>
+    <td>[#lntype#]</td>
+    <td>[#len#]</td>
+    <td>[#lsip#]</td>
+    <td>[#lsport#]</td>
+    <td>[#ldip#]</td>
+    <td>[#ldport#]</td>
+    <td>[#lid#]</td>
+  </tr>
+  <!-- [#SLPE#] -->
+</table>
+</body>
+</html>

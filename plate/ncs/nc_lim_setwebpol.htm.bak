@@ -1,0 +1,12 @@
+<html>
+<head>
+<title>WebPolSetup</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+</head>
+<frameset cols="440,*" frameborder="yes"  framespacing="1" border="1" bordercolor="gray" rows="*"> 
+  <frame name="FirstFrame" frameborder="yes" scrolling="Yes"  noresize src="/pronline/Msg?FunName@ncWebWebPolList&pid@[#pid#]&name@[#name#]&vister@[#vister#]">
+  <frame name="SecondFrame" frameborder="yes" src="/nc_limweb_main.htm">
+</frameset>
+<noframes><body bgcolor="#000000" text="#000000">
+</body></noframes>
+</html>

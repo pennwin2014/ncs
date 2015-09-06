@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>网络督察</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script language="javascript">
+<!--
+function sss(){
+window.moveTo(-1000,-1000);
+a=screen.width
+b=screen.height
+var b1=b-33
+if (a == 800){
+var subwindow= window.open("main800.htm","xx","height=561,width=800")
+subwindow.moveTo(-3,-3)
+subwindow.window.focus()
+setTimeout('closes.Click()',100)
+ff()
+}else if(a >= 1024){
+
+var subwindow= window.open("main.htm","xx","height="+b1+",width="+a)
+subwindow.moveTo(-3,-3)
+subwindow.focus()
+setTimeout('closes.Click()',100)
+ff()
+}else{
+
+var subwindow= window.open("alert.htm","xx","height=120,width=300")
+subwindow.moveTo(100,100)
+subwindow.focus()
+
+setTimeout('closes.Click()',100)
+}
+}
+
+function close_window() {
+    window.close();
+}
+
+function MM_callJS(jsStr) { //v2.0
+  return eval(jsStr)
+}
+function ff(){
+xx=window.open("aa.htm","","fullscreen=1") 
+}
+//-->
+</script>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" onload="sss();closes.Click()" onFocus="closes.Click()" >
+<OBJECT id=closes type="application/x-oleobject" classid="clsid:adb880a6-d8ff-11cf-9377-00aa003b7a11"> 
+<param name="Command" value="Close"> 
+</object> 
+</body>
+</html>

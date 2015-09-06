@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Iptables</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<style type="text/css">
+<!--
+body {
+	background-color: #B6B6B6;
+}
+body,td,th {
+	font-size: 12px;
+}
+-->
+</style></head>
+
+<body>
+<form name="form1" method="post" action="/pronline/Msg">
+  <table width="1073" border="1" cellpadding="0" cellspacing="0">
+    <tr>
+      <th colspan="8" scope="col"><table width="1020" border="0">
+        <tr>
+          <th scope="col">IP控制缓冲区内容</th>
+          <th scope="col">起始记录
+            <input name="lstart" type="text" id="lstart" value="[#lStart#]" size="6" maxlength="6">
+            记录数
+            <input name="lsum" type="text" id="lSum" value="[#lSum#]" size="6" maxlength="6">
+            <input type="submit" name="Submit" value="确认">
+            <input name="FunName" type="hidden" id="FunName" value="[#FunName#]"></th>
+        </tr>
+      </table></th>
+    </tr>
+    <tr>
+      <th colspan="8" scope="col"><div align="left">
+        <table width="1020" border="0">
+          <tr>
+            <th scope="col"><div align="left">命令缓冲区：修改标识:[#cmod#] 检查标识:[#check#] 最后检查时间:[#checktime#] 当前记录:[#lcur#] 正在处理:[#ldo#] 最大记录:[#lmax#]</div></th>
+          </tr>
+        </table>
+      </div></th>
+    </tr>
+    <tr>
+      <td width="110">序号</td>
+      <td width="110">源IP地址</td>
+      <td width="137">目标IP地址</td>
+      <td width="150">目标端口</td>
+      <td width="144">命令</td>
+      <td width="144">协议</td>
+      <td width="166">最后访问时间</td>
+      <td width="134">终止时间</td>
+    </tr>
+<!--	[#SLPB#]  -->
+    <tr>
+      <td>[#num#]</td>
+      <td>[#sip#]</td>
+      <td>[#dip#]</td>
+      <td>[#dport#]</td>
+      <td>[#comm#]</td>
+      <td>[#prot#]</td>
+      <td>[#lasttime#]</td>
+      <td>[#stoptime#]</td>
+    </tr>
+<!--	[#SLPE#]  -->
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

@@ -1,0 +1,223 @@
+<html>
+<head>
+<title>基本参数设置</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" align="center" oncontextmenu="return false" >
+<form name="form1" method="post" action="/pronline/Msg">
+  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td valign="top" ><table width="100%" height="27" border="0" align="center" cellpadding="0" cellspacing="0" background="/images/table_bg1.gif">
+          <tr > 
+            <td colspan="2"> <div align="center"><strong><font color="#FFFFFF">网络参数配置</font></strong></div></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr> 
+      <td valign="top" ><br>
+        <table width="70%" border="0" align="center" cellpadding="0" cellspacing="0" >
+          <tr> 
+            <td valign="top"> <table width="100%" border="1"   bordercolorlight=#89ACED   bordercolordark=#ffffff     align="center" cellpadding="0" cellspacing="0">
+
+                <tr> 
+                  <td> <table width="90%" border="0" align="center">
+                      <tr> 
+                        <td height="14">&nbsp;</td>
+                        <td height="14">&nbsp;</td>
+                        <td height="14">&nbsp;</td>
+                        <td height="14">&nbsp;</td>
+                      </tr>
+                      <tr> 
+                        <td width="9%" height="14"> <b> </b></td>
+                        <td height="14"> <div align="left"><b> <font color="#333333">接入方式</font> 
+                            </b> </div></td>
+                        <td height="14"><b> 
+                          <input type="radio" name="gateway" value="bridge"   [#bridge#]>
+                          透明方式</b></td>
+                        <td width="13%" height="14"> <div align="left"></div></td>
+                      </tr>
+                      <tr> 
+                        <td width="9%" height="41">&nbsp;</td>
+                        <td height="41" align="center" colspan="2"> <table width="100%" border="0">
+                            <tr> 
+                              <td width="37%"> 内网设备</td>
+                              <td width="31%"> [#bindev1#]</td>
+                              <td width="32%"> <div align="right">外网设备</div></td>
+                              <td width="63%"> [#boutdev1#]</td>
+                            </tr>
+                          </table></td>
+                        <td width="13%" height="41">&nbsp;</td>
+                      </tr>
+                      <tr> 
+                        <td width="9%" height="8"> <div align="right"></div></td>
+                        <td width="12%" height="8"><b> </b> </td>
+                        <td width="66%" height="8"><b> 
+                          <input type="radio" name="gateway" value="gateway" [#gateway#]>
+                          网关方式</b></td>
+                        <td width="13%" height="8">&nbsp;</td>
+                      </tr>
+                      <tr> 
+                        <td width="9%" height="62">&nbsp;</td>
+                        <td align="center" colspan="2" height="62"> <table width="100%" border="0">
+                            <tr> 
+                              <td width="21%" height="8"><div align="left"></div></td>
+                              <td width="26%" height="8">设备名</td>
+                              <td width="27%" height="8">IP地址</td>
+                              <td width="26%" height="8">掩码</td>
+                            </tr>
+                            <tr> 
+                              <td width="21%" height="8"> <div align="left">内 
+                                  网</div></td>
+                              <td width="26%" height="8"> [#gindev1#]</td>
+                              <td width="27%" height="8"> <input type="text" name="ginip1" size="15" value="[#inip1#]"> 
+                              </td>
+                              <td width="26%" height="8"> <input type="text" name="ginmask1" size="15" value="[#inmask1#]"> 
+                              </td>
+                            </tr>
+                            <tr> 
+                              <td width="21%" height="20"> <div align="left">外 
+                                  网</div></td>
+                              <td width="26%" height="20"> [#goutdev1#]</td>
+                              <td width="27%" height="20"> <input type="text" name="goutip1" size="15" value="[#outip1#]"> 
+                              </td>
+                              <td width="26%" height="20"> <input type="text" name="goutmask1" size="15" value="[#outmask1#]"> 
+                              </td>
+                            </tr>
+                          </table></td>
+                        <td width="13%" height="62">&nbsp;</td>
+                      </tr>
+                      <tr> 
+                        <td width="9%">&nbsp;</td>
+                        <td align="center" colspan="2"> <div align="left"><font color="#0000FF"><b><font color="#000000">主机信息</font></b></font></div></td>
+                        <td width="13%">&nbsp;</td>
+                      </tr>
+                      <tr> 
+                        <td width="9%" height="17">&nbsp;</td>
+                        <td align="center" colspan="2" height="17"> <table width="100%" border="0">
+                            <tr> 
+                              <td width="20%" height="14"> 管理地址</td>
+                              <td width="27%" height="14"> <input type="text" name="adminip" size="16" value="[#adminip#]"> 
+                              </td>
+                              <td width="24%" height="14"> <div align="left">掩码地址</div></td>
+                              <td width="29%" height="14"> <input type="text" name="adminmask" size="15" value="[#adminmask#]"> 
+                              </td>
+                            </tr>
+                            <tr> 
+                              <td width="20%"> 管理端口</td>
+                              <td width="27%"> <input type="text" name="adminport" size="15" value="[#adminport#]"> 
+                              </td>
+                              <td width="24%">用户验证端口</td>
+                              <td width="29%"> <input type="text" name="authport" size="15" value="[#authport#]"> 
+                              </td>
+                            </tr>
+                          </table></td>
+                        <td width="13%" height="17">&nbsp;</td>
+                      </tr>
+                      <tr> 
+                        <td width="9%" height="15"> <div align="right"><font color="#0000FF"><b></b></font></div></td>
+                        <td height="15" colspan="2"><b><font color="#333333">路由信息</font></b></td>
+                        <td width="13%" height="15">&nbsp;</td>
+                      </tr>
+                      <tr> 
+                        <td width="9%">&nbsp;</td>
+                        <td align="center" colspan="2"> <table width="100%" border="0">
+                            <tr> 
+                              <td width="35%">网络地址</td>
+                              <td width="30%">掩码</td>
+                              <td width="35%">网关</td>
+                            </tr>
+                            <!-- [#SLPB#] -->
+                            <tr> 
+                              <td width="35%" height="21"> <input type="text" name="routenet[#RouteNum#]" size="16" value="[#RouteNet#]"> 
+                              </td>
+                              <td width="30%" height="21"> <input type="text" name="routemask[#RouteNum#]" size="16" value="[#RouteMask#]"> 
+                              </td>
+                              <td width="35%" height="21"> <input type="text" name="routegate[#RouteNum#]" size="16" value="[#RouteGate#]"> 
+                              </td>
+                            </tr>
+                            <!-- [#SLPE#] -->
+                            <tr> 
+                              <td colspan="2"> <div align="center">缺省网关</div></td>
+                              <td width="35%"> <input type="text" name="defgateway" size="15" value="[#defgateway#]"> 
+                              </td>
+                            </tr>
+                          </table></td>
+                        <td width="13%">&nbsp;</td>
+                      </tr>
+                      <tr> 
+                        <td width="9%" height="2"> <div align="right"><font color="#0000CC"><b></b></font></div></td>
+                        <td height="2"><b>域名服务器</b></td>
+                        <td height="2"> <table width="91%" border="0">
+                            <tr> 
+                              <td width="42%"> <input type="text" name="dnsserver1" size="15" value="[#dnsserver1#]"> 
+                              </td>
+                              <td width="58%"> <input type="text" name="dnsserver2" size="15" value="[#dnsserver2#]"> 
+                              </td>
+                            </tr>
+                          </table></td>
+                        <td width="13%" height="2">&nbsp;</td>
+                      </tr>
+                      <tr> 
+                        <td width="9%" height="20">&nbsp;</td>
+                        <td height="20" align="center"> <div align="left"><b>地址转换</b></div></td>
+                        <td height="20" colspan="2" align="center"><table width="91%" border="0" align="left">
+                            <tr> 
+                              <td width="45%"><b> 
+                                <input type="radio" name="nat" value="None"  [#nat0#]>
+                                </b>无</td>
+                              <td width="55%">&nbsp;</td>
+                            </tr>
+                            <tr> 
+                              <td width="45%"><b> 
+                                <input type="radio" name="nat" value="Dynamic" [#nat1#]>
+                                </b>动态IP </td>
+                              <td width="55%">出口设备: 
+                                <input type="text" name="natdev" size="15" value="[#natdev#]"> 
+                              </td>
+                            </tr>
+                            <tr> 
+                              <td width="45%" height="24"><b> 
+                                <input type="radio" name="nat" value="Static" [#nat2#]>
+                                </b>静态IP <b> </b></td>
+                              <td width="55%" height="24">IP地址: &nbsp; <input type="text" name="natip" size="15" value="[#natip#]"> 
+                              </td>
+                            </tr>
+                          </table></td>
+                      </tr>
+                      <tr>
+                        <td height="20">&nbsp;</td>
+                        <td height="20" align="center">&nbsp;</td>
+                        <td height="20" colspan="2" align="center">&nbsp;</td>
+                      </tr>
+                    </table></td>
+                </tr>
+              </table></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr>
+      <td height="70" ><table width="50%" border="0" align="center">
+          <tr> 
+            <td> <div align="right"> 
+                <input type="hidden" name="FunName" value="ncWebSystemSave_base">
+                <input type="submit" name="next" value="确 认" class="an3">
+                &nbsp; 
+                <input type="submit" name="exec" value="执 行" class="an3">
+                &nbsp; 
+                <input type="submit" name="app" value="应 用" class="an3">
+                &nbsp; 
+                <input type="reset" name="cancel" value="取消返回" class="an3-1" onClick="history.back()">
+              </div></td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

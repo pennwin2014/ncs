@@ -1,0 +1,131 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="../../demo/css.css" type="text/css">
+<style>
+.conts{visibility:hidden}
+.tab{border-top:solid thin #E0E0E0;
+border-right:solid thin gray;
+border-left:solid thin #E0E0E0;
+font-family:Verdana;
+font-size:10pt;
+text-align:center;
+font-weight:normal}
+.selTab{border-left:solid thin white;
+border-top:solid thin white;
+border-right:solid thin black;
+font-weight:bold;
+text-align:center}
+</style>
+<script language="javascript">
+function goto(o){
+window.open(o,"_self","")
+}
+</script>
+<script LANGUAGE="JavaScript">
+function public_Labels(label1, label2, label3, label4, label5, label6, label7, label8, label9){
+t1.innerText = label1;
+t2.innerText = label2;
+t3.innerText = label3;
+t4.innerText = label4;
+t5.innerText = label5;
+t6.innerText = label6;
+t7.innerText = label7;
+t8.innerText = label8;
+t9.innerText = label9;
+}
+//a public function that the container uses to pass in values for the card containers
+function public_Contents(contents1, contents2, contents3, contents4, contents5, contents6, contents7, contents8, contents9){
+t1Contents.innerHTML = contents1;
+t2Contents.innerHTML = contents2;
+t3Contents.innerHTML = contents3;
+t4Contents.innerHTML = contents4;
+t5Contents.innerHTML = contents5;
+t6Contents.innerHTML = contents6;
+t7Contents.innerHTML = contents7;
+t8Contents.innerHTML = contents8;
+t9Contents.innerHTML = contents9;
+init();
+}
+//sets the default display to tab 1
+function init(){
+tabContents.innerHTML = t1Contents.innerHTML;
+}
+//this is the tab switching function
+var currentTab;
+var tabBase;
+var firstFlag = true;
+function changeTabs(){
+if(firstFlag == true){
+currentTab = t1;
+tabBase = t1base;
+firstFlag = false;
+}
+if(window.event.srcElement.className == "tab"){
+currentTab.className = "tab";
+tabBase.style.backgroundColor = "white";
+currentTab = window.event.srcElement;
+tabBaseID = currentTab.id + "base";
+tabContentID = currentTab.id + "Contents";
+tabBase = document.all(tabBaseID);
+tabContent = document.all(tabContentID);
+currentTab.className = "selTab";
+tabBase.style.backgroundColor = "";
+tabContents.innerHTML = tabContent.innerHTML;
+}}
+</script>
+<style>
+.conts  {visibility:hidden}
+.tab{border-top:solid thin #E0E0E0;
+border-right:solid thin gray;
+border-left:solid thin #E0E0E0;
+font-family:Verdana;
+font-size:10pt;
+text-align:center;
+font-weight:normal;
+cursor: default}
+.selTab{border-left:solid thin white;
+border-top:solid thin white;
+border-right:solid thin black;
+font-weight:bold;
+text-align:center;
+cursor: default}
+table {  font-size: 9pt}
+</style>
+</head>
+
+<body bgcolor="#CCCCCC" text="#000000" onclick="changeTabs()" onload="init()" oncontextmenu="return false" leftmargin="0" topmargin="0">
+<div style="position:absolute; top:1px; height:155px; width:150px; left:3px; border:none thin gray"> 
+  <table style="width:185; height:360" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC">
+    <tr> 
+      <td id="t1" class="selTab" height="25" width="50">目录</td>
+      <td id="t2" class="tab" width="50">索引</td>
+      <td width="85"> 
+        <div align="right"></div>
+      </td>
+    </tr>
+    <tr> 
+      <td id="t1base" style="height:2; border-left:solid thin white"></td>
+      <td id="t2base" style="height:2; background-color:white; border-right:solid thin white"> 
+      </td>
+      <td  style="height:2; background-color:white;width="19"> </td>
+    </tr>
+    <tr> 
+      <td colspan="10" id="tabContents"
+style="border-left:solid thin white;border-bottom:solid thin black;border-right:solid thin black"> 
+      </td>
+    </tr>
+  </table>
+</div>
+<div CLASS="conts" ID="t1Contents">
+  <div align="center"><iframe src="catalog1.htm" width="170" height="300"></iframe></div>
+</div>
+<div CLASS="conts" ID="t2Contents">
+  <div align="center">
+  <iframe src="index1.htm" width="170" height="300"></iframe> 
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,351 @@
+<!-- saved from url=(0022)http://internet.e-mail -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>管理系统</title>
+<link rel="stylesheet" href="../publiccss/css.css" type="text/css">
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Hide
+function killErrors() {
+return true;
+}
+window.onerror = killErrors;
+// -->
+</SCRIPT>
+<script>
+
+function goto(t){
+main2.location.href=t
+}
+function goleft(t){
+mainleft.location.href=t
+}
+
+function mouseovertd2 (o){
+dff=o.style.backgroundColor
+	o.style.border="1"
+	o.style.borderStyle="solid"
+	o.style.borderColor="#000000"
+	o.style.color="#ffffff"
+o.style.backgroundColor="#dfdfdf"
+o.style.cursor="hand";	
+}
+
+function mouseouttd2 (o){
+	o.style.backgroundColor=dff
+	o.style.color="#000000"
+	o.style.borderColor="#ffffff"
+}
+function getchar(){
+if(event.keyCode==13){
+
+}
+
+}
+</script>
+<script language="javascript">
+var pp=0
+function opq(){
+if(pp==0){
+document.all.leftoo.style.display="none";
+
+document.all.rw.innerHTML="<a href='#' onMouseOut='MM_swapImgRestore()' onMouseOver=MM_swapImage('arr','','../images/arrarr2a.gif',1)><img name='arr' border='0' src='../images/arrarr2.gif'  width='10' height='147' onclick='opq()' class='handon'  id='arr' ></a>"
+pp=1;}else{
+document.all.leftoo.style.display="";
+document.all.rw.innerHTML="<a href='#' onMouseOut='MM_swapImgRestore()' onMouseOver=MM_swapImage('arr','','../images/arrarra.gif',1)><img name='arr' border='0' src='../images/arrarr.gif'  width='10' height='147' onclick='opq()' class='handon'  id='arr' ></a>"
+pp=0
+}
+}
+
+
+</script>
+<STYLE type=text/css>
+.over {  border-color: #FFFFFF #000000 #000000 #FFFFFF; border-style: solid; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px}
+.out {  border: #2A83A1; border-style: solid; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px}
+
+a:visited {color: #ffffff;font-size: 14pt;font-weight:bold;}
+a:link {  color: #ffffff;font-size: 14pt;font-weight:bold; }
+a:hover {  color: yellow;}
+.coolButton2 {
+	HEIGHT: 20px; MARGIN: 1px; WIDTH: 100px;
+}
+.gray1{filter:gray
+}
+table {  font-size: 9pt}
+
+.nohand {  cursor: default}
+.dd {  cursor: default}
+
+.bglay {  border: 2px #999999 inset}
+.caidan {  font-size: 9pt; color: #FFFFFF}
+.sojin {  text-indent: 20pt}
+.handon {  cursor: hand}
+.mel1 {  line-height: 4px}
+.an1 {  border-color: #C7C5B8 #000000 black; border-style: inset; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 1px}
+.an2 {  border-color: black #000000 black menu; border-style: inset; border-top-width: 0px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 1px}
+.handme {  cursor: hand}
+.sjx {  font-size: 14px; font-weight: bold; color: #FFFFFF}
+
+.headtd1 {  background: #1F6788; border: 2px outset; border-color: #2A83A1; cursor: hand; font-size: 9pt}
+.headtd2 {  background: #2A83A1; border: 2px outset; border-color: #dfdfdf #2A83A1 #2A83A1 
+            #dfdfdf; cursor: hand; font-size: 9pt}
+.bodytd  {  background: #999999; border: 2px solid; border-color: #dfdfdf #ECE9D8 #ECE9D8 #dfdfdf; font-size: 9pt}
+.handme2 {  padding-top: 2px; padding-right: 2px; padding-bottom: 2px; padding-left: 2px; 
+            cursor: hand; border: 1px #2A83A1 solid }
+</STYLE>
+<script language="JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+  //document.all.main.height=document.all.main.document.body.scrollHeight;	
+  //document.all.main.width=document.all.main.document.body.scrollWidth;
+}
+
+function MM_findObj(n, d) { //v4.0
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && document.getElementById) x=document.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+</script>
+
+</head>
+
+<body bgcolor="#1F6788" text="#000000"   leftmargin="0" topmargin="0" onkeydown="getchar()" oncontextmenu="return false" onLoad="document.getElementById('xxmg').blur();MM_preloadImages('../images/arrarra.gif')">
+	<form name="form1" id="nclogin" method="post" action="/pronline/Msg">
+		<input type="hidden" name="FunName" value="ncsWebAuth2">
+		<input type="hidden" name="username" value="[#username#]">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" height="697">
+  <tr> 
+    <td height="71" colspan="2"> 
+      <table border="0" cellspacing="0" cellpadding="0" width="100%" >
+        <tr bgcolor="#323231"> 
+          <td height="71" align="right"></td>
+                       <td height="71"> 
+                        <table width="100%" border="0" cellspacing="1" cellpadding="0" background="/images/top11.gif">
+                          <tr height="71"> 
+                          	<td width="100">&nbsp;</td>
+                            <td class="coolButton2"  class="handme2" > 
+                              <a href="#xxm" >系统管理</a>
+                            </td>
+                            <td class="coolButton2"  class="handme2" > 
+                              <a href="#xxm" >部门管理</a>
+                            </td>
+                            <td  class="coolButton2"   class="handme2" > 
+                              <a href="#xxm" >客户管理</a>
+                            </td>
+                            <td class="coolButton2"   class="handme2" > 
+                              <a href="#xxm" >订单管理</a>
+                            </td>
+                            <td class="coolButton2"   class="handme2" > 
+                              <a href="#xxm" >入库管理</a>
+                            </td>
+                            <td class="coolButton2"   class="handme2" > 
+                              <a href="#xxm" >出库管理</a>
+                            </td>
+                            <td class="coolButton2"   class="handme2" > 
+                              <a href="#xxm" >库存管理</a>
+                            </td>
+                            <td class="coolButton2"   class="handme2" > 
+                              <a href="#xxm" onClick="self.close();">退出系统</a>
+                            </td>
+                            <td>&nbsp;</td>
+                          </tr>
+                         
+                        </table>
+                      </td>
+        </tr>
+      </table>       
+       </td>
+       
+       
+  </tr>
+  <tr> 
+  	
+  	
+    <td width="14%" height="100%" id="leftoo"> 
+    <span id='mainboard' style='position:absolute; top:71px; border-width: medium;border-style: ridge; border-color: #0099CC;width:"100%"; height:626px; z-index:1; overflow: hidden;'> 
+              <table width="107%" border='0'  bordercolordark="#FF0000" height='606' cellpadding='2' cellspacing='0' >
+                <tr >
+                <td id='item1head' height='17' class='headtd1' onclick='showme(item1body,this)' align='center'>
+              <font color="#FFFFFF">系统管理</font></td>
+                </tr>
+                <tr>
+                <td class='bodytd' align='center'><div align="center">
+
+                <div id="Layer0011" style="position:absolute; left:0px; top:17px; width:"100%"; height:780px; z-index:2; overflow-y: hidden ;overflow-x:hidden;">
+                  <table width="100%" border="0" cellspacing="0" cellpadding="4" height="100%" bgcolor="2A83A1">
+
+                        <tr>
+                      <td >
+
+                        <table width="100%" border="0" cellspacing="0" cellpadding="2">
+
+
+
+                          <tr>
+                            <td>
+                              <div align="center"><img src="../images/tu1.gif" width="40" height="40" border="0" class="handme2" onMouseOver="this.className='over'" onMouseOut="this.className='out'">
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div align="center">客户管理</div>
+                            </td>
+                          </tr>
+                          
+                          <tr>
+                            <td>
+                              <div align="center"><img src="../images/tu1.gif" width="40" height="40" border="0" class="handme2" onMouseOver="this.className='over'" onMouseOut="this.className='out'">
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div align="center">部门管理</div>
+                            </td>
+                          </tr>
+                          
+                         <tr>
+                            <td>
+                              <div align="center"><img src="../images/tu1.gif" width="40" height="40" border="0" class="handme2" onMouseOver="this.className='over'" onMouseOut="this.className='out'">
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div align="center">角色管理</div>
+                            </td>
+                          </tr>
+                          
+                           <tr>
+                            <td>
+                              <div align="center"><img src="../images/tu1.gif" width="40" height="40" border="0" class="handme2" onMouseOver="this.className='over'" onMouseOut="this.className='out'">
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div align="center">订单统计</div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div align="center"><img src="../images/tu1.gif" width="40" height="40" border="0" class="handme2" onMouseOver="this.className='over'" onMouseOut="this.className='out'">
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div align="center">客户统计</div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div align="center"><img src="../images/tu1.gif" width="40" height="40" border="0" class="handme2" onMouseOver="this.className='over'" onMouseOut="this.className='out'">
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div align="center">出入库统计</div>
+                            </td>
+                          </tr>
+                          
+                          <tr>
+                            <td>
+                              <div align="center"><img src="../images/tu1.gif" width="40" height="40" border="0" class="handme2" onMouseOver="this.className='over'" onMouseOut="this.className='out'" onclick="document.getElementById('xxmg').focus();form1.password2.value=''; ">
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div align="center">回访记录</div>
+                            </td>
+                          </tr>
+                          
+                           <tr>
+                            <td>
+                              <div align="center"><img src="../images/tu1.gif" width="40" height="40" border="0" class="handme2" onMouseOver="this.className='over'" onMouseOut="this.className='out'"  >
+                              	<input type="password" style="width:0px;" id="xxmg" name="password2">
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div align="center">投诉记录</div>
+                            </td>
+                          </tr>
+                           <tr>
+                            <td>
+                              <div align="center"><img src="../images/tu1.gif" width="40" height="40" border="0" class="handme2" onMouseOver="this.className='over'" onMouseOut="this.className='out'">
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div align="center">销售员管理</div>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                 </table>
+                </td>
+                </tr>
+              </table>
+    </span>
+   </td>
+<td height="100%"> 
+    <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr > 
+           <td width="8" height="100%">    
+              <table width="8" border="0" cellspacing="0" cellpadding="0" align="right">
+                 <tr >
+                     <td width="5" id="rw" ><a href="#xxm" onMouseOut="MM_swapImgRestore()" onMouseOver=   "MM_swapImage('arr','','../images/arrarra.gif',1)"><img name="arr" border="0" src="../images/arrarr.gif"  width="10" height="147" onClick="opq()" class="handon"  id="arr" ></a></td>
+              </tr>
+           </table>
+        </td>
+
+        <td> 
+          <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" height="100%">
+             <tr> 
+                <td>
+               
+             </td>
+            </tr>
+          </table>         
+       </td>
+          
+    </tr>
+       
+      </table>
+    </td>
+  </tr>
+  
+</table>
+</form>
+</body>
+
+</html>

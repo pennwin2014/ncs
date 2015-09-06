@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gbk">
+    <title>联网使用单位安全监控系统</title>
+    <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" />
+    <link rel="stylesheet" type="text/css" href="/newver/resources/css/desktop.css" />
+    <script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+    <!-- </x-bootstrap> -->
+    <script type="text/javascript">
+
+var now=new Date();
+var number = now.getYear().toString()+now.getMonth().toString()+now.getDate().toString()+now.getHours().toString()+now.getMinutes().toString()+now.getSeconds().toString(); 
+document.write("\<script language=\"javascript\" type=\"text/javascript\" src=\"/pronline/Msg?FunName@ncsSysUserRoleConfig_v4&time@"+number+"\"><\/script\>"); 
+
+
+        Ext.Loader.setPath({
+            'Ext.ux.desktop': '/newver/resources/windows/js',
+            MyDesktop: '/newver/resources/windows'
+        });
+
+        Ext.require('MyDesktop.App');
+
+        var myDesktopApp;
+     
+        
+        Ext.onReady(function () {
+           myDesktopApp = new MyDesktop.App();
+        });
+    </script>
+    <!-- </x-compile> -->
+</head>
+
+<body>
+
+
+</body>
+</html>

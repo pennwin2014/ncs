@@ -1,0 +1,42 @@
+<html>
+<head>
+<title>系统重启</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<script>
+    function DoRestart(){
+        self.location.href="/pronline/Msg?FunName@ncWebNcRestart";
+    }
+</script>
+    
+</head>
+
+<body bgcolor="#dfdfdf" text="#000000" topmargin="2"  oncontextmenu="return false" >
+<table width="77%" border="0"  align="center" height="309">
+  <tr> 
+    <td> 
+      <form name="form1" method="post" action="/pronline/Msg">
+        <div align="center">
+          <table width="100%" border="0" height="100%">
+            <tr> 
+              <td height="470">
+                <div align="center">
+                  <p>按 
+                    <input type="button" name="Button" value="确认"  OnClick="DoRestart()">
+                    重新启动网络督察</p>
+                  <p>&nbsp;</p>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </form>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

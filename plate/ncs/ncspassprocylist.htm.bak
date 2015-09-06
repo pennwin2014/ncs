@@ -1,0 +1,336 @@
+	<!-- saved from url=(0022)http://internet.e-mail -->
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META content=no-cache http-equiv=Pragma>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<style type="text/css">
+<!--
+.tScrollw {
+    overflow: scroll;
+    overflow-x:hidden;
+    height:545px;
+    cursor: default;
+    }
+body {  font-size: 9pt}
+.tas {  border-color: black #FFFFFF; border-style: solid; border-top-width: 0px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 1px}
+table {  font-size: 9pt}
+.hand {  cursor: hand}
+.gray1{filter:gray}
+-->
+</style>
+
+<SCRIPT LANGUAGE="JavaScript">
+function checkme(p)
+{
+	var tt=p.value
+	if (tt>yy)
+	{
+		MM_changeProp('browsdopage','','value',yy,'INPUT/TEXT')
+	}
+	if (tt==0)
+	{
+		MM_changeProp('browsdopage','','value','1','INPUT/TEXT')
+	}
+}
+function  tj(){
+  document.all.Layer3.style.display='';
+  form1.add.value='add';
+  form1.modi.value='';
+ 
+}
+function showf(sid,sname,url1,account,passwd){
+	document.all.Layer3.style.display='';
+  form1.add.value='';
+  form1.modi.value='modi';
+	form1.sid.value=sid;
+	form1.sname.value=sname;
+	
+	form1.weburl.value=url1;
+	form1.account.value=account;
+	form1.passwd1.value=passwd;
+}
+function cleara(){
+	form1.sname.value='';
+	form1.weburl.value='';
+	form1.account.value='';
+	form1.passwd1.value='';
+	
+}
+
+function mouseovertr2 (o){
+var i;
+df=o.style.backgroundColor
+	o.style.backgroundColor= "#ffff00";
+	o.style.borderColor= "#FFFF00";
+	o.style.cursor="hand";	
+}
+
+function mouseouttr2(o){
+	o.style.backgroundColor=df
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#000000";
+}
+}
+
+function allChecked(){
+    if(dfd1=="1"){
+        dfd1="0"
+    }
+    else {
+         dfd1="1"
+    }
+	for(var i=0;i<document.all.DataTable.rows.length;i++)
+	{
+		if(typeof(document.all.DataTable.rows[i].cells[0].childNodes[0])=="object"
+
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].tagName=="INPUT"
+
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].type=="checkbox") {
+			if(dfd1=="1"){
+  			    document.all.DataTable.rows[i].cells[0].childNodes[0].checked="true";
+            }
+			else{
+                document.all.DataTable.rows[i].cells[0].childNodes[0].checked="";
+            }
+        }
+ 	}
+}
+
+function gotoPage(pagenum)
+{
+    form1.CurPg.value = pagenum;
+}
+function delselect()
+{
+	if(confirm("您真的要删除选择的记录吗？")) {
+		return true;
+	}
+	return false;
+}
+function ckselect()
+{
+	if(confirm("您真的要撤控选择的记录吗？")) {
+		return true;
+	}
+	return false;
+}
+// -->
+<!-- Hide
+var ll=[#CurPg#]
+var yy=[#TotPg#]
+function killErrors() {
+return true;
+}
+window.onerror = killErrors;
+// -->
+</SCRIPT>
+
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" style="overflow:hidden">
+	
+	
+<table width="100%" border="0" align="center"  cellpadding="0"  cellspacing=0 bordercolor="#DFDFDF">
+  <form name="form1" method="post" action="/pronline/Msg">
+    <input type="hidden" name="FunName" value="ncsPassProcyList">
+    <input type="hidden" name="sid" value="">
+    <input type="hidden" name="add" value="">
+    <input type="hidden" name="modi" value="">
+    <input type="hidden" name="CurPg" value="[#CurPg#]">
+    
+    <tr >
+      <td colspan="7">
+      	
+      	<table width="100%" height="27" border="0" align="center" cellpadding="0" cellspacing="0" >
+          <tr height="30"> 
+          	<td class="tabtitle" >BBS帐号密码搜集策略&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td background="/images/images2/chaxun2-1.gif" align="right"> 
+            	<table align=right border=0 cellpadding=0 cellspacing=0 
+                        class=main width=111>
+                <tbody>
+                      <td width="10%"> <script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-06.gif' border=0 height=17 width=35 class='gray1'>")}
+                      else{
+                        document.write("<a href='#xxm'><img src='/images/zbuyer-06.gif' border=0 height=17 width=35 onClick='gotoPage(1);form1.submit()' class='hand'>")}
+                   </script> </td>
+                      <td width="10%"> <script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 class='gray1'>")}
+                      else {
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]-1);form1.submit()' class='hand'>")}
+                   </script> </td>
+                      <td width="20%" valign="top"><img src="/images/zbuyer-08.gif" border=0 height=17 width=32></td>
+                      <td align=middle background="" width=92> <input class=Main id=browsdopage3 maxlength=7  name=browsdopage size=7 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 50px;position:relative;top:-2px;" value=[#CurPg#] onKeyPress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" onBlur="checkme(this)"> 
+                      </td>
+                      <td width="10%" valign="top"><img src="/images/zbuyer-09.gif" border=0 height=17 width=16></td>
+                      <td width="10%" valign="top"><img align=middle border=0 height=17 src="/images/zbuyer-10.gif" width=17 onClick="gotoPage(form1.browsdopage.value);form1.submit()" class="hand"><img align=middle height=17 src="/images/zbuyer-11.gif" width=3></td>
+                      <td width="10%" valign="top"><img border=0 height=17 src="/images/zin1.gif" width=17 ></td>
+                      <td align=middle background="" width=92> <input  class=Main id=browsdopage122 maxlength=7 name=browsdopage12 size=7 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 50px;position:relative;top:-2px;" value='[#TotPg#]'> 
+                      </td>
+                      <td width="10%" valign="top"><img align=middle height=17 src="/images/zbuyer-09.gif" width=16></td>
+                      <td align=middle background="" width=92> <input  class=Main id=browsdopage122 maxlength=7 name=browsdopage12 size=7 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 50px;position:relative;top:-2px;" value='[#TotRec#]'> 
+                      </td>
+                      <td width="10%" valign="top"><img border=0 height=17 src="/images/zin3.gif" width=17 align="middle" ><img align=middle height=17  src="/images/zbuyer-11.gif" width=3></td>
+                      <td width="10%"> <script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]+1);form1.submit()' class='hand'>")}
+                    </script> </td>
+                      <td width="10%"> <script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 onClick='gotoPage([#TotPg#]);form1.submit()' class='hand'>")}
+                    </script> </td>
+                    </tbody>
+              </table>
+            	</td>
+          </tr>
+        </table></td>
+    </tr>
+    
+    <tr > 
+      <td   colspan="7" > <table width="100%" border="0"  class="ttt">
+          <tr> 
+            <td width="84%" height="25"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr> 
+                  <td >&nbsp;关键字: 
+                    <input type="text"   name="rycx" size="26" value="[#rycx#]"> &nbsp;
+                    
+                    <input name="search" type="submit" class="an3" value="查 询">
+                    </td>
+                  <td> <div align="left"> 
+                      &nbsp;
+
+                      <input name="addf" type="button" class="an3" onclick="tj()" value="增 加">
+                      <input name="del" type="submit" class="an3" value="删 除" onclick="return delselect()">
+
+                      <input name="app" type="submit" class="an3" value="应 用">
+                      <input name="exp" type="submit" class="an3" value="导 出">
+                      </div></td>
+                </tr>
+              </table>
+             </td>
+            <td width="36%" > &nbsp;</td>
+          </tr>
+        </table>
+       </td>
+    </tr>
+    <tr><td colspan="7" valign="top">
+    	<div class="tScrollw" id="tC">
+    	<table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <tr bgcolor="#6382BD" id=ignore class="tableHead"  style="top:expression(document.getElementById('tC').scrollTop)"> 
+      <td width="28"   height="18" class="bord2">
+      <div align="center"><font color="#FFFFFF">&nbsp; </font> </div></td>
+      <td width="131" height="18" bgcolor="#6382BD" class="bord2"> 
+        <div align="center"><font color="#FFFFFF">&nbsp;策略名称</font></div></td>
+      <td  width="250" height="18" bgcolor="#6382BD" class="bord2"> 
+        <div align="center"><font color="#FFFFFF">&nbsp;URL</font></div></td>
+      <td   height="18" bgcolor="#6382BD" class="bord2"> 
+        <div align="center"><font color="#FFFFFF">帐号对应表单变量</font></div></td>
+      <td   height="18" bgcolor="#6382BD" class="bord2"> 
+        <div align="center"><font color="#FFFFFF">密码对应表单变量</font></div></td>
+      <td   height="18" bgcolor="#6382BD" class="bord2"> 
+        <div align="center"><font color="#FFFFFF">策略添加或修改时间</font></div></td>
+     
+      <td  width="90" height="18" bgcolor="#6382BD" class="bord2"> 
+        <div align="center"><font color="#FFFFFF">修改</font></div></td>
+    </tr>
+    <!-- [#SLPB#] -->
+    <tr bgcolor="#FFFFFF" onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" > 
+      <td width="28"   height="18" valign="bottom" class="bord1"> <input type="checkbox" name="chk[#num#]" value="[#sid#]"> 
+      </td>
+      <td  valign="bottom" class="bord1">&nbsp[#sname#]</td>
+      <td  valign="bottom" class="bord1">&nbsp;[#url#] </td>
+      <td  valign="bottom" class="bord1">&nbsp;[#account#]</td>
+      <td  valign="bottom" class="bord1">&nbsp;[#passwd#]</td>
+      <td  valign="bottom" class="bord1">&nbsp;[#addtime#]</td>
+      <td  valign="bottom" class="bord3">&nbsp;<a href="#xxm" onclick="showf('[#sid#]','[#sname#]','[#url#]','[#account#]','[#passwd#]')">修改</a></td>
+    </tr>
+    <!-- [#SLPE#] -->
+    
+        <!-- [#SLPB#] -->
+    <tr bgcolor="#FFFFFF" height="18" id="[#snum#]"> 
+      <td  class="bord1"> &nbsp;</td>
+      <td   class="bord1">&nbsp; </td>
+      <td  class="bord1">&nbsp; </td>
+      <td  class="bord1">&nbsp; </td>
+      <td   class="bord1">&nbsp;</td>
+      <td   class="bord1">&nbsp;</td>
+      <td   class="bord3">&nbsp;</td>
+    </tr>
+    <!-- [#SLPE#] -->
+  </table>
+  </div>
+
+</td>
+<tr> 
+</table>
+
+
+  <div id="Layer3" style="position:absolute; left:0px; top:0px; width:730px; height:70px;background-color:#DEE8FA; z-index:1;display:none;">
+    <table width="100%" cellpadding=5 cellspacing=5>
+        <tr>
+	 <td>
+          <table border=1 bordercolorlight=#999999   bordercolordark=#ffffff cellpadding=0 cellspacing=0 width="100%">
+            <tr>
+              <td>
+
+	  <table border=0 cellpadding=0 cellspacing=0 width="100%">
+	     <tr height="40">
+		<td width="110" align="center">&nbsp;策略名称</td>
+		<td><input type="text" name="sname" value="" size="22" maxlength="31">&nbsp;</td> 
+		<td width="110" align="center">&nbsp;URL地址</td>
+		<td ><input type="text" name="weburl" value="" size="32" maxlength="63">&nbsp;any代表全部URL</td> 	
+	     </tr>
+
+	  <tr height="40">
+		<td  align="center">&nbsp;帐号表单变量</td>
+		<td><input type="text" name="account" value="" size="22" maxlength="31">&nbsp;</td> 
+		<td  align="center">&nbsp;密码表单变量</td>
+		<td ><input type="text" name="passwd1" value="" size="32" maxlength="63">&nbsp;</td> 
+		
+	     </tr>
+
+
+
+	    </table>
+          </td>
+        </tr>
+        <tr width="100%">
+          <td>
+	    <table width="30%" height="40" align="center">
+	     <tr>
+	       <td width="10%">
+	         <input name="cxx" type="submit" class="an3" value="确 定" >
+	       </td>
+	       <td width="10%">
+	         <input name="clearaq" type="button" class="an3" value="清空" onclick="cleara()">
+	       </td>
+	       <td width="10%">
+	         <input name="yc" type="button" value="隐藏" class="an3" onclick="document.all.Layer3.style.display='none';form1.add.value='';form1.modi.value='';">
+	       </td>
+	     </tr>
+            </table>
+              <td>
+            </tr>
+          </table>
+	</td>
+      </tr> 
+    </table>
+  </div>
+
+
+</form>
+</body>
+</html>

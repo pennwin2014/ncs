@@ -1,0 +1,250 @@
+<HTML>
+<HEAD>
+<TITLE>OMIS</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type>
+<SCRIPT id=clientEventHandlersJS language=javascript>
+<!--
+
+var imgAdd,imgSub
+
+function window_onload() {
+		imgAdd=new Image
+		imgAdd.src="../images/help2.gif"
+		imgSub=new Image
+		imgSub.src="../images/help1.gif"
+		imgff=new Image
+		imgff.src="../images/help2.gif"
+		imgnn=new Image
+		imgnn.src="../images/help1.gif"
+		img11=new Image
+		img11.src="../images/help2.gif"
+		img22=new Image
+		img22.src="../images/help1.gif"
+		closeAll()
+}
+
+function closeAll(vTbl,vImg)	{
+		var coll = tblAll.all.tags("table");
+		if (coll!=null) {
+			for (i=0; i<coll.length; i++){ 
+				if ((coll[i].id!="") && (coll[i].id!=null)){
+					if (coll[i]!=vTbl){			
+					  coll[i].style.display ="none"
+				    }
+				}
+			}
+		}
+ 
+		coll = tblAll.all.tags("img");
+		if (coll!=null) {
+			for (i=0; i<coll.length; i++){ 
+				if (coll[i].src==imgSub.src){
+					if (coll[i]!=vImg){			
+					 coll[i].src=imgAdd.src
+				    }
+				}
+				if (coll[i].src==imgnn.src){
+					if (coll[i]!=vImg){			
+						coll[i].src=imgff.src
+                    }
+				}
+			}
+		}
+
+}	
+function Item_onclick(vTbl) {
+		if (vTbl.style.display == ""){
+			vTbl.style.display ="none"
+		}
+		else {
+			vTbl.style.display =""
+		}
+}
+
+function ItemImg_onclick(vTbl,vImg) {
+		//closeAll(vTbl,vImg)		
+		if (vTbl.style.display == ""){
+			vTbl.style.display ="none"
+			vImg.src=imgAdd.src
+		}
+		else {
+			vTbl.style.display =""
+			vImg.src=imgSub.src
+		}
+}
+
+function ppImg_onclick(vTbl,vImg) {
+	//closeAll(vTbl,vImg)			
+	if (vTbl.style.display == ""){
+			vTbl.style.display ="none"
+			vImg.src=imgff.src
+		}
+		else {
+			vTbl.style.display =""
+			vImg.src=imgnn.src
+		}
+}
+function pppImg_onclick(vTbl,vImg) {
+	//closeAll(vTbl,vImg)			
+	if (vTbl.style.display == ""){
+			vTbl.style.display ="none"
+			vImg.src=img11.src
+		}
+		else {
+			vTbl.style.display =""
+			vImg.src=img22.src
+		}
+}
+
+function MM_findObj(n, d) { //v3.0
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document); return x;
+}
+
+function MM_showHideLayers() { //v3.0
+  var i,p,v,obj,args=MM_showHideLayers.arguments;
+  for (i=0; i<(args.length-2); i+=3) if ((obj=MM_findObj(args[i]))!=null) { v=args[i+2];
+    if (obj.style) { obj=obj.style; v=(v=='show')?'visible':(v='hide')?'hidden':v; }
+    obj.visibility=v; }
+}
+//-->
+</SCRIPT>
+<STYLE type=text/css>TABLE {
+	COLOR: #000000; FONT-SIZE: 9pt
+}
+body {  font-size: 9pt}
+</STYLE>
+<SCRIPT language=JavaScript>
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+// -->
+</SCRIPT>
+<META content="MSHTML 5.00.2920.0" name=GENERATOR>
+</HEAD>
+<BODY bgColor=#FFFFFF leftMargin=5 onload="return window_onload()" text=#000000 topMargin=0>
+
+<div align="center">
+<table width="100%" border="0">
+    <tr> 
+      <td width="78%"> <img border=0 height=15 
+            src="../images/help3.gif" width=12> 欢迎使用网络督察<br>
+        <table border=0 cellpadding=0 cellspacing=0 id=tblAll width=110 
+onLoad="return window_onload()">
+          <tbody> 
+          <tr valign=bottom> 
+            <td colspan=2> 
+              <table border=0 cellpadding=0 cellspacing=0 width="100%">
+                <tbody> 
+                <tr> 
+                  <td width="26%"><a href="javascript:ppImg_onclick(tbl21,img21)" 
+            title=展开/折叠><img border=0 class=imgBox height=17 id=img21 
+            src="../images/help2.gif" width=17></a></td>
+                  <td valign=bottom width="74%"><a 
+            href="javascript:ppImg_onclick(tbl21,img21)" title=展开/折叠>设置</a> </td>
+                </tr>
+                </tbody> 
+              </table>
+            </td>
+          </tr>
+          <tr> 
+            <td height=2 width=12></td>
+            <td width=98> 
+              <table border=0 cellpadding=2 cellspacing=0 id=tbl21 width="100%">
+                <tbody> 
+                <tr> 
+                  <td width="31%"><img border=0 height=15 
+            src="../images/help3.gif" width=12></td>
+                  <td valign=bottom width="69%"><font size="2"><a href="main2.htm" target="rightn">系统设置</a></font></td>
+                </tr>
+                <tr> 
+                  <td class=bgbg width="31%"><img border=0 height=15 
+            src="../images/help3.gif" width=12></td>
+                  <td class=bgbg valign=bottom width="69%"><a href="main3.htm" target="rightn">监控</a></td>
+                </tr>
+                <tr> 
+                  <td class=bgbg width="31%"><img border=0 height=15 
+            src="../images/help3.gif" width=12></td>
+                  <td class=bgbg valign=bottom width="69%">限制</td>
+                </tr>
+                <tr> 
+                  <td class=bgbg width="31%"><img border=0 height=15 
+            src="../images/help3.gif" width=12></td>
+                  <td class=bgbg valign=bottom width="69%">新增用户</td>
+                </tr>
+                <tr> 
+                  <td class=bgbg width="31%"><font size=2><b><img height=15 
+            src="../images/help3.gif" width=12></b></font></td>
+                  <td class=bgbg valign=center width="69%">Telnet</td>
+                </tr>
+                </tbody> 
+              </table>
+            </td>
+          </tr>
+          <tr valign=bottom> 
+            <td colspan=2>
+              <table border=0 cellpadding=0 cellspacing=0 width="100%">
+                <tbody> 
+                <tr> 
+                  <td width="27%"><a href="javascript:pppImg_onclick(tbl299,img299)" 
+            title=展开/折叠><img border=0 class=imgBox id=img299 
+            src="../images/help2.gif" width="17" height="17"></a></td>
+                  <td valign=bottom width="73%"><a 
+            href="javascript:ItemImg_onclick(tbl299,img299)" title=展开/折叠>统计</a></td>
+                </tr>
+                </tbody> 
+              </table>
+            </td>
+          </tr>
+          <tr> 
+            <td height=2 width=12></td>
+            <td width=98> 
+              <table border=0 cellpadding=2 cellspacing=0 id=tbl299 width="99%">
+                <tbody> 
+                <tr> 
+                  <td width="27%"><img border=0 height=15 
+            src="../images/help3.gif" width=12></td>
+                  <td valign=bottom width="73%"><font size="2">按用户</font></td>
+                </tr>
+                <tr> 
+                  <td width="27%"><img border=0 height=15 
+            src="../images/help3.gif" width=12></td>
+                  <td valign=bottom width="73%">按服务</td>
+                </tr>
+                <tr> 
+                  <td width="27%"><img border=0 height=15 
+            src="../images/help3.gif" width=12></td>
+                  <td valign=bottom width="73%">按IP地址</td>
+                </tr>
+                <tr> 
+                  <td width="27%"><img border=0 height=15 
+            src="../images/help3.gif" width=12></td>
+                  <td valign=bottom width="73%">按时间</td>
+                </tr>
+                <tr> 
+                  <td width="27%"><img border=0 height=15 
+            src="../images/help3.gif" width=12></td>
+                  <td valign=middle width="73%">按部门</td>
+                </tr>
+                </tbody> 
+              </table>
+            </td>
+          </tr>
+          </tbody> 
+        </table>
+        <br>
+      </td>
+    </tr>
+  </table>
+  <BR>
+</div>
+<div align="center"><br>
+  <br>
+</div>
+</BODY></HTML>

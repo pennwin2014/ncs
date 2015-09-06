@@ -1,0 +1,86 @@
+<html>
+
+<head>
+
+<title>设置上网</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/css.css" type="text/css">
+<script>
+function custinput(t,y){
+var j=eval("document.all."+y)
+if(t.value.substr(0,5)=="$cust"){
+j.value=t.value.substr(16)
+j.disabled=0
+j.focus()
+}else{
+j.value=t.value.substr(16)
+j.disabled=1
+}
+}
+</script>
+</head>
+
+
+
+<body bgcolor="#CCCCCC" text="#000000" leftmargin="1" topmargin="1">
+<form name="form1" method="post" action="/profire/Msg"  target="fbot">
+  <table width="100%" border="0" cellspacing="0" cellpadding="4" bgcolor="#CCCCCC">
+    <tr> 
+      <td colspan="3" class="bord2" height="28"> 
+        <div align="center"><font face="Times New Roman, Times, serif"><b> 
+          <input type="hidden" name="FunName" value="fireWebModiNat">
+          <input type="hidden" name="type" value="9">
+          <input type="hidden" name="index" value="[#index#]">
+          限制([#username#])上网</b></font></div>
+      </td>
+      <td width="29%" class="bord4" height="28"> 
+        <div align="right"><b>序号：[[#num#]]</b></div>
+      </td>
+    </tr>
+    <tr> 
+      <td width="22%" class="bord1"> 
+        <div align="right">策略</div>
+      </td>
+      <td width="27%" class="bord1">[#vister#]</td>
+      <td width="22%" class="bord1"> 
+        <div align="right">周期</div>
+      </td>
+      <td width="27%" class="bord3"> [#timetype#]</td>
+    </tr>
+    <tr> 
+      <td width="22%" class="bord1"> 
+        <div align="right">起始时间</div>
+      </td>
+      <td width="29%" class="bord1"> 
+        <input type="text" name="netmask" size="31" maxlength="63" value="[#netmask#]">
+      </td>
+      <td width="22%" class="bord1"> 
+        <div align="right">终止时间</div>
+      </td>
+      <td width="29%" class="bord3"> 
+        <input type="text" name="to" size="31" maxlength="63" value="[#to#]">
+      </td>
+    </tr>
+    <tr> 
+      <td colspan="4" class="bord1"> 
+        <div align="left">(注:时间格式为: HH:MM:SS , 如:12:13:30 为 12时13分30秒) </div>
+      </td>
+    </tr>
+    <tr> 
+      <td colspan="4" class="bord3"> 
+        <div align="right"> 
+          <input type="submit" name="add" value="增加" class="an3">
+          <input type="submit" name="modi" value="修改" class="an3" [#modi#]>
+          <input type="reset" name="Recove" value="恢复" class="an3">
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  </form>
+
+</body>
+
+</html>
+

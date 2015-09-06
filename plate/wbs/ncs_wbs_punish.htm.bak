@@ -1,0 +1,310 @@
+ <html>
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<title>main</title>
+<script>
+var dfd1 = "0";
+function gotoPage(pagenum)
+
+{
+
+    form1.CurPg.value = pagenum;
+}
+
+
+function goto(t){
+self.location.href=t
+}
+
+function adduser(){
+    self.location.href="/pronline/Msg?FunName@ncsWebPunishAdd";
+}
+
+ function Add1()
+    {
+	    
+	    
+	//    if(form1.search_punish_result.value==''&&form1.search_punish_date.value==''&&form1.search_service_code.value=='')
+//	    {
+//	    alert('请至少输入一个查询条件');
+//	    return false;
+//	    }	
+	   return true;
+    }
+	 
+function goto1(t){
+ tt=showModalDialog(t, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:560px;scroll:no;dialogHeight:320px');
+}
+
+function ddd(){
+    if(dfd1=="1"){
+        dfd1 ="0";
+    }
+    else {
+         dfd1 ="1";
+    }
+	for(var i=0;i<document.all.DataTable.rows.length;i++)
+	{
+		if(typeof(document.all.DataTable.rows[i].cells[0].childNodes[0])=="object"
+
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].tagName=="INPUT"
+
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].type=="checkbox") {
+			if(dfd1=="1"){
+  			    document.all.DataTable.rows[i].cells[0].childNodes[0].checked="true";
+            }
+			else{
+                document.all.DataTable.rows[i].cells[0].childNodes[0].checked="";
+            }
+        }
+ 	}
+}
+// -->
+<!-- Hide
+var ll = [#CurPg#]
+var yy = [#TotPg#]
+function killErrors() {
+return true;
+}
+window.onerror = killErrors;
+// -->
+
+</script>
+
+<link REL=stylesheet HREF="/css/listdatetable.css" TYPE="text/css">
+<script src="/js/tablecssall.js"></script>
+<script src="/js/rmenu.js"></script>
+<style type="text/css">
+<!--
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+.tScrollw {
+    SCROLLBAR-FACE-COLOR: #c1d8f9; 
+    OVERFLOW: scroll;
+    SCROLLBAR-SHADOW-COLOR: #c1d8f9; 
+    SCROLLBAR-3DLIGHT-COLOR: #c1d8f9;
+     SCROLLBAR-ARROW-COLOR: #5985ce; 
+     SCROLLBAR-DARKSHADOW-COLOR: #c1d8f9;
+    overflow-x:hidden;
+    height:548px;
+    cursor: default;
+    }
+  tr.tableHead {
+    position:relative;
+    height: 18px; 
+    text-align: center;
+    }   
+-->
+</style>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+<body marginheight=0 leftmargin=1  marginwidth=0 topMargin="0" style="overflow:hidden">
+<form name="form1" method="post" action="/pronline/Msg">
+	
+	  <input type="hidden" name="FunName" value="ncsWebPunish">
+	  <input type="hidden" name="CurPg"      value="[#CurPg#]">
+	  <input type="hidden" name="TotPg"      value="[#TotPg#]">
+	  <input type="hidden" name="TotRec"      value="[#TotRec#]">
+	  <input type="hidden" name="tname"      value="[#name#]">
+	  <input type="hidden" name="tid"     value="[#tid#]">
+  
+	
+		  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  	<tr>
+          <td width="26"><img src="/images/tbbg/tb_left.jpg"></td>
+         
+          <td  valign="top" style="background:url(/images/tbbg/tb_center.jpg);height:19;"></td>
+          <td  width="20"><img src="/images/tbbg/tb_right.jpg" width="20" height="19"></td>
+        
+      </tr>
+  	<tr>
+  		<td width="26" height="200" style="background:url(/images/tbbg/mid_left.jpg);position:relative;left:-2px;top:-2px;"></td>
+       
+  		<td style="background:url(/images/tbbg/mid_leftw.jpg);">
+	
+    
+     <table class="listDataTable" width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+        <tr bgcolor="#f2f2f2" height="30">
+          <th><div style="font-size:11pt;color:#00237e;font-weight:bold;text-align: center;">场所端处罚结果信息维护</td></th>
+        </tr>
+     </table>
+    
+
+    <table width="1022" border="0" cellspacing="0" cellpadding="0">
+       <tr bgcolor="#DEE8FA" height="30">
+         <th width="127" nowrap scope="col"><div align="right">上网服务场所代码</font></div></th>
+        <th width="169" nowrap scope="col">          <div align="justify">
+          <input name="search_service_code" type="text" value="[#search_service_code#]" maxlength="14">
+        </div></th>
+        <th width="93" ><div align="right">处罚日期</div></th>
+        <th width="171" scope="col">
+          
+          <div align="justify">
+            <input type="text" name="search_punish_date" value="[#search_punish_date#]" size=10 maxlength=10>(YYYY-MM-DD)
+            </div></th>
+        <th width="108" nowrap scope="col"><div align="right">处罚结果代码</div></th>
+        <th width="328" nowrap scope="col">
+                  <input type="text" name="search_punish_result" value="[#search_punish_result#]" size=12 maxlength=12>&nbsp;(双击记录进入修改界面)
+                 
+               
+             </th>
+      </tr>
+    </table> 
+	  <TABLE  cellSpacing=0 cellPadding=0 width="100%" border=0>
+	 <tr>
+	   <td valign="top">
+	   	<table width="100%"  cellspacing="0" cellpadding="0">
+     
+
+  
+   <tr bgcolor="#f2f2f2">
+     
+        
+      <td width="100%" height="3" >
+         <input name="search" type="submit" class="an3" value="查询" onClick="return Add1()">
+         <input name="Add" type="button" class="an3"   onClick="adduser()" value="添加"> 
+       <input name="del" type="submit" class="an3" value="删 除"> 
+     </td>
+	 <td>
+	 <table align=right border=0 cellpadding=0 cellspacing=0 class=main width=111>
+              <tbody> 
+              	
+                <td width="10%"><script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-06.gif' border=0 height=17 width=35 class='gray1'>")}
+                      else{
+                        document.write("<a href='#xxm'><img src='/images/zbuyer-06.gif' border=0 height=17 width=35 onClick='gotoPage(1);form1.submit()' class='hand'>")}
+                   </script></td>
+                <td width="10%"><script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 class='gray1'>")}
+                      else {
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]-1);form1.submit()' class='hand'>")}
+                   </script></td>
+                <td width="20%"><img src="/images/zbuyer-08.gif" border=0 height=17 width=32></td>
+                <td align=middle background="" width=92>
+                    <input class=Main id=browsdopage maxlength=3  name=browsdopage size=3 style="FONT-SIZE: 12px; HEIGHT: 17px; TEXT-ALIGN: center; WIDTH: 50px" value=[#CurPg#] onKeyPress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" onBlur="checkme(this)">
+                </td>
+                <td width="10%"><img src="/images/zbuyer-09.gif" border=0 height=17 width=16></td>
+                <td width="10%"><img align=middle border=0 height=17 src="/images/zbuyer-10.gif" width=17 onClick="gotoPage(form1.browsdopage.value);form1.submit()" class="hand"><img align=middle height=17 src="/images/zbuyer-11.gif" width=3></td>               
+                <td width="10%"><img border=0 height=17 src="/images/zin1.gif" width=17 ></td>
+                <td align=middle background="" width=92> 
+                 <input  class=Main id=browsdopage1 maxlength=5 name=browsdopage12 size=3 style="FONT-SIZE: 12px; HEIGHT: 17px; TEXT-ALIGN: center; WIDTH: 50px" value='[#TotPg#]'>
+                </td>
+                <td width="10%"><img align=middle height=17 src="/images/zbuyer-09.gif" width=16></td>
+               <td align=middle background="" width=92> 
+               <input  class=Main id=browsdopage1 maxlength=5 name=browsdopage12 size=3 style="FONT-SIZE: 12px; HEIGHT: 17px; TEXT-ALIGN: center; WIDTH: 50px" value='[#TotRec#]'>
+               </td>
+               <td width="10%"><img border=0 height=17 src="/images/zin3.gif" width=17 align="middle" ><img align=middle height=17  src="/images/zbuyer-11.gif" width=3></td>
+                
+                <td width="10%"><script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]+1);form1.submit()' class='hand'>")}
+                    </script></td>
+                <td width="10%"><script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 onClick='gotoPage([#TotPg#]);form1.submit()' class='hand'>")}
+                    </script></td>
+              </tbody> 
+            </table>  
+         	         	
+      </td>
+     </tr>
+         
+         
+         </table>
+	 </td>
+           
+   </tr>
+   
+ 
+           
+  
+    
+  	<TR>
+    		<TD valign="top"><SPAN id="flex111"></SPAN></TD>
+  	</TR>
+ 	</TABLE>
+ <table border="0" width=100% height=100% cellspacing="0" cellpadding="0" align=center bgcolor='#ffffff'>
+    <tr> 
+   
+      <td width="100%"  valign=top align=center bgcolor="#f2f2f2">
+      	<div class="tScrollw" id="tC">
+        <table id="DataTable" class="listDataTable" width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+          <tr class="tableHead"  style="top:expression(document.getElementById('tC').scrollTop)" bgcolor="#6382BD" height="20">
+          	
+             <td width="16" align="center" class="bord2" bgcolor="#848CCB"> 
+              <font color="#000000">
+              	  
+                  <input name="b1" type="button" class="anniu_1" value="全选" onClick="ddd()" >
+              </font></td>
+            
+            <td width="140" align="center" class="bord2" > 上网服务场所编码</td>
+            <td width="110" align="center" class="bord2" > 处罚日期</td>
+            <td width="120" align="center" class="bord2" >处罚结果代码</td>
+           
+           
+          </tr>
+         [#SLPB#]
+          <tr onMouseOver="mouseovertr2(this)" height="18" onMouseOut="mouseouttr2(this)" onDblclick="goto('/pronline/MsgL?FunName@ncsWebPunishAdd&punishinfo_id@[#punishinfo_id#]')">  
+		  
+          <td  align="center" class="bord1"> <input type="checkbox" name="ch[#iNum#]" value="[#punishinfo_id#]"> 
+          </td>
+		  <td class="bord1"   nowrap >&nbsp;[#service_code#]</td>
+          <td class="bord1"  nowrap  >&nbsp;[#punish_date#]</td>
+          <td class="bord1"  nowrap  >&nbsp;[#punish_result#]&nbsp;</td>
+		  </tr>
+        [#SLPE#]
+            
+            
+                       
+           
+          
+          
+        </table>
+      </div>
+      </td>
+  </tr>
+</table>
+
+
+
+
+
+   </td>
+  	<td style="background:url(/images/tbbg/mid_right.jpg);position:relative;left:1px;top:-2px;">&nbsp;
+  	</td>
+    </tr>
+  	
+  	
+  	  	<tr>
+          <td width="26"><img src="/images/tbbg/bottom_left.jpg" style="position:relative;top:-2px;left:-1px;"></td>
+         
+          <td  valign="top" style="background:url(/images/tbbg/bottom_center.jpg);position:relative;left:-4px;top:-2px;"></td>
+          <td  width="20"><img src="/images/tbbg/bottom_right.jpg" width="20" height="19" style="position:relative;top:-2px;"></td>
+        
+      </tr>
+  	
+
+  </table>
+
+
+
+
+</form>
+</body>
+
+</html>

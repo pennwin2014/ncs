@@ -1,0 +1,79 @@
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<script>
+
+function printdate()
+{
+
+self.print();
+}
+function  Exp(){
+ self.location.href="/pronline/Msg?FunName@ncsServiceAreaStat&sdate1@[#sdate1#]&sdate2@[#sdate2#]&userid@[#userid#]&daochu@daochu";
+}
+
+function llprint(){
+// document.all.pprint.style.display="none"
+  window.print();
+
+}
+</script>
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+	<table border="0" align="center" height="600" valign="top" cellpadding="0" cellspacing="0" width="100%">
+	<tr>
+<td valign="top" height="600">
+	<div style="height:610px;overflow-y:scroll;" >
+<table border="0" align="center"  valign="top" cellpadding="0" cellspacing="0" width="100%">
+  <tr> 
+    <td colspan="7" height="30"  class="ttt"> 
+    	<table width="100%" border="0">
+        <tr> 
+          <td height="24" width="37%" align="right"> 
+           <b>上网场所基本信息统计</b><b>([#sdate1#]--[#sdate2#]) </b></td>
+          <td width="33%" height="24" align="center">&nbsp;<input name="B3" type="button" class="an3" onClick="printdate()" value="打印">&nbsp;<input name="B4" type="button" class="an3" onClick="Exp()" value="导出"></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr > 
+    <td width="5%" height="18" bgcolor="#6382BD" align="center" class="bord2"> 
+      <font color="#FFFFFF">序号</font></td>
+    <td width="10%" height="18" bgcolor="#6382BD" align="center" class="bord2"> 
+      <font color="#FFFFFF">场所代码</font></td>
+      <td width="25%" height="18" bgcolor="#6382BD" align="center" class="bord2"> 
+      <font color="#FFFFFF">单位名称</font></td>
+      <td width="12%" height="18" bgcolor="#6382BD" align="center" class="bord2"> 
+      <font color="#FFFFFF">在线数</font></td>
+    <td  width="12%" height="18" bgcolor="#6382BD" align="center" class="bord2"> 
+      <font color="#FFFFFF">报警数量</font></td>
+     <td  width="12%" height="18" bgcolor="#6382BD" align="center" class="bord2"> 
+      <font color="#FFFFFF">阻断数量</font></td>
+      	
+    <td width="10%" height="18" align="center" bgcolor="#6382BD"  class="bord2"> 
+     <font color="#FFFFFF">主机在线率</font></td>
+   
+  </tr>
+  <!-- [#SLPB#] -->
+  <tr height="18" bgcolor="#ffffff"> 
+    <td  class="bord1" align="center">&nbsp; <b> [#num#]</b></td>
+    <td  class="bord1">&nbsp;&nbsp;[#servicecode#]</td>
+    <td  class="bord1"  >&nbsp; [#dispname#] </td>
+    <td  class="bord1"  align="right">&nbsp;[#ucount#]&nbsp;</td>
+    <td  class="bord1"  align="right">&nbsp;[#wcount#]&nbsp;</td>
+    <td  class="bord1"  align="right">&nbsp;[#ecount#]&nbsp;</td>
+    <td  class="bord3" align="right">[#hostrate#]&nbsp;</td>    
+    
+  </tr>
+
+  <!-- [#SLPE#] -->
+</table>
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html>

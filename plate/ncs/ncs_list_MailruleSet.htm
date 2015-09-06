@@ -1,0 +1,347 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<title>Web地址列表</title>
+<script language="JavaScript" src="/js/weblisttype.js"> </script>	
+<script>
+     function goto(t){
+        self.location.href=t;
+    }
+    
+    function setstatus(t){
+       j=form1.vister.options.length; 
+       for(i=0;i<j;i++) { 
+           gv = form1.vister.options[i].value;
+           if(gv == t) {
+               form1.vister.selectedIndex = i;
+           }
+       }
+    }
+        
+	
+    function showf(sid,no,sender,sendid,toname,toid,subject,attname,msize,content,flags) { 
+        form1.sid.value=sid;
+       form1.num.value=no;
+      form1.sender.value=sender;
+     
+      form1.sendid.value=sendid;
+      form1.toname.value=toname;
+     form1.toid.value=toid;
+      form1.subject.value=subject;
+      form1.flags.value=flags;
+      form1.attname.value=attname;
+      form1.msize.value=msize;
+      form1.content.value=content;
+    }
+    
+ function mouseovertr2 (o){
+        var i;
+        df=o.style.backgroundColor
+	    o.style.backgroundColor= "#003399";
+	    o.style.borderColor= "#FFFF00";
+	    o.style.cursor="hand";	
+        for(i=0; i<o.cells.length; i++)
+        {
+	        o.cells(i).style.color="#ffffff";
+        }	
+    }
+    function Add()
+    {
+	    if(form1.num.value=='')
+	    {
+	    	alert('请输入序号');
+	    	return false;
+	    	}
+	    	return true;
+    }
+    function Mod()
+    {
+	    if(form1.num.value=='')
+	    {
+	    	alert('请输入序号');
+	    	return false;
+	    	}
+	    	return true;
+    }
+    function Del()
+    {
+    var flag=0;
+    	    for(var i=1;i<document.all.DataTable.rows.length;i++)
+	    {
+	    if(document.all.DataTable.rows[i].cells[0].childNodes[0].checked)
+	    {
+		    flag=1;
+		    break;
+	    }
+	    }
+	    if(flag==0)
+	    {
+	    	alert('请先选择要删除的规则');
+	    	return false;
+	    }
+	    	return true;
+    }
+    
+
+    function mouseouttr2(o){
+	    o.style.backgroundColor=df
+        for(i=0; i<o.cells.length; i++)
+        {
+	        o.cells(i).style.color="#000000";
+        }
+    }
+
+    var dfd1="0"
+    function gotoPage(pagenum)
+    {
+        form1.CurPg.value = pagenum;
+    }
+
+    function checkme(p)
+    {
+	    var tt=p.value
+	    if (tt>yy)
+	    {
+		    MM_changeProp('browsdopage','','value',yy,'INPUT/TEXT')
+	    }
+	    if (tt==0)
+	    {
+		    MM_changeProp('browsdopage','','value','1','INPUT/TEXT')
+	    }
+    }
+
+    function allChecked(){
+        if(dfd1=="1"){
+            dfd1="0"
+        }
+        else {
+             dfd1="1"
+        }
+	    for(var i=0;i<document.all.DataTable.rows.length;i++)
+	    {
+		    if(typeof(document.all.DataTable.rows[i].cells[0].childNodes[0])=="object"
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].tagName=="INPUT"
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].type=="checkbox") {
+			    if(dfd1=="1"){
+  			        document.all.DataTable.rows[i].cells[0].childNodes[0].checked="true";
+                }
+			    else{
+                    document.all.DataTable.rows[i].cells[0].childNodes[0].checked="";
+                }
+            }
+ 	    }
+    }
+    
+
+<!-- Hide
+var ll=[#CurPg#]
+var yy=[#TotPg#]
+    function killErrors() {
+        return true;
+    }
+    window.onerror = killErrors;
+// -->
+
+</script>
+
+<link REL=stylesheet HREF="/css/runmit.css" TYPE="text/css">
+<script src="/js/rmenu.js"></script>
+<style type="text/css">
+<!--
+.tScrollw {
+    overflow: scroll;
+    overflow-x:hidden;
+    height:404px;
+    cursor: default;
+    }
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+-->
+</style>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+<body marginheight=0 leftmargin=0 marginwidth=0 topMargin="0" BGCOLOR="#f2f2f2" >
+<form name="form1" method="post" action="/pronline/Msg"> 
+                    <input type="hidden" name="userid" value="[#userid#]" >				     
+                    <input type="hidden" name="flag"   value="[#flag#]">
+                    <input type="hidden" name="uflags" value="[#uflags#]">
+                    <input type="hidden" name="sid"    value="[#sid#]">
+                    <input type="hidden" name="FunName" value="ncsMailruleSet">
+                    <input type="hidden" name="CurPg"      value="[#CurPg#]">
+                    <input type="hidden" name="TotPg"      value="[#TotPg#]">
+                    <input type="hidden" name="TotRec"     value="[#TotRec#]">
+
+  <table border="0" width=100%  cellspacing="0" cellpadding="0" align=center>
+    <tr> 
+      <td width="100%" valign="top" class="ttt"> 
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+
+          <tr> 
+            <td > 
+              <table width="100%" border="0">
+              <tr height="10"><td colspan="4"></td></tr>
+
+
+                <tr height="30"> 
+                  <td width="1%"> </td>
+                  <td colspan="3"> 序号
+                  <input type="text" name="num" size=3 maxlength=4 value="1">
+                   发件人
+                   <input type="text" name="sender" size=16 maxlength=64 value="[#sender#]">
+                   列表
+                   <select name="sendid" style="width:80">
+                   <option value="0">不限</option>
+                   [#SLPB#]
+                   <option value="[#id#]">[#name#]</option>
+                   [#SLPE#]
+
+                   </select>
+                   收件人
+                    <input type="text" name="toname" size="16" value="[#toname#]" maxlength="64">
+                   列表                  
+                   <select name="toid" style="width:80">
+                   <option value="0">不限</option>
+                   [#SLPB#]
+                   <option value="[#id#]">[#name#]</option>
+                   [#SLPE#]
+                   </select>                      
+                </tr>
+                
+                <tr height="30"> 
+                  <td width="2%"> </td>
+                  <td colspan="3"> 主题
+                  <input type="text" name="subject" size=30 maxlength=64 value="[#subject#]">
+                   附件名称
+                   <input type="text" name="attname" size=20 maxlength=64 value="[#attname#]">
+                  邮件大小
+                    <input type="text" name="msize" size="9" value="[#msize#]" maxlength="10">
+               
+                </tr>
+                <tr height="30"> 
+                  <td width="1%"> </td>
+                  <td colspan="3"> 内容
+                  <input type="text" name="content" size=60 maxlength=64 value="[#content#]">
+                   发送状态
+                   <select name="flags" style="width:78">
+                   <option value="0">不发送</option>
+                   <option value="1">发送</option>
+                   </select>
+                </tr>
+                
+                <tr height="30"> 
+                  <td width="1%" > </td>
+                              
+                  <td colspan="2"> 
+           
+                    <input name="add" type="submit" class="an3" onclick="return Add()" value="添 加" >
+                    <input name="modi" type="submit" class="an3" value="修 改" onclick="return Mod()">
+                     <input name="del" type="submit" class="an3" value="删 除"  Onclick="return Del()">
+                     <input name="ret" type="reset" class="an3" value="清零"  >
+                     缺省：[#Ipdefault#] 功能：[#funenable#]
+                  </td>
+                  
+                  <td   valign="bottom" width="40%"> <div align="center">
+                    <table align=right border=0 cellpadding=0 cellspacing=0 class=main width=111>
+                      <tbody>
+                      <td width="10%" >
+                          <script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-06.gif' border=0 height=17 width=35 class='gray1'>")}
+                      else{
+                        document.write("<a href='#'><img src='/images/zbuyer-06.gif' border=0 height=17 width=35 onClick='gotoPage(1);form1.submit()' class='hand'>")}
+                    </script>
+                        </td>
+                          <td width="10%">
+                            <script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 class='gray1'>")}
+                      else {
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]-1);form1.submit()' class='hand'>")}
+                      </script>
+                          </td>
+                          <td width="20%" valign="top"><img src="/images/zbuyer-08.gif" border=0 height=17 width=32></td>
+                          <td align=middle background="" width=92>
+                            <input class=Main id=browsdopage maxlength=7  name=browsdopage size=7 style="FONT-SIZE: 12px; HEIGHT: 17px; TEXT-ALIGN: center; WIDTH: 40px;position:relative;left:0px;top:-2px;" value=[#CurPg#] onKeyPress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" onBlur="checkme(this)">
+                          </td>
+                          <td width="10%" valign="top"><img src="/images/zbuyer-09.gif" border=0 height=17 width=16></td>
+                          <td width="10%" valign="top"><img align=middle border=0 height=17 src="/images/zbuyer-10.gif" width=17 onClick="gotoPage(form1.browsdopage.value);form1.submit()" class="hand"><img align=middle height=17 src="/images/zbuyer-11.gif" width=3></td>
+                          <td width="10%" valign="top"><img border=0 height=17 src="/images/zin1.gif" width=17 ></td>
+                          <td align=middle background="" width=92>
+                            <input  class=Main id=browsdopage12 maxlength=7 name=browsdopage12 size=7 style="FONT-SIZE: 12px; HEIGHT: 17px; TEXT-ALIGN: center; WIDTH: 40px;position:relative;left:0px;top:-2px;" value='[#TotPg#]'>
+                          </td>
+                          <td width="10%" valign="top"><img align=middle height=17 src="/images/zbuyer-09.gif" width=16></td>
+                          <td align=middle background="" width=92>
+                            <input  class=Main id=browsdopage12 maxlength=7 name=browsdopage12 size=7 style="FONT-SIZE: 12px; HEIGHT: 17px; TEXT-ALIGN: center; WIDTH: 50px;position:relative;left:0px;top:-2px;" value='[#TotRec#]'>
+                          </td>
+                          <td width="10%" valign="top"><img border=0 height=17 src="/images/zin3.gif" width=17 align="middle" ><img align=middle height=17  src="/images/zbuyer-11.gif" width=3></td>
+                          <td width="10%">
+                            <script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]+1);form1.submit()' class='hand'>")}
+                      </script>
+                          </td>
+                          <td width="10%">
+                            <script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 onClick='gotoPage([#TotPg#]);form1.submit()' class='hand'>")}
+                      </script>
+                          </td>
+                    </table> 
+                   </div></td>
+                </tr>
+            </table>            </td>
+          </tr>
+      </table>      </td>
+  </tr>
+  <tr  >
+      <td width="100%"  valign=top align=center> 
+      	<div class="tScrollw"  id="tC"> 
+        <table  id="DataTable" width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" >
+          <tr bgcolor="#6382BD" class="tableHead"  style="top:expression(document.getElementById('tC').scrollTop)"> 
+            <td width="40" height="18" class="bord2"> 
+              <div align="center"><font color="#FFFFFF">
+                <input type="button" name="b1" value="全选"    class="anniu_1" onClick="allChecked()">
+                </font></div></td>
+            <td width="40" height="18" class="bord2"> 
+              <div align="center"><font color="#FFFFFF">序号</font></div></td>
+            <td width="710" bgcolor="#6382BD" class="bord4"><div align="center"><font color="#FFFFFF">&nbsp;内容</font></div></td>
+           
+          </tr>
+          <!-- [#SLPB#] -->
+          <tr height="18" onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" onclick="showf('[#sid#]','[#no#]','[#sender#]','[#sendid#]','[#toname#]','[#toid#]','[#subject#]','[#attname#]','[#msize#]','[#content#]','[#flags#]')"> 
+            <td  align="center" class="bord1"> <input type="checkbox" name="ch[#num#]" value="[#sid#]"> 
+            </td>
+            <td   class="bord1">&nbsp;[#no#]</td>
+           
+            <td   class="bord3" >&nbsp;[#msg#]</td>
+           
+          </tr>
+          <!-- [#SLPE#] -->
+          <!-- [#SLPB#] -->
+          <tr id=[#snum#] height="18"> 
+            <td   class="bord1">&nbsp; </td>
+       
+            <td   class="bord1">&nbsp;</td>       
+            <td   class="bord3">&nbsp;</td>
+          </tr>
+          <!-- [#SLPE#] -->
+        </table>
+      </div>
+      </td>
+    </tr>
+  </table>
+</form>
+
+</body>
+</html>

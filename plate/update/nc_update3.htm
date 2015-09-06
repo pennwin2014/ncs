@@ -1,0 +1,58 @@
+<html>
+<head>
+<title>在线升级</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<SCRIPT LANGUAGE="JavaScript">
+
+function DoDownload() {
+    form1.submit();
+}
+
+</script> 
+
+</head>
+
+<body bgcolor="#C0C0C0" text="#000000"  onload="DoDownload()">
+<form name="form1" method="post" action="/pronline/Msg">
+  <table width="75%" border="0" align="center">
+    <tr> 
+      <td colspan="2"> 
+        <div align="center"><b>网络督察在线升级</b></div>
+      </td>
+    </tr>
+    <tr> 
+      <td width="44%">&nbsp;</td>
+      <td width="56%">&nbsp;</td>
+    </tr>
+    <tr> 
+      <td colspan="2"> 
+        <div align="center">[#message#]</div>
+      </td>
+    </tr>
+    <tr> 
+      <td colspan="2"> 
+        <div align="right"></div>
+        <div align="center">【[#rate#]％】</div>
+      </td>
+    </tr>
+    <tr> 
+      <td width="44%">&nbsp;</td>
+      <td width="56%">&nbsp;</td>
+    </tr>
+    <tr> 
+      <td colspan="2" height="15"> 
+        <div align="center"> 
+          <input type="hidden" name="FunName" value="ncWebUpgrade_2">
+          <input type="hidden" name="sid" value="[#sid#]">
+          <input type="hidden" name="fname" value="[#fname#]">
+          <input type="hidden" name="start" value="[#start#]">
+          <input type="hidden" name="total" value="[#total#]">
+          <input type="submit" name="Submit" value="继续">
+          <input type="button" name="Button2" value="取消">
+        </div>
+      </td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

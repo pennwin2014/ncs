@@ -1,0 +1,234 @@
+<html>
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<title>main</title>
+<script>
+var dfd1="0"
+
+function DoSort(sname)
+{
+    form1.sort.value=sname;
+	form1.submit();
+}
+
+function gotoPage(pagenum)
+{
+    form1.CurPg.value = pagenum;
+}
+
+function adduser(){
+    self.location.href="/pronline/Msg?FunName@ncsWebDispClientAddForm&groupid@[#groupid#]";
+}
+
+
+function userdel()
+{
+    form1.FunName.value = "ncWebDelSomeClient";
+    form1.submit();
+}
+
+ 
+function goto(t){
+self.location.href=t+'&groupid0@[#groupid0#]&cond@[#cond#]&CurPg@[#CurPg#]'
+}
+
+function mouseovertr2 (o){
+var i;
+df=o.style.backgroundColor
+	o.style.backgroundColor= "#d0e1fa";
+	o.style.borderColor= "#FFFF00";
+	o.style.cursor="hand";	
+
+}
+
+function mouseouttr2(o){
+	o.style.backgroundColor=df
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#000000";
+}
+	
+	
+}
+
+
+
+function dcdw(){
+   self.location.href="/pronline/Msg?FunName@ncsWebClientSearch&export@export";
+
+}
+
+function importuser(){
+	    t = "/cust_dr_frm.htm";
+    
+    var oDia=showModalDialog(t,window,
+		 "status:no;center:yes;help:no;minimize:no;maximize:no;border:thick;statusbar:no;dialogWidth:500px;scroll:none;dialogHeight:585px;overflow:none");	
+	
+}
+
+
+
+
+
+// -->
+<!-- Hide
+var ll='[#CurPg#]'
+var yy='[#TotPg#]'
+function killErrors() {
+return true;
+}
+window.onerror = killErrors;
+// -->
+function showip(id){
+var tt="/pronline/Msg?FunName@ncsWebReplace&plate@ncs/corp_ip_main.htm&userid@"+id;
+showModalDialog(tt, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thin;statusbar:no;dialogWidth:500px;scroll:yes;dialogHeight:480px');
+
+}
+</script>
+<link REL=stylesheet HREF="/css/runmit.css" TYPE="text/css">
+<script src="/js/rmenu.js"></script>
+<style type="text/css">
+<!--
+
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+-->
+</style>
+<link href="../css/css.css" rel="stylesheet" type="text/css">
+</head>
+<body marginheight=0 leftmargin=0 marginwidth=0 topMargin="0" BGCOLOR="#EEf0FA" style="overflow:hidden">
+<form name="form1" method="post" action="/pronline/Msg">
+	 <input type="hidden" name="FunName" value="ncs_Factory_Stat">
+     <input type="hidden" name="CurPg"      value="[#CurPg#]">
+	 <input type="hidden" name="TotPg"      value="[#TotPg#]">
+
+<table border="0" width=100% height=100% cellspacing="0" cellpadding="0" align=center >
+	<tr>
+	   <td><table width="100%" cellspacing="0" cellpadding="0">
+         <tr height="30"> 
+         <td class="tabtitle" >联网单位统计信息&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+         <td background="/images/images2/chaxun2-1.gif" ></td>
+         <td background="/images/images2/chaxun2-1.gif" align="right">        	
+         	 <table align=right border=0 cellpadding=0 cellspacing=0 class=main width=111>
+              &nbsp;
+            </table>  
+         	         	
+         	</td>
+         </tr>
+         
+         
+         </table>
+      </td>
+  </tr>
+  
+       <tr bgcolor="#DEE8FA">
+            <td width="100%" height="30" >        
+             &nbsp;
+              <input name="exp"type="submit" class="an3"    value="导出统计">
+              
+                 
+          	  	     	</td>	
+            </td>
+       </tr>
+  <tr>
+      <td width="100%" align=center  valign=top bgcolor="#DEE8FA"> 
+      	
+      <div class="tScroll" id="tC">	
+        <table id="DataTable" width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+          <tr height="20" class="tableHead"  > 
+           
+            <td width="150" align="center" bgcolor="#6382BD" class="bord2" >
+            <font color="#FFFFFF">区域</font></td>
+            <td width="100" align="center" bgcolor="#6382BD" class="bord2" >
+            <font color="#FFFFFF">单位总数</font></td>
+            <td width="100" align="center" bgcolor="#6382BD" class="bord2" >
+            <font color="#FFFFFF"> 在线单位</font></td>
+            <td width="100" bgcolor="#6382BD" align="center" class="bord2" ><font color="#FFFFFF">异常在线单位</font></td>
+            <td width="100" bgcolor="#6382BD" align="center" class="bord2" ><font color="#FFFFFF">离线单位</font></td>
+            
+            <td width="100" bgcolor="#6382BD" align="center" class="bord2" ><font color="#FFFFFF">在线率</font></td>
+            
+            <td width="100" bgcolor="#6382BD" align="center" class="bord2" ><font color="#FFFFFF">用户总数</font></td>
+            <td width="100" bgcolor="#6382BD" class="bord2"><font color="#FFFFFF">&nbsp;在线用户</font></td>
+ 
+          </tr>
+[#SLPB#]      
+          <tr bgcolor="#EEf0FA" height="18"  > 
+            <td  class="bord1_1">&nbsp;[#area#]&nbsp;</td>
+            <td  class="bord1_1" align="right">&nbsp;[#did_count#]&nbsp;</td>
+            <td  class="bord1_1" align="right">&nbsp;[#ondid_count#]&nbsp; </td>
+            <td  class="bord1_1" align="right">&nbsp;[#ycdid_count#]&nbsp;</div></td>
+            <td  class="bord1_1" align="right">&nbsp;[#lxdid_count#]&nbsp;</div></td>
+            <td  class="bord1_1" align="right">&nbsp;[#rate#]&nbsp;</div></td>	    	
+            <td  class="bord1_1" align="right">[#endnum#]&nbsp;</div></td>
+            <td  class="bord1_1" align="right">[#onuid_count#]&nbsp;</td>          
+          </tr>
+          [#SLPB#]
+          <tr bgcolor="#EEf0FA" height="18"  > 
+            <td  class="bord1_1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">[#area#]</font>&nbsp;</td>
+            <td  class="bord1_1" align="right">&nbsp;<font color="red">[#did_count#]</font>&nbsp;</td>
+            <td  class="bord1_1" align="right">&nbsp;<font color="red">[#ondid_count#]</font>&nbsp; </td>
+            <td  class="bord1_1" align="right">&nbsp;<font color="red">[#ycdid_count#]</font>&nbsp;</div></td>
+            <td  class="bord1_1" align="right">&nbsp;<font color="red">[#lxdid_count#]</font>&nbsp;</div></td>
+            <td  class="bord1_1" align="right">&nbsp;<font color="red">[#rate#]</font>&nbsp;</div></td>	    	
+            <td  class="bord1_1" align="right"><font color="red">[#endnum#]</font>&nbsp;</div></td>
+            <td  class="bord1_1" align="right"><font color="red">[#onuid_count#]</font>&nbsp;</td>          
+          </tr>
+          
+             [#SLPB#]
+          <tr bgcolor="#EEf0FA" height="18"  > 
+            <td  class="bord1_1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="green">[#area#]</font>&nbsp;</td>
+            <td  class="bord1_1" align="right">&nbsp;<font color="green">[#did_count#]</font>&nbsp;</td>
+            <td  class="bord1_1" align="right">&nbsp;<font color="green">[#ondid_count#]</font>&nbsp; </td>
+            <td  class="bord1_1" align="right">&nbsp;<font color="green">[#ycdid_count#]</font>&nbsp;</div></td>
+            <td  class="bord1_1" align="right">&nbsp;<font color="green">[#lxdid_count#]</font>&nbsp;</div></td>
+            <td  class="bord1_1" align="right">&nbsp;<font color="green">[#rate#]&nbsp;</font></div></td>	    	
+            <td  class="bord1_1" align="right"><font color="green">[#endnum#]&nbsp;</font></div></td>
+            <td  class="bord1_1" align="right"><font color="green">[#onuid_count#]</font>&nbsp;</td>          
+          </tr>
+          [#SLPE#]
+          
+          
+          [#SLPE#]
+          
+ [#SLPE#]
+          <tr bgcolor="#EEf0FA" height="20"  > 
+            <td  class="bord1_1">&nbsp;<font color="red">合计</font>&nbsp;</td>
+            <td  class="bord1_1" align="right">&nbsp;<font color="red">[#sum_did#]</font>&nbsp;</td>
+            <td  class="bord1_1" align="right">&nbsp;<font color="red">[#sum_ondid#]</font>&nbsp; </td>
+            <td  class="bord1_1" align="right">&nbsp;<font color="red">[#sum_ycdid#]</font>&nbsp;</div></td>
+            <td  class="bord1_1" align="right">&nbsp;<font color="red">[#sum_lxdid#]</font>&nbsp;</div></td>
+            <td  class="bord1_1" align="right">&nbsp;<font color="red"></font>[#rate#]&nbsp;</div></td>
+            	
+            <td  class="bord1_1" align="right"><font color="red">[#sum_endnum#]</font>&nbsp;</div></td>
+            <td  class="bord1_1" align="right"><font color="red">[#sum_onuid#]</font>&nbsp;</td>
+          
+          </tr>
+          <!-- [#SLPB#] -->
+          <tr height="18" id=[#snum#] bgcolor="#EEf0FA"> 
+            <td   class="bord1_1">&nbsp; </td>
+            <td   class="bord1_1">&nbsp;</td>
+            <td   class="bord1_1">&nbsp;</td>
+            <td   class="bord1_1">&nbsp; </td>
+            <td   class="bord1_1">&nbsp; </td>
+            <td  class="bord1_1">&nbsp;</td>
+            <td  class="bord1_1">&nbsp;</td>
+            <td  class="bord1_1">&nbsp;</td>
+          </tr>
+          <!-- [#SLPE#] -->
+        </table>
+</div>    
+<!--//鼠标显示//-->
+
+      </td>
+  </tr>
+</table>
+ </form>
+</body>
+
+</html>

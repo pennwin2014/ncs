@@ -1,0 +1,117 @@
+<html>
+<head>
+<title>Groupinfo</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<script language="javascript">
+
+
+function goBack()
+{
+	history.back();
+	return false;
+}
+
+
+</script>
+
+<body bgcolor="#DEE8FA">
+<table width="100%" border="0" align="center" cellspacing="0" cellpadding="0" bgcolor="#DEE8FA">
+  
+  <tr> 
+    <td align="center"> 
+    	<form action="/pronline/Msg" method="post"  name="form1" >
+    	<input name="FunName" type="hidden" value="webclass_imp">
+    	<input type="hidden" name="fname" value="[#fname#]">
+        <table width="100%" border="0" align="center" cellspacing="0" cellpadding="0">
+          <tr> 
+            <td align="center"> 
+              <table width="100%" border="1" align="center" bordercolorlight=#89ACED   bordercolordark=#ffffff cellspacing="0" cellpadding="0">
+
+                <tr> 
+                  <td align="center">
+                    <table width="100%" border="0" align="center" cellpadding="0"  bgcolor="#DEE8FA">
+
+                      <tr>
+                        <td width="16%" height="25"><div align="right">网址类别&nbsp;</div></td>
+                        <td width="84%" height="25" valign="baseline">
+                        <select name="webclass" style="width:300px">
+                        <option value="[#webclass_num#]">[#webclass#]</option>
+                        [#SLPB#]
+                        <option value="[#iNum#]">[#caTemp#]</option>
+                        [#SLPE#]
+                        <option value="">无</option>
+                         </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td height="25"><div align="right">网址名称&nbsp;</div></td>
+                        <td height="25" valign="baseline">
+                        <select name="urlname" style="width:300px">
+                        <option value="[#urlname_num#]">[#urlname#]</option>
+            			      [#SLPB#]
+                        <option value="[#iNum#]">[#caTemp#]</option>
+                        [#SLPE#]
+                        <option value="">无</option>
+                         </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td height="25"><div align="right">网址说明&nbsp;</div></td>
+                        <td height="25" valign="baseline">
+                        <select name="urldesc" style="width:300px">
+                       <option value="[#urldesc_num#]">[#urldesc#]</option>
+            			      [#SLPB#]
+                        <option value="[#iNum#]">[#caTemp#]</option>
+                        [#SLPE#]
+                        <option value="">无</option>
+                        </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td height="25"><div align="right">缺省类别&nbsp;</div></td>
+                        <td height="25" valign="baseline">
+                        <select name="defclass" style="width:300px">
+
+            			      [#SLPB#]
+                        <option value="[#id#]">[#name#]</option>
+                        [#SLPE#]
+                        <option value="">无</option>
+                         </select>
+                        </td>
+                      </tr>
+                     
+                     
+          
+                                
+                      <tr>
+                        <td height="25"><div align="right">忽略第一行</div></td>
+                        <td height="25" valign="baseline"><input type="checkbox" name="first" value="checkbo"  >
+
+                        	</td>
+                      </tr>
+                      <tr>
+                        <td height="25"><div align="right"> </div></td>
+                        <td height="25" valign="baseline"> <input name="ok" type="button" class="anuse3" id="ok" value="确 认" onclick="form1.submit();document.all.ok.disabled=1;">
+                        <input name="return" type="button" onClick="javascript:history.back();"   class="anuse3" value="返 回"></td>
+                      </tr>
+                    </table></td>
+                </tr>
+              </table>
+</td>
+
+          </tr>
+        </table>
+      </form></td>
+  </tr>
+</table>
+<br>
+</body>
+</html>

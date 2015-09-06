@@ -1,0 +1,295 @@
+
+
+<HTML>
+<HEAD>
+<TITLE>通讯录</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=content-type>
+<LINK 
+href="../temp/%D0%C2%C0%CB%CD%A8%D1%B6%C2%BC%A3%BA%20ivyiv.files/ShowMemberList.files/mystyle.css" rel=stylesheet type=text/css>
+
+<META content="MSHTML 5.00.2919.6307" name=GENERATOR>
+<style type="text/css">
+<!--
+.submit {  background-color: #FFCC66; font-size: 9pt}
+.type {  font-size: 9pt}
+-->
+</style>
+<SCRIPT language=javascript>
+function setCheck()
+{
+    var vform=document.filter
+    if('[#effect#]'=='')
+    {
+        vform.effect.checked=0
+    }else
+    {
+        vform.effect.checked=1
+    }
+    if('[#soubox#]'=='')
+    {
+        vform.soubox.checked=0
+    }else
+    {
+        vform.soubox.checked=1
+    }
+    if('[#subbox#]'=='')
+    {
+        vform.subbox.checked=0
+    }else
+    {
+        vform.subbox.checked=1
+    }
+    if('[#revbox#]'=='')
+    {
+        vform.revbox.checked=0
+    }else
+    {
+        vform.revbox.checked=1
+    }
+    if('[#backup#]'=='')
+    {
+        vform.backup.checked=0
+    }else
+    {
+        vform.backup.checked=1
+    }
+    if('[#sousel#]'=='')
+    {
+        vform.sousel.selectedIndex=0
+    }else
+    {
+        vform.sousel.selectedIndex='[#sousel#]'
+    }
+    if('[#subsel#]'=='')
+    {
+        vform.subsel.selectedIndex=0
+    }else
+    {
+        vform.subsel.selectedIndex='[#subsel#]'
+    }
+    if('[#revsel#]'=='')
+    {
+        vform.revsel.selectedIndex=0
+    }else
+    {
+       vform.revsel.selectedIndex='[#revsel#]'
+    }
+    if('[#sizsel#]'=='')
+    {
+        vform.sizsel.selectedIndex=0
+    }else
+    {
+        vform.sizsel.selectedIndex='[#sizsel#]'
+    }
+    if('[#tobox#]'=='')
+    {
+        vform.tobox.selectedIndex=0
+    }else
+    {
+        vform.tobox.selectedIndex='[#tobox#]'
+    }
+    
+        
+    for(var i=0;i<vform.length;i++)
+    {
+       if(vform.elements[i].name=='item'&&vform.elements[i].value=='[#item#]')
+          vform.elements[i].checked=1;
+       if(vform.elements[i].name=='action'&&vform.elements[i].value=='[#action#]')
+          vform.elements[i].checked=1;   
+    }
+}
+
+function setItem(val)
+{
+    //alert(val);
+    document.filter.itemno.value=val;
+}
+function setAct(val)
+{
+    //alert(val);
+    document.filter.actno.value=val;
+}
+
+function setValue()
+{
+	if(document.filter.require.value == 'new')
+		nFunCode = '17265';
+	if(document.filter.require.value == 'modify')
+		nFunCode = '17266';
+	document.filter.submit();
+}
+
+</SCRIPT>
+</HEAD>
+<BODY  onload="setCheck()"  leftMargin=11 topMargin=5 marginwidth="11" marginheight="5" bgcolor="#F0FDE6">
+<form action="/pronline/Msg"  method="post" name="filter" >
+<input type="hidden" name="nFunCode" value="17265">
+<input type="hidden" name="sid" value="[#sid#]">
+<input type="hidden" name="fid" value="[#fid#]">
+  <input type="hidden" name="itemno" value="[#itemno#]">
+  <input type="hidden" name="actno" value="[#actno#]">
+  <input type="hidden" name="require" value="[#require#]">
+<span class="bg1"></span><IMG 
+height=3 src="../temp/%D0%C2%C0%CB%CD%A8%D1%B6%C2%BC%A3%BA%20ivyiv.files/ShowMemberList.files/c.gif" width=1><BR>
+<br>
+  <table width="100%" cellpadding="0" class="type" cellspacing="0">
+    <tr> 
+      <td valign="middle" align="left" 
+width="31%" height="15"> 
+        <div align="left"><font face="楷体_GB2312"><b><font face="宋体" color="#006633"> 
+          <font color="#339933">过 滤 器</font></font></b></font></div>
+      </td>
+      <td colspan="3" width="69%" height="15"> 
+        <div align="right"> <img src="../mailImages/bt8.GIF" width="52" height="24"></div>
+      </td>
+    </tr>
+    <tr> 
+      <td align="left" colspan="4" valign="middle" height="9"> 
+        <hr noshade size="2"color="99cc99" align="left">
+      </td>
+    </tr>
+    <tr> 
+      <td align="left" 
+width="31%" valign="middle" height="24" bgcolor="#E2EEDB"> 
+        <div align="left"> 　过滤器名:</div>
+      </td>
+      <td colspan="3" width="69%" valign="bottom" height="24" bgcolor="#E2EEDB"> 
+        <input type="text" name="name" size="30" value="[#name#]" maxlength="30">
+      </td>
+    </tr>
+    <tr> 
+      <td valign="middle" align="left" colspan="4" height="25" bgcolor="#E2EEDB">　当邮件到达时 
+        ： 使用本规则 
+        <input type="checkbox" name="effect" value="1">
+      </td>
+    </tr>
+    <tr> 
+      <td valign="middle" align="left" colspan="4" bgcolor="#E2EEDB" height="25">　请选择本规则条件（仅选一条）</td>
+    </tr>
+    <tr> 
+      <td valign="middle" align="left" 
+width="31%" bgcolor="#E2EEDB" height="25"> 　 
+        <input type="radio" name="item" onclick="setItem('1')" value="source"  >
+        邮件来源 </td>
+      <td colspan="3" width="69%" bgcolor="#E2EEDB" height="25"> 
+        <select name="sousel" class="lemon1">
+          <option value="11" selected>包括</option>
+          <option value="12">不包括</option>
+          <option value="13">是</option>
+          <option value="14">不是</option>
+          <option value="15">以...开始</option>
+          <option value="16">以...结束</option>
+        </select>
+        <input type="text" name="source" size="30" value="[#source#]" maxlength="30">
+        　区分大小写 
+        <input type="checkbox" name="soubox" value="1">
+      </td>
+    </tr>
+    <tr> 
+      <td valign="middle" align="left" 
+width="31%" bgcolor="#E2EEDB" height="25"> 　 
+        <input type="radio" name="item" value="receiv" onclick="setItem('2')" >
+        邮件接收者 </td>
+      <td colspan="3" width="69%" bgcolor="#E2EEDB" height="25"> 
+        <select name="revsel" class="lemon1">
+          <option value="11" selected>包括</option>
+          <option value="12">不包括</option>
+          <option value="13">是</option>
+          <option value="14">不是</option>
+          <option value="15">以...开始</option>
+          <option value="16">以...结束</option>
+        </select>
+        <input type="text" name="receiv" size="30" value="[#receiv#]" maxlength="30">
+        　区分大小写 
+        <input type="checkbox" name="revbox" value="1">
+      </td>
+    </tr>  
+    <tr>
+	<td valign="middle" align="left" 
+width="31%" bgcolor="#E2EEDB" height="25"> 　 
+        <input type="radio" name="item" value="subject" onclick="setItem('3')">
+        邮件主题 </td>
+      <td colspan="3" width="69%" bgcolor="#E2EEDB" height="25"> 
+        <select name="subsel" class="lemon1">
+          <option value="11" selected>包括</option>
+          <option value="12">不包括</option>
+          <option value="13">是</option>
+          <option value="14">不是</option>
+          <option value="15">以...开始</option>
+          <option value="16">以...结束</option>
+        </select>
+        <input type="text" name="subject" size="30" value="[#subject#]" maxlength="50">
+        　区分大小写 
+        <input type="checkbox" name="subbox" value="1">
+      </td>
+    </tr>
+    <tr> 
+      <td valign="middle" align="left" 
+width="31%" bgcolor="#E2EEDB" height="25"> 　 
+        <input type="radio" name="item" value="size" onclick="setItem('4')" >
+        邮件大小 </td>
+      <td colspan="3" width="69%" bgcolor="#E2EEDB" height="25"> 
+        <select name="sizsel" class="lemon1">
+          <option value="21" selected>大于或等于</option>
+          <option value="22">小于</option>
+        </select>
+        <input type="text" name="size" size="10" value="[#size#]" maxlength="8">
+        <b>K </b></td>
+    </tr>
+    <tr> 
+      <td valign="middle" align="left" colspan="4" bgcolor="#E2EEDB" height="25">　请选择本规则条件（仅选一条）</td>
+    </tr>
+    <tr> 
+      <td valign="middle" align="left" colspan="4" bgcolor="#E2EEDB" height="25"> 
+        　 
+        <input type="radio" name="action" value="refuse" onclick="setAct('1')" >
+        拒收符合条件的邮件（邮件不会进入你的邮箱） </td>
+    </tr>
+    <tr> 
+      <td valign="middle" align="left" 
+width="31%" bgcolor="#E2EEDB" height="25"> 　 
+        <input type="radio" name="action" value="deliev" onclick="setAct('2')" >
+        转发到指定用户 </td>
+      <td colspan="3" width="69%" bgcolor="#E2EEDB" height="25"> 地址 
+        <input type="text" name="deliev" size="30" value="[#deliev#]" maxlength="30">
+        　　并在本站保存 
+        <input type="checkbox" name="backup" value="1">
+      </td>
+    </tr>
+    <tr> 
+      <td valign="middle" align="left" rowspan="2" 
+width="31%" bgcolor="#E2EEDB" height="25"> 　 
+        <input type="radio" name="action" value="move" onclick="setAct('3')" >
+        转移到指定文件夹</td>
+      <td colspan="3" rowspan="2" width="69%" bgcolor="#E2EEDB" height="25"> 
+        <select name="tobox" class="lemon1">
+          <option value="Inbox">收件箱</option>
+          <option value="Trash" selected>垃圾箱</option>
+        </select>
+      </td>
+    </tr>
+    <tr> </tr>
+    <tr> 
+      <td valign="top" align="left" width="31%" height="107" bgcolor="#E2EEDB"> 
+        <div align="left">　 
+          <input type="radio" name="action" value="back" onclick="setAct('4')" >
+          使用自动回复 </div>
+      </td>
+      <td colspan="3" width="69%" height="107" bgcolor="#E2EEDB"> 
+        <textarea cols=60 name=content rows=6 wrap=PHYSICAL>[#content#]
+</textarea>
+      </td>
+    </tr>
+    <tr> 
+      <td valign="middle" align="left" colspan="4"> 
+        <div align="center"><br>
+          <a href="javascript:setValue()"><img src="../mailImages/bt10.GIF" width="53" height="24" border="0"></a> 
+          　　<a href="javascript:document.filter.reset()"><img src="../mailImages/bt5.GIF" width="52" height="24" border="0"></a>　 
+          　<a href="/pronline/Msg?nFunCode=17263&sid=[#sid#]"><img src="../mailImages/bt4.GIF" width="52" height="24" border="0"></a></div>
+      </td>
+    </tr>
+  </table>
+<div align="center"><BR>
+  </div>
+</form>
+</BODY></HTML>

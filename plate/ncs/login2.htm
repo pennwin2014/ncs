@@ -1,0 +1,424 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>新网程终端特征采集系统</title>
+	<style>
+	.cafont{
+			font-size:12px;
+			color:purple;
+		}
+		</style>
+
+<script language="JavaScript">
+	
+	function GetErrCode(errcode)
+{
+	var result = '';
+	switch (errcode)
+	{
+		case -2113667072 :
+		    result = "装载动态库错误(-2113667072)";
+			break;
+		case -2113667071 :
+		    result = "内存分配错误(-2113667071)";
+			break;
+		case -2113667070 :
+		    result = "读私钥设备错误(-2113667070)";
+			break;
+		case -2113667069 :
+		    result = "私钥密码错误";
+			break;
+		case -2113667068 :
+		    result = "读证书链设备错误(-2113667068)";
+			break;
+		case -2113667067 :
+		    result = "证书链密码错误(-2113667067)";
+			break;
+		case -2113667066 :
+		    result = "读证书设备错误(-2113667066)";
+			break;
+		case -2113667065 :
+		    result = "证书密码错误(-2113667065)";
+			break;
+		case -2113667064 :
+		    result = "私钥超时(-2113667064)";
+			break;
+		case -2113667063 :
+		    result = "缓冲区太小(-2113667063)";
+			break;
+		case -2113667062 :
+		    result = "初始化环境错误(-2113667062)";
+			break;
+		case -2113667061 :
+		    result = "清除环境错误(-2113667061)";
+			break;
+		case -2113667060 :
+		    result = "数字签名错误(-2113667060)";
+			break;
+		case -2113667059 :
+		    result = "验证签名错误(-2113667059)";
+			break;
+		case -2113667058 :
+		    result = "摘要错误(-2113667058)";
+			break;
+		case -2113667057 :
+		    result = "证书格式错误(-2113667057)";
+			break;
+		case -2113667056 :
+		    result = "数字信封错误(-2113667056)";
+			break;
+		case -2113667055 :
+		    result = "从LDAP获取证书错误(-2113667055)";
+			break;
+		case -2113667054 :
+		    result = "证书已过期(-2113667054)";
+			break;
+		case -2113667053 :
+		    result = "获取证书链错误(-2113667053)";
+			break;
+		case -2113667052 :
+		    result = "证书链格式错误(-2113667052)";
+			break;
+		case -2113667051 :
+		    result = "验证证书链错误(-2113667051)";
+			break;
+		case -2113667050 :
+		    result = "证书已废除(-2113667050)";
+			break;
+		case -2113667049 :
+		    result = "CRL格式错误(-2113667049)";
+			break;
+		case -2113667048 :
+		    result = "连接OCSP服务器错误(-2113667048)";
+			break;
+		case -2113667047 :
+		    result = "OCSP请求编码错误(-2113667047)";
+			break;
+		case -2113667046 :
+		    result = "OCSP回包错误(-2113667046)";
+			break;
+		case -2113667045 :
+		    result = "OCSP回包格式错误(-2113667045)";
+			break;
+		case -2113667044 :
+		    result = "OCSP回包过期(-2113667044)";
+			break;
+		case -2113667043 :
+		    result = "OCSP回包验证签名错误(-2113667043)";
+			break;
+		case -2113667042 :
+		    result = "证书状态未知(-2113667042)";
+			break;
+		case -2113667041 :
+		    result = "对称加解密错误(-2113667041)";
+			break;
+		case -2113667040 :
+		    result = "获取证书信息错误(-2113667040)";
+			break;
+		case -2113667039 :
+		    result = "获取证书细目错误(-2113667039)";
+			break;
+		case -2113667038 :
+		    result = "获取证书唯一标识错误(-2113667038)";
+			break;
+		case -2113667037 :
+		    result = "获取证书扩展项错误(-2113667037)";
+			break;
+		case -2113667036 :
+		    result = "PEM编码错误(-2113667036)";
+			break;
+		case -2113667035 :
+		    result = "PEM解码错误(-2113667035)";
+			break;
+		case -2113667034 :
+		    result = "产生随机数错误(-2113667034)";
+			break;
+		case -2113667033 :
+		    result = "PKCS12参数错误(-2113667033)";
+			break;m
+		case -2113667032 :
+		    result = "私钥格式错误(-2113667032)";
+			break;
+		case -2113667031 :
+		    result = "公私钥不匹配(-2113667031)";
+			break;
+		case -2113667030 :
+		    result = "PKCS12编码错误(-2113667030)";
+			break;
+		case -2113667029 :
+		    result = "PKCS12格式错误(-2113667029)";
+			break;
+		case -2113667028 :
+		    result = "PKCS12解码错误(-2113667028)";
+			break;
+		case -2113667027 :
+		    result = "非对称加解密错误(-2113667027)";
+			break;
+		case -2113667026 :
+		    result = "OID格式错误(-2113667026)";
+			break;
+		case -2113667025 :
+		    result = "LDAP地址格式错误(-2113667025)";
+			break;
+		case -2113667024 :
+		    result = "LDAP地址错误(-2113667024)";
+			break;
+		case -2113667023 :
+		    result = "连接LDAP服务器错误(-2113667023)";
+			break;m
+		case -2113667022 :
+		    result = "LDAP绑定错误(-2113667022)";
+			break;
+		case -2113667021 :
+		    result = "没有OID对应的扩展项(-2113667021)";
+			break;
+		case -2113667020 :
+		    result = "获取证书级别错误(-2113667020)";
+			break;
+		case -2113667019 :
+		    result = "读取配置文件错误(-2113667019)";
+			break;
+		case -2113667018 :
+		    result = "私钥未载入(-2113667018)";
+			break;
+		case -2113666824 :
+		    result = "无效的登录凭证(-2113666824)";
+			break;
+		case -2113666823 :
+		    result = "参数错误(-2113666823)";
+			break;
+		case -2113666822 :
+		    result = "不是服务器证书(-2113666822)";
+			break;
+		case -2113666821 :
+		    result = "登录错误(-2113666821)";
+			break;
+		case -2113666820 :
+		    result = "证书验证方式错误(-2113666820)";
+			break;
+		case -2113666819 :
+		    result = "随机数验证错误(-2113666819)";
+			break;
+		case -2113666818 :
+		    result = "与单点登录客户端代理通信(-2113666818)";
+		break;
+	}
+	 	 
+	return result;
+}	
+function doTest2()
+{
+	strpripath="com1";
+	strcertpath="com1";
+	strcertchainpath="com1";
+//	strpassword=nclogin.prikeypwd.value;
+strpassword=document.getElementById('prikeypwd').value
+  var ConfigurationNum=parseInt("0");
+//  DevNumber=parseInt("10");
+ var DevNumber=9;
+if(strpassword.length==0){
+alert('请输入证书私钥');
+return false;
+}
+//zms
+	//初始化函数
+//	if(!window.ActiveXObject) // 判断是否支持COM控件
+//	{
+   if(isFirefox=navigator.userAgent.indexOf("Firefox")>0){ 
+	SafeEngineCtl = document.getElementById('SafeEngineCtlNPAPI'); //调用NP接口方法
+   }else if(isSafari=navigator.userAgent.indexOf("Safari")>0) {   
+        SafeEngineCtl = document.getElementById('SafeEngineCtlNPAPI'); //调用NP接口方法
+   }else if(isCamino=navigator.userAgent.indexOf("Camino")>0){   
+        SafeEngineCtl = document.getElementById('SafeEngineCtlNPAPI'); //调用NP接口方法
+   }else if(isMozilla=navigator.userAgent.indexOf("Gecko/")>0){   
+        SafeEngineCtl = document.getElementById('SafeEngineCtlNPAPI'); //调用NP接口方法
+   }else if(isOpera =navigator.userAgent.indexOf("Opera/")>0){
+	SafeEngineCtl = document.getElementById('SafeEngineCtlNPAPI'); //调用NP接口方法
+   }
+   else{
+   		SafeEngineCtl = document.getElementById('SafeEngineCtlCOM');
+   }   
+//	else{
+//		SafeEngineCtl = document.getElementById('SafeEngineCtl'); //调用COM接口方法（如果是其他内核的浏览器）
+//	}
+//var SEC;
+//SEC=thisFram("SafeEngineCtl");
+//
+//	SEC.SEH_InitialSession(DevNumber,strpripath, strpassword, 0, DevNumber, strcertchainpath, "");
+
+//	SafeEngineCtl.SEH_InitialSession(DevNumber,strpripath, strpassword, 0, DevNumber, strcertchainpath, "");
+	//zms
+	SafeEngineCtl.SEH_InitialSession(9,"com1", strpassword, 0, 9, "", "com1");
+
+	if(SafeEngineCtl.ErrorCode!=0)
+	{
+	
+		alert("SEH_InitialSession Error. Return:\n" + GetErrCode(SafeEngineCtl.ErrorCode));
+		return false;
+	
+	}
+ // return true;
+
+
+	//生成随机数	
+	strRandom = SafeEngineCtl.SEH_GenRandomBytes();
+
+	if(SafeEngineCtl.ErrorCode!=0)
+	{
+		alert("SEH_GenRandomBytes Error. Return:\n" + GetErrCode(SafeEngineCtl.ErrorCode));
+		SafeEngineCtl.SEH_ClearSession();
+		return false;
+	}
+
+	//获取证书内容
+  strCert = SafeEngineCtl.SEH_GetSelfCertificate(DevNumber, strcertpath, "");	
+	if(SafeEngineCtl.ErrorCode!=0)
+	{
+		alert("SEH_GetSelfCertificate Error. Return:\n" + GetErrCode(SafeEngineCtl.ErrorCode));
+		return false;
+	}
+
+
+		
+	//验证证书	
+	SafeEngineCtl.SEH_VerifyCertificate(strCert);	
+	if(SafeEngineCtl.ErrorCode!=0)
+	{
+		alert("SEH_VerifyCertificate Error. Return:\n" + GetErrCode(SafeEngineCtl.ErrorCode));
+		SafeEngineCtl.SEH_ClearSession();
+		return false;
+	}
+
+	
+	//获取证书唯一标示	
+	strItemVal = SafeEngineCtl.SEH_GetCertUniqueID(strCert);
+	if(SafeEngineCtl.ErrorCode!=0)
+	{
+		alert("SEH_GetCertUniqueID Error. Return:\n" + GetErrCode(SafeEngineCtl.ErrorCode));
+		SafeEngineCtl.SEH_ClearSession();
+	  return false;
+	}
+	var len=strItemVal.length;
+	var serno=strItemVal.substr(2,len);
+
+	SafeEngineCtl.SEH_ClearSession();
+ 
+  return true;
+	}
+	
+	
+	
+	
+	
+<!--
+function FP_swapImg() {//v1.0
+ var doc=document,args=arguments,elm,n; doc.$imgSwaps=new Array(); for(n=2; n<args.length;
+ n+=2) { elm=FP_getObjectByID(args[n]); if(elm) { doc.$imgSwaps[doc.$imgSwaps.length]=elm;
+ elm.$src=elm.src; elm.src=args[n+1]; } }
+}
+
+function FP_preloadImgs() {//v1.0
+ var d=document,a=arguments; if(!d.FP_imgs) d.FP_imgs=new Array();
+ for(var i=0; i<a.length; i++) { d.FP_imgs[i]=new Image; d.FP_imgs[i].src=a[i]; }
+}
+
+function FP_getObjectByID(id,o) {//v1.0
+ var c,el,els,f,m,n; if(!o)o=document; if(o.getElementById) el=o.getElementById(id);
+ else if(o.layers) c=o.layers; else if(o.all) el=o.all[id]; if(el) return el;
+ if(o.id==id || o.name==id) return o; if(o.childNodes) c=o.childNodes; if(c)
+ for(n=0; n<c.length; n++) { el=FP_getObjectByID(id,c[n]); if(el) return el; }
+ f=o.forms; if(f) for(n=0; n<f.length; n++) { els=f[n].elements;
+ for(m=0; m<els.length; m++){ el=FP_getObjectByID(id,els[n]); if(el) return el; } }
+ return null;
+}
+
+function FP_swapImgRestore() {//v1.0
+ var doc=document,i; if(doc.$imgSwaps) { for(i=0;i<doc.$imgSwaps.length;i++) {
+  var elm=doc.$imgSwaps[i]; if(elm) { elm.src=elm.$src; elm.$src=null; } } 
+  doc.$imgSwaps=null; }
+}
+function spylogin(){
+
+if (nclogin.username.value=="" || nclogin.password.value=="") {
+
+	window.alert("用户名或密码不能为空！");
+
+	return ;
+
+}
+var scwidth=screen.width-30;
+document.getElementById('nclogin').screenwidth.value=scwidth;
+
+				nclogin.submit();
+		
+			return true;
+
+}
+function ss()
+{
+if(event.keyCode==13)
+spylogin();
+}
+
+// -->
+</script>
+</head>
+
+<body topmargin="0" leftmargin="0" rightmargin="0" bottommargin="0" bgcolor="#083A84" onLoad="FP_preloadImgs(/*url*/'/images/login-6-3.gif', /*url*/'/images/login-6-4.gif')">
+<form name="nclogin" id="nclogin" method="post" action="/pronline/Msg">
+		<input name="DevNum" type="hidden" id="DevNum" value="9" >
+   <input name="ConfNum" type="hidden" id="ConfNum" value="0" >
+	<input type="hidden" name="FunName" value="ncsWebAuth">
+		<input type="hidden" name="screenwidth" value="">
+<div align="center">
+	<table border="0" width="1020" cellspacing="0" cellpadding="0" height="631" style="margin-top:0;" background="/images/login-6.jpg">
+    	<tr><td width="1020" height="220"></td></tr>
+		<tr>
+			<td>
+			<table border="0" width="100%" cellspacing="0" cellpadding="0" height="191">
+				<tr>
+					<td height="41" width="600" >　</td>
+					<td height="41" colspan="2" class="cafont">&nbsp;</td>
+					<td height="41" >　</td>
+				</tr>
+				<tr>
+					<td height="33"align="right" style="font-size: 14px;color:#2452BD;" >&nbsp;</td>
+					<td height="33" width="160" >
+				<input type="text" name="username" style="width:160px"></td>
+					<td height="33" width="260">　</td>
+				</tr>
+				<tr>
+					<td height="27"align="right" style="font-size: 14px;color:#2452BD;">&nbsp;</td>
+					<td width="160" height="27">
+				<input type="password" name="password" style="width:160px" onKeyPress="ss()"></td>
+					<td width="260" height="27">　</td>
+				</tr>
+
+				<tr>
+					<td width="1013" colspan="3">
+					<table border="0" width="100%" cellspacing="0" cellpadding="0">
+						<tr>
+							<td height="30" width="525">　</td>
+							<td width="141" height="30">
+							<img border="0" src="/images/login-6-1.gif" width="83" height="30" id="img1" onClick="spylogin();" onMouseOut="FP_swapImgRestore()" onMouseOver="FP_swapImg(1,1,/*id*/'img1',/*url*/'/images/login-6-3.gif')"></td>
+							<td width="122" height="30">
+							<img border="0" src="/images/login-6-2.gif" width="83" height="31" id="img2" onClick="window.close()" onMouseOut="FP_swapImgRestore()" onMouseOver="FP_swapImg(1,1,/*id*/'img2',/*url*/'/images/login-6-4.gif')"></td>
+							<td width="215" height="30">　</td>
+						</tr>
+					</table>
+					</td>
+				</tr>
+			</table>
+			</td>
+		</tr>
+        <tr><td width="1020" height="80" ></td></tr>
+        <tr><td width="1020" height="20" align="center" style="font-size:14px;color:#f7f6f6;">使用Chrome和Firefox浏览器可获得更快的访问速度</td></tr>
+        <tr><td width="1020" height="120" ></td></tr>
+	</table>
+</div>
+
+</form>
+</body>
+
+</html>

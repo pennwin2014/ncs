@@ -1,0 +1,35 @@
+<!-- saved from url=(0022)http://internet.e-mail -->
+<html>
+<head>
+<script language="javascript" src="/js/pastree.js"></script>
+<script>
+statenn=[#opennum#]
+foldersTree = gFld(2,"整个公司", "/pronline/Msg?FunName@[#fname#]&userid@0") 
+ [#SLPB#]
+ aux1 = insFld(foldersTree, gFld(2,"[#groupname#]", ""))
+ [#SLPB#]
+    insDoc(aux1, gLnk(2, "[#username#]", "/pronline/Msg?FunName@[#fname#]&userid@[#userid#]"))
+ [#SLPE#]
+ [#SLPE#]
+
+
+
+</script>
+<style type="text/css">
+<!--
+body {  font-size: 9pt}
+table {  font-size: 9pt}
+a:link {  color: #000000; text-decoration: none}
+a:visited {  color: #000000; text-decoration: none}
+a:hover {  color: #000000; text-decoration: underline}
+a:active {  color: #990000; text-decoration: none; font-weight: bold}
+-->
+</style>
+</head>
+<body bgcolor=white style='overflow-y: auto ;overflow-x:hidden;' leftmargin="2" topmargin="2" oncontextmenu="return false" onload=ff('[#scroll#]','[#opennum#]')>
+<script>
+initializeDocument()
+</script>
+</body>
+</html>
+

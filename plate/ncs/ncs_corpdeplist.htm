@@ -1,0 +1,184 @@
+<html>
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<title>main</title>
+<script>
+var dfd1="0"
+function showuser(did,uid)
+{
+var temp_var="/pronline/Msg?FunName@ncsWebShowUserinfo&did@"+did+"+uid@"+uid;
+	showModalDialog(temp_var, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:620px;scroll:yes;dialogHeight:520px');
+}
+
+function gotoPage(pagenum)
+
+{
+		form1.FunName.value='ncsWebReplace';
+    form1.CurPg.value = pagenum;
+}
+
+function goto(t){
+ tt=showModalDialog(t, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:520px;scroll:yes;dialogHeight:480px');
+}
+
+function lprint()
+{
+form1.cx.style.display="none";
+form1.rycx.style.display="none";
+form1.hsear.style.display="none";
+form1.pr.style.display="none";
+form1.exp.style.display="none";
+window.print();
+
+form1.cx.style.display="";
+form1.rycx.style.display="";
+form1.hsear.style.display="";
+form1.pr.style.display="";
+form1.exp.style.display="";
+}
+
+
+// -->
+<!-- Hide
+var ll=[#CurPg#]
+var yy=[#TotPg#]
+function killErrors() {
+return true;
+}
+window.onerror = killErrors;
+// -->
+
+</script>
+
+<script src="/js/drawtable.js"></script>
+<SCRIPT language=JavaScript>
+<!--
+
+var recordID = null;
+var Table = new FlexibleTable ('DataTable', '100%', '565', 'center', 32, 'flexibleTableSpan');
+
+Table.Header ('<input type="button" name="b1" value="全选"  class="anniu_1"  onClick="allChecked()">', '单位名称', '部门简称', '部门显示名','最后上线');
+Table.ColumnsWidth ('40', '180', '120', '120', '110');
+Table.HeaderAligment ('center', 'center', 'center', 'center', 'center');
+Table.BodyAligment ('center', 'left', 'left', 'left', 'left');
+
+Table.SetRowsTemplate (" onMouseOver=\"javascript:mouseovertr2(this);\" onMouseOut=\"javascript:mouseouttr2(this);\"   ");
+[#SLPB#]
+Table.Row('<input type="checkbox" name="ch[#num#]" value="[#sid#]">','&nbsp;[#cname#]','&nbsp;[#gname#]','&nbsp;[#dispname#]','&nbsp;[#lasttime#]');
+[#SLPE#]
+
+//-->
+</SCRIPT>
+
+
+<style type="text/css">
+<!--
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+-->
+
+</style>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<BODY oncontextmenu="return false;" style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px" bgcolor="#DEE8FA" leftMargin=0 topMargin=0 scroll=no onload=Table.Draw()>
+	<form name="form1" method="post" action="/pronline/Msg">
+  <input type="hidden" name="FunName" value="ncsWebReplace">
+	<input type="hidden" name="plate" value="ncsmsg_showinfo.htm">
+ <input type="hidden" name="fun" value="ncsWebCorpDep">
+ <input type="hidden" name="CurPg"      value="[#CurPg#]">
+ <input type="hidden" name="TotPg"      value="[#TotPg#]">
+ <input type="hidden" name="lcount"      value="[#TotRec#]">
+ <input type="hidden" name="cond" value="[#cond#]">
+ <input type="hidden" name="userid" value="[#userid#]">
+ <input type="hidden" name="groupid" value="[#groupid#]">
+		<TABLE style="BORDER-RIGHT: 1px inset; BORDER-TOP: 0px inset; BORDER-LEFT: 1px inset; BORDER-BOTTOM: 1px inset"  cellSpacing=0 cellPadding=0 width="100%" border=0>
+	<tr>
+	   <td><table width="100%" cellspacing="0" cellpadding="0">
+         <tr height="30"> 
+         <td class="tabtitle" >单位部门信息&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+         <td background="/images/images2/chaxun2-1.gif" >&nbsp; </td>
+         <td background="/images/images2/chaxun2-1.gif" align="right">        	
+         	 <table align=right border=0 cellpadding=0 cellspacing=0 class=main width=111>
+                <tbody> 
+                <td width="10%"><script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-06.gif' border=0 height=17 width=35 class='gray1'>")}
+                      else{
+                        document.write("<a href='#xxm'><img src='/images/zbuyer-06.gif' border=0 height=17 width=35 onClick='gotoPage(1);form1.submit()' class='hand'>")}
+                   </script></td>
+                <td width="10%"><script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 class='gray1'>")}
+                      else {
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]-1);form1.submit()' class='hand'>")}
+                   </script></td>
+                <td width="20%"><img src="/images/zbuyer-08.gif" border=0 height=17 width=32></td>
+                <td align=middle background="" width=92>
+                    <input class=Main id=browsdopage maxlength=3  name=browsdopage size=3 style="FONT-SIZE: 12px; HEIGHT: 17px; TEXT-ALIGN: center; WIDTH: 50px" value=[#CurPg#] onKeyPress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" onBlur="checkme(this)">
+                </td>
+                <td width="10%"><img src="/images/zbuyer-09.gif" border=0 height=17 width=16></td>
+                <td width="10%"><img align=middle border=0 height=17 src="/images/zbuyer-10.gif" width=17 onClick="gotoPage(form1.browsdopage.value);form1.submit()" class="hand"><img align=middle height=17 src="/images/zbuyer-11.gif" width=3></td>
+                
+                
+                <td width="10%"><img border=0 height=17 src="/images/zin1.gif" width=17 ></td>
+                <td align=middle background="" width=92> 
+                  <input  class=Main id=browsdopage1 maxlength=5 name=browsdopage12 size=3 style="FONT-SIZE: 12px; HEIGHT: 17px; TEXT-ALIGN: center; WIDTH: 50px" value='[#TotPg#]'>
+                </td>
+					    <td width="10%"><img align=middle height=17 src="/images/zbuyer-09.gif" width=16></td>
+					    <td align=middle background="" width=92> 
+					      <input  class=Main id=browsdopage1 maxlength=5 name=browsdopage12 size=3 style="FONT-SIZE: 12px; HEIGHT: 17px; TEXT-ALIGN: center; WIDTH: 50px;" value='[#TotRec#]'>
+					    </td>
+					    <td width="10%"><img border=0 height=17 src="/images/zin3.gif" width=17 align="middle" ><img align=middle height=17  src="/images/zbuyer-11.gif" width=3></td>
+                
+                <td width="10%"><script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]+1);form1.submit()' class='hand'>")}
+                    </script></td>
+                <td width="10%"><script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 onClick='gotoPage([#TotPg#]);form1.submit()' class='hand'>")}
+                    </script></td>
+              </tbody>
+            </table>  
+         	         	
+         	</td>
+         </tr>
+         
+         
+         </table>
+      </td>
+  </tr>
+  
+       <tr bgcolor="#DEE8FA">
+            <td width="100%" height="30" >
+          &nbsp;&nbsp;关键字: 
+           &nbsp;<input type="text" size=20 name="rycx" value="[#rycx#]">          
+               <input name="cx" type="submit" class="an3" value="查 询" onclick="form1.cond.value='';form1.CurPg.value='1';form1.FunName.value='ncsWebReplace';">
+               <input name="hsear" type="button" class="an3"  onclick="goto('/pronline/Msg?FunName@ncWebCorpDepSearch')" value="高级查询">               
+               <input name="pr" type="button" class="an3"   value="打 印" onclick="lprint()">
+               <input name="exp" type="submit" class="an3"   value="导 出" onclick="form1.CurPg.value='1';form1.FunName.value='ncsWebCorpUser'">
+            </td>
+       </tr>
+	
+  	<TR>
+    		<TD valign="top" colspan="2"><SPAN id=flexibleTableSpan></SPAN></TD>
+  	</TR>
+ 	</TABLE>
+ 		
+ </form>		
+</BODY>
+</html>

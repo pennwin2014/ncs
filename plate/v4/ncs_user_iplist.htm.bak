@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<title>单位管理</title>
+    <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" /> 
+        <style type="text/css">
+
+        .icon-grid {
+            background-image:url(/newver/resources/themes/images/share/grid.png) !important;
+        }
+        .add {
+            background-image:url(/newver/resources/themes/images/share/add.gif) !important;
+        }
+        .option {
+            background-image:url(/newver/resources/themes/images/share/plugin.gif) !important;
+        }
+        .remove {
+            background-image:url(/newver/resources/themes/images/share/delete.gif) !important;
+        }
+        .exp {
+            background-image:url(/newver/resources/themes/images/share/application_go.png) !important;
+        }
+    </style>
+    
+    
+      
+    <script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+    
+  <script>  
+    
+Ext.Loader.setConfig({enabled: true});
+Ext.Loader.setPath('Ext.ux', '/newver/ux/');
+Ext.require([
+    'Ext.grid.*',
+    'Ext.data.*',
+    'Ext.util.*',
+    'Ext.toolbar.Paging',
+    'Ext.ModelManager'
+]);
+
+
+
+
+
+
+Ext.onReady(function(){
+    
+    Ext.define('EimData', {
+        extend: 'Ext.data.Model',
+        fields: [
+            'lip', 'uip', 'stime'
+        ],
+        idProperty: 'ip'
+    });
+
+    // create the Data Store
+    var store = Ext.create('Ext.data.Store', {
+        pageSize: 25,
+        model: 'EimData',
+        remoteSort: true,
+        proxy: {
+            type: 'ajax',
+            url: '/pronline/Msg?FunName@ncsCorpIp_v4&userid@[#userid#]',
+            reader: {
+                type:'json',
+                root: 'eimdata',
+                totalProperty: 'totalCount'
+            },
+            // sends single sort as multi parameter            
+            simpleSortMode: true
+        },
+        sorters: [{
+            property: 'stime',
+            direction: 'DESC'
+        }]
+    });
+
+
+    var pluginExpanded = true;
+    
+    var sm = Ext.create('Ext.selection.CheckboxModel');
+
+    var grid = Ext.create('Ext.grid.Panel', {
+   
+        width: 610,
+        height: 590,
+        title: '([#cname#])出口IP变化记录',
+        iconCls: 'icon-grid',
+        store: store,
+        frame:true,
+
+        // grid columns
+        columns:[{
+            id: 'userid',
+            text: "原来IP地址",
+            dataIndex: 'lip',            
+            width: 190,
+            sortable: true
+        },{
+            text: "当前IP",
+            dataIndex: 'uip', 
+            width: 190,   
+            flex: 1,
+            sortable: true
+        },{
+            text: "改变时间",
+            dataIndex: 'stime',
+            width: 200,
+            align: 'center',
+            sortable: true
+        }
+             
+        ],
+        
+        columnLines: true,
+              
+        // paging bar on the bottom
+        tbar: Ext.create('Ext.PagingToolbar', {
+            store: store,
+            displayInfo: true,
+            displayMsg: '显示{0} - {1}条记录 共{2}条记录',
+            emptyMsg: "没有记录可显示"
+            
+        }),
+        renderTo: 'grid-example'
+    });
+
+     store.loadPage(1);
+
+
+});
+
+
+</script>
+    
+    
+</head>
+<body>
+    <div id="grid-example"></div>
+</body>
+</html>

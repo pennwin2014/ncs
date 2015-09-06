@@ -1,0 +1,28 @@
+<HTML>
+<HEAD>
+<TITLE>Matt Kruse's Site</TITLE>
+
+
+<SCRIPT LANGUAGE="Javascript">
+url = document.location.search;
+url = url.substring(1,url.length)
+if (url == "") { 
+	url = "/"; 
+	}
+document.write('<FRAMESET ROWS="100%" COLS="225,*">\n');
+document.write('	<FRAME NAME="tree" SRC="tree.html" SCROLLING="AUTO" MARGINHEIGHT=3 MARGINWIDTH=3>\n');
+document.write('<FRAME NAME="content" SRC="' + "top.htm" + '" SCROLLING="AUTO" MARGINHEIGHT=3 MARGINWIDTH=3>\n');
+document.write('</FRAMESET>\n');
+</SCRIPT>
+
+</HEAD>
+
+<BODY>
+
+<NOSCRIPT>
+<H1>Error</H1>
+<hr>
+This contents tree requires JavaScript to function. Since your browser does not support JavaScript, you cannot use this method of navigation.
+
+</BODY>
+</HTML>

@@ -1,0 +1,70 @@
+<html>
+
+<head>
+
+<title>Untitled Document</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script>
+function goto(t){
+ftop.location.href=t
+}
+function goto2(t){
+self.location.href=t
+}
+</script>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+
+
+<body bgcolor="#CCCCCC" text="#000000" leftmargin="0" topmargin="0">
+<table width="100%" border="0" cellspacing="0">
+  <tr>
+
+    <td height="28">
+
+      <table width="100%" border="0" cellspacing="0">
+        <tr> 
+          <td> 
+            <div align="center"><b>IP地址转换(NAT)配置</b></div>
+          </td>
+        </tr>
+        <tr> 
+          <td> 
+            <div align="right"> 
+              <input type="button" name="Button" value="地址伪装" class="an3" onclick="goto('/profire/Msg?FunName@fireWebDispNat&type@8')">
+              <input type="button" name="Button2" value="地址映射" class="an3" onClick="goto('/profire/Msg?FunName@fireWebDispNat&type@9')">
+              <input type="button" name="Button2" value="端口影射" class="an3" onClick="goto('/profire/Msg?FunName@fireWebDispNat&type@10')">
+              <input type="button" name="Button2" value="保存" class="an3" onClick="goto2('/profire/Msg?FunName@fireWebSave&opt@1')">
+              <input type="button" name="Button2" value="应用" class="an3" onClick="goto('/profire/Msg?FunName@fireWebRunNatScript')">
+              <input type="button" name="Button2" value="重置" class="an3" onClick="goto('/profire/Msg?FunName@fireWebNatReset')">
+            </div>
+          </td>
+        </tr>
+      </table>
+
+    </td>
+
+  </tr>
+
+  <tr>
+
+            
+    <td height="182"><iframe name="ftop" src="/profire/Msg?FunName@fireWebDispNat&type@8" width="100%" height="100%" border="1" frameborder="1" scrolling="yes"></iframe></td>
+
+  </tr>
+
+  <tr>
+
+            
+    <td height="340"><iframe name="fbot" src="/profire/Msg?FunName@fireWebDispNatLst" width="100%" height="100%" border="1" frameborder="1" scrolling="yes"></iframe></td>
+
+  </tr>
+
+</table>
+
+</body>
+
+</html>
+

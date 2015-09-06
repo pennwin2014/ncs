@@ -1,0 +1,37 @@
+<html>
+<head>
+<link rel="stylesheet" href="ftstyle.css">
+<!-- Infrastructure code for the tree -->
+<script language = "Javascript" src = "/js/adduser/ft.js"></script>
+<script language = "Javascript" src = "/js/adduser/ftoptions.js"></script>
+<script language="JavaScript">
+<!--
+//addImage("domain","/images/adduser/domain.gif")
+fT = gFld("公司", "")
+	aux1 = insFld(fT, gFld("敏感内容", ""))
+	    insDoc(aux1, gLnk("发送邮件", "/pronline/Msg?FunName@ncMailReadFoldHeads&userid@1&username@Test&fold@Send&CurPg@1"))
+	    insDoc(aux1, gLnk("接收邮件", "/pronline/Msg?FunName@ncMailReadFoldHeads&userid@1&username@Test&fold@Inbox&CurPg@1"))
+	    insDoc(aux1, gLnk("上载文件", "/pronline/Msg?FunName@ncMailReadUploadHeads&userid@1&username@Test&fold@Upload&CurPg@1"))
+
+    [#SLPB#]
+	aux1 = insFld(fT, gFld("[#groupname#]", ""))
+	  [#SLPB#]
+  	       aux2 = insFld(aux1, gFld("[#username#]", ""))
+	          insDoc(aux2, gLnk("发送邮件", "/pronline/Msg?FunName@ncMailReadFoldHeads&userid@[#userid#]&username@Test&fold@Send&CurPg@1"))
+	          insDoc(aux2, gLnk("接收邮件", "/pronline/Msg?FunName@ncMailReadFoldHeads&userid@[#userid#]&username@Test&fold@Inbox&CurPg@1"))
+	          insDoc(aux2, gLnk("上载文件", "/pronline/Msg?FunName@ncMailReadUploadHeads&userid@[#userid#]&username@Test&fold@Upload&CurPg@1"))
+      [#SLPE#]
+    [#SLPE#]
+//-->
+</script>
+</head>
+  
+<FRAMESET COLS="150,*"  onLoad="self.blank()" rows="*"> 
+  <FRAME name="menufrm" SRC = "/adduser/left.htm" scrolling="AUTO" >
+  <FRAME name="basefrm" SRC="/pronline/Msg?FunName@ncMailReadFoldHeads&userid@1&username@Test&fold@Send&CurPg@1">
+</FRAMESET> 
+<noframes></noframes> 
+
+	
+
+</HTML>

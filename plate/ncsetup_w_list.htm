@@ -1,0 +1,117 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<style type="text/css">
+<!--
+body {  font-size: 9pt}
+.tas {  border-color: black #FFFFFF; border-style: solid; border-top-width: 0px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 1px}
+table {  font-size: 9pt}
+.gray1 { filter:gray }
+.ttbbd {  cursor: default}
+-->
+</style>
+<script LANGUAGE="JavaScript">
+    function clear_form() {
+        parent.formFrame.form1.id.value ="";
+        parent.formFrame.form1.starttime.value ="00:00:00";
+        parent.formFrame.form1.stoptime.value ="00:00:00";
+        return 0;
+    }
+
+function goto(t){
+parent.formFrame.location.href=t
+}
+
+function mouseovertr2 (o){
+var i;
+df=o.style.backgroundColor
+	o.style.backgroundColor= "#003399";
+	o.style.borderColor= "#FFFF00";
+	o.style.cursor="hand";	
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#ffffff";
+}	
+}
+    
+function mouseouttr2(o){
+	o.style.backgroundColor=df
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#000000";
+}
+	
+	
+}
+
+</script>
+</head>
+
+<body bgcolor="#Cccccc" text="#000000" leftmargin="12" topmargin="4" >
+<table width="99%" border="0" cellspacing="0" cellpadding="4">
+  <form name="form1" method="post" action="/pronline/Msg">
+    <input type="hidden" name="FunName" value="ncWebSetupWeb_save">
+    <input type="hidden" name="userid"  value="[#userid#]">
+    <input type="hidden" name="flags"  value="1">
+    <input type="hidden" name="plate"  value="ncsetup_w_list.htm">
+    <input type="hidden" name="sum"    value="[#sum#]">
+    <tr> 
+      <td height="2" colspan="7" class="bord4" bordercolor="#CCCCCC"> 
+        <div align="left"> 
+          <input type="button" name="Button" value="新增" class="an3" onClick="goto('/pronline/Msg?FunName@ncWebSetupWeb_form&plate@ncsetup_w_form.htm&userid@[#userid#]')">
+          <input type="submit" name="del" value="删除" class="an3">
+        </div>
+        <div align="right"> </div>
+      </td>
+    </tr>
+    <tr> 
+      <td width="6%" class="bord1"> 
+        <div align="center"><font color="#000000"><b>&nbsp;</b></font></div>
+      </td>
+      <td width="9%" class="bord1"> 
+        <p align="center"><b><font color="#000000">序列号</font></b></p>
+      </td>
+      <td width="9%" class="bord1" > 
+        <div align="center"><b><font color="#000000">操作</font></b></div>
+      </td>
+      <td width="7%" class="bord1" > 
+        <div align="center"><b><font color="#000000">频度</font></b></div>
+      </td>
+      <td width="14%" class="bord1"> 
+        <div align="center"><b><font color="#000000">起始时间</font></b></div>
+      </td>
+      <td width="14%" class="bord1"> 
+        <div align="center"><b><font color="#000000">终止时间</font></b></div>
+      </td>
+      <td width="41%" class="bord3"> 
+        <div align="center"><b><font color="#000000">网站地址</font></b></div>
+      </td>
+    </tr>
+    <!-- [#SLPB#] -->
+    <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" onclick="goto('/pronline/Msg?FunName@ncWebSetupWeb_form&id@[#id#]&userid@[#userid#]&plate@ncsetup_w_form.htm&flags@1&num@[#num#]')"> 
+      <td width="6%" class="bord1"> 
+        <div align="center"> 
+          <input type="checkbox" name="chk[#num#]" value="[#id#]">
+        </div>
+      </td>
+      <td width="9%" class="bord1"> 
+        <div align="center">&nbsp;[#id#]</div>
+      </td>
+      <td width="9%" class="bord1">&nbsp;[#vister#]</td>
+      <td width="7%" class="bord1"> 
+        <div align="center">&nbsp;每天</div>
+      </td>
+      <td width="14%" class="bord1"> 
+        <div align="center">&nbsp;[#starttime#]</div>
+      </td>
+      <td width="14%" class="bord1">&nbsp;[#stoptime#]</td>
+      <td width="41%" class="bord3">&nbsp;[#url#]</td>
+    </tr>
+    <!-- [#SLPE#] -->
+  </form>
+</table>
+
+</body>
+</html>

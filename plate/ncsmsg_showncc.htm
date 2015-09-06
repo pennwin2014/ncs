@@ -1,0 +1,71 @@
+<html>
+<head>
+<title>[#message#]</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<script>
+function goto(){
+  //  self.location.href="/pronline/Rmsg?FunName@[#fname#]&ProId@[#ProId#]&uid@[#uid#]&did@[#did#]&sdate@[#sdate#]&edate@[#edate#]&cname@[#cname#]&cond@[#cond#]&flag@[#flag#]";
+form1.submit(); 
+}
+</script>
+
+<style type="text/css">
+<!--
+.style2 {
+	font-size: 16px;
+	font-weight: bold;
+	font-style: italic;
+	color: #FFFF33;
+}
+-->
+</style>
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" oncontextmenu="return false" onLoad="goto()" >
+		<form name="form1" method="post" action="/pronline/Rmsg">
+		<input type="hidden" name="FunName" value="[#fname#]">
+		<input type="hidden" name="ProId" value="[#did#]">
+		<input type="hidden" name="uid" value="[#uid#]">
+		<input type="hidden" name="did" value="[#did#]">
+		<input type="hidden" name="sdate" value="[#sdate#]">
+		<input type="hidden" name="edate" value="[#edate#]">
+		<input type="hidden" name="cname" value="[#cname#]">
+		<input type="hidden" name="flag" value="[#flag#]">
+		<input type="hidden" name="CurPg" value="[#CupPg#]">
+		<input type="hidden" name="cond" value="[#cond#]">
+<table border=0 cellspacing=0 width="100%" cellpadding=0 align="center">
+  <tbody>
+    <tr>
+      <td id=clearStart valign="top"><table width="100%" height="27" border="0" align="center" cellpadding="0" cellspacing="0" background="/images/table_bg1.gif">
+          <tr > 
+            <td colspan="2"> <div align="center"><strong></strong></div></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr> 
+      <td id=clearStart height="500" valign="top"> <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>       
+   <table width="400" height="200" border="1" align="center" cellpadding="0"   cellspacing="0"     bordercolorlight=#3162B3   bordercolordark=#ffffff bgcolor=#006994>          <tr> 
+              <td valign="middle" >
+        <table width="88%" border="0" align="center">
+                <tr> 
+                  <td width="57%" height="50"> <div align="center" class="style2">查询指令已发给[#cname#]</div></td>
+                </tr>
+                <tr> 
+                  <td width="57%" height="50"> <div align="center" class="style2">请耐心等待.........</div></td>
+                </tr>
+              </table>
+           </td>
+          </tr>
+        </table>
+        <p>&nbsp;</p></td>
+    </tr>
+  </tbody>
+</table>
+<p>&nbsp;</p>
+</form>
+</body>
+</html>

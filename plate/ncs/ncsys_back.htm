@@ -1,0 +1,232 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+<script>
+function backup(){
+	if(form1.FileName.value==''){
+	alert('请输入备份文件名');
+	return ;
+	}
+	if(form1.BStime.value==''){
+	alert('请输入备份起始时间');
+	return;
+	}
+	if(form1.BEtime.value==''){
+	alert('请输入备份结束时间');
+	return;
+	}
+	form1.FunName.value='ncsNoAutoBackup';
+	form1.submit();
+}
+</script>
+<body bgcolor="#fbfbfb" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" align="center"  style="overflow:hidden">
+<form name="form1" method="post" action="/pronline/Msg">
+
+	  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  	<tr>
+          <td width="26"><img src="/images/tbbg/tb_left.jpg"></td>
+         
+          <td  valign="top" style="background:url(/images/tbbg/tb_center.jpg);height:19;"></td>
+          <td  width="20"><img src="/images/tbbg/tb_right.jpg" width="20" height="19"></td>
+        
+      </tr>
+  	<tr>
+  		<td width="26" height="200" style="background:url(/images/tbbg/mid_left.jpg);position:relative;left:-2px;top:-2px;"></td>
+      <td style="background:url(/images/tbbg/mid_leftw.jpg);">
+
+     <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+     	  	
+    <tr> 
+      <td valign="top" ><table width="100%" height="35" border="0" align="center" cellpadding="0" cellspacing="0" >
+          <tr > 
+            <td colspan="2"> <div style="font-size:11pt;color:#00237e;font-weight:bold;text-align: center;">系统备份设置</div></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr> 
+      <td valign="top" >
+        <table width="85%" border="1"    bordercolorlight=#89ACED   bordercolordark=#ffffff    align="center" cellpadding="0" cellspacing="0">
+          <tr> 
+            <td valign="top">
+              <table width="90%" border="0" align="center">
+                <tr> 
+                  <td height="25" colspan="6"><strong>启用自动备份</strong></td>
+                </tr>
+                <tr> 
+                  <td> &nbsp;</td>
+                  <td> [#sAutoBackup#]</td>
+                  <td> <div align="right">每天备份时间</div></td>
+                  <td colspan="2"> <input type="text" name="BackupTime" value="[#BackupTime#]"> 
+                  </td>
+                  <td>  &nbsp;</td>
+                </tr>
+         
+                <tr>
+                  <td>&nbsp;</td>
+                  <td ><input type="checkbox" name="BackBaseDB" value="Yes"  [#BackBaseDB#]>                  
+                  基本信息备份</td>
+                  <td><input type="checkbox" name="BackCase" value="Yes" [#BackCase#]>案件布控</td>
+                  <td ><input type="checkbox" name="BackNetvistlog" value="Yes"  [#BackNetvistlog#]>上下网日志</td>
+                  <td><input type="checkbox" name="BackNetidlog" value="Yes"  [#BackNetvistlog#]>虚拟身份使用日志</td>
+                 <td>&nbsp;</td>
+                </tr>
+                 <tr>
+                  <td>&nbsp;</td>
+                  <td ><input type="checkbox" name="BackWarnlog" value="Yes"  [#BackWarnlog#]>
+                    告警日志 </td>
+                  <td><input type="checkbox" name="BackErrorlog" value="checkbox"  [#BackErrorlog#]>
+                    阻断日志</td></td>
+                  <td >&nbsp;</td>
+                  <td>&nbsp;</td>
+                 <td>&nbsp;</td>
+                </tr>
+                
+            </table></td>
+          </tr>     
+           
+           
+        <tr> 
+            <td valign="top">
+              <table width="92%" border="0" align="center">
+                <tr> 
+                  <td height="25" colspan="2"><strong>手工备份操作</strong></td>
+                  <td colspan="4">&nbsp;<font color="red">时间格式(YYYY-MM-DD)&nbsp;后台进程执行备份,文件在"系统数据备份"界面下载.</font></td>
+                </tr>
+                <tr>
+                 <td height="25" colspan="6">文件名&nbsp;&nbsp;&nbsp;<input type="text" name="FileName" size="19" value="[#FileName#]">&nbsp;文件最大&nbsp;<input type="text" name="FileSize" size="19" value="[#FileSize#]">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" name="next" value="执行备份" class="an3-1" onclick="backup()"></td>
+                <tr>
+                 <tr>
+                 <td height="25" colspan="6">起始时间&nbsp;<input type="text" name="BStime" size="19" maxlength="10" value="[#BStime#]">&nbsp;结束时间&nbsp;<input type="text" name="BEtime" size="19" maxlength="10" value="[#BEtime#]">&nbsp;备份方式&nbsp;<select name="backtype"><option value="1">转移备份</option><option value="2">复制备份</option></select>&nbsp;</td>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td ><input type="checkbox" name="BackWarnlog1" value="Yes" [#BackWarnlog1#] >
+                    告警日志 </td>
+                  <td><input type="checkbox" name="BackErrorlog1" value="checkbox" [#BackErrorlog1#] >
+                    阻断日志</td></td>
+                  <td ><input type="checkbox" name="BackNetvistlog1" value="Yes" [#BackNetvistlog1#]>上下网日志</td>
+                  <td><input type="checkbox" name="BackNetidlog1" value="Yes" [#BackNetidlog1#] >虚拟身份使用日志</td>
+                 <td>&nbsp;</td>
+                </tr>
+               
+               
+                
+            </table></td>
+         </tr> 
+           
+           
+           
+           
+           
+                
+          <tr> 
+            <td valign="top">
+              <table width="90%" border="0" align="center">      
+                              
+                <tr> 
+                  <td height="25" colspan="4"><strong>远端备份</strong></td>
+                </tr>
+                <tr> 
+                  <td width="11%"> <div align="right"></div></td>
+                  <td colspan="3"> [#sRemoteBackup#] (选择远端备份，将同时在本地进行备份)</td>
+                </tr>
+                <tr> 
+                  <td width="11%">&nbsp;</td>
+                  <td width="16%">&nbsp;</td>
+                  <td width="40%">&nbsp;</td>
+                  <td width="33%">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td height="25" colspan="2"> <strong>远端备份主机设定</strong></td>
+                  <td width="40%"> <div align="center"> 
+                      <input name="test" type="submit" class="an3-1" value="测试设定参数" >
+                    </div></td>
+                  <td width="33%">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="11%" height="20">&nbsp;</td>
+                  <td width="16%" height="20">主机IP地址</td>
+                  <td width="40%" height="20"> <input type="text" name="rip" value="[#remoteip#]" size="31" maxlength="63"> 
+                  </td>
+                  <td width="33%" height="20">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="11%" height="8">&nbsp;</td>
+                  <td width="16%" height="8">主机名称</td>
+                  <td width="40%" height="8"> <input type="text" name="rhost" value="[#remotehost#]" size="31" maxlength="63"> 
+                  </td>
+                  <td width="33%" height="8">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="11%">&nbsp;</td>
+                  <td width="16%">帐号</td>
+                  <td width="40%"> <input type="text" name="ruser" value="[#remoteuser#]" size="31" maxlength="63"> 
+                  </td>
+                  <td width="33%">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="11%">&nbsp;</td>
+                  <td width="16%">口令</td>
+                  <td width="40%"> <input type="password" name="rpass" value="[#remotepass#]" size="34" maxlength="63"> 
+                  </td>
+                  <td width="33%">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="11%"> <div align="right"> </div></td>
+                  <td width="16%">共享名</td>
+                  <td width="40%"> <div align="left"> 
+                      <input type="text" name="rshare" value="[#remoteshare#]" size="31" maxlength="63">
+                    </div></td>
+                  <td width="33%">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+              </table></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr>
+      <td height="70" > 
+        <table width="50%" border="0" align="center">
+          <tr> 
+            <td> <div align="center"> 
+                <input type="hidden" name="FunName" value="ncsWebSystemSave_back">
+                <input type="submit" name="next" value="确 认" class="an3">
+                &nbsp; 
+                <input type="submit" name="app" value="应 用" class="an3">
+                &nbsp; 
+                <input type="reset" name="cancel" value="取消" class="an3-1" onClick="history.back()">
+                &nbsp; &nbsp; </div></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  
+  
+   </td>
+  	<td style="background:url(/images/tbbg/mid_right.jpg);position:relative;left:1px;top:-2px;">&nbsp;
+  	</td>
+    </tr>
+   	  	<tr>
+          <td width="26"><img src="/images/tbbg/bottom_left.jpg" style="position:relative;top:-2px;left:-1px;"></td>         
+          <td  valign="top" style="background:url(/images/tbbg/bottom_center.jpg);position:relative;left:-4px;top:-2px;"></td>
+          <td  width="20"><img src="/images/tbbg/bottom_right.jpg" width="20" height="19" style="position:relative;top:-2px;"></td>        
+      </tr>
+  	
+  </table>
+  
+</form>
+<script> form1.backtype.value='[#backtype#]';</script>
+</body>
+</html>

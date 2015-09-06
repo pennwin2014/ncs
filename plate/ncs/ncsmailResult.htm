@@ -1,0 +1,308 @@
+<HTML>
+<HEAD>
+<TITLE></TITLE>
+<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+
+<LINK href="/css/result_css.css" type=text/css rel=stylesheet>
+<LINK href="/css/css.css" type=text/css rel=stylesheet>
+<style type="text/css">
+<!--
+
+  A:link {TEXT-DECORATION:underline;color:#990000;}
+  A:visited{TEXT-DECORATION:underline;color:#FF0000;}
+  A:hover {TEXT-DECORATION:underline;color:#999900;}
+
+.style1 {
+	color: #00CCFF;
+	font-size: 10px;
+	font-weight: bold;
+}
+.tScrollw {
+
+    overflow: scroll;
+    height:674px;
+    SCROLLBAR-FACE-COLOR: #c1d8f9; 
+    SCROLLBAR-SHADOW-COLOR: #c1d8f9; 
+    SCROLLBAR-3DLIGHT-COLOR: #c1d8f9; 
+    SCROLLBAR-ARROW-COLOR: #5985ce; 
+    SCROLLBAR-DARKSHADOW-COLOR: #c1d8f9;
+    cursor: default;
+    }
+  tr.tableHead {
+    position:relative;
+
+    height: 18px; 
+    text-align: center;
+    }   
+-->
+</style>
+<script language="JavaScript" src="/js/msg.js" type="text/javascript"></script>
+<script language="JavaScript" src="/js/open_div.js" type="text/javascript"></script>
+<script language="JavaScript" src="/js/calendar.js" type="text/javascript"></script>
+
+
+<title>main result</title>
+<script>
+
+var ll = 0;
+var yy = 1;
+var firstFlag = true;
+var currentTab;
+var tabBase;
+var cno;
+
+
+
+/* 最终调用函数ncsWebMailMonRead 显示邮件*/
+function goto2(fname1, fname2, fname3, service_code){
+	
+	var tmp = fname1 + "/" + fname2 + "/" + fname3;
+	var t = "/pronline/Msg?FunName@ncsMailCommand&file_name@" + tmp + "&service_code@" + service_code;
+	tt=window.open(t,'RUNMIT_New','left=100,top=200,width='+624+',height='+624+',fullscreen=0,toolbar=no,scrollbars=yes,resizable=1,menubar=no,status=0');
+
+}
+
+
+function changeTabs(){
+	
+ if(firstFlag == true)
+   {
+   	currentTab = t4;
+    tabBase = t4;
+    cno=currentTab.id.substring(1);
+    firstFlag = false;
+  }
+  
+  
+
+if(window.event.srcElement.className == "tab3"
+     ||window.event.srcElement.className == "tab4"
+     ||window.event.srcElement.className == "tab5"
+     ||window.event.srcElement.className == "tab8")
+     
+  {
+  	currentTab = window.event.srcElement;
+  	currentTab.className="tab3";
+	  tabBase.className="tab4";
+	  tabBase = currentTab;
+	
+	  
+	  
+	 var tabContentID = currentTab.id + "Contents";
+   var  tabContent = document.all(tabContentID);
+   
+
+	if(tabContent.id=="t0Contents"){
+		self.location.href="/pronline/Msg?FunName@ncsShowSearchResult&cmdNo@[#cmdNo#]&service_flags@http";
+	}
+	else if(tabContent.id=="t1Contents"){
+		self.location.href="/pronline/Msg?FunName@ncsShowSearchResult&cmdNo@[#cmdNo#]&service_flags@vid";
+	}
+	else if(tabContent.id=="t2Contents"){
+		self.location.href="/pronline/Msg?FunName@ncsShowSearchResult&cmdNo@[#cmdNo#]&service_flags@im";
+	}
+	else if(tabContent.id=="t3Contents"){
+		self.location.href="/pronline/Msg?FunName@ncsShowSearchResult&cmdNo@[#cmdNo#]&service_flags@form";
+	}
+	else if(tabContent.id=="t4Contents"){
+		self.location.href="/pronline/Msg?FunName@ncsShowSearchResult&cmdNo@[#cmdNo#]&service_flags@mail";
+	}
+	else
+	{
+	}
+  }
+
+
+
+
+
+}
+
+function gotoPage(pagenum)
+
+{
+    form1.CurPg.value = pagenum;
+    form1.submit();
+    
+}
+
+
+
+function showsubmenu_td(sid)
+{
+	var i = 0;
+	var tmp;
+	form1.gsid.value = sid;
+	for(i = 1; i <= form1.lTotRec.value; i++)
+	{
+		tmp = "detail" + i; 
+		document.getElementById(tmp).style.display ="none";
+	}
+	
+	var s = "detail" + sid;
+	document.getElementById(s).style.display ="";
+ 
+}
+
+function sx()
+{ 
+	debugger;
+
+	form1.submit();
+}
+
+
+</script>
+
+
+</HEAD>
+
+<body marginheight=0 leftmargin=0 marginwidth=0 topMargin="0"  style="overflow:hidden" bgcolor="#DEE8FA" onLoad="setInterval('sx()',5000)" onClick="changeTabs()">
+<form name="form1" method="post" action="/pronline/Msg" target="mainpronetway">
+ <input type="hidden" name="FunName" value="ncsShowSearchResult2">
+ <input type="hidden" name="cmdNo"      value="[#cmdNo#]">
+ <input type="hidden" name="gsid"      value="[#gsid#]">
+ <input type="hidden" name="service_flags"      value="[#service_flags#]">
+ <input type="hidden" name="lTotRec"      value="">
+ 
+ <table border="0" cellspacing="0" cellpadding="0" width="100%">
+  
+  <tr>
+    <td width="100%">
+      <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      
+      <tr>
+         
+          <td align="center">
+		       
+            <table border="0" width="100%" cellspacing="0" cellpadding="0">
+             
+              <tr bgcolor="#8cb4e8">
+              	
+              	
+                 <td ID="t0" CLASS="tab4">网页浏览
+                 	</td>
+	               <td ID="t1" CLASS="tab4">虚拟身份
+	               	</td> 
+	               <td ID="t2" CLASS="tab4">网络聊天
+	               	</td>
+	               <td ID="t3" CLASS="tab5">网页表单
+	               	</td>
+	               <td ID="t4" CLASS="tab3">收发邮件
+	               	</td>
+                 <td ID="t0base"  STYLE="DISPLAY: none;height:1; border-left:solid thin white"></td>
+			           <td ID="t1base" STYLE="DISPLAY: none;height:1; border-left:solid thin white" ></td>
+			           <td ID="t2base" STYLE="DISPLAY: none;height:1; border-left:solid thin white" > </td>
+			           <td ID="t3base" STYLE="DISPLAY: none;height:1; border-left:solid thin white" > </td>
+			           <td ID="t4base" STYLE="DISPLAY: none;height:1; border-left:solid thin white" > </td> 
+	               
+                 
+                 
+                   <td align="right">        	
+         
+            <table align="right" border=0 cellpadding=0 cellspacing=0 class=main width=111>
+              <tbody> 
+                <td width="10%"><script>
+                      if (ll==1)
+                      {
+                      	
+                      	document.write("<img src='/images/zbuyer-06.gif' border=0 height=17 width=35 class='gray1'>")
+                      }
+                      else
+                      { 
+                      	document.write("<a href='#xxm'><img src='/images/zbuyer-06.gif' border=0 height=17 width=35 onClick='gotoPage(1);form1.submit()' class='hand'>")
+                      }
+                   </script></td><td width="10%"><script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 class='gray1'>")}
+                      else {
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 onClick='gotoPage(parseInt(form1.CurPg.value)-1);' class='hand'>")}
+                   </script></td>
+                <td width="20%"><img src="/images/zbuyer-08.gif" border=0 height=17 width=32></td>
+                <td align=middle background="" width=92>
+                    <input class=Main id=browsdopage maxlength=68 name="CurPg" size=8 style="FONT-SIZE: 12px; HEIGHT: 17px; TEXT-ALIGN
+: center; WIDTH: 30px" value=0 onKeyPress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" onBlur="checkme
+(this)">
+                </td>
+                <td width="10%"><img src="/images/zbuyer-09.gif" border=0 height=17 width=16></td>
+                <td width="10%"><img align=middle border=0 height=17 src="/images/zbuyer-10.gif" width=17 onClick="form1.submit()" c
+lass="hand"><img align=middle height=17 src="/images/zbuyer-11.gif" width=3></td>
+                
+                
+                                                    <td width="10%"><img border=0 height=17 src="/images/zin1.gif" width=17 ></td>
+                                                    <td align=middle background="" width=92> 
+                                                      <input  class=Main id=browsdopage1 maxlength=5 name="TotPg" size=3 style="FONT-S
+IZE: 12px; HEIGHT: 17px; TEXT-ALIGN: center; WIDTH: 40px" value='0'>
+                                                    </td>
+                                                    <td width="10%"><img align=middle height=17 src="/images/zbuyer-09.gif" width=16
+></td>
+                                                    <td align=middle background="" width=92> 
+                                                      <input  class=Main id=browsdopage1 maxlength=8 name="TotRec" size=8 style="FONT-
+SIZE: 12px; HEIGHT: 17px; TEXT-ALIGN: center; WIDTH: 40px" value='0'>
+                                                    </td><td width="10%"><img border=0 height=17 src="/images/zin3.gif" width=17 align="middle" ><img align=middle height=17  src="/images/zbuyer-11.gif" width=3></td>
+                                                    	<td width="10%"><script>
+                        if (ll == yy){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else if (yy == 0){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 onClick='gotoPage(parseInt(form1.CurPg.value)+1);' class='hand'>")}
+                    </script></td><td width="10%"><script>
+                        if (ll == yy){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else if (yy == 0){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 onClick='gotoPage(form1.TotPg.value);' class='hand'>")}
+                    </script></td>
+              </tbody> 
+              </table> 
+         	         	
+         	</td>                                                                                                         
+        		</tr>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+              
+            </table>
+            
+          </td>
+            
+      </tr>  
+           
+           
+         
+            
+            
+          </table>  
+          </td>
+  </tr>
+       
+              
+<tr> 	
+<td HEIGHT="*" COLSPAN="10" ID="mainresult" align="left" valign="top"> 
+<div id="ff" name="ff">
+</div>
+</td>
+</tr>         
+           
+              
+       </table>
+      
+    
+</form>
+ <div CLASS="conts" ID="t0Contents"></div>
+ <div CLASS="conts" ID="t1Contents"></div>
+ <div CLASS="conts" ID="t2Contents"></div>
+ <div CLASS="conts" ID="t3Contents"></div>
+ <div CLASS="conts" ID="t4Contents"></div>    
+ <iframe name="mainpronetway" id="mainpronetway" style="display:none" src="/pronline/Msg?FunName@ncsShowSearchResult2&CurPg@[#CurPg#]&cmdNo@[#cmdNo#]&gsid@[#gsid#]&service_flags@[#service_flags#]"> </iframe>
+       
+ </body>
+ 
+
+</html>
+
+
+
+
+

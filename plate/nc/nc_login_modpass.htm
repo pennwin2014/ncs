@@ -1,0 +1,83 @@
+<html>
+<head>
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META content="text/html; charset="gb2312" http-equiv=Content-Type>
+<title>登录</title>
+<link REL=stylesheet HREF="/css/runmit.css" TYPE="text/css">
+<style type="text/css">
+<!--
+.handme {  cursor: hand}
+.bord4 {  border: #999999; border-style: solid; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px}
+table {  font-size: 9pt}
+.anan {  width: 90px}
+-->
+</style>
+</head>
+<body topMargin=0 leftmargin=0 marginheight="0" bgColor=Menu  onload="self.focus()" oncontextmenu="return false" >
+<script>
+var openwinflag;
+function wqp()
+{
+//    openwinflag=window.open(self.location,'RUNMIT_sbpm','fullscreen=0,toolbar=no,scrollbars=no,resizable=1,menubar=no,status=0');
+//    window.focus();
+//    document.closes.Click();
+}
+if(window.name != "RUNMIT_sbpm")
+{
+ 	wqp();
+// openwinflag.resizeTo(540,340);
+}
+
+</script>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" height="100%">
+      <form method="post" action="/proauth/Msg" name="ncWebModiPass">
+  <tr> 
+     <input type="hidden" name="FunName" value="ncWebInternetModpass">
+      <input type="hidden" name="username" value="[#username#]">
+    <td bgcolor="#FFFFFF" height="50"><img src="/images/newfz3.gif" width="540" height="54"></td>
+  </tr>
+  <tr> 
+    <td valign="top"> <br>
+      <table width="80%" border="0" align="center">
+        <tr>
+            <td><img src="/images/anb50.gif" width="30" height="30" align="absmiddle">修改密码 
+              [#message#]</td>
+        </tr>
+      </table>
+      <table width="60%" border="0" align="center" cellpadding="4">
+        <tr> 
+          <td colspan="2">&nbsp;</td>
+        </tr>
+        <tr> 
+          <td width="19%">新口令</td>
+          <td width="81%"> 
+            <input type="password" name="password" size="20" maxlength="31">
+          </td>
+        </tr>
+        <tr> 
+          <td width="19%">口令确认</td>
+          <td width="81%"> 
+            <input type="password" name="password1" size="20" maxlength="20">
+          </td>
+        </tr>
+        <tr> 
+          <td width="19%">&nbsp;</td>
+          <td width="81%"><input type="submit" name="Button2" value="确定修改" class="anan">
+            <input type="button" name="Button" value="返回" class="anan" onclick="history.back()"></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr> 
+    <td height="1"><img src="/images/cc2.gif" width="100%" height="15"></td>
+  </tr>
+  <tr>
+    <td height="40"> 
+      <div align="right">        &nbsp; </div>
+    </td>
+  </tr></form>
+</table>
+</body>
+
+</html>

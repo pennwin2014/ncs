@@ -1,0 +1,128 @@
+<html>
+<head>
+<title>用户信息</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/css.css" type="text/css">
+</head>
+
+<body bgcolor="#CCCCCC" text="#000000" leftmargin="10" topmargin="0" marginwidth="100%" marginheight="600">
+<div align="center"></div>
+<table width="80%" border="0" align="center">
+  <tr> 
+    <td height="108"> 
+      <form name="form1" method="post" action="/pronline/Msg" >
+        <input type="hidden" name="FunName" value="ncAdminUserSave">
+        <input type="hidden" name="userid"  value="[#userid#]">
+        <input type="hidden" name="sumright"  value="[#sumright#]">
+        <table width="100%" border="0" bgcolor="#AFAFC0" height="100%" cellspacing="0" cellpadding="4">
+          <tr bgcolor="#8C8CA6"> 
+            <td colspan="5" height="25" class="bord4"> 
+              <div align="center"><b><font color="#FFFFFF">系统用户信息</font></b></div>
+            </td>
+          </tr>
+          <tr> 
+            <td width="14%" valign="bottom" height="21" class="bord1"> 
+              <div align="right">登录名</div>
+            </td>
+            <td width="30%" valign="bottom" height="21" class="bord1"> 
+              <input type="text" name="name" size="20" maxlength="31" value="[#name#]">
+            </td>
+            <td width="13%" valign="bottom" height="21" class="bord1"> 
+              <div align="right">姓名</div>
+            </td>
+            <td colspan="2" valign="bottom" height="21" class="bord1"> 
+              <div align="left"> 
+                <input type="text" name="dispname" size="20" maxlength="31" value="[#dispname#]">
+              </div>
+            </td>
+          </tr>
+          <tr> 
+            <td width="14%" valign="bottom" height="21" class="bord1"> 
+              <div align="right">口 令</div>
+            </td>
+            <td width="30%" valign="bottom" height="21" class="bord1"> 
+              <input type="password" name="password" size="20" maxlength="31">
+            </td>
+            <td width="13%" valign="bottom" height="21" class="bord1"> 
+              <div align="right">口令确认</div>
+            </td>
+            <td colspan="2" valign="bottom" height="21" class="bord1"> 
+              <input type="password" name="password2" size="20" maxlength="31">
+            </td>
+          </tr>
+          <tr> 
+            <td width="14%" valign="bottom" height="21" class="bord1"> 
+              <div align="right">管理组</div>
+            </td>
+            <td width="30%" valign="bottom" height="21" class="bord1"> [#sgroup#]</td>
+            <td width="13%" valign="bottom" height="21" class="bord1"> 
+              <div align="right">用户级别</div>
+            </td>
+            <td colspan="2" valign="bottom" height="21" class="bord1"> 
+              <select name="usrlevel">
+                <option value="[#usrlevel#]" selected>[#levelname#]</option>
+                <option value="1">系统管理员</option>
+                <option value="3">一般操作员</option>
+              </select>
+            </td>
+          </tr>
+          <tr> 
+            <td width="14%" valign="bottom" height="32" class="bord1"> 
+              <div align="right">加入时间</div>
+            </td>
+            <td width="30%" valign="bottom" height="32" class="bord1"> 
+              <input type="text" name="addtime" value="[#addtime#]"  disabled >
+            </td>
+            <td width="13%" valign="bottom" height="32" class="bord1">修改时间</td>
+            <td colspan="2" valign="bottom" height="32" class="bord1"> 
+              <input type="text" name="moditime" value="[#moditime#]" disabled>
+            </td>
+          </tr>
+          <tr> 
+            <td width="14%" valign="bottom" height="29" class="bord1"> 
+              <div align="right">Email</div>
+            </td>
+            <td colspan="4" valign="bottom" height="29" class="bord1"> 
+              <div align="left"> 
+                <input type="text" name="email" size="63" maxlength="64" value="[#email#]">
+              </div>
+            </td>
+          </tr>
+          <tr> 
+            <td colspan="5" valign="bottom" height="27" class="bord1"> 
+              <div align="center">使用权限</div>
+            </td>
+          </tr>
+          <!-- [#SLPB#] -->
+          <tr> 
+            <td width="14%" valign="bottom" height="21" class="bord1"> 
+              <div align="right"> 
+                <input type="checkbox" name="[#vara#]" value="[#rolea#]"  [#checka#]>
+              </div>
+            </td>
+            <td width="30%" valign="bottom" height="21" class="bord1">[#labela#]</td>
+            <td width="13%" valign="bottom" height="21" class="bord1"> 
+              <div align="right"> 
+                <input type="checkbox" name="[#varb#]" value="[#roleb#]" [#checkb#]>
+              </div>
+            </td>
+            <td colspan="2" valign="bottom" height="21" class="bord1">[#labelb#]</td>
+          </tr>
+          <!-- [#SLPE#] -->
+          <tr> 
+            <td colspan="4" height="12" class="bord1">&nbsp; </td>
+            <td width="24%" height="12" class="bord1"> 
+              <div align="left"> 
+                <input type="submit" name="ok"   value="确认" >
+                <input type="reset" name="cancel"   value="放弃"  onClick="history.back(-1)">
+              </div>
+            </td>
+          </tr>
+        </table>
+        <div align="center"></div>
+      </form>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<title>main</title>
+<script>
+function goto(t){
+self.location.href=t
+}
+function mouseovertr2 (o){
+var i;
+df=o.style.backgroundColor
+	o.style.backgroundColor= "#003399";
+	o.style.borderColor= "#FFFF00";
+	o.style.cursor="hand";	
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#ffffff";
+}	
+}
+
+function showf(sid,userid,mbserno,flag,logflag) {
+    form1.userid.value=userid;
+    form1.id.value=sid;
+    form1.mbserno.value=mbserno;
+    form1.flag.value=flag;
+    form1.logflag.value=logflag;
+}
+
+    
+function mouseouttr2(o){
+	o.style.backgroundColor=df
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#000000";
+}
+	
+	
+}
+</script>
+<link REL=stylesheet HREF="/css/runmit.css" TYPE="text/css">
+<script src="/js/rmenu.js"></script>
+<style type="text/css">
+<!--
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+
+-->
+</style>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+<body marginheight=0 leftmargin=0 marginwidth=0 topMargin="0" BGCOLOR="Menu" style="overflow:hidden">
+
+<table border="0" width=100% height=100% cellspacing="0" cellpadding="0" align=center bgcolor='#ffffff'>
+<form name="form1" method="post" action="/pronline/Msg"> 
+
+ <tr> 
+    <td width="100%"  valign=middle align=center height="25" bgcolor="#dfdfdf" class="ttt">
+      <table width="100%" border="0" cellspacing="0">
+        <tr> 
+            <td height="35" bgcolor="#DEE8FA"> 
+              <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td >&nbsp;&nbsp;系统用户&nbsp;
+                    <select name="userid" style="width:110px" >  
+                  
+                    	[#SLPB#]      
+                    	<option value="[#id#]">[#uname#]</option>
+                    	[#SLPE#]
+                    	
+                    </select>
+                    密宝序列号
+                     <select name="mbserno" style="width:110px" > 
+                     	[#SLPB#]       
+                    	<option value="[#mname#]">[#mname#]</option>
+                    	[#SLPE#]
+                    	
+                    </select>
+                    
+                      登录<select name="logflag" style="width:90px" >         
+                    	<option value="1">密宝验证</option>
+                    	<option value="0">密宝不验证</option>
+                    </select>
+                    
+                     查看内容<select name="flag" style="width:90px" >         
+                    	<option value="1">密宝验证</option>
+                    	<option value="0">密宝不验证</option>
+
+                    </select>
+                    
+                   </td>
+                  <td width="190"> <input type="submit" name="add" value="添  加" class="an3"> 
+                    <input type="submit" name="modi" value="修  改" class="an3"> 
+                    <input type="submit" name="del" value="删  除" class="an3"> 
+                  
+                    <input type="hidden" name="FunName" value="ncWebMbSave"> 
+                      <input type="hidden" name="sum"   value="[#sum#]"> 
+                    <input type="hidden" name="id"  value="[#id#]"> </td>
+                </tr>
+              </table> 
+            </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+      <td width="100%"  valign=top align=center bgcolor="#DEE8FA">
+      <div class="sScrollw"  id="tC">
+        <table width="100%" border="0" cellspacing="0" leftmargin="10" cellpadding="0" bgcolor="#FFFFFF" height="100%">
+          <tr class="tableHead" style="top:expression(document.getElementById('tC').scrollTop)"> 
+            <td height="20" bgcolor="#6382BD" class="bord2">&nbsp;</td>
+            <td height="18" bgcolor="#6382BD" class="bord2"><font color="#FFFFFF">&nbsp;系统用户</font></td>
+            <td height="18" bgcolor="#6382BD" class="bord2"><font color="#FFFFFF">&nbsp;绑定密宝的序列号</font></td>
+            <td height="18" bgcolor="#6382BD" class="bord2"><font color="#FFFFFF">&nbsp;登录</font></td>
+            <td height="18" bgcolor="#6382BD" class="bord4" align="center"><font color="#FFFFFF">&nbsp;内容查看</font></td> 
+          </tr>
+          <!-- [#SLPB#] -->
+          <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" onclick="showf('[#sid#]','[#userid#]','[#mbserno#]','[#flag#]','[#logflag#]')" > 
+            <td class="bord1" width="25"> <input type="checkbox" name="ch[#num#]" value="[#sid#]"> 
+            </td>
+            <td class="bord1">&nbsp;[#dispname#]</td>
+            <td class="bord1">&nbsp;[#mbserno#]</td>
+            <td class="bord1">&nbsp;[#log_desc#]</td>
+            <td class="bord3">&nbsp;[#flag_desc#]</td>
+          </tr>
+          <!-- [#SLPE#] -->
+          <!-- [#SLPB#] -->
+          <tr id=[#snum#]> 
+            <td class="bord1" width="25">&nbsp; </td>
+            <td class="bord1">&nbsp;</td>
+            <td class="bord1">&nbsp;</td>
+            <td class="bord1">&nbsp;</td>
+            <td class="bord3">&nbsp;</td>
+          </tr>
+          <!-- [#SLPE#] -->
+        </table>
+      </div>
+
+    </form>
+      
+</table>
+
+
+</body>
+
+</html>

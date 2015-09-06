@@ -1,0 +1,220 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>无标题文档</title>
+<style type="text/css">
+<!--
+body {
+	background-color: #0148b2;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	overflow:hidden;
+}
+.tScroll5 {
+      overflow: scroll;
+    overflow-x:hidden;
+    height:580px;
+    cursor: default;
+    }
+.style1 {
+	font-size: 14px;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+.style2 {
+	color: #00237e;
+	font-size: 16px;
+	font-weight: bold;
+}
+.style3 {font-size: 14px}
+.style4 {color: #00237e; font-size: 13px; font-weight: bold;border: #8CB4E8 solid; border-width: 0px 0px 2px 0px }
+.style4-1 {color: green; font-size:10px; border: #8CB4E8 solid; border-width: 0px 0px 2px 0px }
+.style5 {color: #FFFFFF}
+.style7 {
+  background-color:#F5F5F5;
+	font-size: 12px;
+	color: #00237e;
+	font-weight: bold;
+}
+.style8 {
+  border-top-width: 0px;
+  border-left-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 0px;
+	font-size: 12px;
+	text-align: center;
+	color: red;
+	background-color: #d0ecf3;
+	height:18px;
+	font-weight: bold;
+}
+.style9 {
+  font-size: 12px;
+	color: blue;	
+}
+
+.style10 {
+	border-top: 2px solid #b7cfe5;
+	border-right: 2px solid #b7cfe5;
+	border-bottom: 2px solid #b7cfe5;
+	border-left: 2px solid #b7cfe5;
+}
+.tScrollw {
+
+    overflow-y: scroll;
+    overflow-x:hidden;
+    height:520px;
+    cursor: default;
+    }
+ .listDataTable { 
+FONT-SIZE: 9pt; FONT-FAMILY: "Arial";TABLE-LAYOUT:FIXED
+}   
+-->
+A:link {TEXT-DECORATION:underline;color:#990000;}
+A:visited{TEXT-DECORATION:none;color:#333333;}
+A:hover {TEXT-DECORATION:underline;color:#999900;}
+.bord1 { font-size:9pt; border: #8CB4E8 solid; border-width: 0px 1px 1px 0px}
+.bord4 { font-size:9pt; border: #0148b2 solid; border-width: 0px 1px 1px 0px}
+.bord3 { font-size:9pt; border: #0148b2 solid; border-width: 0px 0px 1px 0px}
+.bord5 { font-size:9pt; border: #8CB4E8 solid; border-width: 1px 0px 1px 1px}
+.bord2 { font-size:9pt; color:#000000;border: #8CB4E8 solid; border-width: 0px 0px 0px 0px;cursor: hand}
+
+
+</style></head>
+
+<script>
+function goto(t1,t2){
+parent.sbpm_right.location.href=t2;
+parent.sbpm_left.location.href=t1;
+}
+function sxserver(t)
+{
+frames.xxmwlj.location=t;
+}
+function sxweb(t)
+{
+frames.xxmwlj2.location=t;
+}
+
+function mouseovertr2 (o){
+var i;
+df=o.style.backgroundColor
+	o.style.backgroundColor= "#ffeebb";
+	o.style.borderColor= "#FFeebb";
+	o.style.cursor="hand";	
+}
+
+function mouseouttr2(o){
+	o.style.backgroundColor=df
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#000000";
+}
+	
+	
+}
+function showgj(did,uid,stime,etime){
+
+var tt="/pronline/Msg?FunName@ncsWebReplace&plate@ncs/ncs_swgj_lab.htm&did@"+did+"&uid@"+uid+"&stime@"+stime+"&etime@"+etime;
+  window.open (tt, 'ww', 'height=600, width=800, top=100,left=100, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no')
+}
+
+function goto2(did){
+
+var tt="/pronline/Msg?FunName@ncsWebDispClientAddForm&disflag@1&userid@"+did;
+
+  window.open (tt, 'ww', 'height=600, width=800, top=100,left=100, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no')
+}
+
+function opencx(){
+goto('/no.htm','/ncs_swgjmain.htm')
+//	showModalDialog('/ncs_swgjmain.htm', window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:950px;scroll:yes;dialogHeight:650px');
+}
+</script>
+
+
+
+<body onunload="parent.document.getElementById('xyj1').src='/images/images2/yuanjiao3-1.gif' " onload="parent.document.getElementById('xyj1').src='/images/images2/yuanjiao3.gif' ">
+<table width="100%"  border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td valign="top"  ><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td colspan="2" height="8" bgcolor="#8CB4E8"></td>
+      </tr>
+      <tr>
+        <td colspan="2" width="100%" height="30" align="center" bgcolor="#ffFFFF">
+        	<table bgcolor="#ffffff" width="100%"  height="30"   border="0" cellpadding="1" cellspacing="1">
+         <tr >          	  
+            <td width="85" class="style7">&nbsp;系统连续运行</td>
+            <td width="115" class="style8" id="runtime">0</td>
+           
+            <td width="60" class="style7">&nbsp;在线单位</td>
+            <td width="50" class="style8" id="curuser">0</td>            
+            <td width="60" class="style7" >在线用户</td>
+            <td width="50" class="style8" id="zcuser">0</td>
+            <td width="80" class="style7">布控案件数</td>
+            <td width="50" class="style8" id="lcase">100</td>            
+            <td width="80" class="style7">当前系统时间</td>
+            <td  class="style8" id=liveclock></td>
+          </tr> 
+
+        </table>
+        </td>
+      </tr>
+      
+      <tr>
+        <td colspan="2" height="9" bgcolor="#8CB4E8"></td>        
+      </tr>
+      <tr>
+        <td height="4" colspan="2"></td>
+      </tr>
+      <tr>
+        <td height="9" colspan="2" bgcolor="#8CB4E8"></td>
+      </tr>
+     <tr height="25">
+        <td align="center" bgcolor="#DEE8FA" ><b style="font-size: 10pt;color:#00237e;">当前在线单位</b></td>
+         <td align="center" bgcolor="#DEE8FA"><b style="font-size: 10pt;color:#00237e;">告警信息</b></td>
+      </tr>
+      
+      <tr>
+      <td width="50%" valign="top">
+      <div class="tScrollw">
+	      <table width="96%" height="600"><tr>
+	        <td  height="550" bgcolor="#E1ECFB" valign="top">
+      	<div id="wlj2" width="98%"  height="600" ></div>
+      	</td>
+      	</tr>
+	      </table>
+	     </div> 
+      	
+      </td>
+      <td width="50%" valign="top">
+	    <div class="tScrollw">
+	      <table width="96%" height="600"><tr>
+	        <td  height="550" bgcolor="#E1ECFB" valign="top">
+	   			<div id="wlj1"  >
+	   			</div>
+	         </td>
+	        </tr>
+	      </table>
+	     </div> 
+      </td> 
+
+          </tr>
+        </table></td>
+    
+      </tr>
+           
+    
+    </table></td>
+  </tr>
+</table>
+
+<iframe  width="0" height="0" src="/pronline/Msg?FunName@ncsWarnInfoOnline"  display="no"  ></iframe>
+<iframe width="0" height="0" src="/pronline/Msg?FunName@ncsShowMainCorpOnline" display="no"  ></iframe>
+</body>
+</html>

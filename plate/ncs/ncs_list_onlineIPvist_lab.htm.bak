@@ -1,0 +1,480 @@
+<html>
+<head>
+<title>远程查询</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<style>
+.conts{visibility:hidden}
+.tab{
+	border-top:thin solid #FFFFFF;
+	border-right:thin solid gray;
+	border-left:thin solid #FFFFFF;
+	font-family:Verdana;
+	font-size:10pt;
+	text-align:center;
+	font-weight:normal;
+	border-bottom-width: thin;
+	border-bottom-style: double;
+	border-bottom-color: gray;
+}
+.tab1{
+	border-top:thin none #FFFFFF;
+	border-right:thin solid gray;
+	border-left:thin none #FFFFFF;
+	font-family:Verdana;
+	font-size:10pt;
+	text-align:center;
+	font-weight:normal;
+	border-bottom-width: thin;
+	border-bottom-style: none;
+	border-bottom-color: gray;
+}
+.selTab{border-left:solid thin white;
+border-top:solid thin white;
+border-right:solid thin black;
+font-weight:bold;
+text-align:center}
+</style>
+<script language="javascript">
+var ll=0;
+var yy=1;
+function setscrollvaue()
+{
+	form1.sctop.value=document.all.tC.scrollTop;
+
+}
+function sx()
+{
+	if(form1.ProId.value!='')
+	{
+		if(form1.refresh_flag.value!='1')
+		{
+			form1.refresh_flag.value='1';
+ 		  form1.submit();
+ 	  }
+ 	}
+	else
+		document.all.data1.src="/pronline/Msg?FunName@ncsWebClientOnline&userid@"+form1.userid.value+"&groupid@"+form1.groupid.value;
+	
+}
+setInterval('sx()',10000);
+
+</script>
+<script LANGUAGE="JavaScript">
+//this is the tab switching function
+var currentTab;
+var tabBase;
+var cno;
+var firstFlag = true;
+
+function changeTabs(){
+if(firstFlag == true){
+currentTab = t0;
+cno=currentTab.id.substring(1);
+//tabBase = t0base;
+firstFlag = false;
+}
+var ctab=window.event.srcElement;
+var ctabID = ctab.id ;
+var tContent = document.all(ctabID);
+
+if((tContent.id=='t2')||(tContent.id=='t3')||(tContent.id=='t1')){
+form1.ProId.value=form1.userid.value;
+form1.did.value=form1.userid.value;
+		if(form1.ProId.value=='')
+	  {
+		alert('远程实时监控要选择单位');
+		return;
+	 }
+	}
+	
+	if(window.event.srcElement.className == "tab4"||window.event.srcElement.className == "tab5"||window.event.srcElement.className == "tab7"||window.event.srcElement.className == "tab8"||window.event.srcElement.className == "tab9"){
+	
+	var cno2=parseInt(cno)+1;
+
+	if(cno==0)
+		currentTab.className = "tab7";
+	else if(cno==3)
+		currentTab.className="tab8";
+	else
+		currentTab.className="tab5";
+
+  if(cno2<3)
+  	eval('document.all.t'+cno2).className="tab5";
+  else if(cno2==3)
+  	eval('document.all.t'+cno2).className="tab8";
+  
+	
+	currentTab = window.event.srcElement;
+	cno=currentTab.id.substring(1);
+	var cno1=parseInt(cno)+1;
+	if(cno==3){
+		currentTab.className = "tab6";
+	}
+  else if(cno==2){
+   currentTab.className="tab3";	 
+	 eval('document.all.t'+cno1).className="tab9";
+  }
+  else{
+	 currentTab.className="tab3";	 
+	 eval('document.all.t'+cno1).className="tab4";
+	}
+
+
+
+
+
+tabContentID = currentTab.id + "Contents";
+tabContent = document.all(tabContentID);
+
+//tabContents.innerHTML = tabContent.innerHTML;
+var temp_desc;
+	if(tabContent.id=="t0Contents"){
+
+	frames.main2.location="/pronline/Msg?FunName@ncsWebClientOnline&userid@"+form1.userid.value;	
+	form1.ProId.value='';
+
+	}
+	else if(tabContent.id=="t1Contents"){
+		temp_desc='<b style="font-size: 10pt;color:#00237e;">'+form1.cname.value+" "+form1.dname.value+'</b>';
+	  document.all.wlj.innerHTML=temp_desc;
+
+		form1.FunName.value='nccWebShowUserStatus';
+		form1.con_flag.value="2";
+		form1.CurPg.value='1';
+		form1.refresh_flag.value='2';
+
+		form1.submit();
+	}
+	else if(tabContent.id=="t2Contents"){
+		temp_desc='<b style="font-size: 10pt;color:#00237e;">'+form1.cname.value+" "+form1.dname.value+'</b>';
+	  document.all.wlj.innerHTML=temp_desc;
+		form1.FunName.value='nccWebShowNewvister';
+		form1.con_flag.value="1";
+		form1.CurPg.value='1';
+		form1.refresh_flag.value='2';
+		form1.submit();
+	}
+	else if(tabContent.id=="t3Contents"){
+		temp_desc='<b style="font-size: 10pt;color:#00237e;">'+form1.cname.value+" "+form1.dname.value+'</b>';
+	  document.all.wlj.innerHTML=temp_desc;
+		form1.FunName.value='nccWebShowNewweb';
+		form1.con_flag.value="3";
+		form1.CurPg.value='1';
+		form1.refresh_flag.value='2';
+		form1.submit();
+	}
+	else if(tabContent.id=="t4Contents"){
+		temp_desc='<b style="font-size: 10pt;color:#00237e;">'+form1.cname.value+" "+form1.dname.value+'</b>';
+	  document.all.wlj.innerHTML=temp_desc;
+		form1.FunName.value='nccMailMonList';
+		form1.con_flag.value="5";
+		form1.CurPg.value='1';
+		form1.refresh_flag.value='2';
+		form1.submit();
+	}
+	else if(tabContent.id=="t6Contents"){
+		temp_desc='<b style="font-size: 10pt;color:#00237e;">'+form1.cname.value+" "+form1.dname.value+'</b>';
+	  document.all.wlj.innerHTML=temp_desc;
+		form1.FunName.value='nccWebImList';
+		form1.con_flag.value="6";
+		form1.CurPg.value='1';
+		form1.refresh_flag.value='2';
+		form1.submit();
+	}
+	else if(tabContent.id=="t7Contents"){
+		temp_desc='<b style="font-size: 10pt;color:#00237e;">'+form1.cname.value+" "+form1.dname.value+'</b>';
+	  document.all.wlj.innerHTML=temp_desc;
+		form1.FunName.value='nccWebNetSesLog';
+		form1.con_flag.value="7";
+		form1.CurPg.value='1';
+		form1.refresh_flag.value='2';
+		form1.submit();
+	}
+	else if(tabContent.id=="t8Contents"){
+		temp_desc='<b style="font-size: 10pt;color:#00237e;">'+form1.cname.value+" "+form1.dname.value+'</b>';
+	  document.all.wlj.innerHTML=temp_desc;
+		form1.FunName.value='nccWebShowNewWarn';
+		form1.con_flag.value="8";
+    form1.CurPg.value='1';
+    form1.refresh_flag.value='2';
+		form1.submit();
+	}
+}
+}
+
+function showuserinfo(uid)
+{
+var temp_var="/pronline/Msg?FunName@ncsWebShowUserinfo&did@"+form1.ProId.value+"+uid@"+uid;
+	showModalDialog(temp_var, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:520px;scroll:yes;dialogHeight:520px');
+}
+
+function showuser(v_sdate,v_edate,v_uid,name1)
+{
+  var tt1='/pronline/Msg?FunName@ncsWebReplace&plate@ncs/ncs_swgj_lab.htm&cname@'+form1.cname.value+'&did@'+form1.ProId.value+'&sdate@'+v_sdate+'&edate@'+v_edate+'&did@[#ProId#]'+'&uid@'+v_uid+'&udname@'+name1;
+  window.open (tt1, 'ww', 'height=600, width=800, top=100,left=100, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no');
+//  var openwinflag=window.open(tt1);
+  }
+  
+ function showuser2(num,v_uid,name1)
+{
+var stime=eval('ff.stime'+num).value;
+var etime=eval('ff.etime'+num).value;
+
+  var tt1='/pronline/Msg?FunName@ncsWebReplace&plate@ncs/ncs_swgj_lab.htm&cname@'+form1.cname.value+'&did@'+form1.ProId.value+'&sdate@'+stime+'&edate@'+etime+'&uid@'+v_uid+'&udname@'+name1;
+ window.open (tt1, 'ww', 'height=600, width=800, top=100,left=100, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no');
+ 
+  } 
+
+function gotoselect(t){
+	var temp_src='/pronline/Msg?FunName@ncsWebOnlineSearch&flag@'+form1.con_flag.value;
+
+ tt=showModalDialog(temp_src, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:520px;scroll:yes;dialogHeight:470px');
+}
+function showform(t)
+{
+	      window.open(t,'readpost','left=100,top=50,width=700,height=600,fullscreen=0,toolbar=no,scrollbars=yes,resizable=1,menubar=no,status=0');
+}
+function mouseovertr2 (o){
+var i;
+df=o.style.backgroundColor
+	o.style.backgroundColor= "#ffff00";
+	o.style.borderColor= "#FFFF00";
+	o.style.cursor="hand";	
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#000000";
+}	
+}
+
+function mouseouttr2(o){
+	o.style.backgroundColor=df
+	
+	
+}
+function gotoPage(nun)
+{
+	if(nun>form1.TotPg.value){
+		form1.CurPg.value=form1.TotPg.value;
+		return;
+	}
+	form1.CurPg.value=nun;
+	
+	if(form1.FunName.value=='')
+	{
+	var tttt="/pronline/Msg?FunName@ncsWebClientOnline&CurPg@"+num;
+	document.all.data1.src=tttt;
+  }
+  else
+	form1.submit();
+}
+</script>
+<style>
+.conts  {visibility:hidden}
+.tab{border-top:solid thin #E0E0E0;border-right:solid thin gray;border-left:solid thin #E0E0E0;font-family:Verdana;font-size:10pt;text-align:center;font-weight:normal;background-color:dfdfdf;cursor:default}
+.selTab{border-left:solid thin white;border-top:solid thin white;border-right:solid thin black;font-weight:bold;text-align:center;background-color:Dfdfdf;cursor:default}
+.selTabBase{border-top:solid thin #dfdfdf }
+.TabBase{border-top:solid thin #DEE8FA}
+table {  font-size: 9pt}
+ .style2 {
+	font-size: 20px;
+	font-weight: bold;
+	font-style: italic;
+	color: #0000ff;
+}
+</style>
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Hide
+function killErrors() {
+return true;
+}
+window.onerror = killErrors;
+// -->
+
+
+</SCRIPT>
+<style type="text/css">
+<!--
+body {  font-size: 9pt}
+.tas {  border-color: black #FFFFFF; border-style: solid; border-top-width: 0px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 1px}
+table {  font-size: 9pt}
+.gray1 { filter:gray }
+.ttbbd {  cursor: default}
+-->
+</style>
+<link REL=stylesheet HREF="/css/listdatetable.css" TYPE="text/css">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="1" topmargin="0" onclick="changeTabs()"  style="overflow:hidden" >
+<form name="form1" id="form1" method="post" action="/pronline/Rmsg" target="main2">
+	<input type="hidden" name="ProId" value="">
+	<input type="hidden" name="did" value="">
+	<input type="hidden" name="cname" value="">
+	<input type="hidden" name="dname" value="">
+<input type="hidden" name="FunName" value="">
+<input type="hidden" name="groupid" value="">
+<input type="hidden" name="gid" value="">
+<input type="hidden" name="userid" value="">
+<input type="hidden" name="uid" value="">
+<input type="hidden" name="service" value="">
+<input type="hidden" name="prot" value="">
+<input type="hidden" name="slip" value="">
+<input type="hidden" name="suip" value="">
+<input type="hidden" name="sf" value="">
+<input type="hidden" name="url" value="">
+<input type="hidden" name="urlpath" value="">
+<input type="hidden" name="dlip" value="">
+<input type="hidden" name="duip" value="">
+<input type="hidden" name="df" value="">
+<input type="hidden" name="dport" value="">
+<input type="hidden" name="fl" value="">
+<input type="hidden" name="fu" value="">
+<input type="hidden" name="dr" value="">
+<input type="hidden" name="username" value="">
+
+<input type="hidden" name="flag" value="1">
+<input type="hidden" name="con_flag" value="2">
+<input type="hidden" name="cond" value="">
+<input type="hidden" name="host1" value="">
+<input type="hidden" name="sip" value="">
+<input type="hidden" name="ysf" value="">
+<input type="hidden" name="msize" value="">
+<input type="hidden" name="fjflag" value="">
+<input type="hidden" name="mailsub" value="">
+<input type="hidden" name="mailfrom" value="">
+<input type="hidden" name="mailto" value="">
+<input type="hidden" name="mailsize" value="">
+<input type="hidden" name="message" value="">
+<input type="hidden" name="mfrom" value="">
+<input type="hidden" name="mto" value="">
+<input type="hidden" name="funcode" value="">
+<input type="hidden" name="mesg" value="">
+<input type="hidden" name="dip" value="">
+<input type="hidden" name="refresh_flag" value="2">
+<input type="hidden" name="sctop" value="0">
+	
+  <div id="xxx" STYLE="position:absolute; top:0px; height:97%; width:100%; left:0px; border:none thin gray; visibility: visible"> 
+    <table border="0"  bordercolorlight=#aaaaaa bordercolordark=#ffffff  CELLPADDING="0" CELLSPACING="0"  STYLE="width:100%; " bgcolor="#DEE8FA">
+    	<tr >
+    	<td colspan="9" valign="top" width="100%">		
+    	<table  cellspacing=0   cellpadding="0" bgcolor="#8cb4e8" border="0" align="center" width="100%">
+      <tr height="26" bgcolor=#8cb4e8>
+	    <td ID="t0" CLASS="tab3"    >在线单位</td>
+	    
+	    <td ID="t1" CLASS="tab4"  >上网用户</td>
+	    <td ID="t2" CLASS="tab5"  >IP访问</td> 
+	    <td ID="t3" CLASS="tab8"  >网站访问</td>
+<!--	    <td ID="t3" CLASS="tab5"  >网页表单</td>
+	    <td ID="t4" CLASS="tab5"  >收发邮件</td>
+	    <td ID="t5" CLASS="tab5"  >聊天记录</td>
+	    <td ID="t6" CLASS="tab8"  >网络会话</td>  -->
+
+	    <td ID="t4" class="tab10" >&nbsp;</td>	   
+      </tr> 
+		</table>
+	</td>
+</tr>
+		<tr>
+			<td colspan="9" valign="top" style="position:relative;top:-2px">			
+				<table  cellspacing=0   cellpadding="0" bgcolor="#DEE8FA" border="0" align="center" width="100%">
+				    <tr >
+				      <td colspan="7">
+				        <table width="100%" height="25" border="0" align="center" cellpadding="0" cellspacing="0" background="/images/images2/table_bg8.jpg">
+				          <tr > 
+				          	<td  > &nbsp;    
+			          		<input name="hsear" type="button" class="an3"  onclick="gotoselect()" value="过滤条件">
+
+				          	</td>
+				            <td align="center" > <strong><b style="font-size: 10pt;color:#00237e;"><div id="wlj" style="font-size: 10pt;color:#00237e;">监控单位在线状态</div></b></strong></td>
+				           
+				            <td width="35%" height="23"> 
+              <table align=right border=0 cellpadding=0 cellspacing=0 class=main>
+              <tbody> 
+                <td width="10%"><script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-06.gif' border=0 height=17 width=35 class='gray1'>")}
+                      else{
+                        document.write("<a href='#XXM'><img src='/images/zbuyer-06.gif' border=0 height=17 width=35 onClick='gotoPage(1);' class='hand'>")}
+                   </script></td>
+                <td width="10%"><script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 class='gray1'>")}
+                      else {
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 onClick='gotoPage(parseInt(form1.CurPg.value)-1);' class='hand'>")}
+                   </script></td>
+                <td width="20%"><img src="/images/zbuyer-08.gif" border=0 height=17 width=32></td>
+                <td align=middle background="" width=92>
+                    <input class=Main id=browsdopage maxlength=68 name=CurPg size=8 style="FONT-SIZE: 12px; HEIGHT: 17px; TEXT-ALIGN: center; WIDTH: 50px" value=0 onKeyPress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" onBlur="checkme(this)">
+                </td>
+                <td width="10%"><img src="/images/zbuyer-09.gif" border=0 height=17 width=16></td>
+                <td width="10%"><img align=middle border=0 height=17 src="/images/zbuyer-10.gif" width=17 onClick="gotoPage(parseInt(form1.CurPg.value));" class="hand"><img align=middle height=17 src="/images/zbuyer-11.gif" width=3></td>
+                
+                
+						    <td width="10%"><img border=0 height=17 src="/images/zin1.gif" width=17 ></td>
+						    <td align=middle background="" width=92> 
+						      <input  class=Main id=browsdopage1 maxlength=5 name=TotPg size=3 style="FONT-SIZE: 12px; HEIGHT: 17px; TEXT-ALIGN: center; WIDTH: 50px" value='0'>
+						    </td>
+						    <td width="10%"><img align=middle height=17 src="/images/zbuyer-09.gif" width=16></td>
+						    <td align=middle background="" width=92> 
+						      <input  class=Main id=browsdopage1 maxlength=8 name=TotRec size=8 style="FONT-SIZE: 12px; HEIGHT: 17px; TEXT-ALIGN: center; WIDTH: 50px" value='0'>
+						    </td>
+						    <td width="10%"><img border=0 height=17 src="/images/zin3.gif" width=17 align="middle" ><img align=middle height=17  src="/images/zbuyer-11.gif" width=3></td>
+						                
+                <td width="10%"><script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 onClick='gotoPage(parseInt(form1.CurPg.value)+1);' class='hand'>")}
+                    </script></td>
+                <td width="10%"><script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 onClick='gotoPage(form1.TotPg.value);' class='hand'>")}
+                    </script></td>
+              </tbody> 
+              </table>
+            </td>
+				            	
+				            
+				          </tr>
+				        </table>
+				     </td>
+				    </tr>    
+				</table>	
+		</td>
+		</tr>	
+<tr> 
+	</form>	
+<td HEIGHT="*" COLSPAN="9" ID="tabContents" align="left" valign="top"> 
+<!--	<div  style="position:absolute;left:5px;top:50px;height:600px;width:100%;overflow:hidden;" > -->
+<form id="ff" name='ff'>
+
+</form>
+<!--</div> -->
+</td></tr></table>
+</div> 
+<div CLASS="conts" ID="t0Contents"> 0 </div>
+<div CLASS="conts" ID="t1Contents"> 1 </div>
+<div CLASS="conts" ID="t2Contents"> 2 </div>
+<div CLASS="conts" ID="t3Contents"> 3 </div>
+<div CLASS="conts" ID="t4Contents"> 4 </div>
+<div CLASS="conts" ID="t5Contents"> 5 </div>
+<div CLASS="conts" ID="t6Contents"> 6 </div>
+<div  ID="t7Contents"> 7 </div>
+<div  ID="t8Contents"> 8 </div>
+
+<iframe name="main2" id="data1" style="display:none" src="/pronline/Msg?FunName@ncsWebClientOnline&logflag@1"> </iframe>
+
+
+</body>
+
+
+</html>

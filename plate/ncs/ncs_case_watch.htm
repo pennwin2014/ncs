@@ -1,0 +1,611 @@
+<html>
+
+<head>
+<title>查询</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<!-- Infrastructure code for the tree -->
+<style>
+.aaaa {font-size:10pt;color:#000000;font-weight:bold;}
+</style>
+<script>
+	var dfd1;
+	function allChecked(){
+    if(dfd1=="1"){
+        dfd1="0"
+    }
+    else {
+         dfd1="1"
+    }
+	for(var i=0;i<document.all.DataTable.rows.length;i++)
+	{
+		if(typeof(document.all.DataTable.rows[i].cells[0].childNodes[0])=="object"
+
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].tagName=="INPUT"
+
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].type=="checkbox") {
+			if(dfd1=="1"){
+  			    document.all.DataTable.rows[i].cells[0].childNodes[0].checked="true";
+            }
+			else{
+                document.all.DataTable.rows[i].cells[0].childNodes[0].checked="";
+            }
+        }
+ 	}
+}
+function openDr()
+{
+var t;
+   if(form1.bk_type.value=='1')
+   			t="/pronline/Msg?FunName@ncsWebReplace&plate@ncs/case_im_dr_frm.htm&cid@[#cid#]&title_name@网络虚拟身份资料录入&funname@ncCaseImDrNext";
+    else if(form1.bk_type.value=='0')
+    	 t="/pronline/Msg?FunName@ncsWebReplace&plate@ncs/case_im_dr_frm.htm&cid@[#cid#]&title_name@使用者特征布控录入&funname@ncCaseUserDrNext";
+    else
+      return;
+    
+    var oDia=showModalDialog(t,window,
+		 "status:no;center:yes;help:no;minimize:no;maximize:no;border:thick;statusbar:no;dialogWidth:500px;scroll:none;dialogHeight:350px;overflow:none");	
+
+}  
+function mouseovertr2 (o){
+var i;
+df=o.style.backgroundColor
+	o.style.backgroundColor= "#ffff00";
+	o.style.borderColor= "#FFFF00";
+	o.style.cursor="hand";	
+}
+
+function mouseouttr2(o){
+	o.style.backgroundColor=df
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#000000";
+}
+}
+	
+function gotoPage(pagenum)
+{
+    form1.CurPg.value = pagenum;
+}	
+	var ll='[#CurPg#]';
+var yy='[#TotPg#]';
+function changbk()
+{
+	var temp_desc="";
+	if(form1.bk_type.value=='0')
+	{
+	document.all.xh.style.display="";
+       temp_desc=temp_desc+'<table width="100%" border="0" align="center" >'; 
+       temp_desc=temp_desc+'<tr height="27">'; 
+       temp_desc=temp_desc+'<td width="2%"></td>';
+       temp_desc=temp_desc+'<td width="14%" align="right" class="aaaa"> 字段名&nbsp;</td>';
+       temp_desc=temp_desc+'<td width="34%" align="left">'
+       temp_desc=temp_desc+'<select name="ctype" style="width:152">';
+       temp_desc=temp_desc+'<option value="1">登录名</option>';
+       temp_desc=temp_desc+'<option value="2">显示名</option>';
+       temp_desc=temp_desc+'<option value="3">计算机名</option>';
+       temp_desc=temp_desc+'<option value="4">MAC地址</option>';
+       temp_desc=temp_desc+'<option value="5">证件号</option>';
+       temp_desc=temp_desc+'</select>';
+       temp_desc=temp_desc+'<td width="14%" class="aaaa">&nbsp;内容</td>';
+       temp_desc=temp_desc+'<td width="34%"><input type="text" name="dispname" size="24" value=""></td>';
+       temp_desc=temp_desc+'<td width="2%"></td>';
+       temp_desc=temp_desc+'</tr>';            
+       temp_desc=temp_desc+'</table>';
+    }
+   else if(form1.bk_type.value=='1')
+	 {
+	 document.all.xh.style.display="";
+       temp_desc=temp_desc+'<table width="100%" border="0" align="center" >'; 
+       temp_desc=temp_desc+'<tr height="27">'; 
+       temp_desc=temp_desc+'<td width="2%"></td>';
+       temp_desc=temp_desc+'<td width="14%" align="right" class="aaaa">服务类别</td>';
+       temp_desc=temp_desc+'<td width="34%" align="left"><select name="nettype" style="width:152">';
+       	[#SLPB#]
+       temp_desc=temp_desc+'<option value="[#ntype#]">[#ntypename#]</option>';
+       [#SLPE#]
+       temp_desc=temp_desc+'</select></td>';
+       temp_desc=temp_desc+'<td width="14%" class="aaaa">&nbsp;帐号名称</td>';
+       temp_desc=temp_desc+'<td width="34%"><input type="text" name="name" size="20" value=""></td>';
+       temp_desc=temp_desc+'<td width="2%"></td>';
+       temp_desc=temp_desc+'</tr>';          
+       temp_desc=temp_desc+'</table>';
+    }
+    if(form1.bk_type.value=='2')
+	 {
+	  document.all.xh.style.display="none";
+       temp_desc=temp_desc+'<table width="100%" border="0" align="center" >'; 
+       temp_desc=temp_desc+'<tr height="27">'; 
+       temp_desc=temp_desc+'<td width="2%"></td>';
+       temp_desc=temp_desc+'<td width="14%" align="right" class="aaaa"> 源起始IP</td>';
+       temp_desc=temp_desc+'<td width="34%" align="left"><input type="text" name="slip" size="20" value=""></td>';
+       temp_desc=temp_desc+'<td width="14%" class="aaaa">&nbsp;源终止IP</td>';
+       temp_desc=temp_desc+'<td width="34%"><input type="text" name="suip" size="20" value=""></td>';
+       temp_desc=temp_desc+'<td width="2%"></td>';
+       temp_desc=temp_desc+'</tr>';
+       temp_desc=temp_desc+'<tr height="27">';
+       temp_desc=temp_desc+'<td ></td>';
+       temp_desc=temp_desc+'<td  align="right" class="aaaa"> 目标起始IP</td>';
+       temp_desc=temp_desc+'<td  align="left"><input type="text" name="dlip" size="20" value=""></td>';
+       temp_desc=temp_desc+'<td class="aaaa">&nbsp;目标终止IP</td>';
+       temp_desc=temp_desc+'<td ><input type="text" name="duip" size="20" value=""></td>';
+       temp_desc=temp_desc+'<td ></td>';
+       temp_desc=temp_desc+'</tr>';
+       temp_desc=temp_desc+'<tr height="27">';
+       temp_desc=temp_desc+'<td ></td>';
+       temp_desc=temp_desc+'<td  align="right" class="aaaa"> 目标起始端口</td>';
+       temp_desc=temp_desc+'<td  align="left"><input type="text" name="dlport" size="20" value=""></td>';
+       temp_desc=temp_desc+'<td class="aaaa">&nbsp;目标终止端口</td>';
+       temp_desc=temp_desc+'<td ><input type="text" name="duport" size="20" value=""></td>';
+       temp_desc=temp_desc+'<td ></td>';
+       temp_desc=temp_desc+'</tr>';
+       temp_desc=temp_desc+'<tr height="27">';
+       temp_desc=temp_desc+'<td ></td>';
+       temp_desc=temp_desc+'<td  align="right" class="aaaa"> 网络服务</td>';
+       temp_desc=temp_desc+'<td  align="left">';
+       temp_desc=temp_desc+'<select name="service" style="width:152">';
+       temp_desc=temp_desc+'<option value="">不限</option>';
+       	[#SLPB#]
+       temp_desc=temp_desc+'<option value="[#netid#]">[#netname#]</option>';
+       [#SLPE#]
+       temp_desc=temp_desc+'</select>';
+       temp_desc=temp_desc+'</td>';
+       temp_desc=temp_desc+'<td   class="aaaa">&nbsp;网络协议</td>';
+       temp_desc=temp_desc+'<td  align="left">';
+       temp_desc=temp_desc+'<select name="prot" style="width:152">';
+       temp_desc=temp_desc+'<option value="0">全部</option>';
+       temp_desc=temp_desc+'<option value="6">TCP</option>';
+       temp_desc=temp_desc+'<option value="17">UDP</option>';
+       temp_desc=temp_desc+'</select>';
+       temp_desc=temp_desc+'<td ></td>';
+       temp_desc=temp_desc+'</tr>';             
+       temp_desc=temp_desc+'</table>';
+    }
+   else if(form1.bk_type.value=='3')
+	 {
+	 document.all.xh.style.display="none";
+       temp_desc=temp_desc+'<table width="100%" border="0" align="center" >'; 
+       temp_desc=temp_desc+'<tr height="27">'; 
+       temp_desc=temp_desc+'<td width="2%"></td>';
+       temp_desc=temp_desc+'<td width="14%" align="right" class="aaaa">网址类别</td>';
+       temp_desc=temp_desc+'<td width="34%" align="left"><select name="urlid" style="width:152">';
+       temp_desc=temp_desc+'<option value="0">不限</option>';
+       	[#SLPB#]
+       temp_desc=temp_desc+'<option value="[#urlid#]">[#urlname#]</option>';
+       [#SLPE#]
+       temp_desc=temp_desc+'</select></td>';
+       temp_desc=temp_desc+'<td width="14%" class="aaaa">&nbsp;访问网址</td>';
+       temp_desc=temp_desc+'<td width="34%"><input type="text" name="url" size="28" value=""></td>';
+       temp_desc=temp_desc+'<td width="2%"></td>';
+       temp_desc=temp_desc+'</tr>';          
+       temp_desc=temp_desc+'</table>';
+    }
+   else if(form1.bk_type.value=='4')
+	 {
+	 document.all.xh.style.display="none";
+       temp_desc=temp_desc+'<table width="100%" border="0" align="center" >'; 
+       temp_desc=temp_desc+'<tr height="27">'; 
+       temp_desc=temp_desc+'<td width="2%"></td>';
+       temp_desc=temp_desc+'<td width="14%" align="right" class="aaaa">网址类别</td>';
+       temp_desc=temp_desc+'<td width="34%" align="left"><select name="urlid" style="width:152">';
+       temp_desc=temp_desc+'<option value="0">不限</option>';
+       	[#SLPB#]
+       temp_desc=temp_desc+'<option value="[#urlid#]">[#urlname#]</option>';
+       [#SLPE#]
+       temp_desc=temp_desc+'</select></td>';
+       temp_desc=temp_desc+'<td width="14%" class="aaaa">&nbsp;访问网址</td>';
+       temp_desc=temp_desc+'<td width="34%"><input type="text" name="url" size="28" value=""></td>';
+       temp_desc=temp_desc+'<td width="2%"></td>';
+       temp_desc=temp_desc+'</tr>';
+       temp_desc=temp_desc+'<tr height="27">'; 
+       temp_desc=temp_desc+'<td width="2%"></td>';
+       temp_desc=temp_desc+'<td width="14%" align="right" class="aaaa">敏感类别</td>';
+       temp_desc=temp_desc+'<td width="34%" align="left"><select name="contid" style="width:152">';
+       	temp_desc=temp_desc+'<option value="">不限</option>';
+       	[#SLPB#]
+       temp_desc=temp_desc+'<option value="[#senid#]">[#senname#]</option>';
+       [#SLPE#]
+       temp_desc=temp_desc+'</select></td>';
+       temp_desc=temp_desc+'<td colspan="2" >&nbsp;表单内容可以多个关键字，之间用半角状态下“,”分割，关键字之间是‘与’的关系</td>';
+       temp_desc=temp_desc+'<td width="2%"></td>';
+       temp_desc=temp_desc+'</tr>';
+                 
+                 
+                 
+                 
+       temp_desc=temp_desc+'<tr height="27">'; 
+       temp_desc=temp_desc+'<td width="2%"></td>';
+       temp_desc=temp_desc+'<td width="14%" align="right" class="aaaa">表单内容</td>';
+       temp_desc=temp_desc+'<td colspan="4" align="left"><input type="text" name="cont" size="70" value=""></td>';
+      
+       temp_desc=temp_desc+'</tr>';        
+                 
+                 
+                 
+       temp_desc=temp_desc+'</table>';
+    }
+    else if(form1.bk_type.value=='5')
+	 {
+	 document.all.xh.style.display="none";
+       temp_desc=temp_desc+'<table width="100%" border="0" align="center" >'; 
+       temp_desc=temp_desc+'<tr height="27">'; 
+       temp_desc=temp_desc+'<td width="2%"></td>';
+       temp_desc=temp_desc+'<td width="14%" align="right" class="aaaa">网络服务</td>';
+       temp_desc=temp_desc+'<td width="34%" align="left"><select name="nettype" style="width:152">';
+       	
+       temp_desc=temp_desc+'<option value="7">雅虎通</option>';
+       temp_desc=temp_desc+'<option value="10">MSN</option>';
+       temp_desc=temp_desc+'<option value="11">ICQ</option>';
+       temp_desc=temp_desc+'<option value="6">QQ</option>';
+       temp_desc=temp_desc+'<option value="1011">SKYPE</option>';
+       temp_desc=temp_desc+'<option value="1018">淘宝旺旺</option>';
+       temp_desc=temp_desc+'</select></td>';
+       temp_desc=temp_desc+'<td width="14%" class="aaaa">&nbsp;聊天内容</td>';
+       temp_desc=temp_desc+'<td width="34%"><input type="text" name="cont" size="38" value=""></td>';
+       temp_desc=temp_desc+'<td width="2%"></td>';
+       temp_desc=temp_desc+'</tr>';
+       temp_desc=temp_desc+'<tr height="27">'; 
+       temp_desc=temp_desc+'<td width="2%"></td>';
+       temp_desc=temp_desc+'<td width="14%" align="right" class="aaaa">敏感类别</td>';
+       temp_desc=temp_desc+'<td width="34%" align="left"><select name="contid" style="width:152">';
+       temp_desc=temp_desc+'<option value="">不限</option>';
+       	[#SLPB#]
+       temp_desc=temp_desc+'<option value="[#senid#]">[#senname#]</option>';
+       [#SLPE#]
+       temp_desc=temp_desc+'</select></td>';
+       temp_desc=temp_desc+'<td width="14%" class="aaaa">&nbsp;</td>';
+       temp_desc=temp_desc+'<td width="34%"></td>';
+       temp_desc=temp_desc+'<td width="2%"></td>';
+       temp_desc=temp_desc+'</tr>';
+                 
+       temp_desc=temp_desc+'</table>';
+    }
+   else if(form1.bk_type.value=='6')
+	 {
+	 document.all.xh.style.display="none";
+       temp_desc=temp_desc+'<table width="100%" border="0" align="center" >'; 
+       temp_desc=temp_desc+'<tr height="27">'; 
+       temp_desc=temp_desc+'<td width="2%"></td>';
+       temp_desc=temp_desc+'<td width="14%" class="aaaa">&nbsp;收件人</td>';
+       temp_desc=temp_desc+'<td width="34%"><input type="text" name="mto" size="28" value=""></td>';
+       temp_desc=temp_desc+'<td width="14%" class="aaaa">&nbsp;发件人</td>';
+       temp_desc=temp_desc+'<td width="34%"><input type="text" name="mfrom" size="28" value=""></td>';
+       temp_desc=temp_desc+'<td width="2%"></td>';
+       temp_desc=temp_desc+'</tr>';
+       temp_desc=temp_desc+'<tr height="27">'; 
+       temp_desc=temp_desc+'<td width="2%"></td>';
+       temp_desc=temp_desc+'<td width="14%" class="aaaa">&nbsp;主题</td>';
+       temp_desc=temp_desc+'<td width="34%"><input type="text" name="subj" size="28" value=""></td>';
+       temp_desc=temp_desc+'<td width="14%" class="aaaa">&nbsp;内容</td>';
+       temp_desc=temp_desc+'<td width="34%"><input type="text" name="cont" size="28" value=""></td>';
+       temp_desc=temp_desc+'<td width="2%"></td>';
+       temp_desc=temp_desc+'</tr>';
+       
+        temp_desc=temp_desc+'<tr height="27">'; 
+
+       temp_desc=temp_desc+'<td colspan="6" >&nbsp;&nbsp;(内容和主题可以多个关键字，之间用半角状态下的“,”分割，关键字之间是‘与’的关系)</td>';
+       temp_desc=temp_desc+'<td width="2%"></td>';
+       temp_desc=temp_desc+'</tr>';
+       
+       
+       
+       
+       
+       temp_desc=temp_desc+'<tr height="27">'; 
+       temp_desc=temp_desc+'<td width="2%"></td>';
+       temp_desc=temp_desc+'<td width="14%" align="right" class="aaaa">内容敏感类别</td>';
+       temp_desc=temp_desc+'<td width="34%" align="left"><select name="contid" style="width:204">';
+       temp_desc=temp_desc+'<option value="">不限</option>';
+       	[#SLPB#]
+       temp_desc=temp_desc+'<option value="[#senid#]">[#senname#]</option>';
+       [#SLPE#]
+       temp_desc=temp_desc+'</select></td>';
+       temp_desc=temp_desc+'<td width="14%" class="aaaa">收发类型</td>';
+       temp_desc=temp_desc+'<td width="34%" align="left"><select name="ctype" style="width:204">';
+       temp_desc=temp_desc+'<option value="0">不限</option>';
+       temp_desc=temp_desc+'<option value="1">发送</option>';
+       temp_desc=temp_desc+'<option value="2">收件</option>';      
+       temp_desc=temp_desc+'</select>	</td>';
+       temp_desc=temp_desc+'<td width="2%"></td>';
+       temp_desc=temp_desc+'</tr>';
+                 
+       temp_desc=temp_desc+'</table>';
+    } 
+    
+   else if(form1.bk_type.value=='7')
+	 {
+	 document.all.xh.style.display="none";
+       temp_desc=temp_desc+'<table width="100%" border="0" align="center" >'; 
+       temp_desc=temp_desc+'<tr height="27">'; 
+       temp_desc=temp_desc+'<td width="2%"></td>';
+       temp_desc=temp_desc+'<td width="14%" align="right" class="aaaa">敏感服务类别</td>';
+       temp_desc=temp_desc+'<td width="34%" align="left"><select name="ssid" style="width:204">';
+       temp_desc=temp_desc+'<option value="">不限</option>';
+       	[#SLPB#]
+       temp_desc=temp_desc+'<option value="[#ssid#]">[#ssname#]</option>';
+       [#SLPE#]
+       temp_desc=temp_desc+'</select></td>';
+       temp_desc=temp_desc+'<td width="14%" class="aaaa"></td>';
+       temp_desc=temp_desc+'<td width="34%" align="left">';     
+       temp_desc=temp_desc+'</td>';
+       temp_desc=temp_desc+'<td width="2%"></td>';
+       temp_desc=temp_desc+'</tr>';
+           
+       temp_desc=temp_desc+'<tr height="27">'; 
+       temp_desc=temp_desc+'<td colspan="6">&nbsp;敏感服务布控主要针对用户使用无界/自由门/动态网/世界通等敏感代理进行布控</td>';    
+      temp_desc=temp_desc+'</tr>';    
+                 
+       temp_desc=temp_desc+'</table>';
+    }
+    
+    
+    
+    
+    
+document.all.xxm5.innerHTML=temp_desc;
+}
+function showf(sid,mesg,flags)
+{
+
+var temp_str=new Array();
+	form1.sid.value=sid;
+	form1.flags.value=flags;	
+	temp_str=mesg.split("^");	
+	form1.bk_type.value=temp_str[0];
+	changbk();
+	if(temp_str[0]=='0'){
+		if(temp_str.length>=3){
+		form1.ctype.value=temp_str[1];
+		form1.dispname.value=temp_str[2];
+		}
+	}
+	else if(temp_str[0]=='1'){
+		form1.nettype.value=temp_str[3];
+		form1.name.value=temp_str[1];
+  }
+  else if(temp_str[0]=='2'){
+   
+		form1.slip.value=temp_str[1];
+		form1.suip.value=temp_str[2];
+		form1.dlip.value=temp_str[3];
+		form1.duip.value=temp_str[4];
+		form1.prot.value=temp_str[5];
+		form1.dlport.value=temp_str[6];
+		form1.duport.value=temp_str[7];
+		form1.service.value=temp_str[8];
+
+  }
+  else if(temp_str[0]=='3'){
+		form1.url.value=temp_str[2];
+		form1.urlid.value=temp_str[3];
+	
+  }
+   else if(temp_str[0]=='4'){
+   form1.contid.value=temp_str[1];
+		form1.url.value=temp_str[2];
+		form1.urlid.value=temp_str[3];
+	  form1.cont.value=temp_str[4];
+  }
+   else if(temp_str[0]=='5'){
+   form1.contid.value=temp_str[2];
+	 form1.nettype.value=temp_str[1];
+	  form1.cont.value=temp_str[3];
+  }
+  else if(temp_str[0]=='6'){
+   form1.mfrom.value=temp_str[1];
+   form1.mto.value=temp_str[2];
+   form1.subj.value=temp_str[3];
+   form1.contid.value=temp_str[4];
+	 form1.cont.value=temp_str[5];
+	 form1.ctype.value=temp_str[6];
+  }
+   else if(temp_str[0]=='7'){
+   form1.ssid.value=temp_str[1];
+  }
+}
+</script>
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginheight="0"  style="overflow:hidden" onload="form1.bk_type.value='[#bk_type#]';changbk();">
+  <form name="form1" method="post" action="/pronline/Msg" >
+  <input type="hidden" name="FunName" value="ncsCaseWatch">
+  <input type="hidden" name="CurPg" value="[#CurPg#]">
+  <input type="hidden" name="sid" value="">
+  <input type="hidden" name="cid" value="[#cid#]">
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+
+  <tr> 
+    <td colspan="2"><table width="100%" height="35" border="0" align="center" cellpadding="0" cellspacing="0" >
+        <tr > 
+          <td  style="font-size:10pt;color:#00237e;font-weight:bold;">&nbsp;&nbsp;&nbsp; 
+             &nbsp;&nbsp;布控类型
+             <select name="bk_type" onchange="changbk()" style="width:152">
+             	<option value="0">使用者特征布控</option>
+             	<option value="1">网络虚拟身份布控</option>
+             	<option value="2">IP地址和端口布控</option>
+             	<option value="3">网址访问布控</option>
+             	<option value="4">表单访问布控</option>
+             	<option value="5">聊天内容布控</option>
+             	<option value="6">邮件内容布控</option>
+             	<option value="7">敏感服务布控</option>
+             
+             	</select></td>
+         <td style="font-size:10pt;color:#00237e;font-weight:bold;">状态
+         	<select name="flags" style="width:152">
+                  <option value="0">启用</option>
+                  <option value="1">停用</option>
+                 
+                </select>
+        </td>
+        <td><input id="xh" name="exp1" type="button" class="an3" value="批量录入" onClick="openDr()">  </td>
+        </tr>
+      </table></td>
+        
+  </tr>
+  <tr> 
+    <td colspan="2"> <table width="98%" border="1"    bordercolorlight=#89ACED   bordercolordark=#ffffff    align="center" cellpadding="0" cellspacing="0" >
+          <tr> 
+            <td id="xxm5" height="120" valign="top"> 
+             <table width="100%" border="0" align="center" > 
+                <tr height="27"> 
+                  <td width="2%"></td>
+                  <td width="14%" align="right" class="aaaa"> 用户名</td>
+                  <td width="34%" align="left"><input type="text" name="username" size="20" value=""></td>
+                  <td width="14%" class="aaaa">&nbsp;姓名</td>
+                  <td width="34%"><input type="text" name="dispname" size="20" value=""></td>
+                  <td width="2%"></td>
+                </tr>
+                <tr height="27"> 
+                  <td ></td>
+                  <td  align="right" class="aaaa"> 计算机名</td>
+                  <td  align="left"><input type="text" name="compname" size="20" value=""></td>
+                  <td class="aaaa">&nbsp;MAC地址</td>
+                  <td ><input type="text" name="mac" size="20" value=""></td>
+                  <td ></td>
+                </tr>
+                <tr height="27"> 
+                  <td ></td>
+                  <td  align="right" class="aaaa"> 证件类型</td>
+                  <td  align="left">
+                  <select name="idtype" style="width:152">
+                  <option value="11">身份证</option>
+                  <option value="15">学生证</option>
+                  <option value="90">军官证</option>
+                  <option value="91">警官证</option>
+                  <option value="92">士兵证</option>
+                  <option value="93">户口薄</option>
+                  <option value="94">护照</option>
+                  <option value="95">台胞证</option>
+                  <option value="96">同乡证</option>
+                  <option value="99">其他证件</option>
+                </select>
+                  </td>
+                  <td class="aaaa">&nbsp;证件号码</td>
+                  <td ><input type="text" name="idcard" size="20" value=""></td>
+                  <td ></td>
+                </tr>              
+              </table>
+            </td>
+          </tr>
+          <tr height="30"><td >
+          	<table width="100%" border="0" align="center" >
+          	<tr><td>
+          	<input name="add" type="submit" class="an3" value="增加">                     
+             <input name="modi" type="submit" class="an3"  value="修改">
+              <input name="del" type="submit" class="an3"  value="删除">
+             </td>
+             <td align="right">
+             	    <table align=right border=0 cellpadding=0 cellspacing=0 class=main width=111>
+                      <tbody>
+                      <td width="10%" >
+                          <script>
+                          if (ll==1){
+                           document.write("<img src='/images/zbuyer-06.gif' border=0 height=17 width=35 class='gray1'>")}
+                          else{
+                            document.write("<a href='#xxm'><img src='/images/zbuyer-06.gif' border=0 height=17 width=35 onClick='gotoPage(1);form1.submit()' class='hand'>")}
+                         </script>
+                        </td>
+                        <td width="10%">
+                            <script>
+                           if (ll==1){
+                           document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 class='gray1'>")}
+                          else {
+                           document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]-1);form1.submit()' class='hand'>")}
+                           </script>
+                         </td>
+                          <td width="20%" valign="top"><img src="/images/zbuyer-08.gif" border=0 height=17 width=32></td>
+                          <td align=middle background="" width=92>
+                            <input class=Main id=browsdopage maxlength=7  name=browsdopage size=7 style="FONT-SIZE: 12px; HEIGHT: 17px; TEXT-ALIGN: center; WIDTH: 50px;position:relative;left:0px;top:-2px;" value=[#CurPg#] onKeyPress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" onBlur="checkme(this)">
+                          </td>
+                          <td width="10%" valign="top"><img src="/images/zbuyer-09.gif" border=0 height=17 width=16></td>
+                          <td width="10%" valign="top"><img align=middle border=0 height=17 src="/images/zbuyer-10.gif" width=17 onClick="gotoPage(form1.browsdopage.value);form1.submit()" class="hand"><img align=middle height=17 src="/images/zbuyer-11.gif" width=3></td>
+                          <td width="10%" valign="top"><img border=0 height=17 src="/images/zin1.gif" width=17 ></td>
+                          <td align=middle background="" width=92>
+                            <input  class=Main id=browsdopage12 maxlength=7 name=browsdopage12 size=7 style="FONT-SIZE: 12px; HEIGHT: 17px; TEXT-ALIGN: center; WIDTH: 50px;position:relative;left:0px;top:-2px;" value='[#TotPg#]'>
+                          </td>
+                          <td width="10%" valign="top"><img align=middle height=17 src="/images/zbuyer-09.gif" width=16></td>
+                          <td align=middle background="" width=92>
+                            <input  class=Main id=browsdopage12 maxlength=7 name=browsdopage12 size=7 style="FONT-SIZE: 12px; HEIGHT: 17px; TEXT-ALIGN: center; WIDTH: 50px;position:relative;left:0px;top:-2px;" value='[#TotRec#]'>
+                          </td>
+                          <td width="10%" valign="top"><img border=0 height=17 src="/images/zin3.gif" width=17 align="middle" ><img align=middle height=17  src="/images/zbuyer-11.gif" width=3></td>
+                          <td width="10%">
+                            <script>
+                            if (ll==yy){
+                              document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                            else if (yy==0){
+                              document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                            else{
+                              document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]+1);form1.submit()' class='hand'>")}
+                             </script>
+                          </td>
+                          <td width="10%">
+                            <script>
+                             if (ll==yy){
+                               document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                             else if (yy==0){
+                               document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                             else{
+                               document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 onClick='gotoPage([#TotPg#]);form1.submit()' class='hand'>")}
+                              </script>
+                          </td>
+                        </tbody>
+                    </table>
+             	
+             	</td>
+             	</tr>
+            </table>
+          </td>
+        </tr>
+          <tr><td>
+          	
+          	      
+        <table  id="DataTable" width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" >
+          <tr > 
+            <td width="40" bgcolor="#6382BD" class="bord2"> 
+              <div align="center"><font color="#FFFFFF">
+                <input type="button" name="b1" value="全选"    class="anniu_1" onClick="allChecked()">
+                </font></div></td>
+            
+            <td width="80" bgcolor="#6382BD" height="18" class="bord2"> 
+              <div align="center"><font color="#FFFFFF">类别</font></div></td>
+            <td  bgcolor="#6382BD" class="bord2"> 
+              <div align="center"><font color="#FFFFFF">布控内容</font></div></td> 
+            <td width="40" bgcolor="#6382BD" class="bord4"><div align="center"><font color="#FFFFFF">&nbsp;状态</font></div></td>
+           
+          </tr>
+          <!-- [#SLPB#] -->
+          <tr height="18" onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" onclick="showf('[#sid#]','[#mesg2#]','[#flags#]')"> 
+            <td   class="bord1" align="center"> <input type="checkbox" name="ch[#num#]" value="[#sid#]"> 
+            </td>
+            <td   class="bord1">&nbsp;[#type#]</td>
+            
+            <td   class="bord1">&nbsp;[#mesg#]</td>
+            <td   class="bord3" >&nbsp;[#flags_desc#]</td>
+           <input type="hidden" name="cd[#num#]" value="[#type1#]">
+          </tr>
+          <!-- [#SLPE#] -->
+          <!-- [#SLPB#] -->
+          <tr id=[#snum#] height="18"> 
+            <td   class="bord1">&nbsp; </td>              
+            <td   class="bord1">&nbsp;</td>   
+            <td   class="bord1">&nbsp;</td> 
+            <td   class="bord3">&nbsp;</td>
+          </tr>
+          <!-- [#SLPE#] -->
+        </table>
+         	
+          	</td>
+         </tr>
+        </table>
+
+      </td>
+  </tr>
+</table>
+</form>
+
+</body>
+</html>

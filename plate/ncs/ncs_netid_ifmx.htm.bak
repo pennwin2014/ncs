@@ -1,0 +1,138 @@
+<!-- saved from url=(0022)http://internet.e-mail -->
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META content=no-cache http-equiv=Pragma>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<style type="text/css">
+<!--
+.tScroll5 {
+    overflow: scroll;
+    overflow-x:hidden;
+    height:400px;
+    cursor: default;
+    }
+body {  font-size: 9pt}
+.tas {  border-color: black #FFFFFF; border-style: solid; border-top-width: 0px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 1px}
+table {  font-size: 9pt}
+.hand {  cursor: hand}
+.gray1{filter:gray}
+-->
+</style>
+<script>
+	var ll='[#CurPg#]';
+var yy='[#TotPg#]';
+
+function gotoPage(pagenum)
+{
+    form1.CurPg.value = pagenum;
+}
+</script>
+
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0"  >
+<form name="form1" method="post" action="/pronline/Msg">
+<input type="hidden" name="CurPg" value="[#CurPg#]">
+<input type="hidden" name="did" value="[#did#]">
+<input type="hidden" name="uid" value="[#uid#]">
+<input type="hidden" name="nid" value="[#nid#]">
+<input type="hidden" name="ntype" value="[#ntype#]">
+<input type="hidden" name="FunName" value="ncsDispNetidIframe">
+<table width="100%" height="400" border="0" valign="top" align="center"  cellpadding="0"  cellspacing=0 bordercolor="#DFDFDF">
+	
+	
+	       <tr height="25"> 
+
+         <td colspan="4" align="right">       	
+         	 <table  border=0 cellpadding=0 cellspacing=0 class=main width=111>
+                <tbody> 
+                <td width="10%"><script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-06.gif' border=0 height=17 width=35 class='gray1'>")}
+                      else{
+                        document.write("<a href='#xxm'><img src='/images/zbuyer-06.gif' border=0 height=17 width=35 onClick='gotoPage(1);form1.submit()' class='hand'>")}
+                   </script></td>
+                <td width="10%"><script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 class='gray1'>")}
+                      else {
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]-1);form1.submit()' class='hand'>")}
+                   </script></td>
+                <td width="20%"><img src="/images/zbuyer-08.gif" border=0 height=17 width=32></td>
+                <td align=middle background="" width=92>
+                    <input class=Main id=browsdopage maxlength=3  name=browsdopage size=3 style="FONT-SIZE: 12px; HEIGHT: 17px; TEXT-ALIGN: center; WIDTH: 50px" value=[#CurPg#] onKeyPress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" onBlur="checkme(this)">
+                </td>
+                <td width="10%"><img src="/images/zbuyer-09.gif" border=0 height=17 width=16></td>
+                <td width="10%"><img align=middle border=0 height=17 src="/images/zbuyer-10.gif" width=17 onClick="gotoPage(form1.browsdopage.value);form1.submit()" class="hand"><img align=middle height=17 src="/images/zbuyer-11.gif" width=3></td>
+                
+                
+                <td width="10%"><img border=0 height=17 src="/images/zin1.gif" width=17 ></td>
+                <td align=middle background="" width=92> 
+                  <input  class=Main id=browsdopage1 maxlength=5 name=browsdopage12 size=3 style="FONT-SIZE: 12px; HEIGHT: 17px; TEXT-ALIGN: center; WIDTH: 50px" value='[#TotPg#]'>
+                </td>
+					    <td width="10%"><img align=middle height=17 src="/images/zbuyer-09.gif" width=16></td>
+					    <td align=middle background="" width=92> 
+					      <input  class=Main id=browsdopage1 maxlength=5 name=browsdopage12 size=3 style="FONT-SIZE: 12px; HEIGHT: 17px; TEXT-ALIGN: center; WIDTH: 50px;" value='[#TotRec#]'>
+					    </td>
+					    <td width="10%"><img border=0 height=17 src="/images/zin3.gif" width=17 align="middle" ><img align=middle height=17  src="/images/zbuyer-11.gif" width=3></td>
+                
+                <td width="10%"><script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]+1);form1.submit()' class='hand'>")}
+                    </script></td>
+                <td width="10%"><script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 onClick='gotoPage([#TotPg#]);form1.submit()' class='hand'>")}
+                    </script></td>
+              </tbody>
+            </table>  
+         	         	
+         	</td>
+         </tr>
+	
+    <tr class="tableHead" bgcolor="#6382BD" id=ignore> 
+
+      <td width="181" align="center" height="18" bgcolor="#6382BD" class="bord2"> 
+        <font color="#FFFFFF">&nbsp;虚拟身份</font></td>
+     
+      <td  width="60" align="center"  height="18" bgcolor="#6382BD" class="bord2"> 
+        <font color="#FFFFFF">&nbsp;类别</font></td>
+      <td width="120" align="center"  height="18" bgcolor="#6382BD" class="bord2"> 
+        <font color="#FFFFFF">&nbsp;使用时间</font></td>
+      <td width="120" align="center"  height="18" bgcolor="#6382BD" class="bord2"> 
+        <font color="#FFFFFF">&nbsp;上网IP</font></td>
+    </tr>
+    <!-- [#SLPB#] -->
+    <tr bgcolor="#FFFFFF"  > 
+
+      <td  valign="bottom" class="bord1">&nbsp;[#netid#] </td>
+      <td  valign="bottom" class="bord1">&nbsp;[#ntype_name#]</td>
+      <td  valign="bottom" class="bord1">&nbsp;[#sdate#]</td>
+      <td  valign="bottom" class="bord3">&nbsp;[#ip#]</td>
+    </tr>
+    <!-- [#SLPE#] -->
+    [#SLPB#]
+    <tr height="18" id='[#snum#]' bgcolor="#FFFFFF">
+
+    	<td class="bord1">&nbsp;</td>
+    	<td class="bord1">&nbsp;</td>
+    	<td class="bord1">&nbsp;</td>
+    	<td class="bord3">&nbsp;</td>
+    </tr>
+    [#SLPE#] 
+</table>
+
+</form>
+</body>
+</html>

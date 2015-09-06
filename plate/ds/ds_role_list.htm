@@ -1,0 +1,44 @@
+<html>
+<head>
+<title>角色管理</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/css.css" type="text/css">
+<script>
+function goto(t){
+parent.mainFrame.location.href=t
+}
+</script>
+</head>
+
+<body bgcolor="#cccccc" text="#000000" leftmargin="2" topmargin="0" >
+<table width="230" border="0" bgcolor="#AFAFC0" height="91" cellspacing="0" cellpadding="4">
+  <tr bgcolor="#8C8CA6"> 
+    <td colspan="3" height="28" class="bord4"> 
+      <div align="center">
+<input type="button" name="Button" value="增加" onclick="goto('/pronline/Msg?FunName@dsCltWebDsroleForm&id@0')">
+      </div>
+    </td>
+  </tr>
+  <tr bgcolor="#8C8CA6"> 
+    <td width="12%" height="28" class="bord1"><font color="#FFFFFF">删</font></td>
+    <td width="49%" height="28" class="bord1"> 
+      <p align="center"><font color="#FFFFFF">权限名称</font></p>
+    </td>
+    <td width="39%" height="28" class="bord3"> 
+      <div align="left"><font color="#FFFFFF">代码</font></div>
+    </td>
+  </tr>
+  <!-- [#SLPB#] -->
+  <tr> 
+    <td width="12%" height="35" class="bord1"><a href="/pronline/Msg?FunName@dsCltWebDsroleDel&id@[#id#]"><img src="/images/duanxian.gif" width="19" height="19" border="0"></a></td>
+    <td width="49%" height="35" class="bord1"> 
+      <div align="left"><a href="/pronline/Msg?FunName@ncWebAdminRoleList&roleid@[#id#]" target="mainFrame">[#dispname#]</a></div>
+    </td>
+    <td width="39%" height="35" class="bord3"> 
+      <div align="left"><a href="/pronline/Msg?FunName@ncWebAdminRoleList&roleid@[#id#]" target="mainFrame">[#name#]</a></div>
+    </td>
+  </tr>
+  <!-- [#SLPE#] -->
+</table>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>邮件清单</title>
+<script>
+function goto(t){
+    openwinflag=window.open(t,'new','left=100,top=200,width='+490+',height='+330+',fullscreen=0,toolbar=no,scrollbars=no,resizable=1,menubar=no,status=0');
+}
+
+</script>
+
+</head>
+
+<body>
+<table border="0" width=100% height=100% cellspacing="0" cellpadding="0" align=center bgcolor='#ffffff'>
+  <tr> 
+    <td width="100%"  valign=top align=center bgcolor="#BBBBBB"> 
+      <table  border="1" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+        <tr> 
+          <td   height="18" colspan="7"> 
+            <div align="center">邮件清单</div>
+          </td>
+        </tr>
+        <tr> 
+          <td  height="18" width="96"> &nbsp;姓名</td>
+          <td  height="18" width="122"> &nbsp;发件人</td>
+          <td  height="18" width="128"> &nbsp;收件人</td>
+          <td  height="18" width="247"> &nbsp;主题</td>
+          <td  height="18" width="159"> &nbsp;发送时间</td>
+          <td  height="18" width="92">&nbsp;邮件大小</td>
+          <td  height="18" width="127">&nbsp;附件大小</td>
+        </tr>
+        <!-- [#SLPB#] -->
+        <tr  onDblClick="goto('[#msg#]')"> 
+          <td  title="&nbsp;[#username#]"  width="96">&nbsp;[#username#]</td>
+          <td  title="&nbsp;[#from#]"  width="122">&nbsp;[#from#] </td>
+          <td   title="&nbsp;[#to#]"  width="128">&nbsp;[#to#]</td>
+          <td   title="&nbsp;[#sub#]"  width="247">&nbsp;[#sub#]</td>
+          <td title="&nbsp;[#sdate#]"  width="159">&nbsp;[#sdate#]</td>
+          <td  title="&nbsp;[#size#]"  width="92">&nbsp;[#msize#]</td>
+          <td  title="&nbsp;[#att#]"  width="127">&nbsp;[#asize#]</td>
+        </tr>
+        <!-- [#SLPE#] -->
+      </table>
+    
+</table>
+</body>
+
+</html>

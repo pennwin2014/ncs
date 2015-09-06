@@ -1,0 +1,24 @@
+
+<!--新建,编辑,删除页面模版-->
+<html>
+
+<head>
+
+<title>邮件内容</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+
+</head>
+
+<body  >
+<iframe  height="600" name="list" id="list" width="100%"  border="0" frameborder="0" src="/pronline/Msg?FunName@[#fname#]&ccode@[#ccode#]&userid@[#userid#]&msgfile@[#msgfile#]&lId@[#lId#]&msid@[#msid#]" scrolling=no> </iframe>
+</body>
+
+</html>  

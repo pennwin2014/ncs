@@ -1,0 +1,79 @@
+<html>
+<head>
+<title>Internet访问限制</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<style type="text/css">
+<!--
+body {  font-size: 9pt}
+.tas {  border-color: black #FFFFFF; border-style: solid; border-top-width: 0px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 1px}
+table {  font-size: 9pt}
+.gray1 { filter:gray }
+.ttbbd {  cursor: default}
+-->
+</style>
+</head>
+
+<body bgcolor="#cccccc" text="#000000" leftmargin="10" topmargin="0">
+<table width="100%" border="0" height="100">
+  <tr> 
+    <td height="108"> 
+      <form name="form1" method="post" action="/pronline/Msg" target="listFrame">
+        <input type="hidden" name="FunName" value="ncWebSetupInternet_save">
+        <input type="hidden" name="userid"  value="[#userid#]">
+        <input type="hidden" name="id"  value="[#id#]">
+        <input type="hidden" name="flags"  value="1">
+        <input type="hidden" name="plate"  value="ncsetup_i_list.htm">
+        <table width="100%" border="0" bgcolor="#C0C0C0" cellspacing="0" cellpadding="4">
+          <tr> 
+            <td colspan="7" class="bord4" height="27"> 
+              <div align="center"><b> </b></div>
+              <div align="right"><b><font color="#000000" face="Times New Roman, Times, serif" size="2">限制对象:[[#username#]]</font></b> 
+              </div>
+            </td>
+          </tr>
+          <tr> 
+            <td valign="bottom" height="21" class="bord1" width="14%">序号 
+              <input type="text" name="id" value="[#id#]" size="4" maxlength="4" disabled>
+            </td>
+            <td width="15%" valign="bottom" height="21" class="bord1">&nbsp; 
+             [#sflags#]
+            </td>
+            <td width="11%" valign="bottom" height="21" class="bord1"> 
+              <select name="timetype">
+                <option value="0">每天</option>
+              </select>
+            </td>
+            <td width="15%" valign="bottom" height="21" class="bord1"> 
+              <div align="right">起始时间</div>
+            </td>
+            <td width="14%" valign="bottom" height="21" class="bord1"> 
+              <input type="text" name="starttime" value="[#starttime#]" size="8" maxlength="8">
+            </td>
+            <td width="12%" valign="bottom" height="21" class="bord1"> 
+              <div align="right">终止时间</div>
+            </td>
+            <td width="19%" valign="bottom" height="21" class="bord3"> 
+              <input type="text" name="stoptime" value="[#stoptime#]" size="8" maxlength="8">
+            </td>
+          </tr>
+          <tr> 
+            <td colspan="7" height="22" class="bord1">(注:时间格式为: HH:MM:SS , 如:12:13:30 
+              为 12时13分30秒)</td>
+          </tr>
+          <tr> 
+            <td colspan="7" height="28" class="bord1"> 
+              <div align="right"> 
+                <input type="submit" name="add"   value="新增" [#addflags#] class="an3">
+                <input type="submit" name="mod"   value="修改" [#modflags#] class="an3">
+                <input type="submit" name="app"   value="应用"   class="an3">
+              </div>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

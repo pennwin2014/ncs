@@ -1,0 +1,86 @@
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<script>
+function gotopag(t){
+  self.location.href="/pronline/Msg?FunName@ncs_warnbycorp_stat&sdate1@[#sdate1#]&sdate2@[#sdate2#]&groupid@[#groupid#]&userid@[#userid#]&sort1@[#sort1#]&sort2@[#sort2#]&aord1@[#aord1#]&aord2@[#aord2#]&recnum@[#recnum#]&opt@[#opt#]&udisp@[#udisp#]&startpg@"+t;
+}
+function printdate()
+{
+
+self.print();
+}
+function  Exp(){
+ self.location.href="/pronline/Msg?FunName@ncsOnlinerateStat&sdate1@[#sdate1#]&sdate2@[#sdate2#]&userid@[#userid#]&daochu@daochu";
+}
+
+function llprint(){
+// document.all.pprint.style.display="none"
+  window.print()
+
+}
+</script>
+</head>
+
+<body bgcolor="#eeeeee" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+		<table border="0" align="center" height="600" valign="top" cellpadding="0" cellspacing="0" width="100%">
+	<tr>
+<td valign="top" height="610">
+ <div style="height:610px;overflow-y:scroll;" >
+<table border="0" align="center" cellpadding="0" cellspacing="0" width="100%" valign="top">
+  <tr> 
+    <td colspan="8" height="30"  class="ttt" valign="top"> <table width="103%" border="0">
+        <tr> 
+          <td height="24" width="37%" align="right"> 
+           <b>上网场所在线率日统计信息</b><b>([#sdate1#]--[#sdate2#]) </b></td>
+          <td width="33%" height="24" align="center">&nbsp;<input name="B3" type="button" class="an3" onClick="printdate()" value="打印">&nbsp;<input name="B4" type="button" class="an3" onClick="Exp()" value="导出"></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr align="center" valign="middle"> 
+    <td width="5%" height="18" bgcolor="#6382BD"  class="bord2"> 
+      <div align="center"><font color="#FFFFFF">序号</font></div></td>
+    <td width="13%" height="18" bgcolor="#6382BD"  class="bord2"> 
+      <div align="center"><font color="#FFFFFF">日期</font></div></td>
+      <td width="12%" height="18" bgcolor="#6382BD"  class="bord2"> 
+      <div align="center"><font color="#FFFFFF">单位在线率</font></div></td>
+      <td width="18%" height="18" bgcolor="#6382BD"  class="bord2"> 
+      <div align="center"><font color="#FFFFFF">场所代码</font></div></td>
+    <td  width="37%" height="18" bgcolor="#6382BD"  class="bord2"> 
+      <div align="center"><font color="#FFFFFF">单位名称</font></div></td>
+    <td width="10%" height="18" bgcolor="#6382BD"  class="bord2"> 
+      <div align="center"><font color="#FFFFFF">主机在线率</font></td>
+   
+  </tr>
+  <!-- [#SLPB#] -->
+  <tr height="18" bgcolor="#ffffff"> 
+    <td  class="bord1" align="center">&nbsp; 
+      <b> [#num#]</b></td>
+    <td  class="bord1">&nbsp;&nbsp;<b> [#date#]</b></td>
+    <td  class="bord1" align="center" >&nbsp;<b>[#onlinerate#]</b></td>
+    <td  class="bord1" align="center" >&nbsp;</td>
+    <td  class="bord1" align="center" >&nbsp;</td>
+    <td  class="bord3" align="right">&nbsp;</td>    
+    
+  </tr>
+  <!-- [#SLPB#] -->
+  <tr bgcolor="#ffffff" height="18"> 
+    <td  class="bord1">&nbsp;</td>
+    <td  class="bord1">&nbsp;</td>
+    <td  class="bord1">&nbsp;</td>
+    <td  class="bord1">&nbsp;[#servicecode#]</td>
+    <td  class="bord1">&nbsp;[#dispname#]</td>
+    <td  class="bord3" align="right">&nbsp;[#hostrate#]&nbsp;&nbsp;</td>     
+  </tr>
+  <!-- [#SLPE#] -->
+  <!-- [#SLPE#] -->
+</table>
+	</div>
+</td>
+</tr>
+</table>
+</body>
+</html>

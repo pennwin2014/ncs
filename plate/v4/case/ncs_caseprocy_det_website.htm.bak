@@ -1,0 +1,749 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>单位组管理</title>
+    <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" />
+
+    <script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+
+    <style type="text/css">
+        .add {
+            background-image:url(/newver/resources/themes/images/share/add.gif) !important;
+        }
+        .remove {
+            background-image:url(/newver/resources/themes/images/share/delete.gif) !important;
+        }
+        .accept {
+            background-image:url(/newver/resources/themes/images/share/accept.png) !important;
+        }
+        .exp {
+            background-image:url(/newver/resources/themes/images/share/application_go.png) !important;
+        }
+    </style>
+    
+ <script type="text/javascript">     
+    
+
+    
+    
+    
+    
+    Ext.Loader.setConfig({
+    enabled: true
+});
+Ext.Loader.setPath('Ext.ux', '/newver/ux/');
+
+Ext.require([
+    'Ext.grid.*',
+    'Ext.data.*',
+    'Ext.util.*',
+    'Ext.state.*',
+    'Ext.form.*',
+    'Ext.ux.CheckColumn',
+    'Ext.tree.*',
+    'Ext.tip.*',
+    'Ext.tab.*',
+    'Ext.*'
+]);
+
+var store;
+var preid="";
+var  preladw="";
+var temp_id;
+var cid='';
+
+
+Ext.onReady(function(){
+
+
+Ext.tip.QuickTipManager.init();
+
+ 
+ function reflash(){
+ 	var keyword=Ext.getCmp('keyword').value;
+ 	if(keyword=='请输入查询内容'){
+ 		keyword='';
+ 	}
+ 	store.load({params: {keyword: keyword}});
+}
+ 
+ 
+
+function openDr()
+{
+var windr;
+     var htmlvar='<iframe src="/pronline/Msg?FunName@ncsWebReplace&title_name@导入网址布控信息&funname@ncCaseWebSiteDrNext&cid@[#cid#]&plate@nc/cust_dr_first.htm'+' " scrolling="no" name="drIframe" frameborder="no" style="width:100%;height:100%;"></iframe>';      
+      var windr = new Ext.Window ({
+                             id:"windr",
+                             title:"导入网址布控信息",
+                             x:0,
+                             y:0,
+                             width:500,
+                             height:360,
+                             bodyPadding: 0,
+                             modal:true,
+//                         headerPosition: 'bottom',
+                             resizable:true,
+                             closable : true,
+                             draggable:true,
+                             html:htmlvar
+                                                
+         }
+        )       
+
+       windr.on("beforeclose", function() {
+        	reflash();
+        }
+        )
+         windr.show();
+} 
+ 
+
+ 
+ 
+ 
+ 
+Ext.define('Ext.ux.grid.plugin.RowEditing', {   
+   extend: 'Ext.grid.plugin.RowEditing',   
+   alias: 'plugin.ux.rowediting',    
+      
+   /**  
+    * 是否添加记录在当前位置<br/>  
+    * whether add record at current rowIndex.<br/>  
+    * see {@link #cfg-addPosition}  
+    * @cfg {Boolean}  
+    */  
+   addInPlace: false,   
+      
+   addPosition: 0,   
+      
+   /**  
+    * 是否点击触发事件,0代表不触发,1代表单击,2代表双击,默认为双击.<br/>  
+    * The number of clicks on a grid required to display the editor (disable:0,click:1,dblclick:2)  
+    * @cfg {Number}  
+    */  
+   clicksToEdit:2,   
+      
+   /**  
+    * 是否在取消编辑的时候自动删除添加的记录  
+    * if true, auto remove phantom record on cancel,default is true.  
+    * @cfg {Boolean}  
+    */  
+   autoRecoverOnCancel: true,   
+      
+   /**  
+    * adding flag  
+    * @private  
+    * @type Boolean  
+    */  
+   adding: false,   
+      
+   autoCancel:true,   
+      
+   /**  
+    * when add record, hide error tooltip for the first time  
+    * @private  
+    * @type Boolean  
+    */  
+   hideTooltipOnAdd: true,   
+      
+   /**  
+    * register canceledit event && relay canceledit event to grid  
+    * @param {Ext.grid.Panel} grid  
+    * @override  
+    * @private  
+    */  
+   init:function(grid){   
+       var me = this;   
+       /**  
+        * 取消编辑事件<br/>  
+        * Fires canceledit event.And will be relayEvents to Grid.<br/>  
+        * @see {@link Ext.ux.grid.RowActions#event-beforeaction} <br/>  
+        * @event canceledit  
+        * @param {Object} context  
+        */  
+       me.addEvents('canceledit');   
+       me.callParent(arguments);   
+       grid.addEvents('canceledit');   
+       grid.relayEvents(me, ['canceledit']);   
+   },   
+      
+   /**  
+    * 提供默认的Editor配置  
+    *      @example  
+    *      {header:'手机',dataIndex:'phone',fieldType:'numberfield',field:{allowBlank:true}}  
+    * provide default field config  
+    * @param {String} fieldType 可选值:numberfield,checkboxfield,passwordField  
+    * @return {Object}   
+    * @protected  
+    */  
+   getFieldCfg: function(fieldType){   
+        switch(fieldType){   
+            case 'passwordField':   
+                return {   
+                    xtype: 'textfield',   
+                    inputType: 'password',   
+                    allowBlank:false  
+                }   
+            case 'numberfield':   
+                return {   
+                    xtype: 'numberfield',   
+                    hideTrigger: true,   
+                    keyNavEnabled: false,   
+                    mouseWheelEnabled: false,   
+                    allowBlank:false  
+                }   
+                   
+            case 'checkboxfield':   
+                return {   
+                    xtype: 'checkboxfield',   
+                    inputValue: 'true',   
+                    uncheckedValue: 'false'  
+                }   
+            }   
+    },   
+       
+    /**  
+     * Help to config field,just giving a fieldType and field as additional cfg.  
+     * see {@link #getFieldCfg}  
+     * @private  
+     * @override  
+     */  
+    getEditor: function() {   
+        var me = this;   
+  
+        if (!me.editor) {   
+            Ext.each(me.grid.headerCt.getGridColumns(),function(item,index,allItems){   
+                if(item.fieldType){   
+                    item.field = Ext.applyIf(item.field||{},this.getFieldCfg(item.fieldType))   
+                }   
+            },this)   
+            // keep a reference for custom editor..   
+            me.editor = me.initEditor();   
+        }   
+        me.editor.editingPlugin = me   
+        return me.editor;   
+    },   
+       
+    /**  
+     * if clicksToEdit===0 then mun the click/dblclick event  
+     * @private  
+     * @override  
+     */  
+    initEditTriggers: function(){   
+        var me = this    
+        var clickEvent = me.clicksToEdit === 1 ? 'click' : 'dblclick'  
+        me.callParent(arguments);    
+        if(me.clicksToEdit === 0){   
+            me.mun(me.view, 'cell' + clickEvent, me.startEditByClick, me);    
+        }   
+    },   
+       
+    /**  
+     * 添加记录  
+     * add a record and start edit it (will not sync store)  
+     * @param {Model/Object} data Data to initialize the Model's fields with <br/>  
+     * @param {Object} config see {@link #cfg-addPosition}.   
+     */  
+    startAdd: function(data,config){   
+        var me = this;   
+        var cfg = Ext.apply({   
+            addInPlace: this.addInPlace,   
+            addPosition: this.addPosition,   
+            colIndex: 0   
+        },config)   
+           
+        //find the position   
+        var position;   
+        if(cfg.addInPlace){   
+            var selected = me.grid.getSelectionModel().getSelection()   
+            if(selected && selected.length>0){   
+                position = me.grid.store.indexOf(selected[0])    
+                console.log('a',position)   
+                position += (cfg.addPosition<=0) ? 0: 1   
+            }else{   
+                position = 0   
+            }   
+        }else{   
+            position = (cfg.addPosition==-1 ? me.grid.store.getCount() : cfg.addPosition) || 0   
+        }   
+           
+        var record = data.isModel ? data : me.grid.store.model.create(data);   
+        var autoSync = me.grid.store.autoSync;   
+        me.grid.store.autoSync = false;   
+        me.grid.store.insert(position, record);   
+        me.grid.store.autoSync = autoSync;   
+          
+        me.adding = true  
+        me.startEdit(position,cfg.colIndex);   
+           
+        //since autoCancel:true dont work for me   
+        if(me.hideTooltipOnAdd && me.getEditor().hideToolTip){   
+            me.getEditor().hideToolTip()   
+        }   
+    },   
+       
+    /**  
+     * 编辑之前,自动取消编辑  
+     * Modify: if is editing, cancel first.  
+     * @private  
+     * @override  
+     */  
+    startEdit: function(record, columnHeader) {   
+        var me = this; 
+ 
+        if(me.editing){   
+            me.cancelEdit();    
+        }  
+
+        me.callParent(arguments); 
+ 
+       Ext.getCmp('flag_desc').setValue(record.get('status'));
+       Ext.getCmp('nettype').setValue(record.get('typeid'));
+ //       temp_id=record.get('groupid');
+//        Ext.getCmp('caseclass').setValue(record.get('sjjbid'));
+
+    },   
+       
+    /**  
+     * 修改adding的状态值  
+     * Modify: set adding=false  
+     * @private  
+     * @override  
+     */  
+    completeEdit: function() {   
+        var me = this;   
+        if (me.editing && me.validateEdit()) {   
+            me.editing = false;   
+            me.fireEvent('edit', me.context);   
+        }   
+        me.adding = false 
+         var cnettype=me.context.record.data.nettype;
+
+         var cnetid=me.context.record.data.netid;
+         var cstatus=me.context.record.data.flag_desc;
+         var csid=me.context.record.data.sid;
+         preid=cnettype;
+
+        if((cnetid==''||cnetid=='请输入网址内容')&&(cnettype=='0'||cnettype=='')){
+        	alert('网址类别和网址内容不能全为空');
+        	reflash();
+        	return ;
+        }
+
+  //      alert(me.context.record.data.groupname);
+
+      store.load({params: {sid:csid,update:'update',nettype:cnettype,netid:cnetid,status:cstatus}});
+  
+  //      reflash();
+        
+         
+    },   
+       
+    /**  
+     * 取消编辑  
+     * 1.fireEvent 'canceledit'  
+     * 2.when autoRecoverOnCancel is true, if record is phantom then remove it  
+     * @private  
+     * @override  
+     */  
+    cancelEdit: function(){
+    
+        var me = this; 
+
+        if (me.editing) {   
+            me.getEditor().cancelEdit();   
+            me.editing = false;   
+            me.fireEvent('canceledit', me.context);    
+            if (me.autoRecoverOnCancel){ 
+              var temp=me.context.record.data.netid;  
+    
+              var tmpid=me.context.record.data.sid;
+
+                if((!tmpid)||(temp=='请输入网址内容')){  	 
+                    me.context.record.store.remove(me.context.record);   
+                    me.adding = false  
+                }else{   
+                    //不需要reject,因为Editor没有更改record.   
+                    //me.context.record.reject()   
+                }   
+            }   
+        }  
+
+
+         
+    }   
+})   
+  
+//ext-lang-zh_CN   
+if (Ext.grid.RowEditor) {   
+    Ext.apply(Ext.grid.RowEditor.prototype, {   
+        saveBtnText: '保存',   
+        cancelBtnText: '取消',   
+        errorsText: '错误信息',   
+        dirtyText: '已修改,你需要提交或取消变更'  
+    });   
+}  
+
+
+
+
+   Ext.define('EimData', {
+        extend: 'Ext.data.Model',
+        fields: [
+            'status', 'nettype', 'netid','flag_desc','typeid'
+        ],
+        idProperty: 'sid'
+    });
+
+        store = Ext.create('Ext.data.Store', {
+        pageSize: 40,
+        model: 'EimData',
+        remoteSort: true,
+        proxy: {
+            type: 'ajax',
+            url: '/pronline/Msg?FunName@ncsCaseDet_website_v4&cid@[#cid#]',
+            reader: {
+                type:'json',
+                root: 'eimdata',
+                totalProperty: 'totalCount'
+            },         
+            simpleSortMode: true
+        },
+        sorters: [{
+            property: 'sid',
+            direction: 'DESC'
+        }]
+    });
+    store.load();
+
+
+
+  
+    var rowEditing = Ext.create('Ext.ux.grid.plugin.RowEditing', {
+    	      pluginId:'rowEditing', 
+            saveBtnText: "保存", 
+            cancelBtnText: "取消", 
+            autoRecoverOnCancel:true,
+            autoCancel: true
+ //       clicksToMoveEditor: 1,
+ //       autoCancel: false
+    });
+
+    var sm = Ext.create('Ext.selection.CheckboxModel',{
+        listeners: {
+            selectionchange: function(sm, selections) {
+           
+  //          grid.down('#removeButton').setDisabled(selections.length == 0);
+                
+            }
+        }
+    
+    });
+//对翻页工具条重新构建，替换翻页函数    
+  Ext.PagingToolbar1 = Ext.extend(Ext.PagingToolbar, {
+     doRefresh:function(){  
+     reflash();
+    },
+    moveLast:function(){
+    	var b=this,a=b.getPageData().pageCount;
+    	if(b.fireEvent("beforechange",b,a)!==false){
+    	store.currentPage=a;
+    	reflash();
+       }},
+     moveFirst:function(){
+      if(this.fireEvent("beforechange",this,1)!==false){
+      store.currentPage=1;
+      reflash();}}, 
+     movePrevious:function(){var b=this,a=b.store.currentPage-1;if(a>0){if(b.fireEvent("beforechange",b,a)!==false){store.currentPage=a;reflash();}}},
+     moveNext:function(){var c=this,b=c.getPageData().pageCount,a=c.store.currentPage+1;if(a<=b){if(c.fireEvent("beforechange",c,a)!==false){store.currentPage=a;reflash();}}},
+      
+      
+      onPagingKeyDown:function(i,h){
+     var d=this,b=h.getKey(),c=d.getPageData(),a=h.shiftKey?10:1,g;
+     if(b==h.RETURN){h.stopEvent();g=d.readPageFromInput(c);
+        if(g!==false){
+         g=Math.min(Math.max(1,g),c.pageCount);
+         if(d.fireEvent("beforechange",d,g)!==false){
+        //d.store.loadPage(g)
+         d.store.currentPage=g;
+         reflash();
+        }        
+      }
+    }
+    else{
+       if(b==h.HOME||b==h.END){
+    			h.stopEvent();g=b==h.HOME?1:c.pageCount;i.setValue(g)
+       }
+       else{
+         if(b==h.UP||b==h.PAGEUP||b==h.DOWN||b==h.PAGEDOWN){
+          h.stopEvent();g=d.readPageFromInput(c);
+           if(g){
+             if(b==h.DOWN||b==h.PAGEDOWN){a*=-1}
+             g+=a;
+             if(g>=1&&g<=c.pages){i.setValue(g)}
+             }
+            }
+           }
+         }  
+      }
+
+      
+      
+       
+});
+
+
+    Ext.define('State', {
+        extend: 'Ext.data.Model',
+        fields: [
+            {type: 'string', name: 'classid'},
+            {type: 'string', name: 'classname'}
+        ]
+    });
+    // The data for all states
+    var data_state = [
+        {"classid":"0","classname":"启用"},
+        {"classid":"1","classname":"停用"}
+
+       
+    ];
+   
+    var store_state = Ext.create('Ext.data.Store', {
+        model: 'State',
+        data: data_state
+    });
+
+        store2 = Ext.create('Ext.data.Store', {
+        pageSize: 225,
+        model: 'State',
+        remoteSort: true,
+        autoLoad:true,
+        proxy: {
+            type: 'ajax',
+            url: '/pronline/Msg?FunName@ncsWebSitetypeComp',
+            reader: {
+                type:'json',
+                root: 'eimdata',
+                totalProperty: 'totalCount'
+            },         
+            simpleSortMode: true
+        },
+        sorters: [{
+            property: 'id',
+            direction: 'DESC'
+        }],
+        listeners: {
+            load: function() {
+   // 	        var combo = Ext.getCmp('pid');
+    	     
+  //              combo.setValue(combo.getValue());
+            }
+        }
+    });
+
+
+     var win2;
+    var grid = Ext.create('Ext.grid.Panel', {
+        store: store,
+        selModel: sm,
+        columns: [{
+            header: '网址类别',
+  //          id: 'pid',
+            dataIndex: 'nettype',
+            sortable: false,
+            width:100,
+            editor: {
+          xtype: 'combo',
+          id: 'nettype',          
+           store:store2,
+           displayField: 'classname',
+           valueField:'classid',
+           
+            queryMode: 'local',
+				   
+                allowBlank: true
+    
+            }
+        }, {
+            header: '网址内容',
+            dataIndex: 'netid',
+             width:120,
+           sortable: false,
+            editor: {
+	           listeners: {
+				          'focus':function(){
+				          	 if(this.value=='请输入网址内容'){
+				                this.setValue('');
+				               }
+				            }
+				        },
+                allowBlank: true
+//                vtype: 'textfield'
+            }
+        }, {
+            header: '状态',
+            dataIndex: 'flag_desc',
+            width:60,
+            sortable: false,
+            editor: {
+          xtype: 'combo',
+          id: 'flag_desc',          
+           store:store_state,
+           displayField: 'classname',
+           valueField:'classid',
+            queryMode: 'local',
+				   
+                allowBlank: true
+    
+            }
+        },{
+        	 width:300,
+            flex: 1
+           
+            
+        }
+        ],
+        renderTo: 'editor-grid',
+ //       width: aaa,
+        forceFit: true,
+        scrollOffset: 0,
+        height: 980,
+
+        frame: true,
+        tbar: Ext.create('Ext.PagingToolbar1', {
+            store: store,
+            displayInfo: true,
+            displayMsg: '显示{0} - {1}条记录 共{2}条记录',
+            emptyMsg: "没有记录可显示",
+                                       
+            items: 
+        ['-',{
+            text: '添加',
+            iconCls: 'add',
+            handler : function() {
+   //             rowEditing.cancelEdit();
+
+                // Create a model instance
+                
+                var r = Ext.create('EimData', {
+ 
+                    netid: '请输入网址内容',                   
+                    status:'0',
+                    flag_desc:'启用',
+                    nettype:'0'
+                    
+                });
+              
+                 if(preid!=''){
+                 	r.data.nettype=preid;
+                }
+         
+
+         
+                
+
+             
+                store.insert(0, r);
+
+
+              rowEditing.startEdit(0, 0);
+            }
+        }, {
+            itemId: 'removeEmployee',
+            text: '删除',
+            iconCls: 'remove',
+
+                handler:function(){
+             
+							   if(confirm('您真的要执行删除操作吗？')){                  
+                 var selsid;  
+                 var rows=sm.getSelection();
+                   selsid='';
+                  for(var i=0;i<rows.length;i++){
+                  	if(i==0){
+                  	 selsid=rows[i].getId();
+                  	}
+                  	else{
+                       selsid=selsid+","+rows[i].getId();
+                    }
+                   
+                   }
+ 
+                      store.load({params: {del: "del",selsid:selsid}});
+                  
+                
+              }
+                
+            },
+            disabled: true
+        }, 
+        '-',      
+         ,
+           {
+               xtype:'textfield',
+               id:'keyword',
+               name:'keyword',
+               style:'color:#7aa7d5',
+               value:'请输入查询内容',
+               enableKeyEvents:true,
+               listeners:{
+                 'focus':function(){
+                 if(this.value=='请输入查询内容'){                
+                    this.setValue('');
+                  }
+                 },
+                 'keydown' : function(i,e){
+                var aae=e.getKey() ; 
+                if(aae==13){
+                    var aa=Ext.getCmp('keyword').value;
+                    store.load({params:{keyword:aa}});
+                  }
+                }
+               }
+             },
+        ,
+             {
+                text:'确认',
+                iconCls:'accept',
+                handler: function(){
+                 var aa=Ext.getCmp('keyword').value;
+                
+                if(aa!='请输入查询内容'){
+                	store.load({params:{keyword:aa}});
+                  	
+                 }
+                
+              
+                }
+           },{
+           	text:'导入',
+           	iconCls:'exp',
+           	handler: function(){
+           		openDr();
+           	}
+           	
+          }
+        ]}),
+        plugins: [rowEditing],
+        listeners: {
+            'selectionchange': function(view, records) {
+                grid.down('#removeEmployee').setDisabled(!records.length);
+                
+                
+            }
+        }
+    });
+});
+</script>
+    
+    
+</head>
+<body>
+		<form name="form1" id="form1" action="/pronline/Msg">
+			<input type="hidden" name="groupid" value="">
+		<input type="hidden" name="did" value="">
+	</form>
+    <div id="editor-grid"></div>
+</body>
+</html>

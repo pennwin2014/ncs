@@ -1,0 +1,447 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<title>邮件分类</title>
+<script>
+    function goto(t){
+        self.location.href=t;
+    }
+	
+	function gotoPage(pagenum)
+
+{
+    form1.CurPg.value = pagenum;
+}
+    
+	function setuflags(t){
+       j=form1.usertype.options.length;
+       for(i=0;i<j;i++) { 
+           gv = form1.usertype.options[i].value;
+           if(gv == t) {
+               form1.usertype.selectedIndex = i;
+           }
+       }
+    }
+      
+	function setsave(t){
+       j=form1.save.options.length; 
+       for(i=0;i<j;i++) { 
+           gv = form1.save.options[i].value;
+           if(gv == t) {
+               form1.save.selectedIndex = i;
+           }
+       }
+    }
+
+	function settzflags(t){
+       j=form1.tz.options.length; 
+	   for(i=0;i<j;i++) { 
+           gv = form1.tz.options[i].value;
+           if(gv == t) {
+               form1.tz.selectedIndex = i;
+			   if(t == '3') {
+                     document.all.b1.style.display=""
+				}
+               else{
+                    document.all.b1.style.display="none"			       
+			   }
+           }
+       }
+    }
+	  
+	function setstype(t){
+       j=form1.stype.options.length; 
+	   for(i=0;i<j;i++) { 
+           gv = form1.stype.options[i].value;
+           if(gv == t) {
+               form1.stype.selectedIndex = i;
+           }
+       }
+    }
+	  
+	 function setctlflags(t){
+       j=form1.ctlflags.options.length; 
+	   for(i=0;i<j;i++) { 
+           gv = form1.ctlflags.options[i].value;
+           if(gv == t) {
+               form1.ctlflags.selectedIndex = i;
+			   if(t=='3') {
+   			        document.all.b0.style.display=""
+			   }
+			   else {
+    	  		   document.all.b0.style.display="none"
+			   }
+           }
+       }
+    }
+	  
+    function mouseovertr2 (o){
+        var i;
+        df=o.style.backgroundColor
+	    o.style.backgroundColor= "#003399";
+	    o.style.borderColor= "#FFFF00";
+	    o.style.cursor="hand";	
+        for(i=0; i<o.cells.length; i++)
+        {
+	        o.cells(i).style.color="#ffffff";
+        }	
+    }
+    function setinit()
+	{
+		settzflags('[#tz#]');
+		setsave('[#save#]');
+		setstype('[#stype#]');
+		setctlflags('[#ctlflags#]');
+	}
+
+    function showf(sid,num,uflags,uname,from,to,sub,cont,aname,msize,asize,tonum,save,tzflags,tzmail,stype,tname,tzmsg,fmail,ctlflags) {
+        form1.rid.value=sid;
+        form1.rnum.value=num;
+        form1.uname.value=uname;
+		form1.from.value=from;
+		form1.to.value=to;
+		form1.sub.value=sub;
+		form1.cont.value=cont;
+		form1.aname.value=aname;
+		form1.msize.value=msize;
+		form1.asize.value=asize;
+		form1.tonum.value=tonum;
+		form1.tzmail.value=tzmail;
+		form1.tname.value=tname;
+		form1.tzmsg.value=tzmsg;
+		form1.fmail.value=fmail;
+		settzflags(tzflags);
+		setsave(save);
+		setstype(stype);
+		setctlflags(ctlflags);
+    }
+    
+    function mouseouttr2(o){
+	    o.style.backgroundColor=df
+        for(i=0; i<o.cells.length; i++)
+        {
+	        o.cells(i).style.color="#000000";
+        }
+    }
+
+    var dfd1="0"
+    function checkme(p)
+    {
+	    var tt=p.value
+	    if (tt>yy)
+	    {
+		    MM_changeProp('browsdopage','','value',yy,'INPUT/TEXT')
+	    }
+	    if (tt==0)
+	    {
+		    MM_changeProp('browsdopage','','value','1','INPUT/TEXT')
+	    }
+    }
+
+    function allChecked(){
+        if(dfd1=="1"){
+            dfd1="0"
+        }
+        else {
+             dfd1="1"
+        }
+	    for(var i=0;i<document.all.DataTable.rows.length;i++)
+	    {
+		    if(typeof(document.all.DataTable.rows[i].cells[0].childNodes[0])=="object"
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].tagName=="INPUT"
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].type=="checkbox") {
+			    if(dfd1=="1"){
+  			        document.all.DataTable.rows[i].cells[0].childNodes[0].checked="true";
+                }
+			    else{
+                    document.all.DataTable.rows[i].cells[0].childNodes[0].checked="";
+                }
+            }
+ 	    }
+    }
+    
+<!--
+
+function fff(t) { 
+  if(t=='0'){
+    if(document.all.a0.value==3){
+      document.all.b0.style.display=""
+    }else{
+      document.all.b0.style.display="none"
+    }
+  }else{
+    if(document.all.a1.value==3){
+      document.all.b1.style.display=""
+    }else if(document.all.a1.value==0){
+       document.all.b1.style.display="none"
+    }else{
+       document.all.b1.style.display="none"
+    }
+  }
+}
+//-->
+    
+<!-- Hide
+var ll=[#CurPg#]
+var yy=[#TotPg#]
+function killErrors() {
+   return true;
+}
+
+window.onerror = killErrors;
+// -->
+    function killErrors() {
+        return true;
+    }
+    window.onerror = killErrors;
+// -->
+
+</script>
+<link REL=stylesheet HREF="/css/runmit.css" TYPE="text/css">
+<script src="/js/rmenu.js"></script>
+<style type="text/css">
+<!--
+.ttt {
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: solid;
+	border-left-style: none;
+	border-top-color: #000000;
+	border-right-color: #000000;
+	border-bottom-color: #000000;
+	border-left-color: #FFFFFF;
+}
+.nnoo {  filter: Gray}
+-->
+</style>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+<body BGCOLOR=#DEE8FA leftmargin=0 topMargin="0" marginwidth=0 marginheight=0 onload="setinit()">
+<form name="form1" method="post" action="/pronline/Msg"> 
+  <table border="0" width=100% height=100% cellspacing="0" cellpadding="0" align=center bordercolor="#D4D4D4">
+    <tr> 
+      <td width="100%"  valign=middle align=center height="2" class="ttt"> 
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tr> 
+            <td colspan="2"> 
+              <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr> 
+                  <td height="100%" colspan="2"> 
+                    <table width="100%" height="27" border="0" align="center" cellpadding="0" cellspacing="0" background="/images/table_bg1.gif">
+                      <tr > 
+                        <td width="55%" > <div align="right"><strong><font color="#FFFFFF">拦截邮件分类</font></strong></div></td>
+                        <td width="45%" ><font color="#FFFFFF">&nbsp;&nbsp;[[#gname#]]</font></td>
+                      </tr>
+                    </table></td>
+                  </tr>
+                <tr> 
+                  <td height="100%" colspan="2" width="839"> 
+                    <table width="100%" border="0">
+                      <tr> 
+                        <td colspan="6"></td>
+                      </tr>
+                      <tr> 
+                        <td width="91" height="16"> <p align="right">规则名称</p></td>
+                        <td width="170" height="16"> <input type="text" name="tname" size="20" maxlength="31" value="[#tname#]" > 
+                        </td>
+                        <td width="119" height="16"> <p align="right">序号</p></td>
+                        <td width="170" height="16"> <input type="text" name="rnum" size="6" maxlength="6" value="[#rnum#]"> 
+                        </td>
+                        <td width="89" height="16"> <p align="right">用户名含</p></td>
+                        <td width="180" height="16"> <p align="left"> 
+                            <input type="text" name="uname" size="20" maxlength="63" value="[#uname#]">
+                          </p></td>
+                      </tr>
+                      <tr> 
+                        <td width="91" height="2"> <p align="right">发件人含</p></td>
+                        <td width="170" height="2"> <input type="text" name="from" size="20" maxlength="63" value="[#from#]"> 
+                        </td>
+                        <td width="119" height="2"> <p align="right">收件人含</p></td>
+                        <td width="170" height="2"> <input type="text" name="to" size="20" maxlength="63" value="[#to#]"> 
+                        </td>
+                        <td width="89" height="2"> <p align="right">主题包含</p></td>
+                        <td width="180" height="2"> <input type="text" name="sub" size="20" maxlength="63" value="[#sub#]"> 
+                        </td>
+                      </tr>
+                      <tr> 
+                        <td width="91" height="28"> <p align="right">内容包含</p></td>
+                        <td width="170" height="28"> <input type="text" name="cont" size="20" maxlength="63" value="[#cont#]"> 
+                        </td>
+                        <td width="119" height="28"> <p align="right">附件名称含</p></td>
+                        <td width="170" height="28"> <input type="text" name="aname" size="20" maxlength="63" value="[#aname#]"> 
+                        </td>
+                        <td width="89" height="28"> <p align="right">邮件大于</p></td>
+                        <td width="180" height="28"> <input type="text" name="msize" size="10" maxlength="10" value="[#msize#]">
+                          字节</td>
+                      </tr>
+                      <tr> 
+                        <td width="91" height="26"> <p align="right">附件大于</p></td>
+                        <td width="170" height="26"> <input type="text" name="asize" size="10" maxlength="10" value="[#asize#]">
+                          字节</td>
+                        <td width="119" height="26"> <p align="right">收件人大于</p></td>
+                        <td width="170" height="26"> <input type="text" name="tonum" size="10" maxlength="10" value="[#tonum#]">
+                          个</td>
+                        <td width="89" height="26"> <p align="right">发送类别</p></td>
+                        <td width="180" height="26"> <select name="stype">
+                            <option value="0" selected>全部</option>
+                            <option value="1">发送</option>
+                            <option value="2">接收</option>
+                          </select> </td>
+                      </tr>
+                      <tr> 
+                        <td width="91" height="16"> <p align="right">是否保存</p></td>
+                        <td width="170" height="16"> <select name="save">
+                            <option value="1" selected>是</option>
+                            <option value="0">否</option>
+                          </select> <select name="ctlflags" id="a0" onChange="fff('0')" size="1">
+                            <option value="1" selected>直接发送</option>
+                            <option value="2">拒绝发送</option>
+                            <option value="3">转到邮箱</option>
+                            <option value="4">等待确认</option>
+                          </select> </td>
+                        <td width="119" height="16"> <input type="text"  id="b0" name="fmail" size="14" maxlength="63" style="display:none" value="[#fmail#]"> 
+                        </td>
+                        <td width="170" height="16"> 通知 
+                          <select name="tz" size="1" id="a1" onChange="fff('1')" >
+                            <option value="0" selected>无</option>
+                            <option value="1">发件人</option>
+                            <option value="2">收件人</option>
+                            <option value="3">指定邮箱</option>
+                          </select> </td>
+                        <td height="16" colspan="2"> <p align="left"> 
+                            <input type="text"  id="b1" name="tzmail" size="20" maxlength="63"  style="display:none" value="[#tzmail#]">
+                          </p></td>
+                      </tr>
+                      <tr> 
+                        <td width="91" height="16"> <p align="right">通知标题</p></td>
+                        <td colspan="5" height="16"> <input type="text"  id="c0" name="tzmsg" size="80" maxlength="128" value="[#tzmsg#]" > 
+                        </td>
+                      </tr>
+                      <tr> 
+                        <td colspan="6" height="25"> <div align="center"> 
+                            <table width="92%" border="0">
+                              <tr> 
+                                <td width="46%"> <div align="center"> 
+                                    <input type="hidden" name="CurPg"      value="[#CurPg#]">
+                                    <input type="hidden" name="usertype"     value="[#usertype#]">
+                                    <input type="hidden" name="TotPg"      value="[#TotPg#]">
+                                    <input name="add" type="submit" class="an3" value="添 加" >
+                                    &nbsp; 
+                                    <input name="modi" type="submit" class="an3" value="修 改" >
+                                    &nbsp; 
+                                    <input name="del" type="submit" class="an3" value="删 除" >
+                                    &nbsp; 
+                                    <input name="app" type="submit" class="an3" value="应 用" >
+                                    <input type="hidden" name="FunName" value="ncMailCtlTypeList">
+                                    <input type="hidden" name="rid"   value="[#rid#]">
+                                    <input type="hidden" name="gid"   value="[#gid#]">
+                                    <input type="hidden" name="gname"   value="[#gname#]">
+                                  </div></td>
+                                <td width="54%"> <table border=0 align=right cellpadding=0 cellspacing=0 class=main>
+                                    <tbody>
+                                    <td> <script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-06.gif' border=0 height=17 width=35 class='gray1'>")}
+                      else{
+                        document.write("<a href='#'><img src='/images/zbuyer-06.gif' border=0 height=17 width=35 onClick='gotoPage(1);form1.submit()' class='hand'>")}
+                   </script></td>
+                                    <td> <script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 class='gray1'>")}
+                      else {
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]-1);form1.submit()' class='hand'>")}
+                   </script></td>
+                                    <td><img src="/images/zbuyer-08.gif" border=0 height=17 width=32></td>
+                                    <td align=middle background=""> <input class=Main id=browsdopage maxlength=3  name=browsdopage size=3 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 30px" value=[#CurPg#] onKeyPress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" onBlur="checkme(this)"> 
+                                    </td>
+                                    <td><img src="/images/zbuyer-09.gif" border=0 height=17 width=16></td>
+                                    <td><img align=middle border=0 height=17 src="/images/zbuyer-10.gif" width=17 onClick="gotoPage(form1.browsdopage.value);form1.submit()" class="hand"><img align=middle height=17 src="/images/zbuyer-11.gif" width=3></td>
+                                    <td><img border=0 height=17 src="/images/zin1.gif" width=17 ></td>
+                                    <td align=middle background=""> <input  class=Main id=browsdopage1 maxlength=5 name=browsdopage12 size=3 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 30px" value='[#TotPg#]'> 
+                                    </td>
+                                    <td><img align=middle height=17 src="/images/zbuyer-09.gif" width=16></td>
+                                    <td align=middle background=""> <input  class=Main id=browsdopage1 maxlength=5 name=browsdopage12 size=3 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 30px" value='[#TotRec#]'> 
+                                    </td>
+                                    <td><img border=0 height=17 src="/images/zin3.gif" width=17 align="middle" ><img align=middle height=17  src="/images/zbuyer-11.gif" width=3></td>
+                                    <td> <script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]+1);form1.submit()' class='hand'>")}
+                    </script></td>
+                                    <td> <script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 onClick='gotoPage([#TotPg#]);form1.submit()' class='hand'>")}
+                    </script></td>
+                                  </table></td>
+                              </tr>
+                            </table>
+                          </div></td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+    </td>
+  </tr>
+  <tr>
+      <td width="100%"  valign=top align=center> 
+        <table  id="DataTable" width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" >
+          <tr  height="21" > 
+            <td width="47" height="18" bgcolor="#6382BD" class="bord2">
+<div align="center">
+                <input type="button" name="b1" value="全选"  class="anniu_1"  onClick="allChecked()">
+              </div></td>
+            <td width="146" height="18" bgcolor="#6382BD" class="bord2"> 
+              <div align="center"><font color="#FFFFFF">规则名称</font></div></td>
+            <td width="76" height="18" bgcolor="#6382BD" class="bord2"> 
+              <div align="center"><font color="#FFFFFF">序号</font></div></td>
+            <td width="724" height="18" bgcolor="#6382BD" class="bord2"> 
+              <div align="center"><font color="#FFFFFF"> 内容</font></div></td>
+          </tr>
+          <!-- [#SLPB#] -->
+          <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" onclick="showf('[#rid#]','[#rnum#]','[#uflags#]','[#uname#]','[#from#]','[#to#]','[#sub#]','[#cont#]' ,'[#aname#]','[#msize#]','[#asize#]','[#tonum#]','[#save#]','[#tzflags#]','[#tzmail#]','[#stype#]','[#tname#]','[#tzmsg#]','[#fmail#]','[#ctlflags#]')"> 
+            <td class="bord1" width="47"> 
+              <input type="checkbox" name="ch[#num#]" value="[#rid#]">
+            </td>
+            <td class="bord1" width="146">&nbsp;[#tname#]</td>
+            <td class="bord1" width="76">[#rnum#]</td>
+            <td class="bord3" width="724">[#des#]</td>
+          </tr>
+          <!-- [#SLPE#] -->
+          <!-- [#SLPB#] -->
+          <tr id=[#snum#]> 
+            <td class="bord1" width="47">&nbsp; </td>
+            <td class="bord1" width="146">&nbsp;</td>
+            <td class="bord1" width="76">&nbsp;</td>
+            <td class="bord3" width="724">&nbsp;</td>
+          </tr>
+          <!-- [#SLPE#] -->
+        </table>
+<!--//鼠标显示//-->
+              <script language="JavaScript">
+<!--
+var MenuBarColor ='#cccccc';
+DrawMouseRightButtonUpMenu();
+-->
+</script>
+    </table>
+  </form>
+</body>
+</html>

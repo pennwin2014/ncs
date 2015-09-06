@@ -1,0 +1,413 @@
+<!-- saved from url=(0022)http://internet.e-mail -->
+<html>
+<head>
+<title>IDC 策略维护</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META content=no-cache http-equiv=Pragma>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<style type="text/css">
+<!--
+body {  font-size: 9pt}
+.tas {  border-color: black #FFFFFF; border-style: solid; border-top-width: 0px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 1px}
+table {  font-size: 9pt}
+.hand {  cursor: hand}
+.gray1{filter:gray}
+-->
+</style>
+
+<SCRIPT LANGUAGE="JavaScript">
+function checkme(p)
+{
+	var tt=p.value
+	if (tt>yy)
+	{
+		MM_changeProp('browsdopage','','value',yy,'INPUT/TEXT')
+	}
+	if (tt==0)
+	{
+		MM_changeProp('browsdopage','','value','1','INPUT/TEXT')
+	}
+}
+
+function MM_findObj(n, d) 
+{ //v4.0
+  	var p,i,x;
+  	if(!d) d=document;
+  	if((p=n.indexOf("?"))>0&&parent.frames.length)
+  	{
+    	d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);
+    }
+  	if(!(x=d[n])&&d.all) x=d.all[n];
+  	for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  	for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  	if(!x && document.getElementById) x=document.getElementById(n); return x;
+}
+
+function MM_changeProp(objName,x,theProp,theValue)
+{ //v3.0
+  	var obj = MM_findObj(objName);
+  	if (obj && (theProp.indexOf("style.")==-1 || obj.style)) eval("obj."+theProp+"='"+theValue+"'");
+}
+
+function goto_idc(a)
+{
+	if(form1.groupid.value!='')
+		window.open(a,"_self","")
+}
+
+function MM_reloadPage(init)
+{  //reloads the window if Nav4 resized
+  	if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+
+function mouseovertr2 (o)
+{
+	var i;
+	df=o.style.backgroundColor
+	o.style.backgroundColor= "#003399";
+	o.style.borderColor= "#3399ff";
+		
+	for(i=0; i<o.cells.length; i++)
+	{
+		o.cells(i).style.color="#ffffff";
+	}	
+}
+
+function mouseouttr2(o)
+{
+	o.style.backgroundColor=df
+	for(i=0; i<o.cells.length; i++)
+	{
+		o.cells(i).style.color="#000000";
+	}
+}
+
+function mouseovertd2(o)
+{
+	o.style.borderStyle="solid"
+	o.style.borderColor="#000000"
+	o.style.color="#ffffff"	
+}
+
+function mouseouttd2(o)
+{
+	o.style.color="#003366"
+	o.style.borderColor="#cccccc"
+}
+
+function allChecked(){
+    if(dfd1=="1"){
+        dfd1="0"
+    }
+    else {
+         dfd1="1"
+    }
+	for(var i=0;i<document.all.DataTable.rows.length;i++)
+	{
+		if(typeof(document.all.DataTable.rows[i].cells[0].childNodes[0])=="object"
+
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].tagName=="INPUT"
+
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].type=="checkbox") {
+			if(dfd1=="1"){
+  			    document.all.DataTable.rows[i].cells[0].childNodes[0].checked="true";
+            }
+			else{
+                document.all.DataTable.rows[i].cells[0].childNodes[0].checked="";
+            }
+        }
+ 	}
+}
+function st_ed(flag,sid){
+		form1.cond.value='';
+   	form1.st_flags.value=flag;
+		form1.mo_sid.value=sid;
+		form1.modi_st.value='modi';
+		form1.submit();
+}
+function gotoPage(pagenum)
+{
+    form1.CurPg.value = pagenum;
+    form1.expflag.value='';
+}
+// -->
+<!-- Hide
+var ll=[#CurPg#]
+var yy=[#TotPg#]
+function killErrors() {
+return true;
+}
+window.onerror = killErrors;
+
+
+function export_rule(){
+		form1.expflag.value=1;
+		form1.submit();
+		form1.expflag.value='';
+}
+
+function import_rule(){
+	//	 t = "/idc/cust_dr_frm.htm";
+		form1.cond.value='';
+    t="/pronline/Msg?FunName@ncWebReplaceco_key&groupid@"+form1.groupid.value+"&kid@"+form1.kid.value+"&plate@idc/cust_dr_frm.htm";
+    var oDia=showModalDialog(t,window,
+		 "status:no;center:yes;help:no;minimize:no;maximize:no;border:thick;statusbar:no;dialogWidth:500px;scroll:none;dialogHeight:385px;overflow:none");	
+
+}
+
+function init(){
+	if(form1.groupid.value=='')
+		document.getElementById("expoo").style.display="none";
+	else
+		document.getElementById("expoo").style.display="";	
+	if(form1.repflag.value==1)
+		alert("关键字重复请重新输入");
+	form1.repflag.value=0;
+}
+
+var dfd1="0"
+
+function allChecked(){
+    if(dfd1=="1"){
+        dfd1="0"
+    }
+    else {
+         dfd1="1"
+    }
+	for(var i=0;i<document.all.DataTable.rows.length;i++)
+	{
+		if(typeof(document.all.DataTable.rows[i].cells[0].childNodes[0])=="object"
+ 
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].tagName=="INPUT"
+ 
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].type=="checkbox") {
+			if(dfd1=="1"){
+  			    document.all.DataTable.rows[i].cells[0].childNodes[0].checked="true";
+            }
+			else{
+                document.all.DataTable.rows[i].cells[0].childNodes[0].checked="";
+            }
+        }
+ 	}
+}
+function show_v(a,b){
+	form1.cond.value=a;	
+	form1.mo_sid.value=b;	
+}
+function idc_mo(){
+		if(form1.mo_sid.value==''){
+			alert("请选择要修改的记录");	
+			return;
+		}
+		form1.modi_val.value=1;
+		form1.add_fg.value='';
+		form1.submit();
+}
+function idc_se(){
+		form1.modi_val.value='';
+		form1.add_fg.value='';
+		form1.submit();
+}
+function idc_add(){
+		if(form1.cond.value==''){
+			alert("请输入关键字");
+			return;
+		}
+		
+		form1.modi_val.value='';
+		form1.add_fg.value=1;
+		form1.submit();
+}
+
+function idc_del(){
+		var flag=0;
+    for(var i=0;i<document.all.DataTable.rows.length;i++){
+		    if(document.all.DataTable.rows[i].cells[0].childNodes[0].checked){
+			    flag=1;
+			    break;
+		    }
+	  }
+	  if(flag==0){
+	    	alert('请先选择要删除的策略');
+	    	return false;
+	  }
+		form1.del.value=1;
+		form1.submit();	
+}
+// -->
+</SCRIPT>
+
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" oncontextmenu="return false" onload="init();">
+<table width="100%" border="0" align="center"  cellpadding="0"  cellspacing=0 bordercolor="#DFDFDF">
+  <form name="form1" method="post" action="/pronline/Msg">
+    <input type="hidden" name="FunName" value="ncsIdcRulekey_maintain">
+    <input type="hidden" name="CurPg" value="[#CurPg#]">
+    <input type="hidden" name="groupid" value="[#groupid#]">
+    <input type="hidden" name="mo_sid" value="[#mo_sid#]">
+    <input type="hidden" name="modi_st" value="[#modi_st#]">
+    <input type="hidden" name="st_flags" value="[#st_flags#]">
+    <input type="hidden" name="modi_val" value="[#modi_val#]">
+    <input type="hidden" name="add_fg" value="[#add_fg#]">
+    <input type="hidden" name="repflag" value="[#repflag#]">
+    <input type="hidden" name="del" value="">
+    <input type="hidden" name="kid" value="[#kid#]">
+    <input type="hidden" name="PerRow" value="">
+    <input type="hidden" name="Row"   value="">
+    <input type="hidden" name="Col"   value="">
+    <input type="hidden" name="expflag"   value="">
+    <tr >
+      <td colspan="8">
+      	
+      	<table width="100%" height="27" border="0" align="center" cellpadding="0" cellspacing="0" background="/images/table_bg1.gif">
+          <tr height="30"> 
+         <!--
+          	<td class="tabtitle" >关键字维护&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td background="/images/images2/chaxun2-1.gif" align="right"> -->
+            	
+            <td  background="/images/images2/chaxun2-1.gif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td background="/images/images2/chaxun2-1.gif" align="right">
+            	<table align=right border=0 cellpadding=0 cellspacing=0 
+                        class=main width=111>
+                <tbody>
+                      <td width="10%"> <script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-06.gif' border=0 height=17 width=35 class='gray1'>")}
+                      else{
+                        document.write("<a href='#xxm'><img src='/images/zbuyer-06.gif' border=0 height=17 width=35 onClick='gotoPage(1);form1.submit()' class='hand'>")}
+                   </script> </td>
+                      <td width="10%"> <script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 class='gray1'>")}
+                      else {
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]-1);form1.submit()' class='hand'>")}
+                   </script> </td>
+                      <td width="20%" valign="top"><img src="/images/zbuyer-08.gif" border=0 height=17 width=32></td>
+                      <td align=middle background="" width=92> <input class=Main id=browsdopage3 maxlength=7  name=browsdopage size=7 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 50px;position:relative;top:-2px;" value=[#CurPg#] onKeyPress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" onBlur="checkme(this)"> 
+                      </td>
+                      <td width="10%" valign="top"><img src="/images/zbuyer-09.gif" border=0 height=17 width=16></td>
+                      <td width="10%" valign="top"><img align=middle border=0 height=17 src="/images/zbuyer-10.gif" width=17 onClick="gotoPage(form1.browsdopage.value);form1.submit()" class="hand"><img align=middle height=17 src="/images/zbuyer-11.gif" width=3></td>
+                      <td width="10%" valign="top"><img border=0 height=17 src="/images/zin1.gif" width=17 ></td>
+                      <td align=middle background="" width=92> <input  class=Main id=browsdopage122 maxlength=7 name=browsdopage12 size=7 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 50px;position:relative;top:-2px;" value='[#TotPg#]'> 
+                      </td>
+                      <td width="10%" valign="top"><img align=middle height=17 src="/images/zbuyer-09.gif" width=16></td>
+                      <td align=middle background="" width=92> <input  class=Main id=browsdopage122 maxlength=7 name=browsdopage12 size=7 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 50px;position:relative;top:-2px;" value='[#TotRec#]'> 
+                      </td>
+                      <td width="10%" valign="top"><img border=0 height=17 src="/images/zin3.gif" width=17 align="middle" ><img align=middle height=17  src="/images/zbuyer-11.gif" width=3></td>
+                      <td width="10%"> <script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]+1);form1.submit()' class='hand'>")}
+                    </script> </td>
+                      <td width="10%"> <script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 onClick='gotoPage([#TotPg#]);form1.submit()' class='hand'>")}
+                    </script> </td>
+                    </tbody>
+              </table>
+            	</td>
+          </tr>
+        </table></td>
+ 
+    </tr>
+    
+    <tr > 
+      <td   colspan="8" > <table  width="100%" border="0"  class="ttt">
+          <tr> 
+            <td width="84%" height="25"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr> 
+                 
+                  <td > <div align="center" style="white-space:nowrap;"> &nbsp;关键字: 
+                    <input type="text"   name="cond" value="[#cond#]">
+                  	<!--	类别:
+                  		
+                  		<select name="groupid" style="width:157px">
+				   							<option value="" ></option>
+				   							<option value="82000" >禁止网页关键字</option>
+				   							<option value="83000">禁止用户查看URL</option>
+				   							<option value="84000">禁止POST</option>
+				   							<option value="88000">禁止访问者IP</option>
+				   							<option value="86000">下发重点关注IP</option>                add       goto_idc('/pronline/Msg?FunName@ncsIdcRlue_am&groupid@[#groupid#]')
+				   							<option value="85000">下发重点关注用户名</option>
+				   							<option value="87000">下发重点关注邮箱</option>
+			   							</select>&nbsp;&nbsp; -->
+                      <input name="search" type="button" class="an3" onClick="idc_se();" value="查 询">
+                      <font size="4"> 
+                      <input name="modi_value" type="button" class="an3" onClick="idc_mo();" value="修 改">
+                      <input name="del2" type="button" class="an3" onClick="idc_del();" value="删 除">
+                  
+                      </font></div></td>
+              	      <td><div id="expoo"  align="left">&nbsp;<input name="add" type="button" class="an3" onclick="idc_add();" value="增 加">&nbsp;<input name="export" type="button" class="an3" onclick="export_rule();" value="导 出">&nbsp;<input name="export" type="button" class="an3" onclick="import_rule();" value="导 入"></div>  </td>
+              				<td width="350">&nbsp;</td>
+                </tr>
+              </table>
+             </td>
+            <td width="36%" > &nbsp;</td>
+          </tr>
+        </table>
+       </td>
+    </tr>
+    
+   <tr><td colspan="9" ><table id="DataTable" width="100%" width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+    
+    <tr bgcolor="#6382BD" id=ignore > 
+      <td width="38"   height="18" class="bord2">
+      <div align="center"><font color="#FFFFFF"><input type="button" name="b1" value="全选" class="anniu_1"  onClick="allChecked()"> </font> </div></td>
+<!--      <td width="150" height="18" bgcolor="#6382BD" class="bord2"> 
+        <div align="center"><font color="#FFFFFF">&nbsp;策略类别</font></div></td>
+      <td width="130" height="18" bgcolor="#6382BD" class="bord2"> 
+        <div align="center"><font color="#FFFFFF">&nbsp;关键字组名</font></div></td>-->
+      <td  width="260" height="18" bgcolor="#6382BD" class="bord2"> 
+        <div align="center"><font color="#FFFFFF">&nbsp;关键字</font></div></td>
+     <!--  	 <td  width="65" height="18" bgcolor="#6382BD" class="bord2"> 
+        <div align="center"><font color="#FFFFFF">&nbsp;单位名称</font></div></td>-->
+     <!--  <td width="120"  height="18" bgcolor="#6382BD" class="bord2"> 
+        <div align="center"><font color="#FFFFFF">&nbsp;起始时间</font></div></td>
+             <td  width="120" height="18" bgcolor="#6382BD" class="bord2"> 
+        <div width="120"  align="center"><font color="#FFFFFF">&nbsp;终止时间</font></div></td>  -->	
+          <td  width="120" height="18" bgcolor="#6382BD" class="bord2"> 
+        <div align="center"><font color="#FFFFFF">&nbsp;更新时间</font></div></td>
+     
+      <td  width="65" height="18" bgcolor="#6382BD" class="bord2"> 
+        <div align="center"><font color="#FFFFFF">&nbsp;状态</font></div></td>
+
+    </tr>
+    <!-- [#SLPB#] -->
+    <tr bgcolor="#FFFFFF" height="18" onclick="show_v('[#idc_keyword#]','[#idc_sid#]');"  onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" > 
+      <td width="28"   height="18" valign="bottom" class="bord1" align="right"> <input type="checkbox" name="chk[#num#]" value="[#idc_sid#]"> 
+      </td>
+<!--      <td width="150" valign="bottom" class="bord1" align="left">&nbsp;[#idc_gid#] </td> 
+      <td height="18" valign="bottom" class="bord1">&nbsp;[#idc_kname#] </td> -->
+      <td height="18" valign="bottom" class="bord1">&nbsp;[#idc_keyword#] </td>
+<!--       <td height="18" width="65" valign="bottom" class="bord1" align="right">&nbsp;[#idc_dname#]</td> -->
+    
+  <!--     
+      <td height="18" width="130" valign="bottom" class="bord1" align="center">&nbsp;[#idc_stime#]</td>
+      <td height="18" width="130" valign="bottom" class="bord3" align="center">&nbsp;[#idc_etime#]</td>  -->
+       <td height="18" width="130" valign="bottom" class="bord1" align="center">&nbsp;[#idc_mtime#]</td>
+      <td height="18" valign="bottom" class="bord3" align="center">&nbsp;<input type="button" value="[#idc_status#]" onclick=st_ed('[#idc_sflag#]','[#idc_sid#]') style="background-color:white;LEFT: 0px; WIDTH: 50px; POSITION: relative; TOP: 1px;bottom:1px;"  size="5"></td>
+    
+    </tr>
+    <!-- [#SLPE#] -->
+  	</table>
+  </td></tr>
+  </form>
+  <script>
+  				form1.groupid.value='[#groupid#]';
+  </script>
+</table>
+<p>&nbsp;</p>
+</body>
+</html>

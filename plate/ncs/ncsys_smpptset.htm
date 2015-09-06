@@ -1,0 +1,217 @@
+<html>
+<head>
+<title>短信平台参数设置</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<script>
+	function chg(){
+	if(form1.smpfws.value=='bizsms'){
+	document.all.xwhl.style.display='';
+	document.all.shdx.style.display='none';
+	}
+	else if(form1.smpfws.value=='smsmoden'){
+	document.all.xwhl.style.display='none';
+	document.all.shdx.style.display='none';
+	}
+	else{
+		  document.all.shdx.style.display='';
+	    document.all.xwhl.style.display='none';
+	  
+	}
+	}
+	function openlog(t){
+		window.open(t,'open_report3','height=600, width=900, top=0, left=0,toolbar=no,scrollbars=no,resizable=1,menubar=no,status=no;');
+	}
+	
+	function init(){
+	 if('[#smpfws#]'=='bizsms'){
+	 		document.all.shdx.style.display='none';
+	    document.all.xwhl.style.display='';
+	 }
+	 else if('[#smpfws#]'=='smsmoden'){
+	 	 	document.all.shdx.style.display='none';
+	    document.all.xwhl.style.display='none';
+	 }
+	 else{
+	 	 	document.all.xwhl.style.display='none';
+	  document.all.shdx.style.display='';
+	 
+
+	 }
+	}
+	function test(){
+	if(form1.testmobno.value==''){
+	alert('请填写测试的手机号');
+	return false;
+	}
+	form1.FunName.value='ncs_smppt_test';
+	return true;
+	}
+</script>
+</head>
+
+<body bgcolor="#fbfbfb" leftmargin="0" topmargin="10" marginwidth="0" marginheight="0" align="center"  style="overflow:hidden" onload="init()">
+<form name="form1" method="post" action="/pronline/Msg">
+
+  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  	<tr>
+          <td width="26"><img src="/images/tbbg/tb_left.jpg"></td>
+         
+          <td  valign="top" style="background:url(/images/tbbg/tb_center.jpg);height:19;"></td>
+          <td  width="20"><img src="/images/tbbg/tb_right.jpg" width="20" height="19"></td>
+        
+      </tr>
+  	<tr>
+  		<td width="26" height="200" style="background:url(/images/tbbg/mid_left.jpg);position:relative;left:-2px;top:-2px;"></td>
+       
+  		<td style="background:url(/images/tbbg/mid_leftw.jpg);">
+        <table width="90%" height="0%" border="0"  bordercolorlight=#89ACED   bordercolordark=#ffffff   align="center" cellpadding="0" cellspacing="0">
+          <tr> 
+            <td valign="top" height="411"> 
+            <table width="90%" border="0" align="center">
+                <tr> 
+                  <td width="17%">&nbsp;</td>
+                  <td width="67%">&nbsp;</td>
+                  <td width="16%">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="17%">&nbsp;</td>
+                  <td width="67%" height="25"><b> 短信平台参数设置</b> </td>
+                  <td width="16%">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="17%" height="89">&nbsp;</td>
+                  <td height="89" width="67%" align="center"> <table width="100%" border="0"  bordercolorlight=#848284   bordercolordark=#ffffff>
+                      <tr> 
+                        <td width="37%"> 短信服务商</td>
+                      <td width="63%"><select name="smpfws" onchange="chg()"><option value="bizsms">新网互联</option><option value="shmobile">上海移动</option><option value="smsmoden">短信猫</option></select>
+                        </td>
+                      </tr>
+                      
+                      <tr>
+                      	<td colspan="2" id="xwhl">
+                      		<table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      
+			                      <tr> 
+			                        <td width="37%" height="28"> 短信网关域名</td>
+			                        <td width="63%" height="28"> <input type="text" name="smpip" size="26" value="[#smpip#]" maxlength="20"> 
+			                        </td>
+			                      </tr>
+			                      
+			                     <tr> 
+			                        <td width="37%" height="28"> 网关路径</td>
+			                        <td width="63%" height="28"> <input type="text" name="smppath" size="26" value="[#smppath#]" maxlength="26"> 
+			                        </td>
+			                      </tr>
+			                      
+			                      
+			                    <tr> 
+			                        <td width="37%" height="28"> 短信网关帐号</td>
+			                        <td width="63%" height="28"> <input type="text" name="smpaccountid" size="16" value="[#smpaccountid#]" maxlength="20"> 
+			                        </td>
+			                      </tr>
+                      
+		                       <tr> 
+		                        <td width="37%" height="28"> 短信网关密码</td>
+		                        <td width="63%" height="28"> <input type="password" name="smppasswd" size="17" value="[#smppasswd#]" maxlength="20"> 
+		                        </td>
+		                      </tr>
+                        </table>
+                      </td>
+                    </tr>
+                     
+                     
+                   <tr>
+                      	<td colspan="2" id="shdx">
+                      		<table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      
+			                      <tr> 
+			                        <td width="37%" height="28"> 短信网关IP</td>
+			                        <td width="63%" height="28"> <input type="text" name="smpip_s" size="26" value="[#smpip_s#]" maxlength="20"> 
+			                        </td>
+			                      </tr>
+			                      <tr> 
+			                        <td width="37%" height="28"> 通讯端口</td>
+			                        <td width="63%" height="28"> <input type="text" name="smpport_s" size="26" value="[#smpport_s#]" maxlength="20"> 
+			                        </td>
+			                      </tr>
+			                      
+			                    <tr> 
+			                        <td width="37%" height="28"> 短信网关帐号</td>
+			                        <td width="63%" height="28"> <input type="text" name="smpaccountid_s" size="16" value="[#smpaccountid_s#]" maxlength="20"> 
+			                        </td>
+			                      </tr>
+                      
+		                       <tr> 
+		                        <td width="37%" height="28"> 短信网关密码</td>
+		                        <td width="63%" height="28"> <input type="password" name="smppasswd_s" size="17" value="[#smppasswd_s#]" maxlength="20"> 
+		                        </td>
+		                      </tr>
+                        </table>
+                      </td>
+                    </tr>
+                        
+                     
+                     			  <tr> 
+			                        <td width="37%" height="28"> 测试手机号</td>
+			                        <td width="63%" height="28"> <input type="text" name="testmobno" size="16" value="[#testmobno#]" maxlength="20"> 
+			                        </td>
+			                      </tr>
+                     
+                     
+                    </table></td>
+                  <td width="16%" height="89">&nbsp;</td>
+                </tr>
+               
+              
+                <tr>
+                  <td>&nbsp;</td>
+                  <td align="center">&nbsp;<font color="red">[#mesg#]</font></td>
+                  <td>&nbsp;</td>
+                </tr>
+                
+             <tr>
+      <td colspan="3" height="70" ><table width="50%" border="0" align="center">
+          <tr> 
+            <td> <div align="center"> 
+                <input type="hidden" name="FunName" value="ncs_smpptsetsave">
+                <input type="submit" name="next" value="保存" class="an3">
+                &nbsp; 
+                <input type="submit" name="atest" value="测试" class="an3" onclick="return test()">
+                &nbsp; 
+               
+              </div></td>
+          </tr>
+        </table></td>
+    </tr>      
+                
+                
+              </table></td>
+          </tr>
+        </table>
+     
+  	</td>
+  	<td style="background:url(/images/tbbg/mid_right.jpg);position:relative;left:1px;top:-2px;">&nbsp;
+  	</td>
+    </tr>
+  	
+  	
+  	  	<tr>
+          <td width="26"><img src="/images/tbbg/bottom_left.jpg" style="position:relative;top:-2px;left:-1px;"></td>
+         
+          <td  valign="top" style="background:url(/images/tbbg/bottom_center.jpg);position:relative;left:-4px;top:-2px;"></td>
+          <td  width="20"><img src="/images/tbbg/bottom_right.jpg" width="20" height="19" style="position:relative;top:-2px;"></td>
+        
+      </tr>
+  	
+
+  </table>
+</form>
+<script>form1.smpfws.value='[#smpfws#]';
+</script>
+</body>
+</html>

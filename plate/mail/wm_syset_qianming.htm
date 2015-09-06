@@ -1,0 +1,119 @@
+<html>
+<head>
+<title>电子邮件</title>
+<meta http-equiv="目录类型" content="文本/html; 字符集=gb2312">
+<script language="javascript">
+function setCode(code)
+{
+    if(!formCheck())
+        return ;
+    document.sign.nFunCode.value=code;
+    document.sign.submit();
+}
+function setValue(code,id)
+{
+    document.sign.nFunCode.value=code;
+    document.sign.curid.value=id;
+    document.sign.submit();
+}        
+function formCheck()
+{
+    if(document.sign.title.value=="")
+    {
+        alert("请输入正确的地址");
+        document.sign.title.focus();
+        return false;
+    }
+    if(document.sign.content.value=="")
+    {
+        alert("请输入用户名");
+        document.sign.content.focus();
+        return false;
+    }
+    return true;
+}    
+        
+</script>
+</head>
+<STYLE type=text/css>BODY {
+	FONT-FAMILY: "宋体"; FONT-SIZE: 9pt
+}
+TD {
+	FONT-FAMILY: "宋体"; FONT-SIZE: 9pt
+}
+A {
+	COLOR: #008000; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #ff0000; TEXT-DECORATION: underline
+}.submit {  background-color: #FFCC33}
+</STYLE>
+
+<body bgcolor="#F0FDE6">
+<form action="/pronline/Msg"  method="post" name="sign" >
+<input type="hidden" name="nFunCode" >
+<input type="hidden" name="sid" value="[#sid#]">
+<input type="hidden" name="require" value="[#require#]">
+<input type="hidden" name="curid" value="[#curid#]">
+  <div align="center"></div>
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" bordercolordark="#FFFFFF" bordercolor="0">
+    <tr valign=top> 
+      <td align=right colspan="4" valign=middle bgcolor=#8ED573 height="16"> 
+        <div align="center"><b><font color="#336633">设置邮件签名</font></b></div>
+      </td>
+    </tr>
+    <tr valign=top> 
+      <td align=right bgcolor=#E2EEDB valign=middle width="20%" height="45">签名档标题：</td>
+      <td height="45" bgcolor="#E2EEDB" colspan="3" valign="middle"> 
+        <input maxlength=39 name=title size="40" value="[#title#]">
+      </td>
+    </tr>
+    <tr valign=top> 
+      <td align=right bgcolor=#E2EEDB valign=middle width="20%" height="111">签名档内容：</td>
+      <td bgcolor="#E2EEDB" colspan="3" height="111" valign="middle"> 
+        <textarea name="content" cols="70" rows="5">[#content#]</textarea>
+      </td>
+    </tr>
+    <tr valign=top> 
+      <td align=right valign=top colspan="4" height="34" bgcolor=#E2EEDB> 
+        <div align="center"><font color="#000000"> 
+          <input type="button" name="Submit232" value=" [#action#] " onclick="setCode('17302')">
+          </font></div>
+      </td>
+    </tr>
+    [#SLPB099#] 
+    <tr valign=middle> 
+      <td align=right bgcolor=#E2EEDB colspan="4" height="25"> 
+        <div align="center"><font color="#000000"> 第 [#i#] 条 </font></div>
+      </td>
+    </tr>
+    <tr valign=top bgcolor="#E2EEDB"> 
+      <td align=center valign=top colspan="2" height="25"> 
+        <div align="center">签名档标题： </div>
+      </td>
+      <td colspan="2" height="25" width="74%"> 
+        <div align="left"> <font color="#000000"> </font><font color="#000000">[#tle#] 
+          </font> </div>
+      </td>
+    </tr>
+    <tr valign=top bgcolor="#E2EEDB"> 
+      <td align=center valign=top colspan="2" height="25"> 
+        <div align="center">签名档内容：</div>
+      </td>
+      <td colspan="2" width="74%" height="25"> 
+        <div align="left"> <font color="#000000"> </font><font color="#000000">[#cont#] 
+          </font> </div>
+      </td>
+    </tr>
+    <tr valign=top> 
+      <td align=right valign=top colspan="4" height="45"> 
+        <div align="center"><font color="#000000"><br>
+          <a href="javascript:setValue('17303','[#id#]')"><img src="../mailImages/bt18.GIF" width="52" height="24" border="0"></a>　　　　　　 
+          </font><font color="#000000"> <a href="javascript:setValue('17304','[#id#]')"><img src="../mailImages/bt7.GIF" width="52" height="24" border="0"></a> 
+          </font></div>
+      </td>
+    </tr>
+    [#SLPE#] 
+  </table>
+</form></body>
+</html>

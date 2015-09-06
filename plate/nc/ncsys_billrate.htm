@@ -1,0 +1,92 @@
+<html>
+<head>
+<title>基本参数设置</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" align="center" oncontextmenu="return false" >
+<form name="form1" method="post" action="/pronline/Msg">
+  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td valign="top" ><table width="100%" height="27" border="0" align="center" cellpadding="0" cellspacing="0" background="/images/table_bg1.gif">
+          <tr > 
+            <td colspan="2"> <div align="center"><strong><font color="#FFFFFF">计费参数设定</font></strong></div></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr> 
+      <td ><br>
+        <table width="70%" border="1"    bordercolorlight=#89ACED   bordercolordark=#ffffff    align="center" cellpadding="0" cellspacing="0" >
+          <tr> 
+            <td> 
+              <table width="99%" border="0">
+              </table>
+              <br>
+              <table width="90%" border="0" align="center">
+                <tr> 
+                  <td>&nbsp;</td>
+                  <td><div align="right">计费功能:</div></td>
+                  <td colspan="2">[#sbill#]</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="8%">&nbsp;</td>
+                  <td width="25%"> <div align="right">帐单开始时间:</div></td>
+                  <td width="30%" colspan="2"> <input name="billday" type="text" id="billday" value="[#billday#]" size="11" maxlength="11">
+                    日 </td>
+                  <td width="37%">【指每月帐单开始日期，为1到31的数字，通常数字小于15， 表示当月帐单开始日期，大于15表示下月帐单开始日期】</td>
+                </tr>
+                <tr> 
+                  <td width="8%">&nbsp;</td>
+                  <td width="25%"><div align="right">按时间计费的费率:</div></td>
+                  <td width="15%"><input name="timerate" type="text" id="timerate" value="[#timerate#]" size="11" maxlength="11"> 
+                  </td>
+                  <td width="15%">元/小时</td>
+                  <td width="37%">每小时的金额</td>
+                </tr>
+                <tr> 
+                  <td width="8%" height="2">&nbsp;</td>
+                  <td width="25%" height="2"> <div align="right">按流量计费的费率:</div></td>
+                  <td width="15%" height="2"> <p> 
+                      <input name="flowrate" type="text" id="flowrate" value="[#flowrate#]" size="11" maxlength="11">
+                    </p></td>
+                  <td width="15%">元/MB </td>
+                  <td width="37%" height="2">每MB字节的金额</td>
+                </tr>
+                <tr> 
+                  <td width="8%" height="27">&nbsp;</td>
+                  <td width="25%">&nbsp;</td>
+                  <td width="30%" colspan="2">&nbsp;</td>
+                  <td width="37%">&nbsp;</td>
+                </tr>
+              </table>
+              <div align="center"></div></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td height="70" > 
+        <table width="50%" border="0" align="center">
+          <tr> 
+            <td> <div align="right"> 
+                <input type="hidden" name="FunName" value="ncWebSystemSave_billrate">
+                <input type="submit" name="ok" value="确 认" class="an3">
+                &nbsp; 
+                <input type="submit" name="App" value="应 用" class="an3">
+                &nbsp; 
+                <input type="reset" name="cancel" value="取消返回" class="an3-1" onClick="history.back()">
+              </div></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

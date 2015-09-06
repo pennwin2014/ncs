@@ -1,0 +1,76 @@
+<html>
+<head>
+<title>登陆</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<LINK href="/css/login.css" type=text/css rel=stylesheet>
+</head>
+
+<body>
+
+  <form name="form1" id="login" method="post" action="/pronline/Msg">
+  	<input type="hidden" name="FunName" value="ncLogin">
+  	
+  	<table width="428" border="0" height="171"  cellspacing="0" cellpadding="0">
+  		
+  	  
+               
+    <tr> 
+      <td  align="left" valign="middle"> 
+        <table width="100%" border="0">
+        	
+        	
+           <tr> 
+            <td width="20%"> 
+              <div align="right"></div>
+            </td>
+            <td width="59%"> 
+              <div align="left"> 
+                <b>用户登陆 <font color="red">[#message#]</red></b>
+              </div>
+            </td>
+          </tr>
+          
+          
+          <tr> 
+            <td width="20%"> 
+              <div align="right">用户名</div>
+            </td>
+            <td width="59%"> 
+              <div align="left"> 
+                <input type="text" name="username" size="25" tabindex=1 maxlength="25">
+              </div>
+            </td>
+          </tr>
+          
+          
+          <tr> 
+            <td width="20%"> 
+              <div align="right">密 码</div>
+            </td>
+            <td width="59%"> 
+              <div align="left"> 
+                <input type="password" name="password" size="25"  tabindex=2 maxlength="25">
+              </div>
+            </td>
+          </tr>
+          
+          
+         
+          <tr> 
+            <td width="8%">&nbsp;</td>
+            <td colspan="2"> 
+              <div align="left"> 
+                <input type="submit" name="login" value="确定"   tabindex=4>
+                <input type="submit" name="ModiPass" value="修改密码"  >
+              </div>
+            </td>
+            <td width="13%">&nbsp;</td>
+          </tr>
+        </table>
+      <div align="center"></div>
+      </td>
+    </tr>
+  </form>
+</table>
+</body>
+</html>

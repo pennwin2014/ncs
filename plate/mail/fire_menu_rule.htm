@@ -1,0 +1,35 @@
+<html>
+
+<head>
+
+<title>邮件控制规则</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/css.css" type="text/css">
+<script>
+function custinput(t,y){
+var j=eval("document.all."+y)
+if(t.value.substr(0,5)=="$cust"){
+j.value=t.value.substr(16)
+j.disabled=0
+j.focus()
+}else{
+j.value=t.value.substr(16)
+j.disabled=1
+}
+}
+</script>
+</head>
+<body bgcolor="#CCCCCC" text="#000000" leftmargin="1" topmargin="1">
+<table width="100%" border="0">
+  <tr>
+    <td height="120" colspan="3"><iframe name="ftop" src="/profire/Msg?FunName@fireWebDispNatForm&type@10" width="100%" height="100%" border="1" frameborder="1" scrolling="no"></iframe></td>
+  </tr>
+  <tr> 
+    <td height="480" colspan="3"><iframe name="fbot" src="/profire/Msg?FunName@fireWebDispNatList&type@10" width="100%" height="100%" border="1" frameborder="1" scrolling="yes"></iframe></td>
+  </tr>
+</table>
+</body>
+
+</html>
+

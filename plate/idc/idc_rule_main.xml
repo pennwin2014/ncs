@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d>
+<lcount>2</lcount>
+<data>
+<node>
+<rule_id>29</rule_id>
+<rule_keyword>192.168.20.55</rule_keyword>
+<rule_did>30</rule_did>
+<rule_stime>2012-06-01 00:00:00</rule_stime>
+<rule_etime>2012-06-28 00:00:00</rule_etime>
+<rule_mtime>2012-06-27 17:42:51</rule_mtime>
+<rule_status>正常</rule_status>
+</node>
+<node>
+<rule_id>29</rule_id>
+<rule_keyword>192.168.20.55</rule_keyword>
+<rule_did>174</rule_did>
+<rule_stime>2012-06-01 00:00:00</rule_stime>
+<rule_etime>2012-06-28 00:00:00</rule_etime>
+<rule_mtime>2012-06-27 17:42:51</rule_mtime>
+<rule_status>正常</rule_status>
+</node>
+</data>
+</d>

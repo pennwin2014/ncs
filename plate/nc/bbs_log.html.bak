@@ -1,0 +1,228 @@
+﻿<html>
+<head><title>bbs</title>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link REL=stylesheet HREF="/css/search_css.css" TYPE="text/css"> 
+<SCRIPT>
+ function checkWd()
+   {
+       if(form1.wd.value == "")
+       {
+//                return false;
+       }
+       return true;
+  }
+  function checkWd2()
+   {
+       if(form2.wd.value == "")
+       {
+ //               return false;
+       }
+       return true;
+  }
+  
+ 
+  
+  	function reflash()
+  	{
+alert('aaaaa');
+//  	  form1.did.value=parent.document.getElementById("form1").did.value;
+//  	  alert(form1.did.value); 
+//  	  form1.submit();
+  	}
+  function goto(time, userid, msgfile)
+  {
+     
+     var t="/pronline/Msg?FunName@ncWebPostRead&time@"+time+"&userid@"+userid+"&msgfile@"+msgfile;
+     window.open(t,'readpost','left=100,top=50,width=700,height=600,fullscreen=0,toolbar=no,scrollbars=yes,resizable=1,menubar=no,status=0');
+  }
+function advancecx(){
+	var temp_src='/bbs_query.htm';
+
+ tt=showModalDialog(temp_src, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:580px;scroll:yes;dialogHeight:470px');
+}
+
+</SCRIPT>
+
+
+<style type="text/css"> 
+
+A:link{
+font-size:11pt;
+}
+A:visited{
+font-size:11pt;
+}
+A:hover{
+font-size:11pt;
+}
+A:active{
+font-size:11pt;
+}
+.tScrollw {
+    SCROLLBAR-FACE-COLOR: #c1d8f9; 
+    OVERFLOW: scroll;
+    SCROLLBAR-SHADOW-COLOR: #c1d8f9; 
+    SCROLLBAR-3DLIGHT-COLOR: #c1d8f9;
+     SCROLLBAR-ARROW-COLOR: #5985ce; 
+     SCROLLBAR-DARKSHADOW-COLOR: #c1d8f9;
+    overflow-x:hidden;
+    height:615px;
+    cursor: default;
+    }
+</style>
+
+</head>
+<body onLoad="form1.wd.focus();">
+
+ 
+
+ 
+
+<div class="tScrollw"  id="tC">
+<center>
+	  <br>
+	             <div style="font-size:14pt;font-weight:bold;text-align: center;">BBS表单查询</div>
+	    
+      
+       <p align="center">
+       <form method="post" action="/pronline/Msg" name="form1" onSubmit="return checkWd()">
+                <input type="hidden" name="FunName" value="ncWebBBSLog_utf8">
+                <input type="hidden" name="subject" value="[#subject#]">
+                <input type="hidden" name="content" value="[#content#]">
+                <input type="hidden" name="bbsname" value="[#bbsname#]">
+                <input type="hidden" name="url" value="[#url#]">
+                <input type="hidden" name="dip" value="[#dip#]">
+                <input type="hidden" name="sip" value="[#sip#]">
+                <input type="hidden" name="mac" value="[#mac#]">
+                <input type="hidden" name="dispname" value="[#dispname#]">
+                <input type="hidden" name="sdate" value="[#sdate#]">
+                
+                <input type="hidden" name="stime" value="[#stime#]">
+                <input type="hidden" name="edate" value="[#edate#]">
+                <input type="hidden" name="etime" value="[#etime#]">
+                <input type="hidden" name="fdate" value="[#fdate#]">
+                <input type="hidden" name="ftime" value="[#ftime#]">
+                <input type="hidden" name="fedate" value="[#fedate#]">
+                <input type="hidden" name="fetime" value="[#fetime#]">
+                <input type="hidden" name="did" value="[#did#]">
+                
+                
+                
+                
+                
+                
+                <span id=in><input type="text" name="wd" value="[#query#]" id="kw" size="80" maxlength="255">
+                <input type="submit" value="搜索" id="sb">&nbsp;</span><br>
+       </form>
+       
+       </p>
+      
+   <table cellSpacing=0 cellPadding=0 width="90%" style="word-break:break-all" border=0>
+		<tr>
+         <td><div id="top1" style="display:[#display1#]"><p align="right">找不到和您的查询 <b>"[#query#]"</b>相符的内容或信息</p></div><td>
+  	<td><div id="top2" style="display:[#display2#]"><p align="right">搜索 <b>[#query#]</b> 获得 <b>[#total#]</b> 个结果, 以下第 <b>[#start#]</b>-<b>[#end#]</b> 条&nbsp;<a href="/pronline/Msg?FunName@ncWebBBSLog_utf8&wd@[#query#]&exp@1&subject@[#subject#]&content@[#content#]&bbsname@[#bbsname#]&url@[#url#]&dip@[#dip#]&sip@[#sip#]&mac@[#mac#]&dispname@[#dispname#]&sdate@[#sdate#]&stime@[#stime#]&edate@[#edate#]&etime@[#etime#]&fdate@[#fdate#]&ftime@[#ftime#]&fedate@[#fedate#]&fetime@[#fetime#]">导出查询结果</a></p></div></td>
+    </tr>	
+   </table>  
+  
+  
+	<table cellSpacing=0 cellPadding=0 width="90%" style="word-break:break-all" border=0>
+ 
+  
+  	
+  	
+  [#SLPB#]
+  <tr [#class#]>
+ 
+ 
+    <td width="70%">
+ 
+       
+       	
+  <h4 >[#iNum#].<a href="[#url_no_highlighter#]" target="_blank">[#subject#]</a></h4>
+           
+           
+           
+          [#content#]
+           
+           <br><br>作者:[#author#]&nbsp;&nbsp;发帖时间:[#fdate#]
+           <br><br>
+            [#bbsname#]:<a href="[#url_no_highlighter#]" target="_blank"><font color="green">[#url#]</font></a>
+           <br>
+           
+           <br><br>
+      </DIV>
+   </td>
+ 
+ 
+    <td width="30%" valign="top">
+    	     <br>
+    	     <br>
+    	     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;姓名:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#dispname#]
+    	     <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上网单位:&nbsp;&nbsp;[#corp#]
+
+    	     <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;记录时间:&nbsp;&nbsp;[#vtime#]
+    	    
+    	     <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上网位置:&nbsp;&nbsp;[#position#]
+    	     <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MAC地址:&nbsp;&nbsp;&nbsp;[#mac#]
+    	     <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;源IP地址:&nbsp;&nbsp;[#sip#]
+    	     <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;目标IP地址:[#dip#]
+    	    
+    	     <br><br>
+    	     
+    </td>
+ 
+ 
+ 
+ 
+    </tr>
+  [#SLPE#]
+  
+  
+  
+ 
+  
+  </table>
+
+  
+  <table cellSpacing=0 cellPadding=0 width="80%" border=0>
+		<tr>
+  	<td><p align="center">
+	      <a href="/pronline/Msg?FunName@ncWebBBSLog_utf8&wd@[#wd_prev#]&curpg@[#CurPg_prev#]" target="_self">[#prev#]</a>
+        [#SLPB#]
+        <a href="/pronline/Msg?FunName@ncWebBBSLog_utf8&wd@[#wd_page1#]&curpg@[#CurPg_page1#]" target="_self">[#page1#]</a>
+        [#SLPE#]
+  [#page#]
+        [#SLPB#]
+        <a href="/pronline/Msg?FunName@ncWebBBSLog_utf8&wd@[#wd_page2#]&curpg@[#CurPg_page2#]" target="_self">[#page2#]</a>
+        [#SLPE#]
+        <a href="/pronline/Msg?FunName@ncWebBBSLog_utf8&wd@[#wd_next#]&curpg@[#CurPg_next#]" target="_self">[#next#]</a>
+        </p></td>
+    </tr>	
+   </table>  
+   
+   
+   
+ 
+   
+   <br><div id="bot" style="display:[#display2#]">
+       <p align="center">
+       <form method="post" action="/pronline/Msg" name="form2" onSubmit="return checkWd2()">
+                <input type="hidden" name="FunName" value="ncWebBBSLog_utf8">
+                <span id=in><input type="text" name="wd" value="[#query#]" id="kw" size="80" maxlength="255">
+                <input type="submit" value="搜索" id="sb">&nbsp;</span><br>
+       </form>
+       
+     </p></div>
+   
+    <br>
+    <br>
+    <br>
+  
+ </center>
+</div>
+
+
+
+
+
+</body>

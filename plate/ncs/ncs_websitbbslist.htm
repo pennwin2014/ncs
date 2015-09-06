@@ -1,0 +1,320 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<title>Web地址列表</title>
+<script language="JavaScript" src="/js/weblisttype.js"> </script>	
+<script>
+     function goto(t){
+        self.location.href=t;
+    }
+    
+    function setstatus(t){
+       j=form1.status.options.length; 
+       for(i=0;i<j;i++) { 
+           gv = form1.status.options[i].value;
+           if(gv == t) {
+               form1.status.selectedIndex = i;
+           }
+       }
+    }
+ 
+	
+    function showf(sid,tid,host,uri,varname) {
+        form1.sid.value=sid;
+        form1.host.value=host;
+        form1.tid.value=tid;
+        form1.uri.value=uri;
+        form1.varname.value=varname;
+    }
+     function Add()
+    {
+	    if(form1.host.value=='')
+	    {
+	    	alert('请输入网址');
+	    	return false;
+	    }
+       if(form1.tid.value=='')
+	    {
+	    	alert('类别不能为空');
+	    	return false;
+	    	}
+	    	return true;
+    }
+    function Mod()
+    {
+	    if(form1.sid.value=='')
+	    {
+	    	alert('选择修改的内容');
+	    	return false;
+	    	}
+	 if(form1.host.value=='')
+	    {
+	    	alert('请输入网址');
+	    	return false;
+	    	}
+            if(form1.tid.value=='')
+	    {
+	    	alert('类别不能为空');
+	    	return false;
+	    	}
+	    	return true;
+    }
+    function Del()
+    {
+    var flag=0;
+    	    for(var i=1;i<document.all.DataTable.rows.length;i++)
+	    {
+	    if(document.all.DataTable.rows[i].cells[0].childNodes[0].checked)
+	    {
+		    flag=1;
+		    break;
+	    }
+	    }
+	    if(flag==0)
+	    {
+	    	alert('请先选择要删除的记录');
+	    	return false;
+	    }
+	    	return true;
+    }    
+ function mouseovertr2 (o){
+        var i;
+        df=o.style.backgroundColor
+	    o.style.backgroundColor= "#003399";
+	    o.style.borderColor= "#FFFF00";
+	    o.style.cursor="hand";	
+        for(i=0; i<o.cells.length; i++)
+        {
+	        o.cells(i).style.color="#ffffff";
+        }	
+    }
+
+    function mouseouttr2(o){
+	    o.style.backgroundColor=df
+        for(i=0; i<o.cells.length; i++)
+        {
+	        o.cells(i).style.color="#000000";
+        }
+    }
+
+    var dfd1="0"
+    function gotoPage(pagenum)
+    {
+        form1.CurPg.value = pagenum;
+    }
+
+    function checkme(p)
+    {
+	    var tt=p.value
+	    if (tt>yy)
+	    {
+		    MM_changeProp('browsdopage','','value',yy,'INPUT/TEXT')
+	    }
+	    if (tt==0)
+	    {
+		    MM_changeProp('browsdopage','','value','1','INPUT/TEXT')
+	    }
+    }
+
+    function allChecked(){
+        if(dfd1=="1"){
+            dfd1="0"
+        }
+        else {
+             dfd1="1"
+        }
+	    for(var i=0;i<document.all.DataTable.rows.length;i++)
+	    {
+		    if(typeof(document.all.DataTable.rows[i].cells[0].childNodes[0])=="object"
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].tagName=="INPUT"
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].type=="checkbox") {
+			    if(dfd1=="1"){
+  			        document.all.DataTable.rows[i].cells[0].childNodes[0].checked="true";
+                }
+			    else{
+                    document.all.DataTable.rows[i].cells[0].childNodes[0].checked="";
+                }
+            }
+ 	    }
+    }
+<!-- Hide
+var ll=[#CurPg#]
+var yy=[#TotPg#]
+    function killErrors() {
+        return true;
+    }
+    window.onerror = killErrors;
+// -->
+
+</script>
+
+<link REL=stylesheet HREF="/css/runmit.css" TYPE="text/css">
+<script src="/js/rmenu.js"></script>
+<style type="text/css">
+<!--
+.tScrollw {
+    overflow: scroll;
+    overflow-x:hidden;
+    height:483px;
+    cursor: default;
+    }
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+-->
+</style>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+<body marginheight=0 leftmargin=0 marginwidth=0 topMargin="0" BGCOLOR="#DEE8FA" style="overflow:hidden">
+<form name="form1" method="post" action="/pronline/Msg"> 
+  <table border="0" width=100%  cellspacing="0" cellpadding="0" align=center>
+    <tr> 
+      <td width="100%" valign="top" class="ttt"> 
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+
+          <tr> 
+            <td height="63"> 
+              <table width="100%" border="0">
+                <tr height="35"> 
+                  <td width="1%"> </td>
+                  <td > 网址&nbsp;&nbsp;
+                    <input type="text" name="host" size="30" value="[#host#]" maxlength="63">
+                  </td>
+                   <td> &nbsp;&nbsp;路&nbsp;&nbsp;&nbsp;径
+                    <input type="text" name="uri" size="30" value="[#uri#]" maxlength="63">
+                     &nbsp;
+                   </td>
+                  <td> 
+                    变量名&nbsp;&nbsp;
+                    <input type="text" name="varname" size="25" value="[#varname#]" maxlength="63">
+                     &nbsp;
+                       
+                                 
+                    <input type="hidden" name="FunName" value="ncsWebSiteBbsList">
+                    <input type="hidden" name="CurPg"      value="[#CurPg#]">
+                    <input type="hidden" name="TotPg"      value="[#TotPg#]">
+                    <input type="hidden" name="TotRec"     value="[#TotRec#]"></td>
+                </tr>
+                
+                
+                <tr> 
+                  <td width="1%"></td>
+                  <td >
+                   <input type="hidden" name="sid" value="[#sid#]" >				     
+
+                    <input name="add" type="submit" class="an3" value="添 加" onclick="return Add()">
+                    <input name="modi" type="submit" class="an3" value="修 改" onclick="return Mod()">
+                    <input name="del" type="submit" class="an3" value="删 除" onclick="return Del()">
+                    <input name="serch" type="submit" class="an3" value="查询" > 
+                   </td>
+                  <td>
+                  &nbsp;类别名称
+                      <select name="tid" style="width:123">
+                      [#SLPB#]
+                        <option value="[#idc#]">[#namec#]</option>
+                       [#SLPE#]
+                      </select>
+                       
+                    </td>
+                    <td >
+                    <table align=right border=0 cellpadding=0 cellspacing=0 class=main width=111>
+                      <tbody>
+                      <td width="10%">
+                          <script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-06.gif' border=0 height=17 width=35 class='gray1'>")}
+                      else{
+                        document.write("<a href='#xxm'><img src='/images/zbuyer-06.gif' border=0 height=17 width=35 onClick='gotoPage(1);form1.submit()' class='hand'>")}
+                    </script>
+                        </td>
+                          <td width="10%">
+                            <script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 class='gray1'>")}
+                      else {
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]-1);form1.submit()' class='hand'>")}
+                      </script>
+                          </td>
+
+                          <td width="10%" valign="top"><img border=0 height=17 src="/images/zin1.gif" width=17 ></td>
+                          <td align=middle valign="top" width=92>
+                            <input  class=Main id=browsdopage12 maxlength=7 name=browsdopage12 size=5 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 30px;position:relative;top:-2px;" value='[#TotPg#]'>
+                          </td>
+                          <td width="10%" valign="top"><img align=middle height=17 src="/images/zbuyer-09.gif" width=16></td>
+                          <td align=middle valign="top" width=92>
+                            <input id=browsdopage12 maxlength=7 name=browsdopage12 size=5 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 40px;position:relative;top:-2px;" value='[#TotRec#]'>
+                          </td>
+                          <td width="10%" valign="top"><img border=0 height=17 src="/images/zin3.gif" width=17 align="middle" ><img align=middle height=17  src="/images/zbuyer-11.gif" width=3></td>
+                          <td width="10%">
+                            <script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]+1);form1.submit()' class='hand'>")}
+                      </script>
+                          </td>
+                          <td width="10%">
+                            <script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 onClick='gotoPage([#TotPg#]);form1.submit()' class='hand'>")}
+                      </script>
+                          </td>
+                    </table> 
+</td>
+                </tr>
+              </table>            </td>
+          </tr>
+      </table>      </td>
+  </tr>
+  <tr>
+      <td width="100%"  valign=top align=center> 
+        <table  id="DataTable" width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" >
+          <tr bgcolor="#6382BD"> 
+            <td width="46" height="18" class="bord2"> 
+              <div align="center"><font color="#FFFFFF">
+                <input type="button" name="b1" value="全选"    class="anniu_1" onClick="allChecked()">
+                </font></div></td>
+            <td  height="18" class="bord2" width="15%"> 
+              <div align="center"><font color="#FFFFFF">网站社区类别</font></div></td>
+            <td  
+            <td  height="18" class="bord2" width="30%"> 
+              <div align="center"><font color="#FFFFFF">网址</font></div></td>
+            <td  bgcolor="#6382BD" class="bord2" width="30%"><div align="center"><font color="#FFFFFF">路径</font></div></td>
+            
+            <td  height="18" bgcolor="#6382BD" class="bord2" width="150"> 
+              <div align="center"><font color="#FFFFFF">变量名</font></div></td>
+          </tr>
+          <!-- [#SLPB#] -->
+          <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" onclick="showf('[#sid#]','[#tid#]','[#host#]','[#uri#]','[#varname#]')"> 
+            <td  height="21" class="bord1" align="center"> <input type="checkbox" name="ch[#num#]" value="[#sid#]"> 
+            </td>
+            <td  height="21" class="bord1">&nbsp;[#type_desc#]</td>
+            <td  height="21" class="bord1">&nbsp;[#host#]</td>
+            <td  height="21" class="bord1" align="center">&nbsp;[#uri#]</td>
+
+            <td  height="21" class="bord3">&nbsp;[#varname#]</td>
+          </tr>
+          <!-- [#SLPE#] -->
+          <!-- [#SLPB#] -->
+          <tr id=[#snum#]> 
+            <td  height="21" class="bord1">&nbsp; </td>
+            <td  height="21" class="bord1">&nbsp;</td>
+            <td  height="21" class="bord1">&nbsp;</td>
+            <td  height="21" class="bord1">&nbsp;</td>
+            <td  height="21" class="bord3">&nbsp;</td>
+          </tr>
+          <!-- [#SLPE#] -->
+        </table>
+  </table>
+</form>
+<script>form1.tid.value='[#tid#]'</script>
+</body>
+</html>

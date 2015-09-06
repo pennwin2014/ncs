@@ -1,0 +1,241 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<body bgcolor="#dfdfdf" text="#000000" topmargin="2" align="center" oncontextmenu="return false" >
+<form name="form1" method="post" action="/pronline/Msg">
+  <table width="89%" border="0" height="80%">
+    <tr> 
+      <td valign="top" height="492"> 
+        <table width="98%" border="0" align="center">
+          <tr> 
+            <td height="9"> 
+              <div align="center"><b>自动备份设定</b></div>
+            </td>
+          </tr>
+        </table>
+        <table width="99%" border="0" align="center">
+          <tr> 
+            <td colspan="2"><img src="/images/hr.gif" width="100%" height="2"></td>
+          </tr>
+          <tr> 
+            <td colspan="2" height="21">&nbsp;</td>
+          </tr>
+          <tr> 
+            <td colspan="2" height="21"> 
+              <table width="99%" border="0">
+                <tr> 
+                  <td width="27%"> 
+                    <div align="right">启用自动备份</div>
+                  </td>
+                  <td width="17%"> [#sAutoBackup#]</td>
+                  <td width="21%"> 
+                    <div align="right">每天备份时间</div>
+                  </td>
+                  <td width="35%"> 
+                    <input type="text" name="BackupTime" value="[#BackupTime#]">
+                  </td>
+                </tr>
+                <tr> 
+                  <td width="27%"> 
+                    <div align="right">本地备份内容</div>
+                  </td>
+                  <td width="17%">&nbsp;</td>
+                  <td width="21%">&nbsp;</td>
+                  <td width="35%">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="27%"> 
+                    <div align="right"> 
+                      <input type="checkbox" name="BackMailCtl" value="Yes"  [#BackMailCtl#]>
+                    </div>
+                  </td>
+                  <td width="17%">拦截邮件</td>
+                  <td width="21%"> 
+                    <div align="right"> 
+                      <input type="checkbox" name="BackMailMon" value="checkbox"  [#BackMailMon#]>
+                    </div>
+                  </td>
+                  <td width="35%">监控邮件</td>
+                </tr>
+                <tr> 
+                  <td width="27%" height="14"> 
+                    <div align="right"> 
+                      <input type="checkbox" name="BackIpDetail" value="checkbox" [#BackIpDetail#]>
+                    </div>
+                  </td>
+                  <td width="17%" height="14">IP访问详细记录 </td>
+                  <td width="21%" height="14"> 
+                    <div align="right"> 
+                      <input type="checkbox" name="BackHttpDetail" value="checkbox" [#BackHttpDetail#]>
+                    </div>
+                  </td>
+                  <td width="35%" height="14">网站访问详细记录</td>
+                </tr>
+                <tr> 
+                  <td width="27%"> 
+                    <div align="right"> 
+                      <input type="checkbox" name="BackIpCount" value="checkbox" [#BackIpCount#]>
+                    </div>
+                  </td>
+                  <td width="17%">IP访问统计信息</td>
+                  <td width="21%"> 
+                    <div align="right"> 
+                      <input type="checkbox" name="BackHttpCount" value="checkbox" [#BackHttpCount#]>
+                    </div>
+                  </td>
+                  <td width="35%">网站访问统计信息</td>
+                </tr>
+                <tr> 
+                  <td width="27%">&nbsp;</td>
+                  <td width="17%">&nbsp;</td>
+                  <td width="21%">&nbsp;</td>
+                  <td width="35%">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="27%"> 
+                    <div align="right">远端备份内容</div>
+                  </td>
+                  <td colspan="3"> [#sRemoteBackup#] (选择远端备份，将同时在本地进行备份)</td>
+                </tr>
+                <tr> 
+                  <td width="27%"> 
+                    <div align="right"> 
+                      <input type="checkbox" name="RBackMailCtl" value="Yes"  [#RBackMailCtl#]>
+                    </div>
+                  </td>
+                  <td width="17%">拦截邮件</td>
+                  <td width="21%"> 
+                    <div align="right"> 
+                      <input type="checkbox" name="RBackMailMon" value="checkbox"  [#RBackMailMon#]>
+                    </div>
+                  </td>
+                  <td width="35%">监控邮件</td>
+                </tr>
+                <tr> 
+                  <td width="27%" height="14"> 
+                    <div align="right"> 
+                      <input type="checkbox" name="RBackIpDetail" value="checkbox" [#RBackIpDetail#]>
+                    </div>
+                  </td>
+                  <td width="17%" height="14">IP访问详细记录 </td>
+                  <td width="21%" height="14"> 
+                    <div align="right"> 
+                      <input type="checkbox" name="RBackHttpDetail" value="checkbox" [#RBackHttpDetail#]>
+                    </div>
+                  </td>
+                  <td width="35%" height="14">网站访问详细记录</td>
+                </tr>
+                <tr> 
+                  <td width="27%"> 
+                    <div align="right"> 
+                      <input type="checkbox" name="RBackIpCount" value="checkbox" [#RBackIpCount#]>
+                    </div>
+                  </td>
+                  <td width="17%">IP访问统计信息</td>
+                  <td width="21%"> 
+                    <div align="right"> 
+                      <input type="checkbox" name="RBackHttpCount" value="checkbox" [#RBackHttpCount#]>
+                    </div>
+                  </td>
+                  <td width="35%">网站访问统计信息</td>
+                </tr>
+                <tr> 
+                  <td width="27%">&nbsp;</td>
+                  <td width="17%">&nbsp;</td>
+                  <td width="21%">&nbsp;</td>
+                  <td width="35%">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="27%"> 
+                    <div align="right">远端备份主机设定</div>
+                  </td>
+                  <td width="17%">&nbsp; </td>
+                  <td width="21%"> 
+                    <div align="center"> 
+                      <input type="submit" name="test" value="测试设定参数" class="an3">
+                    </div>
+                  </td>
+                  <td width="35%">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="27%" height="20">&nbsp;</td>
+                  <td width="17%" height="20">主机IP地址</td>
+                  <td width="21%" height="20"> 
+                    <input type="text" name="rip" value="[#remoteip#]" size="31" maxlength="63">
+                  </td>
+                  <td width="35%" height="20">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="27%" height="8">&nbsp;</td>
+                  <td width="17%" height="8">主机名称</td>
+                  <td width="21%" height="8"> 
+                    <input type="text" name="rhost" value="[#remotehost#]" size="31" maxlength="63">
+                  </td>
+                  <td width="35%" height="8">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="27%">&nbsp;</td>
+                  <td width="17%">帐号</td>
+                  <td width="21%"> 
+                    <input type="text" name="ruser" value="[#remoteuser#]" size="31" maxlength="63">
+                  </td>
+                  <td width="35%">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="27%">&nbsp;</td>
+                  <td width="17%">口令</td>
+                  <td width="21%"> 
+                    <input type="password" name="rpass" value="[#remotepass#]" size="31" maxlength="63">
+                  </td>
+                  <td width="35%">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="27%"> 
+                    <div align="right"> </div>
+                  </td>
+                  <td width="17%">共享名</td>
+                  <td width="21%"> 
+                    <div align="left"> 
+                      <input type="text" name="rshare" value="[#remoteshare#]" size="31" maxlength="63">
+                    </div>
+                  </td>
+                  <td width="35%">&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr> 
+            <td colspan="2" ><img src="/images/hr.gif" width="100%" height="2"></td>
+          </tr>
+          <tr> 
+            <td colspan="2" height="17" ><img src="/images/hr.gif" width="100%" height="8"></td>
+          </tr>
+        </table>
+        <p>&nbsp;</p>
+        </td>
+  </tr>
+  <tr> 
+      <td height="6"> 
+        <div align="center">
+          <input type="hidden" name="FunName" value="ncWebMailCtlSaveBakSet">
+          <input type="submit" name="next" value="确认" class="an3">
+          <input type="submit" name="app" value="应用" class="an3">
+          <input type="reset" name="cancel" value="取消返回" class="an3" onClick="history.back()">
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td height="20">&nbsp;</td>
+  </tr>
+</table>
+</form>
+</body>
+</html>

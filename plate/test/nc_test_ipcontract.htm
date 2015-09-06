@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<style type="text/css">
+<!--
+body {
+	background-color: #D1D1D1;
+}
+.style1 {
+	font-size: 16px;
+	font-weight: bold;
+}
+-->
+</style></head>
+
+<body>
+<form name="form1" method="post" action="">
+  <table width="1621" border="1">
+    <tr>
+      <td colspan="13"><table width="883">
+        <tr bordercolor="0">
+          <td width="249">连接总数:[#sum#] 最大:[#max#] </td>
+          <td width="147"><div align="center"><span class="style1">IP连接情况</span></div></td>
+          <td width="471">转到
+            <input name="start" type="text" id="start" value="[#start#]" size="8" maxlength="8">
+            每页
+            <input name="line" type="text" id="line" value="[#line#]" size="8" maxlength="8">
+            源IP
+            <input name="sip" type="text" id="sip" value="[#lsip#]" size="15" maxlength="15">
+            <input type="submit" name="Submit" value="确认">
+            <input name="FunName" type="hidden" value="ncWebTestShowTcpBuf"></td>
+        </tr>
+      </table></td>
+    </tr>
+    <tr>
+      <td width="56">序号</td>
+      <td width="133">源IP地址</td>
+      <td width="72">端口</td>
+      <td width="106">目标IP地址</td>
+      <td width="72">端口</td>
+      <td width="66">协议</td>
+      <td width="80">连接</td>
+      <td width="80">状态</td>
+      <td width="65">Seq</td>
+      <td width="57">Ack</td>
+      <td width="64">方向</td>
+      <td width="120">起始时间</td>
+      <td width="110">最后时间</td>
+    </tr>
+    <!-- [#SLPB#] -->
+    <tr>
+      <td>[#num#]</td>
+      <td>[#sip#]</td>
+      <td>[#sport#]</td>
+      <td>[#dip#]</td>
+      <td>[#dport#]</td>
+      <td>[#prot#]</td>
+      <td>[#connect#]</td>
+      <td>[#status#]</td>
+      <td>[#seq#]</td>
+      <td>[#ack#]</td>
+      <td>[#diction#]</td>
+      <td>[#stime#]</td>
+      <td>[#ltime#]</td>
+    </tr>
+    <!-- [#SLPE#] -->
+  </table>
+</form>
+</body>
+</html>

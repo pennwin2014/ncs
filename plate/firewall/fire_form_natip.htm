@@ -1,0 +1,101 @@
+<html>
+
+<head>
+
+<title>Untitled Document</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<script>
+
+function goto(t){
+
+self.location.href=t
+
+}
+
+function custinput(t,y){
+var j=eval("document.all."+y)
+if(t.value.substr(0,5)=="$cust"){
+j.value=t.value.substr(16)
+j.disabled=0
+j.focus()
+}else{
+j.value=t.value.substr(16)
+j.disabled=1
+}
+}
+</script>
+
+</head>
+
+
+
+<body bgcolor="#CCCCCC" text="#000000" leftmargin="1" topmargin="1">
+<form name="form1" method="post" action="/profire/Msg"  target="fbot">
+  <table width="100%" border="0" cellspacing="0" cellpadding="4" bgcolor="#CCCCCC">
+    <tr> 
+      <td colspan="3" class="bord2"> 
+        <div align="center"><font face="Times New Roman, Times, serif"><b> 
+          <input type="hidden" name="FunName" value="fireWebModiNat">
+          <input type="hidden" name="type" value="9">
+          <input type="hidden" name="index" value="[#index#]">
+          IP 地址转换</b></font></div>
+      </td>
+      <td width="29%" class="bord4"> 
+        <div align="right"><b>索引号：[[#index#]]</b></div>
+      </td>
+    </tr>
+    <tr> 
+      <td width="22%" class="bord1"> 
+        <div align="right">执行序号</div>
+      </td>
+      <td width="27%" class="bord1"> 
+        <input type="text" name="num" size="10" maxlength="10" value="[#num#]">
+      </td>
+      <td width="22%" class="bord1"> 
+        <div align="right">源地址</div>
+      </td>
+      <td width="27%" class="bord3"> 
+        <input type="text" name="sip" size="31" maxlength="63" value="[#sip#]">
+      </td>
+    </tr>
+    <tr> 
+      <td width="22%" class="bord1"> 
+        <div align="right">网络接口</div>
+      </td>
+      <td width="29%" class="bord1"> [#dev#]</td>
+      <td width="22%" class="bord1"> 
+        <div align="right">转换地址</div>
+      </td>
+      <td width="29%" class="bord3"> 
+        <input type="text" name="to" size="31" maxlength="63" value="[#to#]">
+      </td>
+    </tr>
+    <tr> 
+      <td width="22%" class="bord1">
+        <div align="right">掩码地址</div>
+      </td>
+      <td width="29%" class="bord1">
+        <input type="text" name="netmask" size="31" maxlength="63" value="[#netmask#]">
+      </td>
+      <td width="22%" class="bord1">&nbsp;</td>
+      <td width="29%" class="bord3">&nbsp;</td>
+    </tr>
+    <tr> 
+      <td colspan="4" class="bord3"> 
+        <div align="right"> 
+          <input type="submit" name="add" value="增加" class="an3">
+          <input type="submit" name="modi" value="修改" class="an3" [#modi#]>
+          <input type="reset" name="Recove" value="恢复" class="an3">
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  </form>
+
+</body>
+
+</html>
+

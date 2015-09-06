@@ -1,0 +1,666 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<title></title>
+<link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" /> 
+<link rel="stylesheet" type="text/css" href="/css/search_css.css" /> 
+<style type="text/css">
+
+	.icon-grid 
+	{
+		background-image:url(/newver/resources/themes/images/share/grid.png) !important;
+	}
+	.add 
+	{
+ 		background-image:url(/newver/resources/themes/images/share/add.gif) !important;
+	}
+	.option 
+	{
+        	background-image:url(/newver/resources/themes/images/share/plugin.gif) !important;
+	}
+	.remove 
+	{
+		background-image:url(/newver/resources/themes/images/share/delete.gif) !important;
+	}
+	.exp 
+	{
+		background-image:url(/newver/resources/themes/images/share/application_go.png) !important;
+	}
+	.accept 
+	{
+		background-image:url(/newver/resources/themes/images/share/accept.png) !important;
+	}
+	.x-form-clear-trigger 
+	{
+        	background-image: url(/newver/resources/themes/images/default/form/clear-trigger.gif);
+	}
+	.x-form-search-trigger 
+	{
+        	background-image: url(/newver/resources/themes/images/default/form/search-trigger.gif);
+	}
+	.x-selectable, .x-selectable * 
+	{   
+    		-moz-user-select: text!important;   
+		-khtml-user-select: text!important;   
+	}   
+</style>
+
+    <style type="text/css">
+        #search-results a {
+            color: #385F95;
+            font: 11px tahoma, arial, helvetica, sans-serif;
+            text-decoration:none;
+        }
+        
+        #search-results a:hover {
+            text-decoration:underline;
+        }
+        
+        #search-results p {
+            margin:3px !important;
+        }
+        
+        .search-item {
+            font:normal 11px tahoma, arial, helvetica, sans-serif;
+            padding:3px 10px 3px 10px;
+            border:1px solid #fff;
+            border-bottom:1px solid #eeeeee;
+            white-space:normal;
+            color:#555;
+        }
+        .search-item h3 {
+            display:block;
+            font:inherit;
+            font-weight:bold;
+            color:#222;
+        }
+
+        .search-item h3 span {
+            float: right;
+            font-weight:normal;
+            margin:0 0 5px 5px;
+            width:250px;
+            display:block;
+            clear:none;
+        }
+        
+        .x-form-clear-trigger {
+            background-image: url(/newver/resources/themes/images/default/form/clear-trigger.gif);
+        }
+        
+        .x-form-search-trigger {
+            background-image: url(/newver/resources/themes/images/default/form/search-trigger.gif);
+        }
+    </style>
+
+
+
+<script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+<script>  
+  		
+	Ext.Loader.setConfig({enabled: true});
+	Ext.Loader.setPath('Ext.ux', '/newver/ux/');
+Ext.require([
+    'Ext.data.*',
+    'Ext.chart.*',
+    'Ext.panel.Panel',
+    'Ext.view.View',
+    'Ext.layout.container.Fit',
+    'Ext.toolbar.Paging',
+    'Ext.ux.form.SearchField'
+]);
+
+	var store;
+	var store1;
+	var adv = "0";//标记
+
+	
+	function _show_enduser(did, uid)
+	{
+	      var aa=parent.document.getElementById('form1').time_flag.value;
+         var htmlvar='<iframe src="/pronline/Msg?FunName@ncsWebShowUserBh&did@'+did+'+uid@'+uid+'&time_flag@'+aa+';" scrolling="no" name="moduleIframe" frameborder="no" style="width:100%;height:100%;"></iframe>'; 
+          
+         var win = new Ext.Window ({
+                             id:"userwindow",
+                             title:"用户上网行为统计报告",
+                             x:0,
+                             y:0,
+                             width:670,
+                             height:700,
+                             bodyPadding: 0,
+                             modal:false,
+                             resizable:true,
+                             draggable:true,
+                             html:htmlvar
+                                               
+         }
+        )
+        win.show();
+    	}
+	
+	function  show_enduser(value,p,record)
+	{
+		 var oArr = record.data.dispname.split("_");
+       		 return Ext.String.format( '<a href="#xxm" onclick=_show_enduser("{0}","{1}")>{2}</a>',oArr[1], oArr[2], oArr[0]);
+    	}
+    	
+   
+//显示单位信息
+    function ShowCorplist(id,flag,fcode){
+         document.getElementById("form1").gid.value=id;
+         document.getElementById("form1").show_flag.value=flag;
+         document.getElementById("form1").fcode.value=fcode;
+
+         var htmlvar='<iframe src="/v4/ncs_user_list_link.htm" scrolling="yes" name="moduleIframe" frameborder="no" style="width:100%;height:100%;"></iframe>';              
+         var win = new Ext.Window ({
+                             id:"addwindow",
+                             title:"查看单位信息",
+                             x:0,
+                             y:0,
+                             width:830,
+                             height:700,
+                             bodyPadding: 10,
+                             modal:false,
+                             resizable:true,
+                             draggable:true,
+                             html:htmlvar
+                                               
+         }
+        )
+         win.on("beforeclose", function() {
+
+        	store2.load();
+         });
+        
+        win.show();
+    }
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+   var store2;
+
+Ext.onReady(function(){
+    
+    Ext.define('EimData', 
+    		{
+        		extend: 'Ext.data.Model',
+        		fields: 
+        		[
+        		      {name: 'sdate', mapping: 'sdate'},
+            			{name: '上下线日志', mapping: 'lCount'},
+            			{name: '虚拟身份轨迹', mapping: 'lCount_netid'}
+
+        		]
+        });
+
+       		store = Ext.create('Ext.data.Store', 
+       		{
+        		pageSize: 40,
+        		model: 'EimData',
+        		autoLoad:true,
+        		remoteSort: true,
+        		proxy: 
+        		{
+            			type: 'ajax',
+            			url: '/pronline/Msg?FunName@ncsUserlogStatByday_v4',
+            			reader: {
+                			type:'json',
+                			root: 'eimdata',
+                			totalProperty: 'totalCount'
+            			},         
+            			simpleSortMode: true
+        		},
+        		sorters: 
+        		[{
+            			property: 'stime',
+            			direction: 'DESC'
+        		}]
+    		});
+    	 store.on('beforeload', function (store, options) {
+ // 	alert(parent.wireflag);
+    	var wireflag=parent.wireflag;
+ 	  var new_params={wireflag:wireflag};
+     Ext.apply(store.proxy.extraParams,new_params);
+       });	
+    		
+ //       store.load();
+  
+  
+   
+
+   
+
+
+    //create a bar series to be at the top of the panel.
+    var barChart = Ext.create('Ext.chart.Chart', {
+        flex: 1,
+        margin: '10 0 5 10',
+        shadow: true,
+        animate: false,
+        store: store,
+        legend: {
+              position: 'bottom'  
+         },
+        axes: [{
+            type: 'Numeric',
+            position: 'left',
+            minimum: 0,
+            maximum: [#maxaix#],
+            fields: ['虚拟身份轨迹','上下线日志'],
+            renderer: Ext.util.Format.numberRenderer('0,0'),
+            grid: true,
+            title: '日志记录数(条)',
+            minimum: 0
+   //         hidden: true
+        }, {
+            type: 'Category',
+            position: 'bottom',
+            fields: ['sdate'],
+            label: {
+                renderer: function(v) {
+           
+                    return Ext.String.ellipsis(v, 15, false);
+                },
+                font: '12px Arial',
+                rotate: {
+                    degrees: 0
+                }
+            }
+        }],
+        series: [{
+            type: 'column',
+            axis: 'left',
+              tips: {
+                  trackMouse: true,
+                  width: 140,
+                  height: 65,
+                  renderer: function(storeItem, item) {
+                    this.setTitle(storeItem.get('sdate') + '<br>上下线日志:&nbsp;&nbsp;' + storeItem.get('上下线日志') + '条'+'<br>虚拟身份轨迹:'+storeItem.get('虚拟身份轨迹')+'条');
+                  }
+                },
+ //           label: {
+ //               contrast: true,
+  //              display: 'insideEnd',
+  //              field: ['上下线日志','虚拟身份轨迹'],
+  //              color: '#000',
+ //               orientation: 'vertical',
+ //               'text-anchor': 'middle'
+  //          },
+ //           listeners: {
+ //               'itemmouseup': function(item) {
+        //             var series = barChart.series.get(0),
+                        
+  //              }
+//            },
+            xField: 'sdate',
+            yField: ['虚拟身份轨迹','上下线日志']
+        }]        
+    });
+
+           
+
+
+  Ext.define('Task', {
+        extend: 'Ext.data.Model',
+        fields: [
+            {name: 'area',     type: 'string'},
+            {name: 'did_count',     type: 'string'},
+            {name: 'ondid_count', type: 'string'},
+            {name: 'ycdid_count',     type: 'string'},
+            {name: 'wh_count',     type: 'string'},
+            {name: 'ty_count',     type: 'string'},
+            {name: 'lxdid_count',     type: 'string'},
+            {name: 'onuid_count', type: 'string'},
+            {name: 'endnum',     type: 'string'},
+            {name: 'rate', type: 'string'},
+            {name: 'groupid', type: 'string'}
+        ]
+    });
+ 
+  store2 = Ext.create('Ext.data.TreeStore', {
+        model: 'Task',
+        proxy: {
+            type: 'ajax',
+            //the store will get the content from the .json file
+            url: '/pronline/Msg?FunName@ncs_onlinecorp_first_onlinerate'
+        },
+        folderSort: true
+    });
+     store2.on('beforeload', function (store, options) {
+ // 	alert(parent.wireflag);
+    	var wireflag=parent.wireflag;
+ 	  var new_params={wireflag:wireflag};
+     Ext.apply(store2.proxy.extraParams,new_params);
+       });	
+    function show_sumcorp(value,p,record){
+        var temp_count=record.data.did_count;
+        var temp_id=record.data.groupid;
+        return Ext.String.format( '<a href="#xxm" onclick=ShowCorplist("{0}","","")>{1}</a>',temp_id,temp_count);
+      
+    }
+
+   function show_zxcorp(value,p,record){
+        var temp_count=record.data.ondid_count;
+        var temp_id=record.data.groupid;
+        return Ext.String.format( '<a href="#xxm" onclick=ShowCorplist("{0}","1","")>{1}</a>',temp_id,temp_count);
+      
+    }
+    function show_lxcorp(value,p,record){
+        var temp_count=record.data.lxdid_count;
+        var temp_id=record.data.groupid;
+        return Ext.String.format( '<a href="#xxm" onclick=ShowCorplist("{0}","2","")>{1}</a>',temp_id,temp_count);
+      
+    }
+    function show_tycorp(value,p,record){
+        var temp_count=record.data.ty_count;
+        var temp_id=record.data.groupid;
+        return Ext.String.format( '<a href="#xxm" onclick=ShowCorplist("{0}","4","")>{1}</a>',temp_id,temp_count);
+      
+    }
+     function show_whcorp(value,p,record){
+        var temp_count=record.data.wh_count;
+        var temp_id=record.data.groupid;
+        return Ext.String.format( '<a href="#xxm" onclick=ShowCorplist("{0}","5","")>{1}</a>',temp_id,temp_count);
+      
+    }
+ 
+ 
+ 
+    var aaa=screen.width;
+    aaa=aaa-241;
+    var tree_area = Ext.create('Ext.tree.Panel', {
+ //       title: '单位在线率统计',
+//        width: aaa,
+//        forceFit: true,
+        scrollOffset: 0,
+        height: 700,
+ //      padding: '0 10 0 0',
+         margin: '0 0 1 1',
+  //      border:true,
+ //       renderTo: Ext.getBody(),
+        collapsible: false,
+        autoScroll: true,
+        useArrows: false,
+        rootVisible: false,
+        store: store2,
+        multiSelect: true,
+        singleExpand: true,
+ 
+        columns: [{
+            xtype: 'treecolumn', 
+            text: '区域(单位组)',
+            width:180,
+           
+            sortable: true,
+            dataIndex: 'area'
+        },{
+          
+            text: '单位总数',
+            align:'right',
+            width:100,
+            sortable: true,
+  //          dataIndex: 'did_count',
+            renderer: show_sumcorp,     
+            align: 'right'
+ 
+        },{
+            text: '在线单位',
+            align:'right',
+            width:100,
+  //          dataIndex: 'ondid_count',
+            renderer: show_zxcorp,
+            sortable: true
+        },{
+            text: '异常在线单位',
+            align:'right',
+            width:100,
+             hidden:true,
+            dataIndex: 'ycdid_count',
+            sortable: true
+        },{
+            text: '维护单位',
+            align:'right',
+            width:100,
+            renderer:show_whcorp,
+ //           dataIndex: 'wh_count',
+            sortable: false
+        },{
+            text: '停业单位',
+            align:'right',
+            width:100,
+            renderer:show_tycorp,
+ //           dataIndex: 'ty_count',
+            sortable: false
+        },{
+            text: '离线单位',
+            align:'right',
+            width:100,
+            renderer:show_lxcorp,
+  //          dataIndex: 'lxdid_count',
+            sortable: true
+        },{
+            text: '在线率',
+            width:100,
+            dataIndex: 'rate',
+            align:'right',
+            sortable: true
+        },{
+            text: '上网用户数',
+            align:'right',
+            width:100,
+            dataIndex: 'endnum',
+            sortable: true
+        },{
+            text: '在线用户数',
+            align:'right',
+            width:100,
+            dataIndex: 'onuid_count',
+            sortable: true
+        }, {
+           flex:1,
+            menuDisabled: true,
+            align: 'center'
+           
+        }]
+    });
+    
+
+
+
+
+  var form12= Ext.create('Ext.Panel', {
+ //       	 frame: true,
+        	 width:400,
+        	 bodyPadding:5,
+        	 contentEl: 'north'
+    });
+    
+    
+      var form11= Ext.create('Ext.Panel', {
+ //       	 frame: true,
+        	 width:400,
+        	 bodyPadding:5,
+        	 contentEl: 'north2'
+    });
+    
+    
+    
+   var panel = Ext.create('Ext.form.Panel', {
+        title: '综合统计',
+        height: 940,
+ //       width: 600,
+        renderTo: 'search-panel',
+        id: 'search-results',
+//        layout: 'fit',
+        items:  [
+            {
+            height: 350,
+            layout: {type: 'hbox', align: 'stretch'},
+             margin: '0 0 1 1',
+            border: true,
+            bodyStyle: 'background-color: transparent',
+            
+            items: [barChart,form12]
+            },
+            tree_area
+           
+            ]
+            ,
+        	tbar: Ext.create('Ext.FormPanel', 
+           {         
+						frame: true,
+						margin: '0 0 1 1',
+						fieldDefaults: 
+						{
+							labelWidth: 70,     
+						 	xtype: 'textfield' 
+						},
+						layout: 'hbox',
+						bodyPadding: 0,
+                  	items: [
+                  	{                        
+                        	fieldLabel:'&nbsp;起始日期',
+                        	xtype: 'datefield',
+                        	format: "Y/m/d",
+                         value:'[#sdate#]',
+                        	name:'sdate',
+                        	id:'sdate'
+                        	
+                    	},
+                    	{
+                        	fieldLabel:'&nbsp;结束日期',
+                        	xtype: 'datefield',
+                        	id:'edate',
+                        	format: "Y/m/d",
+                        	value:'[#edate#]',
+                        	name:'edate'
+                    	},
+                    	{
+                    	xtype:'button',
+                    	style : 'margin-left:10px',
+                    	text:'重新统计',
+                    	 handler: function()
+                        {
+                          
+                          
+                          var sdate=Ext.getCmp('sdate').value;
+                          var sdate_t=Ext.Date.format(sdate, 'Y/m/d');
+                          var edate=Ext.getCmp('edate').value;
+                          var edate_t=Ext.Date.format(edate, 'Y/m/d');
+                          
+                       
+                          		store.load({params: {sdate:sdate_t,edate:edate_t}}); 
+                        }
+                    	}
+                    	]
+                    	}
+                    	)
+                    	
+						
+						
+						
+    });
+  
+});
+</script>
+</head>
+<body >
+	
+<div id="search-panel">
+</div>
+
+	    <div id="north" class="x-hide-display">
+	    	<p style="color:#666"><b>布控告警及敏感归档</b></p>
+	    	<table  width="100%" border="0" cellspacing="5" cellpadding="2">
+	    		<tr height="22">
+	    			<td width="130">&nbsp;&nbsp;布控告警:</td>
+	    			<td width="45">未确认</td>
+	    			<td width="70"><font color="red">[#bkgjw#]</font></td>
+	    		  <td  width="45">已确认</td>
+	    		  <td width="100"><font color="red">[#bkgjy#]</font></td>	    		
+	    		</tr>     		
+	    		
+	    		<tr height="22">
+	    			<td >&nbsp;&nbsp;关键字归档:</td>
+	    			<td >未确认</td>
+	    			<td ><font color="red">[#keylogw#]</font></td>
+	    		  <td >已确认</td>
+	    		  <td ><font color="red">[#keylogy#]</font></td>	    		
+	    		</tr> 
+	    	 <tr height="22">
+	    			<td >&nbsp;&nbsp;敏感网址归档:</td>
+	    			<td >未确认</td>
+	    			<td ><font color="red">[#surllogw#]</font></td>
+	    		  <td >已确认</td>
+	    		  <td ><font color="red">[#surllogy#]</font></td>	    		
+	    		</tr> 
+	    		
+	    	 <tr height="22">
+	    			<td >&nbsp;&nbsp;敏感虚拟身份归档:</td>
+	    			<td >未确认</td>
+	    			<td ><font color="red">[#snetidlogw#]</font></td>
+	    		  <td >已确认</td>
+	    		  <td ><font color="red">[#snetidlogy#]</font></td>	    		
+	    		</tr> 
+	    	 <tr height="22">
+	    			<td >&nbsp;&nbsp;重点用户归档:</td>
+	    			<td >未确认</td>
+	    			<td ><font color="red">[#suserlogw#]</font></td>
+	    		  <td >已确认</td>
+	    		  <td ><font color="red">[#suserlogy#]</font></td>	    		
+	    		</tr>     		
+        </table>
+        
+        <p style="color:#666"><b>场所端当前状态统计</b></p>
+        	<table  width="100%" border="0" cellspacing="5" cellpadding="2">
+	    		<tr height="22">
+	    			<td width="50">&nbsp;&nbsp;在线:</td>
+	    			<td width="50"><a href="#xxm" onclick=ShowCorplist("","1","")><font color="red">[#zxcorp#]</font></a></td>
+	    		  <td  width="50">离线</td>
+	    		  <td width="50"><a href="#xxm" onclick=ShowCorplist("","2","")><font color="red">[#lxcorp#]</font></a></td>	
+	    		  <td  width="50">停业</td>
+	    		  <td width="50"><a href="#xxm" onclick=ShowCorplist("","4","")><font color="red">[#tycorp#]</font></a></td>
+	    		  <td  width="50">维护</td>
+	    		  <td width="50"><a href="#xxm" onclick=ShowCorplist("","5","")><font color="red">[#whcorp#]</font></a></td>
+	    		  <td>&nbsp;</td>
+	    		</tr>     		
+	    		
+        </table>
+        <p style="color:#666"><b>接入厂商场所端统计</b></p>
+        	<table  width="100%" border="0" cellspacing="5" cellpadding="2">
+        		[#SLPB#]
+	    		<tr height="22">
+	    			<td width="100">&nbsp;&nbsp;[#facname#]</td>
+	    			<td width="50">&nbsp;&nbsp;在线:</td>
+	    			<td width="50"><a href="#xxm" onclick=ShowCorplist("","1","[#fccode#]")><font color="red">[#faczx#]</font></a></td>
+	    		  <td  width="50">离线</td>
+	    		  <td width="50"><a href="#xxm" onclick=ShowCorplist("","2","[#fccode#]")><font color="red">[#faclx#]</font></a></td>	
+	    		  <td  width="55">停业</td>
+	    		  <td width="50"><a href="#xxm" onclick=ShowCorplist("","4","[#fccode#]")><font color="red">[#facty#]</font></a></td>
+	    		  <td  width="55">维护</td>
+	    		  <td width="50"><a href="#xxm" onclick=ShowCorplist("","5","[#fccode#]")><font color="red">[#facwh#]</font></a></td>
+	    		</tr>     		
+	    	   [#SLPE#]
+   		
+        </table>
+       
+    </div> 
+
+	<form name="form1" id="form1" action="/pronline/Msg">
+		
+		<input type="hidden" name="gid" value="">
+		<input type="hidden" name="fcode" value="">
+		<input type="hidden" name="show_flag" value="">
+	</form>
+
+
+
+</body>
+</html>

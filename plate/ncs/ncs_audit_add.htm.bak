@@ -1,0 +1,413 @@
+<html>
+
+<head>
+<title>查询</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<!-- Infrastructure code for the tree -->
+<style>
+.aaaa {font-size:10pt;color:#000000;font-weight:bold;}
+</style>
+<script>
+function changservice(){
+callServer();
+//document.all.service.options[0].value='1';
+//document.all.service.options[0].text="111";
+
+
+}
+	var xmlHttp = false;
+
+//调用AJAX
+ function callServer() 
+ { 
+ 
+  if( xmlHttp && xmlHttp .readyState != 0 )
+   {
+    xmlHttp.abort();
+   }
+   
+   xmlHttp = createXMLHttpRequest();
+ 
+   if( xmlHttp )
+   {
+   var web_url='/pronline/Msg?FunName@ncWebShowServiceDet&groupid@'+form1.serviceclass.value+'&xx@'+Math.random()*999;
+    //打开连接
+    xmlHttp.open("GET",web_url, true);
+    //设置回调函数
+    xmlHttp.onreadystatechange = updatePage;
+
+    xmlHttp.send(null);
+  
+  }
+
+ }
+	
+		 //ajax回调处理函数
+ function updatePage() 
+ {
+  
+   if (xmlHttp.readyState == 4) 
+   {
+    var response = xmlHttp.responseText;
+//alert(response);         
+//    document.getElementById("result").innerHTML = response;
+var temp_id=getxmlbyname(response,"<sid>","</sid>");
+var temp_name=getxmlbyname(response,"<sname>","</sname>");
+var aid=new Array();
+var aname=new Array();
+aid=temp_id.split("|");
+aname=temp_name.split("|");
+var i;
+document.all.service.length=aid.length;
+for(i=0;i<aid.length;i++){
+	document.all.service.options[i].value=aid[i];
+ document.all.service.options[i].text=aname[i];
+	}
+
+   }
+ 
+ }
+
+
+
+
+
+function changobt()
+{
+	var temp_desc="";
+	if(form1.uflags.value=='1')
+	{
+       temp_desc=temp_desc+'<select name="userid" style="width:170">';
+       temp_desc=temp_desc+'<option value="[#userid#]">[#dispname#]</option>';
+       [#SLPB#]
+       temp_desc=temp_desc+'<option value="[#userid#]">[#dispname#]</option>';
+       [#SLPE#]
+       temp_desc=temp_desc+'</select>';
+    
+    }
+   else if(form1.uflags.value=='2')
+	 {
+	    temp_desc=temp_desc+'<select name="userid" style="width:170">';
+	    temp_desc=temp_desc+'<option value="[#groupid#]">[#groupname#]</option>';
+       [#SLPB#]
+       temp_desc=temp_desc+'<option value="[#groupid#]">[#groupname#]</option>';
+       [#SLPE#]
+       temp_desc=temp_desc+'</select>';
+    }
+   else
+   {
+       temp_desc=temp_desc+'<select name="userid" style="width:170">'; 
+       temp_desc=temp_desc+'<option value="0">全部</option>';
+       temp_desc=temp_desc+'</select>';
+   }
+ 
+document.all.xxmdw.innerHTML=temp_desc;
+    
+}
+
+function changbk()
+{
+	var temp_desc="";
+	if(form1.conflags.value=='1')
+	{
+
+   }
+    if(form1.conflags.value=='2')
+	 {
+    temp_desc='<table width="100%" border="0" align="center" >'; 
+    temp_desc=temp_desc+'<tr height="50">'; 
+    temp_desc=temp_desc+'<td width="2%"></td>';
+    
+    
+        temp_desc=temp_desc+'<td width="100" align="left" class="aaaa"> 网络服务类别</td>';
+    temp_desc=temp_desc+'<td  align="left"><select name="serviceclass" style="width:153" onchange="changservice()">'; 
+
+                  	[#SLPB#]                           
+    temp_desc=temp_desc+'<option value="[#cgid#]">[#cgname#]</option>'; 
+                   [#SLPE#]    
+    temp_desc=temp_desc+'</select></td>';
+    
+    
+    
+    temp_desc=temp_desc+'<td width="100" align="left" class="aaaa"> 网络服务名称</td>';
+    temp_desc=temp_desc+'<td  align="left"><select name="service" style="width:153" >'; 
+    temp_desc=temp_desc+'<option value="[#id_i#]">[#name_i#]</option>';
+                  	[#SLPB#]                           
+    temp_desc=temp_desc+'<option value="[#ids#]">[#names#]</option>'; 
+                   [#SLPE#]    
+    temp_desc=temp_desc+'</select></td>';
+    temp_desc=temp_desc+'</tr>';                                                       
+    temp_desc=temp_desc+'</table>';
+    }
+   else if(form1.conflags.value=='3')
+	 {
+    temp_desc='<table width="100%" border="0" align="center" >';
+    temp_desc=temp_desc+'<tr height="50">'; 
+    temp_desc=temp_desc+'<td width="2%"></td>';
+    temp_desc=temp_desc+'<td  align="right" class="aaaa"> 协议</td>';
+    temp_desc=temp_desc+'<td  align="left"> <select name="trantype" style="width:70">';       
+    temp_desc=temp_desc+'<option value="0">全部</option>'; 
+    temp_desc=temp_desc+'<option value="6">TCP</option>';  
+    temp_desc=temp_desc+'<option value="17">UDP</option>';      
+    temp_desc=temp_desc+'</select></td>';
+    temp_desc=temp_desc+'<td  class="aaaa">&nbsp;起始IP</td>';
+    temp_desc=temp_desc+'<td ><input type="text" name="lowerip" size="14" value="[#lowerip#]" maxlength="15"></td>';
+    temp_desc=temp_desc+'<td  class="aaaa">&nbsp;终止IP</td>';
+    temp_desc=temp_desc+'<td ><input type="text" name="upperip" size="14" value="[#upperip#]" maxlength="15"></td>';
+    temp_desc=temp_desc+'<td  class="aaaa">&nbsp;起始端口</td>';
+    temp_desc=temp_desc+'<td ><input type="text" name="lowerport" size="6" value="[#lowerport#]" maxlength="6"></td>';
+    temp_desc=temp_desc+'<td  class="aaaa">&nbsp;终止端口</td>';
+    temp_desc=temp_desc+'<td ><input type="text" name="upperport" size="6" value="[#upperport#]" maxlength="6"></td>';               
+    temp_desc=temp_desc+'<td width="2%"></td>';
+    temp_desc=temp_desc+'</tr>';                                                       
+    temp_desc=temp_desc+'</table>';
+    }
+   else if(form1.conflags.value=='4')
+	 {
+    temp_desc='<table width="100%" border="0" align="center" >'; 
+    temp_desc=temp_desc+'<tr height="50">'; 
+    temp_desc=temp_desc+'<td width="2%"></td>';
+    temp_desc=temp_desc+'<td width="100" align="left" class="aaaa">网络服务策略</td>';
+    temp_desc=temp_desc+'<td  align="left">';            
+    temp_desc=temp_desc+'<select name="lowerip" style="width:160">';
+
+                   [#SLPB#]      
+    temp_desc=temp_desc+'<option value="[#idc#]">[#namec#]</option>';
+                   [#SLPE#]
+    temp_desc=temp_desc+'</select></td>';
+    temp_desc=temp_desc+'</tr>';                                                       
+    temp_desc=temp_desc+'</table>';
+    }
+    else if(form1.conflags.value=='5')
+	 {
+	  temp_desc='<table width="100%" border="0" align="center" >'; 
+    temp_desc=temp_desc+'<tr height="50">'; 
+    temp_desc=temp_desc+'<td width="2%"></td>';
+    temp_desc=temp_desc+'<td  align="left" class="aaaa">使用网址库策略&nbsp;&nbsp;';
+    temp_desc=temp_desc+'<select name="urlid" style="width:150">';
+    temp_desc=temp_desc+'<option value="[#urlid#]">[#name_url#]</option>';
+                  [#SLPB#]
+    temp_desc=temp_desc+'<option value="[#idw#]">[#namew#]</option>';
+                  [#SLPE#]                 
+    temp_desc=temp_desc+'</select></td>';
+    temp_desc=temp_desc+'</tr>';                                                       
+    temp_desc=temp_desc+'</table>';
+    }
+   else if(form1.conflags.value=='6')
+	 {
+    temp_desc='<table width="100%" border="0" align="center" >'; 
+    temp_desc=temp_desc+'<tr height="50">'; 
+    temp_desc=temp_desc+'<td width="2%"></td>';
+    temp_desc=temp_desc+'<td width="100" align="left" class="aaaa"> 访问网址包含</td>';
+    temp_desc=temp_desc+'<td  align="left"> ';                              
+    temp_desc=temp_desc+'<input type="text" name="url" size="57" value="[#url#]" maxlength="64"></td>';
+    temp_desc=temp_desc+'</tr>';                                                       
+    temp_desc=temp_desc+'</table>';
+
+    } 
+   else if(form1.conflags.value=='7')
+	 {
+     temp_desc='<table width="100%" border="0" align="center" >'; 
+     temp_desc=temp_desc+'<tr height="50">'; 
+     temp_desc=temp_desc+'<td width="2%"></td>';
+     temp_desc=temp_desc+'<td  align="left" class="aaaa">';
+     temp_desc=temp_desc+'虚拟身份类型&nbsp;';
+     temp_desc=temp_desc+'<select name="service" style="width:100">';
+     temp_desc=temp_desc+'<option value="[#vid#]">[#vidname#]</option>';
+     temp_desc=temp_desc+'<option value="">全部</option>';
+     [#SLPB#]
+     temp_desc=temp_desc+'<option value="[#serviceid#]">[#servicename#]</option>';
+     [#SLPE#]                                   
+     temp_desc=temp_desc+'</select>';
+     temp_desc=temp_desc+'&nbsp;动作';
+     temp_desc=temp_desc+'<select name="fun" style="width:80">';
+     temp_desc=temp_desc+'<option value="[#fun#]">[#fun_name#]</option>';
+     temp_desc=temp_desc+'<option value="0">全部</option>';
+     temp_desc=temp_desc+'<option value="1">登陆</option>';
+     temp_desc=temp_desc+'<option value="2">退出</option>';
+     temp_desc=temp_desc+'<option value="3">发送消息</option>';
+     temp_desc=temp_desc+'<option value="4">发送文件</option>';
+     temp_desc=temp_desc+'</select>';
+                   
+     temp_desc=temp_desc+'&nbsp;网络帐号&nbsp;';
+     temp_desc=temp_desc+'<input type="text" name="uid" size="20" value="[#uid#]" maxlength="64">';
+     temp_desc=temp_desc+'&nbsp;网络帐号集合&nbsp;';
+     temp_desc=temp_desc+'<select name="uidlist" style="width:70">';
+     temp_desc=temp_desc+'<option value="[#uidlist#]">[#uidname#]</option>';
+     temp_desc=temp_desc+'<option value="">全部</option>';                  
+      [#SLPB#]
+     temp_desc=temp_desc+'<option value="[#idn#]">[#namen#]</option>';
+     [#SLPE#]                            
+     temp_desc=temp_desc+'</select>';
+     temp_desc=temp_desc+'</td>';
+     temp_desc=temp_desc+'</tr>';                                                       
+     temp_desc=temp_desc+'</table>';
+    } 
+    else{
+    temp_desc="";
+    }
+   document.all.xxm5.innerHTML=temp_desc;
+}
+
+</script>
+
+<script src="/js/ajax.js"></script>
+
+</head>
+
+<body bgcolor="#f2f2f2" leftmargin="0" topmargin="0" marginheight="0"  style="overflow:hidden" onload="form1.conflags.value='[#conflags#]';form1.uflags.value='[#uflags#]';changbk();changobt()">
+  <form name="form1" method="post" action="/pronline/Msg" >
+  <input type="hidden" name="FunName" value="ncsAuditSave">
+
+  <input type="hidden" name="sid" value="[#sid#]">
+  <input type="hidden" name="status" value="[#status#]">
+  <input type="hidden" name="tab" value="[#tab#]">
+  
+ 	 <table width="101%"  border="0" align="center" cellpadding="0" cellspacing="0" >
+  	<tr>
+          <td width="26"><img src="/images/tbbg/tb_left.jpg"></td>         
+          <td  valign="top" style="background:url(/images/tbbg/tb_center.jpg);height:19;"></td>
+          <td  width="20"><img src="/images/tbbg/tb_right.jpg" width="20" height="19"></td>        
+      </tr>
+  	<tr>
+  		<td width="26"  style="background:url(/images/tbbg/mid_left.jpg);position:relative;left:-2px;top:-2px;"></td>
+       
+  		<td style="background:url(/images/tbbg/mid_leftw.jpg);">	
+ 
+  
+  
+  
+  
+  
+  
+<table width="99%" border="1" bordercolorlight=#89ACED   bordercolordark=#ffffff align="center" cellpadding="0" cellspacing="0">
+ <tr height="40"><td class=td0 colspan="2" style="font-size:10pt;color:#000000;font-weight:bold;" align="left">&nbsp;控制规则编辑</td></tr>
+  <tr> 
+    <td colspan="2">
+    	<table width="96%" align="center" height="35" border="0" align="center" cellpadding="0" cellspacing="0" >
+    		<tr height="30"> 
+          <td width="100" style="font-size:10pt;color:#00237e;font-weight:bold;">规则编号<td>
+          <td><input type="text" name="rule_id" size="22" value="[#rule_id#]" maxlength="20"></td>
+          <td width="100" style="font-size:10pt;color:#00237e;font-weight:bold;">&nbsp;&nbsp;规则名称</td>
+          <td><input type="text" name="rule_name" size="22" value="[#rule_name#]" maxlength="20"></td>
+          <td width="100" style="font-size:10pt;color:#00237e;font-weight:bold;">&nbsp;&nbsp;规则级别</td>
+           <td>
+                <select name="num" style="width:90">
+                   	  <option value="1">严重</option>
+                   	  <option value="2">中度</option>
+                   	  <option value="9">一般</option>
+                   	  <option value="3">其他</option>
+                 </select> 	 
+            </td>
+         </tr>
+    		
+    		  <tr height="30"> 
+          <td  style="font-size:10pt;color:#00237e;font-weight:bold;">审计对象类别<td>
+          <td><select name="uflags" style="width:170" onchange="changobt()">
+              <option value="3">全部</option> 
+              <option value="2">组</option> 
+              <option value="1">单位</option>               
+              </select></td>
+          <td  style="font-size:10pt;color:#00237e;font-weight:bold;">&nbsp;&nbsp;审计对象</td>
+          <td id="xxmdw"><select name="userid" style="width:170">
+              <option value="">全部</option>               
+              </select></td>
+          <td  style="font-size:10pt;color:#00237e;font-weight:bold;">&nbsp;&nbsp;规则失效日期</td>
+           <td>
+               <input type="text" name="validation_time" size="10" value="[#validation_time#]" maxlength="20">&nbsp;&nbsp;
+            </td>
+       </tr>
+    		   		
+    	 <tr height="30"> 
+          <td  style="font-size:10pt;color:#00237e;font-weight:bold;">时间单位<td>
+          <td><select name="timetype" style="width:170">
+          	<option value="0">每天</option>
+          	[#SLPB#]
+              <option value="[#idd#]">[#named#]</option> 
+            [#SLPE#]           
+              </select></td>
+          <td  style="font-size:10pt;color:#00237e;font-weight:bold;">&nbsp;&nbsp;时间段</td>
+          <td> <input type="text" name="starttime" size="9" value="[#starttime#]" maxlength="8">
+                   到
+                   <input type="text" name="stoptime" size="8" value="[#stoptime#]" maxlength="8"></td>
+          <td  style="font-size:10pt;color:#00237e;font-weight:bold;">&nbsp;&nbsp;规则动作</td>
+           <td>
+                   <select name="flags" style="width:85">
+                   <option value="1">不控制</option>
+                   <option value="0">阻断</option>
+                   <option value="3">告警</option>
+                   <option value="2">告警阻断</option>
+                   </select>	 
+            </td>
+       </tr>	
+    		
+       <tr height="30"> 
+          <td  style="font-size:10pt;color:#00237e;font-weight:bold;">规则内容<td>
+          <td colspan="5"><select name="conflags" style="width:170" onchange="changbk()">
+              <option value="1">访问外网</option> 
+              <option value="2">使用网络服务</option> 
+              <option value="3">IP地址限制</option> 
+              <option value="4">使用网络服务策略</option>  
+              <option value="5">使用网址库策略</option>
+              <option value="6">网址限制</option>
+              <option value="7">虚拟身份帐号</option>
+              </select></td>
+          
+       </tr>	 
+        
+        
+        
+      </table></td>
+        
+  </tr>
+  
+  <tr> 
+  	
+  	
+    <td colspan="2"> <table width="98%" border="0"  align="center" cellpadding="0" cellspacing="0" >
+          <tr> 
+            <td id="xxm5" height="50" valign="top"> 
+             <table width="100%" border="0" align="center" > 
+                <tr height="50"> 
+                  <td width="2%"></td>
+                  <td  align="left" class="aaaa">
+
+                  </td>
+                </tr>                                                       
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+  </tr>
+  <tr height="55"><td colspan="2" align="center">
+  	           <input name="search" type="submit" class="an3" value="保存" >            
+              <input name="bk" type="submit" class="an3" value="返回" onclick="form1.FunName.value='ncsWebAuditList'">
+  	</td></tr>
+</table>
+
+
+ 	</td>
+ 	
+ 	<td style="background:url(/images/tbbg/mid_right.jpg);position:relative;left:1px;top:-2px;">&nbsp;
+  	</td>
+    </tr>
+  	  	
+  	  	<tr>
+          <td width="26"><img src="/images/tbbg/bottom_left.jpg" style="position:relative;top:-2px;left:-1px;"></td>         
+          <td   style="background:url(/images/tbbg/bottom_center.jpg);position:relative;left:-4px;top:-2px;">&nbsp;</td>
+          <td  width="20"><img src="/images/tbbg/bottom_right.jpg" width="20" height="19" style="position:relative;top:-2px;"></td>       
+      </tr>
+    </table>
+
+
+</form>
+<script> form1.num.value='[#num#]';</script>
+<script> form1.flags.value='[#flags#]';</script>
+</body>
+</html>

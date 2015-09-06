@@ -1,0 +1,148 @@
+<html>
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<title>统计时间从[#sdate#]到[#edate#]</title>
+<script>
+	function gopage(pg)
+	{
+	var page=parseInt(form1.CurPg.value);
+
+	if(pg=='pre'){
+	page=page-1;
+
+	   form1.CurPg.value=page;
+	}
+	else{
+	page=page+1;
+
+	 form1.CurPg.value=page;
+	}
+
+	form1.submit();
+	}
+	
+var dfd1="0"
+
+function mouseovertr2 (o){
+var i;
+df=o.style.backgroundColor
+	o.style.backgroundColor= "#ffff00";
+	o.style.borderColor= "#FFFF00";
+	o.style.cursor="hand";	
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#000000";
+}	
+}
+
+function mouseouttr2(o){
+	o.style.backgroundColor=df
+	
+	
+}
+function showuser(did,uid)
+{
+var temp_var="/pronline/Msg?FunName@ncsWebShowUserinfo&did@"+did+"+uid@"+uid;
+	showModalDialog(temp_var, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:520px;scroll:yes;dialogHeight:640px');
+}
+
+
+</script>
+
+<script src="/js/drawtable.js"></script>
+
+<SCRIPT language=JavaScript>
+<!--
+
+var recordID = null;
+var Table = new FlexibleTable ('flexibleTable', '100%', '650', 'center', 32, 'flexibleTableSpan');
+
+Table.Header ('单位名称', '姓名','流量（KB)', '使用时间(小时)');
+Table.ColumnsWidth ('200','180', '150', '150');
+Table.HeaderAligment ('center',  'center','center', 'center');
+Table.BodyAligment ('left', 'left','right', 'right');
+
+Table.SetRowsTemplate (" onMouseOver=\"javascript:mouseovertr2(this);\" onMouseOut=\"javascript:mouseouttr2(this);\" ");
+[#SLPB#]
+Table.Row('&nbsp;[#dispname#] ','&nbsp;<a href="#xxm" onclick=showuser("[#userid#]","[#uid#]")>[#dispnameu#] </a>' ,'[#ubytes#] &nbsp;','[#conn#] &nbsp;');
+[#SLPE#]
+
+//-->
+</SCRIPT>
+
+
+<style type="text/css">
+<!--
+  .bordnr {
+	border-left: 1px solid #0148b2;
+	border-top: 1px solid #888888;
+	border-bottom: 1px solid #0148b2;
+	border-right: 1px solid #0148b2;
+	background-color:#d0e1fa;
+	} 
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+-->
+
+</style>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<BODY  style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px" bgcolor="#eaf3f5" leftMargin=2 topMargin=2 scroll=auto onload="Table.Draw();">
+	<form name="form1" method="post" action="/pronline/Msg">
+	
+	<input type="hidden" name="FunName" value="ncsShowServiceDet">
+	<input type="hidden" name="userid" value="[#userid#]">
+	<input type="hidden" name="stime" value="[#stime#]">
+	<input type="hidden" name="etime" value="[#etime#]">
+	<input type="hidden" name="service" value="[#service#]">
+	<input type="hidden" name="TotPg"      value="[#TotPg#]">
+  <input type="hidden" name="CurPg"      value="[#CurPg#]"> 
+	<input type="hidden" name="groupname" value="[#groupname#]">
+	<input type="hidden" name="dispname" value="[#dispname#]">
+	<input type="hidden" name="gname" value="[#gname#]">
+	<input type="hidden" name="groupid" value="[#groupid#]">
+	<input type="hidden" name="rootname" value="[#rootname#]">
+	<input type="hidden" name="gitem" value="[#gitem#]">
+		<tr>
+	   <td><table width="100%" cellspacing="0" cellpadding="0">
+         <tr height="28"> 
+         <td class="tabtitle" >网络服务使用统计&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+         <td background="/images/images2/chaxun2-1.gif">统计对象：[#title_name#] &nbsp;网络服务：[#gname#]&nbsp;</td>
+         <td background="/images/images2/chaxun2-1.gif" align="right">       	
+         	 <table align=right border=0 cellpadding=0 cellspacing=0 class=main width=111>
+               <tr><td><a href="#xxm#" onclick="gopage('pre')">[#pre#]<a>&nbsp;&nbsp;<a href="#xxm" onclick="gopage('next')">[#next#]</a></td>
+              </tr>
+            </table>  
+         	         	
+         	</td>
+         </tr>
+         
+         
+         </table>
+      </td>
+  </tr>
+	
+	
+		<TABLE style="BORDER-RIGHT: 1px inset; BORDER-TOP: 1px inset; BORDER-LEFT: 1px inset; BORDER-BOTTOM: 1px inset" height="100%" cellSpacing=0 cellPadding=0 width="100%" border=0>	
+  	<TR>
+    		<TD valign="top"><SPAN id=flexibleTableSpan></SPAN></TD>
+  	</TR>
+  	
+  	
+  	  	       	
+  	
+  	
+  	
+  	
+ 	</TABLE>
+ 		
+ </form>		
+</BODY>
+
+</html>

@@ -1,0 +1,174 @@
+<!-- saved from url=(0022)http://internet.e-mail -->
+<html>
+<head>
+<title>邮件规则</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META content=no-cache http-equiv=Pragma>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<style type="text/css">
+<!--
+.cccv {  border-style: inset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.xan3 {  width: 100px; font-size: 12px; font-weight: normal; font-family: "宋体"}
+-->
+</style>
+<script language="JavaScript">
+<!--
+
+function fff(t) { 
+if(t=='0'){
+if(document.all.a0.value==2){
+document.all.b0.style.display=""
+}else{
+document.all.b0.style.display="none"
+}
+
+}else{
+if(document.all.a1.value==3){
+document.all.b1.style.display=""
+document.all.c0.style.display=""
+}else if(document.all.a1.value==0){
+document.all.b1.style.display="none"
+document.all.c0.style.display="none"
+}else{
+document.all.b1.style.display="none"
+document.all.c0.style.display=""
+}
+}
+}
+//-->
+</script>
+</head>
+
+<body bgcolor="menu" text="#000000">
+<form name="form1" method="post" action="/pronline/Msg" target="fbot">
+
+  <table width="94%" border="0" cellspacing="0" align="center" height="26%">
+    <tr> 
+      <td height="21" colspan="8"> 
+        <div align="center">
+          <input type="hidden" name="FunName" value="ncMailModiOneRule">
+          <input type="hidden" name="rid"   value="[#rid#]">
+          <input type="hidden" name="flags" value="[#flags#]">
+          <input type="hidden" name="id" value="[#id#]">
+          邮件控制规则 ([#name#])</div>
+      </td>
+    </tr>
+    <tr> 
+      <td width="81" height="27">规则名称</td>
+      <td colspan="3" height="27"> 
+        <input type="text" name="rname" value="[#rname#]">
+      </td>
+      <td width="137" height="27">执行顺序</td>
+      <td height="27" colspan="3"> 
+        <input type="text" name="rnum" value="[#rnum#]">
+      </td>
+    </tr>
+    <tr> 
+      <td width="81" height="32">发件人包含</td>
+      <td height="32" colspan="3"> 
+        <input type="text" name="from" size="36" value="[#from#]" maxlength="63">
+      </td>
+      <td width="137" height="32">收件人包含</td>
+      <td height="32" colspan="3"> 
+        <input type="text" name="to" size="36" value="[#to#]" maxlength="63">
+      </td>
+    </tr>
+    <tr> 
+      <td width="81" height="33">主题包含</td>
+      <td colspan="3" height="33"> 
+        <input type="text" name="sub" size="36" value="[#sub#]" maxlength="63">
+      </td>
+      <td width="137" height="33">内容包含</td>
+      <td height="33" colspan="3"> 
+        <input type="text" name="cont" size="36" value="[#cont#]">
+      </td>
+    </tr>
+    <tr> 
+      <td width="81" height="32">邮件大于</td>
+      <td width="110" height="32"> 
+        <input type="text" name="msize" size="12" value="[#msize#]" maxlength="12">
+      </td>
+      <td width="89" height="32">附件大于</td>
+      <td width="110" height="32"> 
+        <input type="text" name="attsize" size="12" value="[#asize#]" maxlength="12">
+      </td>
+      <td width="137" height="32">附件名称包含</td>
+      <td height="32" colspan="3"> 
+        <input type="text" name="attname" size="36" value="[#attname#]">
+      </td>
+    </tr>
+    <tr> 
+      <td height="13" colspan="8"><img src="/images/line.gif" width="100%" height="4"></td>
+    </tr>
+    <tr> 
+      <td height="20" width="81">备份</td>
+      <td width="110" height="20"> 
+        <select name="actflags" class="xan3">
+          <option value="1" selected>保留备份</option>
+          <option value="0">不备份</option>
+        </select>
+      </td>
+      <td width="89" height="20">控制</td>
+      <td width="110" height="20"> 
+        <select name="control" id="a0" class="xan3" onChange="fff('0')">
+          <option value="0">正常发送</option>
+          <option value="1">拒绝发送</option>
+          <option value="2">发到指定邮箱</option>
+          <option value="3">等待确认</option>
+        </select>
+      </td>
+      <td width="137" height="20"> 
+        <input type="text" id="b0" name="smail" size="16" value="[#smail#]" style="display:none" maxlength="31">
+      </td>
+      <td width="106" height="20">通知</td>
+      <td width="129" height="20"> 
+        <select name="tzflags" id="a1" class="xan3" onChange="fff('1')" >
+          <option value="0">不通知</option>
+          <option value="1">发件人</option>
+          <option value="2">收件人</option>
+          <option value="3">指定账号</option>
+        </select>
+      </td>
+      <td height="20" width="165"> 
+        <input type="text" id="b1" name="tmail" size="16" value="[#tzmail#]"  style="display:none" maxlength="31">
+      </td>
+    </tr>
+    <tr> 
+      <td valign="top" height="21" width="81">通知内容</td>
+      <td valign="top" colspan="7" height="21"> 
+        <input type="text" name="tzcont" value="[#tzcont#]" id="c0" size="80" style="display:none" maxlength="255">
+      </td>
+    </tr>
+    <tr> 
+      <td colspan="8" height="13"><img src="/images/line.gif" width="100%" height="4"></td>
+    </tr>
+    <tr> 
+      <td colspan="8" height="31"> 
+        <div align="right">
+          <input type="submit" name="add" value="增加" class="xan3" >
+          <input type="submit" name="ok" value="修改" class="xan3" >
+          <input type="reset" name="cancel" value="取 消" class="xan3" >
+        </div>
+      </td>
+    </tr>
+  </table>
+</form>
+<script>
+form1.actflags.value="[#actflags#]"
+form1.control.value="[#control#]"
+form1.tzflags.value="[#tzflags#]"
+if(form1.control.value=='2'){
+document.all.b0.style.display=""
+}
+if(form1.tzflags.value=='3'){
+document.all.b1.style.display=""
+document.all.c0.style.display=""
+}
+if((form1.tzflags.value=='1')||(form1.tzflags.value=='2')){
+document.all.c0.style.display=""
+}
+</script>
+</body>
+</html>

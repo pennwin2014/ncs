@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<style type="text/css">
+<!--
+body {
+	background-color: #D1D1D1;
+}
+.style1 {
+	font-size: 16px;
+	font-weight: bold;
+}
+-->
+</style></head>
+<script>
+    function doNext() {
+	    form1.start.value = '[#next#]';
+		form1.submit();
+    }
+</script>
+<body>
+<form name="form1" method="post" action="">
+  <table width="1963" border="1">
+    <tr>
+      <td colspan="9"><table width="1012">
+        <tr bordercolor="0">
+          <td width="249"> 最大:[#max#] </td>
+          <td width="147"><div align="center"><span class="style1">Http连接情况</span></div></td>
+          <td width="600">转到
+            <input name="start" type="text" id="start" value="[#start#]" size="8" maxlength="8">
+            每页
+            <input name="line" type="text" id="line" value="[#line#]" size="8" maxlength="8">
+            源IP
+            <input name="sip" type="text" id="sip" value="[#ip#]" size="15" maxlength="15">
+            <input type="submit" name="Submit" value="确认">
+            <input name="FunName" type="hidden" value="ncWebTestShowOnlineWeb">
+            <input type="button" name="Submit2" value="下一页" onClick="doNext()"></td>
+        </tr>
+      </table></td>
+    </tr>
+    <tr>
+      <td width="98">序号</td>
+      <td width="273">Userid</td>
+      <td width="228">源IP地址</td>
+      <td width="199">Host</td>
+      <td width="234">URL</td>
+      <td width="235">start</td>
+      <td width="218">Last</td>
+      <td width="168">flags</td>
+      <td width="252">Bytes</td>
+    </tr>
+    <!-- [#SLPB#] -->
+    <tr>
+      <td>[#num#]</td>
+      <td>[#userid#]</td>
+      <td>[#sip#]</td>
+      <td>[#host#]</td>
+      <td>[#url#]</td>
+      <td>[#starttime#]</td>
+      <td>[#lasttime#]</td>
+      <td>[#flags#]</td>
+      <td>[#bytes#]</td>
+    </tr>
+    <!-- [#SLPE#] -->
+  </table>
+</form>
+</body>
+</html>

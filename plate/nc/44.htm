@@ -1,0 +1,57 @@
+<!-- saved from url=(0022)http://internet.e-mail -->
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script>
+<!--
+var aa=[
+[1,大类1,[[1,aaa],
+          [2,bbb],
+          [3,ccc]]],
+[2,大类2,[[11,asss],
+          [22,vvvv],
+          [33,jjjj],
+          [44,hhhh]]],
+[3,大类3,[[11,asss],
+          [22,vvvv],
+          [33,jjjj],
+          [44,hhhh]]]
+];
+
+function change_it() { 
+ 　MD();
+}
+
+function MD() { 
+  iIndex = select1.selectedIndex;
+　j=select2.options.length; 
+　for(k=0;k<j;k++) select2.options.remove(1); 
+　for(i=0;i<aa[iIndex,2].length) { 
+　  var ttt=document.createElement("OPTION"); 
+　  select2.options.add(ttt); 
+　  ttt.innerText=aa[iIndex,2,i,0]; 
+　  ttt.value=aa[iIndex,2,i,1];
+//  select2.selectedIndex = 1;
+　} 
+} 
+　　
+
+function MM_callJS(jsStr) { //v2.0
+  return eval(jsStr)
+}
+//-->
+</script>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" onload="MD(1)">
+<select name="select1" onChange="change_it()">
+  <option value="0">发送邮件</option>
+  <option value="1">接收邮件</option>
+</select>
+<select name="select2">
+  <option value="全部" selected>全部</option>
+</select>
+<input type="button" name="Button" value="Button" onclick="javascript:alert(select2.value)">
+</body>
+</html>

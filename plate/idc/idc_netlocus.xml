@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d>
+<lcount>2</lcount>
+<data>
+<node>
+<name>w123</name>
+<ntype>IDC网站</ntype>
+<optime>2012-05-25 10:32:26</optime>
+<nip>192.168.20.124</nip>
+<operate>在线</operate>
+<cname>Test038</cname>
+<uname>w123</uname>
+<email>ww@qq.com</email>
+<city></city>
+<idcname>千美佳招待所</idcname>
+<idcid>千美佳招待所</idcid>
+</node>
+<node>
+<name>w123</name>
+<ntype>IDC网站</ntype>
+<optime>2012-05-25 10:20:24</optime>
+<nip>192.168.20.124</nip>
+<operate>在线</operate>
+<cname>Test038</cname>
+<uname>w123</uname>
+<email>ww@qq.com</email>
+<city></city>
+<idcname>千美佳招待所</idcname>
+<idcid>千美佳招待所</idcid>
+</node>
+</data>
+</d>

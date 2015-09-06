@@ -1,0 +1,211 @@
+<html>
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<title>main</title>
+<script>
+var dfd1="0"
+function showuser(num)
+{
+var v_did=eval('form1.did'+num).value;
+var v_uid=eval('form1.uid'+num).value;
+var v_sdate=eval('form1.sdate'+num).value;
+var v_edate=eval('form1.edate'+num).value;
+var v_cname=eval('form1.cname'+num).value;
+var v_udisp=eval('form1.udisp'+num).value;
+var tt='/pronline/Msg?FunName@ncsWebReplace&plate@ncs/ncs_swgj_lab.htm&cname@'+v_cname+'&sdate@'+v_sdate+'&edate@'+v_edate+'&did@'+v_did+'&uid@'+v_uid+'&udname@'+v_udisp;
+//  openwinflag=window.open(tt);
+  window.open (tt, 'newwindow', 'height=600, width=800, top=100,left=100, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no') 
+
+//    tt=showModalDialog(t, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:500px;scroll:yes;dialogHeight:480px');
+}
+function gotoPage(pagenum)
+
+{
+	
+    form1.CurPg.value = pagenum;
+}
+
+function showaccount(num)
+{
+var v_did=eval('form1.did'+num).value;
+var v_uid=eval('form1.uid'+num).value;
+var v_sdate=eval('form1.sdate'+num).value;
+var v_edate=eval('form1.edate'+num).value;
+var v_cname=eval('form1.cname'+num).value;
+var v_udisp=eval('form1.udisp'+num).value;
+var v_ntype=eval('form1.ntype'+num).value;
+  var tt="/pronline/Msg?FunName@ncsWebReplace&plate@ncs/ncs_swgj_lab.htm&did@"+v_did+"&sdate@"+v_sdate+"&edate@"+v_edate+"&uid@"+v_uid;
+  showModalDialog (tt, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:850px;scroll:yes;dialogHeight:640px');
+//	if((v_ntype=='6')||(v_ntype=='7')||(v_ntype=='10')||(v_ntype=='11'))
+//	{
+//		var temp='/pronline/Msg?FunName@ncsWebReplace&fname@nccWebImList&plate@ncsmsg_showncc.htm&ProId@'+v_did+'&uid@'+v_uid+'&did@'+v_did+'&sdate@'+v_sdate+'&edate@'+v_edate+'&cname@'+v_cname;
+//	  window.open(temp);
+// showModalDialog (temp, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:850px;scroll:yes;dialogHeight:640px');
+//	}
+//	else if((v_ntype=='4')||(v_ntype=='5'))
+//	{
+//			var temp='/pronline/Msg?FunName@ncsWebReplace&fname@nccMailMonList&plate@ncsmsg_showncc.htm&ProId@'+v_did+'&uid@'+v_uid+'&did@'+v_did+'&sdate@'+v_sdate+'&edate@'+v_edate+'&cname@'+v_cname;
+ //    showModalDialog (temp, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:850px;scroll:yes;dialogHeight:640px');
+//			window.open(temp);
+//	}
+}
+
+function goto(t){
+ tt=showModalDialog(t, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:520px;scroll:yes;dialogHeight:530px');
+}
+
+function lprint()
+{
+form1.cx.style.display="none";
+form1.rycx.style.display="none";
+form1.hsear.style.display="none";
+form1.pr.style.display="none";
+form1.exp.style.display="none";
+window.print();
+
+form1.cx.style.display="";
+form1.rycx.style.display="";
+form1.hsear.style.display="";
+form1.pr.style.display="";
+form1.exp.style.display="";
+}
+
+
+// -->
+<!-- Hide
+var ll='[#CurPg#]'
+var yy='[#TotPg#]'
+function killErrors() {
+return true;
+}
+window.onerror = killErrors;
+// -->
+
+</script>
+
+<script src="/js/drawtable.js"></script>
+<SCRIPT language=JavaScript>
+<!--
+
+var recordID = null;
+var Table = new FlexibleTable ('DataTable', '100%', '565', 'center', 32, 'flexibleTableSpan');
+
+Table.Header ('<input type="button" name="b1" value="全选"  class="anniu_1"  onClick="allChecked()">', '网络账号','类别', '使用时间', '上网IP','操作','单位名称','用户名','备注');
+Table.ColumnsWidth ('40', '130', '60', '120', '90', '90','110', '130','150');
+Table.HeaderAligment ('center', 'center', 'center', 'center', 'center', 'center','center', 'center','center');
+Table.BodyAligment ('center', 'left', 'left', 'left', 'left', 'left','left','left','left');
+
+Table.SetRowsTemplate (" onMouseOver=\"javascript:mouseovertr2(this);\" onMouseOut=\"javascript:mouseouttr2(this);\" onClick=\"setSelect(this);\"  ");
+[#SLPB#]
+Table.Row('<input type="checkbox" name="chk[#num#]" value="[#sid#]"><input type="hidden" name="did[#num#]" value="[#did#]"><input type="hidden" name="uid[#num#]" value="[#uid#]"><input type="hidden" name="sdate[#num#]" value="[#sdate1#]"><input type="hidden" name="edate[#num#]" value="[#edate1#]"><input type="hidden" name="cname[#num#]" value="[#cname#]"><input type="hidden" name="udisp[#num#]" value="[#udisp#]"><input type="hidden" name="ntype[#num#]" value="[#ltype#]"> ','<a href="#xxm" onclick=showaccount([#num#])>&nbsp;[#name#]</a>&nbsp;','&nbsp;[#servname#]','&nbsp;[#sdate#]','&nbsp;[#sip#]','&nbsp;[#fun#]','&nbsp;[#cname#]&nbsp;','<a href="#xxm" onclick="showuser([#num#])">&nbsp;[#udisp#]</a>','&nbsp;[#desc#] ');
+[#SLPE#]
+
+//-->
+</SCRIPT>
+
+
+<style type="text/css">
+<!--
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+-->
+
+</style>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<BODY  style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px" bgcolor="#8cb4e8" leftMargin=2 topMargin=2 scroll=no onload=Table.Draw()>
+	<form name="form1" method="post" action="/pronline/Msg">
+		        <input name="netid" type="hidden" value="[#netid#]">
+               <input name="sdate" type="hidden" value="[#sdate#]">
+               <input name="edate" type="hidden" value="[#edate#]">
+               <input name="name"  type="hidden" value="[#name#]">
+               <input name="did" type="hidden" value="[#did#]">
+               <input name="sorta" type="hidden" value="[#sorta#]">
+               <input name="ordera" type="hidden" value="[#ordera#]">
+              <input type="hidden" name="FunName" value="ncsNetAccount">
+							<input type="hidden" name="ntype" value="[#ntype#]">
+              <input type="hidden" name="CurPg"      value="[#CurPg#]">
+              <input type="hidden" name="TotPg"      value="[#TotPg#]">
+              <input type="hidden" name="lcount"      value="[#TotRec#]">
+		<TABLE  height="100%" cellSpacing=0 cellPadding=0 width="100%" border=0>
+    <tr> 
+      <td valign="top" width="100%" align=center   > 
+        <table width="100%" border="0" cellspacing="0">
+
+          <tr height="30"> 
+           <td class="tabtitle" >网络账号使用情况&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+           <td background="/images/images2/chaxun2-1.gif" width="430">
+               <input name="hsear" type="submit" class="an3"  onclick="form1.FunName.value='ncsDispNetAccount'" value="返回">               
+               <input name="exp" type="submit" class="an3"   value="导 出" onclick="form1.CurPg.value='1';form1.FunName.value='ncsNetAccount'">
+            </td>
+            <td width="37%"  background="/images/images2/chaxun2-1.gif"> 
+              <table align=right border=0 cellpadding=0 cellspacing=0 class=main>
+              <tbody> 
+                <td width="10%"><script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-06.gif' border=0 height=17 width=35 class='gray1'>")}
+                      else{
+                        document.write("<a href='#'><img src='/images/zbuyer-06.gif' border=0 height=17 width=35 onClick='gotoPage(1);form1.submit()' class='hand'>")}
+                   </script></td>
+                <td width="10%"><script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 class='gray1'>")}
+                      else {
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]-1);form1.submit()' class='hand'>")}
+                   </script></td>
+                <td width="20%"><img src="/images/zbuyer-08.gif" border=0 height=17 width=32></td>
+                <td align=middle background="" width=92>
+                    <input class=Main id=browsdopage maxlength=68 name=browsdopage size=8 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 50px" value=[#CurPg#] onKeyPress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" onBlur="checkme(this)">
+                </td>
+                <td width="10%"><img src="/images/zbuyer-09.gif" border=0 height=17 width=16></td>
+                <td width="10%"><img align=middle border=0 height=17 src="/images/zbuyer-10.gif" width=17 onClick="gotoPage(form1.browsdopage.value);form1.submit()" class="hand"><img align=middle height=17 src="/images/zbuyer-11.gif" width=3></td>
+                
+                
+    <td width="10%"><img border=0 height=17 src="/images/zin1.gif" width=17 ></td>
+    <td align=middle background="" width=92> 
+      <input  class=Main id=browsdopage1 maxlength=5 name=browsdopage12 size=3 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 50px" value='[#TotPg#]'>
+    </td>
+    <td width="10%"><img align=middle height=17 src="/images/zbuyer-09.gif" width=16></td>
+    <td align=middle background="" width=92> 
+      <input  class=Main id=browsdopage1 maxlength=8 name=browsdopage12 size=8 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 50px" value='[#TotRec#]'>
+    </td>
+    <td width="10%"><img border=0 height=17 src="/images/zin3.gif" width=17 align="middle" ><img align=middle height=17  src="/images/zbuyer-11.gif" width=3></td>
+                
+                <td width="10%"><script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]+1);form1.submit()' class='hand'>")}
+                    </script></td>
+                <td width="10%"><script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 onClick='gotoPage([#TotPg#]);form1.submit()' class='hand'>")}
+                    </script></td>
+              </tbody> 
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+  </tr>
+	
+  	<TR>
+    		<TD valign="top" colspan="2"><SPAN id=flexibleTableSpan></SPAN></TD>
+  	</TR>
+ 	</TABLE>
+ 		
+ </form>		
+</BODY>
+</html>

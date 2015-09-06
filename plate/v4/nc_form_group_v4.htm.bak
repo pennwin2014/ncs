@@ -1,0 +1,202 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<title>单位管理</title>
+    <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" /> 
+       
+    
+      
+    <script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+    
+  <script>  
+    
+Ext.require([
+    'Ext.form.*',
+    'Ext.layout.container.Column',
+    'Ext.window.MessageBox',
+    'Ext.fx.target.Element',
+    'Ext.data.*'
+]);
+
+
+Ext.onReady(function(){
+
+    Ext.define('State', {
+        extend: 'Ext.data.Model',
+        fields: [
+            {type: 'string', name: 'groupid'},
+            {type: 'string', name: 'groupname'}
+        ]
+    });
+    // The data for all states
+    var states = [
+    [#SLPB#]
+        {"groupid":"[#groupid#]","groupname":"[#groupname#]"},
+    [#SLPE#]
+        {"groupid":"0","groupname":"未知"}
+        
+    ];
+    var store = Ext.create('Ext.data.Store', {
+        model: 'State',
+        data: states
+    });
+
+  
+
+    Ext.define('State', {
+        extend: 'Ext.data.Model',
+        fields: [
+            {type: 'string', name: 'groupid'},
+            {type: 'string', name: 'groupname'}
+        ]
+    });
+    // The data for all states
+  
+
+    var groupCombo = Ext.create('Ext.form.field.ComboBox', {
+        fieldLabel: '单位属组',
+        labelWidth: 90,
+        valueField:'groupid',
+        displayField: 'groupname',
+        name : 'groupid',      
+        value:'[#groupid#]',
+        allowBlank: false,
+        forceSelection: true,
+        store: store,
+        queryMode: 'local',
+        typeAhead: true
+    });
+
+ 
+
+    var BaseInfoGroup = {
+        xtype: 'fieldset',
+        title: '基本信息',
+      
+       layout: 'anchor',
+        defaults: {
+            anchor: '100%',
+            labelWidth: 90,
+            labelStyle: 'padding-left:4px;'
+        },
+        collapsible: false,
+       
+            items:[{
+            xtype: 'textfield',
+            labelWidth: 90,
+            name: 'groupcode',
+            value: '[#groupcode#]',
+            allowBlank: false,
+            fieldLabel: '单位组编码'},
+            {
+	            xtype: 'textfield',
+	            labelWidth: 90,
+	            name: 'groupname',
+	            value: '[#dispname#]',
+	            allowBlank: false,
+	            fieldLabel: '单位组名称'
+            }
+            ,
+             groupCombo
+            
+            ]
+ 
+    };
+
+
+
+    var fp = Ext.create('Ext.FormPanel', {         
+        frame: true,
+        method:'POST',
+        name:'form1',
+        fieldDefaults: {
+            labelWidth: 110
+        },
+        width: 300,
+        height:180,
+        renderTo:'corp_edit',
+
+        bodyPadding: 10,
+        items: [
+            BaseInfoGroup
+
+        ],
+        buttons: [{
+            text: '保存',
+            handler: function(){
+           if(fp.getForm().isValid()){
+             this.disabled=true;
+             var guserid=document.getElementById("form1").userid.value;
+               fp.form.doAction('submit',{
+               url:'/pronline/Msg?FunName@ncsWebClientAdd_v4',
+                method:'POST',
+                params:{userid:guserid},
+                 
+                success:function(form,action){ 
+//                     this.disabled=false;
+   
+           					Ext.Msg.alert('操作',"保存成功");
+           					document.getElementById("form1").userid.value=action.result.id;
+  
+ //            					window.opener.reflash();	
+                 },
+             		 failure:function(form,action){
+
+//             		    this.disabled=false;             		 
+                    Ext.Msg.alert('操作',"保存失败");
+                 
+            		 }
+                }
+             )
+  //           alert('cccc');
+        this.disabled=false;     
+ //           if(fp.getForm().isValid()){
+ //                 Ext.Msg.alert('Submitted Values', 'The following will be sent to the server: <br />'+
+ //                     fp.getForm().getValues(true).replace(/&/g,', '));                        
+ //              }
+               
+               
+            }
+         }
+        },{
+            text: '重置',
+            style : 'margin-right:0px',
+            handler: function(){
+                fp.getForm().reset();
+            }
+        },{
+            text: '关闭',
+            style : 'margin-right:170px',
+            handler: function(){
+                   var win = parent.Ext.getCmp('addwindow');
+                  if (win) {win.close();}
+
+            }
+        }]
+    });
+    
+    if(document.getElementById("form1").userid.value==''){
+
+       fp.getForm().getValues().groupid=document.getElementById("form1").groupid.value;
+    
+    }
+  
+    
+});
+
+
+
+
+</script>
+    
+    
+</head>
+<body onunload="parent.reflash()">
+    <div id="corp_edit"></div>
+    <form name="form1" id="form1">
+    	<input type="hidden" name="userid" value="[#userid#]">
+    	<input type="hidden" name="groupid" value="[#groupid#]">
+    </form>
+</body>
+</html>

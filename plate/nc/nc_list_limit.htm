@@ -1,0 +1,146 @@
+<HTML>
+<HEAD>
+<title>访问限制</title>
+<META content=0 http-equiv=Expires>
+<META content=no-cache http-equiv=Pragma>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type>
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<script>
+function goto(t){
+self.location.href=t
+}
+function mouseovertr2 (o){
+var i;
+df=o.style.backgroundColor
+	o.style.backgroundColor= "#003399";
+	o.style.borderColor= "#FFFF00";
+	o.style.cursor="hand";	
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#ffffff";
+}	
+}
+
+function mouseouttr2(o){
+	o.style.backgroundColor=df
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#000000";
+}
+	
+	
+}
+</script>
+<style type="text/css">
+<!--
+table {  font-size: 9pt}
+-->
+</style>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" bgColor=#B0B0B0 oncontextmenu="return false" >
+<br>
+<form name="form_n" method="post" action="/pronline/Msg"> 
+<table width="100%" border="0">
+  <input type="hidden" name="FunName" value="ncWebSetupInternet_list">
+  <input type="hidden" name="userid"  value="[#userid#]">
+  <input type="hidden" name="id" >
+  <input type="hidden" name="flags"   value="1">
+  <input type="hidden" name="plate"   value="[#plate#]">
+  <tr> 
+    <td>序号 [#num#]</td>
+    <td>限制对象:[[#username#]]]</td>
+  </tr>
+  <tr> 
+    <td>动作 [#vister#]<br>
+    </td>
+    <td> 频度 [#timetype#]</td>
+  </tr>
+  <tr> 
+    <td> 起始时间 
+      <input type="text" name="starttime" size="16">
+    </td>
+    <td>终止时间 
+      <input type="text" name="stoptime"  size="16">
+    </td>
+  </tr>
+  <tr> 
+    <td colspan="2">(注:时间格式为: HH:MM:SS , 如:12:13:30 为 12时13分30秒) </td>
+  </tr>
+  <tr> 
+    <td colspan="2" height="8"> 
+      <div align="right"> 
+        <input type="submit" name="submit"  value="放弃" class="an3" disabled>
+        <input type="submit" name="ok"      value="确认" class="an3" disabled>
+        <input type="submit" name="app"     value="应用" class="an3" disabled>
+        <input type="submit" name="add"     value="新增" class="an3">
+      </div>
+    </td>
+  </tr>
+  <tr> 
+    <td colspan="2"><img src="/images/hr.gif" width="100%" height="2"></td>
+  </tr>
+</table>
+  <div align="center"> 
+    <table width="98%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" align="center">
+      <tr align="center" valign="middle"> 
+        <td class="bord2" height="16" background='/images/ttt.gif" width="5%"> 
+      <div align="center"></div>
+    </td>
+    <td class="bord2" height="16" background='/images/ttt.gif" width="34"> 
+          <div align="center">序号</div>
+        </td>
+        <td class="bord2" height="16" background='/images/ttt.gif" width="11%"> 
+      <div align="center"><img src='/images/lline.gif" width="70" align="absmiddle"> 
+          <div align="center">序号</div>
+        </td>
+        <td class="bord2" height="16" background='/images/ttt.gif" width="11%"> 
+      <div align="center"><img src='/images/lline.gif" width="158" align="absmiddle"> 
+          <div align="center">动作 </div>
+        </td>
+        <td class="bord2" height="16" background='/images/ttt.gif" width="9%"> 
+      <div align="center"><img src='/images/lline.gif" width="157" align="absmiddle">&nbsp; 
+          <div align="center">频度 </div>
+        </td>
+        <td class="bord2" height="16" background='/images/ttt.gif" width="31%"> 
+      <div align="center"><img src='/images/lline.gif" width="189" align="absmiddle">&nbsp; 
+          <div align="center">起始时间 </div>
+        </td>
+        <td class="bord2" height="16" background='/images/ttt.gif" width="34%"> 
+      <div align="center"><img src='/images/lline.gif" width="126" align="absmiddle">&nbsp; 
+          <div align="center">终止时间 </div>
+        </td>
+      </tr>
+      <!-- [#SLPB#] -->
+      <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" > 
+        <td class="bord1" width="34"> 
+          <div align="center"> 
+            <input type="checkbox" name="check" value="[#id#]">
+          </div>
+        </td>
+        <td class="bord1" width="70">&nbsp;[#numb#]</td>
+        <td class="bord1" width="158">&nbsp;[#vistern#]</td>
+        <td class="bord1" width="157">&nbsp;[#timetypen#]</td>
+        <td class="bord1" width="189">&nbsp;[#starttime#]</td>
+        <td class="bord1" width="126">&nbsp;[#stoptime#]</td>
+      </tr>
+      <!-- [#SLPE#] -->
+      <!-- [#SLPB#] -->
+      <tr id=[#numb#]> 
+        <td class="bord1" width="34"> 
+          <div align="center"></div>
+        </td>
+        <td class="bord1" width="70">&nbsp;</td>
+        <td class="bord1" width="158">&nbsp;</td>
+        <td class="bord1" width="157">&nbsp;</td>
+        <td class="bord1" width="189">&nbsp;</td>
+        <td class="bord1" width="126">&nbsp;</td>
+      </tr>
+      <!-- [#SLPE#]-->
+    </table>
+  </div>
+</form>
+</BODY></HTML>

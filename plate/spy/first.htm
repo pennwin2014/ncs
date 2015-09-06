@@ -1,0 +1,470 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="css.css" type="text/css">
+<STYLE type=text/css>
+.listDataTable { 
+FONT-SIZE: 9pt; FONT-FAMILY: "Arial"
+}
+.listTableHead {
+CURSOR: hand; FONT-FAMILY: "Arial";
+
+
+}
+.onMouseOnTr {
+CURSOR: default; COLOR: #000000; BACKGROUND-COLOR: #cccccc
+}
+
+.listTableHeadO {
+CURSOR: s-resize; COLOR: #0000FF; FONT-FAMILY: "Arial"; 
+BACKGROUND-COLOR: #006699;
+border: #000000; border-style: solid; border-top-width: 0px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 0px
+}
+.listHeadClicked {
+CURSOR: n-resize; COLOR: #ffffff; BACKGROUND-COLOR: #990033;
+border: #000000; border-style: solid; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px
+}
+.listHeadClicked0 {
+CURSOR: s-resize; COLOR: #ffffff; BACKGROUND-COLOR: #990033;
+border: #000000; border-style: solid; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px
+}
+</STYLE> 
+<script language="JavaScript">
+<!--
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_findObj(n, d) { //v4.0
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && document.getElementById) x=document.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+</script>
+</head>
+
+<body bgcolor="#AFAFC0" text="#000000" oncontextmenu="return false" topmargin="0" leftmargin="0" onLoad="MM_preloadImages('images/an2c.gif','images/an2d.gif')">
+<script>
+
+function JM_HLTr(hStyle){
+eSrcObject=event.srcElement
+if (eSrcObject.tagName=="TABLE")
+return
+while(eSrcObject.tagName!="TR"&&eSrcObject.onyes!='head')
+eSrcObject=eSrcObject.parentElement
+if (eSrcObject.className!=hStyle&&eSrcObject.onyes!='head'&&eSrcObject.id!="ignore"&&eSrcObject.className!='delStyle'&&eSrcObject.className!='listTableHead'&&eSrcObject.className!='listTableHead0'){
+eSrcObject.className=hStyle}
+if (eSrcObject.onyes=='head'&&eSrcObject.className!='listHeadClicked'&&eSrcObject.className!='listHeadClicked0'){
+eSrcObject.className='listTableHeadO';
+}
+}
+function JM_HLTrRestore(sStyle){
+if (event.fromElement.contains(event.toElement)||eSrcObject.contains(event.toElement)||eSrcObject.id=="ignore"||eSrcObject.className=='delStyle')
+return
+if (event.toElement!=eSrcObject){
+if (event.srcElement.onyes=='head'&&eSrcObject.className!='listHeadClicked'&&eSrcObject.className!='listHeadClicked0'){
+event.srcElement.className='listTableHead'}
+else if(eSrcObject.className!='listHeadClicked'&&eSrcObject.className!='listHeadClicked0'){
+eSrcObject.className=sStyle}
+}
+}
+function JM_PowerList(colNum){
+headEventObject=event.srcElement
+while(headEventObject.tagName!="TR"){
+headEventObject=headEventObject.parentElement}
+for (i=0;i<headEventObject.children.length;i++){
+if (headEventObject.children[i]!=event.srcElement){
+headEventObject.children[i].className='listTableHead'}
+}
+var tableRows=0;
+trObject=DataTable.children[0].children
+for (i=0;i<trObject.length;i++){
+Object=DataTable.children[0].children[i];
+tableRows=(trObject[i].id=='ignore')?tableRows:tableRows+1;
+}
+var trinnerHTML=new Array(tableRows)
+var tdinnerHTML=new Array(tableRows)
+var tdNumber=new Array(tableRows)
+var i0=0
+var i1=0
+for (i=0;i<trObject.length;i++){
+if (trObject[i].id!='ignore'){
+trinnerHTML[i0]=trObject[i].innerHTML;
+tdinnerHTML[i0]=trObject[i].children[colNum].innerHTML;
+tdNumber[i0]=i;
+i0++;
+}
+}
+sourceHTML=clearStart.children[0].outerHTML;
+//alert(sourceHTML);
+for (bi=0;bi<tableRows;bi++){
+for (i=0;i<tableRows;i++){
+if(tdinnerHTML[i]>tdinnerHTML[i+1]){
+t_s=tdNumber[i+1];
+t_b=tdNumber[i];
+tdNumber[i+1]=t_b;
+tdNumber[i]=t_s;
+temp_small=tdinnerHTML[i+1];
+temp_big=tdinnerHTML[i];
+tdinnerHTML[i+1]=temp_big;
+tdinnerHTML[i]=temp_small;
+}
+}
+}
+var showshow='';
+var numshow='';
+for (i=0;i<tableRows;i++){
+showshow=showshow+tdinnerHTML[i]+'\n';
+numshow=numshow+tdNumber[i]+'|';
+}
+sourceHTML_head=sourceHTML.split("<TBODY>");
+numshow=numshow.split("|");
+var trRebuildHTML='';
+if (event.srcElement.className=='listHeadClicked'){
+for (i=0;i<tableRows;i++){
+trRebuildHTML=trRebuildHTML+trObject[numshow[tableRows-1-i]].outerHTML;
+
+}
+event.srcElement.className='listHeadClicked0';
+}else{
+for (i=0;i<tableRows;i++){
+trRebuildHTML=trRebuildHTML+trObject[numshow[i]].outerHTML;
+}
+event.srcElement.className='listHeadClicked';
+}
+var DataRebuildTable='';
+DataRebuildTable=sourceHTML_head[0]+trObject[0].outerHTML+trRebuildHTML+trObject[tableRows+1].outerHTML+'</TABLE>';
+clearStart.innerHTML='';
+clearStart.innerHTML=DataRebuildTable;
+}
+</script>
+            <table border=0 cellspacing=0 width="100%" cellpadding=0>
+              <tbody> 
+              <tr> 
+                <td id=clearStart> 
+                  
+      <table  cellspacing=0 
+                        class=listDataTable id=DataTable 
+                        onMouseOut="JM_HLTrRestore('')" 
+                        onMouseOver="JM_HLTr('onMouseOnTr')" cellpadding="0" bordercolor="#DFDFDF" border="0" bgcolor="#FFFFFF">
+        <tbody> 
+        <tr id=ignore > 
+          <td onClick=JM_PowerList(0)
+                            onyes="head" height="20" width="31" background="images/lable1.gif" class="bord1">&nbsp; 
+          </td>
+          <td onClick=JM_PowerList(1) 
+                            onyes="head" background="images/lable2.gif" width="121" class="bord1" valign="bottom"> 
+            &nbsp; 用户</td>
+          <td onClick=JM_PowerList(2) 
+                            onyes="head" background="images/lable2.gif" width="121" class="bord1" valign="bottom"> 
+            &nbsp;部门</td>
+          <td onClick=JM_PowerList(3) 
+                            onyes="head" width="127" background="images/lable2.gif" class="bord1" valign="bottom"> 
+            &nbsp;IP地址</td>
+          <td onClick=JM_PowerList(4) 
+                            onyes="head" width="127" background="images/lable2.gif" class="bord1" valign="bottom">&nbsp;目前访问IP</td>
+          <td onClick=JM_PowerList(5) 
+                            onyes="head" width="73" background="images/lable2.gif" class="bord1" valign="bottom">服务</td>
+          <td onClick=JM_PowerList(5) 
+                            onyes="head" width="101" background="images/lable2.gif" class="bord1" valign="bottom">&nbsp;进流量</td>
+          <td onClick=JM_PowerList(6) 
+                            onyes="head" width="142" background="images/lable2.gif" class="bord1" valign="bottom">&nbsp;出流量</td>
+          <td onClick=JM_PowerList(7) 
+                            onyes="head" width="139" background="images/lable2.gif" class="bord3" valign="bottom"> 
+            &nbsp;最后访问时间</td>
+        </tr>
+        <tr > 
+          <td class="bord1" height="27" width="31"> 
+            <div align="center"><img src="images/online.gif" width="19" height="19"></div>
+          </td>
+          <td  class="bord1" width="121">&nbsp;李华</td>
+          <td  class="bord1" width="121">&nbsp;市场部</td>
+          <td  class="bord1" width="127">&nbsp;<img src="images/onlinec.gif" width="13" height="15" align="absmiddle"> 
+            61.120.11.3</td>
+          <td  class="bord1" width="127">&nbsp;<img src="images/onlinec.gif" width="13" height="15" align="absmiddle"> 
+            61.120.11.10</td>
+          <td  class="bord1" width="73">FTP</td>
+          <td  class="bord1" width="101">&nbsp;2345.32</td>
+          <td  class="bord1" width="142">&nbsp;230</td>
+          <td  class="bord3" width="139">&nbsp;14:20:35</td>
+        </tr>
+        <tr > 
+          <td class="bord1" height="27" width="31"> 
+            <div align="center"><img src="images/duanxian.gif" width="19" height="19"></div>
+          </td>
+          <td  class="bord1" width="121">&nbsp;刘浩</td>
+          <td  class="bord1" width="121">&nbsp;物流组</td>
+          <td  class="bord1" width="127">&nbsp;<img src="images/onlinec.gif" width="13" height="15" align="absmiddle"> 
+            61.120.11.4</td>
+          <td  class="bord1" width="127">&nbsp;<img src="images/onlinec.gif" width="13" height="15" align="absmiddle"> 
+            61.120.11.10</td>
+          <td  class="bord1" width="73">&nbsp;</td>
+          <td  class="bord1" width="101">&nbsp;2345.32</td>
+          <td  class="bord1" width="142">&nbsp;256</td>
+          <td  class="bord3" width="139">&nbsp;13:40:35</td>
+        </tr>
+        <tr > 
+          <td class="bord1" height="27" width="31"> 
+            <div align="center"><img src="images/duanxian.gif" width="19" height="19"></div>
+          </td>
+          <td  class="bord1" width="121">&nbsp;石翼超</td>
+          <td  class="bord1" width="121">&nbsp;物流组</td>
+          <td  class="bord1" width="127">&nbsp;<img src="images/onlinec.gif" width="13" height="15" align="absmiddle"> 
+            61.120.11.1</td>
+          <td  class="bord1" width="127">&nbsp;<img src="images/onlinec.gif" width="13" height="15" align="absmiddle"> 
+            61.120.11.10</td>
+          <td  class="bord1" width="73">&nbsp;</td>
+          <td  class="bord1" width="101">&nbsp;2345.32</td>
+          <td  class="bord1" width="142">&nbsp;230</td>
+          <td  class="bord3" width="139">&nbsp;14:22:35</td>
+        </tr>
+        <tr > 
+          <td class="bord1" height="27" width="31"> 
+            <div align="center"><img src="images/online.gif" width="19" height="19"></div>
+          </td>
+          <td  class="bord1" width="121">&nbsp;刘春野</td>
+          <td  class="bord1" width="121">&nbsp;物流组</td>
+          <td  class="bord1" width="127">&nbsp;<img src="images/onlinec.gif" width="13" height="15" align="absmiddle"> 
+            61.120.11.10</td>
+          <td  class="bord1" width="127">&nbsp;<img src="images/onlinec.gif" width="13" height="15" align="absmiddle"> 
+            61.120.11.10</td>
+          <td  class="bord1" width="73">&nbsp;</td>
+          <td  class="bord1" width="101">&nbsp;2345.32</td>
+          <td  class="bord1" width="142">&nbsp;2340</td>
+          <td  class="bord3" width="139">&nbsp;14:20:35</td>
+        </tr>
+        <tr > 
+          <td class="bord1" height="27" width="31"> 
+            <div align="center"><img src="images/online.gif" width="19" height="19"></div>
+          </td>
+          <td  class="bord1" width="121">&nbsp;郑高峰</td>
+          <td  class="bord1" width="121">&nbsp;物流组</td>
+          <td  class="bord1" width="127">&nbsp;<img src="images/onlinec.gif" width="13" height="15" align="absmiddle"> 
+            61.120.11.19</td>
+          <td  class="bord1" width="127">&nbsp;<img src="images/onlinec.gif" width="13" height="15" align="absmiddle"> 
+            61.120.11.10</td>
+          <td  class="bord1" width="73">&nbsp;</td>
+          <td  class="bord1" width="101">&nbsp;0</td>
+          <td  class="bord1" width="142">&nbsp;0</td>
+          <td  class="bord3" width="139">&nbsp;14:20:11</td>
+        </tr>
+        <tr > 
+          <td class="bord1" height="27" width="31"> 
+            <div align="center"><img src="images/online.gif" width="19" height="19"></div>
+          </td>
+          <td  class="bord1" width="121">&nbsp;刘民</td>
+          <td  class="bord1" width="121">&nbsp;市场部</td>
+          <td  class="bord1" width="127">&nbsp;<img src="images/onlinec.gif" width="13" height="15" align="absmiddle"> 
+            61.120.11.21</td>
+          <td  class="bord1" width="127">&nbsp;<img src="images/onlinec.gif" width="13" height="15" align="absmiddle"> 
+            61.129.66.7</td>
+          <td  class="bord1" width="73">&nbsp;</td>
+          <td  class="bord1" width="101">&nbsp;2345.32</td>
+          <td  class="bord1" width="142">&nbsp;2340</td>
+          <td  class="bord3" width="139">&nbsp;13:26:35</td>
+        </tr>
+        <tr > 
+          <td class="bord1" height="27" width="31"> 
+            <div align="center"><img src="images/duanxian.gif" width="19" height="19"></div>
+          </td>
+          <td  class="bord1" width="121">&nbsp;吴锦华</td>
+          <td  class="bord1" width="121">&nbsp;物流组</td>
+          <td  class="bord1" width="127">&nbsp;<img src="images/onlinec.gif" width="13" height="15" align="absmiddle"> 
+            61.120.11.18</td>
+          <td  class="bord1" width="127">&nbsp;<img src="images/onlinec.gif" width="13" height="15" align="absmiddle"> 
+            61.120.11.10</td>
+          <td  class="bord1" width="73">&nbsp;</td>
+          <td  class="bord1" width="101">&nbsp;2345.32</td>
+          <td  class="bord1" width="142">&nbsp;2340</td>
+          <td  class="bord3" width="139">&nbsp;14:26:35</td>
+        </tr>
+        <tr > 
+          <td class="bord1" height="27" width="31"> 
+            <div align="center"><img src="images/online.gif" width="19" height="19"></div>
+          </td>
+          <td  class="bord1" width="121">&nbsp;唐猛</td>
+          <td  class="bord1" width="121">&nbsp;物流组</td>
+          <td  class="bord1" width="127">&nbsp;<img src="images/onlinec.gif" width="13" height="15" align="absmiddle"> 
+            61.120.11.15</td>
+          <td  class="bord1" width="127">&nbsp;<img src="images/onlinec.gif" width="13" height="15" align="absmiddle"> 
+            61.129.66.13</td>
+          <td  class="bord1" width="73">&nbsp;</td>
+          <td  class="bord1" width="101">&nbsp;2345.32</td>
+          <td  class="bord1" width="142">&nbsp;230</td>
+          <td  class="bord3" width="139">&nbsp;12:20:35</td>
+        </tr>
+        <tr > 
+          <td class="bord1" height="27" width="31"> 
+            <div align="center"><img src="images/online.gif" width="19" height="19"></div>
+          </td>
+          <td  class="bord1" width="121">&nbsp;画画</td>
+          <td  class="bord1" width="121">&nbsp;销售部</td>
+          <td  class="bord1" width="127">&nbsp;<img src="images/onlinec.gif" width="13" height="15" align="absmiddle"> 
+            61.120.11.16</td>
+          <td  class="bord1" width="127">&nbsp;<img src="images/onlinec.gif" width="13" height="15" align="absmiddle"> 
+            61.129.65.46</td>
+          <td  class="bord1" width="73">&nbsp;</td>
+          <td  class="bord1" width="101">&nbsp;450</td>
+          <td  class="bord1" width="142">&nbsp;26</td>
+          <td  class="bord3" width="139">&nbsp;13:20:35</td>
+        </tr>
+        <tr > 
+          <td class="bord1" height="27" width="31"> 
+            <div align="center"><img src="images/online.gif" width="19" height="19"></div>
+          </td>
+          <td  class="bord1" width="121">&nbsp;阿牛</td>
+          <td  class="bord1" width="121">&nbsp;销售部</td>
+          <td  class="bord1" width="127">&nbsp;<img src="images/onlinec.gif" width="13" height="15" align="absmiddle"> 
+            61.120.11.12</td>
+          <td  class="bord1" width="127">&nbsp;<img src="images/onlinec.gif" width="13" height="15" align="absmiddle"> 
+            61.120.11.10</td>
+          <td  class="bord1" width="73">&nbsp;</td>
+          <td  class="bord1" width="101">&nbsp;0</td>
+          <td  class="bord1" width="142">&nbsp;0</td>
+          <td  class="bord3" width="139">&nbsp;14:26:35</td>
+        </tr>
+        <tr > 
+          <td class="bord1" height="27" width="31"> 
+            <div align="center"><img src="images/online.gif" width="19" height="19"></div>
+          </td>
+          <td  class="bord1" width="121">&nbsp;陈云燕</td>
+          <td  class="bord1" width="121">&nbsp;财务部</td>
+          <td  class="bord1" width="127">&nbsp;<img src="images/onlinec.gif" width="13" height="15" align="absmiddle"> 
+            61.120.11.7</td>
+          <td  class="bord1" width="127">&nbsp;<img src="images/onlinec.gif" width="13" height="15" align="absmiddle"> 
+            61.120.11.10</td>
+          <td  class="bord1" width="73">&nbsp;</td>
+          <td  class="bord1" width="101">&nbsp;2345.32</td>
+          <td  class="bord1" width="142">&nbsp;267</td>
+          <td  class="bord3" width="139">&nbsp;13:23:35</td>
+        </tr>
+        <tr > 
+          <td class="bord1" height="27" width="31"> 
+            <div align="center"><img src="images/online.gif" width="19" height="19"></div>
+          </td>
+          <td  class="bord1" width="121">&nbsp;zpeak</td>
+          <td  class="bord1" width="121">&nbsp;销售部</td>
+          <td  class="bord1" width="127">&nbsp;<img src="images/onlinec.gif" width="13" height="15" align="absmiddle"> 
+            61.120.11.5</td>
+          <td  class="bord1" width="127">&nbsp;<img src="images/onlinec.gif" width="13" height="15" align="absmiddle"> 
+            61.120.11.10</td>
+          <td  class="bord1" width="73">&nbsp;</td>
+          <td  class="bord1" width="101">&nbsp;2345.32</td>
+          <td  class="bord1" width="142">&nbsp;845</td>
+          <td  class="bord3" width="139">&nbsp;14:20:35</td>
+        </tr>
+        <tr > 
+          <td class="bord1" height="27" width="31"> 
+            <div align="center"><img src="images/duanxian.gif" width="19" height="19"></div>
+          </td>
+          <td  class="bord1" width="121">&nbsp;Tom</td>
+          <td  class="bord1" width="121">&nbsp;人事课</td>
+          <td  class="bord1" width="127">&nbsp;<img src="images/onlinec.gif" width="13" height="15" align="absmiddle"> 
+            61.120.12.1</td>
+          <td  class="bord1" width="127">&nbsp;<img src="images/onlinec.gif" width="13" height="15" align="absmiddle"> 
+            61.120.11.13</td>
+          <td  class="bord1" width="73">&nbsp;</td>
+          <td  class="bord1" width="101">&nbsp;34</td>
+          <td  class="bord1" width="142">&nbsp;45</td>
+          <td  class="bord3" width="139">&nbsp;14:20:35</td>
+        </tr>
+        <tr > 
+          <td class="bord1" height="27" width="31"> 
+            <div align="center"><img src="images/online.gif" width="19" height="19"></div>
+          </td>
+          <td  class="bord1" width="121">&nbsp;汪国</td>
+          <td  class="bord1" width="121">&nbsp;经理室</td>
+          <td  class="bord1" width="127">&nbsp;<img src="images/onlinec.gif" width="13" height="15" align="absmiddle"> 
+            61.120.12.7</td>
+          <td  class="bord1" width="127">&nbsp;<img src="images/onlinec.gif" width="13" height="15" align="absmiddle"> 
+            61.120.11.15</td>
+          <td  class="bord1" width="73">&nbsp;</td>
+          <td  class="bord1" width="101">&nbsp;342</td>
+          <td  class="bord1" width="142">&nbsp;4545</td>
+          <td  class="bord3" width="139">&nbsp;14:25:35</td>
+        </tr>
+        <tr > 
+          <td class="bord1" height="27" width="31"> 
+            <div align="center"><img src="images/online.gif" width="19" height="19"></div>
+          </td>
+          <td  class="bord1" width="121">&nbsp;郭磊</td>
+          <td  class="bord1" width="121">&nbsp;经理室</td>
+          <td  class="bord1" width="127">&nbsp;<img src="images/onlinec.gif" width="13" height="15" align="absmiddle"> 
+            61.120.12.3</td>
+          <td  class="bord1" width="127">&nbsp;<img src="images/onlinec.gif" width="13" height="15" align="absmiddle"> 
+            61.120.11.16</td>
+          <td  class="bord1" width="73">&nbsp;</td>
+          <td  class="bord1" width="101">&nbsp;234</td>
+          <td  class="bord1" width="142">&nbsp;3453454</td>
+          <td  class="bord3" width="139">&nbsp;14:20:34</td>
+        </tr>
+        <tr > 
+          <td class="bord1" height="27" width="31"> 
+            <div align="center"><img src="images/online.gif" width="19" height="19"></div>
+          </td>
+          <td  class="bord1" width="121">&nbsp;丁洁</td>
+          <td  class="bord1" width="121">&nbsp;人事课</td>
+          <td  class="bord1" width="127">&nbsp;<img src="images/onlinec.gif" width="13" height="15" align="absmiddle"> 
+            61.120.12.2</td>
+          <td  class="bord1" width="127">&nbsp;<img src="images/onlinec.gif" width="13" height="15" align="absmiddle"> 
+            61.120.11.21</td>
+          <td  class="bord1" width="73">&nbsp;</td>
+          <td  class="bord1" width="101">&nbsp;234</td>
+          <td  class="bord1" width="142">&nbsp;54545</td>
+          <td  class="bord3" width="139">&nbsp;14:24:36</td>
+        </tr>
+        <tr > 
+          <td class="bord1" height="27" width="31"> 
+            <div align="center"><img src="images/online.gif" width="19" height="19"></div>
+          </td>
+          <td  class="bord1" width="121">&nbsp;余川</td>
+          <td  class="bord1" width="121">&nbsp;市场部</td>
+          <td  class="bord1" width="127">&nbsp;<img src="images/onlinec.gif" width="13" height="15" align="absmiddle"> 
+            61.120.12.5</td>
+          <td  class="bord1" width="127">&nbsp;<img src="images/onlinec.gif" width="13" height="15" align="absmiddle"> 
+            61.120.11.32</td>
+          <td  class="bord1" width="73">&nbsp;</td>
+          <td  class="bord1" width="101">&nbsp;2345</td>
+          <td  class="bord1" width="142">&nbsp;345</td>
+          <td  class="bord3" width="139">&nbsp;14:23:32</td>
+        </tr>
+        <tr id=ignore> 
+          <td align=right 
+                    colspan=9 bgcolor="#8989A3" ></td>
+        </tr>
+        </tbody> 
+      </table>
+                </td>
+              </tr>
+              </tbody> 
+            </table>
+            
+          
+<table width="100%" border="0">
+  <tr>
+    <td width="92%"> 
+      <div align="right"><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image19','','images/an2d.gif',1)"><img name="Image19" border="0" src="images/an1d.gif" width="99" height="33"></a><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image20','','images/an2c.gif',1)"><img name="Image20" border="0" src="images/an1c.gif" width="99" height="33"></a></div>
+    </td>
+    <td width="8%"> 
+      <div align="right"></div>
+    </td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<HTML>
+<HEAD>
+<TITLE>过滤器设置</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=content-type>
+<LINK 
+href="../temp/%D0%C2%C0%CB%CD%A8%D1%B6%C2%BC%A3%BA%20ivyiv.files/ShowMemberList.files/mystyle.css" rel=stylesheet type=text/css>
+<SCRIPT language=javascript>
+
+
+</SCRIPT>
+<META content="MSHTML 5.00.2919.6307" name=GENERATOR>
+<style type="text/css">
+<!--
+.submit {  background-color: #FFCC66; font-size: 9pt}
+.type {  font-size: 9pt}
+.unnamed1 {  background-color: #66FF66}
+-->
+</style>
+<script language="javascript">
+function setValue(code,fid)
+{
+    document.filter.nFunCode.value=code;
+    document.filter.fid.value=fid;
+    document.filter.submit();
+}
+</script>
+</HEAD>
+<BODY class=bgcw leftMargin=11 topMargin=5 marginwidth="11" marginheight="5" bgcolor="#F0FDE6">
+<span class="bg1"></span> <br>
+
+<table border="0" width="100%" align="center" cellpadding="0" cellspacing="0" bordercolordark="#" class="type">
+  <form action="/pronline/Msg"  method="post" name="filter" >
+    <input type="hidden" name="nFunCode" >
+    <input type="hidden" name="sid" value="[#sid#]">
+    <input type="hidden" name="fid" >
+    <tr> 
+      <td valign="bottom" align="left" 
+width="60%"> <b><font color="#339933">过 滤 器</font></b>　　　　　　　　　　　　　　　　 　　</td>
+      <td valign="middle" align="left" 
+width="40%"> 
+        <div align="right">　　　<img src="../mailImages/bt8.GIF" width="52" height="24" align="absmiddle"> 
+        </div>
+      </td>
+    </tr>
+    <tr> 
+      <td align="left" valign="baseline" height="10" colspan="2"> 
+        <hr noshade size="2"color="99cc99" align="left">
+      </td>
+    </tr>
+    <tr> 
+      <td align="left" valign="baseline" height="2" colspan="2" bgcolor="#8ED573"> 
+        　收件过滤器: <a href="javascript:setValue('17267','')"><img src="../mailImages/bt9.GIF" width="40" height="21" align="absmiddle" border="0"></a><span 
+class=lemon1>（一共可以设定100条FILTER） </span> </td>
+    </tr>
+    [#SLPB099#] 
+    <tr> 
+      <td valign="middle" align="left" height="114" colspan="2" bgcolor="#E2EEDB"> 
+        <p><b><br>
+          　过滤器名:[#name#]</b><br>
+          　如果：<br>
+          　　　　[#all#][#item#]&nbsp;[#is#]&nbsp;[#some#][#begin#]&nbsp;[#extra#]<br>
+          　执行：<br>
+          　　　　[#act#][#do#]&nbsp;[#any#]&nbsp;[#bakup#]<br>
+          　本过滤器[#effect#]。<br>
+          　<br>
+          　 <a href="javascript:setValue('17264','[#fid#]')"><img src="../mailImages/bt7.GIF" width="52" height="24" border="0" ></a> 
+          　　<a href="javascript:setValue('17266','[#fid#]')"><img src="../mailImages/bt16.GIF" width="52" height="24" border="0"  ></a> 
+          <br>
+        </p>
+      </td>
+    </tr>
+    [#SLPE#] 
+  </form>
+  <form action="/pronline/Msg"  method="post" name="refuse" >
+    <input type="hidden" name="nFunCode" value="17262">
+    <input type="hidden" name="sid" value="[#sid#]">
+    <input type="hidden" name="refuse" value="1">
+    <tr> 
+      <td valign="middle" align="left" colspan="2" bgcolor="#E2EEDB"> </td>
+    </tr>
+    <tr> 
+      <td valign="middle" align="left" height="2" colspan="2" bgcolor="#8ED573">　拒收邮件列表: 
+      </td>
+    </tr>
+    <tr> 
+      <td valign="middle" align="left" colspan="2" bgcolor="#E2EEDB"> 　 
+        <textarea name="from" cols="70" rows="5">[#refuse#]</textarea>
+        <br>
+        　　( 各个地址之间用“，”隔开) </td>
+    </tr>
+    <tr> 
+      <td valign="middle" align="left" colspan="2"> 
+        <div align="center"><br>
+          <input type="image" border="0" name="imageField" src="../mailImages/bt16.GIF" width="52" height="24">
+        </div>
+      </td>
+    </tr>
+  </form>
+</table>
+<div align="center"><BR>
+</div>
+</BODY></HTML>

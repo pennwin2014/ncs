@@ -1,0 +1,188 @@
+<html>
+<head>
+<title>联网单位离线告警设置</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<script>
+	function openlog(t){
+		window.open(t,'open_report3','height=600, width=900, top=0, left=0,toolbar=no,scrollbars=no,resizable=1,menubar=no,status=no;');
+	}
+	
+	
+	function test(){
+	if(form1.bbmobno.value==''){
+	alert('请填写必报手机号');
+	return false;
+	}
+	form1.FunName.value='ncs_offline_warntest';
+	return true;
+	}
+</script>
+</head>
+
+<body bgcolor="#fbfbfb" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" align="center"  style="overflow:hidden">
+<form name="form1" method="post" action="/pronline/Msg">
+  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  	<tr>
+          <td width="26"><img src="/images/tbbg/tb_left.jpg"></td>
+         
+          <td  valign="top" style="background:url(/images/tbbg/tb_center.jpg);height:19;"></td>
+          <td  width="20"><img src="/images/tbbg/tb_right.jpg" width="20" height="19"></td>
+        
+      </tr>
+  	<tr>
+  		<td width="26" height="200" style="background:url(/images/tbbg/mid_left.jpg);position:relative;left:-2px;top:-2px;"></td>
+       
+  		<td style="background:url(/images/tbbg/mid_leftw.jpg);">
+
+
+  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td valign="top" ><table width="100%" height="35" border="0" align="center" cellpadding="0" cellspacing="0" >
+          <tr > 
+            <td colspan="2"><div style="font-size:11pt;color:#00237e;font-weight:bold;text-align: center;">联网单位离线短信告警设置</div></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr> 
+      <td >
+        <table width="90%" height="0%" border="1"  bordercolorlight=#89ACED   bordercolordark=#ffffff   align="center" cellpadding="0" cellspacing="0">
+          <tr> 
+            <td valign="top" height="411"> <table width="90%" border="0" align="center">
+                <tr> 
+                  <td width="17%">&nbsp;</td>
+                  <td width="67%">&nbsp;</td>
+                  <td width="16%">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="17%">&nbsp;</td>
+                  <td width="67%" height="25"><b> 短信告警系统参数</b> </td>
+                  <td width="16%">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="17%" height="89">&nbsp;</td>
+                  <td height="89" width="67%" align="center"> <table width="100%" border="0"  bordercolorlight=#848284   bordercolordark=#ffffff>
+                      <tr> 
+                        <td width="37%"> 功能开关</td>
+                      <td width="63%"><select name="StartWarnOff"><option value="No">停用</option><option value="Yes">启用</option></select>
+                        </td>
+                      </tr>
+                    
+                      
+                  
+                     
+                     
+                     
+                    </table></td>
+                  <td width="16%" height="89">&nbsp;</td>
+                </tr>
+                
+                
+                
+              <tr> 
+                  <td width="17%">&nbsp;</td>
+                  <td width="67%" height="25"><b> 告警对象</b> </td>
+                  <td width="16%">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="17%" height="89">&nbsp;</td>
+                  <td height="89" width="67%" align="center"> <table width="100%" border="0"  bordercolorlight=#848284   bordercolordark=#ffffff>
+                      <tr> 
+                        <td > <input type="checkbox" name="fzrmobno" value="1" [#fzrmobno#]>&nbsp;单位负责人(对应联网单位中的单位负责人电话)
+                        </td>
+                      </tr>
+                       <tr> 
+                        <td > <input type="checkbox" name="aqymobno" value="1" [#aqymobno#]>&nbsp;单位安全员(对应联网单位中的信息安全员电话)
+                        </td>
+                      </tr>
+                     
+                      <tr> 
+                        <td > <input type="checkbox" name="wjmobno" value="1" [#wjmobno#]>&nbsp;网监负责人(对应联网单位中的网监负责人电话)
+                        </td>
+                      </tr>
+                     
+                     <tr> 
+                        <td > <input type="checkbox" name="bbmobflag" value="1" [#bbmobflag#]>&nbsp;必报手机&nbsp;<input type="text" name="bbmobno" size="32" value="[#bbmobno#]">&nbsp;可以多个手机号，之间用","分割。
+                        </td>
+                      </tr>
+                     
+                     
+                    </table></td>
+                  <td width="16%" height="89">&nbsp;</td>
+                </tr>
+                
+                <tr> 
+                  <td width="17%">&nbsp;</td>
+                  <td width="67%" height="25"><b> 告警内容</b> </td>
+                  <td width="16%">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="17%" height="49">&nbsp;</td>
+                  <td height="49" width="67%" align="center"> <table width="100%" border="0"  bordercolorlight=#848284   bordercolordark=#ffffff>
+                      <tr> 
+                          <td>
+                          	<input type="text" name="warncont" value="[#warncont#]" size="50" maxlength="50">&nbsp;(不要超过50字符)
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                
+                
+                
+                
+              
+                <tr>
+                  <td>&nbsp;</td>
+                  <td align="center">&nbsp;<font color="red">[#mesg#]</font></td>
+                  <td>&nbsp;</td>
+                </tr>
+              </table></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td height="70" ><table width="50%" border="0" align="center">
+          <tr> 
+            <td> <div align="center"> 
+                <input type="hidden" name="FunName" value="ncs_offline_warnsetsave">
+                <input type="submit" name="next" value="保存" class="an3">
+                &nbsp; 
+        <!--        <input type="submit" name="atest" value="测试" class="an3" onclick="return test()">
+                &nbsp; 
+        -->
+                <input type="button" name="cklog" value="查看短信日志" class="an3-1" onclick="openlog('/pronline/Msg?FunName@ncsShowOfflinelog')">
+              </div></td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+  
+    	</td>
+  	<td style="background:url(/images/tbbg/mid_right.jpg);position:relative;left:1px;top:-2px;">&nbsp;
+  	</td>
+    </tr>
+  	
+  	
+  	  	<tr>
+          <td width="26"><img src="/images/tbbg/bottom_left.jpg" style="position:relative;top:-2px;left:-1px;"></td>
+         
+          <td  valign="top" style="background:url(/images/tbbg/bottom_center.jpg);position:relative;left:-4px;top:-2px;"></td>
+          <td  width="20"><img src="/images/tbbg/bottom_right.jpg" width="20" height="19" style="position:relative;top:-2px;"></td>
+        
+      </tr>
+  	
+
+  </table>
+  
+  
+</form>
+<script>form1.StartWarnOff.value='[#StartWarnOff#]';
+</script>
+</body>
+</html>

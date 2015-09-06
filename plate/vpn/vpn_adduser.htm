@@ -1,0 +1,120 @@
+<html>
+<head>
+<title>系统功能选项</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<script>
+	function ok(){
+	if(form1.password1.value!=form1.password2.value){
+	alert('前后密码不一致');
+	return false;
+	}
+	return true;
+	}
+</script>
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" align="center"  style="overflow:hidden">
+<form name="form1" method="post" action="/pronline/Msg">
+<input type="hidden" name="ogname" value="[#ogname#]">
+  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td valign="top" ><table width="100%" height="35" border="0" align="center" cellpadding="0" cellspacing="0" >
+          <tr > 
+            <td colspan="2"> <div style="font-size:11pt;color:#00237e;font-weight:bold;text-align: center;">VPN用户帐号管理</div></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr> 
+      <td >
+        <table width="90%" height="0%" border="1"  bordercolorlight=#89ACED   bordercolordark=#ffffff   align="center" cellpadding="0" cellspacing="0">
+          <tr> 
+            <td valign="top" height="200" width="100%"> 
+            	<table width="95%" border="0" align="center">
+            		<tr height="20px">
+				          	<td>&nbsp;</td>
+				          	<td>&nbsp;</td>
+				          </tr>
+                <tr height="30"> 
+                  <td width="21%">&nbsp;VPN用户帐号</td>
+                  <td width="35%">&nbsp;<input type="text" name="gname" style="width:120px;" value="[#gname#]" maxlength="20">&nbsp;&nbsp
+                  <td width="9%">&nbsp;</td>
+                  <td width="35%">&nbsp;</td>
+                </tr>
+               
+               
+               
+                 <tr height="30"> 
+                  <td >&nbsp;密码</td>
+                  <td >&nbsp;<input type="password" name="password1" style="width:120px;" value="[#password1#]">&nbsp;&nbsp
+                  <td >&nbsp;</td>
+                  <td >&nbsp;</td>
+                </tr>
+               <tr height="30"> 
+                  <td >&nbsp;密码确认</td>
+                  <td >&nbsp;<input type="password" name="password2" style="width:120px;" value="[#password1#]">&nbsp;&nbsp
+                  <td >&nbsp;</td>
+                  <td >&nbsp;</td>
+                </tr>
+                
+                <tr height="30"> 
+                  <td >&nbsp;帐号状态</td>
+                <td >&nbsp;<select name="active" style="width:120px;" ><option value="1">启用</option><option value="0">停用</option></select>
+                  <td >&nbsp;</td>
+                  <td >&nbsp;</td>
+                </tr>
+				          <tr height="30px">
+				          	<td>&nbsp;</td>
+				          	<td>&nbsp;</td>
+				          </tr>
+				          
+				          
+                  	</table>
+                  </td>
+                </tr>
+              </table>
+                  	
+                  	</td>
+                  	
+                  	
+                  	
+                  	
+            
+                </tr>
+               
+               
+               
+               
+              </table>
+              </td>
+              
+              
+              
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td height="70" ><table width="100%" border="0" align="center">
+      	<tr><td>&nbsp;</td></tr>
+          <tr> 
+            <td align="center"> 
+                <input type="hidden" name="FunName" value="vpnUserSave">
+                <input type="submit" name="next" value="确 认" class="an3" onclick="return ok()">
+                &nbsp; 
+                <input type="button" name="cancel" value="关 闭" class="an3" onclick="self.close()">
+                &nbsp;
+                
+              </td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+</form>
+<script>form1.active.value='[#active#]';</script>
+</body>
+</html>

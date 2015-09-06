@@ -1,0 +1,118 @@
+<html>
+<head>
+<title>电子邮件</title>
+<meta http-equiv="目录类型" content="文本/html; 字符集=gb2312">
+<STYLE type=text/css>BODY {
+	FONT-FAMILY: "宋体"; FONT-SIZE: 9pt
+}
+TD {
+	FONT-FAMILY: "宋体"; FONT-SIZE: 9pt
+}
+A {
+	COLOR: #008000; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #ff0000; TEXT-DECORATION: underline
+}.submit {  background-color: #FFCC33}
+</STYLE>
+<script language="javascript">
+function setCode(code)
+{
+    if(!formCheck())
+        return ;
+    document.setpop.nFunCode.value=code;
+    document.setpop.submit();
+}
+function setValue(code,id)
+{
+    document.setpop.nFunCode.value=code;
+    document.setpop.curid.value=id;
+    document.setpop.submit();
+}        
+function formCheck()
+{
+    if(document.setpop.pop.value=="")
+    {
+        alert("请输入正确的POP地址");
+        document.setpop.pop.focus();
+        return false;
+    }
+    if(document.setpop.usernm.value=="")
+    {
+        alert("请输入用户名");
+        document.setpop.usernm.focus();
+        return false;
+    }
+    return true;
+}    
+        
+</script>
+</head>
+
+<body bgcolor="#F0FDE6">
+<form action="/pronline/Msg"  method="post" name="setpop" >
+<input type="hidden" name="nFunCode" >
+<input type="hidden" name="sid" value="[#sid#]">
+<input type="hidden" name="require" value="[#require#]">
+<input type="hidden" name="curid" value="[#curid#]">
+<div align="center"></div>
+  <table width="100%" cellpadding="0" bordercolordark="#FFFFFF">
+    <tr bgcolor="#8ED573"> 
+      <td align=center colspan="3" height="13">设置ｐｏｐ收件</td>
+    </tr>
+    <tr bgcolor="#E2EEDB"> 
+      <td align=center valign=middle width="29%" height="30" bgcolor=#E2EEDB> 
+        <div align="right">ｐｏｐ服务器地址：</div>
+      </td>
+      <td height="30" colspan="2" valign="top"> 
+        <input maxlength=999 name=pop size="40" value="[#popp#]">
+      </td>
+    </tr>
+    <tr bgcolor="#E2EEDB"> 
+      <td align=center valign=middle width="29%" height="30" bgcolor=#E2EEDB> 
+        <div align="right">用户名 &nbsp;：</div>
+      </td>
+      <td colspan="2" height="30" valign="top"> 
+        <input maxlength=50 name=usernm size="40" value="[#usernm#]">
+      </td>
+    </tr>
+    <tr bgcolor="#E2EEDB"> 
+      <td align=center valign=middle width="29%" height="30" bgcolor=#E2EEDB> 
+        <div align="right">密码 &nbsp;：</div>
+      </td>
+      <td colspan="2" height="30" valign="top"> 
+        <input maxlength=50 name=pass size="40" type="password" value="[#pass#]">
+        <div align="right"> </div>
+      </td>
+    </tr>
+    <tr align="center" bgcolor="#E2EEDB"> 
+      <td colspan="3" height="30" valign="middle"> 
+        <div align="center"><font color="#000000"> 
+          <input type="button" name="Submit232" value=" [#action#] " onclick="setCode('17202')">
+          </font></div>
+      </td>
+    </tr>
+    <tr bgcolor="#E2EEDB"> 
+      <td align=right colspan="3" height="30" valign="middle"> 
+        <div align="center"><font color="#000000"> 已经设置的ｐｏｐ账号：</font></div>
+      </td>
+    </tr>
+    <tr bgcolor="#E2EEDB"> 
+      <td align=center valign=middle width="29%" height="30">ｐｏｐ服务器地址</td>
+      <td align=center width="44%" height="30" valign="middle">用户名</td>
+      <td height="30" width="27%" valign="middle"><font color="#000000">　　 　　 
+        </font></td>
+    </tr>
+    [#SLPB099#] 
+    <tr bgcolor="#E2EEDB"> 
+      <td align=center valign=middle width="29%" height="30">[#pop#] </td>
+      <td align=center width="44%" height="30" valign="middle">[#user#] </td>
+      <td height="30" width="27%" valign="middle"> <font color="#000000"> </font><font color="#000000"> 
+        <input type="button" name="edit[#i#]" value=" 编 辑 " onclick="setValue('17203','[#id#]')">
+        <input type="button" name="del[#i#]" value=" 删 除 " onclick="setValue('17204','[#id#]')">
+        </font> </td>
+    </tr>
+    [#SLPE#] 
+  </table>
+</form></body>
+</html>

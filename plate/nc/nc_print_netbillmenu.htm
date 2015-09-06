@@ -1,0 +1,121 @@
+<html>
+
+<head>
+<title>上网时间统计</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<!-- Infrastructure code for the tree -->
+<script>
+function goto99(){
+  parent.sbpm_left.location.href='/pronline/Msg?FunName@ncWebReplace&plate@nc/nc_netbill_left.htm&sdate@'+tj1.sdate.value +'&edate@'+tj1.edate.value+'&recnum@'+tj1.recnum.value+'&sort@'+tj1.sort.value
+}
+</script>
+
+<script language = "Javascript" src = "/js/selecttime.js"></script>
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0"  oncontextmenu="return false">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+ <form name="tj1" method="post" action="/pronline/Msg">
+  <tr> 
+    <td colspan="2"><table width="100%" height="27" border="0" align="center" cellpadding="0" cellspacing="0" background="/images/table_bg1.gif">
+        <tr > 
+          <td colspan="2"> <div align="center"><strong><font color="#FFFFFF">
+              <input type="hidden" name="FunName" value="ncWebPrintBill">
+              上网费用统计</font></strong></div></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr> 
+    <td colspan="2">
+        <br>
+        <table width="70%" border="1"   bordercolorlight=#89ACED   bordercolordark=#ffffff    align="center" cellpadding="0" cellspacing="0">
+          <tr> 
+            <td > 
+        <table width="90%" border="0" align="center" cellpadding="0" cellspacing="0" >
+                <tr>
+                  <td height="24">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td colspan="3">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="2%" height="40"> 
+                    <div align="center"><font color="#000000"></font></div></td>
+                  <td width="20%"> <div align="right"><font color="#000000"><b><font size="2">部 
+                      门&nbsp;</font></b></font></div></td>
+                  <td width="37%"> <div align="left"><font color="#000000"> [#sgroup#]</font></div></td>
+                  <td colspan="3"> <div align="center"><font color="#000000"></font></div>
+                    <div align="center"><font color="#000000"> </font></div>
+                    <div id="plabel" align="center"><font color="#000000"> </font></div></td>
+                </tr>
+                <tr> 
+                  <td width="2%" height="40"> 
+                    <div align="center"><font color="#000000"></font></div></td>
+                  <td width="20%"> <div align="right"><font color="#000000"><b><font size="2">起始时间&nbsp;</font></b></font></div></td>
+                  <td width="37%"> <div align="left"><font color="#000000"> 
+                      <input type="text" name="sdate" value="[#sdate#]" >
+                      </font></div></td>
+                  <td width="9%"> <div align="center"><font color="#000000"><a href="#"><img src="/images/date.gif"  border="0" onClick=show_calendar('tj1.sdate')></a></font></div></td>
+                  <td width="10%"> <div align="center"><font color="#000000"> 
+                      </font></div></td>
+                  <td width="22%"> <div id="plabel" align="center"><font color="#000000"> 
+                      </font></div></td>
+                </tr>
+                <tr> 
+                  <td width="2%" height="40">&nbsp;</td>
+                  <td width="20%" height="21"> <div align="right"><font color="#000000"><b><font size="2">终止时间&nbsp;</font></b></font></div></td>
+                  <td width="37%" height="21"><font color="#000000"> 
+                    <input type="text" name="edate" value="[#edate#]">
+                    </font></td>
+                  <td width="9%" height="21"><font color="#000000"><a href="#"><img src="/images/date.gif"  border="0" onClick=show_calendar('tj1.edate')></a></font></td>
+                  <td width="10%" height="21">&nbsp;</td>
+                  <td width="22%" height="21">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="2%" height="40">&nbsp;</td>
+                  <td width="20%"> <div align="right"><font color="#000000"><b><font size="2">每页记录数&nbsp;</font></b></font></div></td>
+                  <td width="37%"> <input type="text" name="recnum" value="[#recnum#]"> 
+                  </td>
+                  <td width="9%">&nbsp;</td>
+                  <td width="10%">&nbsp;</td>
+                  <td width="22%">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="2%" height="40">&nbsp;</td>
+                  <td width="20%"> <div align="right"><font color="#000000"><b><font size="2">排列顺序&nbsp;</font></b></font></div></td>
+                  <td width="37%">[#sort#]</td>
+                  <td width="9%">&nbsp;</td>
+                  <td width="10%">&nbsp;</td>
+                  <td width="22%">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="2%" height="24"> 
+                    <div align="center"><font color="#000000"></font></div></td>
+                  <td width="20%"> <div align="center"><font color="#000000"><b></b></font></div></td>
+                  <td width="37%"> <div align="center"><font color="#000000"> 
+                      </font></div></td>
+                  <td width="9%"> <div align="center"><font color="#000000"></font></div></td>
+                  <td width="10%"> <div align="center"><font color="#000000"> 
+                      </font></div></td>
+                  <td width="22%">&nbsp; </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+  </tr>
+  <tr>
+    <td height="70" colspan="2"><table width="50%" border="0" align="center">
+        <tr> 
+          <td> <div align="right">
+              <input name="Button" type="button" class="an3" onClick="tj1.submit();goto99()" value="确 认">
+            </div></td>
+        </tr>
+      </table></td>
+  </tr>
+  </form>
+</table>
+</body>
+</html>

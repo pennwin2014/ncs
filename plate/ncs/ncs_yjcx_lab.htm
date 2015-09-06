@@ -1,0 +1,397 @@
+<html>
+<head>
+<title>归档日志</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<style>
+.conts{visibility:hidden}
+
+</style>
+<script language="javascript">
+var ll=0;
+var yy=1;
+
+</script>
+<script LANGUAGE="JavaScript">
+//this is the tab switching function
+function gotopage(flag){
+	if(form1.CurPg.value=='') form1.CurPg.value='1';
+	var lCur=parseInt(form1.CurPg.value);
+
+	if(flag=='1'){
+	  form1.CurPg.value=lCur-1;
+	}
+	else{
+	form1.CurPg.value=lCur+1;
+	}
+
+	form1.submit();
+}
+
+
+
+
+function goto(t){
+ tt=showModalDialog(t, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:520px;scroll:yes;dialogHeight:610px');
+}
+function gotoPage(nun)
+{
+	if(nun<1){
+	 form1.CurPg.value=1;
+	 frames.main_t.form1.CurPg.value=1;
+	 return false;
+	}
+	if(nun>form1.TotPg.value){
+		form1.CurPg.value=form1.TotPg.value;
+		frames.main_t.form1.CurPg.value=form1.TotPg.value;
+		return false;
+	}
+//  frames.main.form1.FunName.value='ncsWebNetLog';
+	frames.main_t.form1.CurPg.value=nun;
+	form1.CurPg.value=nun;
+	frames.main_t.form1.submit();
+	return false;
+}
+function lprint(){
+	frames.main_t.window.print();
+}
+function texport(t)
+{
+	frames.main_t.form1.CurPg.value=1;
+	frames.main_t.form1.exp.value="exp";
+  frames.main_t.form1.FunName.value=t;
+	frames.main_t.form1.submit();
+	frames.main_t.form1.FunName.value="ncsWebReplace";
+	frames.main_t.form1.exp.value="";
+}
+function cvtcode()
+{
+	  frames.main_t.form1.ccode.value=form1.ccode.value;
+    frames.main_t.form1.FunName.value = "ncsWebMailMonCvtCode";
+    frames.main_t.form1.submit();
+}	
+
+
+
+var cno;
+var currentTab;
+var tabBase;
+var firstFlag = true;
+
+function changeTabs(){
+	var temp_cont='';
+if(firstFlag == true){
+currentTab = t0;
+
+cno=currentTab.id.substring(1);
+firstFlag = false;
+}
+
+if(window.event.srcElement.className == "tab4"||window.event.srcElement.className == "tab5"||window.event.srcElement.className == "tab7"||window.event.srcElement.className == "tab8"||window.event.srcElement.className == "tab9"){
+	var cno2=parseInt(cno)+1;
+	if(cno==0)
+		currentTab.className = "tab7";
+	else if(cno==9)
+		currentTab.className="tab8";
+	else
+		currentTab.className="tab5";
+
+  if(cno2<10)
+  	eval('document.all.t'+cno2).className="tab5";
+  else if(cno2==9)
+  	eval('document.all.t'+cno2).className="tab8";
+  	
+	currentTab = window.event.srcElement;
+	cno=currentTab.id.substring(1);
+	var cno1=parseInt(cno)+1;
+	if(cno==9){
+		currentTab.className = "tab6";
+	}
+  else if(cno==8){
+   currentTab.className="tab3";	 
+	 eval('document.all.t'+cno1).className="tab9";
+  }
+  else{
+	 currentTab.className="tab3";	 
+	 eval('document.all.t'+cno1).className="tab4";
+	}
+			
+
+var temp_desc;
+	if(currentTab.id=="t0"){	
+		form1.ntype.value='';
+		document.all.xxm1.style.display='none';		
+		document.all.xxm2.style.display='none';	
+    var temp="/pronline/Msg?FunName@ncsWebStatVidAll";
+		document.all.data1.src=temp; 
+		form1.FunName.value='ncsWebNetIdYjcx';
+		
+		temp_desc='';
+	  temp_desc=temp_desc+'&nbsp;&nbsp;开始时间&nbsp;<input type="text" name="sdate" value="[#sdate#]" size="12" maxlength="10"> <input type="button" name="sdate_but" style="position:relative;left:-21px;top:-2px;width:15px;height:17px" value="…" onclick=fPopCalendar(sdate,sdate,"Down");>';
+	  temp_desc=temp_desc+'结束时间&nbsp;<input type="text" name="edate" value="[#edate#]" size="12" maxlength="10"> <input type="button" name="edate_but" style="position:relative;left:-21px;top:-2px;width:15px;height:17px" value="…" onclick=fPopCalendar(edate,edate,"Down")>';
+	  temp_desc=temp_desc+'<input type="checkbox" name="matchway" value="1"  >模糊查询&nbsp;&nbsp;虚拟帐号&nbsp;<input type="text" name="vname" value="" size="20">&nbsp;<input name="cxx" type="submit"  value="查 询"> ';	  
+    document.all.hljxxm.innerHTML=temp_desc;
+	}
+	else if(currentTab.id=="t1"){
+		form1.ntype.value='1001';
+		document.all.xxm1.style.display='none';		
+		document.all.xxm2.style.display='none';
+    var temp="/pronline/Msg?FunName@ncsWebStatVidAllByUser&ntype@1001";
+		document.all.data1.src=temp;	
+		form1.FunName.value='ncsWebNetIdYjcx';
+		
+		temp_desc='';
+	  temp_desc=temp_desc+'&nbsp;&nbsp;开始时间&nbsp;<input type="text" name="sdate" value="[#sdate#]" size="12" maxlength="10"> <input type="button" name="sdate_but" style="position:relative;left:-21px;top:-2px;width:15px;height:17px" value="…" onclick=fPopCalendar(sdate,sdate,"Down");>';
+	  temp_desc=temp_desc+'结束时间&nbsp;<input type="text" name="edate" value="[#edate#]" size="12" maxlength="10"> <input type="button" name="edate_but" style="position:relative;left:-21px;top:-2px;width:15px;height:17px" value="…" onclick=fPopCalendar(edate,edate,"Down")>';
+	  temp_desc=temp_desc+'<input type="checkbox" name="matchway" value="1"  >模糊查询&nbsp;&nbsp;虚拟帐号&nbsp;<input type="text" name="vname" value="" size="20">&nbsp;<input name="cxx" type="submit"  value="查 询"> ';	  
+    document.all.hljxxm.innerHTML=temp_desc;
+	}
+	else if(currentTab.id=="t2"){
+		form1.ntype.value='20000';
+		document.all.xxm1.style.display='none';		
+		document.all.xxm2.style.display='none';	
+    var temp="/pronline/Msg?FunName@ncsWebStatVidAllByUser&ntype@20000";
+		document.all.data1.src=temp; 
+		form1.FunName.value='ncsWebNetIdYjcx';
+		
+		temp_desc='';
+	  temp_desc=temp_desc+'&nbsp;&nbsp;开始时间&nbsp;<input type="text" name="sdate" value="[#sdate#]" size="12" maxlength="10"> <input type="button" name="sdate_but" style="position:relative;left:-21px;top:-2px;width:15px;height:17px" value="…" onclick=fPopCalendar(sdate,sdate,"Down");>';
+	  temp_desc=temp_desc+'结束时间&nbsp;<input type="text" name="edate" value="[#edate#]" size="12" maxlength="10"> <input type="button" name="edate_but" style="position:relative;left:-21px;top:-2px;width:15px;height:17px" value="…" onclick=fPopCalendar(edate,edate,"Down")>';
+	  temp_desc=temp_desc+'<input type="checkbox" name="matchway" value="1"  >模糊查询&nbsp;&nbsp;虚拟帐号&nbsp;<input type="text" name="vname" value="" size="20">&nbsp;<input name="cxx" type="submit"  value="查 询"> ';	  
+    document.all.hljxxm.innerHTML=temp_desc;
+	}
+	else if(currentTab.id=="t3"){
+		form1.ntype.value='13000';
+		document.all.xxm1.style.display='none';		
+		document.all.xxm2.style.display='none';	
+   var temp="/pronline/Msg?FunName@ncsWebStatVidAllByUser&ntype@13000";
+		document.all.data1.src=temp;
+	 form1.FunName.value='ncsWebNetIdYjcx';
+	 
+	  temp_desc='';
+	  temp_desc=temp_desc+'&nbsp;&nbsp;开始时间&nbsp;<input type="text" name="sdate" value="[#sdate#]" size="12" maxlength="10"> <input type="button" name="sdate_but" style="position:relative;left:-21px;top:-2px;width:15px;height:17px" value="…" onclick=fPopCalendar(sdate,sdate,"Down");>';
+	  temp_desc=temp_desc+'结束时间&nbsp;<input type="text" name="edate" value="[#edate#]" size="12" maxlength="10"> <input type="button" name="edate_but" style="position:relative;left:-21px;top:-2px;width:15px;height:17px" value="…" onclick=fPopCalendar(edate,edate,"Down")>';
+	  temp_desc=temp_desc+'<input type="checkbox" name="matchway" value="1"  >模糊查询&nbsp;&nbsp;虚拟帐号&nbsp;<input type="text" name="vname" value="" size="20">&nbsp;<input name="cxx" type="submit"  value="查 询"> ';	  
+    document.all.hljxxm.innerHTML=temp_desc;
+	}
+  else if(currentTab.id=="t4"){
+		form1.ntype.value='2000';
+		document.all.xxm1.style.display='none';		
+		document.all.xxm2.style.display='none';	
+		var temp="/pronline/Msg?FunName@ncsWebStatVidAllByUser&ntype@2000";
+//    var temp="/pronline/Msg?FunName@ncsWebStatVidAll";
+		document.all.data1.src=temp; 
+		form1.FunName.value='ncsWebNetIdYjcx';
+	}
+	else if(currentTab.id=="t5"){
+		form1.ntype.value='4002';
+		document.all.xxm1.style.display='none';		
+		document.all.xxm2.style.display='none';	
+//    var temp="/pronline/Msg?FunName@ncsWebStatVidAll";
+    var temp="/pronline/Msg?FunName@ncsWebStatVidAllByUser&ntype@4002";
+		document.all.data1.src=temp; 
+    form1.FunName.value='ncsWebNetIdYjcx';
+    
+    temp_desc='';
+	  temp_desc=temp_desc+'&nbsp;&nbsp;开始时间&nbsp;<input type="text" name="sdate" value="[#sdate#]" size="12" maxlength="10"> <input type="button" name="sdate_but" style="position:relative;left:-21px;top:-2px;width:15px;height:17px" value="…" onclick=fPopCalendar(sdate,sdate,"Down");>';
+	  temp_desc=temp_desc+'结束时间&nbsp;<input type="text" name="edate" value="[#edate#]" size="12" maxlength="10"> <input type="button" name="edate_but" style="position:relative;left:-21px;top:-2px;width:15px;height:17px" value="…" onclick=fPopCalendar(edate,edate,"Down")>';
+	  temp_desc=temp_desc+'<input type="checkbox" name="matchway" value="1"  >模糊查询&nbsp;&nbsp;虚拟帐号&nbsp;<input type="text" name="vname" value="" size="20">&nbsp;<input name="cxx" type="submit"  value="查 询"> ';	  
+    document.all.hljxxm.innerHTML=temp_desc;
+	}
+	else if(currentTab.id=="t6"){
+		form1.ntype.value='';
+		document.all.xxm1.style.display='none';		
+		document.all.xxm2.style.display='none';	
+    var temp="/pronline/Msg?FunName@ncsWebStatVidAllByUser&ntype@50000";
+		document.all.data1.src=temp; 
+    form1.FunName.value='ncsWebMacYjcx';
+    temp_desc='';
+	  temp_desc=temp_desc+'&nbsp;&nbsp;开始时间&nbsp;<input type="text" name="sdate" value="[#sdate#]" size="12" maxlength="10"> <input type="button" name="sdate_but" style="position:relative;left:-21px;top:-2px;width:15px;height:17px" value="…" onclick=fPopCalendar(sdate,sdate,"Down");>';
+	  temp_desc=temp_desc+'结束时间&nbsp;<input type="text" name="edate" value="[#edate#]" size="12" maxlength="10"> <input type="button" name="edate_but" style="position:relative;left:-21px;top:-2px;width:15px;height:17px" value="…" onclick=fPopCalendar(edate,edate,"Down")>';
+	  temp_desc=temp_desc+'<input type="checkbox" name="matchway" value="1"  >模糊查询&nbsp;&nbsp;虚拟帐号&nbsp;<input type="text" name="vname" value="" size="20">&nbsp;<input name="cxx" type="submit"  value="查 询"> ';	  
+    document.all.hljxxm.innerHTML=temp_desc;	
+    
+	}
+	
+
+	else if(currentTab.id=="t7"){
+		document.all.xxm1.style.display='none';		
+		document.all.xxm2.style.display='none';	
+	  if(typeof(form1.wd)=='object'){
+			temp_cont=form1.wd.value;		 
+		}
+		
+		var temp="/pronline/Msg?FunName@ncsWebStatBBSAll";
+			
+		document.all.data1.src=temp;
+			
+	  temp_desc='';
+	  temp_desc=temp_desc+'&nbsp;&nbsp;开始时间&nbsp;<input type="text" name="sdate" value="[#sdate#]" size="12" maxlength="10"> <input type="button" name="sdate_but" style="position:relative;left:-21px;top:-2px;width:15px;height:17px" value="…" onclick=fPopCalendar(sdate,sdate,"Down");>';
+	  temp_desc=temp_desc+'结束时间&nbsp;<input type="text" name="edate" value="[#edate#]" size="12" maxlength="10"> <input type="button" name="edate_but" style="position:relative;left:-21px;top:-2px;width:15px;height:17px" value="…" onclick=fPopCalendar(edate,edate,"Down")>';
+	  temp_desc=temp_desc+'&nbsp;&nbsp;查询内容:&nbsp;<input type="text" name="wd" value="[#query#]" id="kw"  size ="40" maxlength="80">&nbsp;<input name="cxx" type="submit"  value="查 询" >';
+	   document.all.hljxxm.innerHTML=temp_desc;	 
+	   form1.FunName.value='NcsBBSMon_syj';
+	   if(typeof(form1.wd)=='object'){
+			form1.wd.value=temp_cont;	 
+		}
+	   
+	}
+	else if(currentTab.id=="t8"){
+			document.all.xxm1.style.display='none';		
+			document.all.xxm2.style.display='none';	
+		  var temp="/pronline/Msg?FunName@ncsWebStatImAll";
+		  document.all.data1.src=temp;	
+		if(typeof(form1.wd)=='object'){
+			temp_cont=form1.wd.value;		 
+		}	  
+		  		
+		  temp_desc='';
+		  temp_desc=temp_desc+'&nbsp;&nbsp;开始时间&nbsp;<input type="text" name="sdate" value="[#sdate#]" size="12" maxlength="10"> <input type="button" name="sdate_but" style="position:relative;left:-21px;top:-2px;width:15px;height:17px" value="…" onclick=fPopCalendar(sdate,sdate,"Down");>';
+	    temp_desc=temp_desc+'结束时间&nbsp;<input type="text" name="edate" value="[#edate#]" size="12" maxlength="10"> <input type="button" name="edate_but" style="position:relative;left:-21px;top:-2px;width:15px;height:17px" value="…" onclick=fPopCalendar(edate,edate,"Down")>';
+	   temp_desc=temp_desc+'&nbsp;&nbsp;查询内容:&nbsp;<input type="text" name="wd" value="[#query#]" id="kw"  size ="40" maxlength="80">&nbsp;<input name="cxx" type="submit"  value="查 询" >';
+	   document.all.hljxxm.innerHTML=temp_desc;	
+	   form1.FunName.value='NcsImLog_syj';
+	   
+	  if(typeof(form1.wd)=='object'){
+			form1.wd.value=temp_cont;	 
+		}
+	}
+	else if(currentTab.id=="t9"){
+		document.all.xxm1.style.display='none';		
+		document.all.xxm2.style.display='none';	
+		
+		if(typeof(form1.wd)=='object'){
+			temp_cont=form1.wd.value;		 
+		}
+		var temp="/pronline/Msg?FunName@ncsWebStatMailAll";
+		 document.all.data1.src=temp;		
+		 temp_desc='';
+		 
+		 temp_desc=temp_desc+'&nbsp;&nbsp;开始时间&nbsp;<input type="text" name="sdate" value="[#sdate#]" size="12" maxlength="10"> <input type="button" name="sdate_but" style="position:relative;left:-21px;top:-2px;width:15px;height:17px" value="…" onclick=fPopCalendar(sdate,sdate,"Down");>';
+	   temp_desc=temp_desc+'结束时间&nbsp;<input type="text" name="edate" value="[#edate#]" size="12" maxlength="10"> <input type="button" name="edate_but" style="position:relative;left:-21px;top:-2px;width:15px;height:17px" value="…" onclick=fPopCalendar(edate,edate,"Down")>';
+	   temp_desc=temp_desc+'&nbsp;&nbsp;查询内容:&nbsp;<input type="text" name="wd" value="[#query#]" id="kw"  size ="40" maxlength="80">&nbsp;<input name="cxx" type="submit"  value="查 询" >';
+	   document.all.hljxxm.innerHTML=temp_desc;	
+	   form1.FunName.value='NcsMailMon_syj';
+	  if(typeof(form1.wd)=='object'){
+			form1.wd.value=temp_cont;	 
+		}
+	   
+	}
+}
+}
+
+
+
+
+
+
+var dfd1="0"
+
+</script>
+<style>
+.conts  {visibility:hidden}
+
+table {  font-size: 9pt}
+ .style2 {
+	font-size: 20px;
+	font-weight: bold;
+	font-style: italic;
+	color: #0000ff;
+}
+</style>
+
+<style type="text/css">
+
+<!--
+body {  font-size: 9pt}
+.tas {  border-color: black #FFFFFF; border-style: solid; border-top-width: 0px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 1px}
+table {  font-size: 9pt}
+.gray1 { filter:gray }
+.ttbbd {  cursor: default}
+.nobordertext{border-width:1px;border-color:blue;background-color:#d0e1fa;width:150;}
+
+-->
+</style>
+<link REL=stylesheet HREF="/css/listdatetable.css" TYPE="text/css">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<script src="/js/calendar.js"></script>
+
+</head>
+
+<body bgcolor="#8cb4e8" leftmargin="1" topmargin="0" onclick="changeTabs()"  style="overflow:hidden"  >
+<form name="form1" id="form1" method="post" action="/pronline/Msg" target="main_t">
+<input type="hidden" name="FunName" value="ncsWebNetIdYjcx">
+<input type="hidden" name="CurPg" value="1">
+<input type="hidden" name="ntype" value="">
+    <table border="0"  bordercolorlight=#aaaaaa bordercolordark=#ffffff  CELLPADDING="0" CELLSPACING="0" bgcolor=#8cb4e8 STYLE="width:100%; height:100%">
+ 	
+      <tr height="26" >
+      	<td colspan="10">
+      		<table border="0" CELLPADDING="0" CELLSPACING="0" width="100%">
+      			<tr height="26">
+				    <td ID="t0" CLASS="tab3">虚拟身份</td>
+				    <td ID="t1" CLASS="tab4"  >QQ帐号</td> 
+				    <td ID="t2" CLASS="tab5"  >BBS帐号</td>
+				    <td ID="t3" CLASS="tab5"  >邮件帐号</td>
+				    <td ID="t4" CLASS="tab5"  >游戏帐号</td>
+				    <td ID="t5" CLASS="tab5"  >FTP帐号</td>
+				    <td ID="t6" CLASS="tab5" >MAC地址</td>
+				    <td ID="t7" CLASS="tab5" >BBS内容</td>
+				    <td ID="t8" CLASS="tab5" >IM内容</td>
+				    <td ID="t9" CLASS="tab8" >邮件内容</td>
+				    <td ID="t10" class="tab10" >&nbsp;</td>	   	   
+			      </tr> 
+			    </table>
+			  </tr>
+			</tr>
+
+		<tr height="26" style="position:relative;top:-3;left:0;">
+			<td colspan="10" valign="top" >			
+				<table  cellspacing=0   cellpadding="0" bgcolor=#DEE8FA border="0" align="center" width="100%" >
+					  <tr><td height="5"></td></tr>
+				    <tr >
+				      <td >
+				        <table width="100%" height="35" border="1"  bordercolorlight=#89ACED   bordercolordark=#ffffff align="center" cellpadding="0" cellspacing="0" >
+				          <tr > 
+				          	<td id="hljxxm">
+				          		&nbsp;&nbsp;开始时间&nbsp;<input type="text" name="sdate" value="[#sdate#]" size="12" maxlength="10"> <input type="button" name="sdate_but" style="position:relative;left:-21px;top:-2px;width:15px;height:17px" value='…' onclick="fPopCalendar(sdate,sdate,'Down');return false">
+          	  	     
+                      结束时间&nbsp;<input type="text" name="edate" value="[#edate#]" size="12" maxlength="10"> <input type="button" name="edate_but" style="position:relative;left:-21px;top:-2px;width:15px;height:17px" value='…' onclick="fPopCalendar(edate,edate,'Down');return false">
+                      <input type="checkbox" name="matchway" value="1"  >模糊查询
+                      &nbsp;&nbsp;虚拟帐号&nbsp;<input type="text" name="vname" value="" size="20">&nbsp;
+                      <input name="cxx" type="submit"  value="查 询"  
+				          	</td>
+				            <td>&nbsp;
+				            	<a id="xxm1" href="#xxm" onclick="gotopage('1')"  style="display:none">上一页</a>&nbsp;&nbsp;<a id="xxm2" href="#xxm" onclick="gotopage('2')" style="display:none">下一页</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    </td>
+				           
+				       
+				            	
+				            
+				          </tr>
+				        </table>
+				     </td>
+				    </tr>    
+				</table>	
+		</td>
+</tr>
+
+</form>	
+	
+<tr> 
+
+<td HEIGHT="*" COLSPAN="10" ID="tabContents" align="left" valign="top" > 
+<div id="ff" name='ff' style="position:relative;top:-3">
+		<iframe name="main_t" id="data1" width="100%" height="100%" src="/pronline/Msg?FunName@ncsWebStatVidAll" frameborder="no"> </iframe>
+
+</div>
+
+</td></tr></table>
+
+	
+
+
+</body>
+</html>

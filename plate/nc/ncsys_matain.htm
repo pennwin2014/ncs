@@ -1,0 +1,123 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<script language="JavaScript" >
+function DoDel()
+{
+ 	     if(confirm("真的要删除选择的数据吗?")) {
+		       form1.submit();
+ 			  return true;
+	    }
+}
+</script>
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" align="center" oncontextmenu="return false" >
+<form name="form1" method="post" action="/pronline/Msg">
+  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td valign="top"><table width="100%" height="27" border="0" align="center" cellpadding="0" cellspacing="0" background="/images/table_bg1.gif">
+          <tr > 
+            <td colspan="2"> <div align="center"><strong><font color="#FFFFFF">系统数据删除</font></strong></div></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr> 
+      <td valign="top" ><br>
+        <table width="70%" border="1"   bordercolorlight=#89ACED   bordercolordark=#ffffff    align="center" cellpadding="0" cellspacing="0">
+          <tr> 
+            <td valign="top"> 
+              <table width="90%" border="0" align="center">
+                <tr> 
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="16%" height="24">&nbsp;</td>
+                  <td width="46%" height="24"> <input type="checkbox" name="vnet" value="vnet">
+                    网络访问记录</td>
+                  <td width="20%" height="24"> <div align="left"> 
+                      <input type="text" name="nettime" size="4" maxlength="4">
+                      天以前 </div></td>
+                  <td width="18%" height="24">&nbsp; </td>
+                </tr>
+                <tr> 
+                  <td width="16%" height="24">&nbsp;</td>
+                  <td width="46%" height="24"> <div align="left"> 
+                      <input type="checkbox" name="vmail" value="checkbox">
+                      内容监控数据</div></td>
+                  <td width="20%" height="24"> <div align="left"> 
+                      <input type="text" name="mailtime" size="4" maxlength="4">
+                      天以前 </div></td>
+                  <td width="18%" height="24">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="16%" height="24">&nbsp;</td>
+                  <td width="46%" height="24"> <input type="checkbox" name="backdata" value="backdata">
+                    各种备份数据</td>
+                  <td width="20%" height="24"> <input type="text" name="backtime" size="4" maxlength="4">
+                    天以前</td>
+                  <td width="18%" height="24">&nbsp; </td>
+                </tr>
+                <tr> 
+                  <td width="16%" height="24">&nbsp;</td>
+                  <td width="46%" height="24"> <input type="checkbox" name="userinfo" value="userinfo">
+                    用户资料</td>
+                  <td width="20%" height="24">&nbsp; </td>
+                  <td width="18%" height="24">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="16%" height="24">&nbsp;</td>
+                  <td width="46%" height="24"> <input type="checkbox" name="ctlinfo" value="ctlinfo">
+                    访问控制规则</td>
+                  <td width="20%" height="24"> <div align="left"> </div></td>
+                  <td width="18%" height="24">&nbsp; </td>
+                </tr>
+                <tr> 
+                  <td width="16%" height="24">&nbsp;</td>
+                  <td width="46%" height="24"> <input type="checkbox" name="procy" value="procy">
+                    预定义策略</td>
+                  <td width="20%" height="24">&nbsp; </td>
+                  <td width="18%" height="24">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="16%" height="24">&nbsp;</td>
+                  <td width="46%" height="24"> <input type="checkbox" name="network" value="network">
+                    网络设置信息</td>
+                  <td width="20%" height="24"> <div align="left"></div></td>
+                  <td width="18%" height="24">&nbsp; </td>
+                </tr>
+                <tr> 
+                  <td colspan="4" height="100"> 
+                    <div align="center"><font color="#FF0000"><strong>以上数据删除后，将不能再恢复，所以在按确认前，务请考虑清楚！</strong></font></div></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr>
+      <td height="70" > 
+        <table width="50%" border="0" align="center">
+          <tr> 
+            <td> <div align="right"> 
+                <input type="hidden" name="FunName" value="ncWebSystem_Matain">
+                <input name="del" type="button" class="an3-2"  OnClick="DoDel()" value="删除上面选择的数据">
+              </div></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+
+</form>
+</body>
+</html>

@@ -1,0 +1,97 @@
+ 
+<style type="text/css">
+	<!--body     {font-size: 9pt;}table    {font-size: 9pt; cursor: default; margin: 0;}tr{height: 20;}tr.over  {font-size: 9pt; color: #ffffff; background-color: #c1d7f4; cursor:default;}tr.out   {font-size: 9pt; color: #000000; background-color: #D4D0C8; cursor: default;}div.rm_div {position: absolute; filter: Alpha(Opacity='95'); display: none; background-color: #D4D0C8; border: 2px outset #FFFFFF;width: 0; height: 0;padding:1;color:#ffffff}hr.sperator    {width:95%;border: 1px inset #FFFFFF;}--></style>
+
+<html>
+<head> <title></title>
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+
+<meta http-equiv="Content-Type" content="text/html; charset=gbk">
+<style type="text/css">   
+	     A:link {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+a:visited {
+	COLOR: #222222; TEXT-DECORATION: none
+}
+a:hover {
+	COLOR: #666666; TEXT-DECORATION: underline
+}
+a:active {
+	COLOR: red; TEXT-DECORATION: underline
+}
+</style>
+<script>
+	    function gotocorp(did,title)
+    	{
+      parent.document.getElementById("form1").did.value=did;
+    	parent.dhsrc('/v4/ncs_gdrz_lab_corp.htm',title,did);
+    	
+
+    	}
+    	function reflash(){
+    	document.getElementById("form1").submit();
+    	}
+    </script>
+</head>  
+
+<body    bgcolor="#FFFFFF"    topmargin='0'    bottommargin='0'   leftmargin='0' rightmargin='0' marginwidth="0"  > 
+   <form name="form1" id="form1" action="/pronline/Msg">	
+		<input type="hidden" name="FunName" value="ncsWebDispXxztZgt_v4">
+		<input type="hidden" name="groupid" value="">
+		<input type="hidden" name="did" value="">
+		<input type="hidden" name="lb" value="">
+		<input type="hidden" name="fcode" value="">
+		<input type="hidden" name="time_flag" value="4">
+		
+	</form>
+
+<center>  <TABLE cellSpacing=0  cellPadding=0
+width="100%"  border=0>  <TBODY>  <tr>  <td  width=1  bgColor=#c1d7f4></td>  <td
+width="100%"   bgColor=#a4b9d7  colSpan=2>   <table  align='center'   border='0'
+width='100%'   cellspacing='0'   cellpadding='0'   height='19'>   <tr    >   <td
+align="right"                     colspan="10"                    height="28"><a
+style="position:absolute;left:0px;">&nbsp;&nbsp;总共有:<font          id=allUnit
+color=red>[#tot#]  </font>家单位    &nbsp;其中在线单位：  <font color=red>[#zx#]
+</font>&nbsp;离线单位：<font    color=red>[#lx#]    </font>&nbsp;正在维护：<font
+color=red>[#wh#] </font>停业单位：<font color=red>[#ty#] </font></a>&nbsp; </td>
+</tr> </table> </td> </tr> </TBODY> </TABLE>
+
+
+
+  <table border=0 cellspacing='0' width='100%'  cellpadding='0' bgcolor='#c1d7f4' id="FT"><!-- #E5ECF2 -->  
+     <TR>        
+	      <TD>      	      
+			  	  <TABLE cellSpacing=1 cellPadding=4 width="100%" border=0> 
+			  	  	<TBODY> 
+			  	  		[#SLPB#] 	  	
+			  	  	<TR bgColor="#c1d7f4">  
+			  	  		<TD colSpan=8>	
+			  	  			<table width=100% cellpadding=0 cellspacing=0 border=0>	
+			  	  				<tr >	
+			  	  					<td align=center><DIV><FONT color=#004d78><b> [#groupname#]&nbsp;&nbsp;</b><img style="position:relative;top:3px" src=/images/info/zxzc.gif>&nbsp;在线-[#gzx#]&nbsp;<img style="position:relative;top:3px" src=/images/info/jjbj.gif>&nbsp;离线-[#glx#]&nbsp;<img style="position:relative;top:5px" src=/images/info/ztyy.gif>&nbsp;维护-[#gwh#]&nbsp;<img style="position:relative;top:3px" src=/images/info/zdbj.gif>&nbsp;停业-[#gty#]&nbsp;</a></FONT></DIV></td>
+			  	  				</tr>					
+			  	  			</table>			
+			  	  		</TD>			   
+			  	  	</TR>     
+			  	  			[#SLPB#]								          
+			  	  	<TR bgColor=#FFFFFF> 
+			  	  		[#SLPB#]           
+		            <TD> <DIV align=left>[#img#]
+			            <a  href='#' onclick='gotocorp("[#did#]","[#cname#]")' title='单位编号: [#username#]' >[#cname#]</a> </DIV></TD> 
+			           [#SLPE#]
+
+				        </tr>
+		               [#SLPE#]
+		             
+		             [#SLPE#]
+				      </TBODY>
+				    </TABLE>	
+         </td>
+      </tr>
+   </table>
+<center>
+
+</body>

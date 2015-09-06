@@ -1,0 +1,97 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<title>网络访问报表</title>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<script>
+function lprint(){
+  alert("dddd");
+ // window.print()
+}
+
+function dotj() {
+     form1.FunName.value = "ncWebIpNetFlowForm";
+	 form1.submit();
+	 
+}
+
+
+</script>
+</head>
+<body  BGCOLOR="Menu">
+<form name="form1" method="post" action="/pronline/Msg">
+  <div align="right">
+    <input type="hidden" name="sdate" value="[#sdate#]" >
+    <input type="hidden" name="sort" value="[#sort#]" >
+    <input type="hidden" name="groupid" value="[#groupid#]" >
+    <input type="hidden" name="dr" value="[#dr#]" >
+    <input type="hidden" name="sumcol" value="[#sumcol#]" >
+    <input type="hidden" name="step" value="[#step#]" >
+    <input type="hidden" name="net" value="[#net#]" >
+    <input type="hidden" name="FunName" value="ncWebPrintNetFlow" >
+    <table width="983" border="0" align="center"  bgcolor='#ffffff'>
+      <tr> 
+        <td width="697" height="27" align=center  valign=middle bgcolor="#dfdfdf" >          <table width="908" height="20"  border="0" cellspacing="0" align="right" >
+            <tr> 
+              <td colspan="2" height="20"> 
+                <div align="right"> 
+                  <table  border="0" width="100%">
+                    <tr> 
+                      <td width="72%"> 
+                        <div align="right"><b>网络访问流量统计表</b>([#sdate#]--[#edate#])</div></td>
+                      <td width="28%"><div align="right">
+                          <input type="button" name="lprint" value="打印"  onClick="document.all.lprint.style.display='none';document.all.daochu.style.display='none';document.all.intj.style.display='none';window.print();document.all.lprint.style.display='';document.all.daochu.style.display='';document.all.intj.style.display=''">
+                          <input type="submit" name="daochu" value="导出">
+                          <input type="button" name="intj" value="条件" onClick="dotj()">
+                      </div></td>
+                    </tr>
+                  </table>
+            </div>          </tr>
+          </table>
+        </tr>
+      <tr> 
+        <td  valign=top align=center bgcolor="#BBBBBB" height="62" colspan="2"> 
+          <table id="DataTable" class="listDataTable"  border="0" cellspacing="0"  width="100%" cellpadding="0" bgcolor="#FFFFFF">
+            <tr> 
+              <td class="bord2" height="36" rowspan="2" width="72" > 
+                <div align="center"><strong>姓名</strong></div></td>
+              <td class="bord2" height="36"  rowspan="2" width="76" > 
+                <div align="center"><strong>部门</strong></div>
+              </td>
+              <!-- [#SLPB#]  -->
+              <td class="bord2" height="18"  colspan="2"><div align="center"><strong>[#tlab#]
+                </strong></div>
+                <div align="center"></div>
+              </td>
+              <!-- [#SLPE#] -->
+            </tr>
+            <tr> 
+              <!-- [#SLPB#] -->
+              <td class="bord2" height="18"  width="70" id="[#tnum#]"><div align="center"><strong>流量</strong></div></td>
+              <td width="70" height="18" class="bord2"><div align="center"><strong>比例 </strong></div></td>
+              <!-- [#SLPE#] -->
+            </tr>
+            <!-- [#SLPB#] -->
+            <tr > 
+              <td width="72" height="18" nowrap class="bord1" title="&nbsp;[#username#]">&nbsp;[#dispname#]</td>
+              <td width="76" height="18" nowrap class="bord1" title="&nbsp;[#from#]">&nbsp;[#groupname#] </td>
+              <!--[#SLPB#]-->
+              <td class="bord1"   width="77" height="18"> 
+                <div align="right">[#fl#]&nbsp;</div>
+              </td>
+              <td height="18" class="bord1"> 
+                <div align="right">[#rl#]&nbsp;</div></td>
+              <!-- [#SLPE#] -->
+            </tr>
+            <!-- [#SLPE#] -->
+          </table>
+      </tr>
+    </table>
+  </div>
+</form>
+</body>
+</html>

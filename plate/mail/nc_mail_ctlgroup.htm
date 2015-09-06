@@ -1,0 +1,137 @@
+<html>
+<head>
+<title>分类管理</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<script>
+      function  goto() {
+         parent.sbpm_left.location.href='/pronline/Msg?FunName@ncWebMailCtlFl&plate@mail/nc_mailctlsettree.htm';
+    }
+	
+	function dodel() {
+	    if(confirm("真的要删除吗?")) {
+		    form1.ddd.value = "yes";
+			form1.submit();
+			return false;
+	    }
+		return true;
+	}
+	
+	function setname(){
+       j=form1.nid.options.length; 
+	   t=form1.nid.value;
+       for(i=0;i<j;i++) { 
+           gv = form1.nid.options[i].value;
+           if(gv == t) {
+               form1.nname.value = form1.nid.options[i].text;
+           }
+       }
+    }
+	
+</script>
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onload="setname()"  oncontextmenu="return false">
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td height="70" bgcolor="#DEE8FA"> 
+      <form name="form1" method="post" action="/pronline/Msg">
+        <input type="hidden" name="FunName" value="ncWebMailCtlFlEdit" >
+        <input type="hidden" name="plate" value="mail/nc_mail_ctlgroup.htm" >
+        <input type="hidden" name="ddd">
+        <table width="100%" height="27" border="0" align="center" cellpadding="0" cellspacing="0" background="/images/table_bg1.gif">
+          <tr > 
+            <td colspan="2"> <div align="center"><strong><font color="#FFFFFF">拦截邮件分类</font></strong></div></td>
+          </tr>
+        </table>
+        <br>
+        <br>
+        <table width="70%" border="1" align="center" cellpadding="0" cellspacing="0"     bordercolorlight=#89ACED   bordercolordark=#ffffff >
+          <tr> 
+            <td valign="top"> <br> <table width="90%" border="0" align="center">
+                <tr> 
+                  <td height="17" colspan="3"><b>新建一个邮件类别</b></td>
+                </tr>
+                <tr> 
+                  <td width="30%" height="17"> 分类名称</td>
+                  <td width="50%" height="17"> <input type="text" name="tname" size="16" maxlength="63"> 
+                  </td>
+                  <td width="20%" height="17"> <div align="center"> 
+                      <input name="add" type="submit" class="an3" value="确 认">
+                    </div></td>
+                </tr>
+                <tr> 
+                  <td colspan="3"> 
+                    <div align="center"></div></td>
+                </tr>
+              </table>
+              <br> <table width="90%" border="0" align="center">
+                <tr> 
+                  <td colspan="3"><b>删除一个邮件类别</b></td>
+                </tr>
+                <tr> 
+                  <td width="30%"> 要删除的分类名称</td>
+                  <td width="50%"> <select name="did">
+                      <!-- [#SLPB#] -->
+                      <option value="[#id#]">[#name#]</option>
+                      <!-- [#SLPE#] -->
+                    </select> </td>
+                  <td width="20%"> <div align="center"> 
+                      <input name="del" type="button" class="an3"  onclick="dodel()" value="删 除">
+                    </div></td>
+                </tr>
+                <tr> 
+                  <td colspan="3"> <div align="center"><br>
+                    </div></td>
+                </tr>
+              </table>
+              <br> <table width="90%" border="0" align="center">
+                <tr> 
+                  <td colspan="4"><b>修改一个邮件类别</b></td>
+                </tr>
+                <tr> 
+                  <td width="30%"> 分类名称</td>
+                  <td width="20%"> <select name="nid" onchange="setname()">
+                      <!-- [#SLPB#] -->
+                      <option value="[#id#]">[#name#]</option>
+                      <!-- [#SLPE#] -->
+                    </select> </td>
+                  <td width="30%">改为 
+                    <input type="text" name="nname" size="16" maxlength="31"> 
+                  </td>
+                  <td width="20%"> <div align="center"> 
+                      <input name="modi" type="submit" class="an3" value="确 认">
+                    </div></td>
+                </tr>
+                <tr> 
+                  <td colspan="4"> <div align="center"><br>
+                    </div></td>
+                </tr>
+              </table></td>
+          </tr>
+        </table>
+      </form>
+      <table width="50%" border="0" align="center">
+        <tr> 
+          <td> <div align="right"> 
+              <input name="B1" type="button" class="an3-1"  onclick="goto()" value="刷新分类树">
+              &nbsp; 
+              <input name="App" type="submit" class="an3" value="应 用" >
+              &nbsp; 
+              <input name="B2" type="button" class="an3"  onClick="history.back(-1)" value="返 回">
+            </div></td>
+        </tr>
+      </table>
+      <p>&nbsp;</p></td>
+  </tr>
+  <tr>
+    <td valign="top">&nbsp;</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+</body>
+</html>

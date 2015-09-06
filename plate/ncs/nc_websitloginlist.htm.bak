@@ -1,0 +1,236 @@
+<html>
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<title>main</title>
+<script>
+var dfd1="0"
+
+function gotoPage(pagenum)
+
+{
+
+    form1.CurPg.value = pagenum;
+}
+
+function goto(t){
+ tt=showModalDialog(t, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:520px;scroll:yes;dialogHeight:480px');
+}
+
+function showuser(did,uid)
+{
+var temp_var="/pronline/Msg?FunName@ncsWebShowUserinfo&did@"+did+"+uid@"+uid;
+	showModalDialog(temp_var, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:520px;scroll:yes;dialogHeight:640px');
+}
+function clearcon(){
+	form1.did.value='';
+	form1.tid.value='';
+	form1.sdate.value='';
+	form1.edate.value='';
+//	form1.name.value='';
+	form1.udisp.value='';
+	form1.idfyno.value='';
+	form1.sip.value='';
+	form1.url.value='';
+	form1.dip.value='';
+	form1.dispname.value='';
+
+	}
+
+// -->
+<!-- Hide
+var ll='[#CurPg#]'
+var yy='[#TotPg#]'
+function killErrors() {
+return true;
+}
+window.onerror = killErrors;
+// -->
+
+</script>
+
+<script src="/js/drawtable.js"></script>
+<script src="/js/calendar.js"></script>
+<SCRIPT language=JavaScript>
+<!--
+
+var recordID = null;
+var Table = new FlexibleTable ('DataTable', '100%', '460', 'center', 30, 'flexibleTableSpan');
+
+Table.Header ( '上网用户','单位名称','登录时间','上网IP','帐号','密码','网址','目标IP');
+Table.ColumnsWidth ('120', '100', '100', '100', '100', '140', '250','100');
+Table.HeaderAligment ('center', 'center', 'center', 'center', 'center', 'center',  'center', 'center');
+Table.BodyAligment ('left', 'center', 'left', 'left', 'left', 'left',  'left');
+
+Table.SetRowsTemplate (" onMouseOver=\"javascript:mouseovertr2(this);\" onMouseOut=\"javascript:mouseouttr2(this);\"   ");
+[#SLPB#]
+Table.Row('<a href="#xxm" onclick=showuser("[#did#]","[#uid#]")>&nbsp;[#dispname#] </a>','[#cname#]&nbsp;','&nbsp;[#stime#] ','&nbsp;[#sip#]','&nbsp;[#name#] ','&nbsp;[#password#]','&nbsp;[#url#] ','&nbsp;[#dip#] ');
+[#SLPE#]
+
+//-->
+</SCRIPT>
+
+
+<style type="text/css">
+<!--
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+-->
+
+</style>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<BODY style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px" bgcolor="#DEE8FA" leftMargin=2 topMargin=2 scroll=no onload=Table.Draw()>
+	<form name="form1" method="post" action="/pronline/Msg">
+		  <input type="hidden" name="FunName" value="ncsWebSiteLoginLog">
+		 
+      <input type="hidden" name="CurPg"      value="[#CurPg#]">
+      <input type="hidden" name="TotPg"      value="[#TotPg#]">
+
+      <input type="hidden" name="did" value="[#did#]">
+      <input type="hidden" name="tid" value="[#tid#]">
+   
+
+		<TABLE   cellSpacing=0 cellPadding=0 width="100%"  border=0>
+			<tr>
+			<td height="30" valign="top">
+		  <table cellSpacing=0 cellPadding=0 width="100%"  border=0>
+			  <tr height="30"> 
+         <td class="tabtitle" >网站登录日志&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+         <td background="/images/images2/chaxun2-1.gif">&nbsp;[#title#]</td>
+         <td background="/images/images2/chaxun2-1.gif" align="right">        	
+         	 <table align=right border=0 cellpadding=0 cellspacing=0 class=main width=111>
+              <tbody> 
+                <td width="10%"><script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-06.gif' border=0 height=17 width=35 class='gray1'>")}
+                      else{
+                        document.write("<a href='#xxm'><img src='/images/zbuyer-06.gif' border=0 height=17 width=35 onClick='gotoPage(1);form1.submit()' class='hand'>")}
+                   </script></td>
+                <td width="10%"><script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 class='gray1'>")}
+                      else {
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]-1);form1.submit()' class='hand'>")}
+                   </script></td>
+                <td width="20%"><img src="/images/zbuyer-08.gif" border=0 height=17 width=32></td>
+                <td align=middle background="" width=92>
+                    <input class=Main id=browsdopage maxlength=3  name=browsdopage size=3 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 50px" value=[#CurPg#] onKeyPress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" onBlur="checkme(this)">
+                </td>
+                <td width="10%"><img src="/images/zbuyer-09.gif" border=0 height=17 width=16></td>
+                <td width="10%"><img align=middle border=0 height=17 src="/images/zbuyer-10.gif" width=17 onClick="gotoPage(form1.browsdopage.value);form1.submit()" class="hand"><img align=middle height=17 src="/images/zbuyer-11.gif" width=3></td>               
+                <td width="10%"><img border=0 height=17 src="/images/zin1.gif" width=17 ></td>
+                <td align=middle background="" width=92> 
+                 <input  class=Main id=browsdopage1 maxlength=5 name=browsdopage12 size=3 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 50px" value='[#TotPg#]'>
+                </td>
+                <td width="10%"><img align=middle height=17 src="/images/zbuyer-09.gif" width=16></td>
+               <td align=middle background="" width=92> 
+               <input  class=Main id=browsdopage1 maxlength=5 name=browsdopage12 size=3 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 50px" value='[#TotRec#]'>
+               </td>
+               <td width="10%"><img border=0 height=17 src="/images/zin3.gif" width=17 align="middle" ><img align=middle height=17  src="/images/zbuyer-11.gif" width=3></td>
+                
+                <td width="10%"><script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]+1);form1.submit()' class='hand'>")}
+                    </script></td>
+                <td width="10%"><script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 onClick='gotoPage([#TotPg#]);form1.submit()' class='hand'>")}
+                    </script></td>
+              </tbody> 
+            </table> 
+         	         	
+         	</td>
+         </tr>
+         
+         
+         </table>
+      </td>
+  </tr>
+  
+        			
+		</table>
+	</td>
+</tr>
+			
+			
+    <tr> 
+      <td valign="top" width="100%"  valign=middle align=center height="28" bgcolor="#DEE8FA" class="ttt"> 
+        <table width="100%" border="0" cellspacing="0">
+
+  	<TR>
+    		<TD valign="top" colspan="2"><SPAN id=flexibleTableSpan></SPAN></TD>
+  	</TR>
+  	
+  	
+  	
+  	
+  	
+  	  	       	      <tr height="110">
+       	        	<td  class="bordnr" valign="top">
+       	        		<table border=0 cellpadding=0 cellspacing=0 width="100%">
+       	             <tr height="40">
+          	  	     	<td  align="center">&nbsp;上网时间</td>
+          	  	     	<td><input type="text" name="sdate" value="[#sdate#]" size="12" maxlength="10"> <input type="button" name="sdate_but" style="position:relative;left:-21px;top:-2px;width:15px;height:17px" value='…' onclick="fPopCalendar(sdate,sdate,'Up');return false"><input type="text" style="position:relative;left:-19px;" name="stime" value="[#stime#]" size="4" maxlength="5">&nbsp;</td> 
+          	  	     	<td  align="center">&nbsp;到</td>
+          	  	     	<td ><input type="text" name="edate" value="[#edate#]" size="12" maxlength="10"> <input type="button" name="edate_but" style="position:relative;left:-21px;top:-2px;width:15px;height:17px" value='…' onclick="fPopCalendar(edate,edate,'Up');return false"><input type="text" style="position:relative;left:-19px;" name="etime" value="[#etime#]" size="4" maxlength="5">&nbsp;</td> 
+          	  	     	<td  align="center">&nbsp;帐号</td>
+          	  	     	<td ><input type="text" name="name" value="[#name#]" size="18"></td>
+          	  	     	<td>&nbsp;</td>
+          	  	     	<td>&nbsp;</td>
+          	  	     	<td align="center"><input name="cxx" type="submit"  value="查 询" onclick="qr()"></td> 	  	     	
+          	  	    </tr>
+          	  	     <tr height="30">
+          	  	     	<td width="90" align="center">&nbsp;用户名</td>
+          	  	     	<td width="180"><input type="text" name="udisp" value="[#udisp#]" size="16" >
+
+          	  	     		</td>  
+          	  	     	<td width="80" align="center">&nbsp;证件号</td>
+          	  	     	<td width="180"><input type="text" name="idfyno" value="[#idfyno#]" size="19"></td>
+          	  	     	<td width="80" align="center">&nbsp;上网IP</td>
+          	  	     	<td ><input type="text" name="sip" value="[#sip#]" size="18"></td>
+          	  	     	<td width="50">&nbsp;</td>
+          	  	     	<td>&nbsp;</td>  
+          	  	     	<td width="120" align="center"><input name="exp" type="submit" class="an3" value="导出" ></td>	     	
+          	  	    </tr>
+          	  	     <tr height="30">
+          	  	     	<td width="90" align="center">&nbsp;网址</td>
+          	  	     	<td width="180"><input type="text" name="url" value="[#url#]" size="16" >
+
+          	  	     		</td>  
+          	  	     	<td width="80" align="center">&nbsp;目标IP</td>
+          	  	     	<td ><input type="text" name="dip" value="[#dip#]" size="19" ></td>
+          	  	     	
+          	  	     	<td >&nbsp;单位名称</td>
+          	  	     	<td><input type="text" name="dispname" size="18" value="[#dispname#]"></td>  
+          	  	     <td>&nbsp;</td>  
+          	  	     <td>&nbsp;</td> 
+          	  	     	<td width="120" align="center"><input name="clear" type="button" class="an3" value="清除条件" onclick="clearcon()"></td>	     	
+          	  	    </tr>
+          	  	   </table>
+       	        	</td>
+       	        </tr> 
+  	
+  	
+  	
+  	
+  	
+  	
+ 	</TABLE>
+ 		
+ </form>	
+
+</BODY>

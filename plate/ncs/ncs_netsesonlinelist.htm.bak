@@ -1,0 +1,215 @@
+<!-- saved from url=(0022)http://internet.e-mail -->
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+
+<SCRIPT LANGUAGE="JavaScript">
+var ll=[#CurPg#];
+var yy=[#TotPg#];
+parent.form1.CurPg.value=ll;
+parent.form1.TotPg.value=yy;
+parent.form1.TotRec.value='[#TotRec#]';
+function w1()
+{
+var yy='<tbody>';
+  yy = yy + '<table cellspacing=0 bordercolor="#DFDFDF"  class="listDataTable" border="0" align="center" width="100%" >';  
+  yy = yy + '<tr bgcolor="#6382BD" height="18">';
+  yy = yy + '<td width="46" align="center" class="bord2"><font color="#FFFFFF"><input type="button" name="b1" value="选择" class="anniu_1" onClick="allChecked()"></font></td>';
+  yy = yy + '<td width="12%" align="center" class="bord2"> <font color="#FFFFFF">单位名称</font></td>';
+  yy = yy + '<td width="12%" align="center" class="bord2"> <font color="#FFFFFF">用户名</font></td>';
+  yy = yy + '<td width="6%" align="center" class="bord2"><font color="#FFFFFF">类别</font></td>';
+  yy = yy + '<td width="12%" align="center" class="bord2"> <font color="#FFFFFF">时间</font></td>';
+
+  yy = yy + '<td width="35%" align="center" class="bord2"><font color="#FFFFFF">操作内容</font></td>';
+  yy = yy + '<td width="10%" align="center" class="bord2"><font color="#FFFFFF">源IP地址</font></td>';
+
+  yy = yy + '<td width="10%" align="center" class="bord2"> <font color="#FFFFFF">目标IP地址</font></td>';
+
+  yy = yy + '</tr>';
+
+         <!-- [#SLPB#] -->
+  yy = yy + '<tr onMouseOver="mouseovertr2(this)" height="18" onMouseOut="mouseouttr2(this)" bgcolor="#ffffff">';
+  yy = yy + '<td  align="center" class="bord1"> <input type="checkbox" name="ch[#num#]" value="[#sid#]"> </td>';
+  yy = yy + '<td class="bord1"   nowrap >&nbsp;[#dw#]</td>';
+  yy = yy + '<td class="bord1"  nowrap  >&nbsp;<a href="#xxm" onclick=showuser("[#did#]","[#uid#]")>[#username#]</a></td>';
+  yy = yy + '<td class="bord1"  nowrap  >&nbsp;[#lb#]</td>';
+  yy = yy + '<td class="bord1"   nowrap >&nbsp;[#sj#]</td>';
+  yy = yy + '<td class="bord1"  nowrap  >&nbsp;[#nr#]</td>';
+  yy = yy + '<td class="bord1"  nowrap  >&nbsp;[#sip#]</td>';
+  yy = yy + '<td class="bord1"  nowrap  >&nbsp;[#dip#]</td>';
+
+  yy = yy + '</tr>';
+          <!-- [#SLPE#] -->
+
+        
+          <!-- [#SLPB#] -->
+  yy = yy + '<tr id=[#snum#] bgcolor="#ffffff">';
+  yy = yy + '<td class="bord1" >&nbsp;</td>';
+  yy = yy + '<td class="bord1" >&nbsp;</td>';
+  yy = yy + '<td class="bord1" >&nbsp;</td>';
+  yy = yy + '<td class="bord1" >&nbsp;</td>';
+  yy = yy + '<td class="bord1" >&nbsp;</td>';
+  yy = yy + '<td class="bord1" >&nbsp;</td>';
+  yy = yy + '<td class="bord1" >&nbsp;</td>';
+  yy = yy + '<td class="bord1" >&nbsp;</td>';
+
+  yy = yy + '<td class="bord3" >&nbsp;</td>';
+  yy = yy + '</tr>';
+          <!-- [#SLPE#] -->  
+  yy=yy+'</table>';
+
+  yy = yy + '</tbody>';
+
+  parent.ff.innerHTML=(yy);
+}
+setTimeout('w1()',1000);
+
+ </SCRIPT> 
+
+</head>
+<body>
+
+</body>
+</html>
+
+
+
+<body marginheight=0 leftmargin=0 marginwidth=0 topMargin="0" BGCOLOR="Menu">
+<form name="form1" method="post" action="/pronline/Msg">
+  <table border="0" width=100% height=100% cellspacing="0" cellpadding="0" align=center bgcolor='#ffffff'>
+    <tr> 
+      <td valign="bottom" width="100%"  valign=middle align=center height="28" bgcolor="#DEE8FA" class="ttt"> 
+        <table width="100%" border="0" cellspacing="0">
+         <tr> 
+            <td colspan="2">               
+                <table width="100%" height="27" border="0" align="center" cellpadding="0" cellspacing="0" background="/images/table_bg1.gif">
+                  <tr >
+                    <td valign="middle">
+                      <div align="center"><strong><font color="#FFFFFF"><b> 
+                    网络会话日志</b></font> </strong></div></td> 
+                  </tr>
+                </table>
+              </td>
+          </tr>
+          <tr > 
+           <td  > 
+             &nbsp;<input type="text" size=20 name="rycx" value="[#rycx#]">          
+               <input name="cx" type="submit" class="an3" value="查 询" onclick="form1.cond.value=''">
+               <input name="hsear" type="button" class="an3"  onclick="goto('/pronline/Msg?FunName@ncWebCorpDepSearch&flag@30')" value="高级查询">               
+               <input name="pr" type="button" class="an3"   value="打 印" onclick="lprint()">
+               <input name="exp" type="submit" class="an3"   value="导 出" >
+           
+              <input type="hidden" name="FunName" value="ncsNetSesLog">
+              <input type="hidden" name="CurPg"      value="[#CurPg#]">
+              <input type="hidden" name="TotPg"      value="[#TotPg#]">
+              <input type="hidden" name="lcount"      value="[#TotRec#]">
+              <input type="hidden" name="cond" value="[#cond#]">
+      
+            </td>
+            <td width="37%" height="23"> 
+              <table align=right border=0 cellpadding=0 cellspacing=0 class=main>
+              <tbody> 
+                <td width="10%"><script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-06.gif' border=0 height=17 width=35 class='gray1'>")}
+                      else{
+                        document.write("<a href='#'><img src='/images/zbuyer-06.gif' border=0 height=17 width=35 onClick='gotoPage(1);form1.submit()' class='hand'>")}
+                   </script></td>
+                <td width="10%"><script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 class='gray1'>")}
+                      else {
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]-1);form1.submit()' class='hand'>")}
+                   </script></td>
+                <td width="20%"><img src="/images/zbuyer-08.gif" border=0 height=17 width=32></td>
+                <td align=middle background="" width=92>
+                    <input class=Main id=browsdopage maxlength=68 name=browsdopage size=8 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 50px" value=[#CurPg#] onKeyPress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" onBlur="checkme(this)">
+                </td>
+                <td width="10%"><img src="/images/zbuyer-09.gif" border=0 height=17 width=16></td>
+                <td width="10%"><img align=middle border=0 height=17 src="/images/zbuyer-10.gif" width=17 onClick="gotoPage(form1.browsdopage.value);form1.submit()" class="hand"><img align=middle height=17 src="/images/zbuyer-11.gif" width=3></td>
+                
+                
+    <td width="10%"><img border=0 height=17 src="/images/zin1.gif" width=17 ></td>
+    <td align=middle background="" width=92> 
+      <input  class=Main id=browsdopage1 maxlength=5 name=browsdopage12 size=3 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 50px" value='[#TotPg#]'>
+    </td>
+    <td width="10%"><img align=middle height=17 src="/images/zbuyer-09.gif" width=16></td>
+    <td align=middle background="" width=92> 
+      <input  class=Main id=browsdopage1 maxlength=8 name=browsdopage12 size=8 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 50px" value='[#TotRec#]'>
+    </td>
+    <td width="10%"><img border=0 height=17 src="/images/zin3.gif" width=17 align="middle" ><img align=middle height=17  src="/images/zbuyer-11.gif" width=3></td>
+                
+                <td width="10%"><script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]+1);form1.submit()' class='hand'>")}
+                    </script></td>
+                <td width="10%"><script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 onClick='gotoPage([#TotPg#]);form1.submit()' class='hand'>")}
+                    </script></td>
+              </tbody> 
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+  </tr>
+  <tr>
+      <td width="100%"  valign=top align=center bgcolor="#DEE8FA"> 
+        <table id="DataTable" class="listDataTable" width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+          <tr bgcolor="#6382BD" height="18">
+             <td width="46" align="center" class="bord2"> 
+              <font color="#FFFFFF">
+                <input type="button" name="b1" value="选择"    class="anniu_1" onClick="allChecked()">
+              </font></td>
+            <td width="12%" align="center" class="bord2"> <font color="#FFFFFF">&nbsp;单位</font></td>
+            <td width="12%" align="center" class="bord2"> <font color="#FFFFFF">用户名</font></td>
+            <td width="6%" align="center" class="bord2"><font color="#FFFFFF">类别</font></td>
+            <td width="12%" align="center" class="bord2"> <font color="#FFFFFF">时间</font></td>
+            <td width="35%" align="center" class="bord2"><font color="#FFFFFF">操作内容</font></td>
+            <td width="10%" align="center" class="bord2"><font color="#FFFFFF">源IP地址</font></td>
+            <td width="10%" align="center" class="bord2"> <font color="#FFFFFF">目标IP地址</font></td>
+
+          </tr>
+          <!-- [#SLPB#] -->
+          <tr onMouseOver="mouseovertr2(this)" height="18" onMouseOut="mouseouttr2(this)" > 
+          <td  align="center" class="bord1"> <input type="checkbox" name="ch[#num#]" value="[#sid#]"> 
+            </td>
+            <td class="bord1"   nowrap >&nbsp;[#dw#]</td>
+            <td class="bord1"  nowrap  >&nbsp;[#username#]</td>
+            <td class="bord1"  nowrap  >&nbsp;[#lb#]</td>
+            <td class="bord1"   nowrap >&nbsp;[#sj#]</td>
+            <td class="bord1"  nowrap  >&nbsp;[#nr#]</td>
+            <td class="bord1"  nowrap  >&nbsp;[#sip#]</td>
+            <td class="bord3"  nowrap  >&nbsp;[#dip#]</td>
+          </tr>
+          <!-- [#SLPE#] -->
+          <!-- [#SLPB#] -->
+          <tr id=[#snum#]>
+           <td class="bord1" >&nbsp;</td>
+            <td class="bord1" >&nbsp;</td>
+            <td class="bord1" >&nbsp;</td>
+            <td class="bord1" >&nbsp;</td>
+            <td class="bord1" >&nbsp;</td>
+            <td class="bord1" >&nbsp;</td>
+            <td class="bord1" >&nbsp;</td>
+            <td class="bord3" >&nbsp;</td>
+          </tr>
+          <!-- [#SLPE#] -->
+        </table>
+      </td>
+  </tr>
+</table>
+ </form>
+</body>
+
+</html>

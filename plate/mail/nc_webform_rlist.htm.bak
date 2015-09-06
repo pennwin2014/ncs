@@ -1,0 +1,288 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<title>邮件分类</title>
+<script>
+    function goto(t){
+        self.location.href=t;
+    }
+	
+    
+	function setuflags(t){
+       j=form1.usertype.options.length;
+       for(i=0;i<j;i++) { 
+           gv = form1.usertype.options[i].value;
+           if(gv == t) {
+               form1.usertype.selectedIndex = i;
+           }
+       }
+    }
+      
+	function setsave(t){
+       j=form1.save.options.length; 
+       for(i=0;i<j;i++) { 
+           gv = form1.save.options[i].value;
+           if(gv == t) {
+               form1.save.selectedIndex = i;
+           }
+       }
+    }
+
+	function settzflags(t){
+       j=form1.tz.options.length; 
+	   for(i=0;i<j;i++) { 
+           gv = form1.tz.options[i].value;
+           if(gv == t) {
+               form1.tz.selectedIndex = i;
+           }
+       }
+    }
+	  
+	
+	  
+    function mouseovertr2 (o){
+        var i;
+        df=o.style.backgroundColor
+	    o.style.backgroundColor= "#003399";
+	    o.style.borderColor= "#FFFF00";
+	    o.style.cursor="hand";	
+        for(i=0; i<o.cells.length; i++)
+        {
+	        o.cells(i).style.color="#ffffff";
+        }	
+    }
+    function setinit()
+	{
+        setuflags('[#uflags#]');
+		settzflags('[#tz#]');
+		setsave('[#save#]');
+		setstype('[#stype#]');
+	}
+
+    function showf(sid,uflags,uname,host,url,cont,aname,msize,asize,save,tzflags,tzmail) {
+        form1.rid.value=sid;
+        form1.uname.value=uname;
+		form1.host.value=host;
+		form1.url.value=url;
+		form1.cont.value=cont;
+		form1.aname.value=aname;
+		form1.msize.value=msize;
+		form1.asize.value=asize;
+		form1.tzmail.value=tzmail;
+        setuflags(uflags);
+		settzflags(tzflags);
+		setsave(save);
+	}
+    
+    function mouseouttr2(o){
+	    o.style.backgroundColor=df
+        for(i=0; i<o.cells.length; i++)
+        {
+	        o.cells(i).style.color="#000000";
+        }
+    }
+
+    var dfd1="0"
+    function checkme(p)
+    {
+	    var tt=p.value
+	    if (tt>yy)
+	    {
+		    MM_changeProp('browsdopage','','value',yy,'INPUT/TEXT')
+	    }
+	    if (tt==0)
+	    {
+		    MM_changeProp('browsdopage','','value','1','INPUT/TEXT')
+	    }
+    }
+
+    function allChecked(){
+        if(dfd1=="1"){
+            dfd1="0"
+        }
+        else {
+             dfd1="1"
+        }
+	    for(var i=0;i<document.all.DataTable.rows.length;i++)
+	    {
+		    if(typeof(document.all.DataTable.rows[i].cells[0].childNodes[0])=="object"
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].tagName=="INPUT"
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].type=="checkbox") {
+			    if(dfd1=="1"){
+  			        document.all.DataTable.rows[i].cells[0].childNodes[0].checked="true";
+                }
+			    else{
+                    document.all.DataTable.rows[i].cells[0].childNodes[0].checked="";
+                }
+            }
+ 	    }
+    }
+<!-- Hide
+    function killErrors() {
+        return true;
+    }
+    window.onerror = killErrors;
+// -->
+
+</script>
+
+<link REL=stylesheet HREF="/css/runmit.css" TYPE="text/css">
+<script src="/js/rmenu.js"></script>
+<style type="text/css">
+<!--
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+-->
+</style>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+<body marginheight=0 leftmargin=0 marginwidth=0 topMargin="0" BGCOLOR="Menu" onload="setinit()">
+
+<form name="form1" method="post" action="/pronline/Msg"> 
+<table border="0" width=100% height=100% cellspacing="0" cellpadding="0" align=center bordercolor="#D4D4D4" bgcolor="#BCBCBC">
+ <tr> 
+      <td width="100%"  valign=middle align=center height="2" class="ttt"> 
+        <table width="100%" border="0" cellspacing="0">
+          <tr> 
+            <td colspan="2"> 
+              <table width="100%" border="1">
+                <tr> 
+                  <td height="139" colspan="2"> 
+                    <table width="100%" border="0">
+                      <tr> 
+                        <td colspan="6"> 
+                          <div align="center">网页表单分类规则设定</div>
+                        </td>
+                      </tr>
+                      <tr> 
+                        <td colspan="6"> <img src="/images/hr.gif" width="100%" height="2"></td>
+                      </tr>
+                      <tr> 
+                        <td width="10%">分类名称</td>
+                        <td width="25%"> 
+                          <input type="text" name="tname" size="20" maxlength="31" value="[#tname#]" readonly>
+                        </td>
+                        <td width="11%"> 
+                          <select name="usertype">
+                            <option value="1" selected>组名</option>
+                            <option value="2">用户名</option>
+                          </select>
+                        </td>
+                        <td width="25%">包含 
+                          <input type="text" name="uname" size="20" maxlength="63" value="[#uname#]">
+                        </td>
+                        <td width="8%">主机名含 </td>
+                        <td width="21%"> 
+                          <input type="text" name="host" size="20" maxlength="63" value="[#host#]">
+                        </td>
+                      </tr>
+                      <tr> 
+                        <td width="10%">网址包含</td>
+                        <td width="25%"> 
+                          <input type="text" name="url" size="20" maxlength="63" value="[#url#]">
+                        </td>
+                        <td width="11%">内容包含 </td>
+                        <td colspan="3"> 
+                          <input type="text" name="cont" size="40" maxlength="63" value="[#cont#]">
+                        </td>
+                      </tr>
+                      <tr> 
+                        <td width="10%" height="28">附件名称含</td>
+                        <td width="25%" height="28"> 
+                          <input type="text" name="aname" size="20" maxlength="63" value="[#aname#]">
+                        </td>
+                        <td width="11%" height="28">附件大于</td>
+                        <td width="25%" height="28"> 
+                          <input type="text" name="asize" size="10" maxlength="10" value="[#asize#]">
+                          字节 </td>
+                        <td width="8%" height="28">内容大于</td>
+                        <td width="21%" height="28"> 
+                          <input type="text" name="msize" size="10" maxlength="10" value="[#msize#]">
+                          字节</td>
+                      </tr>
+                      <tr> 
+                        <td width="10%" height="16">是否保存</td>
+                        <td width="25%" height="16"> 
+                          <select name="save">
+                            <option value="1" selected>是</option>
+                            <option value="0">否</option>
+                          </select>
+                        </td>
+                        <td width="11%" height="16">是否通知</td>
+                        <td width="25%" height="16"> 
+                          <select name="tz">
+                            <option value="1" selected>是</option>
+                            <option value="0">否</option>
+                          </select>
+                        </td>
+                        <td height="16" width="8%">通知邮件</td>
+                        <td height="16" width="21%"> 
+                          <input type="text" name="tzmail" size="20" maxlength="63" value="[#tzmail#]">
+                        </td>
+                      </tr>
+                      <tr> 
+                        <td colspan="6"> <img src="/images/hr.gif" width="100%" height="2"></td>
+                      </tr>
+                      <tr> 
+                        <td colspan="6" height="20"> 
+                          <div align="center"> 
+                            <input type="submit" name="add" value="添加" >
+                            <input type="submit" name="modi" value="修改" >
+                            <input type="submit" name="del" value="删除" >
+                            <input type="hidden" name="FunName" value="ncMailFrmTypeList">
+                            <input type="hidden" name="rid"   value="[#rid#]">
+                            <input type="hidden" name="tid"   value="[#tid#]">
+                          </div>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+    </td>
+  </tr>
+  <tr>
+      <td width="100%"  valign=top align=center bgcolor="#BBBBBB"> 
+        <table  id="DataTable" width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" >
+          <tr  height="21" > 
+            <td class="bord2" background="/images/ttt.gif" height="18" width="51"><img src="/images/lline.gif" width="1" height="18" align="absmiddle">&nbsp;&nbsp;<a href="#" onClick="allChecked()" >全选</a> 
+            </td>
+            <td class="bord2" height="18" background="/images/ttt.gif" width="153">分类名称</td>
+            <td class="bord2" height="18" background="/images/ttt.gif" width="799"> 
+              内容</td>
+          </tr>
+          <!-- [#SLPB#] -->
+          <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" onclick="showf('[#rid#]','[#uflags#]','[#uname#]','[#host#]','[#url#]','[#cont#]' ,'[#aname#]','[#msize#]','[#asize#]','[#save#]','[#tzflags#]','[#tzmail#]')"> 
+            <td class="bord1" width="51"> 
+              <input type="checkbox" name="ch[#num#]" value="[#rid#]">
+            </td>
+            <td class="bord1" width="153">&nbsp;[#rname#]</td>
+            <td class="bord1" width="799">[#des#]</td>
+          </tr>
+          <!-- [#SLPE#] -->
+          <!-- [#SLPB#] -->
+          <tr id=[#snum#]> 
+            <td class="bord1" width="51" height="2">&nbsp; </td>
+            <td class="bord1" width="153" height="2">&nbsp;</td>
+            <td class="bord1" width="799" height="2">&nbsp;</td>
+          </tr>
+          <!-- [#SLPE#] -->
+        </table>
+<!--//鼠标显示//-->
+              <script language="JavaScript">
+<!--
+var MenuBarColor ='#cccccc';
+DrawMouseRightButtonUpMenu();
+ -->
+</script>
+
+</table>
+  </form>
+</body>
+</html>

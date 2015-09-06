@@ -1,0 +1,31 @@
+{"text":"ffff","children":[{
+    text:'[#rootname#]',
+    id:'0',
+    code:'',
+    iconCls:'task-folder',
+    expanded: true,
+    children: [[#SLPB#][#dhf#]
+    {
+        text:'[#area#]',
+        id:'[#groupid#]',
+        code:'[#code#]',
+        iconCls:'[#iconCls#]',
+        expanded: false,
+        children:[[#SLPB#][#dhs#]{
+        text:'[#area#]',
+        id:'[#groupid#]',
+        code:'[#code#]',
+            iconCls:'task-folder',
+            expanded: false,
+            children:[[#SLPB#][#dht#]{
+            text:'[#area#]',
+            id:'[#groupid#]',
+		        code:'[#code#]',
+                leaf:true,
+                iconCls:'task'
+            }[#SLPE#]]
+        }[#SLPE#]]
+    }
+    [#SLPE#]
+   ]
+   }]}

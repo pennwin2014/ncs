@@ -1,0 +1,102 @@
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<script>
+function gotoPg(t){
+  self.location.href="/pronline/Msg?FunName@ncWebPrintWebUse&sdate@[#sdate#]&edate@[#edate#]&groupid@[#groupid#]&rownum@[#rownum#]&startpg@"+t+"&sumpage@[#sumpage#]&groupname@[#groupname#]";
+}
+function llprint(){
+// document.all.pprint.style.display="none"
+  window.print()
+
+}
+</script>
+</head>
+<!-- [#SLPB#] -->
+<table border="0" align="center" cellpadding="0" cellspacing="0" width="84%" bgcolor="#FFFFFF">
+  <tr bgcolor="#CCCCCC"> 
+    <td colspan="6" height="37"> 
+      <table width="103%" border="0">
+        <tr bgcolor="#CCCCCC" bordercolor="#99CC99"> 
+          <td height="24" width="62%"> 
+            <p align="right"><b>用户网站访问情况明细表([#sdate#]--[#edate#]) </b></p>
+            </td>
+          <td height="24" width="7%">&nbsp;</td>
+          <td height="24" width="31%" id="pprint"> [#SLPB#] 
+            <input type="button" name="B[#pnum#]" value="[#butname#]" onclick="[#prun#]">
+			[#SLPE#]
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr> 
+    </tr>
+  <tr align="center" valign="middle" bgcolor="#CCCCCC"> 
+    <td width="7%"  class="bord2" height="20"> 
+      <div align="center"><b>序号</b></div>
+    </td>
+    <td  class="bord2" height="20"  width="13%"> 
+      <div align="center"><b>用户名</b></div>
+    </td>
+    <td  class="bord2" height="20" width="32%"> 
+      <div align="center"><b>访问站点</b></div>
+    </td>
+    <td  class="bord2" height="20" width="16%"> 
+      <div align="center"><b>访问流量(Bytes)</b></div>
+    </td>
+    <td  class="bord2" height="20"  width="14%"> 
+      <div align="center"><b>访问次数</b></div>
+    </td>
+    <td  class="bord4" height="20"  width="18%" > 
+      <div align="center"><b>访问时间</b></div>
+    </td>
+  </tr>
+  <!-- [#SLPB#] -->
+  <tr bgcolor="#CCCCCC"> 
+    <td width="7%"  class="bord1" height="10"> 
+      <div align="center"><b>&nbsp; [#num#]</b></div>
+    </td>
+    <td  class="bord1" height="10"  width="13%"><b>&nbsp; [#username#]</b></td>
+    <td  class="bord1" height="10" width="32%"> 
+      <div align="center"> <b>&nbsp;</b></div>
+    </td>
+    <td  class="bord1" height="10" width="16%"> 
+      <div align="right"><b>[#lbytes1#]&nbsp;</b></div>
+    </td>
+    <td  class="bord1" height="10" width="14%"> 
+      <div align="right"><b>[#lcount1#]&nbsp;</b></div>
+    </td>
+    <td  class="bord3" height="10" width="18%"> 
+      <div align="right"><b>[#ltime1#]&nbsp;</b></div>
+    </td>
+  </tr>
+  <!-- [#SLPB#] -->
+  <tr bgcolor="#CCCCCC"> 
+    <td width="7%"  class="bord1" height="10">&nbsp;</td>
+    <td  class="bord1" height="10"  width="13%">&nbsp;</td>
+    <td  class="bord1" height="10" width="32%">[#host#]&nbsp;</td>
+    <td  class="bord1" height="10" width="16%"> 
+      <div align="right">[#lbytes#]&nbsp;</div>
+    </td>
+    <td  class="bord1" height="10" width="14%"> 
+      <div align="right">[#lcount#]&nbsp;</div>
+    </td>
+    <td  class="bord3" height="10" width="18%"> 
+      <div align="right">[#ltime#]&nbsp;</div>
+    </td>
+  </tr>
+  <!-- [#SLPE#] -->
+  <!-- [#SLPE#] -->
+</table>
+	  
+<p align="center">第 [#pages#]页</p>
+<xmp style='page-break-after:always'></xmp>
+<!-- [#SLPE#] -->
+            
+          
+<p>&nbsp;</p>
+</body>
+</html>

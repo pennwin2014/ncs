@@ -1,0 +1,60 @@
+<!-- saved from url=(0022)http://internet.e-mail -->
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta http-equiv="refresh" content="5">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<SCRIPT LANGUAGE="JavaScript">
+var yy='<tbody>';
+function w1()
+{
+// [#SLPB#]
+  yy = yy + '<table cellspacing=0 bordercolor="#DFDFDF" border="0" align="center" width="100%" >';
+  yy = yy + '<tr onmouseover="mouseovertr2 (this)" onmouseout="mouseouttr2 (this)">';
+  yy = yy + '<td  onyes="head" width="10%" class="bord1"  title="[#username#]" valign="bottom">&nbsp;[#username#]</td>';
+  yy = yy + '<td  onyes="head" width="16%"  class="bord1" valign="bottom">&nbsp;[#sdate#]</td>';
+  yy = yy + '<td  onyes="head" width="8%" class="bord1" valign="bottom">&nbsp;[#service#]</td>';
+  yy = yy + '<td  onyes="head" width="72%" class="bord3" title="[#mesg#]" valign="bottom"><font color="#FFFF33">&nbsp;[#mesg#]</font></td>';
+  yy = yy + '</tr></table>';
+// [#SLPE#]
+  yy = yy + '</tbody>'
+//  parent.top1.ccc.innerHTML=("<font color='red'>[#rate#]</font>")
+  parent.main.ff.innerHTML=(yy);
+}
+
+function goto(t){
+self.location.href=t
+}
+function mouseovertr2 (o){
+var i;
+df=o.style.backgroundColor
+	o.style.backgroundColor= "#ffffff";
+	o.style.borderColor= "#FFFF00";
+	o.style.cursor="hand";	
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#000000";
+}	
+}
+
+function mouseouttr2(o){
+	o.style.backgroundColor=df
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#33CC33";
+}
+	
+	
+}
+
+ </SCRIPT> 
+
+</head>
+<body bgcolor="#AFAFC0" text="#000000" oncontextmenu="return false" topmargin="0" leftmargin="0" >
+<SCRIPT LANGUAGE="JavaScript">
+setTimeout(' w1()',1000)
+
+ </SCRIPT> 
+</body>
+</html>

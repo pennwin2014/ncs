@@ -1,0 +1,81 @@
+<!-- saved from url=(0022)http://internet.e-mail -->
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+
+<SCRIPT LANGUAGE="JavaScript">
+var ll=[#CurPg#];
+var yy=[#TotPg#];
+parent.form1.CurPg.value=ll;
+parent.form1.TotPg.value=yy;
+parent.form1.TotRec.value='[#TotRec#]';
+function w1()
+{
+var yy='<tbody>';
+  yy = yy + '<table cellspacing=0 bordercolor="#DFDFDF"  class="listDataTable" border="0" align="center" width="100%" >';  
+  yy = yy + '<tr bgcolor="#6382BD" height="18">';
+  yy = yy + '<td width="46" align="center" class="bord2"><font color="#FFFFFF"><input type="button" name="b1" value="选择" class="anniu_1" onClick="allChecked()"></font></td>';
+  yy = yy + '<td width="15%" align="center" class="bord2"> <font color="#FFFFFF">单位名称</font></td>';
+  yy = yy + '<td width="12%" align="center" class="bord2"> <font color="#FFFFFF">用户名</font></td>';
+  yy = yy + '<td width="15%" align="center" class="bord2"><font color="#FFFFFF">开始时间</font></td>';
+  yy = yy + '<td width="12%" align="center" class="bord2"> <font color="#FFFFFF">源IP地址</font></td>';
+
+  yy = yy + '<td width="12%" align="center" class="bord2"><font color="#FFFFFF">目标IP地址</font></td>';
+  yy = yy + '<td width="5%" align="center" class="bord2"><font color="#FFFFFF">端口</font></td>';
+
+  yy = yy + '<td width="5%" align="center" class="bord2"> <font color="#FFFFFF">协议</font></td>';
+
+  yy = yy + '<td width="6%" align="center" class="bord2"> <font color="#FFFFFF">服务</font></td>';
+
+  yy = yy + '<td width="8%" align="center" class="bord2"> <font color="#FFFFFF">上行流量</font></td>';
+  yy = yy + '<td width="8%" align="center" class="bord2"> <font color="#FFFFFF">下行流量</font></td>';
+  yy = yy + '</tr>';
+
+         <!-- [#SLPB#] -->
+  yy = yy + '<tr onMouseOver="mouseovertr2(this)" height="18" onMouseOut="mouseouttr2(this)" bgcolor="#ffffff">';
+  yy = yy + '<td  align="center" class="bord1"> <input type="checkbox" name="ch[#num#]" value="[#sid#]"> </td>';
+  yy = yy + '<td class="bord1"   nowrap >&nbsp;[#cname#]</td>';
+  yy = yy + '<td class="bord1"  nowrap  >&nbsp;<a href="#xxm" onclick=showuser("[#did#]","[#uid#]")>[#udisp#]</a></td>';
+  yy = yy + '<td class="bord1"  nowrap  >&nbsp;[#sdate#]</td>';
+  yy = yy + '<td class="bord1"   nowrap >&nbsp;[#sip#]</td>';
+  yy = yy + '<td class="bord1"  nowrap  >&nbsp;[#dip#]</td>';
+  yy = yy + '<td class="bord1"  nowrap  >&nbsp;[#port#]</td>';
+  yy = yy + '<td class="bord1"  nowrap  >&nbsp;[#trantype#]</td>';
+  yy = yy + '<td class="bord1"  nowrap  >&nbsp;[#service#]</td>';
+  yy = yy + '<td class="bord1"  nowrap  align="right">[#ubytes#]&nbsp;</td>';
+  yy = yy + '<td class="bord3"  nowrap  align="right">[#dbytes#]&nbsp;</td>';
+  yy = yy + '</tr>';
+          <!-- [#SLPE#] -->
+
+        
+          <!-- [#SLPB#] -->
+  yy = yy + '<tr id=[#snum#] bgcolor="#ffffff">';
+  yy = yy + '<td class="bord1" >&nbsp;</td>';
+  yy = yy + '<td class="bord1" >&nbsp;</td>';
+  yy = yy + '<td class="bord1" >&nbsp;</td>';
+  yy = yy + '<td class="bord1" >&nbsp;</td>';
+  yy = yy + '<td class="bord1" >&nbsp;</td>';
+  yy = yy + '<td class="bord1" >&nbsp;</td>';
+  yy = yy + '<td class="bord1" >&nbsp;</td>';
+  yy = yy + '<td class="bord1" >&nbsp;</td>';
+  yy = yy + '<td class="bord1" >&nbsp;</td>';
+  yy = yy + '<td class="bord1" >&nbsp;</td>';
+  yy = yy + '<td class="bord3" >&nbsp;</td>';
+  yy = yy + '</tr>';
+          <!-- [#SLPE#] -->  
+  yy=yy+'</table>';
+
+  yy = yy + '</tbody>';
+alert(yy);
+  parent.ff.innerHTML=(yy);
+}
+setTimeout('w1()',1000);
+
+ </SCRIPT> 
+
+</head>
+<body>
+
+</body>
+</html>

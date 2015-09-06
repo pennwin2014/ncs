@@ -1,0 +1,306 @@
+<html>
+
+<head>
+<title>查询</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<!-- Infrastructure code for the tree -->
+<style>
+.aaaa {font-size:10pt;color:#000000;font-weight:bold;}
+</style>
+<script>
+	var dfd1;
+	function allChecked(){
+    if(dfd1=="1"){
+        dfd1="0"
+    }
+    else {
+         dfd1="1"
+    }
+	for(var i=0;i<document.all.DataTable.rows.length;i++)
+	{
+		if(typeof(document.all.DataTable.rows[i].cells[0].childNodes[0])=="object"
+
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].tagName=="INPUT"
+
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].type=="checkbox") {
+			if(dfd1=="1"){
+  			    document.all.DataTable.rows[i].cells[0].childNodes[0].checked="true";
+            }
+			else{
+                document.all.DataTable.rows[i].cells[0].childNodes[0].checked="";
+            }
+        }
+ 	}
+}
+	
+function mouseovertr2 (o){
+var i;
+df=o.style.backgroundColor
+	o.style.backgroundColor= "#ffff00";
+	o.style.borderColor= "#FFFF00";
+	o.style.cursor="hand";	
+}
+
+function mouseouttr2(o){
+	o.style.backgroundColor=df
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#000000";
+}
+}
+	
+	
+	var ll='[#CurPg#]';
+var yy='[#TotPg#]';
+function changbk()
+{
+	var temp_desc="";
+	if(form1.ctype.value=='0')
+	{
+       temp_desc=temp_desc+'<select name="did" style="width:152">';
+       temp_desc=temp_desc+'<option value="0">全部</option>';
+       [#SLPB#]
+       temp_desc=temp_desc+'<option value="[#userid#]">[#dispname#]</option>';
+       [#SLPE#]
+       temp_desc=temp_desc+'</select>';
+    
+    }
+   else if(form1.ctype.value=='1')
+	 {
+       temp_desc=temp_desc+'<select name="did" style="width:152">';  
+       temp_desc=temp_desc+'<option value="0">全部</option>';
+       temp_desc=temp_desc+'<option value="1">酒店宾馆</option>';       
+       temp_desc=temp_desc+'<option value="2">中小学</option>';
+       temp_desc=temp_desc+'<option value="3">大学类</option>';
+       temp_desc=temp_desc+'<option value="4">娱乐场所</option>';
+       temp_desc=temp_desc+'<option value="5">一般企业</option>';
+       temp_desc=temp_desc+'<option value="6">一般事业</option>';
+       temp_desc=temp_desc+'<option value="7">国家机关、法人组织</option>';
+       temp_desc=temp_desc+'<option value="8">写字楼</option>';
+       temp_desc=temp_desc+'<option value="9">其它</option>';
+       temp_desc=temp_desc+'</select>';
+    }
+   else if(form1.ctype.value=='2')
+	 {
+	    temp_desc=temp_desc+'<select name="did" style="width:152">';
+	    temp_desc=temp_desc+'<option value="0">全部</option>';
+       [#SLPB#]
+       temp_desc=temp_desc+'<option value="[#groupid#]">[#groupname#]</option>';
+       [#SLPE#]
+       temp_desc=temp_desc+'</select>';
+    }
+   else if(form1.ctype.value=='4')
+	 {
+	    temp_desc=temp_desc+'<select name="did" style="width:152">';
+	    temp_desc=temp_desc+'<option value="0">全部分管理中心</option>';
+       [#SLPB#]
+       temp_desc=temp_desc+'<option value="[#subid#]">[#subname#]</option>';
+       [#SLPE#]
+       temp_desc=temp_desc+'</select>';
+    }
+   else
+   {
+       temp_desc=temp_desc+'<select name="did" style="width:152">'; 
+       temp_desc=temp_desc+'<option value="0">全部</option>';
+       temp_desc=temp_desc+'<option value="1">酒店宾馆</option>'; 
+       temp_desc=temp_desc+'<option value="2">中小学</option>';
+       temp_desc=temp_desc+'<option value="3">大学类</option>';
+       temp_desc=temp_desc+'<option value="4">娱乐场所</option>';
+       temp_desc=temp_desc+'<option value="5">一般企业</option>';
+       temp_desc=temp_desc+'<option value="6">一般事业</option>';
+       temp_desc=temp_desc+'<option value="7">国家机关、法人组织</option>';
+       temp_desc=temp_desc+'<option value="8">写字楼</option>';
+       temp_desc=temp_desc+'<option value="9">其它</option>';
+       temp_desc=temp_desc+'</select>';
+   }
+  
+document.all.xxm5.innerHTML=temp_desc;
+    
+}
+function showf(sid,did,ctype,flags)
+{
+
+	
+	form1.ctype.value=ctype;
+	changbk();
+	form1.sid.value=sid;
+	form1.flags.value=flags;
+	form1.did.value=did;	
+}
+</script>
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginheight="0"  style="overflow:hidden" >
+  <form name="form1" method="post" action="/pronline/Msg" >
+  <input type="hidden" name="FunName" value="ncsIdc_watchArea">
+  <input type="hidden" name="CurPg" value="[#CurPg#]">
+  <input type="hidden" name="sid" value="">
+  <input type="hidden" name="kid" value="[#kid#]">
+  <input type="hidden" name="idc_groupid" value="[#idc_groupid#]">
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+
+  <tr> 
+    <td colspan="2"> <table width="98%" border="1"    bordercolorlight=#89ACED   bordercolordark=#ffffff    align="center" cellpadding="0" cellspacing="0" >
+          <tr> 
+            <td  height="30" valign="top"> 
+             <table width="100%" border="0" align="center" > 
+                <tr height="30"> 
+                  <td  align="right" class="aaaa">区域类别</td>
+                  <td  align="left">
+                  <select name="ctype" style="width:120" onchange="changbk()">
+                  <option value="0">单位</option>
+                  <option value="1" selected>单位类别</option>
+                  <option value="2">单位组</option>
+                  <option value="4">分管理中心</option>
+                </select>
+                  </td>
+                  <td class="aaaa" >&nbsp;名称</td>
+                  <td id="xxm5">
+                  <select name="did" style="width:222">
+                  	<option value="0">全部</option>
+                  <option value="1">酒店宾馆</option>
+                  <option value="2">中小学</option>
+                  <option value="3">大学类</option>
+                  <option value="4">娱乐场所</option>
+                  <option value="5">一般企业</option>
+                  <option value="6">一般事业</option>
+                  <option value="7">国家机关、法人组织</option>
+                  <option value="8">写字楼</option>
+                  <option value="9">其它</option>               
+                </select>
+                </td>
+                <td  align="right" class="aaaa">状态</td>
+                  <td  align="left">
+                  <select name="flags" style="width:60" >
+                  <option value="1" selected>启用</option>
+                  <option value="0" >停用</option>
+                 
+                </select>
+                  </td>
+                </tr>              
+              </table>
+            </td>
+          </tr>
+          <tr height="30"><td >
+          	<table width="100%" border="0" align="center" >
+          	<tr><td>
+          	<input name="add" type="submit" class="an3" value="增加">                     
+             <input name="modi" type="submit" class="an3"  value="修改">
+              <input name="del" type="submit" class="an3"  value="删除">
+             </td>
+             <td align="right">
+             	    <table align=right border=0 cellpadding=0 cellspacing=0 class=main width=111>
+                      <tbody>
+                      <td width="10%" >
+                          <script>
+                          if (ll==1){
+                           document.write("<img src='/images/zbuyer-06.gif' border=0 height=17 width=35 class='gray1'>")}
+                          else{
+                            document.write("<a href='#xxm'><img src='/images/zbuyer-06.gif' border=0 height=17 width=35 onClick='gotoPage(1);form1.submit()' class='hand'>")}
+                         </script>
+                        </td>
+                        <td width="10%">
+                            <script>
+                           if (ll==1){
+                           document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 class='gray1'>")}
+                          else {
+                           document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]-1);form1.submit()' class='hand'>")}
+                           </script>
+                         </td>
+                          <td width="20%" valign="top"><img src="/images/zbuyer-08.gif" border=0 height=17 width=32></td>
+                          <td align=middle background="" width=92>
+                            <input class=Main id=browsdopage maxlength=7  name=browsdopage size=7 style="FONT-SIZE: 12px; HEIGHT: 17px; TEXT-ALIGN: center; WIDTH: 50px;position:relative;left:0px;top:-2px;" value=[#CurPg#] onKeyPress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" onBlur="checkme(this)">
+                          </td>
+                          <td width="10%" valign="top"><img src="/images/zbuyer-09.gif" border=0 height=17 width=16></td>
+                          <td width="10%" valign="top"><img align=middle border=0 height=17 src="/images/zbuyer-10.gif" width=17 onClick="gotoPage(form1.browsdopage.value);form1.submit()" class="hand"><img align=middle height=17 src="/images/zbuyer-11.gif" width=3></td>
+                          <td width="10%" valign="top"><img border=0 height=17 src="/images/zin1.gif" width=17 ></td>
+                          <td align=middle background="" width=92>
+                            <input  class=Main id=browsdopage12 maxlength=7 name=browsdopage12 size=7 style="FONT-SIZE: 12px; HEIGHT: 17px; TEXT-ALIGN: center; WIDTH: 50px;position:relative;left:0px;top:-2px;" value='[#TotPg#]'>
+                          </td>
+                          <td width="10%" valign="top"><img align=middle height=17 src="/images/zbuyer-09.gif" width=16></td>
+                          <td align=middle background="" width=92>
+                            <input  class=Main id=browsdopage12 maxlength=7 name=browsdopage12 size=7 style="FONT-SIZE: 12px; HEIGHT: 17px; TEXT-ALIGN: center; WIDTH: 50px;position:relative;left:0px;top:-2px;" value='[#TotRec#]'>
+                          </td>
+                          <td width="10%" valign="top"><img border=0 height=17 src="/images/zin3.gif" width=17 align="middle" ><img align=middle height=17  src="/images/zbuyer-11.gif" width=3></td>
+                          <td width="10%">
+                            <script>
+                            if (ll==yy){
+                              document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                            else if (yy==0){
+                              document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                            else{
+                              document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]+1);form1.submit()' class='hand'>")}
+                             </script>
+                          </td>
+                          <td width="10%">
+                            <script>
+                             if (ll==yy){
+                               document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                             else if (yy==0){
+                               document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                             else{
+                               document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 onClick='gotoPage([#TotPg#]);form1.submit()' class='hand'>")}
+                              </script>
+                          </td>
+                        </tbody>
+                    </table>
+             	
+             	</td>
+             	</tr>
+            </table>
+          </td>
+        </tr>
+          <tr><td>
+          	
+          	      
+        <table  id="DataTable" width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" >
+          <tr > 
+            <td width="40" bgcolor="#6382BD" class="bord2"> 
+              <div align="center"><font color="#FFFFFF">
+                <input type="button" name="b1" value="全选"    class="anniu_1" onClick="allChecked()">
+                </font></div></td>
+            
+            <td width="80" bgcolor="#6382BD" height="18" class="bord2"> 
+              <div align="center"><font color="#FFFFFF">区域类别</font></div></td>
+            <td  bgcolor="#6382BD" class="bord2"> 
+              <div align="center"><font color="#FFFFFF">名称</font></div></td> 
+
+              <td  bgcolor="#6382BD" width="60" class="bord4"> 
+              <div align="center"><font color="#FFFFFF">状态</font></div></td>
+          </tr>
+          <!-- [#SLPB#] -->
+          <tr height="18" onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" onclick="showf('[#sid#]','[#did#]','[#ctype#]','[#flags#]')"> 
+            <td   class="bord1" align="center"> <input type="checkbox" name="ch[#num#]" value="[#sid#]"> 
+            </td>
+            <td   class="bord1">&nbsp;[#type_desc#]</td> 
+            <td   class="bord1">&nbsp;[#corpname#]</td>       
+            <td   class="bord3">&nbsp;[#flags_desc#]</td>
+
+          </tr>
+          <!-- [#SLPE#] -->
+          <!-- [#SLPB#] -->
+          <tr id=[#snum#] height="18"> 
+            <td   class="bord1">&nbsp; </td>              
+            <td   class="bord1">&nbsp;</td> 
+            <td   class="bord1">&nbsp;</td>   
+            <td   class="bord3">&nbsp;</td>
+          </tr>
+          <!-- [#SLPE#] -->
+        </table>
+         	
+          	</td>
+         </tr>
+        </table>
+
+      </td>
+  </tr>
+</table>
+</form>
+
+</body>
+</html>

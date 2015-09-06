@@ -1,0 +1,113 @@
+<html>
+
+<head>
+<title>查询</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<!-- Infrastructure code for the tree -->
+<script>
+function queren()
+{
+form1.submit();
+self.close();
+
+}
+</script>
+
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginheight="0"  oncontextmenu="return true">
+  <form name="form1" method="post" action="/pronline/Msg" target="sbpm_right">
+  <input type="hidden" name="FunName" value="ncsWebCorpUser">
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+
+  <tr> 
+    <td colspan="2"><table width="100%" height="27" border="0" align="center" cellpadding="0" cellspacing="0" background="/images/table_bg1.gif">
+        <tr > 
+          <td colspan="2" > <div align="center"><strong><font color="#FFFFFF">
+             
+              单位用户信息查询</font></strong></div></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr> 
+    <td colspan="2"> 
+        <br>
+        <table width="95%" border="1"    bordercolorlight=#89ACED   bordercolordark=#ffffff    align="center" cellpadding="0" cellspacing="0" >
+          <tr> 
+            <td> 
+             <table width="100%" border="0" align="center" >
+                <tr>
+                  <td colspan="4">&nbsp;</td>
+                </tr>
+
+                <tr height="35"> 
+                  <td width="12%"></td>
+                  <td width="20%" align="right"> <font color="#000000"><b><font size="2">公司类别</font></b></font></td>
+                  <td width="40%" align="left">
+                  <select name="groupid" style="width:200">
+                  <option value="">全部</option>
+                  [#SLPB#]
+                  <option value="[#groupid#]">[#grouname#]</option>
+                  [#SLPE#]
+                  </select>
+                  </td>
+                  <td width="28%">                   
+                  </td>
+                </tr>
+                <tr height="35"> 
+                  <td ></td>
+                  <td align="right"><font color="#000000"><b><font size="2">单位名称</font></b></td>
+                  <td ><select name="userid" style="width:200">
+                  <option value="">全部</option>
+                  [#SLPB#]
+                  <option value="[#userid#]">[#dispname#]</option>
+                  [#SLPE#]
+                  </select></td>
+                  <td >&nbsp;</td>
+                </tr> 
+                <tr height="35">
+                  <td ></td>
+                  <td align="right"> <font color="#000000"><b><font size="2">用户简称</font></b></font></td>
+                  <td > <input type="text" name="username" size="27"></td>
+                  <td > </td>
+                </tr> 
+                <tr height="35"> 
+                  <td ></td>
+                  <td align="right"> <font color="#000000"><b><font size="2">用户名</font></b></font></td>
+                  <td > <input type="text" name="dispname" size="27"></td>
+                  <td >&nbsp;&nbsp;</td>
+                </tr> 
+                <tr height="35"> 
+                  <td ></td>
+                  <td align="right"> <font color="#000000"><b><font size="2">用户IP</font></b></font></td>
+                  <td > <input type="text" name="ip" size="27"></td>
+                  <td >&nbsp;&nbsp; </td>
+                </tr> 
+                <tr height="35"> 
+                  <td ></td>
+                  <td align="right"> <font color="#000000"><b><font size="2">用户Email</font></b></font></td>
+                  <td > <input type="text" name="email" size="27"></td>
+                  <td >&nbsp;&nbsp;<input name='Button' type='button' class='an3' onClick='queren()' value='确 认'> </td>
+                </tr> 
+                <tr height="35"> 
+                  <td ></td>
+                  <td align="right"> <font color="#000000"><b><font size="2">身份证号</font></b></font></td>
+                  <td > <input type="text" name="ip" size="27"></td>
+                  <td >&nbsp;&nbsp; </td>
+                </tr> 
+              </table>
+            </td>
+          </tr>          
+        </table>
+
+      </td>
+  </tr>
+</table>
+ </form>
+</body>
+</html>

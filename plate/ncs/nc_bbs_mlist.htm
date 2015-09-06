@@ -1,0 +1,231 @@
+<html>
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<title>main</title>
+<script>
+var dfd1="0"
+
+
+function userdel()
+{
+    form1.FunName.value = "ncWebUploadDel";
+    form1.submit();
+}
+
+function goto1(t){
+ tt=showModalDialog(t, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:560px;scroll:no;dialogHeight:320px');
+}
+
+
+
+
+
+function goto(o)
+{
+
+var ccod=o.cells[0].childNodes[0].childNodes[0].value;
+var uid=o.cells[0].childNodes[0].childNodes[1].value;
+var msgfile=o.cells[0].childNodes[0].childNodes[2].value;
+var t="/pronline/Msg?FunName@ncWebPostRead&time@"+ccod+"&userid@"+uid+"&msgfile@"+msgfile;
+      window.open(t,'readpost','left=100,top=50,width=700,height=600,fullscreen=0,toolbar=no,scrollbars=yes,resizable=1,menubar=no,status=0');
+    }
+
+
+
+// -->
+var dfd1=0;
+function allChecked(){
+    if(dfd1=="1"){
+        dfd1="0"
+    }
+    else {
+         dfd1="1"
+    }
+   
+	for(var i=1;i<document.all.DataTable.rows.length;i++)
+	{
+		if(typeof(document.all.DataTable.rows[i].cells[0].childNodes[0].childNodes[0])=="object"
+
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].childNodes[0].tagName=="INPUT"
+
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].childNodes[0].type=="checkbox") {
+			if(dfd1=="1"){
+  			    document.all.DataTable.rows[i].cells[0].childNodes[0].childNodes[0].checked="true";
+            }
+			else{
+                document.all.DataTable.rows[i].cells[0].childNodes[0].childNodes[0].checked="";
+            }
+        }
+ 	}
+}
+
+function passdate()
+{
+parent.form1.CurPg.value='[#CurPg#]';
+parent.form1.TotPg.value='[#TotPg#]';
+parent.form1.TotRec.value='[#TotRec#]';
+parent.form1.caWhere.value=form1.caWhere.value;
+
+parent.document.all.wlj.innerHTML='<b style="font-size: 10pt;color:#00237e;">[#title_name#] BBS表单</b>';
+}
+
+function qr(){
+
+	parent.form1.userid.value=form1.userid.value;
+	parent.form1.groupid.value=form1.groupid.value;
+	parent.form1.sdate.value=form1.sdate.value;
+	parent.form1.sdate1.value=form1.sdate1.value;
+	parent.form1.edate.value=form1.edate.value;
+	parent.form1.edate1.value=form1.edate1.value;
+	
+	parent.form1.dispname.value=form1.dispname.value;
+
+	parent.form1.sip.value=form1.sip.value;
+	
+	parent.form1.dip.value=form1.dip.value;
+	parent.form1.url.value=form1.url.value;
+	parent.form1.content.value=form1.content.value;
+	parent.form1.sub.value=form1.sub.value;
+ 
+}
+
+function cleara(){
+form1.userid.value='';
+form1.groupid.value='';
+form1.sdate.value='';
+form1.edate.value='';
+form1.sdate1.value='';
+form1.edate1.value='';
+form1.dispname.value='';
+
+form1.sip.value='';
+
+form1.dip.value='';
+form1.url.value='';
+form1.content.value='';
+form1.sub.value='';
+parent.form1.userid.value='';
+parent.form1.groupid.value='';
+parent.form1.sdate.value='';
+parent.form1.edate.value='';
+parent.form1.sdate1.value='';
+parent.form1.edate1.value='';
+
+parent.form1.dispname.value='';
+parent.form1.sip.value='';
+
+parent.form1.dip.value='';
+parent.form1.url.value='';
+parent.form1.sub.value='';
+parent.form1.content.value='';
+
+}
+
+function mouseovertr2 (o){
+var i;
+df=o.style.backgroundColor
+	o.style.backgroundColor= "#ffff00";
+	o.style.borderColor= "#FFFF00";
+	o.style.cursor="hand";	
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#000000";
+}	
+}
+
+function mouseouttr2(o){
+	o.style.backgroundColor=df
+	
+	
+}
+
+
+
+</script>
+
+<script src="/js/drawtable.js"></script>
+<script src="/js/calendar.js"></script>
+<SCRIPT language=JavaScript>
+	
+	function gotopage(flag){
+	if(form1.CurPg.value=='') form1.CurPg.value='1';
+	var lCur=parseInt(form1.CurPg.value);
+
+	if(flag=='1'){
+	  form1.CurPg.value=lCur-1;
+	}
+	else{
+	form1.CurPg.value=lCur+1;
+	}
+
+	form1.submit();
+	}
+	
+<!--
+
+var recordID = null;
+var Table = new FlexibleTable ('DataTable', '100%', '590', 'center', 32, 'flexibleTableSpan');
+
+Table.Header ( '<span style="cursor: hand;" >姓名</span>','上网场所','<span style="cursor: hand;" >源地址</span>','论坛名称','网址和路径', '时间','主题','内容');
+Table.ColumnsWidth ('70','70','90','90', '120', '90', '190', '300');
+Table.HeaderAligment ('center','center', 'center', 'center','center', 'center', 'center', 'center');
+Table.BodyAligment ('center', 'left','left', 'left', 'left','left', 'left', 'left');
+
+Table.SetRowsTemplate (" onMouseOver=\"javascript:mouseovertr2(this);\" onMouseOut=\"javascript:mouseouttr2(this);\"  onDblClick=\"goto(this)\" ");
+[#SLPB#]
+Table.Row('<input type="hidden" name="time[#num#]" value="[#vtime#]"><input type="hidden" name="userid[#num#]" value="[#userid#]"><input type="hidden" name="msgfile[#num#]" value="[#file#]">&nbsp;[#dispname#] ','[#cname#]','&nbsp;[#sip#] ','&nbsp;[#bbsname#] ','&nbsp;<a href="[#host#][#url#]&nbsp;" target="_blank">[#host#][#url#] </a>','&nbsp;[#vtime#] ','[#subject#]&nbsp;','&nbsp;[#content#] ');
+[#SLPE#]
+
+//-->
+</SCRIPT>
+
+
+<style type="text/css">
+<!--
+  .bordnr {
+	border-left: 1px solid #0148b2;
+	border-top: 1px solid #888888;
+	border-bottom: 1px solid #0148b2;
+	border-right: 1px solid #0148b2;
+	background-color:#d0e1fa;
+	} 
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+-->
+
+</style>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<BODY  style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px" bgcolor="#eaf3f5" leftMargin=2 topMargin=2 scroll=no onload="Table.Draw();">
+	<form name="form1" method="post" action="/pronline/Msg">
+  <input type="hidden" name="CurPg" value="[#CurPg#]">
+  <input type="hidden" name="name" value="[#name#]">
+	<input type="hidden" name="FunName" value="ncsWebBBSform">
+		<TABLE style="BORDER-RIGHT: 1px inset; BORDER-TOP: 1px inset; BORDER-LEFT: 1px inset; BORDER-BOTTOM: 1px inset" height="100%" cellSpacing=0 cellPadding=0 width="100%" border=0>
+			   <tr height="30">
+		          <td  align="center" style="font-size:11pt;color:#00237e;font-weight:bold;">&nbsp;&nbsp;&nbsp; 
+             [#name#]BBS日志</td>
+             <td><a href="#xxm" onclick="gotopage('1')">[#prepg#]</a>&nbsp;&nbsp;<a href="#xxm" onclick="gotopage('2')">[#next#]</a></td>
+         </tr>
+  	<TR>
+    		<TD valign="top"><SPAN id=flexibleTableSpan></SPAN></TD>
+  	</TR>
+  	
+  	
+  	
+  	
+ 	</TABLE>
+ 		
+ </form>	
+ 
+</BODY>
+
+</html>
+
+</html>

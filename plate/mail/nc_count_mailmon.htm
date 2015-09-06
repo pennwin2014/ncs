@@ -1,0 +1,112 @@
+<html>
+
+<head>
+<title>图表统计</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<!-- Infrastructure code for the tree -->
+<script>
+function lprint(){
+  MM_showHideLayers('mybut','','hide')
+  MM_showHideLayers('plabel','','hide')
+  window.print()
+  MM_showHideLayers('mybut','','show')
+  MM_showHideLayers('plabel','','show')
+}
+</script>
+<script language="JavaScript">
+<!--
+
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+
+
+function MM_findObj(n, d) { //v4.0
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && document.getElementById) x=document.getElementById(n); return x;
+}
+
+function MM_showHideLayers() { //v3.0
+  var i,p,v,obj,args=MM_showHideLayers.arguments;
+  for (i=0; i<(args.length-2); i+=3) if ((obj=MM_findObj(args[i]))!=null) { v=args[i+2];
+    if (obj.style) { obj=obj.style; v=(v=='show')?'visible':(v='hide')?'hidden':v; }
+    obj.visibility=v; }
+}
+//-->
+</script>
+
+<script language = "Javascript" src = "/js/selecttime.js"></script>
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0"  oncontextmenu="return false">
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td colspan="2" height="27"><table width="100%" height="27" border="0" align="center" cellpadding="0" cellspacing="0" background="/images/table_bg1.gif">
+        <tr > 
+          <td colspan="2"> <div align="center"><strong></strong></div></td>
+        </tr>
+      </table></td>
+  </tr>
+
+  <tr valign="middle" align="center"> 
+    <td  colspan="2"> 
+      <table width="680" border="0" cellpadding="8" cellspacing="0" >
+        <tr  > 
+          <td width="664">
+<form name="tj1" method="post" action="/pronline/Msg">
+              <div align="center"> 
+                <input type="hidden" name="FunName" value="ncWebCountMailMon">
+                <input type="hidden" name="userid"  value="[#userid#]">
+                <input type="hidden" name="username"  value="[#username#]">
+                <input type="hidden" name="groupid"  value="[#groupid#]">
+                <input type="hidden" name="groupname"  value="[#groupname#]">
+                <input type="hidden" name="opt"        value="[#opt#]">
+                <table width="640" border="0" bordercolor="#9999CC" >
+                  <tr> 
+                    <td width="98"> 
+                      <div align="center"><font color="#000000"><font size="2">统计时间</font></font></div></td>
+                    <td width="112"> 
+                      <div align="center"><font color="#000000"> 
+                        <input type="text" name="sdate" value="[#sdate#]" maxlength="16" size="16">
+                        </font></div></td>
+                    <td width="59"> 
+                      <div align="center"><font color="#000000"> 
+                        <input name="save12" type="button" class="an3"  onClick=show_calendar('tj1.sdate') value="日 期">
+                        </font></div></td>
+                    <td width="53"> 
+                      <div align="center"><font color="#000000"> 
+                        [#sway#]</font></div></td>
+                    <td width="142" valign="bottom"><font color="#000000"> 
+                      <input type="image" border="0" name="submit" src="/images/seach.gif" >
+                      </font></td>
+                    <td width="150"> 
+                      <div  id="plabel" align="center"> 
+                        <input name="save1" type="button" class="an3" onClick="lprint()"  value="打 印">
+                      </div></td>
+                  </tr>
+                </table>
+              </div>
+            </form></td>
+        </tr>
+        <tr  bgcolor=menu >
+          <td   class="bord3-1" >
+<div align="center"> 
+              <table width="80%" border="0" cellpadding="0" cellspacing="1" bgcolor="#9C9A9C">
+                <tr> 
+                  <td><img src="/pronline/Msg?FunName@ncWebMailMonCountChart&opt@[#opt#]&sdate@[#sdate#]&way@[#way#]&username@[#username#]&userid@[#userid#]&groupid@[#groupid#]&groupname@[#groupname#]"></td>
+                </tr>
+              </table>
+            </div></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+</body>
+</html>

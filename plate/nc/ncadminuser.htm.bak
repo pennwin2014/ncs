@@ -1,0 +1,274 @@
+<html>
+<head>
+<title>用户信息</title>
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" /> 
+<script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+
+</head>
+<script>
+	
+	
+	function opselect()
+	{
+		      var htmlvar='<iframe src="/v4/check_group_tree.htm" scrolling="Yes" name="drIframe" frameborder="no" style="width:480px;height:1320px;"></iframe>';                       	
+		      var windr2 = new Ext.Window ({
+		                             id:"windr2",
+		                             title:"选择管理区域",
+		                             x:10,
+		                             y:0,
+		                             width:310,
+		                             height:520,
+		                             bodyPadding: 0,
+		                             modal:true,
+		//                         headerPosition: 'bottom',
+		                             resizable:true,
+		                             closable : true,
+		                             draggable:true,
+		                             html:htmlvar
+                                                
+         }
+        )
+
+         windr2.show();  
+		
+//	showModalDialog("/v8/check_group_tree.htm", window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:300px;scroll:yes;dialogHeight:520px');
+	}
+	
+	function opselectqy()
+	{
+		
+				   var htmlvar='<iframe src="/v4/ncs_tree_group_select.htm" scrolling="yes" name="drIframe" frameborder="no" style="width:480px;height:520px;"></iframe>';                       	
+		      var windr3 = new Ext.Window ({
+		                             id:"windr3",
+		                             title:"选择组",
+		                             x:10,
+		                             y:0,
+		                             width:310,
+		                             height:520,
+		                             bodyPadding: 0,
+		                             modal:true,
+		//                         headerPosition: 'bottom',
+		                             resizable:true,
+		                             closable : true,
+		                             draggable:true,
+		                             html:htmlvar
+                                                
+         }
+        )
+
+         windr3.show();  
+		
+//	showModalDialog("/v8/ncs_tree_group_select.htm", window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:300px;scroll:yes;dialogHeight:520px');
+	}
+	
+	
+	
+	
+	
+//	function opselect()
+//	{
+//	showModalDialog("/v4/check_group_tree.htm", window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:300px;scroll:yes;dialogHeight:520px');
+//	}
+	
+//	function opselectqy()
+//	{
+//	showModalDialog("/v4/ncs_tree_group_select.htm", window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:300px;scroll:yes;dialogHeight:520px');
+//	}
+	
+	function opselectfac()
+	{
+		
+				var htmlvar='<iframe src="/v4/check_fac_tree.htm" scrolling="no" name="drIframe" frameborder="no" style="width:480px;height:320px;"></iframe>';                       	
+		      var windr4 = new Ext.Window ({
+		                             id:"windr4",
+		                             title:"管理厂商",
+		                             x:10,
+		                             y:0,
+		                             width:310,
+		                             height:520,
+		                             bodyPadding: 0,
+		                             modal:true,
+		//                         headerPosition: 'bottom',
+		                             resizable:true,
+		                             closable : true,
+		                             draggable:true,
+		                             html:htmlvar
+                                                
+         }
+        )
+
+         windr4.show();  
+		
+//	showModalDialog("/v4/check_fac_tree.htm", window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:300px;scroll:yes;dialogHeight:520px');
+	}
+	
+	
+</script>
+<body  leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" bgcolor="#DEE8FA">
+<div align="center"></div>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+ <form id="form1" name="form1" method="post" action="/pronline/Msg" >
+ 	<input type="hidden" name="opt1" value="[#opt#]">
+ 	<input type="hidden" name="fac" value="[#fac#]">
+  <tr> 
+    <td><table width="100%" height="30" border="0" align="center" cellpadding="0" cellspacing="0" >
+        <tr > 
+          <td colspan="2" style="font-size:11pt;color:#00237e;font-weight:bold;text-align: center;">系统用户信息</td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr> 
+    <td height="108">
+        <input type="hidden" name="FunName" value="ncsAdminUserSave">
+        <input type="hidden" name="userid"  value="[#userid#]">
+        <input type="hidden" name="sumright"  value="[#sumright#]">
+        <br>
+        <table width="100%" border="0"    bordercolorlight=#89ACED   bordercolordark=#ffffff    align="center" cellpadding="0" cellspacing="0">
+          <tr> 
+            <td valign="top"><br>
+        <table width="98%" border="0" align="center" cellspacing="0">
+                <tr> 
+                  <td width="17%" valign="bottom" height="21" > <div align="right">登录名&nbsp;</div></td>
+                  <td width="32%" valign="bottom" height="21" > <input type="text" name="name" style="width:160px" maxlength="31" value="[#name#]"> 
+                  </td>
+                  <td width="11%" valign="bottom" height="21" > <div align="right">姓 
+                      &nbsp;名&nbsp;</div></td>
+                  <td width="35%" height="21" colspan="2" valign="bottom" > <div align="left"> 
+                      <input type="text" name="dispname" style="width:160px" maxlength="31" value="[#dispname#]">
+                    </div></td>
+                </tr>
+                <tr> 
+                  <td width="17%" valign="bottom" height="21"> <div align="right">密&nbsp; 
+                      码&nbsp;</div></td>
+                  <td width="32%" valign="bottom" height="21" > <input type="password" name="password" style="width:160px" maxlength="31" value=""> 
+                  </td>
+                  <td width="11%" valign="bottom" height="21"> <div align="right">密码确认&nbsp;</div></td>
+                  <td colspan="2" valign="bottom" height="21" > <input type="password" name="password2" style="width:160px" maxlength="31"> 
+                  </td>
+                </tr>
+
+                <tr> 
+                  <td width="17%" valign="bottom" height="21"> <div align="right">第二密 
+                      码&nbsp;</div></td>
+                  <td width="32%" valign="bottom" height="21" > <input type="password" name="key2" style="width:160px" maxlength="31" value=""> 
+                  </td>
+                  <td width="15%" valign="bottom" height="21"> <div align="right">第二密码确认&nbsp;</div></td>
+                  <td colspan="2" valign="bottom" height="21" > <input type="password" name="key22" style="width:160px" maxlength="31"> 
+                  </td>
+                </tr>
+
+                <tr> 
+                  <td width="17%" valign="bottom" height="21" > <div align="right">组&nbsp;&nbsp;名&nbsp;</div></td>
+                  <td width="32%" valign="bottom" height="21" > <input type="text" name="groupname" style="width:150px" readonly value="[#groupname#]"><input type="hidden" name="groupid" value="[#groupid#]"><a href="#xxm" onclick="opselectqy()">&nbsp;选择</a></td>
+                  <td width="12%" valign="bottom" height="21" > <div align="right">管理区域&nbsp;</div></td>
+                  <td colspan="2" valign="bottom" height="21" > <input type="text" name="opt" style="width:160px" readonly value="[#opt_desc#]"><a href="#xxm" onclick="opselect()">&nbsp;选择</a></td>
+                </tr>
+ 
+                <tr> 
+                  <td width="17%" height="21" valign="bottom" > 
+                    <div align="right">联系电话&nbsp;</div></td>
+                  <td width="32%" valign="bottom" > 
+                    <input type="text" name="telphone" value="[#telphone#]"   >
+                  </td>
+                  <td width="12%" valign="bottom" >
+                  <div align="right">手机号&nbsp;</div></td>
+                  <td colspan="2" valign="bottom" > 
+                    <input type="text" name="handphone" value="[#handphone#]" >
+                  </td>
+                </tr>
+                
+                <tr> 
+                  <td width="17%" height="21" valign="bottom" > 
+                    <div align="right">邮件地址&nbsp;</div></td>
+                  <td width="32%" valign="bottom" > 
+                    <input type="text" name="email" value="[#email#]"   >
+                  </td>
+                  <td width="11%" valign="bottom" >
+                  <div align="right">
+                  	状&nbsp;&nbsp;态&nbsp;</div></td>
+                  <td colspan="2" valign="bottom" > 
+                  	<input type="hidden" name="rightlev" value="[#rightlev#]" readonly>
+              <select name="useflags" style="width:160px"><option value="0" selected>正常</option><option value="1">禁用</option></select>
+                  </td>
+                </tr>
+                
+                <tr> 
+                  <td width="17%" valign="bottom" height="29"> <div align="right">单位地址&nbsp;</div></td>
+                  <td colspan="4" valign="bottom" height="29" > <div align="left"> 
+                      <input type="text" name="address" style="width:432px"  maxlength="64" value="[#address#]">
+                    </td>
+                </tr>
+               
+                 <tr> 
+                  <td width="17%" valign="bottom" height="29"> <div align="right">首页界面&nbsp;</div></td>
+                  <td  valign="bottom" height="29" > <div align="left"> 
+                      <select name="usrlevel" style="width:160">
+                      	<option value="1">单位管理</option>
+                      	<option value="2">单位在速率统计</option>
+                      	<option value="3">布控管理</option>
+                      	<option value="4">告警信息</option>
+                      	<option value="5">权限管理</option>
+                      	<option value="6">归档日志</option>
+                      	<option value="7">在线单位</option>
+                      	<option value="8">虚拟身份库</option>
+                      	<option value="9">综合统计</option>
+                      	<option value="10">关键字归档</option>
+                      	<option value="11">系统操作日志</option>
+
+                      </select>
+                   <td width="12%" valign="bottom" height="21" > <div align="right">管理厂商&nbsp;</div></td>
+                  <td colspan="2" valign="bottom" height="21" > <input type="text" name="fac_desc" style="width:160px" readonly value="[#fac_desc#]"><a href="#xxm" onclick="opselectfac()">&nbsp;选择</a></td>
+                    
+                    </td>
+                </tr>
+               
+                <tr> 
+                  <td colspan="5" height="27" > 
+                    <div align="center"><strong>使用权限</strong></div></td>
+                </tr>
+                <!-- [#SLPB#] -->
+                <tr> 
+                  <td width="17%" valign="bottom" height="21"> <div align="right"> 
+                      <input type="checkbox" name="[#vara#]" value="[#rolea#]"  [#checka#]>
+                    </div></td>
+                  <td width="32%" valign="bottom" height="21">[#labela#]</td>
+                  <td width="11%" valign="bottom" height="21" > <div align="right"> 
+                      <input type="checkbox" name="[#varb#]" value="[#roleb#]" [#checkb#]>
+                    </div></td>
+                  <td colspan="2" valign="bottom" height="21" >[#labelb#]</td>
+                </tr>
+                <!-- [#SLPE#] -->
+                <tr> 
+                  <td colspan="5" height="12" > <div align="left"> </div></td>
+                </tr>
+              </table>
+</td>
+          </tr>
+        </table>
+        <div align="center"></div>
+      </td>
+  </tr>
+  <tr>
+    <td height="70"><table width="100%" border="0" align="center">
+        <tr> 
+          <td> <div align="center">
+              <input name="ok" type="submit" class="an3"   value="确 认" >
+              &nbsp; 
+              <input name="cancel" type="button" class="an3-1"  onClick="parent.gbck()"   value="关闭">
+              &nbsp; </div></td>
+        </tr>
+      </table></td>
+  </tr></form>
+  <script>form1.useflags.value='[#useflags#]';
+  	      form1.groupid.value="[#groupid#]";
+  	      form1.usrlevel.value="[#level#]";
+  </script>
+</table>
+</body>
+</html>

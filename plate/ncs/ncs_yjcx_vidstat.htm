@@ -1,0 +1,69 @@
+ 
+<html>
+<head>
+<title>联网单位离线告警设置</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<script> 
+	function openlog(t){
+		window.open(t,'open_report3','height=600, width=900, top=0, left=0,toolbar=no,scrollbars=no,resizable=1,menubar=no,status=no;');
+	}
+	
+	
+	function test(){
+	if(form1.bbmobno.value==''){
+	alert('请填写必报手机号');
+	return false;
+	}
+	form1.FunName.value='ncs_offline_warntest';
+	return true;
+	}
+</script>
+</head>
+ 
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" align="center"  >
+<form name="form1" method="post" action="/pronline/Msg">
+ 
+  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr 
+      <td valign="top" ><table width="100%" height="5" border="0" align="center" cellpadding="0" cellspacing="0" >
+          <tr > 
+            <td colspan="2"><div style="font-size:11pt;color:#00237e;font-weight:bold;text-align: center;"></div></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr > 
+      <td >
+        <table width="100%" height="0%" bgcolor="#ffffff" border="1"  bordercolorlight=#89ACED   bordercolordark=#ffffff   align="center" cellpadding="0" cellspacing="0">
+        	
+        	
+   [#SLPB#]     	
+          <tr> 
+          	[#SLPB#]
+            <td  >
+            	 <table width="90%" border="0" align="center">
+                  <tr><td><b>[#service_name#]</b></td><tr>
+                  <tr><td>总数:&nbsp;[#sum#]</td></tr>
+                  <tr><td>昨日:&nbsp;<font color="[#fcolor#]">[#ysum#]</font></td></tr>
+                  <tr><td>日均:&nbsp;[#av#]</td></tr>              
+              </table>
+            </td>
+            [#SLPE#] 
+          </tr>
+    [#SLPE#]     
+          
+       
+        </table>
+      </td>
+    </tr>
+   
+  </table>
+</form>
+
+</body>
+</html>
+

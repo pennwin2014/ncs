@@ -1,0 +1,178 @@
+<html>
+<head>
+<title>Setup WebList</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<script language="JavaScript" type="text/javascript">
+// 全部设置
+
+function GoToUrl(tt)
+{
+    window.open(tt,'_blank','left=10,top=100,width=700,height=600,fullscreen=0,toolbar=no,scrollbars=yes,resizable=1,menubar=no,status=0');
+}
+	
+ function ClickSave()
+ {
+    var str;
+	str="";
+    for(i=0;i<document.images.length;i++) {
+	    if(document.images[i].name.search("ctl") != -1) {
+             if(document.images[i].src.search("y1") != -1) {
+			     str = str + document.images[i].name + "=y;";
+			 }
+			 else if(document.images[i].src.search("x1") != -1) {
+			     str = str + document.images[i].name + "=x;";
+			 }
+		}
+	}
+	document.form1.rtl.value=str;
+	document.form1.save.value="保存";
+	form1.submit();
+  }
+ 
+ function Do_AllSet(ppp,ggg)
+ {
+    for(i=0;i<document.images.length;i++) {
+	    if(document.images[i].name.search(ppp) != -1) {
+             document.images[i].src = "/images/"+ggg+".gif"
+		}
+	}
+ }
+ 
+ 
+ function ClickImg(kk)  {
+    if (kk.src.search("y1.gif") != -1) {
+        kk.src = "/images/x1.gif"  
+    }
+    else if(kk.src.search("x1.gif")!= -1) {
+        kk.src = "/images/no.gif"
+    }
+    else {
+         kk.src = "/images/y1.gif"
+    }
+}
+
+function ClickImga(kk,ii)  {
+    if (kk[ii].src.search("y1.gif") != -1) {
+        kk[ii].src = "/images/x1.gif"  
+    }
+    else if(kk[ii].src.search("x1.gif")!= -1) {
+        kk[ii].src = "/images/no.gif"
+    }
+    else {
+         kk[ii].src = "/images/y1.gif"
+    }
+}
+
+function ClickImg1(indexedNum)  {
+        if (document.images[indexedNum].src.search("/images/y1.gif") != -1) {
+                document.images[indexedNum].src = "/images/x1.gif"  
+        
+        }
+        else {
+                if (document.images[indexedNum].src.search("/images/x1.gif") != -1) {
+                        document.images[indexedNum].src = "/images/y1.gif"
+                 }
+        }
+}
+
+var osid=null;
+
+function Do_Sub(sid)
+{
+     if(osid  != null && osid != sid) {
+    	if(osid.style.display != 'none') {
+            osid.style.display = 'none'; 
+	    }
+	 }
+    if(sid.style.display == 'none') {
+        sid.style.display = ''; 
+	}
+	else {
+        sid.style.display = 'none'; 
+	}
+	osid = sid;
+}
+
+ </script>
+ 
+<link REL=stylesheet HREF="/css/runmit.css" TYPE="text/css">
+<style type="text/css">
+<!--
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+-->
+</style>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+<form name="form1"  method="post" action="/pronline/Msg">
+  <table width="84%" border="0">
+    <tr> 
+      <td  height="20" colspan="2"> 
+        <div align="center"><b>网站访问策略设置</b></div>
+      </td>
+      <td  height="20" width="34%"><img src="/images/y1.gif" width="25" height="22"> 
+        允许 <img src="/images/x1.gif" width="25" height="22"> 禁止 <img src="/images/no.gif" width="25" height="22"> 
+        未设置</td>
+    </tr>
+    <tr> 
+      <td  class="bord2" height="20" colspan="2"> 
+        <div align="left"></div>
+        <table width="96%" border="0">
+          <tr> 
+            <td width="31%">策略名称:[#pname#]</td>
+            <td width="37%">缺省访问:[#vister#]</td>
+            <td width="32%"><a href='javascript:Do_AllSet("ctla","no")'><img src="/images/setu.gif" border=0 alt="全部清除" align="middle" width="20" height="20"></a> 
+              <a href='javascript:Do_AllSet("ctla","y1")'><img src="/images/sety.gif" border=0 alt="全部允许" align="middle" width="20" height="20"></a> 
+              <a href='javascript:Do_AllSet("ctla","x1")'><img src="/images/setx.gif" border=0 alt="全部禁止" align="middle" width="20" height="20"></a> 
+            </td>
+          </tr>
+        </table>
+        
+      </td>
+      <td  class="bord4" width="34%" height="20"> 
+        <input type="hidden" name="rtl" >
+        <input type="hidden" name="FunName" value="ncWebLim_SetWebPol">
+        <input type="hidden" name="pid" value="[#pid#]">
+        <input type="hidden" name="pname" value="[#pname#]">
+        <input type="hidden" name="save">
+        <input type="button" name="save1" value="保存" onClick="ClickSave()">
+      </td>
+    </tr>
+    [#SLPB#] 
+    <tr> 
+      <td  class="bord2" width="12%" height="20"> 
+        <div align="right"><a href="javascript:ClickImg(document.ctlax[#sida#])"> 
+          <img src="/images/[#gifa#].gif" border=0 alt="允许" align="middle" width="19" height="19" name="ctlax[#sida#]"></a> 
+        </div>
+      </td>
+      <td  class="bord2" width="54%" height="20"><a href="javascript:Do_Sub(sweba[#numa#])"><font><b>[#namea#]</b></font></a></td>
+      <td  class="bord4" width="34%" height="20"> <a href='javascript:Do_AllSet("ctlb[#numa#]","no")'><img src="/images/setu.gif" border=0 alt="全部清除" align="middle" width="20" height="20"></a> 
+        <a href='javascript:Do_AllSet("ctlb[#numa#]","y1")'><img src="/images/sety.gif" border=0 alt="全部允许" align="middle" width="20" height="20"></a> 
+        <a href='javascript:Do_AllSet("ctlb[#numa#]","x1")'><img src="/images/setx.gif" border=0 alt="全部禁止" align="middle" width="20" height="20"></a> 
+      </td>
+    </tr>
+    <tr id=sweba[#numa#] style=margin-left:5;display:none;> 
+      <td   class="bord4" colspan="3"  > 
+        <table width="100%" border="0">
+          [#SLPB#] 
+          <tr> 
+            <td   class="bord2" width="5%">&nbsp;</td>
+            <td  class="bord2" width="6%"> 
+              <div align="right"><a href='javascript:ClickImg(document.ctlb[#numa#]x[#sidb#])'><img src="/images/[#gifb#].gif" border=0  align="middle" width="15" height="15" name=ctlb[#numa#]x[#sidb#]></a></div>
+            </td>
+            <td  class="bord4" width="47%">[#nameb#]</td>
+            <td  class="bord4" width="42%"><a href='javascript:GoToUrl("/pronline/Msg?FunName@ncWebLimWebList&group@[#sidb#]&gname@[#nameb#]")' >查看</a></td>
+          </tr>
+          [#SLPE#] 
+        </table>
+      </td>
+    </tr>
+    [#SLPE#] 
+  </table>
+</form>
+</body>
+</html>

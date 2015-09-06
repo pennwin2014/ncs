@@ -1,0 +1,81 @@
+<html>
+
+<head>
+
+<title>Untitled Document</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+
+<script>
+
+function goto(t){
+
+self.location.href=t
+
+}
+function mouseovertr2 (o)
+{
+	var i;
+	df=o.style.backgroundColor
+	o.style.backgroundColor= "#F2F2F2";
+	o.style.borderColor= "#3399ff";
+		
+	for(i=0; i<o.cells.length; i++)
+	{
+		o.cells(i).style.color="#000000";
+	}	
+}
+
+function mouseouttr2(o)
+{
+	o.style.backgroundColor=df
+	for(i=0; i<o.cells.length; i++)
+	{
+		o.cells(i).style.color="#000000";
+	}
+}
+</script>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+
+
+<body bgcolor="#CCCCCC" text="#000000" oncontextmenu="return false" leftmargin="1" topmargin="1">
+<form name="form1" method="post" action="/pronline/Msg">
+  <div align="right">
+    <input type="submit" name="del" value="删除"  class="an3">
+  </div>
+  <table width="100%" border="0" cellspacing="0" bgcolor="#FFFFFF">
+    <tr >
+      <td width="4%" class="bord2" height="18" background="/images/ttt.gif" >&nbsp; 
+      </td>
+      <td width="8%" class="bord2" height="18" background="/images/ttt.gif"> 
+        <div align="center">序号</div>
+    </td>
+      <td width="88%" class="bord2" height="18" background="/images/ttt.gif"> 
+        <div align="center"><b>
+          <input type="hidden" name="FunName" value="ncMailDelSomeRule">
+          <input type="hidden" name="sum" value="[#sum#]">
+          <input type="hidden" name="id" value="[#id#]">
+          <input type="hidden" name="flags" value="[#flags#]">
+          名称</b></div>
+    </td>
+  </tr>
+  <!-- [#SLPB#] -->
+  <tr onmouseover="mouseovertr2(this)" onmouseout="mouseouttr2(this)">
+      <td width="4%" class="bord1"> 
+        <div align="center">
+          <input type="checkbox" name="chk[#num#]" value="[#rid#]">
+        </div>
+      </td>
+    <td width="8%" class="bord1"> 
+        <div align="center">[#rnum#]</div>
+    </td>
+      <td width="88%" class="bord1"> <a target="ftop" title="[#rdesc#]" href="/pronline/Msg?FunName@ncMailDispOneRule&rid@[#rid#]&id@[#id#]&flags@[#flags#]">[#rname#]</a></td>
+  </tr>
+  <!-- [#SLPE#] -->
+</table>
+</form>
+</body>
+
+</html>

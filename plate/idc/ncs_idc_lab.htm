@@ -1,0 +1,179 @@
+<html>
+<head>
+<title>IDC策略维护</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<style>
+
+</style>
+<script language="javascript">
+
+function goto(o){
+window.open(o,"_self","")
+}
+
+</script>
+<script LANGUAGE="JavaScript">
+//this is the tab switching function
+var currentTab;
+var tabBase;
+var firstFlag = true;
+var cno;
+function changeTabs(){
+
+var ctab=window.event.srcElement;
+var ctabID = ctab.id ;
+var tContent = document.all(ctabID);
+//alert(ctabID);
+if((tContent.id=='t1')||(tContent.id=='t2')||(tContent.id=='t3')||(tContent.id=='t4')||(tContent.id=='t5')){
+	if((form1.kid.value=='0')||(form1.kid.value=='')){
+	alert('请先填写案件基本信息');
+	return ;
+  }
+	
+}
+
+if(firstFlag == true){
+currentTab = t0;
+cno=currentTab.id.substring(1);
+
+
+firstFlag = false;
+}
+
+if(window.event.srcElement.className == "tab4"||window.event.srcElement.className == "tab5"||window.event.srcElement.className == "tab7"||window.event.srcElement.className == "tab8"||window.event.srcElement.className == "tab9"){
+	var cno2=parseInt(cno)+1;
+	
+	if(cno==0)
+		currentTab.className = "tab7";
+	else if(cno==1)
+		currentTab.className="tab8";
+	else
+		currentTab.className="tab5";
+
+  if(cno2<2)
+  	eval('document.all.t'+cno2).className="tab5";
+  else if(cno2==1)
+  	eval('document.all.t'+cno2).className="tab8";
+  	
+	currentTab = window.event.srcElement;
+	cno=currentTab.id.substring(1);
+	var cno1=parseInt(cno)+1;
+
+	if(cno==1){
+		currentTab.className = "tab6";
+	}
+  else if(cno==0){
+   currentTab.className="tab3";	 
+	 eval('document.all.t'+cno1).className="tab9";
+  }
+  else{
+	 currentTab.className="tab3";	 
+	 eval('document.all.t'+cno1).className="tab4";
+	}
+		
+tabContentID = currentTab.id ;
+
+//alert(currentTab.id.substring(1));
+
+tabContent = document.all(tabContentID);
+//tabContents.innerHTML = tabContent.innerHTML;
+if(tabContent.id=="t0"){
+	var temp="/pronline/Msg?FunName@ncsIdcRulekey_maintain&kid@"+form1.kid.value+"&groupid@"+form1.groupid.value;
+  document.all.xxmd.src=temp;
+}
+else if(tabContent.id=="t1"){	
+	var temp="/pronline/Msg?FunName@ncsIdc_watchArea&kid@"+form1.kid.value+"&idc_groupid@"+form1.groupid.value;
+  document.all.xxmd.src=temp;
+
+}
+
+//else if(tabContent.id=="t2"){	
+//	var temp="/pronline/Msg?FunName@ncsIdc_watchArea&cid@"+form1.sid.value;
+//  document.all.xxmd.src=temp;
+//
+//}
+//else if(tabContent.id=="t3"){
+//	
+//	var temp="/pronline/Msg?FunName@ncsCaseWarnSet&cid@"+form1.sid.value;
+//  document.all.xxmd.src=temp;
+//}
+//else if(tabContent.id=="t4"){
+//	var temp="/pronline/Msg?FunName@ncsCaseWatchStat&cid@"+form1.sid.value;
+//  document.all.xxmd.src=temp;
+//}
+//else if(tabContent.id=="t5"){
+//	var temp="/pronline/Msg?FunName@ncsCaseWarnlist&cid@"+form1.sid.value;
+//  document.all.xxmd.src=temp;
+//}
+
+
+}
+}</script>
+
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Hide
+function killErrors() {
+return true;
+}
+window.onerror = killErrors;
+// -->
+
+function init()
+{
+	
+	var temp="/pronline/Msg?FunName@ncsIdcRulekey_maintain&kid@[#kid#]&groupid@"+form1.groupid.value;
+  document.all.xxmd.src=temp;
+}
+</SCRIPT>
+<style type="text/css">
+<!--
+body {  font-size: 9pt}
+.tas {  border-color: black #FFFFFF; border-style: solid; border-top-width: 0px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 1px}
+table {  font-size: 9pt}
+.gray1 { filter:gray }
+.ttbbd {  cursor: default}
+-->
+</style>
+
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<body bgcolor="#8cb4e8" leftmargin="0" topmargin="0" onclick="changeTabs()"  style="overflow:hidden" onload="init()" onunload="if(form1.modflag.value=='1') dialogArguments.form1.submit();">
+<form name="form1" id="form1" method="post" action="/pronline/Msg" >
+	<input type="hidden" name="sid" value="[#sid#]">	
+	<input type="hidden" name="modflag" value="">
+	<input type="hidden" name="groupid" value="[#groupid#]">
+	<input type="hidden" name="kid" value="[#kid#]">
+	</form>
+
+    <table border="0"  bordercolorlight=#aaaaaa bordercolordark=#ffffff  CELLPADDING="0" CELLSPACING="0" bgcolor=#8cb4e8 STYLE="width:100%; height:100%">
+    	
+    	  <tr height="26"> 
+           <td id="wlj" colspan="7" align="center" style="font-size:11pt;color:#000000;font-weight:bold;">[#idc_keyword#]([#idc_kname#]策略)</td>
+
+          </tr>
+    	
+      <tr height="26">
+	   
+			<td ID="t0" CLASS="tab3" >关键字维护</td>
+	    <td ID="t1" CLASS="tab8" >布控区域</td> 
+	    <td ID="t2" CLASS="tab10" >&nbsp;</td>
+	    <td ID="t3" CLASS="tab10" >&nbsp;</td>
+	    <td ID="t4" CLASS="tab10" >&nbsp;</td>
+	    <td ID="t5" CLASS="tab10" >&nbsp;</td>
+	    <td  class="tab10" width="440">&nbsp;</td>
+      </tr> 
+
+<tr> 
+<td HEIGHT="*" COLSPAN="7" ID="tabContents" style="position:relative;top:-2;" align="left" > 
+<iframe name="xx1" id="xxmd" src="" width="100%" height="100%" frameborder="no"></iframe>
+
+</td></tr></table>
+ 
+
+
+</body>
+</html>

@@ -1,0 +1,130 @@
+<html>
+<head>
+<title>Setup WebList</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<script language="JavaScript" type="text/javascript">
+// 全部设置
+var imodflags=0;
+function Dounload()
+{
+    if(imodflags == 1) {
+  	     if(confirm("要保存策略[[#name1#]]的设置吗?")) {
+		     ClickSave();
+	    }
+   }
+}
+
+
+function GoToUrl(tt)
+{
+    window.open(tt,'_blank','left=10,top=100,width=700,height=600,fullscreen=0,toolbar=no,scrollbars=yes,resizable=1,menubar=no,status=0');
+}
+	
+ function ClickSave()
+ {
+    var str;
+	str="";
+    for(i=0;i<document.images.length;i++) {
+	    if(document.images[i].name.search("ctl") != -1) {
+             if(document.images[i].src.search("y1") != -1) {
+			     str = str + document.images[i].name + "=y;";
+			 }
+			 else if(document.images[i].src.search("x1") != -1) {
+			     str = str + document.images[i].name + "=x;";
+			 }
+		}
+	}
+    imodflags=0;	
+	document.form1.rtl.value=str;
+	document.form1.save.value="保存";
+	form1.submit();
+  }
+ 
+ function ClickReset()
+ {
+    imodflags=0;	
+	form1.submit();
+ }
+ 
+ 
+ function Do_AllSet(ppp,ggg)
+ {
+    for(i=0;i<document.images.length;i++) {
+	    if(document.images[i].name.search(ppp) != -1) {
+             document.images[i].src = "/images/"+ggg+".gif"
+		}
+        imodflags=1;		
+	}
+ }
+ 
+ 
+ function ClickImg(kk)  {
+    if (kk.src.search("y1.gif") != -1) {
+        imodflags=1;		
+        kk.src = "/images/x1.gif"  
+    }
+    else if(kk.src.search("x1.gif")!= -1) {
+        imodflags=1;		
+        kk.src = "/images/no.gif"
+    }
+    else {
+        imodflags=1;		
+         kk.src = "/images/y1.gif"
+    }
+}
+
+
+ </script>
+ 
+<link REL=stylesheet HREF="/css/runmit.css" TYPE="text/css">
+<style type="text/css">
+<!--
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+-->
+</style>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<body bgcolor="#DEE8FA"  OnUnLoad="Dounload()">
+<br>
+<form name="form1"  method="post" action="/pronline/Msg">
+  <table width="100%" border="0" cellspacing="0">
+    <tr bgcolor="#D6D3CE"> 
+      <td colspan="2"  class="bord3-1"> 
+        <div align="left"></div>
+        <table width="100%" border="0" cellspacing="0">
+          <tr> 
+            <td width="47%" height="13"><b>&nbsp;&nbsp;[[#name1#]] 
+              <input type="hidden" name="rtl" >
+              <input type="hidden" name="FunName" value="ncWebLim_SetWebPol2">
+              <input type="hidden" name="pid" value="[#pid#]">
+              <input type="hidden" name="name" value="[#pname#]">
+              <input type="hidden" name="namea" value="[#name1#]">
+              <input type="hidden" name="id1" value="[#id1#]">
+              <input type="hidden" name="save">
+              </b></td>
+            <td width="20%" height="13" valign="bottom"><a href='javascript:Do_AllSet("ctla","no")'><img src="/images/setu.gif" border=0 alt="全部清除" align="middle" width="16" height="16"></a> 
+              <a href='javascript:Do_AllSet("ctla","y1")'><img src="/images/sety.gif" border=0 alt="全部允许" align="middle" width="16" height="16"></a> 
+              <a href='javascript:Do_AllSet("ctla","x1")'><img src="/images/setx.gif" border=0 alt="全部禁止" align="middle" width="16" height="16"></a> 
+            </td>
+            <td width="33%" valign="bottom"><input name="save1" type="button" class="an3" onClick="ClickSave()" value="保 存"> 
+              <input name="save12" type="button" class="an3" onClick="ClickReset()" value="放 弃"></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    [#SLPB#] 
+    <tr bgcolor="#FFFFFF"> 
+      <td width="11%" height="20" bgcolor="#FFFFFF"  class="bord1"> <div align="center"><a href="javascript:ClickImg(document.ctlax[#sida#])"> 
+          <img src="/images/[#gifa#].gif" border=0 alt="允许" align="middle" width="16" height="16" name="ctlax[#sida#]"></a> 
+        </div></td>
+      <td width="89%" height="20"  class="bord3">&nbsp;<a href="javascript:GoToUrl('/pronline/Msg?FunName@ncWebLimWebList&wid2@[#sida#]&gname@[#namea#]')">[#namea#]</a></td>
+    </tr>
+    [#SLPE#] 
+  </table>
+</form>
+</body>
+</html>

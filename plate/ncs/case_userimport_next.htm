@@ -1,0 +1,103 @@
+<html>
+<head>
+<title>Groupinfo</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<script language="javascript">
+
+
+function goBack()
+{
+	history.back();
+	return false;
+}
+
+
+</script>
+
+<body bgcolor="#DEE8FA">
+<table width="100%" border="0" align="center" cellspacing="0" cellpadding="0" bgcolor="#DEE8FA">
+  
+  <tr> 
+    <td align="center"> 
+    	<form action="/pronline/Msg" method="post"  name="form1" >
+    	<input name="FunName" type="hidden" value="case_user_imp">
+    	<input type="hidden" name="fname" value="[#fname#]">
+    	<input type="hidden" name="cid" value="[#cid#]">
+        <table width="100%" border="0" align="center" cellspacing="0" cellpadding="0">
+          <tr> 
+            <td align="center"> 
+              <table width="100%" border="0" align="center" bordercolorlight=#89ACED   bordercolordark=#ffffff cellspacing="0" cellpadding="0">
+
+                <tr> 
+                  <td align="center">
+                    <table width="100%" border="0" align="center" cellpadding="0"  bgcolor="#DEE8FA">
+
+                      <tr>
+                        <td width="16%" height="25"><div align="right">字段名&nbsp;</div></td>
+                        <td width="84%" height="25" valign="baseline">
+                        <select name="ctype" style="width:300px">
+                        <option value="1">登录名</option>
+                        <option value="2">显示名</option>
+                        <option value="3">计算机名</option>
+                        <option value="4">MAC地址</option>
+                        <option value="5">证件号</option>
+                       
+                         </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td height="25"><div align="right">内容&nbsp;</div></td>
+                        <td height="25" valign="baseline">
+                        <select name="dispname" style="width:300px">
+                        <option value="[#dispname_num#]">[#dispname_name#]</option>
+            			      [#SLPB#]
+                        <option value="[#iNum#]">[#caTemp#]</option>
+                        [#SLPE#]
+                        <option value="">无</option>
+                         </select>
+                        </td>
+                      </tr>
+ 
+                      <tr>
+                        <td height="25"><div align="right">使用状态&nbsp;</div></td>
+                        <td height="25" valign="baseline">
+                        <select name="flags" style="width:300px">
+                       <option value="0">启用</option>
+                        <option value="1">停用</option>
+                        </select>
+                        </td>
+                      </tr>
+  
+                                
+                      <tr>
+                        <td height="25"><div align="right">忽略第一行</div></td>
+                        <td height="25" valign="baseline"><input type="checkbox" name="first" value="checkbo"  >
+
+                        	</td>
+                      </tr>
+                      <tr>
+                        <td height="25"><div align="right"> </div></td>
+                        <td height="25" valign="baseline"> <input name="ok" type="button" class="an3" id="ok" value="确 认" onclick="form1.submit();document.all.ok.disabled=1;">
+
+                      </tr>
+                    </table></td>
+                </tr>
+              </table>
+</td>
+
+          </tr>
+        </table>
+      </form></td>
+  </tr>
+</table>
+<br>
+</body>
+</html>

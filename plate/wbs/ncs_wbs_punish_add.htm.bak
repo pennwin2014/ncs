@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<script>
+
+     function Add()
+    {
+	    if(form1.service_code.value=='')
+	    {
+	    	alert('请填写服务场所代码');
+	    	return false;
+	    	}
+	    
+	    if(form1.punish_date.value=='')
+	    {
+	    	alert('请填写处罚日期');
+	    	return false;
+	    	}
+	    
+	    if(form1.punish_result.value=='')
+	    {
+	    alert('请填写处罚结果代码');
+	    return false;
+	    }	
+	    	
+	    	return true;
+    }
+	 
+</script>
+
+</head>
+
+<BODY bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0"  >
+	<form name="form1" method="post" action="/pronline/Msg">
+  <input type="hidden" name="FunName" value="ncsWebPunishAdd1">
+  <input type="hidden" name="punishinfo_id" value="[#punishinfo_id#]">
+<TABLE id=table1 style="BORDER-COLLAPSE: collapse" align="center" cellPadding=0 width=100% border=0>
+  <TR>
+      <td align="center"  >
+      	<table width="100%" height="35" border="0" align="center" cellpadding="0" cellspacing="0" >
+          <tr > 
+            <td colspan="3" width="90%"> <div style="font-size:11pt;color:#00237e;font-weight:bold;text-align: right;">
+              <div align="center">场所端处罚结果信息维护</div>
+            </div></td>
+            
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr> 
+
+      <td height="163" align="center" >  
+      	<div style="height:560px;overflow-y:scroll;">
+        <div align="center">
+          <table width="49%" height="177"   border="0"    cellpadding="0" cellspacing="0"    bordercolorlight=#89ACED   bordercolordark=#ffffff>
+            <tr> 
+              <td height="177" valign="top"><br> 
+                
+                <table width="115%" height="161" border="0" align="center">
+                  
+                  
+                  
+                  
+                  
+                  
+                  <tr height="26"> 
+                    <td height="32" ><div align="right">服务场所代码</div></td>
+                    <td height="32" > <input type="text" name="service_code" value="[#service_code#]" size="33" maxlength="31">                    </td>
+                  </tr>
+                  <tr height="26"> 
+                    <td height="26" ><div align="right">处罚日期(格式:YYYY-MM-DD HH:MM:SS) </div></td>
+                    <td height="26" > <input type="text" name="punish_date" value="[#punish_date#]" size="33" maxlength="16">
+                    </td> 
+                  </tr>
+                  <tr height="26"> 
+                    <td height="26" ><div align="right">处罚结果</div></td>
+                    <td height="26" > 
+                    	<select name="punish_result" >
+                    		<option value="10000000">警告</option>
+                    	  <option value="11000000">警告、罚款</option>
+                    	  <option value="11100000">警告、罚款、停机整顿</option>
+                    	  <option value="11110000">警告、罚款、停机整顿、停机联网</option>
+                    	  
+                    	  <option value="01000000">罚款</option>
+                    	  <option value="01100000">罚款、停机整顿</option>
+                    	  <option value="01110000">罚款、停机整顿、停机联网</option>
+                    	  <option value="00100000">停机整顿</option>
+                    	  <option value="00110000">停机整顿、停机联网</option>
+                    	  <option value="00010000">停机联网</option>
+                    	</select>
+                    	
+    <!--                	<input type="text" name="punish_result" value="[#punish_result#]" size="33" maxlength="31">   -->     </td>
+                  </tr>
+                  
+                                    <tr height="26"> 
+                    <td height="26" ><div align="right">是否采用这种处罚结果</div></td>
+                    <td height="26" > 
+                    	<select name="result_flag" >
+                    		<option value="0">不采用</option>
+                    	  <option value="1">采用</option>
+
+                    	</select>
+                    	
+    <!--                	<input type="text" name="punish_result" value="[#punish_result#]" size="33" maxlength="31">   -->     </td>
+                  </tr>
+                  
+                  <tr height="26">
+                   <td height="30" align="left"> <div align="right">
+                     <input type="submit" name="save" value="保 存" class="an3" onClick="return Add()">
+                   </div></td> 
+               &nbsp;&nbsp; 
+                <td align="left"><input type="reset" name="cancel" value="取消返回" class="an3-1" onClick="history.back()">&nbsp;</td>
+                  </tr>
+                </table>              
+                <p>&nbsp;</p>   
+				      
+            </tr>
+          </table>
+      </div></td>
+	  
+   </tr>
+    
+  </table>
+
+	</form>
+	
+	<script>form1.punish_result.value='[#punish_result#]';
+		      form1.result_flag.value='[#result_flag#]';
+	</script>
+</BODY>
+</html>
+

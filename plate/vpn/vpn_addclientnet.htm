@@ -1,0 +1,108 @@
+<html>
+<head>
+<title>系统功能选项</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<script>
+	function ok(){
+	if(form1.ip.value==''||form1.mask.value==''){
+	alert('起始IP和子网掩码不能为空');
+	return false;
+	}
+	return true;
+	}
+</script>
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" align="center"  style="overflow:hidden">
+<form name="form1" method="post" action="/pronline/Msg">
+<input type="hidden" name="sid" value="[#sid#]">
+  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td valign="top" ><table width="100%" height="35" border="0" align="center" cellpadding="0" cellspacing="0" >
+          <tr > 
+            <td colspan="2"> <div style="font-size:11pt;color:#00237e;font-weight:bold;text-align: center;">VPN客户端可访问网段</div></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr> 
+      <td >
+        <table width="90%" height="0%" border="1"  bordercolorlight=#89ACED   bordercolordark=#ffffff   align="center" cellpadding="0" cellspacing="0">
+          <tr> 
+            <td valign="top" height="150" width="100%"> 
+            	<table width="95%" border="0" align="center">
+            		<tr height="20px">
+				          	<td>&nbsp;</td>
+				          	<td>&nbsp;</td>
+				          </tr>
+                <tr height="30"> 
+                  <td width="21%">&nbsp;网段起始IP</td>
+                  <td width="35%">&nbsp;<input type="text" name="ip" style="width:120px;" value="[#ip#]" maxlength="20">&nbsp;&nbsp
+                  <td width="9%">&nbsp;</td>
+                  <td width="35%">&nbsp;</td>
+                </tr>
+               
+               
+               
+                 <tr height="30"> 
+                  <td >&nbsp;子网掩码</td>
+                  <td >&nbsp;<input type="test" name="mask" style="width:120px;" value="[#mask#]">&nbsp;&nbsp
+                  <td >&nbsp;</td>
+                  <td >&nbsp;</td>
+                </tr>
+              
+				          <tr height="30px">
+				          	<td>&nbsp;</td>
+				          	<td>&nbsp;</td>
+				          </tr>
+				          
+				          
+                  	</table>
+                  </td>
+                </tr>
+              </table>
+                  	
+                  	</td>
+                  	
+                  	
+                  	
+                  	
+            
+                </tr>
+               
+               
+               
+               
+              </table>
+              </td>
+              
+              
+              
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td height="70" ><table width="100%" border="0" align="center">
+      	<tr><td>&nbsp;</td></tr>
+          <tr> 
+            <td align="center"> 
+                <input type="hidden" name="FunName" value="vpnClientNetSave">
+                <input type="submit" name="next" value="确 认" class="an3" onclick="return ok()">
+                &nbsp; 
+                <input type="button" name="cancel" value="关 闭" class="an3" onclick="self.close()">
+                &nbsp;
+                
+              </td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+</form>
+
+</body>
+</html>

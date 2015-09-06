@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<script>
+   f = '';
+   function goto(t){
+       parent.treeBot.location.href=t+f;
+   }
+
+   function gotoRight(t){
+       parent.parent.sbpm_right.location.href=t+f
+   }
+
+  function clickImage(kk)
+   {
+       for(i=0;i<document.images.length;i++) {
+           if(document.images[i].src.search("/images/folderopen.gif") != -1) {
+                document.images[i].src = "/images/folder.gif";
+           }
+       }
+       kk.src = "/images/folderopen.gif";
+   }
+              
+</script>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<style>
+<!--
+
+.css1 {
+	border: 1px solid #C5C5C5;
+	height: 15px;
+	font-size: 12px;
+}
+table {
+	font-size: 12px;
+	font-family: "Arial", "Helvetica", "sans-serif";
+	 "Verdana", "Arial", "Helvetica", "sans-serif", "宋体"; 
+}
+
+
+
+a:link {
+	text-decoration: none;	color: #000000;
+}
+a:visited {
+	text-decoration: none;	color: #000000;
+}
+a:hover {
+	text-decoration: none;
+	color: #000000;
+}
+a:active {
+	text-decoration: none;
+	color: #000000;
+    font-weight: bold;
+}
+
+
+
+-->
+</style>
+</head>
+
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" bgcolor="#eeeeee" style="SCROLLBAR-FACE-COLOR: #c1d8f9; OVERFLOW-y: scroll;overflow-x:hidden; SCROLLBAR-SHADOW-COLOR: #c1d8f9; SCROLLBAR-3DLIGHT-COLOR: #c1d8f9; SCROLLBAR-ARROW-COLOR: #5985ce; SCROLLBAR-DARKSHADOW-COLOR: #c1d8f9;" onload="parent.parent.document.getElementById('changyj').src='/images/images2/yuanjiao2.gif'" onunload="parent.parent.document.getElementById('changyj').src='/images/images2/yuanjiao2-1.gif' ">
+<table width="145" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td colspan="2"><img src="/images/base.gif" width="19" height="16"> <a onclick="goto('/pronline/Msg?FunName@ncWebTreeDispCorp&plate@tree/ncs_tree_zdsrule_bot.htm&flag@[#flag#]');gotoRight('/pronline/Msg?FunName@ncsWebReplace&flag@[#flag#]&main_name@[#main_name#]&plate@ncs/ncs_ssjkrule_main.htm&uflags@0&uflagsname@全部单位')" href="#xxm">全部单位</a></td>
+  </tr>
+  <!-- [#SLPB#] -->
+  <tr> 
+    <td><img src="/images/joinbottom.gif" width="19" height="16"><a onClick="clickImage(document.k[#groupid#]);goto('/pronline/Msg?FunName@ncWebTreeDispCorp&groupid@[#groupid#]&plate@tree/ncs_tree_zdsrule_bot.htm&flag@[#flag#]');gotoRight('/pronline/Msg?FunName@ncsWebReplace&flag@[#flag#]&main_name@[#main_name#]&plate@ncs/ncs_ssjkrule_main.htm&uflags@1&uflagsname@[#groupname#]&userid@[#groupid#]')" href="#xxm"><img name="k[#groupid#]" src="/images/folder.gif" width="19" height="16" border="0"></a></td>
+    <td width="96"><a onClick="goto('/pronline/Msg?FunName@ncWebTreeDispCorp&groupid@[#groupid#]&plate@tree/ncs_tree_ssrule_bot.htm&flag@[#flag#]');gotoRight('/pronline/Msg?FunName@ncsWebReplace&flag@[#flag#]&main_name@[#main_name#]&plate@ncs/ncs_ssjkrule_main.htm&uflags@1&uflagsname@[#groupname#]&userid@[#groupid#]')" href="#xxm">[#groupname#]</a></td>
+  </tr>
+  <!-- [#SLPE#] -->
+</table>
+</body>
+</html>

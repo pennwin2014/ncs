@@ -1,0 +1,71 @@
+<!-- saved from url=(0022)http://internet.e-mail -->
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+
+<SCRIPT LANGUAGE="JavaScript">
+var ll=[#CurPg#];
+var yy=[#TotPg#];
+parent.form1.CurPg.value=ll;
+parent.form1.TotPg.value=yy;
+parent.form1.TotRec.value='[#TotRec#]';
+function w1()
+{
+var yy='<tbody>';
+  yy=yy+'<div class="tScroll" id="tC">';
+  yy = yy + '<table cellspacing=0 bordercolor="#DFDFDF"  class="listDataTable" border="0" align="center" width="100%" >';  
+  yy = yy + '<tr bgcolor="#6382BD" height="18" class="tableHead"  style="top:expression(document.getElementById(\'tC\').scrollTop)">';
+  yy = yy + '<td width="40" align="center" class="bord2"><font color="#FFFFFF"><input type="button" name="b1" value="选择" class="anniu_1" onClick="allChecked()"></font></td>';
+  yy = yy + '<td width="20%" align="center" class="bord2"><font color="#FFFFFF">网络账号</font></td>';
+  yy = yy + '<td width="7%" align="center" class="bord2"> <font color="#FFFFFF">类别</font></td>';
+  yy = yy + '<td width="13%" align="center" class="bord2"> <font color="#FFFFFF">使用时间</font></td>';    
+  yy = yy + '<td width="12%" align="center" class="bord2"><font color="#FFFFFF">上网IP</font></td>';
+  yy = yy + '<td width="17%" align="center" class="bord2"> <font color="#FFFFFF">单位名称</font></td>';
+  yy = yy + '<td width="12%" align="center" class="bord2"> <font color="#FFFFFF">用户名</font></td>';
+  yy = yy + '<td width="14%" align="center" class="bord2"><font color="#FFFFFF">备注</font></td>';
+
+  yy = yy + '</tr>';
+
+   <!-- [#SLPB#] -->
+  yy = yy + '<tr onMouseOver="mouseovertr2(this)" height="18" onMouseOut="mouseouttr2(this)" bgcolor="#ffffff">';
+  yy = yy + '<td  align="center" class="bord1"> <input type="checkbox" name="ch[#num#]" value="[#sid#]"> </td>';
+  yy = yy + '<td class="bord1"  nowrap  title="[#name#] ">&nbsp;[#name#]</td>';
+  yy = yy + '<td class="bord1"   nowrap >&nbsp;[#ntype#]</td>';
+  yy = yy + '<td class="bord1"  nowrap  >&nbsp;[#lasttime#]</td>';
+  yy = yy + '<td class="bord1"  nowrap  >&nbsp;[#ip#]</td>';
+  yy = yy + '<td class="bord1"   nowrap >&nbsp;[#cname#]</td>';
+  yy = yy + '<td class="bord1"  nowrap  >&nbsp;<a href="#xxm" onclick=showuser("[#did#]","[#uid#]")>[#username#]</a></td>';
+  yy = yy + '<td class="bord3"  nowrap title="[#descr#] " >&nbsp;[#descr#]</td>';
+  yy = yy + '</tr>';
+          <!-- [#SLPE#] -->
+
+        
+          <!-- [#SLPB#] -->
+  yy = yy + '<tr id=[#snum#] bgcolor="#ffffff">';
+  yy = yy + '<td class="bord1" >&nbsp;</td>';
+  yy = yy + '<td class="bord1" >&nbsp;</td>';
+  yy = yy + '<td class="bord1" >&nbsp;</td>';
+  yy = yy + '<td class="bord1" >&nbsp;</td>';
+  yy = yy + '<td class="bord1" >&nbsp;</td>';
+  yy = yy + '<td class="bord1" >&nbsp;</td>';
+  yy = yy + '<td class="bord1" >&nbsp;</td>';
+ 
+  yy = yy + '<td class="bord3" >&nbsp;</td>';
+  yy = yy + '</tr>';
+          <!-- [#SLPE#] -->  
+  yy=yy+'</table>';
+  yy=yy+'</div>';
+  yy = yy + '</tbody>';
+
+  parent.ff.innerHTML=(yy);
+}
+setTimeout('w1()',1000);
+
+ </SCRIPT> 
+
+</head>
+<body>
+
+</body>
+</html>

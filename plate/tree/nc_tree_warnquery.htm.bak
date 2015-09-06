@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<script>  
+  function gotoRight(t){
+       top.sbpm_right.location.href=t
+   }   
+function ss()
+{
+if(event.keyCode==13)
+form1.submit();
+}      
+</script>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<style>
+<!--
+
+.css1 {
+	border: 1px solid #C5C5C5;
+	height: 15px;
+	font-size: 12px;
+}
+table {
+	font-size: 12px;
+	font-family: "Arial", "Helvetica", "sans-serif";
+	 "Verdana", "Arial", "Helvetica", "sans-serif", "宋体"; 
+}
+
+
+
+
+a:link {
+	text-decoration: none;	color: #00237e;
+}
+a:visited {
+	text-decoration: none;	color: #00237e;
+}
+a:hover {
+	text-decoration: none;
+	color: #00237e;
+}
+a:active {
+	text-decoration: none;
+	color: #00237e;
+    font-weight: bold;
+}
+
+.style7 {
+  
+	font-size: 12px;
+	color: #00237e;
+	font-weight: bold;
+}
+-->
+</style>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" bgcolor="#d0e1fa" style="overflow:hidden">
+	<form name="form1" method="post" action="/pronline/Msg" target="sbpm_right"> 
+  <input type="hidden" name="FunName" value="ncsCaseWarnlist">
+
+<table width="142" border="1" leftmargin="2" cellspacing="0" cellpadding="0">
+	<tr height="25"><td align="center" class="style7">查询条件
+    	</tr>
+	<tr >
+    <td colspan="2" width="164">
+    	<table width="100%">
+       <tr><td>&nbsp;上网场所
+    	</tr>
+    	<tr><td>
+    		<select name="did" style="width:138">
+    			<option value="">不限</option>
+    			[#SLPB#]
+    			<option value="[#userid#]">[#dispname#]</option>
+    			[#SLPE#]
+    		</select>
+       </td>
+    	</tr>
+    	<tr><td>&nbsp;上网位置
+    	</tr>
+    	<tr><td>
+    	<input type="text" name="position" size="18" value="" onKeyPress="ss()"></td>
+    	</tr>
+    	<tr><td>&nbsp;IP地址
+    	</tr>
+    	<tr><td>
+    	<input type="text" name="sip" size="18" value="" onKeyPress="ss()"></td>
+    	</tr>
+    	<tr><td>&nbsp;用户名
+    	</tr>
+    	<tr><td>
+    	<input type="text" name="udisp" size="18" value="" onKeyPress="ss()"></td>
+    	</tr>
+    </table>
+  </td>
+  </tr>
+   <tr>
+   	 <td colspan="2" width="164">
+    	<table width="100%">
+    		<tr>
+   	    <td>&nbsp;案件名称
+    	  </tr>
+    	  <tr><td>
+    	   <input type="text" name="casename" size="18" value="" onKeyPress="ss()"></td>
+    	  </tr>
+    	  <tr>
+   	    <td>&nbsp;告警内容
+    	  </tr>
+    	  <tr><td>
+    	   <input type="text" name="message" size="18" value="" onKeyPress="ss()"></td>
+    	  </tr>
+    	 </table>
+    	</td>
+    </tr>
+ 	<tr >
+    <td colspan="2" width="164">
+    	<table width="100%">
+
+    	<tr><td>&nbsp;告警时间
+    	</tr>
+    	<tr><td>
+    	从&nbsp;<input type="text" name="sdate" size="15" value="[#sdate#]" onKeyPress="ss()"></td>
+    	</tr>
+    	
+    	<tr><td>
+    	到&nbsp;<input type="text" name="edate" size="15" value="[#edate#]" onKeyPress="ss()"></td>
+    	</tr>
+    	
+    </table>
+  </td>
+  </tr>
+ 
+  	<tr >
+    <td colspan="2" align="center" height="28" width="164">
+    <input type="submit" name="cx" class="an3" value="查 询">	
+  </td>
+  </tr>
+
+</table>
+</div>
+</td>
+</tr>
+</table>
+</form>
+
+</body>
+</html>

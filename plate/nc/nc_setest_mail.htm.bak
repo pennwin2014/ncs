@@ -1,0 +1,223 @@
+
+<!--新建,编辑,删除页面模版-->
+<html>
+
+<head>
+
+<title>邮件测试</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+
+<META HTTP-EQUIV="Expires" CONTENT="0">
+
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+
+<style>
+.tab{border-top:solid thin #E0E0E0;border-right:solid thin gray;border-left:solid thin #E0E0E0;font-family:Verdana;font-size:10pt;text-align:center;font-weight:normal;cursor:default}
+.selTab{border-left:solid thin white ;border-top:solid thin white;border-right:solid thin black;font-weight:bold;text-align:center;background-color:D8E1E7;cursor:default}
+.selTabBase{border-top:solid thin #dfdfdf}
+.TabBase{border-top:solid thin #ffffff}
+ .an308 { font-size: 9pt; background-color: #cccccc; 
+  vertical-align: middle; height: 20px; width: 60px; border-top-width: 1px; border-right-width: 
+  1px; border-bottom-width: 1px; border-left-width: 1px; cursor: hand; background-repeat: no-repeat}
+.tScrollw {
+    SCROLLBAR-FACE-COLOR: #c1d8f9; 
+    OVERFLOW: scroll;
+    SCROLLBAR-SHADOW-COLOR: #c1d8f9; 
+    SCROLLBAR-3DLIGHT-COLOR: #c1d8f9;
+     SCROLLBAR-ARROW-COLOR: #5985ce; 
+     SCROLLBAR-DARKSHADOW-COLOR: #c1d8f9;
+    overflow-x:hidden;
+    cursor: default;
+    }  
+</style>
+
+<script>
+function selDia_cust1(id,cna,linname,tel,condition)
+{
+
+	var objEva=new Array();
+	objEva[3]=eval('document.all.'+id);
+	objEva[0]=eval('document.all.'+cna);
+	objEva[2]=eval('document.all.'+linname);
+	objEva[4]=eval('document.all.'+tel);
+	objEva[101]=condition;
+	var oDia=showModalDialog("/crm_cod/dia_pub_cust.htm",objEva,
+		 "status:no;center:yes;help:no;minimize:no;maximize:no;border:thick;statusbar:no;dialogWidth:430px;scroll:none;dialogHeight:430px;overflow:none");
+		
+}
+
+function selectcpno()
+{
+cplice.location.href="/pronline/Msg?FunName@cplice_info+azxx_serno@"+form1.azxx_serno.value;
+
+}
+function check(form){
+	var obj=document.getElementById("dhzc");
+	if(obj.checked){
+		form.khwt_pgd.value="";
+		//document.all.khwt_dhbh.style.display="readonly";
+		document.all.khwt_dhbh.style.display="";
+	}	else 
+	document.all.khwt_dhbh.style.display="none";
+}
+
+function SAVE()
+{
+	if(form1.khwt_preple.value=='')
+	{
+		alert('发件人不能为空');
+		return;
+	}
+	if(form1.khwt_man.value=='')
+	{
+		alert('收件人不能为空');
+		return;
+	}
+	if(form1.khwt_title.value=='')
+	{
+		alert('标题不能为空');
+		return;
+	}
+	if(form1.khwt_content.value=='')
+	{
+		alert('邮件内容不能为空');
+		return;
+	}
+	editSave();
+}
+function editSave()
+{
+	form1.submit();
+//	dialogArguments.form1.khwt_preple.value=form1.khwt_preple.value;		
+//	dialogArguments.form1.khwt_man.value=form1.khwt_man.value;	
+//	dialogArguments.form1.khwt_title.value=form1.khwt_title.value;	
+//	dialogArguments.form1.khwt_content.value=form1.khwt_content.value;	
+	
+//	dialogArguments.form1.FunName.value='nc_setest_mail';
+//	dialogArguments.form1.submit();
+//	alert('gggg');
+//	self.close();	
+	//dialogArguments.close();
+}
+
+function upfj()
+{	
+	var temp;
+//temp="/pronline/Msg?FunName@ncWebReplace&plate@/nc75_mail/mailloadFrm.htm&vistlog_id@"+form1.khwt_id.value+"&khwt_now_man@"+form1.khwt_now_man.value+"&fj_flag@"+form1.fj_flag.value;
+//temp="/pronline/Msg?FunName@ncWebReplace&plate@nc75_mail/mailloadFrm.htm";
+temp="/pronline/Msg?FunName@ncWebReplace&plate@nc75_mail/nc_mailloadFrm.htm&fj_flag@1";
+
+var oDia=showModalDialog(temp,window,
+		 "resizable:no; status:no;center:yes;help:no;minimize:no;maximize:no;border:thick;statusbar:no;dialogWidth:420px;scroll:none;dialogHeight:240px;overflow:none");	
+var numvalue=form1.fj_flag.value*1;													//类型转换
+	form1.fj_flag.value=numvalue+1;
+	//alert(form1.fj_flag.value);
+}
+
+
+</script>
+<script src="/js/xxm_date.js"></script>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<body  bgcolor="white" text="#000000" leftmargin="0" topmargin="0"  style="overflow:hidden" >
+ <script language="javascript">
+        cainit();
+</script>
+<form name="form1" id="form1" method="post" action="/pronline/Msg" >
+ <input type="hidden" name="FunName" value="crm_problemfol_mail">
+ <input type="hidden" name="khwt_id" value="[#khwt_id#]">
+ <input type="hidden" name="khwt_mail1" value="[#khwt_mail1#]">
+ <input type="hidden" name="khwt_mail2" value="[#khwt_mail2#]">
+ <input type="hidden" name="khwt_pgd" value="[#khwt_pgd#]">
+ <input type="hidden" name="fname" value="[#fname#]">
+ <input type="hidden" name="filedesc" value="[#filedesc#]">
+
+ <input type="hidden" name="fj_flag" value="[#fj_flag#]">
+ 
+  <table width="98%"  border="0" cellspacing="0" cellpadding="0" align="center" height="100%"> 
+    <tr valign="top"> 
+    <td width="100%" valign="top">
+     <table width="100%"  border=1 bordercolordark=#ffffff bordercolorlight=#999999 cellspacing="0" cellpadding="5" bgcolor="#DEE8FA">
+     
+      <tr height="30">
+       <td colspan="2" valign="top">
+         <table width="100%" border="0" cellspacing="0" cellpadding="0">
+         <tr>
+             <td height="30" width="18%"> 
+              <table width="100" height="30" border=1 cellpadding="0" cellspacing="0"  bgcolor="#DEE8FA"  bordercolorlight=#000000 bordercolordark=#ffffff background="/images/pic_3.gif"   >
+                <tr> 
+                  <td width="74" height="22"  > 
+                    <div align="center">
+                      <table width="100" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                          <td width="20">&nbsp;</td>
+                          <td width="60" > 
+ 				          						<div align="center" style="font-size: 11pt">邮件测试</div></td>
+                          <td width="20">&nbsp;</td>
+                        </tr>
+                      </table>
+                    </div></td>
+                </tr>
+              </table>
+            </td>
+           	<td   align="right" colspan="5">
+   	      		<input type="button" name="Buttonyj" value="&nbsp;立即发送&nbsp;" class="an3-1"  onclick="SAVE()">   	     
+              <input type="button" name="Button2" value="&nbsp;返回&nbsp;" class="an3" onClick="self.close()">
+           	</td>
+          </tr>
+          </table>
+         </td>
+      </tr>
+     	
+		   		<tr height="30">
+       			<td  width="18%" align="center" bgcolor="#DEE8FA">发件人&nbsp;</td>
+       			<td colspan="5">
+			  			<input name="khwt_preple" type="text" value="[#khwt_preple#]" size="55" >
+			  		</td>
+		   		</tr>
+		   
+		   		<tr height="30">
+       			<td  width="18%" align="center" bgcolor="#DEE8FA">收件人&nbsp;</td>
+       			<td colspan="5">
+			  			<input name="khwt_man" type="text" value="[#khwt_man#]" size="55" >
+			  		</td>
+		   		</tr>
+		  
+		   		<tr height="30">
+       			<td  width="18%" align="center" bgcolor="#DEE8FA">标题&nbsp;</td>
+       			<td colspan="5">
+			  		  <input name="khwt_title" type="text" value="[#khwt_title#]" size="55" >
+			  	  </td>
+		      </tr>
+		   
+		      <tr height="80">
+      		  <td  width="75" align="center" bgcolor="#DEE8FA">正文&nbsp;</td>
+			  	  <td colspan="10"><textarea  name="khwt_content" class="tScrollw" cols="54" rows="10">[#khwt_content#]</textarea></td>           
+		      </tr> 
+<!--			   
+		  		<tr height="30">
+       			<td  width="18%" align="center" bgcolor="#DEE8FA"><a href="#xxm"  onclick="upfj()"><font color='blue'><u>pdf附件上传&nbsp;</u>&nbsp;</font></a></td>
+       			<td colspan="5">
+			  		  <input name="temp_file" type="text" value="[#temp_file#]" size="55" readonly>
+			  	  </td>
+		      </tr>	 
+-->  		   	   
+		    </table>
+       </td>
+      </tr>
+
+		     </table>
+        </td>
+      </tr>
+
+  	</table>  
+  </form>
+
+ </body>
+</html>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    

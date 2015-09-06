@@ -1,0 +1,170 @@
+<html>
+<head>
+<title>Idc策略信息</title>
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+<script>
+	function opselect()
+	{
+	showModalDialog("/pronline/Msg?FunName@ncWebSelectClass", window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:420px;scroll:yes;dialogHeight:520px');
+	}
+	function cgqx(){
+	var i,j;
+	j=form1.groupid.options.length;
+	for(i=0;i<j;i++){
+	if(form1.groupid.options[i].value==form1.groupid.value)
+	{
+		form1.opt.value=form1.groupid.options[i].text;
+		form1.opt1.value=form1.groupid.value;
+		}
+	}
+	if(form1.groupid.value==''){
+	form1.opt.value='全部';
+	form1.opt1.value='all';
+	}
+	}
+	
+	function init(){
+	if(form1.userid.value==''){
+	cgqx();
+}
+	}
+	
+	function queren(){
+		if(form1.idc_gid.value==''){
+			alert("组Id不能为空");
+			return;	
+		}
+		if(form1.idc_keyword.value==''){
+			alert("关键字不能为空");
+			return;	
+		}
+		form1.submit();	
+	}
+</script>
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" >
+<div align="center"></div>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+ <form name="form1" method="post" action="/pronline/Msg" >
+ 	<input type="hidden" name="opt1" value="[#opt#]">
+ 	<input type="hidden" name="idc_gid" value="[#idc_gid#]">
+  <tr> 
+    <td><table width="100%" height="30" border="0" align="center" cellpadding="0" cellspacing="0" >
+        <tr > 
+          <td colspan="2" style="font-size:11pt;color:#00237e;font-weight:bold;text-align: center;">策略维护【[#idc_gname#]】</td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr> 
+    <td height="108">
+        <input type="hidden" name="FunName" value="ncsIdcRulesSave">
+        <input type="hidden" name="idc_sid"  value="[#idc_sid#]">
+        <input type="hidden" name="sumright"  value="[#sumright#]">
+        <br>
+        <table width="80%" border="1"    bordercolorlight=#89ACED   bordercolordark=#ffffff    align="center" cellpadding="0" cellspacing="0">
+          <tr> 
+            <td valign="top"><br>
+        <table width="90%" border="0" align="center" cellspacing="0">
+          <!--      <tr> 
+                  <td width="17%" valign="bottom" height="21" > <div align="right">策略类别&nbsp;</div></td>
+                  <td width="34%" valign="bottom" height="21" >
+                  	
+                  	<select name="idc_gid" style="width:157px">
+			   							<option value="" ></option>
+			   							<option value="82000" >禁止网页关键字</option>
+			   							<option value="83000">禁止用户查看URL</option>
+			   							<option value="84000">禁止POST</option>
+			   							<option value="88000">禁止访问者IP</option>
+			   							<option value="86000">下发重点关注IP</option>
+			   							<option value="85000">下发重点关注用户名</option>
+			   							<option value="87000">下发重点关注邮箱</option>
+		   							</select>
+                  </td> -->
+                  <td width="17%" valign="bottom" height="21"> <div align="right">单位名&nbsp;</div></td>
+                  <td width="34%" valign="bottom" height="21" > <input type="text" name="idc_dname" size="21" maxlength="31" value="[#idc_dname#]"> 
+                  </td>
+                  <td width="11%" valign="bottom" height="21" > <div align="right">关键字&nbsp;</div></td>
+                  <td width="35%" height="21" colspan="2" valign="bottom" > <div align="left"> 
+                      <input type="text" name="idc_keyword" size="33" maxlength="100" value="[#idc_keyword#]">
+                    </div></td>
+                </tr>
+                <tr> 
+                  <td width="17%" valign="bottom" height="29"> <div align="right">修改时间&nbsp;</div></td>
+                  <td width="34%" valign="bottom" height="29" > <div align="left"> 
+                   <input type="text" name="idc_mtime" size="21" maxlength="31" readonly value="[#idc_mtime#]"> 
+                    </div></td>	
+                  
+                  <td width="11%" valign="bottom" height="21"> <div align="right">关键字组名&nbsp;</div></td>
+                  <td colspan="2" valign="bottom" height="21" > <input type="text" name="idc_kname" size="33" maxlength="45" value="[#idc_kname#]"> 
+                  </td>
+                  
+                  
+                </tr>
+
+                
+
+                <tr> 
+                  <td width="17%" valign="bottom" height="29"> <div align="right">状态&nbsp;</div></td>
+                  <td width="34%" valign="bottom" height="29" > <div align="left"> 
+                   <select name="idc_sflag" style="width:157px"><option value="1" selected>正常</option><option value="0">禁用</option></select>
+                    </div></td>
+                  <td width="14%" valign="bottom" height="21"> <div align="right">类别&nbsp;</div></td>
+                  <td colspan="2" valign="bottom" height="21" > <div align="left"> 
+                   <select name="idc_dtype" style="width:243px"><option value="0" selected>单位</option><option value="1">单位类别</option><option value="2">单位组</option></select>
+                    </div>
+                  </td>
+                </tr>
+               	
+               	<tr> 
+                  <td width="17%" valign="bottom" height="21"> <div align="right">起始时间&nbsp;</div></td>
+                  <td width="34%" valign="bottom" height="21" > <input type="text" name="idc_stime" size="21" maxlength="31" value="[#idc_stime#]"> 
+                  </td>
+                  <td width="14%" valign="bottom" height="21"> <div align="right">终止时间&nbsp;</div></td>
+                  <td colspan="2" valign="bottom" height="21" > <input type="text" name="idc_etime" size="33" maxlength="45"  value="[#idc_etime#]">  
+                  </td>
+                </tr>
+               	<!--
+               	<tr>
+               		<td width="17%" valign="bottom" height="29"> <div align="right">修改时间&nbsp;</div></td>
+                  <td width="34%" valign="bottom" height="29" > <div align="left"> 
+                   <input type="text" name="idc_mtime" size="21" maxlength="31" readonly value="[#idc_mtime#]"> 
+                    </div></td>	
+               		<td width="11%" valign="bottom" height="21"> <div align="right">&nbsp;</div></td>
+                  <td colspan="2" valign="bottom" height="21" > 
+                  </td>	
+               	</tr>
+               	-->
+               	
+                <tr> 
+                  <td colspan="5" height="12" > <div align="left"> </div></td>
+                </tr>
+              </table>
+</td>
+          </tr>
+        </table>
+        <div align="center"></div>
+      </td>
+  </tr>
+  <tr>
+    <td height="70"><table width="50%" border="0" align="center">
+        <tr> 
+          <td> <div align="right">
+              <input name="ok" type="button" class="an3" onclick="queren();"  value="确 认" >
+              &nbsp; 
+              <input name="cancel" type="reset" class="an3-1"  onClick="history.back(-1)"   value="取消返回">
+              &nbsp; </div></td>
+        </tr>
+      </table></td>
+  </tr></form>
+  <script>form1.idc_sflag.value='[#idc_sflag#]';
+  				form1.idc_dtype.value='[#idc_dtype#]';
+  		//		form1.idc_gid.value='[#idc_gid#]';
+  </script>
+</table>
+</body>
+</html>

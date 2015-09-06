@@ -1,0 +1,89 @@
+<html>
+<head>
+<title>网站访问限制</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<style type="text/css">
+<!--
+body {  font-size: 9pt}
+.tas {  border-color: black #FFFFFF; border-style: solid; border-top-width: 0px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 1px}
+table {  font-size: 9pt}
+.gray1 { filter:gray }
+.ttbbd {  cursor: default}
+-->
+</style>
+</head>
+
+<body bgcolor="#Cccccc" text="#000000" leftmargin="10" topmargin="0">
+<table width="98%" border="0">
+  <tr> 
+    <td height="108"> 
+      <form name="form1" method="post" action="/pronline/Msg" target="listFrame">
+        <div align="left"> 
+          <input type="hidden" name="FunName" value="ncWebSetupWeb_save">
+          <input type="hidden" name="userid"  value="[#userid#]">
+          <input type="hidden" name="id"  value="[#id#]">
+          <table width="100%" border="0" height="100%" cellspacing="0" cellpadding="4">
+            <tr> 
+              <td colspan="5" height="15" class="bord4"> 
+                <div align="left"><font color="#000000">(注:时间格式为: HH:MM:SS , 如:12:13:30 
+                  表示12时13分30秒)</font></div>
+              </td>
+              <td height="30" class="bord4"><font color="#000000"><b>限制对象:[[#username#]]</b></font></td>
+            </tr>
+            <tr> 
+              <td width="18%" valign="bottom" height="21" class="bord1"> 
+                <div align="left">序列号 
+                  <input type="text" name="id2" value="[#id#]" size="6" maxlength="6" disabled>
+                </div>
+              </td>
+              <td width="16%" valign="bottom" height="21" class="bord1">
+                [#sflags#] 
+               </td>
+               <td width="17%" valign="bottom" height="21" class="bord1"> 
+                <select name="timetype">
+                  <option value="0">每天</option>
+                </select>
+              </td>
+              <td width="20%" valign="bottom" height="21" class="bord1"> 
+                <div align="left">起始时间 
+                  <input type="text" name="starttime" value="[#starttime#]" size="8" maxlength="8">
+                </div>
+              </td>
+              <td colspan="2" valign="bottom" height="21" class="bord3" width="29%"> 
+                <div align="left">终止时间 
+                  <input type="text" name="stoptime" value="[#stoptime#]" size="8" maxlength="8">
+                </div>
+              </td>
+            </tr>
+            <tr> 
+              <td colspan="6" valign="bottom" height="15" class="bord3"> 
+                <div align="right"></div>
+                <table width="99%" border="0">
+                  <tr> 
+                    <td> 
+                      <div align="left">网址包含 
+                        <input type="text" name="url" value="[#url#]" size="32" maxlength="63">
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr> 
+              <td colspan="6" height="17" class="bord3"> 
+                <div align="right"> 
+                  <input type="submit" name="add"   value="新增" class="an3" >
+                  <input type="submit" name="mod"   value="修改" [#modflags#] class="an3">
+                  <input type="submit" name="app"   value="应用"  class="an3">
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </form>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

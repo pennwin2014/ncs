@@ -1,0 +1,56 @@
+<!-- saved from url=(0022)http://internet.e-mail -->
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta http-equiv="refresh" content="5">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<SCRIPT LANGUAGE="JavaScript">
+var yy='<tbody>';
+function w1()
+{
+// [#SLPB#]
+  yy = yy + '<table cellspacing=0 bordercolor="#DFDFDF"  class="listDataTable" border="0" align="center" width="100%" >';
+  yy = yy + '<tr onmouseover="mouseovertr2 (this)" onmouseout="mouseouttr2 (this)" height="18" valign="top">';
+  yy = yy + '<td  onyes="head" width="40"  nowrap   valign="top" align="center"><font color="#ffffff">[#num#]</font>&nbsp;</td>';
+  yy = yy + '<td  onyes="head" width="95"   nowrap title="[#dispname#]"  valign="top">&nbsp;<font color="#ffffff">[#dispname#]</font></td>';
+  yy = yy + '<td  onyes="head" width="100"  nowrap title="[#username#]" valign="top">&nbsp;<font color="#ffffff">[#username#]</font></td>';
+  yy = yy + '<td  onyes="head" width="90"   nowrap title="[#dept#]" valign="top">&nbsp;<font color="#ffffff">[#dept#]</font></td>';
+  yy = yy + '<td  onyes="head" width="95"   nowrap  valign="top">&nbsp;<font color="#ffffff">[#ip#]</font></td>';
+  yy = yy + '<td  onyes="head" width="90"   nowrap  valign="top" align="center">&nbsp;<font color="#ffffff">[#lasttime#]</font></td>';
+  yy = yy + '<td  onyes="head" width="90"   nowrap  valign="top" align="right"><font color="#ffffff">[#inbytes#]&nbsp;</font></td>';
+  yy = yy + '<td  onyes="head" width="90"   nowrap  valign="top" align="right"><font color="#ffffff">[#outbytes#]&nbsp;</font></td>';
+  yy = yy + '<td  onyes="head" width="90"   nowrap  valign="top" align="right"><font color="#ffffff">[#sumbytes#]&nbsp;</font></td>';
+  yy = yy + '<td  onyes="head" width="60"   nowrap  valign="top" align="right"><font color="#ffffff">[#flowrate#]&nbsp;</font></td>';
+  yy = yy + '<td  onyes="head" width="80"   nowrap  valign="top" align="right"><font color="#ffffff">[#band#]&nbsp;</font></td>';
+  yy = yy + '<td  onyes="head" width="70"   nowrap  valign="top" align="right"><font color="#ffffff">[#bandrate#]&nbsp;&nbsp;</font></td>';
+  yy = yy + '</tr></table>';
+// [#SLPE#]
+  yy = yy + '</tbody>'
+  parent.document.all.xxm.rows[0].cells[1].innerHTML="页码&nbsp;<font color='red'>[#CurPg#]/[#TotPg#]</font>";
+  parent.document.all.xxm.rows[0].cells[2].innerHTML="共&nbsp;<font color='red'>[#TotRec#]</font>&nbsp;条记录";
+
+  parent.ff.innerHTML=(yy);
+}
+
+function goto(t){
+self.location.href=t
+}
+
+ </SCRIPT> 
+
+</head>
+<body bgcolor="#AFAFC0" text="#000000" oncontextmenu="return false" topmargin="0" leftmargin="0" onload="w1()">
+<SCRIPT LANGUAGE="JavaScript">
+//setTimeout(' w1()',1000)
+ </SCRIPT> 
+ 
+ <form method="post"  id="form1" name="form1" action="/pronline/Msg" >
+<input type="hidden" name="cond" value="[#cond#]">
+<input type="hidden" name="sortby" value="[#sortby#]">
+<input type="hidden" name="orderby" value="[#orderby#]">
+<input type="hidden" name="CurPg"   value="[#CurPg#]">
+<input type="hidden" name="TotPg"      value="[#TotPg#]">
+</form>
+</body>
+</html>

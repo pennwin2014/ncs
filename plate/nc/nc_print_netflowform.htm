@@ -1,0 +1,111 @@
+<html>
+
+<head>
+<title>上网时间统计</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<!-- Infrastructure code for the tree -->
+<script>
+function goto99(){
+  parent.sbpm_left.location.href='/pronline/Msg?FunName@ncWebReplace&plate@nc/nc_netuse_left.htm&sdate@'+tj1.sdate.value +'&edate@'+tj1.edate.value+'&recnum@'+tj1.recnum.value+'&sort@'+tj1.sort.value+'&time@'+tj1.time.value
+}
+</script>
+
+<script language = "Javascript" src = "/js/selecttime.js"></script>
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0"  oncontextmenu="return false">
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+<form name="tj1" method="post" action="/pronline/Msg">
+  <tr> 
+    <td colspan="2"><table width="100%" height="27" border="0" align="center" cellpadding="0" cellspacing="0" background="/images/table_bg1.gif">
+        <tr > 
+          <td colspan="2"> <div align="center"><strong><font color="#FFFFFF"> 
+              <input type="hidden" name="FunName2" value="ncWebPrintNetUse">
+              网络流量统计</font></strong></div></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr> 
+    <td colspan="2"> 
+        <br>
+        <table width="70%" border="1"    bordercolorlight=#89ACED   bordercolordark=#ffffff    align="center" cellpadding="0" cellspacing="0" >
+          <tr> 
+            <td >  
+        <table width="90%" border="0" align="center">
+          <tr>
+            <td height="15">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr> 
+            <td width="19%"> <div align="right"><font color="#000000"><b>部 门</b></font></div></td>
+            <td width="35%"> <div align="left"><font color="#000000"> [#sgroup#]</font></div></td>
+            <td> <div align="center"><font color="#000000"></font></div>
+              <div align="center"><font color="#000000"> </font></div>
+              <div id="plabel" align="center"><font color="#000000"> </font></div></td>
+          </tr>
+          <tr> 
+            <td width="19%"> <div align="right"><font color="#000000"><b>起始时间</b></font></div></td>
+            <td width="35%"> <div align="left"><font color="#000000"> 
+                <input type="text" name="sdate" value="[#sdate#]" >
+                </font></div></td>
+            <td> <div align="center"><font color="#000000"></font></div>
+              （格式：YYYY/MM/DD HH:MM） 
+              <div align="center"><font color="#000000"> </font></div>
+              <div id="plabel" align="center"><font color="#000000"> </font></div></td>
+          </tr>
+          <tr> 
+            <td><div align="right"><strong>每行组数</strong></div></td>
+            <td><input name="sumcol" type="text" id="sumcol" value="[#sumcol#]" size="6" maxlength="3"></td>
+            <td>（每条记录统计的分组数量）</td>
+          </tr>
+          <tr> 
+            <td> <div align="right"><strong>分组字段</strong></div></td>
+            <td>[#sstep#]</td>
+            <td>（统计分组的字段)</td>
+          </tr>
+          <tr> 
+            <td width="19%"> <div align="right"><font color="#000000"><b>排列字段</b></font></div></td>
+            <td width="35%">[#ssort#]</td>
+            <td>（排列顺序的字段）</td>
+          </tr>
+          <tr> 
+            <td width="19%" height="12"> <div align="right"><font color="#000000"><b>网段</b></font></div></td>
+            <td width="35%" height="12"> [#snet#]</td>
+            <td height="12">（访问的网段名称,必须要预先定义）</td>
+          </tr>
+          <tr> 
+            <td height="20"><div align="right"><strong>数据方向</strong></div></td>
+            <td>[#sdr#]</td>
+            <td>（数据传送的方向）</td>
+          </tr>
+          <tr> 
+            <td width="19%" height="28"> <div align="center"><font color="#000000"><b></b></font></div></td>
+            <td width="35%"> <div align="center"><font color="#000000"> </font></div></td>
+            <td> <div align="center"><font color="#000000"></font></div>
+              <div align="center"><font color="#000000"> </font></div>
+                  </td>
+          </tr>
+        </table>
+        </td>
+          </tr>
+        </table>
+      </td>
+  </tr>
+  <tr>
+    <td height="70" colspan="2"><table width="50%" border="0" align="center">
+        <tr> 
+          <td> <div align="right"><font color="#000000"> 
+              <input name="FunName" type="hidden" value="ncWebPrintNetFlow">
+              <input name="Submit" type="submit" class="an3" value="确 认">
+              &nbsp; 
+              <input name="ret" type="button" class="an3" id="ret2" onclick="history.back()" value="返 回">
+              </font> </div></td>
+        </tr>
+      </table></td>
+  </tr>
+  </form>
+</table>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<script>
+<!-- 
+function goto(t){
+   window.open(t+"&scroll@"+"[#scroll#]"+"&opennum@"+"[#opennum#]","sbpm_right","")
+}
+
+function goto2(t){
+   window.open(t+"&scroll@"+"[#scroll#]"+"&opennum@"+"[#opennum#]","menus1","")
+}
+-->
+</script>
+</head>
+
+<body bgcolor="#dfdfdf" text="#000000" topmargin="2"  oncontextmenu="return false">
+<table width="100%" border="0" height="100%">
+  <tr> 
+    <td valign="top"> 
+      <table width="98%" border="0" align="center">
+        <tr> 
+          <td width="70">用户信息</td>
+          <td><img src="/images/hr.gif" width="100%" height="2"></td>
+        </tr>
+      </table>
+      <table width="96%" border="0" align="center">
+        <tr> 
+          <td colspan="2"> <b>[#message#]</b></td>
+        </tr>
+        <tr> 
+          <td>用户ID</td>
+          <td> 
+            <input type="text" name="userid" value="[#userid#]" size="15" maxlength="15" disabled>
+          </td>
+        </tr>
+        <tr> 
+          <td>用户名 </td>
+          <td> 
+            <input type="text" name="username" value="[#username#]" size="15" maxlength="15" disabled>
+          </td>
+        </tr>
+      </table>
+      <br>
+      <br>
+      <img src="/images/hr.gif" width="100%" height="2"><br>
+    </td>
+  </tr>
+  <tr> 
+    <td height="20"> 
+      <div align="center"> 
+        <input type="button" name="add" value="增加新记录"  onclick=goto2("/pronline/Msg?FunName@ncWebDispUserAddForm")  class="an3">
+        <input type="button" name="modi" value="修改本记录" class="an3">
+        <input type="reset" name="search" value="用户查询" class="an3" onClick="history.back()">
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td height="20">&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

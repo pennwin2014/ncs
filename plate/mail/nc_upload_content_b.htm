@@ -1,0 +1,124 @@
+<!-- saved from url=(0022)http://internet.e-mail -->
+<!-- saved from url=(0022)http://internet.e-mail -->
+<!-- saved from url=(0022)http://internet.e-mail -->
+<html>
+<head>
+<title>上传内容</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<style type="text/css">
+<!--
+table {  font-size: 9pt}
+.bbbb {  border-style: inset; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px}
+.xiahua {  font-size: 9pt; text-decoration: underline}
+-->
+</style>
+<script language="JavaScript">
+<!--
+
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+
+function mouseovertr (o){
+var i;
+df=o.style.backgroundColor
+	o.style.backgroundColor= "#cccccc";
+	o.style.borderColor= "#000000";
+		
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#ffffff";
+}	
+}
+
+function mouseouttr(o){
+	o.style.backgroundColor=df
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#000000";
+}
+	
+	
+}
+// -->
+
+</script>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" leftmargin="0" topmargin="0">
+<table width="460" border="0" height="500" cellspacing="0" cellpadding="0" bgcolor="#CCCCCC">
+  <tr> 
+    <td height="1"> <br>
+      <table width="90%" border="0" align="center" cellspacing="1">
+        <tr> 
+          <td width="22%">用户名: </td>
+          <td width="78%">[#username#]</td>
+        </tr>
+        <tr> 
+          <td width="22%">Web主机:</td>
+          <td width="78%" class="xiahua">[#hostname#]</td>
+        </tr>
+        <tr> 
+          <td width="22%">时间:</td>
+          <td width="78%" class="xiahua">[#date#]</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" height="1"> 
+      <div align="center">
+        <div id="Layer2" style="position:absolute; left:27px; top:263px; width:39px; height:14px; z-index:2">附件:</div>
+        <div id="Layer1" style="position:absolute; left:391px; top:363px; width:62px; height:31px; z-index:1"> 
+          <input type="button" name="Button" value="关 闭" onclick="javascript:self.close()">
+        </div>
+        <div align="center">
+          <textarea name="textfield" rows="12" cols="60" wrap="VIRTUAL" readonly>[#content#]
+</textarea>
+        </div>
+      </div>
+    </td>
+  </tr>
+  <tr> 
+    <td> 
+      <div height="5" style="position:absolute; width: 430px; height: 70px; top: 284px; left: 13px; overflow-x:hidden;overflow-y:scroll;border-style: inset; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px" align="center"> 
+        <div align="center">
+          <table width="100%" border="0" align="center" bordercolor="#CCCCCC" cellspacing="0" bgcolor="#EEEEEE">
+			<!-- [#SLPB#] -->
+            <tr onMouseOver="mouseovertr(this)" onMouseOut="mouseouttr(this)" > 
+              <td width="54%"><a href="[#msg#]/index.htm"> 
+                [#ofile#]</a></td>
+              <td width="46%"> 
+                <div align="right">[#bytes#] 字节</div>
+              </td>
+            </tr>
+			<!-- [#SLPE#] -->
+          </table>
+        </div>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top"> 
+      <div align="right"> </div>
+    </td>
+  </tr>
+</table>
+
+<div align="center"></div>
+<div align="center"></div>
+<div align="center"></div>
+<div align="center"></div>
+<div align="center"></div>
+<div align="center"></div>
+<div align="center"></div>
+<div align="center"></div>
+<div align="center"></div>
+<div align="left"></div>
+<div align="center"></div>
+<div align="center"></div>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<html>
+<head>
+<title>系统功能选项</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" align="center" oncontextmenu="return false" >
+<form name="form1" method="post" action="/pronline/Msg">
+
+  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td valign="top" ><table width="100%" height="27" border="0" align="center" cellpadding="0" cellspacing="0" background="/images/table_bg1.gif">
+          <tr > 
+            <td colspan="2"> <div align="center"><strong><font color="#FFFFFF">系统基本参数设置</font></strong></div></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr> 
+      <td ><br>
+        <table width="70%" height="0%" border="1"  bordercolorlight=#89ACED   bordercolordark=#ffffff   align="center" cellpadding="0" cellspacing="0">
+          <tr> 
+            <td valign="top" height="411"> <table width="90%" border="0" align="center">
+                <tr> 
+                  <td width="17%">&nbsp;</td>
+                  <td width="67%">&nbsp;</td>
+                  <td width="16%">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="17%">&nbsp;</td>
+                  <td width="67%" height="25"><b> 在线有关信息参数</b> </td>
+                  <td width="16%">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="17%" height="89">&nbsp;</td>
+                  <td height="89" width="67%" align="center"> <table width="100%" border="0"  bordercolorlight=#848284   bordercolordark=#ffffff>
+                      <tr> 
+                        <td width="44%"> 最大在线IP连接数</td>
+                        <td width="56%"> <input type="text" name="maxip" size="8" value="[#maxip#]"> 
+                        </td>
+                      </tr>
+                      <tr> 
+                        <td width="44%" height="28"> 最大HTTP在线连接数</td>
+                        <td width="56%" height="28"> <input type="text" name="maxhttp" size="8" value="[#maxhttp#]" maxlength="8"> 
+                        </td>
+                      </tr>
+                      <tr> 
+                        <td width="44%"> 最大访问控制规则数</td>
+                        <td width="56%"> <input type="text" name="maxiptable" size="8" maxlength="8" value="[#maxiptable#]"> 
+                        </td>
+                      </tr>
+                    </table></td>
+                  <td width="16%" height="89">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="17%">&nbsp;</td>
+                  <td width="67%" height="25"><b> 有关超时时间</b></td>
+                  <td width="16%">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="17%" height="93">&nbsp;</td>
+                  <td width="67%" align="center" height="93"> <table width="100%" border="0">
+                      <tr> 
+                        <td width="44%"> 在线用户连接超时</td>
+                        <td width="56%"> <input type="text" size="8" name="usertimeout" maxlength="8" value="[#usertimeout#]">
+                          秒 </td>
+                      </tr>
+                      <tr> 
+                        <td width="44%"> IP访问连接超时</td>
+                        <td width="56%"> <input type="text" name="iptimeout" size="8" maxlength="8" value="[#iptimeout#]">
+                          秒 </td>
+                      </tr>
+                      <tr> 
+                        <td width="44%"> 访问控制规则超时</td>
+                        <td width="56%"> <input type="text" name="iptabletimeout" size="8" maxlength="8" value="[#iptabletimeout#]">
+                          秒</td>
+                      </tr>
+                    </table>
+                    <b> </b></td>
+                  <td width="16%" height="93">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="17%">&nbsp;</td>
+                  <td width="67%" height="25"><b> 定时处理时间</b></td>
+                  <td width="16%">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="17%">&nbsp;</td>
+                  <td width="67%" align="center"> <table width="100%" border="0">
+                      <tr> 
+                        <td width="44%" height="22"> IP访问检查时间间隔</td>
+                        <td width="56%" height="22"> <input type="text" name="ipchecktime" size="8" maxlength="8" value="[#ipchecktime#]">
+                          秒</td>
+                      </tr>
+                      <tr> 
+                        <td width="44%"> 访问日志自动统计间隔</td>
+                        <td width="56%"> <input type="text" name="ipcounttime" size="8" maxlength="8" value="[#ipcounttime#]">
+                          秒 </td>
+                      </tr>
+                      <tr> 
+                        <td width="44%"> 监控进程重置时间</td>
+                        <td width="56%"> <input type="text" name="ncresettime" size="8" maxlength="8" value="[#ncresettime#]">
+                          秒 </td>
+                      </tr>
+                    </table>
+                    <b> </b></td>
+                  <td width="16%">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="17%"> <div align="right"><font color="#0000FF"><b></b></font></div></td>
+                  <td width="67%"><font color="#0000FF"><b></b></font></td>
+                  <td width="16%">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="17%">&nbsp;</td>
+                  <td width="67%"> <p> 参数的合理设置，有助于提高系统的整体性能，降低系统所需资源，请在技术专家的指导下设置有关参数。</p></td>
+                  <td width="16%">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+              </table></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td height="70" ><table width="50%" border="0" align="center">
+          <tr> 
+            <td> <div align="right"> 
+                <input type="hidden" name="FunName" value="ncWebSystemSave_par">
+                <input type="submit" name="next" value="确 认" class="an3">
+                &nbsp; 
+                <input type="submit" name="app" value="应 用" class="an3">
+                &nbsp; 
+                <input type="reset" name="cancel" value="取消返回" class="an3-1" onClick="history.back()">
+              </div></td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

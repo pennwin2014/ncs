@@ -1,0 +1,283 @@
+<html>
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<title>main</title>
+<script>
+var dfd1="0"
+
+function DoSort(sname)
+{
+    form1.sort.value=sname;
+	form1.submit();
+}
+
+function gotoPage(pagenum)
+
+{
+    form1.CurPg.value = pagenum;
+}
+
+function doexport(){
+    self.location.href="/pronline/Msg?FunName@ncWebUserExportCsv";
+}
+
+
+function userdel()
+{
+    form1.FunName.value = "ncWebDelSomeUser";
+    form1.submit();
+}
+
+function doModiBm()
+{
+    form1.FunName.value = "ncWebModiSomeUserBm";
+    form1.submit();
+}
+
+
+ function dispsearch()
+ {
+      window.open('/pronline/Msg?FunName@ncWebDispSuser','RUNMIT_New','left=100,top=200,width='+525+',height='+245+',fullscreen=0,toolbar=no,scrollbars=no,resizable=0,menubar=no,status=0');
+ }
+ 
+function goto(t){
+self.location.href=t+'&groupid0@[#groupid0#]&cond@[#cond#]&CurPg@[#CurPg#]'
+}
+
+function mouseovertr2 (o){
+var i;
+df=o.style.backgroundColor
+	o.style.backgroundColor= "#003399";
+	o.style.borderColor= "#FFFF00";
+	o.style.cursor="hand";	
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#ffffff";
+}	
+}
+
+function mouseouttr2(o){
+	o.style.backgroundColor=df
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#000000";
+}
+	
+	
+}
+
+function checkme(p)
+{
+	var tt=p.value
+	if (tt>yy)
+	{
+		MM_changeProp('browsdopage','','value',yy,'INPUT/TEXT')
+	}
+	if (tt==0)
+	{
+		MM_changeProp('browsdopage','','value','1','INPUT/TEXT')
+	}
+}
+
+function allChecked(){
+    if(dfd1=="1"){
+        dfd1="0"
+    }
+    else {
+         dfd1="1"
+    }
+	for(var i=0;i<document.all.DataTable.rows.length;i++)
+	{
+		if(typeof(document.all.DataTable.rows[i].cells[0].childNodes[0])=="object"
+
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].tagName=="INPUT"
+
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].type=="checkbox") {
+			if(dfd1=="1"){
+  			    document.all.DataTable.rows[i].cells[0].childNodes[0].checked="true";
+            }
+			else{
+                document.all.DataTable.rows[i].cells[0].childNodes[0].checked="";
+            }
+        }
+ 	}
+}
+
+
+// -->
+<!-- Hide
+var ll=[#CurPg#]
+var yy=[#TotPg#]
+function killErrors() {
+return true;
+}
+window.onerror = killErrors;
+// -->
+
+</script>
+<link REL=stylesheet HREF="/css/runmit.css" TYPE="text/css">
+<script src="/js/rmenu.js"></script>
+<style type="text/css">
+<!--
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+-->
+</style>
+<link href="../css/css.css" rel="stylesheet" type="text/css">
+</head>
+<body marginheight=0 leftmargin=0 marginwidth=0 topMargin="0" BGCOLOR="Menu">
+<form name="form1" method="post" action="/pronline/Msg">
+<table border="0" width=100% height=100% cellspacing="0" cellpadding="0" align=center bgcolor='#ffffff'>
+  <tr> 
+      <td width="100%"  valign=middle align=center height="40" bgcolor="#DEE8FA" class="ttt"> 
+        <table width="100%" border="0" cellspacing="0">
+        <tr>
+            <td width="51%" height="20">&nbsp;&nbsp;关键字: 
+              <input type="text"  name="cond"  size="12" maxlength="31" value="[#cond#]">
+              <input name="search" type="submit" class="an3" value="查 找" >
+              <input name="hig"  type="button" class="an3"  onclick="dispsearch()" value="高 级">
+              <input name="del" type="button" class="an3"   onclick="userdel()" value="删 除"> 
+              <input name="export"type="button" class="an3"   onClick="doexport()" value="导 出"> 
+              <input type="hidden" name="groupid0" value="[#groupid0#]">
+              <input type="hidden" name="FunName" value="ncWebUserSearch">
+              <input type="hidden" name="where" value="[#where#]">
+              <input type="hidden" name="sort" value="[#sort#]">
+              <input type="hidden" name="sortby" value="[#sortby#]">
+			  
+            <input type="hidden" name="CurPg"      value="[#CurPg#]">            </td>
+            <td width="49%" height="41" rowspan="2"> 
+              <table align=right border=0 cellpadding=0 cellspacing=0 class=main width=111>
+                            <tbody> 
+                <td width="10%"><script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-06.gif' border=0 height=17 width=35 class='gray1'>")}
+                      else{
+                        document.write("<a href='#'><img src='/images/zbuyer-06.gif' border=0 height=17 width=35 onClick='gotoPage(1);form1.submit()' class='hand'>")}
+                   </script></td>
+                <td width="10%"><script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 class='gray1'>")}
+                      else {
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]-1);form1.submit()' class='hand'>")}
+                   </script></td>
+                <td width="20%"><img src="/images/zbuyer-08.gif" border=0 height=17 width=32></td>
+                <td align=middle background="" width=92>
+                    <input class=Main id=browsdopage maxlength=3  name=browsdopage size=3 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 50px" value=[#CurPg#] onKeyPress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" onBlur="checkme(this)">
+                </td>
+                <td width="10%"><img src="/images/zbuyer-09.gif" border=0 height=17 width=16></td>
+                <td width="10%"><img align=middle border=0 height=17 src="/images/zbuyer-10.gif" width=17 onClick="gotoPage(form1.browsdopage.value);form1.submit()" class="hand"><img align=middle height=17 src="/images/zbuyer-11.gif" width=3></td>
+                
+                
+    <td width="10%"><img border=0 height=17 src="/images/zin1.gif" width=17 ></td>
+    <td align=middle background="" width=92> 
+      <input  class=Main id=browsdopage1 maxlength=5 name=browsdopage12 size=3 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 50px" value='[#TotPg#]'>
+    </td>
+    <td width="10%"><img align=middle height=17 src="/images/zbuyer-09.gif" width=16></td>
+    <td align=middle background="" width=92> 
+      <input  class=Main id=browsdopage1 maxlength=5 name=browsdopage12 size=3 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 50px" value='[#TotRec#]'>
+    </td>
+    <td width="10%"><img border=0 height=17 src="/images/zin3.gif" width=17 align="middle" ><img align=middle height=17  src="/images/zbuyer-11.gif" width=3></td>
+                
+                <td width="10%"><script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]+1);form1.submit()' class='hand'>")}
+                    </script></td>
+                <td width="10%"><script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 onClick='gotoPage([#TotPg#]);form1.submit()' class='hand'>")}
+                    </script></td>
+              </tbody> 
+
+            </table>          </td>
+        </tr>
+        <tr>
+          <td height="21">部门改为:[#sgroup#]
+            <input name="export2"type="button" class="an3"   onClick="doModiBm()" value="确认"></td>
+        </tr>
+      </table>
+        <input type="hidden" name="TotPg"      value="[#TotPg#]"></td>
+  </tr>
+  <tr>
+      <td width="100%" align=center  valign=top bgcolor="#DEE8FA"> 
+        <table id="DataTable" width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+          <tr> 
+            <td width="46" height="20" bgcolor="#6382BD" class="bord2"> 
+              <input type="button" name="b1" value="全选" class="anniu_1"  onClick="allChecked()">
+            </td>
+            <td width="142" bgcolor="#6382BD" class="bord2" onClick="DoSort('a.username')">
+<div align="center"><font color="#FFFFFF">姓 
+                名</font></div></td>
+            <td width="142" bgcolor="#6382BD" class="bord2" onClick="DoSort('a.dispname')">
+<div align="center"><font color="#FFFFFF">登录名</font></div></td>
+            <td width="135" bgcolor="#6382BD" class="bord2" onClick="DoSort('a.ip')">
+<div align="center"><font color="#FFFFFF">IP 
+                地址</font></div></td>
+            <td width="146" bgcolor="#6382BD" class="bord2" onClick="DoSort('a.mac')">
+<div align="center"><font color="#FFFFFF">MAC 
+                地址</font></div></td>
+            <td width="160" bgcolor="#6382BD" class="bord2" onClick="DoSort('b.groupname')">
+<div align="center"><font color="#FFFFFF">部 
+                门</font></div></td>
+            <td width="254" bgcolor="#6382BD" class="bord2" onClick="DoSort('a.email')">
+<div align="center"><font color="#FFFFFF">邮件地址</font></div></td>
+            <td width="254" bgcolor="#6382BD" class="bord2" onClick="DoSort('a.lasttime')">
+<div align="center"><font color="#FFFFFF">最后上线时间</font></div></td>
+            <td width="120" bgcolor="#6382BD" class="bord4" onClick="DoSort('a.useflags')">
+<div align="center"><font color="#FFFFFF">状 
+                态</font></div></td>
+          </tr>
+          <!-- [#SLPB#] -->
+          <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" onDblclick="goto('/pronline/Msg?FunName@ncWebDispUserModiForm&userid@[#userid#]')"> 
+            <td width="46" height="16" class="bord1"> <input type="checkbox" name="ch[#num#]" value="[#userid#]"></td>
+            <td width="142" height="16" class="bord1">&nbsp;[#dispname#]</td>
+            <td width="142" height="16" class="bord1">&nbsp;[#username#]</td>
+            <td width="135" height="16" class="bord1">&nbsp;[#ip#] </td>
+            <td width="146" height="16" class="bord1">&nbsp;[#mac#]</td>
+            <td width="160" height="16" class="bord1">[#groupname#]</td>
+            <td width="254" height="16" class="bord1">[#email#]&nbsp;</td>
+            <td width="254" height="16" class="bord1">[#adate#]&nbsp;</td>
+            <td width="120" height="16" class="bord3">&nbsp;[#status#]</td>
+          </tr>
+          <!-- [#SLPE#] -->
+          <!-- [#SLPB#] -->
+          <tr id=[#snum#]> 
+            <td width="46" height="16" class="bord1">&nbsp; </td>
+            <td width="142" height="16" class="bord1">&nbsp;</td>
+            <td width="142" height="16" class="bord1">&nbsp;</td>
+            <td width="135" height="16" class="bord1">&nbsp; </td>
+            <td width="146" height="16" class="bord1">&nbsp;</td>
+            <td width="160" height="16" class="bord1">&nbsp;</td>
+            <td width="254" height="16" class="bord1">&nbsp;</td>
+            <td width="254" height="16" class="bord1">&nbsp;</td>
+            <td width="120" height="16" class="bord3">&nbsp;</td>
+          </tr>
+          <!-- [#SLPE#] -->
+        </table>
+    
+<!--//鼠标显示//-->
+              <script language="JavaScript">
+<!--
+var MenuBarColor ='#cccccc';
+DrawMouseRightButtonUpMenu();
+
+</script>
+      </td>
+  </tr>
+</table>
+ </form>
+</body>
+
+</html>

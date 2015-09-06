@@ -1,0 +1,417 @@
+ <head>
+ 	
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+ <title>联网使用单位安全监管系统</title>
+ <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" /> 
+ <link rel="stylesheet" type="text/css" href="/newver/resources/css/toolbars.css" />
+ <script type="text/javascript" src="/newver/resources/js/ext-all.js"></script> 
+
+    <style type="text/css">
+ .x-tab-default-top button, .x-tab-default-top.x-tab-inner {
+		height: 16px !important;
+		line-height: 16px;
+	}
+	.x-statusbar .x-status-busy {
+    padding-left: 25px !important;
+    background: transparent no-repeat 3px 0;
+}
+  .x-statusbar .x-status-busy {
+    background-image: url(/images/loading.gif);
+}
+    	    
+   *{font-size:12px!important;}
+  </style>
+
+
+<script type="text/javascript">
+
+
+    function gettime(){ 
+  	document.getElementById('time_flag').value=document.getElementById('form1').time_flag.value;
+  } 	
+
+    function pastime(){
+  		document.getElementById("form1").time_flag.value=document.getElementById("time_flag").value;
+  	 
+  	}
+
+Ext.Loader.setConfig({enabled: true});
+Ext.Loader.setPath('Ext.ux', '/newver/ux/');
+
+Ext.require([
+    'Ext.form.*',
+    'Ext.window.*',
+    'Ext.grid.*',
+    'Ext.data.*',
+    'Ext.util.*',
+    'Ext.window.MessageBox',
+    'Ext.toolbar.Paging',
+    'Ext.ux.PreviewPlugin',
+    'Ext.tab.*'
+ 
+]);
+var store;
+  function reflash(){
+  var keyword=document.getElementById('form1').keyword.value;
+  var time_flag=document.getElementById("form1").time_flag.value;
+  
+  store.load({params: {time_flag:time_flag,keyword:keyword}});  
+  }
+  
+  
+  function showUrl(h1,did,uid,flag){
+    	   var htmlvar='<iframe src="/pronline/Msg?FunName@ncsWebReplace&plate@v4/ncs_user_deturl.htm&h1@'+h1+'&did@'+did+'&uid@'+uid+'&time_flag@'+flag+'" scrolling="no" name="moduleIframe" frameborder="no" style="width:100%;height:600;"></iframe>';      
+    
+         var win = new Ext.Window ({
+                             id:"addwindow",
+                             title:"用户访问网址明细",
+                             x:20,
+                             y:20,
+                             width:630,
+                             height:600,
+                             bodyPadding: 0,
+                             modal:true,
+                             resizable:true,
+                             draggable:true,
+                             html:htmlvar
+                                               
+         }
+        )
+        win.show();
+    }
+
+
+ Ext.onReady(function(){            
+   
+
+
+    Ext.data.Store.prototype.doSort = function() {
+    reflash();
+    }
+    
+    
+   Ext.define('EimData', {
+        extend: 'Ext.data.Model',
+        fields: [
+            'host', 'lcount', 'did','uid'
+        ]
+  //      idProperty: 'sid'
+    });
+       store = Ext.create('Ext.data.Store', {
+        pageSize: 25,
+        model: 'EimData',
+        remoteSort: true,
+ //       autoLoad :{params:{aaad:0,dddd:2}},
+        proxy: {
+            type: 'ajax',
+            url: '/pronline/Msg?FunName@ncsUserHttpStat_v4&did@[#did#]&uid@[#uid#]',
+            reader: {
+                type:'json',
+                root: 'eimdata',
+                totalProperty: 'totalCount'
+            },         
+            simpleSortMode: true
+
+        },
+//        params:{ffffff:'aaaaaa'},
+        sorters: [{
+            property: 'stime',
+            direction: 'ASC'
+        }]
+    });
+ reflash();
+
+ 
+ 
+
+ //对翻页工具条重新构建，替换翻页函数    
+  Ext.PagingToolbar1 = Ext.extend(Ext.PagingToolbar, {
+     doRefresh:function(){
+    
+     reflash();
+    },
+    moveLast:function(){
+    	var b=this,a=b.getPageData().pageCount;
+    	if(b.fireEvent("beforechange",b,a)!==false){
+    	store.currentPage=a;
+    	reflash();
+       }},
+     moveFirst:function(){
+      if(this.fireEvent("beforechange",this,1)!==false){
+      store.currentPage=1;
+      reflash();}}, 
+     movePrevious:function(){var b=this,a=b.store.currentPage-1;if(a>0){if(b.fireEvent("beforechange",b,a)!==false){store.currentPage=a;reflash();}}},
+     moveNext:function(){var c=this,b=c.getPageData().pageCount,a=c.store.currentPage+1;if(a<=b){if(c.fireEvent("beforechange",c,a)!==false){store.currentPage=a;reflash();}}}
+       
+});
+ 
+ 
+ 
+ 
+ 
+    function gotoUrl(value,p,record){
+        var temp_disp=record.data.host;
+        return Ext.String.format( '<a href="#xxm" onclick=window.open("http://{0}")>{1}</a>',temp_disp,temp_disp);
+      
+    }
+   
+     function gotoDet(value,p,record){
+        var temp_disp=record.data.host;
+        var temp_did=[#did#];
+        var temp_uid=[#uid#];
+        var time_flag=document.getElementById("form1").time_flag.value;
+       return Ext.String.format('<a href="#xxm" onclick=showUrl("{0}","{1}","{2}","{3}");>详细信息</a>',temp_disp,temp_did,temp_uid,time_flag);   
+    }
+
+
+  
+        // create the Grid
+    var grid = Ext.create('Ext.grid.Panel', {
+
+//        width: aaa,
+        height: 980,
+        forceFit: true,
+        scrollOffset: 0,
+        store: store,
+        frame:true,
+       
+        // grid columns
+        columns:[{
+            id: 'userid',
+            text: "访问网址",
+            dataIndex: 'host',
+            hidden: false,
+            width: 250,
+            renderer: gotoUrl,
+            sortable: false
+        },{
+            text: "访问次数",
+            dataIndex: 'lcount', 
+           width: 60,
+ //           flex: 1,
+            sortable: false
+        },{
+            text: "详细",
+            dataIndex: 'dispname',  
+            renderer: gotoDet,
+            width: 60,
+ //           flex: 1,
+            sortable: false
+ //           renderer: ipgj
+        },
+        {
+          width:40,
+           flex:1,
+            sortable: false
+        }      
+        ],
+        title: '网址排行',
+        id:'web',
+            viewConfig: {
+                stripeRows: true
+        },
+        columnLines: true,
+           tbar: Ext.create('Ext.PagingToolbar1', {
+            store: store,
+            
+            displayInfo: true,
+            displayMsg: '显示{0} - {1}条记录 共{2}条记录',
+            emptyMsg: "没有记录可显示",
+                                       
+            items: [
+ //          '->',
+            '-',
+           {
+           xtype:'label',
+            html:'&nbsp;<select name="time_flag" id="time_flag"  onchange="document.getElementById(\'form1\').time_flag.value=this.value;reflash();"><option value="4">最近一月</option><option value="1">今天</option><option value="2">最近三天</option><option value="3">最近一周</option><option value="5">最近三月</option><option value="6">最近半年</option></select>网址包含'
+           
+            
+             }
+             ,
+             {
+               xtype:'textfield',
+               id:'keyword',
+               name:'keyword',
+               style:'color:#7aa7d5',
+               value:'请输入查询内容',
+                enableKeyEvents:true,
+               listeners:{
+                 'focus':function(){
+                 if(this.value=='请输入查询内容'){                
+                    this.setValue('');
+                  }
+                 },
+                                'keydown' : function(i,e){
+                var aae=e.getKey() ; 
+                if(aae==13){
+                 var aa=Ext.getCmp('keyword').value;
+                
+                if(aa!='请输入查询内容'){
+                  	document.getElementById("form1").keyword.value=aa;
+                 }
+
+                 store.currentPage=1;
+                  reflash();
+		                  
+		                   reflash();
+                }
+               }
+                 
+                 
+               }
+             },
+             {
+                text:'确认',
+                iconCls:'accept',
+                handler: function(){
+                 var aa=Ext.getCmp('keyword').value;
+                
+                if(aa!='请输入查询内容'){
+                  	document.getElementById("form1").keyword.value=aa;
+                 }
+
+                 store.currentPage=1;
+                  reflash();
+              
+                }
+            },
+           '-',{
+                text:'导出',
+                iconCls:'exp',
+                handler:function(){
+              document.getElementById('form1').export1.value='exp';
+               document.getElementById("form1").submit();
+             document.getElementById("form1").export1.value="";
+              
+                }
+            }]
+                  
+
+        })
+                                        
+        // paging bar on the bottom
+ 
+
+        
+
+    });
+ 
+        var item1 = grid;
+
+
+
+//创建主显示区
+  var form11= Ext.create('Ext.Panel', {
+        	 frame: true,
+        	 bodyPadding:0,
+        	 contentEl: 'north'
+    });
+        
+    var tabs_bh=       Ext.create('Ext.tab.Panel', {
+                region: 'center', 
+                margins: '0 0 0 0',
+                activeTab: 0,     // first tab initially active
+                items: [item1,{
+                    title: '搜索排行',
+                    id:'search',
+                    html: '<iframe  id="userbhIframe_search" name="userbhIframe_search" src="/pronline/Msg?FunName@ncsWebReplace&plate@v4/userbh/ncs_userstat_search.htm&did@[#did#]&uid@[#uid#]&time_flag@'+document.getElementById("form1").time_flag.value+'" scrolling="yes" width=100% height=590  FrameBorder=0 ></iframe>',           
+                    autoScroll: true
+                },{
+                    html: '<iframe  id="userbhIframe_bbs" name="userbhIframe_bbs" src="/pronline/Msg?FunName@ncsWebReplace&plate@v4/userbh/ncs_userstat_bbs.htm&did@[#did#]&uid@[#uid#]&time_flag@'+document.getElementById("form1").time_flag.value+'" scrolling="yes" width=100% height=590  FrameBorder=0 ></iframe>',           
+                    title: '发帖统计',
+                    id:'bbs',
+                    autoScroll: true
+                },{
+                    html: '<iframe  id="userbhIframe_im" name="userbhIframe_im" src="/pronline/Msg?FunName@ncsWebReplace&plate@v4/userbh/ncs_userstat_im.htm&did@[#did#]&uid@[#uid#]&time_flag@'+document.getElementById("form1").time_flag.value+'" scrolling="yes" width=100% height=590  FrameBorder=0 ></iframe>',
+                    title: '聊天统计',
+                    id:'im',
+                    autoScroll: true
+                },{
+                    html: '<iframe  id="userbhIframe_mail" name="userbhIframe_mail" src="/pronline/Msg?FunName@ncsWebReplace&plate@v4/userbh/ncs_userstat_mail.htm&did@[#did#]&uid@[#uid#]&time_flag@'+document.getElementById("form1").time_flag.value+'" scrolling="yes" width=100% height=590  FrameBorder=0 ></iframe>',           
+                    title: '邮件收发',
+                    id:'mail',
+                    autoScroll: true
+                },{
+                    html: '<iframe  id="userbhIframe_vid" name="userbhIframe_vid" src="/pronline/Msg?FunName@ncsWebReplace&plate@v4/userbh/ncs_userstat_netid.htm&did@[#did#]&uid@[#uid#]&time_flag@'+document.getElementById("form1").time_flag.value+'" scrolling="yes" width=100% height=590  FrameBorder=0 ></iframe>',     
+                    title: '虚拟身份',
+                    id:'vid',
+                    autoScroll: true
+                }],
+                    listeners:{
+                    tabchange:function(tp,p){
+                    		var index=tabs_bh.getActiveTab();
+                    		var temp_id=index.id;
+                    		if(temp_id=='web'){
+                    			document.getElementById("time_flag").value=document.getElementById("form1").time_flag.value;
+                    			reflash();
+                    		}
+                    	else{
+                    		var tabframe="userbhIframe_"+index.id;       		 
+
+        	            	eval(tabframe).document.getElementById("time_flag").value=document.getElementById("form1").time_flag.value;
+             //       		tabs_bh.doLayout();
+        	              eval(tabframe).reflash();
+                    	
+                    		
+                    	 }
+                    		
+                    	}
+                    }
+                
+                
+                
+            });  
+    var viewport=Ext.create('Ext.Viewport', {
+
+        items:[
+               form11,
+               tabs_bh      
+
+        ],
+        renderTo: Ext.getBody()
+    });
+    
+   
+
+
+
+
+});
+
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" onload="gettime()">
+		
+	    <div id="north" class="x-hide-display">
+	    	<table  width="100%" border="0" cellspacing="5" cellpadding="2">
+	    		<tr height="18">
+	    			<td width="40">&nbsp;&nbsp;姓名:</td>
+	    			<td>[#dispname#]</td>
+	    			<td width="40">单位:</td>
+	    		  <td>[#cname#]</td>
+	    		  <td width="50">IP地址:</td>
+	    		  <td>[#ip#]</td>
+	    		  <td width="60">MAC地址:</td>
+	    		  <td>[#mac#]&nbsp;</td>
+	    		</tr>     		
+	    		<tr height="18">
+	    			<td >&nbsp;&nbsp;证件号:</td>
+	    			<td>[#idno#]</td>
+	    			<td >证件类型:</td>
+	    		  <td>[#idtype#]</td>
+	    		  <td >位置/房号</td>
+	    		  <td>[#position#]</td>
+	    		  <td ></td>
+	    		  <td></td>
+	    		</tr> 
+	    		
+        </table>
+    </div> 
+		<form name="form1" id="form1" action="/pronline/Msg">	
+		<input type="hidden" name="FunName" value="ncsUserHttpStat_v4">
+		<input type="hidden" name="export1" value="">
+		<input type="hidden" name="keyword" value="">
+		<input type="hidden" name="time_flag" value="[#time_flag#]">
+		
+	</form>
+</body>

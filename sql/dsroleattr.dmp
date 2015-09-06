@@ -1,0 +1,52 @@
+-- MySQL dump 10.13  Distrib 5.1.61, for redhat-linux-gnu (x86_64)
+--
+-- Host: localhost    Database: ncs
+-- ------------------------------------------------------
+-- Server version	5.1.40
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `dsroleattr`
+--
+
+DROP TABLE IF EXISTS `dsroleattr`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `dsroleattr` (
+  `roleid` int(11) DEFAULT NULL,
+  `pasid` int(11) DEFAULT NULL,
+  `flags` smallint(6) DEFAULT NULL,
+  `lright` char(32) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `dsroleattr`
+--
+
+LOCK TABLES `dsroleattr` WRITE;
+/*!40000 ALTER TABLE `dsroleattr` DISABLE KEYS */;
+INSERT INTO `dsroleattr` VALUES (100014,1004,0,'ÏµÍ³ÉèÖÃ'),(100015,1004,0,'ÏµÍ³²é¿´'),(100016,1004,0,'ÏµÍ³ÓÃ»§¹ÜÀí'),(100017,1004,0,'µ¥Î»ÐÅÏ¢Î¬»¤'),(100018,1004,0,'ÐÅÏ¢·¢ËÍÉèÖÃ'),(100019,1004,0,'¸æ¾¯¿ØÖÆÉèÖÃ'),(100020,1004,0,'»ù´¡Êý¾Ý¹ÜÀí'),(100021,1004,0,'ÍøÂç·ÃÎÊ²é¿´'),(100022,1004,0,'ÓÊ¼þÄÚÈÝ²é¿´'),(100023,1004,0,'±íµ¥ÄÚÈÝ²é¿´'),(100024,1004,0,'¼´Ê±Í¨ÐÅ²é¿´'),(100025,1004,0,'Í³¼ÆÊý¾Ý²éÑ¯'),(100026,1004,0,'Ô¶³Ì¿ØÖÆ'),(101,1004,0,'ÒÆ¶¯AP¹ì¼£'),(101,1004,0,'ÈÈµãÐÅÏ¢'),(101,1004,0,'ÖÕ¶ËÌØÕ÷ÐÅÏ¢'),(101,1004,0,'ÒÆ¶¯AP¹ì¼£'),(101,1004,0,'ÈÈµãÐÅÏ¢'),(101,1004,0,'ÖÕ¶ËÌØÕ÷ÐÅÏ¢'),(101,1004,0,'whlog'),(101,1004,0,'csyxzt'),(101,1004,0,'fac_s'),(101,1004,0,'½ÓÈë³§ÉÌ¹ÜÀí'),(101,1004,0,'users_s'),(101,1004,0,'ÉÏÍøÈËÊýÍ³¼Æ'),(101,1004,0,'xnsf_s'),(101,1004,0,'ÐéÄâÉí·ÝÍ³¼Æ'),(101,1004,0,'Í³¼Æ±¨±í'),(101,1004,0,'smslog_s'),(101,1004,0,'authlog_s'),(101,1004,0,'ÈÕÖ¾²é¿´'),(101,1004,0,'warnoffpar'),(101,1004,0,'logftppar'),(101,1004,0,'logsave'),(101,1004,0,'statusset'),(101,1004,0,'ÏµÍ³ÉèÖÃ'),(101,1004,0,'operlog'),(101,1004,0,'rightrole'),(101,1004,0,'adminuser'),(101,1004,0,'ÏµÍ³¹ÜÀí'),(101,1004,0,'cslb_s'),(101,1004,0,'dwzgl_s'),(101,1004,0,'fac_s'),(101,1004,0,'ap_s'),(101,1004,0,'dwgl_s'),(101,1004,0,'µ¥Î»¹ÜÀí');
+/*!40000 ALTER TABLE `dsroleattr` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2015-07-30 17:31:10

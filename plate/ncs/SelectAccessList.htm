@@ -1,0 +1,631 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE></TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+
+<LINK href="img/0/css.css" type=text/css rel=stylesheet>
+<link href="../css/css.css" rel="stylesheet" type="text/css">
+
+
+
+
+<script language="JavaScript">
+
+function checkdata() {
+ if(document.form1.opt.value == "")
+ {
+	 alert("没有选择场所端!!!");
+	 return false;
+ }
+ 
+ if(document.form1.task_name.value == "")
+ {
+	 alert("没有填写查询任务名!!!");
+	 return false;
+ }
+ 
+ return true;
+}
+
+
+function opselect()
+	{
+	showModalDialog("/pronline/Msg?FunName@ncWebSelectClass2", window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:520px;scroll:yes;dialogHeight:520px');
+	}
+	
+	
+
+</script>
+
+<script language=javascript src="/js/msg.js"></script>
+
+<script language=javascript src="/js/open_div.js"></script>
+<SCRIPT src="/js/calendar.js" type=text/javascript></SCRIPT>
+<SCRIPT src="/js/calendar3.js" type=text/javascript></SCRIPT>
+<META content="Microsoft FrontPage 6.0" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 class="body_bg_img_1" bgcolor="#DEE8FA">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  
+  <form method="POST" action="/pronline/Msg" name="form1" >
+  	<input type="hidden" name="FunName" value="ncsWebSaveCondition">
+  	<input type="hidden" name="opt1" value="">
+  	
+  <tr> 
+    <td><table width="100%" height="30" border="0" align="center" cellpadding="0" cellspacing="0" >
+        <tr > 
+          <td colspan="2" style="font-size:11pt;color:#00237e;font-weight:bold;text-align: center;">远程上网日志查询</td>
+        </tr>
+      </table></td>
+  </tr>
+  
+  <tr> 
+  <tr>
+    <td width="100%" align="center">
+      <table width="100%" border="1"    bordercolorlight=#89ACED   bordercolordark=#ffffff    align="center" cellpadding="0" cellspacing="0">
+        
+        <tr>
+          
+          <td align="center" colspan="3" class="td_bgcolor_1" >
+            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+              
+              <tr>
+                <td width="100%" align="center">
+                  <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                  	
+                  	
+                  	<tr>
+                      <td width="35%" align="right" height="30">查询任务名：</td>
+                      <td width="65%" height="30"><input type='text' name='task_name' class='input_text' size=30 value=""></td>
+                    </tr>
+                    
+                    <tr>
+                      <td width="35%" align="right" height="30">开始记录时间：</td>
+                      <td width="65%" height="30">
+                      	<input type="text" name="sdate" class="input_text" size="9" value="[#sdate#]" id=fdate1 onclick="fPopCalendar(sdate,sdate,'Down');return false"><select style="WIDTH: 40px" name="s_hour">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+                                
+											                 
+											<option value="00" selected>00</option>
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                              </select>时<select style="WIDTH: 40px" name="s_min">
+                              
+
+                               
+                                
+                                <option value="00" selected>00</option>
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                                <option value="24">24</option>
+                                <option value="25">25</option>
+                                <option value="26">26</option>
+                                <option value="27">27</option>
+                                <option value="28">28</option>
+                                <option value="29">29</option>
+                                <option value="30">30</option>
+                                <option value="31">31</option>
+                                <option value="32">32</option>
+                                <option value="33">33</option>
+                                <option value="34">34</option>
+                                <option value="35">35</option>
+                                <option value="36">36</option>
+                                <option value="37">37</option>
+                                <option value="38">38</option>
+                                <option value="39">39</option>
+                                <option value="40">40</option>
+                                <option value="41">41</option>
+                                <option value="42">42</option>
+                                <option value="43">43</option>
+                                <option value="44">44</option>
+                                <option value="45">45</option>
+                                <option value="46">46</option>
+                                <option value="47">47</option>
+                                <option value="48">48</option>
+                                <option value="49">49</option>
+                                <option value="50">50</option>
+                                <option value="51">51</option>
+                                <option value="52">52</option>
+                                <option value="53">53</option>
+                                <option value="54">54</option>
+                                <option value="55">55</option>
+                                <option value="56">56</option>
+                                <option value="57">57</option>
+                                <option value="58">58</option>
+                                <option value="59">59</option>
+                              </select>分</td> 
+                    </tr>
+                    
+                    
+                    
+                    
+                    
+                    <tr>
+                      <td width="35%" align="right" height="30">终止记录时间：</td>
+                      <td width="65%" height="30">
+                      	<input type="text" name="edate" class="input_text" size="9" value="[#edate#]" id=fdate1 onclick="fPopCalendar(edate,edate,'Down');return false"><select style="WIDTH: 40px" name="e_hour">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+                              
+                                
+										                        
+											          <option value="00">00</option>
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                              </select>时<select name="e_min" size="1">
+                               
+									                        
+											          <option value="00" >00</option>
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                                <option value="24">24</option>
+                                <option value="25">25</option>
+                                <option value="26">26</option>
+                                <option value="27">27</option>
+                                <option value="28">28</option>
+                                <option value="29">29</option>
+                                <option value="30">30</option>
+                                <option value="31">31</option>
+                                <option value="32">32</option>
+                                <option value="33">33</option>
+                                <option value="34">34</option>
+                                <option value="35">35</option>
+                                <option value="36">36</option>
+                                <option value="37">37</option>
+                                <option value="38">38</option>
+                                <option value="39">39</option>
+                                <option value="40">40</option>
+                                <option value="41">41</option>
+                                <option value="42">42</option>
+                                <option value="43">43</option>
+                                <option value="44">44</option>
+                                <option value="45">45</option>
+                                <option value="46">46</option>
+                                <option value="47">47</option>
+                                <option value="48">48</option>
+                                <option value="49">49</option>
+                                <option value="50">50</option>
+                                <option value="51">51</option>
+                                <option value="52">52</option>
+                                <option value="53">53</option>
+                                <option value="54">54</option>
+                                <option value="55">55</option>
+                                <option value="56">56</option>
+                                <option value="57">57</option>
+                                <option value="58">58</option>
+                                <option value="59">59</option>
+                              </select>分</td>
+                    </tr>
+                    <tr>
+                      <td width="35%" align="right" height="30">场所名称：</td>
+                      <td width="65%" height="30"><input type='text' name='opt' class='input_text' size=30 value=""> &nbsp;<a href="#xxm" onclick="opselect()">&nbsp;选择</a></td>
+                    </tr>
+                    
+                    <tr>
+                      <td width="35%" align="right" height="30">终端名称：</td>
+                      <td width="65%" height="30"><input type='text' name='net_ending_name' class='input_text' size=30 value=""></td>
+                    </tr>
+                    
+                    
+                    <tr>
+                      <td width="35%" align="right" height="30">目的IP：</td>
+                      <td width="65%" height="30"><input type='text' name='destination_ip'  class='input_text' size=30 value=""></td>
+                    </tr>
+                    <tr>
+                      <td width="35%" align="right" height="30">服务大类：</td>
+                      <td width="65%" height="30"><select size="1" name="service_type0" onChange="redirectr(this.options.selectedIndex)" class="input_select" style="width:220px">
+                				<option value="0" >通用应用服务</option>
+                				<option value="1" >即时通讯服务</option>
+                				<option value="2" >网络游戏</option>
+                			<!--	<option value="9" >其他</option> -->
+                				<option selected value="">请先选择大类</option>
+      
+      					  </select></td>
+                    </tr>
+                    <tr>
+                      <td width="35%" align="right" height="30">服务小类：</td>
+                      <td width="65%" height="30"><select size="1" name="service_type" value="" class="input_select" style="width:220px">                                                                                                                                                                                                                                                                                                             
+      						<option value="">请选择</option>
+      						
+      						</select><script>                                                                               
+						<!--
+							var groups=document.form1.service_type0.options.length
+  							var group=new Array(groups)
+  							for (i=0; i<groups; i++)
+  								group[i]=new Array()
+  								
+  								group[0][0]=new Option("所有类型通用应用服务","0000")
+  								group[0][1]=new Option("HTTP","0001")
+  								group[0][2]=new Option("FTP","0002")
+  								group[0][3]=new Option("SMTP","0003")
+  								group[0][4]=new Option("POP/POP3","0004")
+  								group[0][5]=new Option("WEBMAIL","0006")
+  								group[0][6]=new Option("TELNET","0007")
+  								group[0][7]=new Option("表单","0012")
+  								//group[0][5]=new Option("IMAP","0005")
+  								//group[0][8]=new Option("NNTP","0008")
+  								//group[0][9]=new Option("电子邮件（含IMAP、Web Mail）","0009")
+  								//group[0][10]=new Option("RSTP","0010")
+  								//group[0][11]=new Option("MMS","0011")
+  								//group[0][13]=new Option("其他","0999")
+  								
+  								group[1][0]=new Option("所有类型即时通讯服务","1000")
+  								group[1][1]=new Option("MSN Messenger","1001")
+  								group[1][2]=new Option("QQ","1002")
+  								group[1][3]=new Option("ICQ","1003")
+  								group[1][4]=new Option("Yahoo Messenger","1004")
+  								group[1][5]=new Option("AOL Messenger","1005")
+  								group[1][6]=new Option("UC","1006")
+  								group[1][7]=new Option("网易泡泡","1007")
+  								group[1][8]=new Option("搜Q","1008")
+  								group[1][9]=new Option("新浪通","1009")
+  								group[1][10]=new Option("E话通","1010")
+  								//group[1][11]=new Option("其他","1999")
+  								
+  								group[2][0]=new Option("所有类型网络游戏","2000")
+  								group[2][1]=new Option("联众","2001")
+  								group[2][2]=new Option("中国游戏在线","2002")
+  								group[2][3]=new Option("传奇","2003")
+  								group[2][4]=new Option("边锋","2004")
+  								group[2][5]=new Option("互动武侠","2005")
+  								group[2][6]=new Option("天方夜谭","2006")
+  								group[2][7]=new Option("密传（Tantra）","2007")
+  								group[2][8]=new Option("Guild Wars","2008")
+  								group[2][9]=new Option("三国豪侠传","2009")
+  								
+  								group[2][10]=new Option("羽音Online","2010")
+  								group[2][11]=new Option("铁血三国志","2011")
+  								group[2][12]=new Option("魔兽世界","2012")
+  								group[2][13]=new Option("永恒（Carpe Diem）","2013")
+  								group[2][14]=new Option("天翼之链","2014")
+  								group[2][15]=new Option("英雄王座（Travia）","2015")
+  								group[2][16]=new Option("华夏Online","2016")
+  								group[2][17]=new Option("开天Online","2017")
+  								group[2][18]=new Option("荣耀Online","2018")
+  								group[2][19]=new Option("神甲奇兵","2019")
+  								
+  								group[2][20]=new Option("轩辕剑Online","2020")
+  								group[2][21]=new Option("ALOD领土","2021")
+  								group[2][22]=new Option("雅典娜（LAQIA）","2022")
+  								group[2][23]=new Option("奇侠（XIAH）","2023")
+  								group[2][24]=new Option("帝国传奇","2024")
+  								group[2][25]=new Option("科隆","2025")
+  								group[2][26]=new Option("大清帝国","2026")
+  								group[2][27]=new Option("荡神志","2027")
+  								group[2][28]=new Option("神迹","2028")
+  								group[2][29]=new Option("RFOnline","2029")
+  								
+  								group[2][30]=new Option("Kirin","2030")
+  								group[2][31]=new Option("热血江湖","2031")
+  								group[2][32]=new Option("非常三国","2032")
+  								group[2][33]=new Option("vitalsign","2033")
+  								group[2][34]=new Option("火凤凰","2034")
+  								group[2][35]=new Option("D。O。Online","2035")
+  								group[2][36]=new Option("巨商","2036")
+  								group[2][37]=new Option("海之乐章","2037")
+  								group[2][38]=new Option("天空之城","2038")
+  								group[2][39]=new Option("forestia","2039")
+  								
+  								group[2][40]=new Option("王者归来","2040")
+  								group[2][41]=new Option("大话西游Online2","2041")
+  								group[2][42]=new Option("D国英雄","2042")
+  								group[2][43]=new Option("英雄2","2043")
+  								group[2][44]=new Option("大海战2","2044")
+  								group[2][45]=new Option("铁甲争雄","2045")
+  								group[2][46]=new Option("嘭嘭帮","2046")
+  								group[2][47]=new Option("神之裔","2047")
+  								group[2][48]=new Option("咕噜咕噜","2048")
+  								group[2][49]=new Option("武林Online","2049")
+  								
+  								group[2][50]=new Option("怪兽总动员","2050")
+  								group[2][51]=new Option("天花板碑","2051")
+  								group[2][52]=new Option("古龙群侠传","2052")
+  								group[2][53]=new Option("碰碰1","2053")
+  								group[2][54]=new Option("破碎银河系","2054")
+  								group[2][55]=new Option("财神","2055")
+  								group[2][56]=new Option("武魂","2056")
+  								group[2][57]=new Option("疯狂原始人","2057")
+  								group[2][58]=new Option("开心对对碰","2058")
+  								group[2][59]=new Option("新机动暗战","2059")
+  								
+  								group[2][60]=new Option("侠客行","2060")
+  								group[2][61]=new Option("数码精灵","2061")
+  								group[2][62]=new Option("欢乐潜水艇","2062")
+  								group[2][63]=new Option("万王之王","2063")
+  								group[2][64]=new Option("泡泡堂","2064")
+  								group[2][65]=new Option("传奇世界","2065")
+  								group[2][66]=new Option("梦幻西游","2066")
+  								group[2][67]=new Option("东方传说Online","2067")
+  								group[2][68]=new Option("画魂道Online","2068")
+  								group[2][69]=new Option("风云Online","2069")
+  								
+  								group[2][70]=new Option("星际家园","2070")
+  								group[2][71]=new Option("永恒传说Online","2071")
+  								group[2][72]=new Option("网络三缺一","2072")
+  								group[2][73]=new Option("梦幻都市","2073")
+  								group[2][74]=new Option("神甲厅兵","2074")
+  								group[2][75]=new Option("OUTPOST","2075")
+  								group[2][76]=new Option("竞马","2076")
+  								group[2][77]=new Option("傲世Online","2077")
+  								group[2][78]=new Option("侠客天下","2078")
+  								group[2][79]=new Option("海天英雄传","2079")
+  								
+  								group[2][80]=new Option("仙侣奇缘","2080")
+  								group[2][81]=new Option("纵横Online","2081")
+  								group[2][82]=new Option("侠义道","2082")
+  								group[2][83]=new Option("刀剑Online","2083")
+  								group[2][84]=new Option("TIME-时空","2084")
+  								group[2][85]=new Option("辉煌","2085")
+  								group[2][86]=new Option("信仰","2086")
+  								group[2][87]=new Option("搜神记","2087")
+  								group[2][88]=new Option("绝对女神","2088")
+  								group[2][89]=new Option("机甲占神","2089")
+  								
+  								group[2][90]=new Option("梦想","2090")
+  								group[2][91]=new Option("雷霆战队","2091")
+  								group[2][92]=new Option("丝路传说","2092")
+  								group[2][93]=new Option("魔界村Online","2093")
+  								group[2][94]=new Option("天堂2","2094")
+  								group[2][95]=new Option("神话","2095")
+  								group[2][96]=new Option("天之炼狱","2096")
+  								group[2][97]=new Option("人间","2097")
+  								group[2][98]=new Option("吞食天地Online","2098")
+  								group[2][99]=new Option("神之领域","2099")
+  								
+  								group[2][100]=new Option("炸弹超人","2100")
+  								group[2][101]=new Option("强盗与富商","2101")
+  								group[2][102]=new Option("天之泡泡","2102")
+  								group[2][103]=new Option("武林Online","2103")
+  								group[2][104]=new Option("幻境奇缘","2104")
+  								group[2][105]=new Option("猎人MM","2105")
+  								group[2][106]=new Option("水浒传Online","2106")
+  								group[2][107]=new Option("新侠客行","2107")
+  								group[2][108]=new Option("碧雪情天Online","2108")
+  								group[2][109]=new Option("魔法奇兵","2109")
+  								
+  								group[2][110]=new Option("Tom小子","2110")
+  								group[2][111]=new Option("剑侠情缘网络版","2111")
+  								group[2][112]=new Option("使命","2112")
+  								group[2][113]=new Option("天煞","2113")
+  								group[2][114]=new Option("奇城","2114")
+  								group[2][115]=new Option("凯旋","2115")
+  								group[2][116]=new Option("彩虹冒险","2116")
+  								group[2][117]=new Option("火线任务","2117")
+  								group[2][118]=new Option("魔幻森林","2118")
+  								group[2][119]=new Option("流星蝴喋剑","2119")
+  								
+  								group[2][120]=new Option("坦克宝贝","2120")
+  								group[2][121]=new Option("夺宝奇兵","2121")
+  								group[2][122]=new Option("天下无双","2122")
+  								group[2][123]=new Option("A3","2123")
+  								group[2][124]=new Option("魔剑","2124")
+  								group[2][125]=new Option("命运","2125")
+  								group[2][126]=new Option("佣兵传说","2126")
+  								group[2][127]=new Option("神兵传奇","2127")
+  								group[2][128]=new Option("炼狱","2128")
+  								group[2][129]=new Option("骑士Online","2129")
+  								
+  								group[2][130]=new Option("神泪","2130")
+  								group[2][131]=new Option("疯狂坦克","2131")
+  								group[2][132]=new Option("三国策Online","2132")
+  								group[2][133]=new Option("无尽的任务","2133")
+  								group[2][134]=new Option("破天一剑","2134")
+  								group[2][135]=new Option("苹果派","2135")
+  								group[2][136]=new Option("流星学院","2136")
+  								group[2][137]=new Option("百战天虫","2137")
+  								group[2][138]=new Option("征服","2138")
+  								group[2][139]=new Option("英雄世纪","2139")
+  								
+  								group[2][140]=new Option("新西游记","2140")
+  								group[2][141]=new Option("天骄","2141")
+  								group[2][142]=new Option("成吉思汗Online","2142")
+  								group[2][143]=new Option("美丽世界","2143")
+  								group[2][144]=new Option("真孔雀王","2144")
+  								group[2][145]=new Option("科洛斯","2145")
+  								group[2][146]=new Option("金庸Online","2146")
+  								group[2][147]=new Option("星云战记","2147")
+  								group[2][148]=new Option("航海世纪","2148")
+  								group[2][149]=new Option("圣者无敌","2149")
+  								
+  								group[2][150]=new Option("混乱冒险","2150")
+  								group[2][151]=new Option("不灭传说","2151")
+  								group[2][152]=new Option("古龙Online","2152")
+  								group[2][153]=new Option("仙境传说（RO）","2153")
+  								group[2][154]=new Option("神州Online","2154")
+  								group[2][155]=new Option("童话","2155")
+  								group[2][156]=new Option("古惑仔Online","2156")
+  								group[2][157]=new Option("天堂","2157")
+  								group[2][158]=new Option("幻灵游侠","2158")
+  								group[2][159]=new Option("奇迹","2159")
+  								
+  								group[2][160]=new Option("龙族","2160")
+  								group[2][161]=new Option("遗忘传说","2161")
+  								group[2][162]=new Option("霸业","2162")
+  								group[2][163]=new Option("马场大亨","2163")
+  								group[2][164]=new Option("在法师","2164")
+  								group[2][165]=new Option("倚天","2165")
+  								group[2][166]=new Option("网络三国","2166")
+  								group[2][167]=new Option("三国演义Online","2167")
+  								group[2][168]=new Option("三国世纪","2168")
+  								group[2][169]=new Option("决战","2169")
+  								
+  								group[2][170]=new Option("石器时代","2170")
+  								group[2][171]=new Option("精灵","2171")
+  								group[2][172]=new Option("传奇3","2172")
+  								group[2][173]=new Option("天使","2173")
+  								group[2][174]=new Option("新英雄门","2174")
+  								group[2][175]=new Option("宠物王","2175")
+  								group[2][176]=new Option("魔力宝贝","2176")
+  								group[2][177]=new Option("战场","2177")
+  								group[2][178]=new Option("红月","2178")
+  								group[2][179]=new Option("千年","2179")
+  								
+  								group[2][180]=new Option("帝国在线","2180")
+  								//group[2][181]=new Option("其他","2999")
+  								
+  							//group[3][0]=new Option("其他","9999") 
+  								
+  								group[3][0]=new Option("请先选择大类","")
+  								
+  								function redirectr(x){
+									var temp=document.form1.service_type
+  									for (m=temp.options.length-1;m>0;m--)
+  										temp.options[m]=null
+  										for (i=0;i<group[x].length;i++){
+  											temp.options[i]=new Option(group[x][i].text,group[x][i].value,group[x][i].selected)
+  										}
+  										temp.options[0].selected=true
+  								}
+						//-->
+					</script></td>
+                    </tr>
+                    
+                    
+                    <tr>
+                      <td width="35%" align="right" height="30">内容/主机名：</td>
+                      <td width="65%" height="30"><input type='text' name='net_content'  class='input_text' size=30 value=""></td>
+                    </tr>
+                    <tr>
+                      <td width="35%" align="right" height="30">帐号：</td>
+                      <td width="65%" height="30"><input type='text' name='net_username'  class='input_text' size=30 value=""></td>
+                    </tr>
+                    <tr>
+                      <td width="35%" align="right" height="30">姓名：</td>
+                      <td width="65%" height="30"><input type='text' name='user_name'  class='input_text' size=30 value=""></td>
+                    </tr>
+                    <tr>
+                      <td width="35%" align="right" height="30">证件类型：</td>
+                      <td width="65%" height="30"><select size="1" name="certificate_type"  class="input_select" style="width:220px">
+                                  	<OPTiON value="" selected>全部</Option>
+		   	                    
+		   	                    	
+		   	                  	
+                                  </select></td>
+                    </tr>
+                    <tr>
+                      <td width="35%" align="right" height="30">证件号码：</td>
+                      <td width="65%" height="30"><input type='text' name='certificate_code'  class='input_text' size=30 value=""></td>
+                    </tr>
+                    <tr>
+                      <td width="35%" align="right" height="30"><input type=hidden name="se" value='123'></td>
+                      <td width="65%" height="30">
+                      	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="image_search" value="开始查询" type="submit" border="0" class="an3" onclick="return checkdata();">
+                      	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="clear" value="取消" type="button" class="an3" onClick="history.back();">
+                      	</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+             
+            </table>
+
+            
+            
+            
+            
+          </td>
+          
+        </tr>
+       
+      </table>
+    </td>
+  </tr>
+  </form>
+  
+  
+  
+  <tr>
+    <td width="100%" height="10"></td>
+  </tr>
+</table>
+
+
+
+
+</BODY>
+<script>
+	 form1.e_hour.value = "[#e_hour#]";
+	 form1.e_min.value = "[#e_min#]";
+	</script>
+</html>
+
+

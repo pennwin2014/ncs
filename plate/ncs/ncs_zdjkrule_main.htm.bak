@@ -1,0 +1,200 @@
+<html>
+<head>
+<title>归档日志</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<style>
+.conts{visibility:hidden}
+.tab{
+width:90;
+text-align: center;
+background-image:url("/images/images2/biaoqian2.gif");background-repeat:no-repeat;
+color:#6b6b6b;
+font-weight:bold;
+cursor:hand;
+}
+.selTab{
+width:90;
+text-align: center;
+ background-image: url("/images/images2/biaoqian.gif"); background-repeat:no-repeat; 
+color:#00224f;
+font-weight:bold;
+cursor:hand;
+}
+
+
+</style>
+<script language="javascript">
+var ll=0;
+var yy=1;
+
+</script>
+<script LANGUAGE="JavaScript">
+//this is the tab switching function
+function goto(t){
+frames.main.location.href=t
+}
+
+var currentTab;
+var tabBase;
+var firstFlag = true;
+var cno;
+function changeTabs(){
+	
+if(firstFlag == true){
+currentTab = t0;
+cno=currentTab.id.substring(1);
+firstFlag = false;
+}
+
+
+if(window.event.srcElement.className == "tab4"||window.event.srcElement.className == "tab5"||window.event.srcElement.className == "tab7"||window.event.srcElement.className == "tab8"||window.event.srcElement.className == "tab9"){
+	var cno2=parseInt(cno)+1;
+	if(cno==0)
+		currentTab.className = "tab7";
+	else if(cno==8)
+		currentTab.className="tab8";
+	else
+		currentTab.className="tab5";
+
+  if(cno2<8)
+  	eval('document.all.t'+cno2).className="tab5";
+  else if(cno2==8)
+  	eval('document.all.t'+cno2).className="tab8";
+  	
+	currentTab = window.event.srcElement;
+	cno=currentTab.id.substring(1);
+	var cno1=parseInt(cno)+1;
+	if(cno==8){
+		currentTab.className = "tab6";
+	}
+  else if(cno==7){
+   currentTab.className="tab3";	 
+	 eval('document.all.t'+cno1).className="tab9";
+  }
+  else{
+	 currentTab.className="tab3";	 
+	 eval('document.all.t'+cno1).className="tab4";
+	}
+
+ tabContentID = currentTab.id + "Contents";
+ tabContent = document.all(tabContentID);
+
+var temp_desc;
+if(tabContent.id=="t0Contents"){
+frames.document.all.xx1.src="/pronline/Msg?FunName@ncsAllruleSet&userid@[#userid#]&flag@[#flag#]&uflags@[#uflags#]";
+
+}
+else if(tabContent.id=="t1Contents"){
+frames.document.all.xx1.src="/pronline/Msg?FunName@ncsIpruleSet&userid@[#userid#]&flag@[#flag#]&uflags@[#uflags#]";
+
+}
+else if(tabContent.id=="t2Contents"){
+frames.document.all.xx1.src="/pronline/Msg?FunName@ncsWebruleSet_zd&userid@[#userid#]&flag@[#flag#]&uflags@[#uflags#]";
+}
+else if(tabContent.id=="t3Contents"){
+frames.document.all.xx1.src="/pronline/Msg?FunName@ncsVidruleSet_zd&userid@[#userid#]&flag@[#flag#]&uflags@[#uflags#]";
+
+}
+else if(tabContent.id=="t4Contents"){
+frames.document.all.xx1.src="/pronline/Msg?FunName@ncsMailruleSet_zd&userid@[#userid#]&flag@[#flag#]&uflags@[#uflags#]";
+
+}
+else if(tabContent.id=="t5Contents"){
+frames.document.all.xx1.src="/pronline/Msg?FunName@ncsjstxruleSet_zd&userid@[#userid#]&flag@[#flag#]&uflags@[#uflags#]";
+
+}
+else if(tabContent.id=="t6Contents"){
+frames.document.all.xx1.src="/pronline/Msg?FunName@ncsBbsruleSet&userid@[#userid#]&flag@[#flag#]&uflags@[#uflags#]";
+
+}
+else if(tabContent.id=="t7Contents"){
+frames.document.all.xx1.src="/pronline/Msg?FunName@ncsftpruleSet&userid@[#userid#]&flag@[#flag#]&uflags@[#uflags#]";
+
+}
+else if(tabContent.id=="t8Contents"){
+
+frames.document.all.xx1.src="/pronline/Msg?FunName@ncsdefaultruleSet_zd&userid@[#userid#]&flag@[#flag#]&uflags@[#uflags#]";
+}
+	
+}
+}
+
+</script>
+<style>
+.conts  {visibility:hidden}
+
+table {  font-size: 9pt}
+ .style2 {
+	font-size: 20px;
+	font-weight: bold;
+	font-style: italic;
+	color: #0000ff;
+}
+</style>
+
+<style type="text/css">
+
+<!--
+body {  font-size: 9pt}
+.tas {  border-color: black #FFFFFF; border-style: solid; border-top-width: 0px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 1px}
+table {  font-size: 9pt}
+.gray1 { filter:gray }
+.ttbbd {  cursor: default}
+
+-->
+</style>
+
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" onclick="changeTabs()"  style="overflow:hidden" >
+<form name="form1" id="form1" method="post" action="/pronline/Msg" target="main">
+<input type="hidden" name="FunName" value="">
+
+    <table border="0"  bordercolorlight=#aaaaaa bordercolordark=#ffffff  CELLPADDING="0" CELLSPACING="0" bgcolor=#8cb4e8 STYLE="width:100%; height:100%">
+      <tr height="27" bgcolor="#DEE8FA"><td colspan="11" align="center" style="font-size:11pt;color:#00237e;"><b>[#main_name#]设置([#uflagsname#])</b></td>
+
+      </tr>
+      <tr height="26" >
+	    <td ID="t0" CLASS="tab3">全部规则</td>
+	    <td ID="t1" CLASS="tab4"  >IP连接日志</td> 
+	    <td ID="t2" CLASS="tab5"  >网站日志</td>
+	    
+	    <td ID="t3" CLASS="tab5"  >虚拟身份规则</td>
+	    
+	    <td ID="t4" CLASS="tab5"   >邮件监控</td>
+	    <td ID="t5" CLASS="tab5"  >即时通讯</td>
+	    <td ID="t6" CLASS="tab5" >BBS发送</td>
+	    <td ID="t7" CLASS="tab5" >FTP/Telnet</td>
+	    <td ID="t8" CLASS="tab8" >缺省设置</td>
+	    <td ID="t9" class="tab10">&nbsp;</td>
+	    <td ID="t10" class="tab10" width="20"></td>	   
+      </tr> 
+		
+
+	<tr>
+<td HEIGHT="*" COLSPAN="11" ID="tabContents" align="center" valign="top" style="position:relative;top:-2px"> 
+<div id="ff" name='ff' >
+		<iframe name="xx1" id="xx1" width="100%" height="100%" src="/pronline/Msg?FunName@ncsAllruleSet&userid@[#userid#]&flag@[#flag#]&uflags@[#uflags#]" frameborder="no" scrolling="no"> </iframe>
+
+</div>
+
+</td></tr></table>
+
+	</form>	
+
+<div CLASS="conts" ID="t0Contents"> 0 </div>
+<div CLASS="conts" ID="t1Contents"> 1 </div>
+<div CLASS="conts" ID="t2Contents"> 2 </div>
+<div CLASS="conts" ID="t3Contents"> 3 </div>
+<div CLASS="conts" ID="t4Contents"> 4 </div>
+<div CLASS="conts" ID="t5Contents"> 5 </div>
+<div CLASS="conts" ID="t6Contents"> 6 </div>
+<div  ID="t7Contents"> 7 </div>
+<div  ID="t8Contents"> 8 </div>
+<div  ID="t9Contents"> 9 </div>
+</body>
+</html>

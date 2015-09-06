@@ -1,0 +1,67 @@
+<html>
+<head>
+<title>提示问题</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+</head>
+
+<script language="javascript">
+
+function doNext()
+{	
+	with(document.frmQuestion){
+		nFunCode.value='19402';		
+	}
+	return true;
+}
+
+function cancleSession()
+{	
+	with(document.frmQuestion){
+		nFunCode.value='17501';		
+	}		
+	return true;
+}
+
+</script>
+
+<body bgcolor="#F0FDE6">
+<form name="frmQuestion" action="/pronline/Msg" method="post" >
+<input type="hidden" name="nFunCode" value="19402">
+<input type="hidden" name="sid" value="[#sid#]">
+<input type="hidden" name="username" value="[#username#]">
+  <table width="100%" border="0" cellpadding="0" align="center" bgcolor="#FFFFFF">
+    <tr bgcolor="#8ED573"> 
+      <td height="12" colspan="2"> 
+        <div align="center"><font size="3" color="#336633"><b><font size="2">忘　记　密　码　</font></b></font></div>
+      </td>
+    </tr>
+  </table>
+  <table width="100%" border="0" cellpadding="1" align="center">
+    <tr valign="middle" bgcolor="#E2EEDB"> 
+      <td width="43%" height="25"> 
+        <div align="right"><font size="2">密码提示问题</font></div>
+      </td>
+      <td width="57%" height="25"> <font size="2">[#question#]</font> </td>
+    </tr>
+    <tr valign="middle" bgcolor="#E2EEDB"> 
+      <td width="43%" height="25"> 
+        <div align="right"><font size="2">答　案</font></div>
+      </td>
+      <td width="57%" height="25"> 
+        <input type="text" name="answer" maxlength="32">
+      </td>
+    </tr>
+  </table>
+<table width="100%" border="0" cellpadding="0" align="center">
+    <tr> 
+      <td height="40" colspan="2"> 
+        <div align="center"> 
+          <input type="image" src="../mailImages/bt1.GIF" width="52" height="24" border="0" onclick="javascript:doNext()">
+          <input type="image" src="../mailImages/bt11.GIF" width="52" height="24" border="0" onclick="javascript:cancleSession()">          
+        </div>
+      </td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

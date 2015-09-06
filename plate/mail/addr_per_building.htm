@@ -1,0 +1,251 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0058)http://address.sina.com.cn/cgi-bin/addrbook/ShowMemberList -->
+<HTML>
+<HEAD>
+<TITLE>通讯录</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=content-type>
+<SCRIPT language=javascript>
+function formCheck()
+{
+    
+    if(document.addr.name.value=="")
+    {
+        alert("请输入姓名");
+        document.addr.name.focus();
+        return false;
+    }
+    if(document.addr.email.value=="")
+    {
+        alert("请输入邮件地址");
+        document.addr.email.focus();
+        return false;
+    }
+    if(!isEmail(document.addr.email.value))
+    {
+        alert("请输入正确的邮件地址");
+        document.addr.email.focus();
+        return false;
+    }
+    
+    if(document.addr.year.value.length>0&&isNaN(document.addr.year.value))
+    {
+        alert("请输入正确的年份")
+        document.addr.year.focus();
+        return false;
+    }
+    
+    return true;
+}
+function isEmpty(s)
+{
+    if (s == null || s.length == 0) return true;
+    return false;
+}
+
+function isWhitespace(s)
+{   
+	// Is s empty?
+    if (isEmpty(s)) return true;
+ 
+    // Search through string's characters one by one
+    // until we find a non-whitespace character.
+    // When we do, return false; if we don't, return true.
+ 
+    for (i = 0; i < s.length; i++)
+    {
+       // Check that current character isn't whitespace.
+       c = s.charAt(i);
+       if(!(c == ' ' || c == '\n' || c == '\r' || c == '\t'))
+	   return false;
+    }
+    
+    // All characters are whitespace.
+    return true;
+}
+
+function isEmail (s)
+{
+    
+	// is s whitespace?
+    if (isWhitespace(s)) return false;
+ 
+    // there must be >= 1 character before @, so we
+    // start looking at character position 1
+    // (i.e. second character)
+    var i = 1;
+    var sLength = s.length;
+ 
+    // look for @
+    while ((i < sLength) && (s.charAt(i) != "@"))
+    { 
+    	i++;
+    }
+    if ((i >= sLength) || (s.charAt(i) != "@")) return false;
+    else i += 2;
+ 
+    // look for .
+    while ((i < sLength) && (s.charAt(i) != "."))
+    { 
+    	i++;
+    }
+ 
+    // there must be at least one character after the .
+    if ((i >= sLength - 1) || (s.charAt(i) != ".")) return false;
+    else return true;
+}   
+</SCRIPT>
+<META content="MSHTML 5.00.2919.6307" name=GENERATOR>
+<style type="text/css">
+<!--
+.submit {  background-color: #FFCC66; font-size: 9pt}
+.type {  font-size: 9pt}
+.red {  color: #FF0000}
+-->
+</style>
+</HEAD>
+<BODY class=bgcw leftMargin=11 topMargin=5 marginwidth="11" marginheight="5" bgcolor="#F0FDE6">
+<form action="/pronline/Msg"  method="post" name="addr" onsubmit="return formCheck()">
+<input type="hidden" name="nFunCode" value="17102" >
+<input type="hidden" name="sid" value="[#sid#]">
+<input type="hidden" name="require" value="[#require#]">
+<input type="hidden" name="iid" value="[#iid#]">
+<span class="bg1"></span><IMG 
+height=3 src="../temp/%D0%C2%C0%CB%CD%A8%D1%B6%C2%BC%A3%BA%20ivyiv.files/ShowMemberList.files/c.gif" width=1><BR>
+<br>
+  <table border="0" align="center" cellpadding="0" bordercolordark="#FFFFFF" class="type" width="100%">
+    <tr valign="bottom"> 
+      <td  align="center" 
+width="19%" height="21"> 
+        <div align="left"><font color="#000000"><b><font color="#339933">地　址　簿</font></b></font></div>
+      </td>
+      <td colspan="2" width="81%" height="21"> 
+        <div align="right"> <img src="../mailImages/bt8.GIF" width="52" height="24" align="absmiddle"> 
+        </div>
+      </td>
+    </tr>
+    <tr> 
+      <td valign="middle" align="center" colspan="3" height="10"> 
+        <hr noshade size="2"color="99cc99" align="left">
+      </td>
+    </tr>
+    <tr> 
+      <td valign="middle" align="center" 
+width="19%" bgcolor="#8ED573" height="25"> 姓名 </td>
+      <td colspan="2" width="81%" bgcolor="#E2EEDB" height="25"> 
+        <input type="text" name="name" size="30" value="[#name#]" maxlength="39">
+        <span class="red">*</span> </td>
+    </tr>
+    <tr> 
+      <td  align="center" width="19%" bgcolor="#8ED573" height="25"> 电子邮件地址 </td>
+      <td colspan="2" width="81%" bgcolor="#E2EEDB" height="25"> 
+        <input type="text" name="email" size="30" value="[#email#]" maxlength="39">
+        <span class="red">*</span> </td>
+    </tr>
+    <tr> 
+      <td  align="center" width="19%" valign="middle" bgcolor="#8ED573" height="25"> 
+        通讯地址 </td>
+      <td colspan="2" width="81%" bgcolor="#E2EEDB" height="25"> 
+        <input type="text" name="address" size="70" value="[#address#]" maxlength="99" >
+      </td>
+    </tr>
+    <tr> 
+      <td  align="center" width="19%" bgcolor="#8ED573" height="25"> 邮政编码 </td>
+      <td colspan="2" width="81%" bgcolor="#E2EEDB" height="25"> 
+        <input type="text" name="postcode" size="30" value="[#postcode#]" maxlength="9" >
+      </td>
+    </tr>
+    <tr> 
+      <td valign="middle" align="center" width="19%" height="25" bgcolor="#8ED573"> 
+        住址电话 </td>
+      <td colspan="2" width="81%" height="25" bgcolor="#E2EEDB"> 
+        <input type="text" name="phone" size="30" value="[#phone#]" maxlength="19" >
+      </td>
+    </tr>
+    <tr> 
+      <td valign="middle" align="center" width="19%" bgcolor="#8ED573" height="25">CALL 
+        机 </td>
+      <td colspan="2" width="81%" bgcolor="#E2EEDB" height="25"> 
+        <input type="text" name="call" size="30" value="[#call#]" maxlength="19" >
+      </td>
+    </tr>
+    <tr> 
+      <td valign="middle" align="center" width="19%" bgcolor="#8ED573" height="25">Icq 
+      </td>
+      <td colspan="2" width="81%" bgcolor="#E2EEDB" height="25"> 
+        <input type="text" name="icq" size="30" value="[#icq#]" maxlength="14" >
+      </td>
+    </tr>
+    <tr> 
+      <td valign="middle" align="center" width="19%" bgcolor="#8ED573" height="25"> 
+        生日 </td>
+      <td colspan="2" width="81%" bgcolor="#E2EEDB" height="25"> 
+        <input type="text" name="year" size="4" value="[#year#]" maxlength="4" >
+        年 
+        <select name="month">
+          <option value="1" selected>1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+        </select>
+	<script language="javascript">
+        document.addr.month.selectedIndex=[#month#]-1;
+        </script>
+        月 
+        <select name="date">
+          <option value="1" selected>1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+          <option value="13">13</option>
+          <option value="14">14</option>
+          <option value="15">15</option>
+          <option value="16">16</option>
+          <option value="17">17</option>
+          <option value="18">18</option>
+          <option value="19">19</option>
+          <option value="20">20</option>
+          <option value="21">21</option>
+          <option value="22">22</option>
+          <option value="23">23</option>
+          <option value="24">24</option>
+          <option value="25">25</option>
+          <option value="26">26</option>
+          <option value="27">27</option>
+          <option value="28">28</option>
+          <option value="29">29</option>
+          <option value="30">30</option>
+          <option value="31">31</option>
+        </select>
+	<script language="javascript">
+        document.addr.date.selectedIndex=[#date#]-1;
+        </script>
+        日 </td>
+    </tr>
+    <tr> 
+      <td valign="middle" align="left" colspan="3"> 
+        <div align="center"><br>
+          <input type="image" border="0" name="imageField" src="../mailImages/bt10.GIF" width="52" height="24">
+          　　　　<a href="javascript:{window.history.back()}"><img src="../mailImages/bt11.GIF" width="52" height="24" border="0"></a> 
+        </div>
+      </td>
+    </tr>
+  </table>
+<div align="center"><BR>
+  </div>
+</form></BODY></HTML>

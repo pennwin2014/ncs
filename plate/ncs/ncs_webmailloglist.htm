@@ -1,0 +1,162 @@
+<html>
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<title>main</title>
+<script>
+var dfd1="0"
+function gotoPage(pagenum)
+
+{
+		form1.FunName.value='ncsWebMailLog';
+    form1.CurPg.value = pagenum;
+}
+
+
+
+function setSelect(o){
+var ccod=o.cells[0].childNodes[0].childNodes[1].value;
+
+parent.form1.ccode.value=ccod;
+
+}
+
+function goto1(t){
+ tt=showModalDialog(t, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:520px;scroll:yes;dialogHeight:620px');
+}
+
+
+function lprint()
+{
+form1.cx.style.display="none";
+form1.rycx.style.display="none";
+form1.hsear.style.display="none";
+form1.pr.style.display="none";
+form1.exp.style.display="none";
+window.print();
+
+form1.cx.style.display="";
+form1.rycx.style.display="";
+form1.hsear.style.display="";
+form1.pr.style.display="";
+form1.exp.style.display="";
+}
+function showuser(did,uid)
+{
+var temp_var="/pronline/Msg?FunName@ncsWebShowUserinfo&did@"+did+"+uid@"+uid;
+	showModalDialog(temp_var, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:520px;scroll:yes;dialogHeight:640px');
+}
+
+
+
+function goto(o)
+{
+	var ccod=o.cells[0].childNodes[0].childNodes[1].value;
+	var uid=o.cells[0].childNodes[0].childNodes[2].value;
+	var msgfile=o.cells[0].childNodes[0].childNodes[3].value;
+	var t="/pronline/Msg?FunName@ncsWebReplace&fname@ncsWebMailMonRead&plate@ncs/mailReadFrm.htm&ccode@"+ccod+"&userid@"+uid+"&msgfile@"+msgfile;
+
+  tt=showModalDialog(t, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:540px;scroll:yes;dialogHeight:600px');
+}
+
+
+function passdate()
+{
+parent.form1.CurPg.value='[#CurPg#]';
+parent.form1.TotPg.value='[#TotPg#]';
+parent.form1.TotRec.value='[#TotRec#]';
+parent.document.all.wlj.innerHTML='<b style="font-size: 10pt;color:#00237e;">本地日志([#title_name#])</b>';
+	parent.form1.did.value=form1.userid.value;
+	parent.form1.uid.value=form1.uid.value;
+	parent.form1.sdate.value=form1.sdate.value;
+	parent.form1.edate.value=form1.edate.value;
+}
+
+
+// -->
+<!-- Hide
+var ll=[#CurPg#]
+var yy=[#TotPg#]
+function killErrors() {
+return true;
+}
+window.onerror = killErrors;
+// -->
+
+</script>
+
+<script src="/js/drawtable.js"></script>
+<SCRIPT language=JavaScript>
+<!--
+
+var recordID = null;
+var Table = new FlexibleTable ('DataTable', '100%', '570', 'center', 32, 'flexibleTableSpan');
+
+Table.Header ('<input type="button" name="b1" value="全选"  class="anniu_1"  onClick="allChecked()">', '单位名称', '用户名', '日期','邮件类别','发件人','收件人','主题','邮件大小','附件');
+Table.ColumnsWidth ('40', '90', '90', '110', '60', '100', '100','160','60','40');
+Table.HeaderAligment ('center', 'center', 'center', 'center', 'center', 'center', 'center','center','center','center');
+Table.BodyAligment ('center', 'left', 'left', 'center', 'center', 'left','left','left','right','center');
+
+Table.SetRowsTemplate (" onMouseOver=\"javascript:mouseovertr2(this);\" onMouseOut=\"javascript:mouseouttr2(this);\" onClick=\"setSelect(this);\" onDblClick=\"goto(this)\" ");
+[#SLPB#]
+Table.Row('<input type="checkbox" name="chk[#num#]" value="[#sid#]"><input type="hidden" name="ccod[#num#]" value="[#ccode#]"><input type="hidden" name="userid[#num#]" value="[#uid#]"><input type="hidden" name="msgfile[#num#]" value="[#file#]">','&nbsp;[#cname#]','<a href="#xxm" onclick=showuser("[#did#]","[#uid#]")>&nbsp;[#udisp#]</a>','&nbsp;[#sdate#]','&nbsp;[#mtype#]','&nbsp;[#mailfrom#] ','&nbsp;[#mailto#]&nbsp;','&nbsp;[#mailsub#] ','[#mailsize#]&nbsp;','[#fj#]');
+[#SLPE#]
+
+//-->
+</SCRIPT>
+
+
+<style type="text/css">
+<!--
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+-->
+
+</style>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<BODY  style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px" bgcolor="#DEE8FA" leftMargin=2 topMargin=2 scroll=no onload="passdate();Table.Draw()">
+	<form name="form1" method="post" action="/pronline/Msg">
+ <input type="hidden" name="plate" value="ncsmsg_showinfo.htm">
+<!-- <input type="hidden" name="FunName" value="ncsWebReplace">  -->
+<input type="hidden" name="FunName" value="ncsWebMailLog">
+ <input type="hidden" name="fun" value="ncsWebMailLog">
+ <input type="hidden" name="CurPg"      value="[#CurPg#]">
+ <input type="hidden" name="TotPg"      value="[#TotPg#]">
+ <input type="hidden" name="lcount"      value="[#TotRec#]">
+ <input type="hidden" name="cond" value="">
+  <input type="hidden" name="exp" value="">
+  <input type="hidden" name="ccode" value="">
+  
+  <input type="hidden" name="userid" value="[#userid#]">
+  <input type="hidden" name="uid" value="[#uid#]">
+  <input type="hidden" name="did" value="[#userid#]">
+  <input type="hidden" name="groupid" value="[#groupid#]">
+  <input type="hidden" name="host" value="[#host#]">
+  <input type="hidden" name="mailfrom" value="[#mailfrom#]">
+  <input type="hidden" name="username" value="[#username#]">
+  <input type="hidden" name="sdate" value="[#sdate#]">
+  <input type="hidden" name="edate" value="[#edate#]">
+  <input type="hidden" name="sip" value="[#sip#]">
+  <input type="hidden" name="mailto" value="[#mailto#]">
+  <input type="hidden" name="mailsub" value="[#mailsub#]">
+  <input type="hidden" name="mailsize" value="[#mailsize#]">
+  <input type="hidden" name="ysf" value="[#ysf#]">
+  <input type="hidden" name="fjflag" value="[#fjflag#]">
+  <input type="hidden" name="flags" value="[#flags#]">
+  <input type="hidden" name="sorta" value="[#sorta#]">
+  <input type="hidden" name="ordera" value="[#ordera#]">
+<TABLE  height="100%" cellSpacing=0 cellPadding=0 width="100%" border=0>
+  	<TR>
+    		<TD valign="top"><SPAN id=flexibleTableSpan></SPAN></TD>
+  	</TR>
+ 	</TABLE>
+ 		
+ </form>		
+</BODY>
+</html>

@@ -1,0 +1,208 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<title>main</title>
+<script>
+	var ll=[#CurPg#]
+  var yy=[#TotPg#]
+	function gotoPage(pagenum)
+
+{
+    form1.CurPg.value = pagenum;
+}
+
+	
+	
+	
+function goto(t){
+self.location.href=t
+}
+function mouseovertr2 (o){
+var i;
+df=o.style.backgroundColor
+	o.style.backgroundColor= "#ffff00";
+	o.style.borderColor= "#FFFF00";
+	o.style.cursor="hand";	
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#000000";
+}	
+}
+
+
+    function Add()
+    {
+	      t = "/pronline/Msg?FunName@ncWebReplace&plate@vpn/vpn_add_frm.htm";   
+    var oDia=showModalDialog(t,window,
+		 "status:no;center:yes;help:no;minimize:no;maximize:no;border:thick;statusbar:no;dialogWidth:500px;scroll:none;dialogHeight:400px;overflow:none");	
+
+    }
+    
+    function Edit(sid)
+    {
+	      t = "/pronline/Msg?FunName@ncWebReplace&plate@vpn/vpn_add_frm.htm&sid@"+sid;   
+    var oDia=showModalDialog(t,window,
+		 "status:no;center:yes;help:no;minimize:no;maximize:no;border:thick;statusbar:no;dialogWidth:500px;scroll:none;dialogHeight:400px;overflow:none");	
+
+    }
+    function Del()
+    {
+    if(confirm('您确定要删除选择的连接吗？')){
+    return true;
+    }
+    else{
+    return false;
+    }
+   
+    }
+    
+function mouseouttr2(o){
+	o.style.backgroundColor=df
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#000000";
+}
+	
+	
+}
+</script>
+<link REL=stylesheet HREF="/css/runmit.css" TYPE="text/css">
+<script src="/js/rmenu.js"></script>
+<style type="text/css">
+<!--
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+.tScrollw {
+    SCROLLBAR-FACE-COLOR: #c1d8f9; 
+    OVERFLOW: scroll;
+    SCROLLBAR-SHADOW-COLOR: #c1d8f9; 
+    SCROLLBAR-3DLIGHT-COLOR: #c1d8f9;
+     SCROLLBAR-ARROW-COLOR: #5985ce; 
+     SCROLLBAR-DARKSHADOW-COLOR: #c1d8f9;
+    overflow-x:hidden;
+    height:548px;
+    cursor: default;
+    }
+  tr.tableHead {
+    position:relative;
+    height: 18px; 
+    text-align: center;
+    }   
+-->
+</style>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+<body marginheight=0 leftmargin=0 marginwidth=0 topMargin="0" bgcolor="#DEE8FA">
+
+<table border="0" width=100%  cellspacing="0" cellpadding="0" align=center  bgcolor="#DEE8FA">
+<form name="form1" method="post" action="/pronline/Msg"> 
+  <input type="hidden" name="FunName" value="vpnGateToGateConnect">                     
+  <input type="hidden" name="sid"  value="[#sid#]">
+  
+ 	<tr>
+	   <td valign="top"><table width="100%"  cellspacing="0" cellpadding="0">
+         <tr height="30"> 
+         <td class="tabtitle1" >&nbsp;网关到网关连接管理</td>
+         <td background="/images/images2/chaxun2-1.gif" align="right">        	
+         	 <table align=right border=0 cellpadding=0 cellspacing=0 class=main width=111>
+                <tbody>
+                <td width="10%" ><script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-06.gif' border=0 height=17 width=35 class='gray1'>")}
+                      else{
+                        document.write("<a href='#xxm'><img src='/images/zbuyer-06.gif' border=0 height=17 width=35 onClick='gotoPage(1);form1.submit()' class='hand'>")}
+                   </script></td>
+                <td width="10%"><script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 class='gray1'>")}
+                      else {
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]-1);form1.submit()' class='hand'>")}
+                   </script></td>
+                <td width="20%"><img src="/images/zbuyer-08.gif" border=0 height=17 width=32></td>
+                <td align=middle background="" width=92> <input class=Main id=browsdopage maxlength=3  name=browsdopage size=3 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 50px" value=[#CurPg#] onKeyPress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" onBlur="checkme(this)"> 
+                </td>
+                <td width="10%"><img src="/images/zbuyer-09.gif" border=0 height=17 width=16></td>
+                <td width="10%"><img align=middle border=0 height=17 src="/images/zbuyer-10.gif" width=17 onClick="gotoPage(form1.browsdopage.value);form1.submit()" class="hand"><img align=middle height=17 src="/images/zbuyer-11.gif" width=3></td>
+                <td width="10%"><img border=0 height=17 src="/images/zin1.gif" width=17 ></td>
+                <td align=middle background="" width=92> <input  class=Main id=browsdopage1 maxlength=5 name=browsdopage12 size=3 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 50px" value='[#TotPg#]'> 
+                </td>
+                <td width="10%"><img align=middle height=17 src="/images/zbuyer-09.gif" width=16></td>
+                <td align=middle background="" width=92> <input  class=Main id=browsdopage1 maxlength=5 name=browsdopage12 size=3 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 50px" value='[#TotRec#]'> 
+                </td>
+                <td width="10%"><img border=0 height=17 src="/images/zin3.gif" width=17 align="middle" ><img align=middle height=17  src="/images/zbuyer-11.gif" width=3></td>
+                <td width="10%"><script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]+1);form1.submit()' class='hand'>")}
+                    </script></td>
+                <td width="10%"><script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 onClick='gotoPage([#TotPg#]);form1.submit()' class='hand'>")}
+                    </script></td></tbody>
+            </table>          	         	
+         	</td>
+         </tr>       
+         </table>
+      </td>
+   </tr>
+          <tr bgcolor="#DEE8FA" >
+            <td width="100%" height="30" colspan="2" >
+                  &nbsp; 连接名称 
+                    <input type="text" name="gname" size="16" value="[#gname#]">
+                  <input type="submit" name="search" value="查 询"  class="an3"> 
+
+       
+                   <input type="button" name="add" value="新  增" onclick="Add()" class="an3"> 
+
+                    <input type="submit" name="del" value="删  除" class="an3" Onclick="return Del()"> 
+                    <input type="submit" name="app" value="应  用" class="an3">
+           </td>
+       </tr> 
+  
+  
+  <tr>
+      <td width="100%"  valign=top align=center > 
+      	<div class="tScrollw" id="tC">
+        <table id="DataTable" width="100%"  border="0" cellspacing="0" cellpadding="0" bgcolor="#DEE8FA" >
+          <tr height="20" style="top:expression(document.getElementById('tC').scrollTop)"> 
+            <td  bgcolor="#6382BD" class="bord2" align="center">&nbsp;</td>
+            <td  bgcolor="#6382BD" class="bord2" align="center"><font color="#FFFFFF">&nbsp;名称</font></td>
+            <td  bgcolor="#6382BD" class="bord2" align="center"><font color="#FFFFFF">&nbsp;客户端IP</font></td>
+            <td  bgcolor="#6382BD" class="bord2" align="center"><font color="#FFFFFF">&nbsp;客户端局域网</font></td>
+           <td  bgcolor="#6382BD" class="bord4" align="center"><font color="#FFFFFF">&nbsp; 
+              证书</font></td>
+          </tr>
+          <!-- [#SLPB#] -->
+          <tr bgcolor="#FFFFFF" onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)"  onDblclick="Edit('[#sid#]')"> 
+            <td class="bord1" width="25"> <input type="checkbox" name="chk[#num#]" value="[#sid#]"> 
+            </td>
+            <td class="bord1">&nbsp;[#gname#]</td>
+            <td class="bord1">&nbsp;[#ip#]</td>
+            <td class="bord1">&nbsp;[#lanip#]/[#lanmask#]</td>
+            <td class="bord3" align="center">&nbsp;
+              <input name="Button2" type="button" class="an3" onClick="goto('/pronline/Msg?FunName@ncWebBackFileDownload&path@/etc/openvpn/2.0/keys&fname@[#gname#].zip')" value="下 载"</td>
+          </tr>
+          <!-- [#SLPE#] -->
+         
+        </table>
+        </div>
+</td>
+</tr>
+    </form>
+</table>
+
+
+</body>
+
+</html>

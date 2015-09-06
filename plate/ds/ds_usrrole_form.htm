@@ -1,0 +1,60 @@
+<html>
+<head>
+<title>服务器管理</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/css.css" type="text/css">
+</head>
+
+<body bgcolor="#cccccc" text="#000000" leftmargin="12" topmargin="0">
+<table width="777" border="0" bgcolor="#cccccc" height="100" class="bord4">
+  <tr> 
+    <td height="134"> 
+      <form name="form1" method="post" action="/pronline/Msg" >
+        <input type="hidden" name="FunName" value="dsCltWebUserRoleSave">
+        <input type="hidden" name="sum"     value="[#sum#]">
+        <input type="hidden" name="userid"   value="[#userid#]">
+        <table width="100%" border="0" bgcolor="#AFAFC0" cellspacing="0" cellpadding="4">
+          <tr bgcolor="#8C8CA6"> 
+            <td colspan="5" class="bord4" bgcolor="#8C8CA6" height="23"> 
+              <div align="center"> 
+                <p><b><font color="#FFFFFF">用户角色选择</font></b></p>
+              </div>
+            </td>
+            <td class="bord4" width="27%" height="23">&nbsp;</td>
+          </tr>
+		  <!-- [#SLPB#] -->
+          <tr> 
+            <td width="6%" valign="bottom" height="21" class="bord1"> 
+              <div align="right">
+                <input type="checkbox" name="[#vara#]" value="[#rolea#]" [#checka#]>
+              </div>
+            </td>
+            <td width="20%" valign="bottom" height="21" class="bord1">[#dispnamea#]</td>
+            <td width="14%" valign="bottom" height="21" class="bord1"> 
+              <div align="right">
+                <input type="checkbox" name="[#varb#]" value="[#roleb#]" [#checkb#]>
+              </div>
+            </td>
+            <td width="26%" valign="bottom" height="21" class="bord1">[#dispnameb#]</td>
+            <td width="7%" valign="bottom" height="21" class="bord1"> 
+              <div align="right">
+                <input type="checkbox" name="[#varc#]" value="[#rolec#]"  [#checkc#]>
+              </div>
+            </td>
+            <td width="27%" valign="bottom" height="21" class="bord1">[#dispnamec#]</td>
+          </tr>
+  		  <!-- [#SLPE#] -->
+          <tr bgcolor="#CCCCCC"> 
+            <td colspan="6" height="18" class="bord4"> 
+              <div align="right"> 
+                <input type="submit" name="add"   value="确认" class="an3">
+              </div>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

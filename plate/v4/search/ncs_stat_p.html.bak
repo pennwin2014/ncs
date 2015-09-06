@@ -1,0 +1,266 @@
+<html>
+<head><title></title>
+<link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" /> 
+<style type="text/css">
+	.icon-grid 
+	{
+		background-image:url(/newver/resources/themes/images/share/grid.png) !important;
+	}
+	.add 
+	{
+ 		background-image:url(/newver/resources/themes/images/share/add.gif) !important;
+	}
+	.option 
+	{
+        	background-image:url(/newver/resources/themes/images/share/plugin.gif) !important;
+	}
+	.remove 
+	{
+		background-image:url(/newver/resources/themes/images/share/delete.gif) !important;
+	}
+	.exp 
+	{
+		background-image:url(/newver/resources/themes/images/share/application_go.png) !important;
+	}
+	.accept 
+	{
+		background-image:url(/newver/resources/themes/images/share/accept.png) !important;
+	}
+	.x-form-clear-trigger 
+	{
+        	background-image: url(/newver/resources/themes/images/default/form/clear-trigger.gif);
+	}
+	.x-form-search-trigger 
+	{
+        	background-image: url(/newver/resources/themes/images/default/form/search-trigger.gif);
+	}
+	.x-selectable, .x-selectable * 
+	{   
+    		-moz-user-select: text!important;   
+		-khtml-user-select: text!important;   
+	}   
+</style>
+<script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+<script>  
+	Ext.Loader.setConfig({enabled: true});
+	Ext.Loader.setPath('Ext.ux', '/newver/ux/');
+	Ext.require([
+    		'Ext.form.*',
+    		'Ext.window.*',
+    		'Ext.grid.*',
+    		'Ext.data.*',
+    		'Ext.util.*',
+    		'Ext.window.MessageBox',
+    		'Ext.toolbar.Paging',
+    		'Ext.ux.PreviewPlugin',
+	]);
+	
+	var store;
+	
+ 	function reflash()
+ 	{
+  		var option_flag=document.getElementById("form1").option_flag.value;
+  		store.load({params: {option_flag:option_flag}});  
+  	}
+	
+	Ext.onReady(function()
+	{
+    		Ext.define('EimData', 
+    		{
+        		extend: 'Ext.data.Model',
+        		fields: 
+        		[
+            			'host', 'bytes', 'count'
+        		]
+        	});
+       		store = Ext.create('Ext.data.Store', 
+       		{
+        		pageSize: 20,
+        		model: 'EimData',
+        		remoteSort: true,
+        		proxy: 
+        		{
+            			type: 'ajax',
+            			url: '/pronline/Msg?FunName@ncsHttpStat_v4&sdate@[#sdate#]&edate@[#edate#]&did@[#did#]&uid@[#uid#]',
+            			reader: {
+                			type:'json',
+                			root: 'eimdata1',
+                			totalProperty: 'totalCount'
+            			},         
+            			simpleSortMode: true
+        		},
+        		sorters: 
+        		[{
+            			property: 'stime',
+            			direction: 'DESC'
+        		}]
+    		});
+		
+    		
+		//对翻页工具条重新构建，替换翻页函数    
+  		Ext.PagingToolbar1 = Ext.extend(Ext.PagingToolbar, 
+  		{
+     			doRefresh:function()
+     			{
+     				reflash();
+    			},
+    			onPagingKeyDown:function(i,h)
+    			{
+     				var d=this,b=h.getKey(),c=d.getPageData(),a=h.shiftKey?10:1,g;
+     				if(b==h.RETURN)
+     				{
+     					h.stopEvent();
+     					g=d.readPageFromInput(c);
+        				if(g!==false)
+        				{
+         					g=Math.min(Math.max(1,g),c.pageCount);
+         					if(d.fireEvent("beforechange",d,g)!==false)
+         					{
+         						d.store.currentPage=g;
+         						reflash();
+        					}        
+      					}
+    				}
+    				else
+    				{
+       					if(b==h.HOME||b==h.END)
+       					{
+    						h.stopEvent();
+    						g=b==h.HOME?1:c.pageCount;i.setValue(g)
+       					}
+       					else
+       					{
+         					if(b==h.UP||b==h.PAGEUP||b==h.DOWN||b==h.PAGEDOWN)
+         					{
+          						h.stopEvent();
+          						g=d.readPageFromInput(c);
+           						if(g)
+           						{
+             							if(b==h.DOWN||b==h.PAGEDOWN)
+             							{
+             								a*=-1
+             							}
+             							g+=a;
+             							if(g>=1&&g<=c.pages)
+             							{
+             								i.setValue(g)
+             							}
+             						}
+            					}
+           				}
+         			}  
+      			},
+    			moveLast:function()
+    			{
+    				var b=this;
+    				var a=b.getPageData().pageCount;
+    				if(b.fireEvent("beforechange",b,a)!==false)
+    				{
+    					store.currentPage=a;
+    					reflash();
+       				}
+       			},
+     			moveFirst:function()
+     			{
+      				if(this.fireEvent("beforechange",this,1)!==false)
+      				{
+      					store.currentPage=1;
+      					reflash();
+      				}
+      			}, 
+     			movePrevious:function()
+     			{
+     				var b=this;
+     				var a=b.store.currentPage-1;
+     				if(a>0)
+     				{
+     					if(b.fireEvent("beforechange",b,a)!==false)
+     					{
+     						store.currentPage=a;
+     						reflash();
+     					}
+     				}
+     			},
+     			moveNext:function()
+     			{
+     				var c=this;
+     				var b=c.getPageData().pageCount;
+     				var a=c.store.currentPage+1;
+     				if(a<=b)
+     				{
+     					if(c.fireEvent("beforechange",c,a)!==false)
+     					{
+     						store.currentPage=a;
+     						reflash();
+     					}
+     				}
+     			}
+		});
+
+    		var width1=screen.width;
+    		var height1 = screen.height;
+    		var grid = Ext.create('Ext.grid.Panel', 
+    		{
+        		width: width1,
+        		height: height1,
+        		store: store,
+        		frame:true,
+        		columns:[
+        		{
+            			text: "主机名称",
+            			dataIndex: 'host',
+            			width: 100,
+            			flex: 1,
+            			sortable: false,
+        		},
+        		{
+           			text: "流量(字节)",
+            			dataIndex: 'bytes', 
+           			width: 100,
+            			flex: 1,
+            			sortable: false,
+        		},
+        		{
+            			text: "次数",
+            			dataIndex: 'count',           
+            			width: 100,
+            			flex: 1,
+            			sortable: false
+        		}
+        	],
+        	columnLines: true,
+        	tbar: Ext.create('Ext.PagingToolbar1', 
+        	{
+            		store: store,
+            		displayInfo: true,
+            		displayMsg: '显示{0} - {1}条记录 共{2}条记录',
+            		emptyMsg: "没有记录可显示",
+            	items: [
+            	'-',
+           	{
+           		xtype:'label',
+            		html:'&nbsp;<select name="option_flag" id="option_flag"  onchange="document.getElementById(\'form1\').option_flag.value=this.value;store.currentPage=1;reflash()"><option value="1">按照流量排序</option><option value="2">按照访问次数排序</option></select>'
+             	}]
+        	}),
+        	renderTo: 'grid-corp'
+    		});
+    		reflash();
+	});
+</script>	
+</head>
+<body>
+<center>
+<div id="m">
+	<p id="nv">
+        	<nobr>
+                <a href="/pronline/Msg?FunName@NcsFormMon_s" class=gb1>表单</a>&nbsp;<a href="/pronline/Msg?FunName@NcsBBSMon_s" class=gb1>BBS</a>&nbsp;<b class=gb1>Web访问</b>&nbsp;<a href="/pronline/Msg?FunName@ncupWebReplace&plate@v4/ncs_stat_urlid_p.html&sdate@[#sdate#]&edate@[#edate#]&did@[#did#]&uid@[#uid#]" class=gb1>网址类别访问统计</a>
+                </nobr>
+        </p>
+        </div>
+</center>
+	<form name="form1" id="form1" action="/pronline/Msg">
+		<input type="hidden" name="option_flag" value="">
+	</form>
+<div id="grid-corp"></div>
+</body>
+</html>

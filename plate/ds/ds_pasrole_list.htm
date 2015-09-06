@@ -1,0 +1,47 @@
+<html>
+<head>
+<title>角色管理</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/css.css" type="text/css">
+</head>
+
+<body bgcolor="#cccccc" text="#000000" leftmargin="12" topmargin="0" >
+<table width="190" border="0" bgcolor="#AFAFC0" height="91" cellspacing="0" cellpadding="4">
+  <tr bgcolor="#8C8CA6"> 
+    <td width="17%" height="28" class="bord3"> 
+      <div align="center"><font color="#FFFFFF">删</font></div>
+    </td>
+    <td width="83%" height="28" class="bord1"> 
+      <p align="center"><font color="#FFFFFF">服务器名称</font></p>
+    </td>
+  </tr>
+  <!-- [#SLPB#] -->
+  <tr> 
+    <td width="17%" height="35" class="bord3"> 
+      <div align="center"><a href="/pronline/Msg?FunName@dsCltWebDsPasRoleDel&pasid@[#pasid#]&roleid@[#roleid#]"><img src="/images/duanxian.gif" width="19" height="19" border="0"></a></div>
+    </td>
+    <td width="83%" height="35" class="bord1"> 
+      <div align="left"><a href="/pronline/Msg?FunName@dsCltWebDispDsright&pasid@[#pasid#]&roleid@[#roleid#]" target="rolemain">[#dispname#]</a></div>
+    </td>
+  </tr>
+  <!-- [#SLPE#] -->
+</table>
+<table width="190" border="0" bgcolor="#AFAFC0" height="91" cellspacing="0" cellpadding="4">
+  <tr bgcolor="#8C8CA6"> 
+    <td colspan="2" height="42" class="bord1"> 
+      <form name="form" method="post" action="/pronline/Msg">
+        <input type="hidden" name="FunName" value="dsCltWebDsPasRoleAdd">
+        <input type="hidden" name="roleid" value="[#roleid#]">
+        <select name="pasid">
+  <!-- [#SLPB#] -->
+          <option value="[#id#]">[#pasname#]</option>
+  <!-- [#SLPE#] -->
+        </select>
+        <input type="submit" name="add" value="增加">
+      </form>
+    </td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+</body>
+</html>

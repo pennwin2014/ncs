@@ -1,0 +1,185 @@
+<html>
+
+<head>
+<title>选择字段</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<!-- Infrastructure code for the tree -->
+<script>
+function queren()
+{
+var temp_str='';
+if(form1.dw.checked)
+temp_str=temp_str+"did,";
+if(form1.xm.checked)
+temp_str=temp_str+"udisp,";
+
+if(form1.rq.checked)
+temp_str=temp_str+"sdate,";
+
+if(form1.fsz.checked)
+temp_str=temp_str+"mfrom,";
+
+if(form1.jsz.checked)
+temp_str=temp_str+"mto,";
+
+if(form1.xxnr.checked)
+temp_str=temp_str+"mesg,";
+
+if(form1.dz.checked)
+temp_str=temp_str+"funcode,";
+
+if(form1.fwlx.checked)
+temp_str=temp_str+"service,";
+
+if(form1.sip.checked)
+temp_str=temp_str+"sip,";
+dialogArguments.form1.zd.value=temp_str;
+self.close();
+
+dialogArguments.form1.submit();
+
+}
+function init()
+{
+
+var temp_zd=dialogArguments.form1.zd.value;
+
+if(temp_zd.indexOf('did')!=-1)
+form1.dw.checked=true;
+
+if(temp_zd.indexOf('udisp')!=-1)
+form1.xm.checked=true;
+
+if(temp_zd.indexOf('sdate')!=-1)
+form1.rq.checked=true;
+
+if(temp_zd.indexOf('mfrom')!=-1)
+form1.fsz.checked=true;
+
+if(temp_zd.indexOf('mto')!=-1)
+form1.jsz.checked=true;
+
+if(temp_zd.indexOf('mesg')!=-1)
+form1.xxnr.checked=true;
+
+if(temp_zd.indexOf('funcode')!=-1)
+form1.rq.checked=true;
+
+if(temp_zd.indexOf('funcode')!=-1)
+form1.dz.checked=true;
+
+if(temp_zd.indexOf('service')!=-1)
+form1.fwlx.checked=true;
+
+if(temp_zd.indexOf('sip')!=-1)
+form1.sip.checked=true;
+}
+
+
+</script>
+
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginheight="0"  oncontextmenu="return true" onload="init()">
+  <form name="form1" method="post" action="/pronline/Msg" target="sbpm_right">
+ 
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+
+  <tr> 
+    <td colspan="2"><table width="100%" height="27" border="0" align="center" cellpadding="0" cellspacing="0" background="/images/table_bg1.gif">
+        <tr > 
+          <td colspan="2" > <div align="center"><strong><font color="#FFFFFF">
+             
+              选择字段</font></strong></div></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr> 
+    <td colspan="2"> 
+        <br>
+        <table width="95%" border="1"    bordercolorlight=#89ACED   bordercolordark=#ffffff    align="center" cellpadding="0" cellspacing="0" >
+          <tr> 
+            <td> 
+             <table width="100%" border="0" align="center" >
+                <tr>
+                  <td colspan="4">&nbsp;</td>
+                </tr>
+
+                <tr height="35"> 
+                  <td width="10%"></td>
+                  <td width="30%" align="right"> <font color="#000000"><b><font size="2">单位名称</font></b></font></td>
+                  <td width="10%" align="left">
+                  <input type="checkbox" name="dw" value="1">
+                  </td>
+                  <td width="30%" align="right"><b><font size="2">姓&nbsp;&nbsp;名</font></b>                   
+                  </td>
+                  <td width="10%" align="left"> <input type="checkbox" name="xm" value="1">
+                  </td>
+                  <td width="10%"></td>
+                </tr>
+                
+                <tr height="35"> 
+                  <td ></td>
+                  <td  align="right"> <font color="#000000"><b><font size="2">日&nbsp;&nbsp;期</font></b></font></td>
+                  <td  align="left">
+                 <input type="checkbox" name="rq" value="1">
+                  </td>
+                  <td align="right"><b><font size="2">发送人</font></b>                   
+                  </td>
+                  <td align="left"><input type="checkbox" name="fsz" value="1">
+                  </td>
+                  <td></td>
+                </tr>
+                <tr height="35"> 
+                  <td ></td>
+                  <td  align="right"> <font color="#000000"><b><font size="2">接收人</font></b></font></td>
+                  <td  align="left">
+                  <input type="checkbox" name="jsz" value="1">
+                  </td>
+                  <td align="right"><b><font size="2">信息内容</font></b>                   
+                  </td>
+                  <td align="left"><input type="checkbox" name="xxnr" value="1">
+                  </td>
+                  <td></td>
+                </tr>
+                <tr height="35"> 
+                  <td ></td>
+                  <td  align="right"> <font color="#000000"><b><font size="2">动作类型</font></b></font></td>
+                  <td  align="left">
+                  <input type="checkbox" name="dz" value="1">
+                  </td>
+                  <td align="right"><b><font size="2">服务类型</font></b>                   
+                  </td>
+                  <td align="left"><input type="checkbox" name="fwlx" value="1">
+                  </td>
+                  <td></td>
+                </tr>
+               <tr height="35"> 
+                  <td ></td>
+                  <td  align="right"> <font color="#000000"><b><font size="2">源IP地址</font></b></font></td>
+                  <td  align="left">
+                  <input type="checkbox" name="sip" value="1">
+                  </td>
+                  <td align="right"><b><font size="2">&nbsp;&nbsp;</font></b>                   
+                  </td>
+                  <td align="left">&nbsp;
+                  </td>
+                  <td></td>
+                </tr>     
+              
+              </table>
+            </td>
+          </tr>          
+        </table>
+<p align="center"><input name='Button' type='button' class='an3' onClick='queren()' value='确 认'></p>
+      </td>
+  </tr>
+</table>
+ </form>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<html>
+
+<head>
+
+<title>Untitled Document</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<body bgcolor="#CCCCCC" text="#000000" leftmargin="1" topmargin="1">
+<form name="form1" method="post" action="/profire/Msg">
+
+  <table width="100%" border="0" cellspacing="0" cellpadding="4" bgcolor="#FFFFFF">
+    <tr bgcolor="#999999"> 
+      <td colspan="3" height="22" class="bord4"> 
+        <div align="center"> <font color="#FF0000"> 
+          <input type="hidden" name="FunName" value="fireWebModiDefineInfo">
+          <b><font color="#FFFFFF">基本信息维护</font></b></font></div>
+      </td>
+    </tr>
+    <tr bgcolor="#CCCCCC"> 
+      <td width="27%" class="bord1"> 
+        <div align="center">名称</div>
+      </td>
+      <td width="28%" class="bord1"> 
+        <div align="center">代码</div>
+      </td>
+      <td width="45%" class="bord3"> 
+        <div align="center">值</div>
+      </td>
+    </tr>
+    <!-- [#SLPB#] -->
+    <tr> 
+      <td width="27%" class="bord1">[#dispname#]</td>
+      <td width="28%" class="bord1">[#name#]</td>
+      <td width="45%" class="bord3"> 
+        <input type="text" name="v[#index#]" size="32" maxlength="63" value="[#values#]">
+      </td>
+    </tr>
+    <!-- [#SLPE#] -->
+    <tr> 
+      <td colspan="3" class="bord3" >
+        <div align="right">
+          <input type="submit" name="Submit" value="确认" class="an3">
+        </div>
+      </td>
+    </tr>
+  </table>
+  </form>
+
+</body>
+
+</html>
+

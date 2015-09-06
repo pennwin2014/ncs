@@ -1,0 +1,162 @@
+<!-- saved from url=(0022)http://internet.e-mail -->
+<html>
+<head>
+<title>规则列表</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META content=no-cache http-equiv=Pragma>
+<link rel="stylesheet" href="css/css.css" type="text/css">
+<script language="JavaScript">
+<!--
+tt=new Array()
+var yy=0
+function ff(r,t,y){
+if(yy!=0){
+yy.style.color="#000000"
+yy.style.backgroundColor="#ffffff"
+}
+yy=t
+yy.style.color="#ffffff"
+t.style.backgroundColor="#003366"
+document.all.gfgf.innerHTML=y
+form1.nowid.value=r
+}
+
+
+
+function goto(t){
+ tt=showModalDialog(t, window, 'status:no;center:yes;help:no;minimize:no;maximize:no;border:thick;statusbar:no;dialogWidth:500px;scroll:no;dialogHeight:480px');
+form2.s0.value=tt[0]
+form2.s1.value=tt[1]
+form2.s2.value=tt[2]
+form2.s3.value=tt[3]
+form2.s4.value=tt[4]
+form2.s5.value=tt[5]
+form2.s6.value=tt[6]
+form2.s7.value=tt[7]
+form2.s8.value=tt[8]
+form2.s9.value=tt[9]
+form2.s10.value=tt[10]
+form2.s11.value=tt[11]
+form2.s12.value=tt[12]
+form2.s13.value=tt[13]
+form2.FunName.value="ncMailModiOneRule"
+
+form2.submit()
+}
+function goto2(){
+t = "/pronline/Msg?FunName@ncMailDispOneRule&flags@[#flags#]&id@[#id#]&rid@"+form1.nowid.value
+ tt=showModalDialog(t, window, 'status:no;center:yes;help:no;minimize:no;maximize:no;border:thick;statusbar:no;dialogWidth:500px;scroll:no;dialogHeight:480px');
+form2.rid.value=form1.nowid.value
+form2.s0.value=tt[0]
+form2.s1.value=tt[1]
+form2.s2.value=tt[2]
+form2.s3.value=tt[3]
+form2.s4.value=tt[4]
+form2.s5.value=tt[5]
+form2.s6.value=tt[6]
+form2.s7.value=tt[7]
+form2.s8.value=tt[8]
+form2.s9.value=tt[9]
+form2.s10.value=tt[10]
+form2.s11.value=tt[11]
+form2.s12.value=tt[12]
+form2.s13.value=tt[13]
+form2.FunName.value="ncMailModiOneRule"
+form2.submit()
+}
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+// -->
+</script>
+<style type="text/css">
+<!--
+.cccv {  border-style: inset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.xan3 {  width: 100px; font-size: 12px; font-weight: normal; font-family: "宋体"}
+-->
+</style>
+</head>
+
+<body bgcolor="menu" text="#000000" leftmargin="1" topmargin="2">
+<table width="98%" border="0" align="center" cellspacing="0" height="100%">
+  <tr> 
+    <td colspan="2" height="30"> &nbsp;&nbsp;这些规则将用于邮件控制</td>
+  </tr>
+  <tr> 
+    <td width="79%" valign="top"> 
+      <div id="Layer1" style="position:absolute; width:100%; height:100%; z-index:1; overflow: scroll; background-color: #FFFFFF; layer-background-color: #FFFFFF; " class="cccv"> 
+        <form name="form1" id="form1" method="post" action="/pronline/Msg">
+    
+        <table width="90%" border="0">
+          <!-- [#SLPB#] -->
+          <tr> 
+            <td width="7%"> 
+              <div align="center"> 
+                <input type="checkbox" name="checkbox" value="checkbox">
+              </div>
+            </td>
+            <td width="93%" onDblclick="goto2('/pronline/Msg?FunName@ncMailModiRule&rid@[#rid#]')" onclick="ff('[#rid#]',this,'[#rdesc#]')">&nbsp;[#rname#]</td>
+          </tr>
+          <!-- [#SLPE#] -->
+        </table>
+          <input type="hidden" name="nowid" value="">
+          <input type="hidden" name="FunName" value="">
+        </form>
+       
+        <form name="form2" id="form2" method="post" action="/pronline/Msg">
+          <input type="hidden" name="FunName" value="xxadd">
+          <input type="hidden" name="rid">
+          <input type="hidden" name="id" value=[#id#]>
+          <input type="hidden" name="flags" value=[#flags#]>
+          <input type="hidden" name="s0">
+          <input type="hidden" name="s1">
+          <input type="hidden" name="s2">
+          <input type="hidden" name="s3">
+          <input type="hidden" name="s4" >
+          <input type="hidden" name="s5">
+          <input type="hidden" name="s6">
+          <input type="hidden" name="s7">
+          <input type="hidden" name="s8" >
+          <input type="hidden" name="s9">
+          <input type="hidden" name="s10">
+          <input type="hidden" name="s11">
+          <input type="hidden" name="s12">
+          <input type="hidden" name="s13">
+        </form>
+      </div>
+    </td>
+    <td width="21%" valign="top"> 
+      <div align="center"> 
+        <p>&nbsp;</p>
+        <p> 
+          <input type="button" name="Button" value="新 建..." class="xan3" onclick="goto('/pronline/Msg?FunName@ncMailDispOneRule&flags@[#flags#]&id@[#id#]')">
+        </p>
+        <p> 
+          <input type="button" name="Button3" value="修 改..." class="xan3"  onclick="goto2()">
+        </p>
+        <p> 
+          <input type="button" name="Button4" value="删 除" class="xan3">
+        </p>
+      </div>
+    </td>
+  </tr>
+  <tr> 
+    <td colspan="2" valign="top" height="140"> 
+      <div id="SS" style="position:absolute; width:100%; height:100%; z-index:1; overflow: scroll; background-color: #FFFFFF; layer-background-color: #FFFFFF; " class="cccv"> 
+        <table  width="98%" border="0" align="center">
+          <tr> 
+            <td id="gfgf">&nbsp;</td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+
+</table>
+</body>
+</html>

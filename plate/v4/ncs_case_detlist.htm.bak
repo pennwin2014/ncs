@@ -1,0 +1,1188 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>单位组管理</title>
+    <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" />
+
+    <script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+
+    <style type="text/css">
+        .add {
+            background-image:url(/newver/resources/themes/images/share/add.gif) !important;
+        }
+        .remove {
+            background-image:url(/newver/resources/themes/images/share/delete.gif) !important;
+        }
+        .accept {
+            background-image:url(/newver/resources/themes/images/share/accept.png) !important;
+        }
+        .exp {
+            background-image:url(/newver/resources/themes/images/share/application_go.png) !important;
+        }
+    </style>
+    
+ <script type="text/javascript">     
+    
+    Ext.Loader.setConfig({
+    enabled: true
+});
+Ext.Loader.setPath('Ext.ux', '/newver/ux/');
+
+Ext.require([
+    'Ext.grid.*',
+    'Ext.data.*',
+    'Ext.util.*',
+    'Ext.state.*',
+    'Ext.form.*',
+    'Ext.ux.CheckColumn',
+    'Ext.tree.*',
+    'Ext.tip.*',
+    'Ext.tab.*',
+    'Ext.*'
+]);
+
+var store;
+var preid="";
+var  preladw="";
+var temp_id;
+var cid='';
+ function reflash(){
+ 	var gid=document.getElementById("form1").groupid.value;
+ 	store.load({params: {groupid: gid}});
+}
+
+Ext.onReady(function(){
+
+
+Ext.tip.QuickTipManager.init();
+
+ 
+ 
+ Ext.define('TreeCombox', {  
+    extend: 'Ext.form.field.Picker',  
+    xtype: 'treecombox',  
+    triggerCls: Ext.baseCSSPrefix + 'form-arrow-trigger',  
+    config: {  
+        displayField: null,  
+        columns: null,  
+        rootVisible: false,  
+        selectOnTab: true,  
+        firstSelected: false,  
+        maxPickerWidth: 279,  
+        maxPickerHeight: 360,  
+        minPickerHeight: 100  
+    },  
+    editable: false,  
+    initComponent: function() {  
+        var me = this;  
+        me.callParent(arguments);  
+        this.addEvents('select');  
+        me.store.on('load', me.onLoad, me);  
+          
+    },  
+    createPicker: function() {  
+        var me = this,  
+            picker = Ext.create('Ext.tree.Panel', {  
+                store: me.store,  
+                floating: true,  
+                hidden: true,  
+                width: me.maxPickerWidth,  
+                displayField: me.displayField,  
+                columns: me.columns,  
+                maxHeight: me.maxTreeHeight,  
+                shadow: false, 
+                rootVisible:false,  
+                manageHeight: false,  
+                listeners: {  
+                    itemclick: Ext.bind(me.onItemClick, me)  
+                },  
+                viewConfig: {  
+                    listeners: {  
+                        render: function(view) {  
+                            view.getEl().on('keypress', me.onPickerKeypress, me);  
+                        }  
+                    }  
+                }  
+            }),  
+            view = picker.getView();  
+  
+        view.on('render', me.setPickerViewStyles, me);  
+        if (Ext.isIE9 && Ext.isStrict) {  
+            view.on('highlightitem', me.repaintPickerView, me);  
+            view.on('unhighlightitem', me.repaintPickerView, me);  
+            view.on('afteritemexpand', me.repaintPickerView, me);  
+            view.on('afteritemcollapse', me.repaintPickerView, me);  
+        }  
+        return picker;  
+    },  
+    setPickerViewStyles: function(view) {  
+        view.getEl().setStyle({  
+            'min-height': this.minPickerHeight + 'px',  
+            'max-height': this.maxPickerHeight + 'px'  
+        });  
+    },  
+    repaintPickerView: function() {  
+        var style = this.picker.getView().getEl().dom.style;  
+        style.display = style.display;  
+    },  
+    alignPicker: function() {  
+        var me = this,  
+            picker;  
+  
+        if (me.isExpanded) {  
+            picker = me.getPicker();  
+            if (me.matchFieldWidth) {  
+                picker.setWidth(this.picker.getWidth());  
+            }  
+            if (picker.isFloating()) {  
+                me.doAlign();  
+            }  
+        }  
+    },  
+    onItemClick: function(view, record, node, rowIndex, e) {  
+
+  
+//    	alert(record.data.id);
+        this.selectItem(record);  
+    },  
+    onPickerKeypress: function(e, el) {  
+        var key = e.getKey();  
+  
+        if(key === e.ENTER || (key === e.TAB && this.selectOnTab)) {  
+            this.selectItem(this.picker.getSelectionModel().getSelection()[0]);  
+        }  
+    },  
+    selectItem: function(record) {  
+        var me = this; 
+        temp_id=record.get('id');
+//         me.setValue('fffff');
+
+     me.setValue(record.get(this.valueField || 'id'));  
+        me.picker.hide();  
+        me.inputEl.focus();  
+        me.fireEvent('select', me, record);
+
+    },  
+    onExpand: function() {  
+        var me = this,  
+            picker = me.picker,  
+            store = picker.store,  
+            value = me.value;  
+        if(value) {  
+            var node = store.getNodeById(value);  
+            if(node)  
+                picker.selectPath(node.getPath());  
+        } else {  
+            var hasOwnProp = me.store.hasOwnProperty('getRootNode');  
+            if(hasOwnProp)  
+                picker.getSelectionModel().select(store.getRootNode());  
+        }  
+  
+        Ext.defer(function() {  
+            picker.getView().focus();  
+        }, 1);  
+    },  
+    setValue: function(value) {  
+        var me = this,record;  
+        me.value = value;  
+        if (me.store.loading) {  
+            return me;  
+        }  
+        try{  
+            //var hasOwnProp = me.store.hasOwnProperty('getRootNode');  
+            //record = value ? me.store.getNodeById(value) : (hasOwnProp ? me.store.getRootNode() : null);  
+            //me.setRawValue(record ? record.get(this.displayField) : '');  
+            var i = value.indexOf(">");
+            var j = value.indexOf("</");
+            if(i != -1 && j != -1)
+            {
+            		me.setRawValue(value.substring(i+1,j));
+            }
+            else 
+            {
+            		me.setRawValue(value);
+            }
+        }catch(e){  
+            me.setRawValue('');  
+        }  
+  
+        return me;  
+    },  
+    getValue: function() {  
+        return this.value;  
+    },  
+    onLoad: function(store,node,records) {  
+        var value = this.value;  
+        if (value) {  
+            this.setValue(value);  
+        }else{  
+            if(this.firstSelected){  
+                if(records && records.length > 0){  
+                    var record = records[0];  
+                    this.setValue(record.get(this.valueField));  
+                }  
+            }  
+        }  
+    },  
+    getSubmitData: function() {  
+        var me = this,  
+            data = null;  
+        if (!me.disabled && me.submitValue) {  
+            data = {};  
+            data[me.getName()] = '' + me.getValue();  
+        }  
+        return data;  
+    },  
+    onTriggerClick: function() {  
+        var me = this;  
+        //me.store.load();  
+        if (!me.readOnly && !me.disabled) {  
+            if (me.isExpanded) {  
+                me.collapse();  
+            } else {  
+                me.expand();  
+            }  
+            me.inputEl.focus();  
+        }  
+    }  
+});
+ 
+ 
+ 
+Ext.define('Ext.ux.grid.plugin.RowEditing', {   
+   extend: 'Ext.grid.plugin.RowEditing',   
+   alias: 'plugin.ux.rowediting',    
+      
+   /**  
+    * 是否添加记录在当前位置<br/>  
+    * whether add record at current rowIndex.<br/>  
+    * see {@link #cfg-addPosition}  
+    * @cfg {Boolean}  
+    */  
+   addInPlace: false,   
+      
+   addPosition: 0,   
+      
+   /**  
+    * 是否点击触发事件,0代表不触发,1代表单击,2代表双击,默认为双击.<br/>  
+    * The number of clicks on a grid required to display the editor (disable:0,click:1,dblclick:2)  
+    * @cfg {Number}  
+    */  
+   clicksToEdit:2,   
+      
+   /**  
+    * 是否在取消编辑的时候自动删除添加的记录  
+    * if true, auto remove phantom record on cancel,default is true.  
+    * @cfg {Boolean}  
+    */  
+   autoRecoverOnCancel: true,   
+      
+   /**  
+    * adding flag  
+    * @private  
+    * @type Boolean  
+    */  
+   adding: false,   
+      
+   autoCancel:true,   
+      
+   /**  
+    * when add record, hide error tooltip for the first time  
+    * @private  
+    * @type Boolean  
+    */  
+   hideTooltipOnAdd: true,   
+      
+   /**  
+    * register canceledit event && relay canceledit event to grid  
+    * @param {Ext.grid.Panel} grid  
+    * @override  
+    * @private  
+    */  
+   init:function(grid){   
+       var me = this;   
+       /**  
+        * 取消编辑事件.<br/>  
+        * Fires canceledit event.And will be relayEvents to Grid.<br/>  
+        * @see {@link Ext.ux.grid.RowActions#event-beforeaction} <br/>  
+        * @event canceledit  
+        * @param {Object} context  
+        */  
+       me.addEvents('canceledit');   
+       me.callParent(arguments);   
+       grid.addEvents('canceledit');   
+       grid.relayEvents(me, ['canceledit']);   
+   },   
+      
+   /**  
+    * 提供默认的Editor配置  
+    *      @example  
+    *      {header:'手机',dataIndex:'phone',fieldType:'numberfield',field:{allowBlank:true}}  
+    * provide default field config  
+    * @param {String} fieldType 可选值:numberfield,checkboxfield,passwordField  
+    * @return {Object}   
+    * @protected  
+    */  
+   getFieldCfg: function(fieldType){   
+        switch(fieldType){   
+            case 'passwordField':   
+                return {   
+                    xtype: 'textfield',   
+                    inputType: 'password',   
+                    allowBlank:false  
+                }   
+            case 'numberfield':   
+                return {   
+                    xtype: 'numberfield',   
+                    hideTrigger: true,   
+                    keyNavEnabled: false,   
+                    mouseWheelEnabled: false,   
+                    allowBlank:false  
+                }   
+                   
+            case 'checkboxfield':   
+                return {   
+                    xtype: 'checkboxfield',   
+                    inputValue: 'true',   
+                    uncheckedValue: 'false'  
+                }   
+            }   
+    },   
+       
+    /**  
+     * Help to config field,just giving a fieldType and field as additional cfg.  
+     * see {@link #getFieldCfg}  
+     * @private  
+     * @override  
+     */  
+    getEditor: function() {   
+        var me = this;   
+  
+        if (!me.editor) {   
+            Ext.each(me.grid.headerCt.getGridColumns(),function(item,index,allItems){   
+                if(item.fieldType){   
+                    item.field = Ext.applyIf(item.field||{},this.getFieldCfg(item.fieldType))   
+                }   
+            },this)   
+            // keep a reference for custom editor..   
+            me.editor = me.initEditor();   
+        }   
+        me.editor.editingPlugin = me   
+        return me.editor;   
+    },   
+       
+    /**  
+     * if clicksToEdit===0 then mun the click/dblclick event  
+     * @private  
+     * @override  
+     */  
+    initEditTriggers: function(){   
+        var me = this    
+        var clickEvent = me.clicksToEdit === 1 ? 'click' : 'dblclick'  
+        me.callParent(arguments);    
+        if(me.clicksToEdit === 0){   
+            me.mun(me.view, 'cell' + clickEvent, me.startEditByClick, me);    
+        }   
+    },   
+       
+    /**  
+     * 添加记录  
+     * add a record and start edit it (will not sync store)  
+     * @param {Model/Object} data Data to initialize the Model's fields with <br/>  
+     * @param {Object} config see {@link #cfg-addPosition}.   
+     */  
+    startAdd: function(data,config){   
+        var me = this;   
+        var cfg = Ext.apply({   
+            addInPlace: this.addInPlace,   
+            addPosition: this.addPosition,   
+            colIndex: 0   
+        },config)   
+           
+        //find the position   
+        var position;   
+        if(cfg.addInPlace){   
+            var selected = me.grid.getSelectionModel().getSelection()   
+            if(selected && selected.length>0){   
+                position = me.grid.store.indexOf(selected[0])    
+                console.log('a',position)   
+                position += (cfg.addPosition<=0) ? 0: 1   
+            }else{   
+                position = 0   
+            }   
+        }else{   
+            position = (cfg.addPosition==-1 ? me.grid.store.getCount() : cfg.addPosition) || 0   
+        }   
+           
+        var record = data.isModel ? data : me.grid.store.model.create(data);   
+        var autoSync = me.grid.store.autoSync;   
+        me.grid.store.autoSync = false;   
+        me.grid.store.insert(position, record);   
+        me.grid.store.autoSync = autoSync;   
+          
+        me.adding = true  
+        me.startEdit(position,cfg.colIndex);   
+           
+        //since autoCancel:true dont work for me   
+        if(me.hideTooltipOnAdd && me.getEditor().hideToolTip){   
+            me.getEditor().hideToolTip()   
+        }   
+    },   
+       
+    /**  
+     * 编辑之前,自动取消编辑  
+     * Modify: if is editing, cancel first.  
+     * @private  
+     * @override  
+     */  
+    startEdit: function(record, columnHeader) {   
+        var me = this;   
+        if(me.editing){   
+            me.cancelEdit();    
+        }  
+  
+        me.callParent(arguments);   
+        Ext.getCmp('groupname').setValue(record.get('groupname'));
+        temp_id=record.get('groupid');
+        Ext.getCmp('caseclass').setValue(record.get('sjjbid'));
+         Ext.getCmp('casetype').setValue(record.get('ajzlid'));
+         Ext.getCmp('expiretime').setValue(record.get('sxid'));
+    },   
+       
+    /**  
+     * 修改adding的状态值  
+     * Modify: set adding=false  
+     * @private  
+     * @override  
+     */  
+    completeEdit: function() {   
+        var me = this;   
+        if (me.editing && me.validateEdit()) {   
+            me.editing = false;   
+            me.fireEvent('edit', me.context);   
+        }   
+        me.adding = false 
+
+        var ccode=me.context.record.data.casecode;
+        var cname=me.context.record.data.casename;
+        var ctype=me.context.record.data.casetype;
+        var cclass=me.context.record.data.caseclass;
+        var cdept=me.context.record.data.casedept;
+        var ctime=me.context.record.data.expiretime;       
+        var gid=me.context.record.data.groupname;
+
+        if(me.context.record.data.groupname!=''){
+           gid=temp_id;
+        }
+        var gid2=document.getElementById("form1").groupid.value;
+        var sid=me.context.record.data.sid;
+        var cmemo=me.context.record.data.cmemo;
+       preid=gid;
+       preladw=cdept;
+
+ //   alert(gname);
+
+  //    alert(gcode);
+        if(ccode==''||ccode=='请输入案件编号'||cname==''||cname=='请输入案件名称'){
+        	alert('案件编号和案件名称不能为空');
+        	reflash();
+        	return ;
+        }
+
+  //      alert(me.context.record.data.groupname);
+
+      store.load({params: {sid:sid,groupid: gid,groupid1:gid2,casecode:ccode,casename:cname,casetype:ctype,caseclass:cclass,update:'update',casedept:cdept,expiretime:ctime,cmemo:cmemo}});
+  
+  //      reflash();
+        
+         
+    },   
+       
+    /**  
+     * 取消编辑  
+     * 1.fireEvent 'canceledit'  
+     * 2.when autoRecoverOnCancel is true, if record is phantom then remove it  
+     * @private  
+     * @override  
+     */  
+    cancelEdit: function(){
+    
+        var me = this; 
+
+        if (me.editing) {   
+            me.getEditor().cancelEdit();   
+            me.editing = false;   
+            me.fireEvent('canceledit', me.context);    
+            if (me.autoRecoverOnCancel){ 
+     var temp=me.context.record.data.groupname;  
+                if((me.adding)||(temp=='请输入案件编号')||(temp=='')){   
+                    me.context.record.store.remove(me.context.record);   
+                    me.adding = false  
+                }else{   
+                    //不需要reject,因为Editor没有更改record.   
+                    //me.context.record.reject()   
+                }   
+            }   
+        }  
+
+
+         
+    }   
+})   
+  
+//ext-lang-zh_CN   
+if (Ext.grid.RowEditor) {   
+    Ext.apply(Ext.grid.RowEditor.prototype, {   
+        saveBtnText: '保存',   
+        cancelBtnText: '取消',   
+        errorsText: '错误信息',   
+        dirtyText: '已修改,你需要提交或取消变更'  
+    });   
+}  
+
+    var tabs = Ext.createWidget('tabpanel', {
+//        renderTo: 'gdrz',
+
+        width: 1000,
+        height:970,
+        activeTab: 1,
+         defaults :{
+            bodyPadding: 1
+        },
+        items: [{
+            title: '基本信息',
+            html: '<iframe  id="bkIframe" name="bkIframe" src="/v4/ncs_curcase_list.htm" scrolling="no" width=100% height=1000  FrameBorder=0 ></iframe>'
+           
+        },{          
+            title: '布控策略',
+            html: '<iframe  id="bkIframe" name="bkIframe" src="/pronline/Msg?FunName@ncsWebReplace&plate@/v4/ncs_case_detlist.htm&cid@"'+cid+' scrolling="no" width=100% height=1000  FrameBorder=0 ></iframe>'           
+        },{          
+            title: '布控信息查询',
+            html: '<iframe  id="dhIframe" name="gdrzIframe" src="/v4/ncs_tree_user.htm" scrolling="no" width=100% height=1000  FrameBorder=0 ></iframe>'   
+            },{          
+            title: '告警信息查询',
+            html: '<iframe  id="dhIframe" name="gdrzIframe" src="/v4/ncs_tree_user.htm" scrolling="no" width=100% height=1000  FrameBorder=0 ></iframe>'
+             },{          
+            title: '布控日志查询',
+            html: '<iframe  id="dhIframe" name="gdrzIframe" src="/v4/ncs_tree_user.htm" scrolling="no" width=100% height=1000  FrameBorder=0 ></iframe>' 
+            },{          
+            title: '搜索日志',
+            html: '<iframe  id="dhIframe" name="gdrzIframe" src="/v4/ncs_tree_user.htm" scrolling="no" width=100% height=1000  FrameBorder=0 ></iframe>' 
+            },{          
+            title: '表单日志',
+            html: '<iframe  id="dhIframe" name="gdrzIframe" src="/v4/ncs_tree_user.htm" scrolling="no" width=100% height=1000  FrameBorder=0 ></iframe>' 
+             },{          
+            title: '网站访问日志',
+            html: '<iframe  id="dhIframe" name="gdrzIframe" src="/v4/ncs_tree_user.htm" scrolling="no" width=100% height=1000  FrameBorder=0 ></iframe>' 
+            },{          
+            title: '网站访问日志',
+            html: '<iframe  id="dhIframe" name="gdrzIframe" src="/v4/ncs_tree_user.htm" scrolling="no" width=100% height=1000  FrameBorder=0 ></iframe>' 
+            },{          
+            title: '网络会话日志',
+            html: '<iframe  id="dhIframe" name="gdrzIframe" src="/v4/ncs_tree_user.htm" scrolling="no" width=100% height=1000  FrameBorder=0 ></iframe>' 
+            },{          
+            title: 'IP连接日志',
+            html: '<iframe  id="dhIframe" name="gdrzIframe" src="/v4/ncs_tree_user.htm" scrolling="no" width=100% height=1000  FrameBorder=0 ></iframe>' 
+        }]
+    });
+
+
+
+
+
+   function bjmx(value,p,record){
+        var temp_disp=record.data.pcount;
+      if(temp_disp=='0'){
+      	       return Ext.String.format( '<img src="/v4/images/edit_task.png">&nbsp;<font color=red>(点击添加)</font>&nbsp;');
+      }
+    else{
+       return Ext.String.format( '<img src="/v4/images/edit_task.png">&nbsp;({0}条策略)&nbsp;',temp_disp);
+      }
+      
+    }
+
+
+
+
+   Ext.define('EimData', {
+        extend: 'Ext.data.Model',
+        fields: [
+            'casecode', 'groupid', 'casename', 'addby','caseclass','casedate','sid','expiretime','casedept','cmemo','sjjbid','ajzlid','casetype','groupname','sxid','pcount'
+        ],
+        idProperty: 'sid'
+    });
+
+        store = Ext.create('Ext.data.Store', {
+        pageSize: 40,
+        model: 'EimData',
+        remoteSort: true,
+        proxy: {
+            type: 'ajax',
+            url: '/pronline/Msg?FunName@ncsCaseList_v4&flags@1',
+            reader: {
+                type:'json',
+                root: 'eimdata',
+                totalProperty: 'totalCount'
+            },         
+            simpleSortMode: true
+        },
+        sorters: [{
+            property: 'pid',
+            direction: 'DESC'
+        }]
+    });
+    store.load();
+
+
+        store2 = Ext.create('Ext.data.Store', {
+        pageSize: 225,
+        model: 'EimData',
+        remoteSort: true,
+        autoLoad:true,
+        proxy: {
+            type: 'ajax',
+            url: '/pronline/Msg?FunName@ncsWebClientClassList_v4',
+            reader: {
+                type:'json',
+                root: 'eimdata',
+                totalProperty: 'totalCount'
+            },         
+            simpleSortMode: true
+        },
+        sorters: [{
+            property: 'pid',
+            direction: 'DESC'
+        }],
+        listeners: {
+            load: function() {
+   // 	        var combo = Ext.getCmp('pid');
+    	     
+  //              combo.setValue(combo.getValue());
+            }
+        }
+    });
+ //   store.load();
+
+
+  
+    var rowEditing = Ext.create('Ext.ux.grid.plugin.RowEditing', {
+    	      pluginId:'rowEditing', 
+            saveBtnText: "保存", 
+            cancelBtnText: "取消", 
+            autoRecoverOnCancel:true,
+            autoCancel: true
+ //       clicksToMoveEditor: 1,
+ //       autoCancel: false
+    });
+
+    var sm = Ext.create('Ext.selection.CheckboxModel',{
+        listeners: {
+            selectionchange: function(sm, selections) {
+           
+  //          grid.down('#removeButton').setDisabled(selections.length == 0);
+                
+            }
+        }
+    
+    });
+//对翻页工具条重新构建，替换翻页函数    
+  Ext.PagingToolbar1 = Ext.extend(Ext.PagingToolbar, {
+     doRefresh:function(){  
+     reflash();
+    },
+    moveLast:function(){
+    	var b=this,a=b.getPageData().pageCount;
+    	if(b.fireEvent("beforechange",b,a)!==false){
+    	store.currentPage=a;
+    	reflash();
+       }},
+     moveFirst:function(){
+      if(this.fireEvent("beforechange",this,1)!==false){
+      store.currentPage=1;
+      reflash();}}, 
+     movePrevious:function(){var b=this,a=b.store.currentPage-1;if(a>0){if(b.fireEvent("beforechange",b,a)!==false){store.currentPage=a;reflash();}}},
+     moveNext:function(){var c=this,b=c.getPageData().pageCount,a=c.store.currentPage+1;if(a<=b){if(c.fireEvent("beforechange",c,a)!==false){store.currentPage=a;reflash();}}},
+      
+      
+      onPagingKeyDown:function(i,h){
+     var d=this,b=h.getKey(),c=d.getPageData(),a=h.shiftKey?10:1,g;
+     if(b==h.RETURN){h.stopEvent();g=d.readPageFromInput(c);
+        if(g!==false){
+         g=Math.min(Math.max(1,g),c.pageCount);
+         if(d.fireEvent("beforechange",d,g)!==false){
+        //d.store.loadPage(g)
+         d.store.currentPage=g;
+         reflash();
+        }        
+      }
+    }
+    else{
+       if(b==h.HOME||b==h.END){
+    			h.stopEvent();g=b==h.HOME?1:c.pageCount;i.setValue(g)
+       }
+       else{
+         if(b==h.UP||b==h.PAGEUP||b==h.DOWN||b==h.PAGEDOWN){
+          h.stopEvent();g=d.readPageFromInput(c);
+           if(g){
+             if(b==h.DOWN||b==h.PAGEDOWN){a*=-1}
+             g+=a;
+             if(g>=1&&g<=c.pages){i.setValue(g)}
+             }
+            }
+           }
+         }  
+      }
+
+      
+      
+       
+});
+
+
+    Ext.define('State', {
+        extend: 'Ext.data.Model',
+        fields: [
+            {type: 'string', name: 'classid'},
+            {type: 'string', name: 'classname'}
+        ]
+    });
+    // The data for all states
+    var data_class = [
+        {"classid":"1","classname":"严重"},
+        {"classid":"2","classname":"中度"},
+        {"classid":"3","classname":"一般"},
+        {"classid":"4","classname":"其它"}
+    ];
+    var store_class = Ext.create('Ext.data.Store', {
+        model: 'State',
+        data: data_class
+    });
+    var data_zl = [
+        {"classid":"0","classname":"自办"},
+        {"classid":"1","classname":"协调办案"},
+        {"classid":"9","classname":"其它"}
+    ];
+    var store_zl = Ext.create('Ext.data.Store', {
+        model: 'State',
+        data: data_zl
+    });
+
+    var data_sxsj = [
+        {"classid":"1","classname":"三天"},
+        {"classid":"2","classname":"一周"},
+        {"classid":"3","classname":"一个月"},
+        {"classid":"4","classname":"三个月"},
+        {"classid":"5","classname":"半年"},
+        {"classid":"6","classname":"一年"},
+        {"classid":"7","classname":"两年"},
+        {"classid":"8","classname":"五年"},
+        {"classid":"0","classname":" "}
+    ];
+    var store_sxsj = Ext.create('Ext.data.Store', {
+        model: 'State',
+        data: data_sxsj
+    });
+
+
+    // create the grid and specify what field you want
+    // to use for the editor at each column.
+    
+        store_classtree=Ext.create('Ext.data.TreeStore', 
+				{   
+						fields: ['text'],
+//						 root: {
+//            text: '全部单位组',
+ //           expanded: true
+//           },
+						autoLoad : true,
+						proxy: 
+						{   
+							type: 'ajax',   
+//							url: '/pronline/Msg?FunName@ncsTreeGroup_v4'  
+						url: '/pronline/Msg?FunName@ncsTreeGroup_comp_v4'  
+						}  
+				}
+			);
+    
+      var aaa=screen.width;
+      aaa=aaa-265;
+     var win2;
+    var grid = Ext.create('Ext.grid.Panel', {
+        store: store,
+        selModel: sm,
+        columns: [{
+            header: '案件编号',
+  //          id: 'pid',
+            dataIndex: 'casecode',
+            sortable: false,
+            width:100,
+           editor: {
+           listeners: {
+			          'focus':function(){
+			          	 if(this.value=='请输入案件编号'){
+			                this.setValue('');
+			               }
+			            }
+			        },			    
+           	allowBlank:true
+           	}
+        }, {
+            header: '案件名称',
+            dataIndex: 'casename',
+             width:120,
+           sortable: false,
+            editor: {
+	           listeners: {
+				          'focus':function(){
+				          	 if(this.value=='请输入案件名称'){
+				                this.setValue('');
+				               }
+				            }
+				        },
+                allowBlank: true
+//                vtype: 'textfield'
+            }
+        }, {
+
+            header: '审计级别',
+            dataIndex: 'caseclass',
+            width:60,
+            sortable: false,
+            editor: {
+          //  xtype: 'textarea',
+          xtype: 'combo',
+          id: 'caseclass',          
+           store:store_class,
+           displayField: 'classname',
+           valueField:'classid',
+           name:'caseclass',
+           value:'3',
+            queryMode: 'local',
+				   
+                allowBlank: true
+    
+            }
+        },{
+        	  header: '所属区域',
+            dataIndex: 'groupname',
+            sortable: false,
+            width: 90,
+            editor: {
+            id: 'groupname',   
+           	name: 'groupid',  
+						fieldLabel: '',  
+						xtype: 'treecombox', 
+						width:280,
+						value:'',
+						valueField: 'text',  
+						displayField: 'text',  
+						store:store_classtree
+            	
+            	
+           	}
+            
+        },{
+        	  header: '立案单位',
+            dataIndex: 'casedept',
+            sortable: false,
+           
+            width: 100,
+            editor: {
+                allowBlank: true
+//                vtype: 'textfield'
+            }
+        },{
+        	  header: '有效时间',
+            dataIndex: 'expiretime',
+            sortable: false,
+
+           editor: {
+          xtype: 'combo',
+          id: 'expiretime',          
+           store:store_sxsj,
+           displayField: 'classname',
+           valueField:'classid',
+           name:'expiretime',
+ //          emptyText:'1',
+           value:'2',
+            queryMode: 'local',
+				    				    
+           	allowBlank:true
+           	},
+            width: 100
+        },{
+        	  header: '案件种类',
+            dataIndex: 'casetype',
+            sortable: false,
+
+           editor: {
+          xtype: 'combo',
+          id: 'casetype',          
+           store:store_zl,
+           displayField: 'classname',
+           valueField:'classid',
+           name:'casetype',
+           value:'0',
+            queryMode: 'local',
+				    				    
+           	allowBlank:true
+           	},
+            width: 100
+        },{
+        	  header: '案件描述',
+            dataIndex: 'cmemo',
+            flex:1,
+            sortable: false,
+           
+          
+             editor: {        
+             allowBlank: true   
+            }
+          },      
+        {
+        	  header: '策略明细',
+        	 
+       	  renderer: bjmx,
+//           xtype: 'actioncolumn',
+            dataIndex: 'pcount',
+            align:'left',
+            icon: '/v4/images/edit_task.png',
+            tooltip: '点击该图标添加该布控信息的具体策略。',
+            sortable: false,
+             listeners: {
+             	click:function(grid, rowIndex, colIndex, actionItem, event, record, row){
+          //   		alert(record.data.sid);
+          cid=record.data.sid;
+   //          		var htmlvar='<iframe src="/pronline/Msg?FunName@ncsWebDispClientAddForm_v4&groupid@'+sid+' scrolling="no" name="moduleIframe" frameborder="no" style="width:100%;height:100%;"></iframe>';     
+   var htmlvar='aaaaa'; 
+
+        if (!win2) {
+             
+            win2 = Ext.widget('window', {
+                title: '布控策略',
+                closeAction: 'hide',
+                x:300,
+                y:32,
+                width: 480,
+                height: 330,
+                minHeight: 330,
+                resizable: true,
+                modal: true,
+                items: tabs
+            });
+        }
+        win2.show();	
+             		
+             		
+             	}
+            },
+       //     ,
+      //      handler: function(grid, rowIndex, colIndex, actionItem, event, record, row) {
+     //           Ext.Msg.alert('Editing' + (record.get('done') ? ' completed task' : '') , record.get('task'));
+     //       },
+   //         hidden:true,
+            width: 95
+        }
+          
+          
+          , {
+        	  header: '立案时间',
+ //       	  xtype: 'datecolumn',
+            dataIndex: 'casedate',
+            hidden:true,
+            sortable: false,
+            
+              width: 90,
+ 
+        },      
+        {
+        	  header: '下发人',
+            dataIndex: 'addby',
+            sortable: false,
+            hidden:true,
+            width: 90
+        }
+        ],
+        renderTo: 'editor-grid',
+        width: aaa,
+        height: 980,
+
+        frame: true,
+        tbar: Ext.create('Ext.PagingToolbar1', {
+            store: store,
+            displayInfo: true,
+            displayMsg: '显示{0} - {1}条记录 共{2}条记录',
+            emptyMsg: "没有记录可显示",
+                                       
+            items: 
+        ['-',{
+            text: '添加布控案件',
+            iconCls: 'add',
+            handler : function() {
+                rowEditing.cancelEdit();
+
+                // Create a model instance
+                
+                var r = Ext.create('EimData', {
+   //             	  groupid:this.value,
+   //            	  pname:this.value,
+  
+                    casecode: '请输入案件编号',
+                    casename: '请输入案件名称',
+                    casedept: preladw,
+                    expiretime:'4',
+                    casetype:'0',
+                    caseclass:'2',
+                    
+                });
+                
+                if(document.getElementById("form1").groupid.value!=''){
+                   preid=document.getElementById("form1").groupid.value;
+              
+                }
+                temp_id=preid;
+         
+            var i,lcount;
+            lcount=store2.getCount();
+
+            for(i=0;i<lcount;i++){
+
+            	var record=store2.getAt(i);
+
+               if(preid==record.get('groupid')){
+            	    r.data.groupname=record.get('groupname');
+               }
+            }
+         
+                
+ //               if(preid!=''){
+ //               	r.data.groupname=preid;
+ //               }
+ //             else{
+ //               r.data.groupname=document.getElementById("form1").groupid.value;
+ //             }
+             
+                store.insert(0, r);
+ //               rowEditing.startAdd(0,0);
+           
+              rowEditing.startEdit(0, 0);
+            }
+        }, {
+            itemId: 'removeEmployee',
+            text: '删除',
+            iconCls: 'remove',
+
+                handler:function(){
+             
+							   if(confirm('您真的要执行删除操作吗？')){                  
+                 var selsid;  
+                 var rows=sm.getSelection();
+                   selsid='';
+                  for(var i=0;i<rows.length;i++){
+                  	if(i==0){
+                  	 selsid=rows[i].getId();
+                  	}
+                  	else{
+                       selsid=selsid+","+rows[i].getId();
+                    }
+                   
+                   }
+ 
+                      store.load({params: {del: "del",selsid:selsid}});
+                  
+                
+              }
+                
+            },
+            disabled: true
+        }, {
+            itemId: 'ckEmployee',
+            text: '撤控',
+            iconCls: 'exp',
+
+                handler:function(){
+             
+							   if(confirm('您真的要执行撤控操作吗？')){                  
+                 var selsid;  
+                 var rows=sm.getSelection();
+                   selsid='';
+                  for(var i=0;i<rows.length;i++){
+                  	if(i==0){
+                  	 selsid=rows[i].getId();
+                  	}
+                  	else{
+                       selsid=selsid+","+rows[i].getId();
+                    }
+                   
+                   }
+ 
+                      store.load({params: {ck: "ck",selsid:selsid}});
+                  
+                
+              }
+                
+            },
+            disabled: true
+        } ,
+        '-',      
+         ,
+           {
+               xtype:'textfield',
+               id:'keyword',
+               name:'keyword',
+               style:'color:#7aa7d5',
+               value:'请输入查询内容',
+               enableKeyEvents:true,
+               listeners:{
+                 'focus':function(){
+                 if(this.value=='请输入查询内容'){                
+                    this.setValue('');
+                  }
+                 },
+                 'keydown' : function(i,e){
+                var aae=e.getKey() ; 
+                if(aae==13){
+                    var aa=Ext.getCmp('keyword').value;
+                    store.load({params:{keyword:aa}});
+                  }
+                }
+               }
+             },
+        ,
+             {
+                text:'确认',
+                iconCls:'accept',
+                handler: function(){
+                 var aa=Ext.getCmp('keyword').value;
+                
+                if(aa!='请输入查询内容'){
+                	store.load({params:{keyword:aa}});
+                  	
+                 }
+                
+              
+                }
+           }
+        ]}),
+        plugins: [rowEditing],
+        listeners: {
+            'selectionchange': function(view, records) {
+                grid.down('#removeEmployee').setDisabled(!records.length);
+                 grid.down('#ckEmployee').setDisabled(!records.length);
+                
+            }
+        }
+    });
+});
+</script>
+    
+    
+</head>
+<body>
+		<form name="form1" id="form1" action="/pronline/Msg">
+			<input type="hidden" name="groupid" value="">
+		<input type="hidden" name="did" value="">
+	</form>
+    <div id="editor-grid"></div>
+</body>
+</html>

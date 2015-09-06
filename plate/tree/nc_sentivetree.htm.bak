@@ -1,0 +1,186 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<script>
+  var cp='[#CurPg#]';
+  var tp='[#TotPg#]';
+   function gotoPage(t){
+       cp = parseInt(cp) + parseInt(t);
+      
+       if(cp <= 0) cp = 1;
+       if(cp > tp) cp = tp;
+       
+       form1.CurPg.value = cp;
+       form1.submit();
+       return;
+   } 
+  
+    function Add()
+    {
+	    if(form1.gname.value=='')
+	    {
+	    	alert('请填写要添加的策略名称');
+	    	return false;
+	    	}
+	    	return true;
+    }
+    function Mod()
+    {
+	    if(form1.gname.value=='')
+	    {
+	    	alert('请先选择要修改的策略');
+	    	return false;
+	    	}
+	    	return true;
+    }
+    function Del()
+    {
+    var flag=0;
+    	 for(var i=0;i<document.all.DataTable.rows.length;i++)
+	    {
+	    if(document.all.DataTable.rows[i].cells[0].childNodes[1].checked)
+	    {
+		    flag=1;
+		    break;
+	    }
+	    }
+	    if(flag==0)
+	    {
+	    	alert('请先选择要删除的策略');
+	    	return false;
+	    }
+	    	return true;
+    }
+  
+    function showf(id,name) {
+        form1.sid.value=id;
+        form1.name.value=name;
+     
+    }
+  
+   function gotoRight(t){
+       top.sbpm_right.main2.location.href=t
+   }
+ 
+   function goto(t){
+       self.location.href=t
+   }
+      
+</script>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<style>
+<!--
+
+.css1 {
+	border: 1px solid #C5C5C5;
+	height: 15px;
+	font-size: 12px;
+}
+table {
+	font-size: 12px;
+	font-family: "Arial", "Helvetica", "sans-serif";
+	 "Verdana", "Arial", "Helvetica", "sans-serif", "宋体"; 
+}
+
+
+
+
+a:link {
+	text-decoration: none;	color: #000000;
+}
+a:visited {
+	text-decoration: none;	color: #000000;
+}
+a:hover {
+	text-decoration: none;
+	color: #000000;
+}
+a:active {
+	text-decoration: none;
+	color: #000000;
+    font-weight: bold;
+}
+
+.tScrollw {
+    SCROLLBAR-FACE-COLOR: #c1d8f9; 
+    OVERFLOW: scroll;
+    SCROLLBAR-SHADOW-COLOR: #c1d8f9; 
+    SCROLLBAR-3DLIGHT-COLOR: #c1d8f9;
+     SCROLLBAR-ARROW-COLOR: #5985ce; 
+     SCROLLBAR-DARKSHADOW-COLOR: #c1d8f9;
+    width:142px;
+    height:520px;
+    cursor: default;
+    }
+-->
+</style>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" bgcolor="#d0e1fa" style="overflow:hidden">
+	<form name="form1" method="post" action="/pronline/Msg"> 
+	<input type="hidden" name="sid" value="">			     
+  <input type="hidden" name="FunName" value="ncsWebSentiveGroup">
+  <input type="hidden" name="CurPg"      value="[#CurPg#]">
+  <input type="hidden" name="TotPg"      value="[#TotPg#]">
+  <input type="hidden" name="TotRec"     value="[#TotRec#]">
+  <input type="hidden" name="plate" value="tree/nc_sentivetree.htm">
+<table width="142" border="1" cellspacing="0" cellpadding="0">
+	<tr >
+    <td colspan="2" width="142">
+    	<table width="100%">
+    		<tr><td width="146">
+    	类别名&nbsp;<input type="text" name="name" size="11"></td>
+    	</tr>
+    	
+
+    </table>
+  </td>
+  </tr>
+  <tr height="28"> 
+    <td colspan="2">
+    	<input name="add" type="submit" class="an3-0" value="添加" onclick="return Add()">
+      <input name="modi" type="submit" class="an3-0" value="修改" onclick="return Mod()">
+      <input name="del" type="submit" class="an3-0" value="删除" Onclick="return Del()">
+    </td>
+   </tr>
+   
+   <tr><td colspan="2" width="100%">
+   	<div class="tScrollw" id="tC">
+  <table id="DataTable" border="0" cellspacing="0" cellpadding="0">   
+  <tr> 
+    <td colspan="2"><img src="/images/base.gif" width="19" height="16"> <a onClick="gotoRight('/pronline/Msg?FunName@ncsWebSentiveList')" href="#xxm">全部类别&nbsp;</a>
+    
+                <script>
+                if(cp < tp) {
+                        document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 alt='转下页,共2页 当前为第1页' onClick='gotoPage(1);form1.submit()' class='hand'>");
+                }
+                else {
+                        document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 alt='已经是最后一页,共2页 当前为第1页' class='gray1'>");
+                }
+                if(cp > 1) {
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 alt='转上页,共2页 当前为第1页' onClick='gotoPage(-1);form1.submit()' class='hand'>");
+                }
+                else {
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 alt='已是第一页,共2页 当前为第1页'  class='gray1'>");
+                }
+            </script>
+    
+  </td>
+    
+  </tr>
+<!-- [#SLPB#] -->
+  <tr  onMouseOut="mouseouttr2(this)" onclick="showf('[#id#]','[#name#]')"> 
+    <td width="20%"><img src="/images/joinbottom.gif" width="14" height="16"><input type="checkbox" style="width:18px;height:18px" name="ch[#num#]" value="[#id#]" )"></td>
+    <td width="80%" onClick="gotoRight('/pronline/Msg?FunName@ncsWebSentiveList&sid@[#id#]')" ><a href="#xxm">[#name#]</a></td>
+  </tr>
+<!-- [#SLPE#] -->
+</table>
+</div>
+</td>
+</tr>
+</table>
+</form>
+</body>
+</html>

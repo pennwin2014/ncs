@@ -1,0 +1,97 @@
+<!-- saved from url=(0022)http://internet.e-mail -->
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META content=no-cache http-equiv=Pragma>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<style type="text/css">
+<!--
+.tScroll5 {
+    overflow: scroll;
+    overflow-x:hidden;
+    height:400px;
+    cursor: default;
+    }
+body {  font-size: 9pt}
+.tas {  border-color: black #FFFFFF; border-style: solid; border-top-width: 0px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 1px}
+table {  font-size: 9pt}
+.hand {  cursor: hand}
+.gray1{filter:gray}
+-->
+</style>
+<script>
+	function gotopage(flag){
+	if(form1.CurPg.value=='') form1.CurPg.value='1';
+	var lCur=parseInt(form1.CurPg.value);
+
+	if(flag=='1'){
+	  form1.CurPg.value=lCur-1;
+	}
+	else{
+	form1.CurPg.value=lCur+1;
+	}
+
+	form1.submit();
+	}
+	
+	function showgj(did,usid){
+ 
+  var tt="/pronline/Msg?FunName@ncsWebReplace&plate@ncs/ncs_swmx_lab.htm&usid@"+usid+"&did@"+did;
+
+  window.open (tt, 'ww', 'height=620, width=1000, top=100,left=100, toolbar=no, menubar=no, scrollbars=no, resizable=yes,location=no, status=no')
+}
+
+	
+	
+</script>
+
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0"  >
+<form name="form1" method="post" action="/pronline/Msg">
+<input type="hidden" name="CurPg" value="[#CurPg#]">
+<input type="hidden" name="did" value="[#did#]">
+<input type="hidden" name="uid" value="[#uid#]">
+
+<input type="hidden" name="FunName" value="ncsDispUserSearchlog">
+<table width="100%"  border="0" valign="top" align="center"  cellpadding="0"  cellspacing=0 bordercolor="#DFDFDF">
+		
+	       <tr height="25"> 
+
+        <td colspan="2" align="center" style="font-size:11pt;color:#00237e;font-weight:bold;">&nbsp;&nbsp;&nbsp; 
+             [#name#]搜索关键字统计</td>
+             <td><a href="#xxm" onclick="gotopage('1')">[#prepg#]</a>&nbsp;&nbsp;<a href="#xxm" onclick="gotopage('2')">[#next#]</a></td>
+         </tr>
+	
+    <tr class="tableHead" bgcolor="#6382BD" id=ignore> 
+    	   <td  align="center" width="100" height="18" bgcolor="#6382BD" class="bord2"> 
+        <font color="#FFFFFF">&nbsp;搜索引擎</font></td>
+        <td  align="center"  height="18" bgcolor="#6382BD" class="bord2"> 
+        <font color="#FFFFFF">&nbsp;搜索关键字</font></td>
+     
+      <td  width="100" align="center"  height="18" bgcolor="#6382BD" class="bord2"> 
+        <font color="#FFFFFF">&nbsp;使用次数</font></td>
+
+        	
+    </tr>
+    <!-- [#SLPB#] -->
+    <tr bgcolor="#FFFFFF"  > 
+    	  
+    	<td    height="20" valign="bottom" class="bord1"> &nbsp;[#sname#]
+      </td>
+
+      <td   height="20" valign="bottom" class="bord1"> &nbsp;[#svalue#]
+      </td>
+
+      <td  valign="bottom" class="bord3" align="right">&nbsp;[#count#]&nbsp;&nbsp; </td>
+
+    </tr>
+    <!-- [#SLPE#] -->
+   
+</table>
+
+</form>
+</body>
+</html>

@@ -1,0 +1,131 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<script>
+
+     function Add()
+    {
+	      
+	    if(form1.message_code.value=='')
+	    {
+	    	alert('请填写消息编号');
+	    	return false;
+	    	}
+	    
+	    if(form1.send_time.value=='')
+	    {
+	    alert('请填写发送时间');
+	    return false;
+	    }	
+	    	
+	    	return true;
+    }
+	   function Add2()
+    {
+      form1.flags.value="0";
+	    
+	    if(form1.message_code.value=='')
+	    {
+	    	alert('请填写消息编号');
+	    	return false;
+	    	}
+	    
+	    if(form1.send_time.value=='')
+	    {
+	    alert('请填写发送时间');
+	    return false;
+	    }	
+	    	
+	    	return true;
+    }
+</script>
+
+</head>
+
+<BODY bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0"  >
+	<form name="form1" method="post" action="/pronline/Msg">
+  <input type="hidden" name="FunName" value="ncsWbsMsgAdd">
+  <input type="hidden" name="sid" value="[#sid#]">
+  <input type="hidden" name="flags" value="[#flags#]">
+  <input type="hidden" name="qs_flag" value="">
+  <input type="hidden" name="sid2" value="".
+<TABLE id=table1 style="BORDER-COLLAPSE: collapse" align="center" cellPadding=0 width=100% border=0>
+  <TR>
+      <td align="center"  >
+      	<table width="100%" height="45" border="0" align="center" cellpadding="0" cellspacing="0" >
+          <tr > 
+            <td colspan="3" width="90%"> <div style="font-size:11pt;color:#00237e;font-weight:bold;text-align: right;">
+              <div align="center">写消息</div>
+            </div></td>
+            
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr> 
+
+      <td height="163" align="center"  valign="top">  
+      	
+        <div align="center" valign="top">
+          <table width="80%" height="177"   border="1"    cellpadding="0" cellspacing="0"    bordercolorlight=#89ACED   bordercolordark=#ffffff>
+            <tr> 
+              <td height="177" valign="top">
+                
+                <table width="100%" height="161" border="0" align="center">
+                                   
+                  
+                  <tr > 
+                    <td height="32" ><div align="right">消息编号&nbsp;</div></td>
+                    <td height="32" > <input type="text" name="message_code" value="[#message_code#]" size="33" maxlength="15">                    </td>
+                  </tr>
+                  <tr height="26"> 
+                    <td height="26" ><div align="right">服务场所编码&nbsp;</div></td>
+                    <td height="26" > <input type="text" name="service_code" value="[#service_code#]" size="50" >
+                    </td>
+				   				
+                  </tr>
+                  <tr height="26"> 
+                    <td height="26" ><div align="right">发送时间&nbsp;</div></td>
+                    <td height="26" > <input type="text" name="send_time" value="[#send_time#]" size="20" maxlength="20"> &nbsp;(格式:YYYY/MM/DD HH:MM:SS) </td>
+                  </tr>
+                  
+                  <tr height="26"> 
+                    <td height="26" ><div align="right">消息标题&nbsp;</div></td>
+                    <td height="26" >
+                    	<input type="text" name="message_title" value="[#message_title#]" size="50">
+                    	  </td>
+                  </tr>
+                  <tr height="26"> 
+                    <td height="26" ><div align="right">消息内容&nbsp;</div></td>
+                    <td> <textarea type="text" name="message_content"  rows="3" cols="50">[#message_content#]</textarea></td>
+                  </tr>
+                  
+
+                </table>              
+               </td>
+            </tr>
+            <tr height=50><td align="center">
+            	   <input type="submit" name="save" value="保 存" class="an3" onClick="return Add()">
+                   
+               &nbsp;
+               <input type="submit" name="send" value="发送" class="an3-1" onClick="return Add2()">&nbsp;
+            	</td></tr>
+          </table>
+     </td>
+	  
+   </tr>
+    
+  </table>
+ 
+	</form>
+</BODY>
+</html>
+

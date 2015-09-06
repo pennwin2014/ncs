@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0058)http://address.sina.com.cn/cgi-bin/addrbook/ShowMemberList -->
+<HTML>
+<HEAD>
+<TITLE>通讯录</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=content-type>
+<SCRIPT language=javascript>
+function setCode(code)
+{
+    document.addr.nFunCode.value=code;
+    document.addr.require.value="new";
+    document.addr.submit();
+}
+function setEmail(code,mail)
+{
+    document.addr.nFunCode.value=code;
+    document.addr.email.value=mail;    
+    document.addr.submit();
+}
+function setIid(code,id)
+{
+    document.addr.nFunCode.value=code;
+    document.addr.require.value="modify";
+    document.addr.iid.value=id;    
+    document.addr.submit();
+}
+function setGid(code,id)    
+{
+    document.addr.nFunCode.value=code;
+    document.addr.require.value="modify";
+    document.addr.gid.value=id;    
+    document.addr.submit();
+}
+</SCRIPT>
+<META content="MSHTML 5.00.2919.6307" name=GENERATOR>
+<style type="text/css">
+<!--
+.submit {  background-color: #3399FF; font-size: 9pt}
+.type {  font-size: 9pt}
+-->
+</style>
+</HEAD>
+<BODY class=bgcw leftMargin=11 topMargin=5 marginwidth="11" marginheight="5" bgcolor="#F0FDE6">
+<br>
+<form action="/pronline/Msg"  method="post" name="addr" >
+  <p><span class="bg1">
+    <input type="hidden" name="nFunCode" >
+    <input type="hidden" name="sid" value="[#sid#]">
+    <input type="hidden" name="iid" >
+    <input type="hidden" name="require" >
+    <input type="hidden" name="gid" >
+    <input type="hidden" name="email" >
+    </span></p>
+  <table border="0" width="100%" cellpadding="0" bordercolor="#666666" bordercolordark="#FFFFFF" class="type" cellspacing="0">
+    <tr valign="bottom"> 
+      <td align="center" 
+width="17%" height="20"> 
+        <div align="left"><font color="#000000"><b><font color="#339933">地　址　簿</font></b></font> 
+        </div>
+      </td>
+      <td align="right" height="20" colspan="3"> <font color="#FFCC66"> <img src="../mailImages/bt8.GIF" width="52" height="24"> 
+        </font> <font color="#FFCC66"> </font> </td>
+    </tr>
+    <tr valign="bottom"> 
+      <td valign="middle" align="center" colspan="4" height="5"> 
+        <hr noshade size="2"color="99cc99" align="left">
+      </td>
+    </tr>
+  </table>
+  <table border="0" width="100%" cellpadding="2" bordercolor="#666666" bordercolordark="#FFFFFF" class="type">
+    <tr> 
+      <td valign="middle" align="left" colspan="4"> 
+        <div align="left">　<font size="2"><b><font color="#99CC66">　<br>
+          </font></b></font><font color="#99CC66"><font color="#336633">个人地址簿</font><b><font size="2"> 
+          </font></b></font><a href="javascript:setCode('17101')"><img src="../mailImages/bt9.GIF" width="40" height="21" align="absmiddle" border="0"></a></div>
+      </td>
+    </tr>
+    <tr> 
+      <td valign="middle" 
+width="17%" height="12" bgcolor="#8ED573"> 
+        <div align="center">　姓名</div>
+      </td>
+      <td width="27%" height="12" bgcolor="#8ED573"> 
+        <div align="center">邮件地址</div>
+      </td>
+      <td width="24%" height="12" bgcolor="#8ED573"> 
+        <div align="center">编辑</div>
+      </td>
+      <td width="32%" height="12" bgcolor="#8ED573"> 
+        <div align="center">删除</div>
+      </td>
+    </tr>
+	[#SLPB099#]
+    <tr align="center"> 
+      <td valign="middle" 
+width="25%" height="27" bgcolor="#E2EEDB">[#name#]</td>
+      <td valign="middle" 
+width="43%" height="27" bgcolor="#E2EEDB"><a href="javascript:setEmail('17103','[#email#]')">[#email#]</a></td>
+      <td valign="middle" 
+width="16%" height="27" bgcolor="#E2EEDB"><a href="javascript:setIid('17101','[#iid#]')"><img src="../mailImages/editicon.gif" width="16" height="14" border="0"></a></td>
+      <td valign="middle" 
+width="16%" height="27" bgcolor="#E2EEDB"><a href="javascript:setIid('17107','[#iid#]')"><img src="../mailImages/deleteicon.gif" width="14" height="14" border="0"></a></td>
+    </tr>
+    [#SLPE#]
+    <tr> 
+      <td valign="middle" align="left" colspan="4"> 
+        <div align="left"><font color="#99CC66"><b>　　</b><font color="#336633"><br>
+          <br>
+          团体地址簿</font></font> <a href="javascript:setCode('17111')"><img src="../mailImages/bt9.GIF" width="40" height="21" align="absmiddle" border="0"></a> 
+          <b><font color="#FFCC66"> </font></b></div>
+      </td>
+    </tr>
+    <tr> 
+      <td valign="middle" align="center" colspan="2" height="１２" bgcolor="#8ED573">团体名称</td>
+      <td valign="middle" align="center" height="１２" bgcolor="#8ED573">编辑</td>
+      <td valign="middle" align="center" height="１２" bgcolor="#8ED573">删除</td>
+    </tr>
+	[#SLPB099#]
+    <tr> 
+      <td valign="middle" align="center" colspan="2" height="27" bgcolor="#E2EEDB"><a href="javascript:setGid('17114','[#gid#]')">[#group#]</a></td>
+      <td valign="middle" align="center" height="27" bgcolor="#E2EEDB"><a href="javascript:setGid('17111','[#gid#]')"><img src="../mailImages/editicon.gif" width="18" height="15" border="0"></a></td>
+      <td valign="middle" align="center" height="27" bgcolor="#E2EEDB"><a href="javascript:setGid('17117','[#gid#]')"><img src="../mailImages/deleteicon.gif" width="14" height="14" border="0"></a></td>
+    </tr>
+    [#SLPE#]
+    <tr> 
+      <td valign="middle" align="center" colspan="4" height="27"> 
+        <div align="center"><br>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <p><BR>
+  </p>
+  <p><font color="#FFCC66">　　　　　　　　</font> </p>
+  <BR>
+  <p><font color="#FFCC66">　　　　　　　　　　　　　　　　　　 </font> </p>
+<p>&nbsp;</p>
+</form></BODY></HTML>

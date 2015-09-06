@@ -1,0 +1,136 @@
+<!-- saved from url=(0022)http://internet.e-mail -->
+<html>
+<head>
+<title>用户口令修改</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META content=no-cache http-equiv=Pragma>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<style type="text/css">
+<!--
+.cccv {  border-style: inset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.xan3 {  width: 100px; font-size: 12px; font-weight: normal; font-family: "宋体"}
+-->
+</style>
+<script language="JavaScript">
+<!--
+
+function fff() { 
+if(document.all.a1.value==1){
+document.all.b1.style.display=""
+}else if(document.all.a1.value==0){
+document.all.b1.style.display="none"
+}else{
+document.all.b1.style.display=""
+}
+}
+function mod(){
+	if(document.getElementById("form1").password11.value!=document.getElementById("form1").password12.value){
+		alert('密码不一致');
+		return false;
+	}
+//	if(form1.password21.value!=form1.password22.value){
+//		alert('第二密码不一致');
+//		return false;
+//	}
+	if(document.getElementById("form1").password11.value==''){
+		alert('密码不能为空');
+		return false;
+	}
+	return true;
+}
+//-->
+</script>
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<form id="form1" name="form1" method="post" action="/pronline/Msg" >
+  <input type="hidden" name="FunName" value="ncsWebModiPass">
+  <input type="hidden" name="userid" value="[#userid#]">
+  <input type="hidden" name="rname" value="[#username#]">
+  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td valign="top" ><table width="100%" height="27" border="0" align="center" cellpadding="0" cellspacing="0" >
+          <tr > 
+            <td colspan="2"> <div align="center"><strong><b>用户密码修改</b></strong></div></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr> 
+      <td valign="top" ><br>
+        <table width="70%" border="0"   bordercolorlight=#89ACED   bordercolordark=#ffffff     align="center" cellpadding="0" cellspacing="0">
+          <tr> 
+            <td> <table width="90%" border="0" cellspacing="0" align="center">
+                <tr> 
+                  <td colspan="7"> 
+                    <div align="center"><font size="+1" color="#000000"></font></div></td>
+                </tr>
+                <tr> 
+                  <td colspan="7" height="13">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td height="33"> 
+                    <div align="right">用户名</div></td>
+                  <td colspan="6"> 
+                    <input type="text" name="rname1" value="[#username#]" size="30" maxlength="15" disabled>
+                  </td>
+                </tr>
+                <tr> 
+                  <td height="33"> 
+                    <div align="right">修改后的密码</div></td>
+                  <td colspan="6"> 
+                    <input type="password" name="password11" size="31" maxlength="31">
+                  </td>
+                </tr>
+                <tr> 
+                  <td height="33"> 
+                    <div align="right">密码确认</div></td>
+                  <td colspan="6"> 
+                    <input type="password" name="password12" size="31" maxlength="31">
+                  </td>
+                </tr>
+                
+  <!--              
+                  <tr> 
+                  <td height="33"> 
+                    <div align="right">修改后的第二密码</div></td>
+                  <td colspan="6"> 
+                    <input type="password" name="password21" size="31" maxlength="31">
+                  </td>
+                </tr>
+                <tr> 
+                  <td height="33"> 
+                    <div align="right">第二密码确认</div></td>
+                  <td colspan="6"> 
+                    <input type="password" name="password22" size="31" maxlength="31">
+                  </td>
+                </tr>
+   -->             
+                
+                <tr> 
+                  <td colspan="7" height="13">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td colspan="7"> 
+                    <div align="center"> </div></td>
+                </tr>
+              </table></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr>
+      <td height="70" ><table width="50%" border="0" align="center">
+          <tr> 
+            <td> <div align="center"> 
+                <input type="submit" name="add" value="确 认" class="an3" onclick="return mod()">
+                &nbsp; 
+
+              </div></td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

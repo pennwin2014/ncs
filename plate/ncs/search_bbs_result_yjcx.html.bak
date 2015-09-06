@@ -1,0 +1,359 @@
+<html>
+<head><title>BBS_关键字搜索_[#query#]</title> 
+<META http-equiv="Content-Type" content="text/html; charset=GBK">
+<link REL=stylesheet HREF="/css/search_css.css" TYPE="text/css">
+
+<SCRIPT>
+	
+function checkWd()
+{
+        if(f.wd.value == "")
+        {
+                return false;
+        }
+        return true;
+}
+  
+function checkWd2()
+{
+        if(form2.wd.value == "")
+        {
+                return false;
+        }
+        return true;
+}
+ 
+ 
+function getElem(elem_name, event_id) 
+{
+ 	return document.getElementById(elem_name + event_id);
+}
+ 
+function togglePreview(event_id) 
+{
+ 	var show = getElem("show", event_id);
+ 	var hide = getElem("hide", event_id);
+ 	var preview = getElem("preview", event_id);
+ 	
+
+ 	if(show.style.display == "")
+ 	{
+ 		show.style.display = "none";
+ 		hide.style.display = "";
+		if(preview.src == "/no.htm")
+ 		{
+ 			preview.src = "/pronline/Msg?FunName@ncPreviewMailBody&id@" + event_id + "&table@ncbbsmon&field@content";
+ 		}
+ 		preview.style.display = "";
+ 		return;
+ 	}
+ 	
+ 	if(show.style.display == "none")
+ 	{
+ 		show.style.display = "";
+ 		hide.style.display = "none";
+ 		preview.style.display = "none";
+ 	}
+}
+ 
+ 
+ 
+ 
+function goto(time, userid, msgfile)
+{
+        var t="/pronline/Msg?FunName@ncWebPostRead&time@"+time+"&userid@"+userid+"&msgfile@"+msgfile;
+        window.open(t,'readpost','left=100,top=50,width=700,height=600,fullscreen=0,toolbar=no,scrollbars=yes,resizable=1,menubar=no,status=0');
+}
+  
+function adv_search()
+{
+        self.location.href="/advanced.html";
+}
+ 
+function re_search()
+{
+        self.location.href="/pronline/Msg?FunName@NcsBBSMon_syj&f@re&q@[#query_text#]&t@[#total#]&rn@[#rn#]&lm@[#lm#]&sdate@[#sdate#]&edate@[#edate#]";
+}
+
+  var td_width = 0;
+  if(screen.width == 1280)
+  {
+         td_width = 730;
+  }
+  else if(screen.width == 1024)
+  {
+        td_width = 510;
+  }
+  else {
+        td_width = screen.width * 0.6;
+  }
+  
+</SCRIPT>
+<style>
+	
+.top2 A:link{
+font-size:9pt;
+}
+.top2 A:visited{
+font-size:9pt;
+}
+.top2 A:hover{
+font-size:9pt;
+}
+.top2 A:active{
+font-size:9pt;	
+	
+A:link{
+font-size:10pt;
+}
+A:visited{
+font-size:10pt;
+}
+A:hover{
+font-size:10pt;
+}
+A:active{
+font-size:10pt;
+}
+</style>
+</head>
+<body >
+ <center>
+       <div id="m"> 
+ <table cellSpacing=0 cellPadding=0 width="95%">
+	 <tr>
+         
+  		 <td>
+  		  	<div id="top2" style="display:[#display2#]">
+  		 		<p align="right" >
+  		 			搜索 <b>[#query#]</b> 获得 <b>[#total#]</b> 个结果, 以下第 <b>[#start#]</b>-<b>[#end#]</b> 条(用时 [#total_times#] 秒)
+  		 			<br>[#sort1#]   [#sort2#]
+  		 		</p>
+  		 
+  		 	</div>
+  		 <td>
+  		 	
+  		 	
+  		 
+  		 
+  		 <td>
+  		 	<div id="top1" style="display:[#display1#]">
+  		 		<p align="right">
+  		 			没有找到与 <b>"[#query#]"</b> 相符的内容或信息
+  		 		</p>
+  		 	</div>
+  		<td>
+  			
+  			
+  			
+  			
+  			
+  			
+     </tr>	
+     
+  </table>  
+    
+  
+
+  
+  
+
+      
+   
+  
+  <table cellSpacing=0 cellPadding=0 width="95%" style="word-break:break-all" border=0>
+ 
+  [#SLPB#]
+  <tr [#class#]>
+    <td>
+    	<table cellSpacing=0 cellPadding=0  style="word-break:break-all">
+        
+                <tr>
+        	<br>
+    		<script>                        
+                  document.write("<td width=\""+ td_width + "\">");
+                </script>
+    			<h4>[#iNum#].<a href="[#url_no_highlighter#]" target="_blank"><font color="blue">[#subject#]</font></a></h4>
+    		</td>
+    		<td width="300">
+    			<font color="blue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;记录时间:</font>&nbsp;&nbsp;[#vtime#]
+    		</td>
+    	        </tr> 
+    	        
+    	        
+    	           
+    	        <tr>
+    		<script>                        
+                        document.write("<td width=\""+ td_width + "\">");
+                </script>
+    			[#bbsname#]:<font color="green">[#url#]</font>
+    		</td>
+    		<td>
+    			<font color="blue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;场所代码:</font>&nbsp;&nbsp;[#servicecode#]
+    		</td>
+    	        </tr> 
+    	        
+    	         <tr>
+    		<script>                        
+                        document.write("<td width=\""+ td_width + "\">");
+                </script>
+    			
+    		</td>
+    		<td>
+    			<font color="blue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;场所名称:</font>&nbsp;&nbsp;[#servicename#]
+    		</td>
+    	        </tr> 
+    	        
+    	        <tr>
+    		<script>                        
+                        document.write("<td width=\""+ td_width + "\">");
+                </script>
+    		        [#content#]
+    		</td>
+    		<td>
+    			<font color="blue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位置:</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#position#]
+    		</td>
+    	        </tr> 
+    	        
+    	        <tr>
+    		<script>                        
+                        document.write("<td width=\""+ td_width + "\">");
+                </script>
+    			
+    		</td>
+    		<td>
+    			<font color="blue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MAC地址:</font>&nbsp;&nbsp;&nbsp;[#mac#]
+    		</td>
+    	        </tr> 
+    	        
+    	        <tr>
+    		<script>                        
+                        document.write("<td width=\""+ td_width + "\">");
+                </script>
+    			
+    		</td>
+    		<td>
+    			<font color="blue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;显示姓名:</font>&nbsp;&nbsp;[#dispname#]
+    		</td>
+    	        </tr> 
+    	        
+    	        <tr>
+    		<script>                        
+                        document.write("<td width=\""+ td_width + "\">");
+                </script>
+    			
+    		</td>
+    		<td>
+    			<font color="blue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;源IP地址:</font>&nbsp;&nbsp;[#sip#]
+    		</td>
+    	        </tr> 
+    	        
+    	        <tr>
+    		<script>                        
+                        document.write("<td width=\""+ td_width + "\">");
+                </script>
+    			
+    		</td>
+    		<td>
+    			<font color="blue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;目标IP:&nbsp;&nbsp;</font>&nbsp;&nbsp;[#dip#]
+    		</td>
+    	        </tr> 
+    	               
+    	</table>
+    </td>        
+  </tr>
+
+  <tr [#class#]>
+  	<td>
+    	<span id='show[#id#]' style="display:[#display4#]"><a class=c href='javascript:void(0)' onclick='togglePreview([#id#]);'><img border=0 width=12 height=12 src='/images/preview_plus.gif'>预览正文</a></span><span id='hide[#id#]' style='display:none'><a class=c href='javascript:void(0)' onclick='togglePreview([#id#]);'><img border=0 width=12 height=12 src='/images/preview_minus.gif'>隐藏预览</a></span>
+	<br><iframe src='/no.htm' frameborder="0" style='font-size:83%; height:400; width:100%; padding:1; margin:1; display:none; border-style:solid; border-width:2px; border-color:#DEE8FA; overflow:auto;' id='preview[#id#]'></iframe></td>
+ 	
+  </tr>
+  [#SLPE#]
+  
+  
+  
+  
+ </table>
+  <br>
+  <table cellSpacing=0 cellPadding=0 width="80%" border=0>
+		<tr>
+  	<td><p align="center">
+	      <a href="/pronline/Msg?FunName@NcsBBSMon_syj&wd@[#wd_prev#]&cp@[#CurPg_prev#]&rn@[#rn_prev#]&lm@[#lm_prev#]&sf@[#sf_prev#]" target="_self">[#prev#]</a>
+        [#SLPB#]
+        <a href="/pronline/Msg?FunName@NcsBBSMon_syj&wd@[#wd_page1#]&cp@[#CurPg_page1#]&rn@[#rn_page1#]&lm@[#lm_page1#]&sf@[#sf_page1#]" target="_self">[#page1#]</a>
+        [#SLPE#]
+  [#page#]
+        [#SLPB#]
+        <a href="/pronline/Msg?FunName@NcsBBSMon_syj&wd@[#wd_page2#]&cp@[#CurPg_page2#]&rn@[#rn_page2#]&lm@[#lm_page2#]&sf@[#sf_page2#]" target="_self">[#page2#]</a>
+        [#SLPE#]
+        <a href="/pronline/Msg?FunName@NcsBBSMon_syj&wd@[#wd_next#]&cp@[#CurPg_next#]&rn@[#rn_next#]&lm@[#lm_next#]&sf@[#sf_next#]" target="_self">[#next#]</a>
+        </p></td>
+    </tr>	
+   </table>  
+ <br>
+  <div id="bot" style="display:[#display2#]">
+       <p align="center">
+       <form method="post" action="/pronline/Msg" name="form2" onSubmit="return checkWd2()">
+              <input type="hidden" name="FunName" value="NcsBBSMon_syj">
+              <input type="hidden" name="sdate" value="[#sdate#]">
+              <input type="hidden" name="edate" value="[#edate#]">
+              <span id="in">
+                <input type="text" name="wd" value="[#query#]" id="kw" size="80" maxlength="255">
+                <input type="submit" value="搜索" id="sb">
+
+              </span>
+       </form>
+     </p>
+  </div>
+ </center>
+</div>
+</body>
+<script>
+        var w=window;
+        var d=document;
+        var n=navigator;
+        var k=d.f.wd;
+        var a=d.getElementById("nv").getElementsByTagName("a");
+        var isIE=n.userAgent.indexOf("MSIE")!=-1;
+
+        if(!isIE||window.opera){
+                d.getElementById("st").style.display="none";
+        }
+        for(var i=0;i<a.length;i++){
+                a[i].onclick=function(){
+                        if(k.value.length>0){
+                                var C=this;
+                                var A=C.href;
+                                if(A.indexOf("&wd@")!=-1){
+                                        C.href=A.replace(/q=[^&$]*/,"&wd@"+k.value);
+                                }else{
+                                        this.href+="&wd@"+k.value;
+                                }
+                        }
+                }
+        }
+        (function(){
+                if(/q=([^&]+)/.test(location.search)){
+                        k.value=decodeURIComponent(RegExp.$1);
+                }
+        })();
+
+
+
+        function addEV(C,B,A){
+                if(w.attachEvent){
+                        C.attachEvent("on"+B,A);
+                }else{
+                        if(w.addEventListener){
+                                C.addEventListener(B,A,false);
+                        }
+                }
+        }
+
+        function G(A){
+                return d.getElementById(A);
+        }
+
+</script>
+</html>

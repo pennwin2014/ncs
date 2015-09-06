@@ -1,0 +1,10 @@
+{"totalCount":[#TotRec#],"data": [[#SLPB#][#dh#]
+[{
+"name": "[#address1#]"
+},
+{
+"name": "[#address2#]",
+"value": "[#value#]"
+}][#SLPE#]
+]
+}

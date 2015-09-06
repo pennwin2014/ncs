@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<script>
+  function openDr()
+{
+    t = "/web_dr_frm.htm";
+    
+    var oDia=showModalDialog(t,window,
+		 "status:no;center:yes;help:no;minimize:no;maximize:no;border:thick;statusbar:no;dialogWidth:500px;scroll:none;dialogHeight:350px;overflow:none");	
+ 
+//    openwinflag=window.open(t,'address','left=200,top=300,width='+400+',height='+150+',fullscreen=0,toolbar=no,scrollbars=no,resizable=0,menubar=no,status=0');
+}  
+
+    function Add()
+    {
+	    if(form1.name.value=='')
+	    {
+	    	alert('请填写要添加的类别名称');
+	    	return false;
+	    	}
+	    	return true;
+    }
+    function Mod()
+    {
+	    if(form1.name.value=='')
+	    {
+	    	alert('请先选择要修改的策略');
+	    	return false;
+	    	}
+	    	return true;
+    }
+    function Del()
+    {
+    var flag=0;
+    	 for(var i=0;i<document.all.DataTable.rows.length;i++)
+	    {
+	    if(document.all.DataTable.rows[i].cells[0].childNodes[1].checked)
+	    {
+		    flag=1;
+		    break;
+	    }
+	    }
+	    if(flag==0)
+	    {
+	    	alert('请先选择要删除的类别');
+	    	return false;
+	    }
+	    	return true;
+    }
+  
+    function showf(sid,name,status,warnid) {
+        form1.sid.value=sid;
+        form1.name.value=name;
+        form1.vister.value=status;
+		   form1.warnid.value=warnid;
+
+	    
+    } 
+  
+   function gotoRight(t){
+      parent.sbpm_right.location.href=t
+   }
+ 
+   function goto(t){
+       self.location.href=t
+   }
+      
+</script>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<style>
+<!--
+
+.css1 {
+	border: 1px solid #C5C5C5;
+	height: 15px;
+	font-size: 12px;
+}
+table {
+	font-size: 12px;
+	font-family: "Arial", "Helvetica", "sans-serif";
+	 "Verdana", "Arial", "Helvetica", "sans-serif", "宋体"; 
+}
+
+
+
+
+a:link {
+	text-decoration: none;	color: #000000;
+}
+a:visited {
+	text-decoration: none;	color: #000000;
+}
+a:hover {
+	text-decoration: none;
+	color: #000000;
+}
+a:active {
+	text-decoration: none;
+	color: #000000;
+    font-weight: bold;
+}
+
+.tScrollw {
+    SCROLLBAR-FACE-COLOR: #c1d8f9; 
+    OVERFLOW: scroll;
+    SCROLLBAR-SHADOW-COLOR: #c1d8f9; 
+    SCROLLBAR-3DLIGHT-COLOR: #c1d8f9;
+     SCROLLBAR-ARROW-COLOR: #5985ce; 
+     SCROLLBAR-DARKSHADOW-COLOR: #c1d8f9;
+    overflow-x:hidden;
+    height:500px;
+    cursor: default;
+    }
+-->
+</style>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" bgcolor="#eeeeee" style="overflow-y:hidden">
+	<form name="form1" method="post" action="/pronline/Msg"> 
+ <input type="hidden" name="sid" value="[#sid#]" >				     
+  <input type="hidden" name="FunName" value="ncsWebLimWebClass">
+  <input type="hidden" name="plate" value="ncs/nc_zdwebtree.htm">
+
+ <input type="hidden" name="flags" value="8">
+
+<table width="142" border="1" cellspacing="0" cellpadding="0">
+	<tr >
+    <td colspan="2" width="142">
+    	<table width="100%">
+    		<tr><td>类别名&nbsp;<input type="text" name="name" size="11"></td>
+    	</tr>
+    	
+   
+    	
+    </table>
+  </td>
+  </tr>
+  <tr height="28"> 
+    <td colspan="2">
+    	<input name="add" type="submit" class="an3-0" value="添加" onclick="return Add()">
+      <input name="modi2" type="button" class="an3-0" value="导入" onClick="openDr()">
+      <input name="del" type="submit" class="an3-0" value="删除" Onclick="return Del()">
+    </td>
+   </tr>
+   
+   <tr><td colspan="2" width="100%">
+   	  <div class="tScrollw" id="tC">
+  <table id="DataTable" border="0" cellspacing="0" cellpadding="0">   
+  <tr> 
+    <td colspan="2"><img src="/images/base.gif" width="19" height="16"> <a  href="#xxm">重点网址类别</a></td>
+  </tr>
+<!-- [#SLPB#] -->
+  <tr  onMouseOut="mouseouttr2(this)" > 
+    <td width="20%"><img src="/images/joinbottom.gif" width="14" height="16"><input type="checkbox" style="width:18px;height:18px" name="ch[#num#]" value="[#lid#]" )"></td>
+    <td width="80%" onClick="gotoRight('/pronline/Msg?FunName@ncsWebLimWebList2&id@[#lid#]')" ><a href="#xxm">[#lname#]</a></td>
+  </tr>
+<!-- [#SLPE#] -->
+</table>
+</div>
+</td>
+</tr>
+</table>
+</form>
+</body>
+</html>

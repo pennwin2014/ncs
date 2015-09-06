@@ -1,0 +1,216 @@
+<html>
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<title>main</title>
+<script>
+var dfd1="0"
+function showuser(did,uid)
+{
+var temp_var="/pronline/Msg?FunName@ncsWebShowUserinfo&did@"+did+"+uid@"+uid;
+	showModalDialog(temp_var, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:520px;scroll:yes;dialogHeight:640px');
+}
+
+function gotoPage(pagenum)
+
+{
+
+    form1.CurPg.value = pagenum;
+}
+
+function goto(t){
+ tt=showModalDialog(t, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:520px;scroll:yes;dialogHeight:480px');
+}
+
+function showaccount(num)
+{
+var v_did=eval('form1.did'+num).value;
+var v_uid=eval('form1.uid'+num).value;
+var v_sdate=eval('form1.sdate'+num).value;
+var v_edate=eval('form1.edate'+num).value;
+var v_cname=eval('form1.cname'+num).value;
+var v_udisp=eval('form1.udisp'+num).value;
+var v_ntype=eval('form1.ntype'+num).value;
+
+	if((v_ntype=='6')||(v_ntype=='7')||(v_ntype=='10')||(v_ntype=='11'))
+	{
+		var temp='/pronline/Msg?FunName@ncsWebReplace&fname@nccWebImList&plate@ncsmsg_showncc.htm&ProId@'+v_did+'&uid@'+v_uid+'&did@'+v_did+'&sdate@'+v_sdate+'&edate@'+v_edate+'&cname@'+v_cname;
+	  window.open(temp);
+	}
+	else if((v_ntype=='4')||(v_ntype=='5'))
+	{
+			var temp='/pronline/Msg?FunName@ncsWebReplace&fname@nccMailMonList&plate@ncsmsg_showncc.htm&ProId@'+v_did+'&uid@'+v_uid+'&did@'+v_did+'&sdate@'+v_sdate+'&edate@'+v_edate+'&cname@'+v_cname;
+
+			window.open(temp);
+	}
+}
+function lprint()
+{
+form1.cx.style.display="none";
+form1.rycx.style.display="none";
+form1.hsear.style.display="none";
+form1.pr.style.display="none";
+form1.exp.style.display="none";
+window.print();
+
+form1.cx.style.display="";
+form1.rycx.style.display="";
+form1.hsear.style.display="";
+form1.pr.style.display="";
+form1.exp.style.display="";
+}
+
+function passdate()
+{
+parent.form1.CurPg.value='[#CurPg#]';
+parent.form1.TotPg.value='[#TotPg#]';
+parent.form1.TotRec.value='[#TotRec#]';
+parent.document.all.wlj.innerHTML='<b style="font-size: 10pt;color:#00237e;">本地日志([#title_name#])</b>';
+
+	parent.form1.sdate.value=form1.sdate.value;
+	parent.form1.edate.value=form1.edate.value;
+}
+function caxun(){
+form1.CurPg.value='1';
+form1.FunName.value='ncsWebReplace';
+form1.submit();
+}
+function clearcon(){
+form1.vname.value='';
+form1.ntype.value='';
+form1.cname.value='';
+form1.uname.value='';
+form1.sdate.value='';
+form1.edate.value='';
+form1.stime.value='';
+form1.etime.value='';
+form1.userid.value='';
+form1.idno.value='';
+form1.mac.value='';
+form1.ip.value='';
+
+}
+// -->
+<!-- Hide
+var ll=[#CurPg#]
+var yy=[#TotPg#]
+function killErrors() {
+return true;
+}
+window.onerror = killErrors;
+// -->
+
+</script>
+
+<script src="/js/drawtable.js"></script>
+<SCRIPT language=JavaScript>
+<!--
+var recordID = null;
+var Table = new FlexibleTable ('DataTable', '100%', '425', 'center', 32, 'flexibleTableSpan');
+
+Table.Header ('网络账号','类别','开始时间','结束时间','上网IP','操作','单位名称', '用户名', '备注');
+Table.ColumnsWidth ('120', '50', '110', '110','110', '50', '110','100','70');
+Table.HeaderAligment ('center', 'center','center','center', 'center', 'center', 'center','center','center');
+Table.BodyAligment ('left', 'left', 'left','left', 'center', 'center','left','left');
+
+Table.SetRowsTemplate (" onMouseOver=\"javascript:mouseovertr2(this);\" onMouseOut=\"javascript:mouseouttr2(this);\" onClick=\"setSelect(this);\"  ");
+[#SLPB#]
+Table.Row('<a href="#xxm" onclick=showvname("[#name#]","[#lNtype#]")>&nbsp;[#name#] </a>&nbsp;','&nbsp;[#ntype#] ','&nbsp;[#sdate#]','&nbsp;[#etime#]','&nbsp;[#ip#]','&nbsp;[#ctime#] ','&nbsp;[#cname#]','<a href="#xxm" onclick=showuser("[#did#]","[#uid#]")>&nbsp;[#udisp#]</a>','&nbsp;[#mac#]');
+[#SLPE#]
+
+//-->
+</SCRIPT>
+
+
+<style type="text/css">
+<!--
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+-->
+
+</style>
+<script src="/js/calendar.js"></script>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<BODY style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px" bgcolor="#DEE8FA" leftMargin=2 topMargin=2 scroll=no onload=passdate();Table.Draw()>
+	<form name="form1" method="post" action="/pronline/Msg">
+			 <input type="hidden" name="FunName" value="ncsWebReplace">
+	 <input type="hidden" name="fun" value="ncsWebNetIdTrac">
+   <input type="hidden" name="plate" value="ncsmsg_showinfo_new.htm">
+      <input type="hidden" name="CurPg"      value="[#CurPg#]">
+      <input type="hidden" name="TotPg"      value="[#TotPg#]">
+      <input type="hidden" name="lcount"      value="[#TotRec#]">
+      <input type="hidden" name="userid"  value="[#userid#]">
+      <input type="hidden" name="groupid" value="">
+      <input type="hidden" name="uid" value="[#uid#]">
+		  <input type="hidden" name="exp" value="">		    
+		 <input type="hidden" name="plate_flag" value="1">
+		
+		<TABLE  height="100%" cellSpacing=0 cellPadding=0 width="100%" border=0>
+    <tr> 
+      <td valign="bottom" width="100%"  valign=middle align=center height="28" bgcolor="#DEE8FA" class="ttt"> 
+        <table width="100%" border="0" cellspacing="0">
+
+  	<TR>
+    		<TD valign="top" colspan="2"><SPAN id=flexibleTableSpan></SPAN></TD>
+  	</TR>
+ 	</TABLE>
+ 	</td>
+</tr>
+           <tr height="138"><td valign="top" colspan="8" bgcolor="#8cb4e8">
+          	  <table border=0 cellpadding=0 cellspacing=0 width="100%">
+   
+       	        <tr height="110">
+       	        	<td colspan="2"  class="bordnr">
+       	        		<table border=0 cellpadding=0 cellspacing=0 width="100%">
+          	  	     <tr height="26">
+          	  	     	<td width="90" align="center">&nbsp;虚拟帐号</td>
+          	  	     	<td width="220"><input type="text" name="vname" value="[#vname#]" size="22" ></td>  
+          	  	     	<td width="90" align="center">&nbsp;帐号类别</td>
+          	  	     	<td width="220"><select name="ntype" style="width:190px" ><option value=''>不限</option>[#SLPB#]<option value="[#id1#]">[#ntype1#]</option>[#SLPE#]</select></td>
+          	  	     	<td width="90" align="center">&nbsp;上网IP</td>
+          	  	     	<td ><input type="text" name="ip" value="[#ip#]" size="22"></td>
+          	  	     	  
+          	  	     	<td width="120" align="center"><input name="chaxun1" type="button"  value=" 查 询 " onclick="caxun()"></td>	     	
+          	  	    </tr>
+          	  	      <tr height="26">
+          	  	     	<td  align="center">&nbsp;单位名</td>
+          	  	     	<td><input type="text" name="cname" value="[#cname#]" size="22"></td> 
+          	  	     	<td  align="center">&nbsp;用户名</td>
+          	  	     	<td ><input type="text" name="uname" value="[#uname#]" size="22"></td>
+          	  	     	<td  align="center">&nbsp;证件号</td>
+          	  	     	<td ><input type="text" name="idno" value="[#idno#]" size="22"></td>
+          	  	     	<td >&nbsp;</td> 	  	     	
+          	  	    </tr>
+          	  	      <tr height="26">
+          	  	     	<td  align="center">&nbsp;上线时间</td>
+          	  	     	<td><input type="text" name="sdate" value="[#sdate#]" size="14" onclick="fPopCalendar(sdate,sdate,'Up');return false">&nbsp;<select name="stime" style="width:50px" ><option value=""></option><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option></select></td> 
+          	  	     	<td  align="center">&nbsp;到</td>
+          	  	     	<td ><input type="text" name="edate" value="[#edate#]" size="14" onclick="fPopCalendar(edate,edate,'Up');return false">&nbsp;<select name="etime" style="width:50px" ><option value=""></option><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option></select></td> 
+          	  	     	<td  align="center">&nbsp;MAC地址</td>
+          	  	     	<td ><input type="text" name="mac" value="[#mac#]" size="22"></td>
+          	  	     	<td align="center"><input name="search" type="button"  value="清除条件" onclick="clearcon()"></td> 	  	     	
+          	  	    </tr>
+          	  	   </table>
+       	        	</td>
+       	        </tr>
+          	  </table>
+          	  </td>
+          </tr> 
+
+</table>
+ </form>		
+ 
+  <script>form1.stime.value='[#stime#]';
+	      form1.etime.value='[#etime#]';
+	      form1.ntype.value='[#ntype#]';
+</script>
+ 
+ 
+</BODY>
+</html>

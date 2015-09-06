@@ -1,0 +1,159 @@
+<html>
+
+<head>
+<title>选择字段</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<!-- Infrastructure code for the tree -->
+<script>
+function queren()
+{
+var temp_str='';
+if(form1.dw.checked)
+temp_str=temp_str+"dw,";
+if(form1.xm.checked)
+temp_str=temp_str+"xm,";
+
+if(form1.rq.checked)
+temp_str=temp_str+"rq,";
+
+if(form1.lb.checked)
+temp_str=temp_str+"lb,";
+
+if(form1.nr.checked)
+temp_str=temp_str+"nr,";
+
+if(form1.sip.checked)
+temp_str=temp_str+"sip,";
+
+if(form1.dip.checked)
+temp_str=temp_str+"dip,";
+dialogArguments.form1.zd.value=temp_str;
+self.close();
+
+dialogArguments.form1.submit();
+
+}
+function init()
+{
+
+var temp_zd='[#zd#]';
+
+if(temp_zd.indexOf('dw')!=-1)
+form1.dw.checked=true;
+
+if(temp_zd.indexOf('xm')!=-1)
+form1.xm.checked=true;
+
+if(temp_zd.indexOf('rq')!=-1)
+form1.rq.checked=true;
+
+if(temp_zd.indexOf('lb')!=-1)
+form1.lb.checked=true;
+
+if(temp_zd.indexOf('nr')!=-1)
+form1.nr.checked=true;
+
+if(temp_zd.indexOf('sip')!=-1)
+form1.sip.checked=true;
+
+if(temp_zd.indexOf('dip')!=-1)
+form1.dip.checked=true;
+}
+</script>
+
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginheight="0"  oncontextmenu="return true" onload="init()">
+  <form name="form1" method="post" action="/pronline/Msg" target="sbpm_right">
+ 
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+
+  <tr> 
+    <td colspan="2"><table width="100%" height="27" border="0" align="center" cellpadding="0" cellspacing="0" background="/images/table_bg1.gif">
+        <tr > 
+          <td colspan="2" > <div align="center"><strong><font color="#FFFFFF">
+             
+              选择字段</font></strong></div></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr> 
+    <td colspan="2"> 
+        <br>
+        <table width="95%" border="1"    bordercolorlight=#89ACED   bordercolordark=#ffffff    align="center" cellpadding="0" cellspacing="0" >
+          <tr> 
+            <td> 
+             <table width="100%" border="0" align="center" >
+                <tr>
+                  <td colspan="4">&nbsp;</td>
+                </tr>
+
+                <tr height="35"> 
+                  <td width="10%"></td>
+                  <td width="30%" align="right"> <font color="#000000"><b><font size="2">单位名称</font></b></font></td>
+                  <td width="10%" align="left">
+                  <input type="checkbox" name="dw" value="1">
+                  </td>
+                  <td width="30%" align="right"><b><font size="2">姓&nbsp;&nbsp;名</font></b>                   
+                  </td>
+                  <td width="10%" align="left"> <input type="checkbox" name="xm" value="1">
+                  </td>
+                  <td width="10%"></td>
+                </tr>
+                
+                <tr height="35"> 
+                  <td ></td>
+                  <td  align="right"> <font color="#000000"><b><font size="2">日&nbsp;&nbsp;期</font></b></font></td>
+                  <td  align="left">
+                 <input type="checkbox" name="rq" value="1">
+                  </td>
+                  <td align="right"><b><font size="2">类&nbsp;&nbsp;别</font></b>                   
+                  </td>
+                  <td align="left"><input type="checkbox" name="lb" value="1">
+                  </td>
+                  <td></td>
+                </tr>
+                <tr height="35"> 
+                  <td ></td>
+                  <td  align="right"> <font color="#000000"><b><font size="2">内&nbsp;&nbsp;容</font></b></font></td>
+                  <td  align="left">
+                  <input type="checkbox" name="nr" value="1">
+                  </td>
+                  <td align="right"><b><font size="2">源ip地址</font></b>                   
+                  </td>
+                  <td align="left">
+                   <input type="checkbox" name="sip" value="1">
+                  </td>
+                  <td></td>
+                </tr>
+              
+                <tr height="35"> 
+                  <td ></td>
+                  <td  align="right"> <font color="#000000"><b><font size="2">目标ip</font></b></font></td>
+                  <td  align="left">
+                  <input type="checkbox" name="dip" value="1">
+                  </td>
+                  <td align="right"><b><font size="2"></font></b>                   
+                  </td>
+                  <td align="left">
+                   &nbsp;
+                  </td>
+                  <td></td>
+                </tr>
+              
+              </table>
+            </td>
+          </tr>          
+        </table>
+<p align="center"><input name='Button' type='button' class='an3' onClick='queren()' value='确 认'></p>
+      </td>
+  </tr>
+</table>
+ </form>
+</body>
+</html>

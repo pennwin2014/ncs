@@ -1,0 +1,72 @@
+<html>
+<head>
+<title>邮件转发设定</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<style>
+.conts{visibility:hidden}
+.tab{border-top:solid thin #E0E0E0;
+border-right:solid thin gray;
+border-left:solid thin #E0E0E0;
+font-family:Verdana;
+font-size:10pt;
+text-align:center;
+font-weight:normal}
+.selTab{border-left:solid thin white;
+border-top:solid thin white;
+border-right:solid thin black;
+font-weight:bold;
+text-align:center}
+</style>
+<script language="javascript">
+var a = new Array; 
+function ffg(){
+a=form1.email.value; 
+window.returnValue=a
+self.close()
+}
+
+function ffh(){
+window.returnValue=0
+self.close()
+}
+
+function goto(o){
+   window.open(o,"_self","")
+}
+</script>
+<style>
+.conts  {visibility:hidden}
+.tab{border-top:solid thin #E0E0E0;
+border-right:solid thin gray;
+border-left:solid thin #E0E0E0;
+font-family:Verdana;
+font-size:10pt;
+text-align:center;
+font-weight:normal;
+cursor: default}
+.selTab{border-left:solid thin white;
+border-top:solid thin white;
+border-right:solid thin black;
+font-weight:bold;
+text-align:center;
+cursor: default}
+table {  font-size: 9pt}
+</style>
+</head>
+<body bgcolor="#CCCCCC" text="#330000" leftmargin="0" topmargin="0" >
+<form name="form1" id="form1" method="post" action="/pronline/Msg">
+  <table width="36%" border="0" bordercolor="#99FF66" align="center">
+    <tr> 
+      <td bgcolor="#CCCCCC"> 转发地址
+        <input type="text" name="email" size="31" maxlength="63" value="[#email#]">
+        <input type="button" name="Button" value=" 确 认 " onClick="ffg()">
+        <input type="button" name="Button2" value=" 取 消 " onClick="ffh()">
+      </td>
+    </tr>
+  </table>
+<div align="center"></div>  </form>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<html>
+<head>
+<title>发送邮件</title>
+<meta http-equiv="目录类型" content="文本/html; 字符集=gb2312">
+<STYLE type=text/css>BODY {
+	FONT-FAMILY: "宋体"; FONT-SIZE: 9pt
+}
+TD {
+	FONT-FAMILY: "宋体"; FONT-SIZE: 9pt
+}
+A {
+	COLOR: #008000; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #ff0000; TEXT-DECORATION: underline
+}
+.submitfont {  background-color: #FFCC66; font-size: 9pt; line-height: 12pt}
+.submitfont2 {  background-color: #009966; color: #FFFFFF; font-size: 9pt}
+</STYLE>
+<script language="javascript">
+function setValue(val,towin)
+{
+    document.sendmail.nFunCode.value=val;
+    document.sendmail.target=towin
+    document.sendmail.submit();
+}    
+
+function Attach(){
+    document.sendmail.nFunCode.value='16932';  
+    document.sendmail.target="attachpage";      
+    var AtWnd = window.open("","attachpage","width=500,height=360,resizable=yes,scrollbars=yes,menubar=yes,status=0");
+    if ((document.sendmail.window != null) && (!AtWnd.opener))
+        AtWnd.opener = document.sendmail.window;
+    document.sendmail.submit();
+}
+
+</script>
+</head>
+
+<body bgcolor="#F0FDE6" onLoad='self.focus()'>
+<form action="/pronline/Msg"  method="post" name="sendmail" >
+<input type="hidden" name="nFunCode" >
+<input type="hidden" name="sid" value="[#sid#]">
+<input type="hidden" name="require" value="new">
+<input type="hidden" name="ftype" value="[#ftype#]">
+<input type="hidden" name="fname" value="[#fname#]">
+  <table border=0 cellpadding=0 cellspacing=0 align="center" width="100%">
+    <tbody> 
+    <tr align=middle height=22 valign="middle"> 
+      <td height=22 colspan="4"> 
+        <div align="center"><font color="#000000"> <a href="javascript:setValue('17403','new')"><img src="../mailImages/bt12.GIF" width="52" height="24" border="0"></a> 
+          　 　　 </font><font color="#000000"> <a href="javascript:setValue('16930','_self')"><img src="../mailImages/bt13.GIF" width="52" height="24" border="0"></a> 
+          　 　　 </font><font color="#000000"> </font><font color="#000000"><a href="javascript:setValue('16935','_self')"><img src="../mailImages/bt14.GIF" width="52" height="24" border="0"></a></font><font color="#000000"> 
+          　　 </font><font color="#000000"> </font><font color="#000000"></font></div>
+      </td>
+    </tr>
+    </tbody> 
+  </table>
+  <table border=0 cellpadding=0 cellspacing=0 width=100%>
+    <tr> 
+      <td height=11> 
+        <hr noshade size="2"color="99cc99" align="left">
+      </td>
+    </tr>
+    <tbody> 
+    <tr bgcolor="#8ED573" valign="middle"> 
+      <td height=15> 
+        <p><b class=h2><font color=#006633>写邮件</font></b></p>
+      </td>
+    </tr>
+    <tr valign=top> 
+      <td class=size9 bgcolor="#E2EEDB"> 
+        <table width="100%" border="0" cellpadding="0">
+          <tr bgcolor="#E2EEDB"> 
+            <td width="17%" height="30"> 
+              <div align="center">发件人　:</div>
+            </td>
+            <td width="83%" height="30"> 
+              <input name="user" size="50" disabled value="[#user#]">
+            </td>
+          </tr>
+          <tr bgcolor="#E2EEDB"> 
+            <td width="17%" height="30"> 
+              <div align="center">收件人　:</div>
+            </td>
+            <td width="83%" height="30"> 
+              <input name="to" size="50" value="[#to#]">
+            </td>
+          </tr>
+          <tr bgcolor="#E2EEDB"> 
+            <td width="17%" height="30"> 
+              <div align="center">抄　送　:</div>
+            </td>
+            <td width="83%" height="30"> 
+              <input name="cc" size="50" value="[#cc#]">
+            </td>
+          </tr>
+          <tr bgcolor="#E2EEDB"> 
+            <td width="17%" height="30"> 
+              <div align="center">主　题　:</div>
+            </td>
+            <td width="83%" height="30"> 
+              <input name="subject" size="50" value="[#subject#]" >
+              <font color="#000000"></font> </td>
+          </tr>
+          <tr bgcolor="#E2EEDB"> 
+            <td width="17%" height="32"> 
+              <div align="center">附　件　:</div>
+            </td>
+            <td width="83%" height="32"> 
+              <input name="afname" disabled size="50" value="[#fname#]">
+              <input type="button" name="Submit2" value="增加附件" onClick="Attach()" class="submitfont2">
+            </td>
+          </tr>
+        </table>
+        <blockquote> 
+          <p> 信件正文　:<br>
+            <textarea cols=80 name="text" rows=10 wrap=PHYSICAL>[#text#] 
+
+</textarea>
+          </p>
+          <p><span class=h2>保存副本到发件箱 
+            <input name="cksave" type="checkbox" value=1>
+            　　</span></p>
+          <p> 指定签名档: 
+            <select name="signature">
+              <option value="" selected>(不使用）</option>
+                  [#SLPB100#]
+                    
+              <option value="[#signNum#]">[#sign#]</option>
+                  [#SLPE#]
+                  
+            </select>
+            <br>
+          </p>
+        </blockquote>
+      </td>
+    </tr>
+    </tbody> 
+  </table>
+</form>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d>
+<lcount>4</lcount>
+<data>
+<alarmprikey>1</alarmprikey>
+<node>
+<alarmtime>2012/05/18 09:22:54</alarmtime>
+<alarmevent>案件:告警 </alarmevent>
+<alarmdep>test1234</alarmdep>
+<alarmpeo>p123</alarmpeo>
+<alarmip>192.168.20.50</alarmip>
+<alarmposition></alarmposition>
+<alarmmessage><![CDATA[2012/05/18 09:22:54test1234 p123  在192.168.20.50()帐号p123(IP:192.168.20.50)访问 http://222.222.127.74:8080/dz/]]></alarmmessage>
+<city></city>
+<idcname></idcname>
+<idcid></idcid>
+</node>
+<alarmprikey>2</alarmprikey>
+<node>
+<alarmtime>2012/05/18 09:51:55</alarmtime>
+<alarmevent>案件:告警 </alarmevent>
+<alarmdep>test1234</alarmdep>
+<alarmpeo>p123</alarmpeo>
+<alarmip>192.168.20.50</alarmip>
+<alarmposition></alarmposition>
+<alarmmessage><![CDATA[2012/05/18 09:51:55test1234 p123  在192.168.20.50()帐号p123(IP:192.168.20.50)访问 http://222.222.127.74:8080/dz/]]></alarmmessage>
+<city></city>
+<idcname></idcname>
+<idcid></idcid>
+</node>
+<alarmprikey>3</alarmprikey>
+<node>
+<alarmtime>2012/05/18 11:29:13</alarmtime>
+<alarmevent>案件:告警 </alarmevent>
+<alarmdep>test1234</alarmdep>
+<alarmpeo>p123</alarmpeo>
+<alarmip>192.168.20.50</alarmip>
+<alarmposition></alarmposition>
+<alarmmessage><![CDATA[2012/05/18 11:29:13test1234 p123  在192.168.20.50()帐号p123(IP:192.168.20.50)访问 http://222.222.127.74:8080/dz/search.php]]></alarmmessage>
+<city></city>
+<idcname></idcname>
+<idcid></idcid>
+</node>
+<alarmprikey>4</alarmprikey>
+<node>
+<alarmtime>2012/05/21 09:21:46</alarmtime>
+<alarmevent>案件:告警 </alarmevent>
+<alarmdep>test1234</alarmdep>
+<alarmpeo>p123</alarmpeo>
+<alarmip>192.168.20.50</alarmip>
+<alarmposition></alarmposition>
+<alarmmessage><![CDATA[2012/05/21 09:21:46test1234 p123  在192.168.20.50()帐号p123(IP:192.168.20.50)访问 http://222.222.127.74:8080/dz/]]></alarmmessage>
+<city></city>
+<idcname></idcname>
+<idcid></idcid>
+</node>
+</data>
+</d>

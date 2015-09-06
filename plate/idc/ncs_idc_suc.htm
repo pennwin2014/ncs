@@ -1,0 +1,111 @@
+<html>
+<head>
+<title>IDC Test</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<style>
+.conts{visibility:hidden}
+
+</style>
+<script language="javascript">
+var ll=0;
+var yy=1;
+
+</script>
+<script LANGUAGE="JavaScript">
+//this is the tab switching function
+
+function init()
+{
+	form1.idcdomain.value="www.baidu.com";
+	form1.sid.value="";
+	form1.idcname.value="";
+	form1.password.value="";
+	form1.email.value="";
+	form1.ip.value="123.196.118.47";
+	form1.startdate.value="2011-10-21 03:43:42";
+	form1.enddate.value="";
+	form1.idcindex.value=0;
+	form1.num.value=10;
+	form1.city.value="";
+	//form1.FunName.value="/pronline/Msg?FunName@ncs_idc_net_show&domain@"+form1.idcdomain.value+"&id@"+form1.sid.value+"&name@"+form1.idcname.value+"&password@"+form1.password.value+"&email@"+form1.email.value+"&ip@"+form1.ip.value+"&startdate@"+form1.startdate.value+"&enddate@"+form1.enddate.value+"&index@"+form1.idcindex.value+"&num@"+form1.num.value+"&city@"+form1.city.value;
+	//alert(form1.FunName.value);
+	document.getElementById("list").src="/pronline/Msg?FunName@ncs_idc_net_show&domain@"+form1.idcdomain.value+"&id@"+form1.sid.value+"&name@"+form1.idcname.value+"&password@"+form1.password.value+"&email@"+form1.email.value+"&ip@"+form1.ip.value+"&startdate@"+form1.startdate.value+"&enddate@"+form1.enddate.value+"&index@"+form1.idcindex.value+"&num@"+form1.num.value+"&city@"+form1.city.value;
+	//pronline/Msg?FunName@ncs_idc_net_show&domain@&id@&name@&password@&email@&ip@&startdate@&enddate@&index@0&num@10&city@
+	//form1.submit();
+}
+
+
+
+var dfd1="0"
+
+</script>
+<style>
+.conts  {visibility:hidden}
+
+table {  font-size: 9pt}
+ .style2 {
+	font-size: 20px;
+	font-weight: bold;
+	font-style: italic;
+	color: #0000ff;
+}
+</style>
+
+<style type="text/css">
+
+<!--
+body {  font-size: 9pt}
+.tas {  border-color: black #FFFFFF; border-style: solid; border-top-width: 0px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 1px}
+table {  font-size: 9pt}
+.gray1 { filter:gray }
+.ttbbd {  cursor: default}
+.nobordertext{border-width:1px;border-color:blue;background-color:#d0e1fa;width:138;}
+
+-->
+</style>
+<link REL=stylesheet HREF="/css/listdatetable.css" TYPE="text/css">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<body bgcolor="#8cb4e8" leftmargin="1" topmargin="0" style="overflow:hidden" >
+<form name="form1" id="form1" method="post" action="/pronline/Msg" target="main">
+<input type="hidden" name="FunName" value="">
+<input type="hidden" name="did" value="">
+<input type="hidden" name="uid" value="">
+<input type="hidden" name="idcdomain" value="">
+<input type="hidden" name="sid" value="">
+<input type="hidden" name="idcname" value="">
+<input type="hidden" name="password" value="">
+<input type="hidden" name="email" value="">
+<input type="hidden" name="ip" value="">
+<input type="hidden" name="startdate" value="">
+<input type="hidden" name="enddate" value="">
+<input type="hidden" name="idcindex" value="">
+<input type="hidden" name="num" value="">
+<input type="hidden" name="city" value="">
+
+    <table border="0"  bordercolorlight=#aaaaaa bordercolordark=#ffffff  CELLPADDING="0" CELLSPACING="0" bgcolor=#8cb4e8 STYLE="width:100%; height:100%">
+   <tr><td></td></tr>
+
+</form>	
+	
+<tr>
+	      <td height="635"  valign="top" width="60%">
+	       <iframe  height="635" name="list" id="list" width="100%"  border="0" frameborder="0" src="" scrolling="yes"> </iframe>      
+	      </td>
+	      
+	      	      
+      </tr>
+
+
+
+</table>
+
+	
+
+
+</body>
+</html>

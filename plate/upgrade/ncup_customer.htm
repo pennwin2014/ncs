@@ -1,0 +1,402 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<title>网络督察用户产品信息</title>
+<script>
+    function goto(t){
+        self.location.href=t;
+    }
+	
+    function gotoPage(pagenum)
+    {
+        form1.CurPg.value = pagenum;
+    }
+      
+    function setselect1(t,v){
+       j=t.options.length;
+       for(i=0;i<j;i++) { 
+           gv = t.options[i].value; 
+		   l = v.length;
+           if(gv.substr(0,l) == v) {
+               t.selectedIndex = i;
+           }
+       }
+    }
+      
+	  
+    function mouseovertr2 (o){
+        var i;
+        df=o.style.backgroundColor
+	    o.style.backgroundColor= "#003399";
+	    o.style.borderColor= "#FFFF00";
+	    o.style.cursor="hand";	
+        for(i=0; i<o.cells.length; i++)
+        {
+	        o.cells(i).style.color="#ffffff";
+        }	
+    }
+
+
+    function showf(prodsn,prodname,username,address,ip,hostinfo,expire,contact,
+                   telephone,stype,email,fundes,insttime,instman,version,lasttime) {
+        form1.prodsn.value=prodsn;
+        form1.prodname.value=prodname;
+        form1.username.value=username;
+        form1.address.value=address;
+        form1.ip.value=ip;
+        form1.hostinfo.value=hostinfo;
+        form1.expire.value=expire;
+        form1.contact.value=contact;
+        form1.telephone.value=telephone;
+        form1.stype.value=stype;
+        form1.email.value=email;
+        form1.fundes.value=fundes;
+        form1.insttime.value=insttime;
+        form1.instman.value=instman;
+        form1.version.value=version;
+        form1.lasttime.value=lasttime;
+    }
+    
+    function mouseouttr2(o){
+	    o.style.backgroundColor=df
+        for(i=0; i<o.cells.length; i++)
+        {
+	        o.cells(i).style.color="#000000";
+        }
+    }
+
+    var dfd1="0"
+    function checkme(p)
+    {
+	    var tt=p.value
+	    if (tt>yy)
+	    {
+		    MM_changeProp('browsdopage','','value',yy,'INPUT/TEXT')
+	    }
+	    if (tt==0)
+	    {
+		    MM_changeProp('browsdopage','','value','1','INPUT/TEXT')
+	    }
+    }
+
+    function allChecked(){
+        if(dfd1=="1"){
+            dfd1="0"
+        }
+        else {
+             dfd1="1"
+        }
+	    for(var i=0;i<document.all.DataTable.rows.length;i++)
+	    {
+		    if(typeof(document.all.DataTable.rows[i].cells[0].childNodes[0])=="object"
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].tagName=="INPUT"
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].type=="checkbox") {
+			    if(dfd1=="1"){
+  			        document.all.DataTable.rows[i].cells[0].childNodes[0].checked="true";
+                }
+			    else{
+                    document.all.DataTable.rows[i].cells[0].childNodes[0].checked="";
+                }
+            }
+ 	    }
+    }
+    
+    
+<!-- Hide
+var ll=[#CurPg#]
+var yy=[#TotPg#]
+function killErrors() {
+   return true;
+}
+
+window.onerror = killErrors;
+// -->
+    function killErrors() {
+        return true;
+    }
+    window.onerror = killErrors;
+// -->
+
+</script>
+
+<link REL=stylesheet HREF="/css/runmit.css" TYPE="text/css">
+<script src="/js/rmenu.js"></script>
+<style type="text/css">
+<!--
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+-->
+</style>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+<body marginheight=0 leftmargin=0 marginwidth=0 topMargin="0" BGCOLOR="Menu" >
+
+<form name="form1" method="post" action="/pronline/Msg" >
+  <table border="0" width=98% height=100% cellspacing="0" cellpadding="0" align=center bordercolor="#D4D4D4" bgcolor="#BCBCBC">
+ <tr> 
+      <td width="100%"  valign=middle align=center height="74" class="ttt"> 
+        <table width="960" border="0" cellspacing="0">
+          <tr> 
+            <td colspan="2" width="958" height="230"> 
+              <table width="966" border="0" height="145">
+                <tr> 
+                  <td height="269" colspan="2" width="956" align="center"> 
+                    <table width="958" border="0" height="141">
+                      <tr> 
+                        <td colspan="6"> 
+                          <div align="center"><b>网络督察客户信息</b></div>
+                        </td>
+                      </tr>
+                      <tr> 
+                        <td colspan="6"> 
+                          <div align="center"><img src="/images/hr.gif" width="952" height="2"></div>
+                        </td>
+                      </tr>
+                      <tr> 
+                        <td width="86" height="17"> 
+                          <div align="right">序列号</div>
+                        </td>
+                        <td width="331" height="17"> 
+                          <input type="text" name="prodsn" size="31" maxlength="31">
+                        </td>
+                        <td width="76" height="17"> 
+                          <p align="right">产品名称</p>
+                        </td>
+                        <td width="196" height="17"> 
+                          <input type="text" name="prodname" size="15" maxlength="31">
+                        </td>
+                        <td width="59" height="17"> 
+                          <p align="right">版本</p>
+                        </td>
+                        <td width="206" height="17"> 
+                          <input type="text" name="version" size="11" maxlength="11">
+                        </td>
+                      </tr>
+                      <tr> 
+                        <td width="86" height="18"> 
+                          <div align="right">主机信息</div>
+                        </td>
+                        <td width="331" height="18"> 
+                          <input type="text" name="hostinfo" size="31" maxlength="63" >
+                        </td>
+                        <td width="76" height="18"> 
+                          <div align="right">截止日期</div>
+                        </td>
+                        <td width="196" height="18"> 
+                          <input type="text" name="expire" size="15" maxlength="15">
+                        </td>
+                        <td width="59" height="18"> 
+                          <div align="right">IP地址</div>
+                        </td>
+                        <td width="206" height="18"> 
+                          <input type="text" name="ip" size="15" maxlength="15" >
+                        </td>
+                      </tr>
+                      <tr> 
+                        <td width="86" height="2"> 
+                          <p align="right">用户名称</p>
+                        </td>
+                        <td colspan="3" height="2"> 
+                          <input type="text" name="username"   size="63" maxlength="127">
+                          <div align="right"></div>
+                        </td>
+                        <td width="59" height="2"> 
+                          <p align="right">联系人 </p>
+                        </td>
+                        <td width="206" height="2"> 
+                          <input type="text" name="contact" size="31" maxlength="63" >
+                        </td>
+                      </tr>
+                      <tr> 
+                        <td width="86" height="22"> 
+                          <div align="right">安装地址</div>
+                        </td>
+                        <td width="331" height="22"> 
+                          <input type="text" name="address" size="40" maxlength="127" >
+                        </td>
+                        <td width="76" height="22"> 
+                          <div align="right">电话</div>
+                        </td>
+                        <td width="196" height="22"> 
+                          <input type="text" name="telephone" size="31" maxlength="63" >
+                        </td>
+                        <td width="59" height="22"> 
+                          <div align="right">Email</div>
+                        </td>
+                        <td width="206" height="22"> 
+                          <input type="text" name="email" size="31" maxlength="63" >
+                        </td>
+                      </tr>
+                      <tr> 
+                        <td width="86" height="9"> 
+                          <div align="right">安装日期</div>
+                        </td>
+                        <td width="331" height="9"> 
+                          <input type="text" name="insttime" size="31" maxlength="31" >
+                        </td>
+                        <td width="76" height="9"> 
+                          <div align="right">安装人</div>
+                        </td>
+                        <td width="196" height="9"> 
+                          <input type="text" name="instman" size="31" maxlength="63" >
+                        </td>
+                        <td width="59" height="9"> 
+                          <div align="right">型号</div>
+                        </td>
+                        <td width="206" height="9"> 
+                          <input type="text" name="stype" size="31" maxlength="31" >
+                        </td>
+                      </tr>
+                      <tr> 
+                        <td width="86" height="9"> 
+                          <div align="right">功能</div>
+                        </td>
+                        <td colspan="5" height="9"> 
+                          <input type="text" name="fundes" size="127" maxlength="255" >
+                        </td>
+                      </tr>
+                      <tr> 
+                        <td colspan="6"> 
+                          <div align="center"><img src="/images/hr.gif" width="951" height="2"></div>
+                        </td>
+                      </tr>
+                      <tr> 
+                        <td colspan="6" height="31"> 
+                          <div align="center"> 
+                            <table width="92%" border="0">
+                              <tr> 
+                                <td width="46%"> 
+                                  <div align="right"> 
+                                    <input type="hidden" name="CurPg"      value="[#CurPg#]">
+                                    <input type="hidden" name="TotPg"      value="[#TotPg#]">
+                                    <input type="submit" name="add" value="添加" >
+                                    <input type="submit" name="modi" value="修改" >
+                                    <input type="submit" name="del" value="删除" >
+                                    <input type="hidden" name="FunName" value="ncsUserInfoEdit">
+                                    <input type="hidden" name="sid"   value="">
+                                  </div>
+                                </td>
+                                <td width="54%"> 
+                                  <table align=right border=0 cellpadding=0 cellspacing=0 class=main width=111>
+                                    <tbody> 
+                                    <td width="10%"> 
+                                      <script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-06.gif' border=0 height=17 width=35 class='gray1'>")}
+                      else{
+                        document.write("<a href='#'><img src='/images/zbuyer-06.gif' border=0 height=17 width=35 onClick='gotoPage(1);form1.submit()' class='hand'>")}
+                   </script>
+                                    </td>
+                                    <td width="10%"> 
+                                      <script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 class='gray1'>")}
+                      else {
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]-1);form1.submit()' class='hand'>")}
+                   </script>
+                                    </td>
+                                    <td width="20%"><img src="/images/zbuyer-08.gif" border=0 height=17 width=32></td>
+                                    <td align=middle background="" width=92> 
+                                      <input class=Main id=browsdopage maxlength=3  name=browsdopage size=3 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 50px" value=[#CurPg#] onKeyPress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" onBlur="checkme(this)">
+                                    </td>
+                                    <td width="10%"><img src="/images/zbuyer-09.gif" border=0 height=17 width=16></td>
+                                    <td width="10%"><img align=middle border=0 height=17 src="/images/zbuyer-10.gif" width=17 onClick="gotoPage(form1.browsdopage.value);form1.submit()" class="hand"><img align=middle height=17 src="/images/zbuyer-11.gif" width=3></td>
+                                    <td width="10%"><img border=0 height=17 src="/images/zin1.gif" width=17 ></td>
+                                    <td align=middle background="" width=92> 
+                                      <input  class=Main id=browsdopage1 maxlength=6 name=browsdopage12 size=6 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 50px" value='[#TotPg#]'>
+                                    </td>
+                                    <td width="10%"><img align=middle height=17 src="/images/zbuyer-09.gif" width=16></td>
+                                    <td align=middle background="" width=92> 
+                                      <input  class=Main id=browsdopage1 maxlength=5 name=browsdopage12 size=3 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 50px" value='[#TotRec#]'>
+                                    </td>
+                                    <td width="10%"><img border=0 height=17 src="/images/zin3.gif" width=17 align="middle" ><img align=middle height=17  src="/images/zbuyer-11.gif" width=3></td>
+                                    <td width="10%"> 
+                                      <script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]+1);form1.submit()' class='hand'>")}
+                    </script>
+                                    </td>
+                                    <td width="10%"> 
+                                      <script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 onClick='gotoPage([#TotPg#]);form1.submit()' class='hand'>")}
+                    </script>
+                                    </td>
+                                    </tbody> 
+                                  </table>
+                                </td>
+                              </tr>
+                            </table>
+                          </div>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+    </td>
+  </tr>
+  <tr>
+      <td width="100%"  valign=top align=center bgcolor="#BBBBBB" height="2"> 
+        <table  id="DataTable" width="972" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" height="60" >
+          <tr  height="21" > 
+            <td class="bord2" background="/images/ttt.gif" height="14" width="62"><img src="/images/lline.gif" width="1" height="18" align="absmiddle">&nbsp;&nbsp;<a href="#" onClick="allChecked()" >全选</a> 
+            </td>
+            <td class="bord2" height="14" background="/images/ttt.gif" width="65">序号</td>
+            <td class="bord2" height="14" background="/images/ttt.gif" width="156">序列号</td>
+            <td class="bord2" height="14" background="/images/ttt.gif" width="126">产品名称</td>
+            <td class="bord2" height="14" background="/images/ttt.gif" width="297">用户单位</td>
+            <td class="bord2" height="14" background="/images/ttt.gif" width="127">安装人员</td>
+            <td class="bord2" height="14" background="/images/ttt.gif" width="139">安装日期</td>
+          </tr>
+          <!-- [#SLPB#] -->
+          <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" 
+            onclick="showf('[#prodsn#]','[#prodname#]','[#username#]','[#address#]','[#ip#]','[#hostinfo#]','[#expire#]','[#contact#]','[#telephone#]','[#stype#]','[#email#]','[#fundes#]','[#insttime#]','[#instman#]','[#version#]','[#lasttime#]')"> 
+            <td class="bord1" width="62" height="17"> 
+              <input type="checkbox" name="ch[#num#]" value="[#prodsn#]">
+            </td>
+            <td class="bord1" width="65" height="17">&nbsp;[#num#]</td>
+            <td class="bord1" width="156" height="17">&nbsp;[#prodname#]</td>
+            <td class="bord1" width="126" height="17">&nbsp;[#prodname#]</td>
+            <td class="bord1" width="297" height="17">&nbsp;[#username#]</td>
+            <td class="bord1" width="127" height="17">&nbsp;[#instman#]</td>
+            <td class="bord1" width="139" height="17">&nbsp;[#insttime#]</td>
+          </tr>
+          <!-- [#SLPE#] -->
+          <!-- [#SLPB#] -->
+          <tr id=[#snum#]> 
+            <td class="bord1" width="62" height="2">&nbsp; </td>
+            <td class="bord1" width="65" height="2">&nbsp;</td>
+            <td class="bord1" width="156" height="2">&nbsp;</td>
+            <td class="bord1" width="126" height="2">&nbsp;</td>
+            <td class="bord1" width="297" height="2">&nbsp;</td>
+            <td class="bord1" width="127" height="2">&nbsp;</td>
+            <td class="bord1" width="139" height="2">&nbsp;</td>
+          </tr>
+          <!-- [#SLPE#] -->
+        </table>
+<!--//鼠标显示//-->
+              <script language="JavaScript">
+<!--
+var MenuBarColor ='#cccccc';
+DrawMouseRightButtonUpMenu();
+-->
+</script>
+</table>
+  </form>
+</body>
+</html>

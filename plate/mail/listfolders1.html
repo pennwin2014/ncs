@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE>电子邮件</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type>
+<style type="text/css">
+<!--
+.unnamed1 {  font-size: 9pt}
+-->
+</style>
+</HEAD>
+<BODY text="#6699cc" link="#0099CC" vlink="#0099CC" alink="#0099CC">
+<span class="bg1"> </span> 
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr valign="top"> 
+      <td height="122"> 
+        <table border=0 cellpadding=0 width=100% bordercolordark="#FFFFFF">
+          <tr>
+            <td height=3 colspan="4"><font face=Arial><b><font face=Arial><b><font size="5">[#username#]</font></b></font></b></font> </td>
+          </tr>
+          <tr> 
+            <td height=3 colspan="4"> 
+              <hr noshade size="2"color="0099cc" align="left">
+            </td>
+          </tr>
+          <tbody> 
+          <tr> 
+            <td height=18 width="137" bgcolor="#0099CC"><font color="#FFFFFF"><b><span 
+      style="FONT-SIZE: 9pt">　　<b><span lang=EN-US style='font-family:Wingdings;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";mso-char-type:symbol;
+mso-symbol-font-family:Wingdings'><span style='mso-char-type:symbol;mso-symbol-font-family:
+Wingdings'>1</span></span></b></span></b><span 
+      style="FONT-SIZE: 9pt">邮件夹</span></font></td>
+            <td height=18 width="145" bgcolor="#0099CC"><font color="#FFFFFF"><span 
+      style="FONT-SIZE: 9pt">邮件数</span></font></td>
+            <td height=18 width="145" bgcolor="#0099CC"><font color="#FFFFFF"><span 
+      style="FONT-SIZE: 9pt">新邮件数</span></font></td>
+            <td height=18 width="175" bgcolor="#0099CC"><font color="#FFFFFF"><span 
+      style="FONT-SIZE: 9pt">占用空间</span></font></td>
+          </tr>
+          <tr> 
+<!-- [#SLPB#] -->            
+          <td height=18 width="137" bgcolor="#F5F5F5"><font color=#000000><span style="FONT-SIZE: 9pt">　　</span></font><font color=#3e1b00><font color="#0000FF"><b><span lang=EN-US style='font-family:Wingdings;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+mso-char-type:symbol;mso-symbol-font-family:Wingdings'><span style='mso-char-type:
+symbol;mso-symbol-font-family:Wingdings'><font color="#0099CC">0</font></span></span></b></font></font><font color=#000000><span style="FONT-SIZE: 9pt"><a 
+      href="/pronline/Msg?nFunCode=16909&sid=[#fsid#]&fold=[#fname#]&pagenum=1" target="mainFrame">[#cname#] 
+            </a></span></font></td>
+            <td height=18 width="145" bgcolor="#F5F5F5"><font color=#000000><span 
+      style="FONT-SIZE: 10pt">[#innum#]</span></font></td>
+            <td height=18 width="145" bgcolor="#F5F5F5"><font color=#000000><span 
+      style="FONT-SIZE: 10pt">[#innew#]</span></font></td>
+            <td height=18 width="175" bgcolor="#F5F5F5"><font color=#000000><span style="FONT-SIZE: 10pt">[#insize#] K</span></font></td>
+          </tr>
+          <tr> 
+<!-- [#SLPE#] -->
+            
+          </tbody> 
+        </table>
+        <table border=0 cellpadding=0 cellspacing=1 width=100% height="18">
+          <tbody> 
+          <tr align=middle height=22 bgcolor="#0099CC"> 
+            <td height=18 width=100><font color="#FFFFFF"><span 
+      style="FONT-SIZE: 9pt">邮件总数：</span></font></td>
+            <td width=100 height="18"><font color="#FFFFFF"><span 
+      style="FONT-SIZE: 9pt">[#totalnum#]</span></font></td>
+            <td height=18 width=110><font color="#FFFFFF"><span 
+      style="FONT-SIZE: 9pt">已占用空间：</span></font></td>
+            <td height=18 width=100><font color="#FFFFFF"><span 
+      style="FONT-SIZE: 9pt">[#totalsize#]K</span></font></td>
+            <td width=100 height="18"><font color="#FFFFFF"><span 
+      style="FONT-SIZE: 9pt">剩余空间：</span></font></td>
+            <td width=100 height="18"><font color="#FFFFFF"><span style="FONT-SIZE: 9pt">[#remainsize#] 
+              K</span></font></td>
+          </tr>
+          </tbody> 
+        </table>
+        
+      </td>
+    </tr>
+  </table>
+  
+<form name="form1" method="post" action="/pronline/Msg">
+  <div align="center">
+    <input type="hidden" name="nFunCode" value="16905">
+    <input type="hidden" name="sid" value="[#sid#]">
+    新建文件夹: 
+    <input type="text" name="foldname">
+    <input type="submit" name="add" value="确认">
+    删除文件夹: 
+    <select name="delfold">
+<!-- [#SLPB#] -->
+      <option value="[#fld#]">[#fld#]</option>
+<!-- [#SLPE#] -->
+    </select>
+    <input type="submit" name="del" value="确认">
+  </div>
+</form>
+<p>&nbsp;</p>
+  
+<span class="bg1"> </span> 
+</body>
+</html>

@@ -1,0 +1,190 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<title>邮件分类</title>
+<script>
+    function goto(t){
+        self.location.href=t;
+    }
+	
+    
+	  
+    function mouseovertr2 (o){
+        var i;
+        df=o.style.backgroundColor
+	    o.style.backgroundColor= "#003399";
+	    o.style.borderColor= "#FFFF00";
+	    o.style.cursor="hand";	
+        for(i=0; i<o.cells.length; i++)
+        {
+	        o.cells(i).style.color="#ffffff";
+        }	
+    }
+
+
+    function showf(name,disp,val) {
+        form1.varname.value=name;
+        form1.varname0.value=name;
+        form1.dispname.value=disp;
+        form1.val.value= val;
+    }
+    
+    function mouseouttr2(o){
+	    o.style.backgroundColor=df
+        for(i=0; i<o.cells.length; i++)
+        {
+	        o.cells(i).style.color="#000000";
+        }
+    }
+
+    var dfd1="0"
+    function checkme(p)
+    {
+	    var tt=p.value
+	    if (tt>yy)
+	    {
+		    MM_changeProp('browsdopage','','value',yy,'INPUT/TEXT')
+	    }
+	    if (tt==0)
+	    {
+		    MM_changeProp('browsdopage','','value','1','INPUT/TEXT')
+	    }
+    }
+
+    function allChecked(){
+        if(dfd1=="1"){
+            dfd1="0"
+        }
+        else {
+             dfd1="1"
+        }
+	    for(var i=0;i<document.all.DataTable.rows.length;i++)
+	    {
+		    if(typeof(document.all.DataTable.rows[i].cells[0].childNodes[0])=="object"
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].tagName=="INPUT"
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].type=="checkbox") {
+			    if(dfd1=="1"){
+  			        document.all.DataTable.rows[i].cells[0].childNodes[0].checked="true";
+                }
+			    else{
+                    document.all.DataTable.rows[i].cells[0].childNodes[0].checked="";
+                }
+            }
+ 	    }
+    }
+<!-- Hide
+    function killErrors() {
+        return true;
+    }
+    window.onerror = killErrors;
+// -->
+
+</script>
+
+<link REL=stylesheet HREF="/css/runmit.css" TYPE="text/css">
+<script src="/js/rmenu.js"></script>
+<style type="text/css">
+<!--
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+-->
+</style>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+<body marginheight=0 leftmargin=0 marginwidth=0 topMargin="0" BGCOLOR="#DEE8FA" onload="setinit()">
+<form name="form1" method="post" action="/pronline/Msg"> 
+  <table border="0" width=100% cellspacing="0" cellpadding="0" align=center>
+    <tr> 
+      <td width="100%"  valign=middle align=center class="ttt"> 
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td colspan="2"><table width="100%" height="27" border="0" align="center" cellpadding="0" cellspacing="0" background="/images/table_bg1.gif">
+                <tr > 
+                  <td colspan="2"> <div align="center"><strong><font color="#FFFFFF">基本信息定义</font></strong></div></td>
+                </tr>
+              </table></td>
+          </tr>
+          <tr> 
+            <td height="65" colspan="2"> 
+              <table width="100%" border="0">
+
+                <tr> 
+                  <td width="7%" height="2"> <div align="right">类别</div></td>
+                  <td width="25%" height="25"> <input type="text" name="tdis" size="20" maxlength="31" value="[#tdisp#]" readonly> 
+                  </td>
+                  <td width="7%" height="2"><div align="right">代码</div></td>
+                  <td width="22%" height="2" valign="top"> 
+                    <input type="text" name="varname" size="8" maxlength="8" >
+                    (不能为中文)</td>
+                  <td width="7%" height="2"> <div align="right">说明</div></td>
+                  <td width="32%" height="2"><input type="text" name="dispname" size="31" maxlength="31" > 
+                  </td>
+                </tr>
+                <tr> 
+                  <td width="7%" height="2"> 
+                    <div align="right">值</div></td>
+                  <td width="25%" height="25" valign="bottom"> <input type="text" name="val" size="20" maxlength="64" > 
+                  </td>
+                  <td width="7%" height="2" valign="bottom"> <div align="right"></div></td>
+                  <td height="2" colspan="3"> <div align="center"> 
+                      <input name="add" type="submit" class="an3" value="添 加" >
+                      <input name="modi" type="submit" class="an3" value="修 改" >
+                      <input name="save" type="submit" class="an3" value="保 存" >
+                      <input name="del" type="submit" class="an3" value="删 除" >
+                      <input type="hidden" name="FunName" value="fireWebListBaseInfo">
+                      <input type="hidden" name="tname"   value="[#tname#]">
+                      <input type="hidden" name="tdisp"   value="[#tdisp#]">
+                      <input type="hidden" name="varname0"   value="">
+                    </div></td>
+                </tr>
+
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+  </tr>
+  <tr>
+      <td width="100%"  valign=top align=center> 
+        <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF"  id="DataTable" >
+          <tr  height="21" > 
+            <td width="47" height="18" bgcolor="#6382BD" class="bord2"><font color="#FFFFFF">
+              <input type="button" name="b1" value="全选"    class="anniu_1" onClick="allChecked()">
+              </font> </td>
+            <td width="233" height="18" bgcolor="#6382BD" class="bord2"> <div align="center"><font color="#FFFFFF">代码</font></div></td>
+            <td width="232" height="18" bgcolor="#6382BD" class="bord2"><div align="center"><font color="#FFFFFF">说明</font></div></td>
+            <td width="481" height="18" bgcolor="#6382BD" class="bord2"><div align="center"><font color="#FFFFFF"> 
+                值</font></div></td>
+          </tr>
+          <!-- [#SLPB#] -->
+          <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" onclick="showf('[#name#]','[#disp#]','[#value#]')"> 
+            <td class="bord1" width="47"> <input type="checkbox" name="ch[#num#]" value="[#name#]"> 
+            </td>
+            <td class="bord1" width="233">&nbsp;[#name#]</td>
+            <td class="bord1" width="232">[#disp#]&nbsp;</td>
+            <td class="bord3" width="481">&nbsp;[#value#]</td>
+          </tr>
+          <!-- [#SLPE#] -->
+          <!-- [#SLPB#] -->
+          <tr id=[#snum#]> 
+            <td class="bord1" width="47">&nbsp; </td>
+            <td class="bord1" width="233" height="2">&nbsp;</td>
+            <td class="bord1" width="232" height="2">&nbsp;</td>
+            <td class="bord3" width="481" height="2">&nbsp;</td>
+          </tr>
+          <!-- [#SLPE#] -->
+        </table>
+<!--//鼠标显示//-->
+              <script language="JavaScript">
+<!--
+var MenuBarColor ='#cccccc';
+DrawMouseRightButtonUpMenu();
+
+</script>
+    </table>
+  </form>
+</body>
+</html>

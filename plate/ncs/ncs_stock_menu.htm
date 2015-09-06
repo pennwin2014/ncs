@@ -1,0 +1,382 @@
+<html>
+
+<head>
+<title>上网时间统计</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<!-- Infrastructure code for the tree -->
+<style>
+	.styletab {
+  font-size: 13px;
+  text-align:right;
+	color: black;	
+	font-weight: bold;
+}
+</style>
+
+<script>
+	function showtree(id,cna){
+	var objEva=new Array();
+
+	objEva[0]=eval('form1.'+id);
+	objEva[1]=eval('form1.'+cna);
+
+showModalDialog('/pronline/Msg?FunName@ncWebTreeDispGroup_nolimit&plate@tree/tree_group_select.htm',objEva,
+		 "status:no;center:yes;help:no;minimize:no;maximize:no;border:thick;statusbar:no;dialogWidth:200px;scroll:none;dialogHeight:620px;overflow:none");	
+
+}
+
+
+
+function getsId()
+{
+     var cheID='';
+		  for(var i=0;i<parseInt('[#sum_s#]');i++)
+	    {
+	    var objchk='form1.chk'+i;
+	    if(typeof(eval(objchk)=='object')){
+	       if(eval(objchk).checked){
+	            cheID+=eval(objchk).value+',';
+	       }
+	    }
+      }
+      if(cheID!=''){
+         form1.cheIDS.value=cheID.slice(0,-1);
+         }
+
+
+}
+
+
+ 
+function changservice(){
+ 
+callServer();
+
+ 
+}
+	var xmlHttp = false;
+ 
+//调用AJAX
+ function callServer() 
+ { 
+  form1.flag.value='1';
+  if( xmlHttp && xmlHttp .readyState != 0 )
+   {
+    xmlHttp.abort();
+   }
+   
+   xmlHttp = createXMLHttpRequest();
+ 
+   if( xmlHttp )
+   {
+   var web_url='/pronline/Msg?FunName@ncWebShowGroupDet&did@'+form1.did.value+'&xx@'+Math.random()*999;
+    //打开连接
+    xmlHttp.open("GET",web_url, true);
+    //设置回调函数
+    xmlHttp.onreadystatechange = updatePage;
+ 
+    xmlHttp.send(null);
+  
+  }
+ 
+ }
+	
+	
+	
+function callgroup() 
+ { 
+ form1.flag.value='2';
+  if( xmlHttp && xmlHttp .readyState != 0 )
+   {
+    xmlHttp.abort();
+   }
+   
+   xmlHttp = createXMLHttpRequest();
+ 
+   if( xmlHttp )
+   {
+   var web_url='/pronline/Msg?FunName@ncWebShowTgroupDet&tid@'+form1.tid.value+'&xx@'+Math.random()*999;
+    //打开连接
+    xmlHttp.open("GET",web_url, true);
+    //设置回调函数
+    xmlHttp.onreadystatechange = updatePage;
+ 
+    xmlHttp.send(null);
+  
+  }
+ 
+ }
+	
+	
+	
+		 //ajax回调处理函数
+ function updatePage() 
+ {
+  
+   if (xmlHttp.readyState == 4) 
+   {
+    var response = xmlHttp.responseText;
+//alert(response);         
+
+var temp_id=getxmlbyname(response,"<sid>","</sid>");
+var temp_name=getxmlbyname(response,"<sname>","</sname>");
+var aid=new Array();
+var aname=new Array();
+aid=temp_id.split("|");
+aname=temp_name.split("|");
+var i;
+if(form1.flag.value=='2'){
+
+document.all.did.length=aid.length;
+for(i=0;i<aid.length;i++){
+	document.all.did.options[i].value=aid[i];
+ document.all.did.options[i].text=aname[i];
+	}
+
+
+}
+else{
+document.all.gid.length=aid.length;
+for(i=0;i<aid.length;i++){
+	document.all.gid.options[i].value=aid[i];
+ document.all.gid.options[i].text=aname[i];
+	}
+ 
+   }
+ }
+ }
+
+
+var dfd1=0;
+	    function allChecked(){
+        if(dfd1=="1"){
+            dfd1="0"
+        }
+        else {
+             dfd1="1"
+        }
+	    for(var i=0;i<parseInt('75');i++)
+	    {
+	    var objchk='form1.chk'+i;
+	    if(typeof(eval(objchk)=='object')){
+	    if(dfd1=="1"){
+	    eval(objchk).checked='true';
+	    }
+	    else{
+	    eval(objchk).checked='';
+	    }
+	    }
+	    }
+	   
+	  }
+
+	   
+
+</script>
+<script src="/js/ajax.js"></script>
+
+<script language = "Javascript" src = "/js/selecttime.js"></script>
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginheight="0"   >
+
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <form name="form1" method="post" action="/pronline/Msg">
+ <input type="hidden" name="groupid">
+
+    <input type="hidden" name="caService">
+    <input type="hidden" name="cheIDW" value="[#cheIDW#]">
+    <input type="hidden" name="cheIDS" value="[#cheIDS#]">
+    <input type="hidden" name="FunName" value="ncsWebStockIplog">
+    <input type="hidden" name="flag" value="1">
+  <tr> 
+    <td colspan="2"><table width="100%" height="35" border="0" align="center" cellpadding="0" cellspacing="0" >
+        <tr > 
+          <td colspan="2" > <div style="font-size:11pt;color:#00237e;font-weight:bold;text-align: center;">股票交易明细统计</div></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr> 
+    <td colspan="2"> 
+        <div align="center"> <b>
+          </b></div>
+        <table width="90%" border="1"  bordercolorlight=#89ACED   bordercolordark=#ffffff    align="center" cellpadding="0" cellspacing="0" >
+          <tr> 
+            <td> 
+        <table width="90%" border="0" align="center" >
+                <tr>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td colspan="3">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="1%"> <div align="center"><font color="#000000"></font></div></td>
+                  <td width="18%" class="styletab"> 单位组
+                      </td>
+                  <td width="33%"> <div align="left"><select name="tid" onchange="callgroup()">
+                   <option value="">全部</option>
+                  	[#SLPB#]
+                  	<option value="[#tid#]">[#tname#]</option>
+                    [#SLPE#]
+                  </select> </div></td>
+                  <td colspan="3"> <div align="center"><font color="#000000"></font></div>
+                    <div align="center"><font color="#000000"> </font></div>
+                    <div id="plabel" align="center"><font color="#000000"> </font></div></td>
+                </tr>
+
+
+
+                <tr> 
+                  <td width="1%"> <div align="center"><font color="#000000"></font></div></td>
+                  <td width="18%" class="styletab"> 单位名称
+                      </td>
+                  <td width="33%"> <div align="left"><select name="did" onchange="changservice()">
+                   <option value="">全部</option>
+                  	[#SLPB#]
+                  	<option value="[#userid#]">[#dispname#]</option>
+                    [#SLPE#]
+                  </select> </div></td>
+                  <td colspan="3"> <div align="center"><font color="#000000"></font></div>
+                    <div align="center"><font color="#000000"> </font></div>
+                    <div id="plabel" align="center"><font color="#000000"> </font></div></td>
+                </tr>
+                <tr> 
+                  <td width="1%"> <div align="center"><font color="#000000"></font></div></td>
+                  <td width="18%" class="styletab"> 部门</td>
+                   <td colspan="4">
+                  	<select name="gid" >
+                    <option value="">不限</option>
+                    </select>
+                  
+                 &nbsp;部门名包含<input type="text" name="gname" size="16" value="[#gname#]">
+                   </td>
+                </tr> 
+              
+                
+                <tr> 
+                  <td width="1%"> <div align="center"><font color="#000000"></font></div></td>
+                  <td width="18%" class="styletab"> 起始时间</td>
+                  <td width="33%"> <div align="left"><font color="#000000"> 
+                      <input type="text" name="sdate1" size="10" value="[#sdate1#]" >
+  <!--                    <input type="text" name="stime" size="2" maxlength="2" value="[#stime#]" >
+  -->
+                      </font></div></td>
+                  <td width="9%"> <div align="center"><font color="#000000"><a href="#xxm"><img src="/images/date.gif"  border="0" onClick=show_calendar('form1.sdate1')></a></font></div></td>
+                  <td width="6%"> <div align="center"><font color="#000000"> 
+                      </font></div></td>
+                  <td width="33%"> <div id="plabel" align="center"><font color="#000000"> 
+                      </font></div></td>
+                </tr>
+                <tr> 
+                  <td width="1%" height="21">&nbsp;</td>
+                  <td width="18%" height="21" class="styletab"> 终止时间</td>
+                  <td width="33%" height="21"><font color="#000000"> 
+                    <input type="text" name="sdate2" size="10" value="[#sdate2#]">
+               <!--     <input type="text" name="etime" size="2" maxlength="2" value="[#etime#]" >
+               -->
+                    </font></td>
+                  <td width="9%" height="21"><div align="center"><font color="#000000"><a href="#xxm"><img src="/images/date.gif"  border="0" onClick=show_calendar('form1.sdate2')></a></font></div></td>
+                  <td width="6%" height="21">&nbsp;</td>
+                  <td width="33%" height="21" align="center">&nbsp;</td>
+                </tr>
+                
+                <tr>
+                  <td width="1%">&nbsp;</td>
+                  <td width="18%" class="styletab"> 统计内容</td>
+                  <td width="33%">
+                  <select name="opt" style="width:115">
+                  <option value="1">明细报表</option>
+                  <option value="2">汇总报表</option>
+
+                  </select>
+                  </td>
+                  <td width="9%">&nbsp;</td>
+                  <td width="6%">&nbsp;</td>
+                  <td width="33%">&nbsp;</td>
+                </tr>
+                
+                
+                <tr> 
+                  <td width="1%">&nbsp;</td>
+                  <td width="18%" class="styletab"> </td>
+                  <td width="33%"> 
+                
+                  </td>
+                  <td width="9%">&nbsp;</td>
+                  <td width="6%">&nbsp;</td>
+                  <td width="33%"><input name="Button33" type="button" class="an3" onClick="getsId();form1.submit();form1.Button33.disabled=1;" value="确 认"></td>
+                </tr>
+                
+                 <tr> 
+                  <td width="1%">&nbsp;</td>
+                  <td width="18%" class="styletab"> </td>
+                  <td width="33%"> 
+                
+                  </td>
+                  <td width="9%">&nbsp;</td>
+                  <td width="6%">&nbsp;</td>
+                  <td width="33%">&nbsp;</td>
+                </tr>
+                
+                
+              
+                <tr> 
+                  <td width="1%"> <div align="center"><font color="#000000"></font></div></td>
+                  <td width="18%"> <div align="center"><font color="#000000"><b></b></font></div></td>
+                  <td width="33%"> <div align="center"><font color="#000000"> 
+                      </font></div></td>
+                  <td width="9%"> <div align="center"><font color="#000000"></font></div></td>
+                  <td width="6%"> <div align="center"><font color="#000000"> 
+                      </font></div></td>
+                  <td width="33%">&nbsp; </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+          <td>
+      <div style="height:250px;overflow-y:scroll" id="tC">
+          <table width="90%" border="0" align="center" > 
+          	<td width="80"><input name="Button" type="button" class="an3" onClick="allChecked()" value="全选"></td>
+          <tr><td align="center" height="18" colspan="5">
+          股票交易服务
+          </td>
+          </tr>
+          [#SLPB#]
+          <tr>[#SLPB#]<td><input type="checkbox" name="chk[#i#]" value="[#id#]" [#check#] onclick="getsId()">[#service_name#]</td>[#SLPE#]
+          [#SLPE#]
+          </tr>
+          </table>
+        
+      </div>
+          </td>
+          </tr>
+         <tr><td>
+
+        </td>
+        </td>
+      </tr> 
+           
+        </table>
+
+      </form></td>
+  </tr>
+
+ </form>
+<script>
+
+        form1.gid.value='[#gid#]';
+        form1.did.value='[#did#]';
+        form1.tid.value='[#tid#]';
+        form1.opt.value='[#opt#]';
+
+</script>
+</table>
+</body>
+</html>

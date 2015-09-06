@@ -1,0 +1,494 @@
+<html>
+<head>
+<title>归档日志</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<style>
+.conts{visibility:hidden}
+
+</style>
+<script language="javascript">
+var ll=0;
+var yy=1;
+
+</script>
+<script LANGUAGE="JavaScript">
+//this is the tab switching function
+function cxw()
+{
+	frames.main.form1.sdate.value=form1.sdate.value;
+	frames.main.form1.edate.value=form1.edate.value;
+	frames.main.form1.submit();
+}
+
+function goto(t){
+ tt=showModalDialog(t, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:520px;scroll:yes;dialogHeight:610px');
+}
+function gotoPage(nun)
+{
+	if(nun<1){
+	 form1.CurPg.value=1;
+	 frames.main_t.form1.CurPg.value=1;
+	 return false;
+	}
+	if(nun>form1.TotPg.value){
+		form1.CurPg.value=form1.TotPg.value;
+		frames.main_t.form1.CurPg.value=form1.TotPg.value;
+		return false;
+	}
+//  frames.main.form1.FunName.value='ncsWebNetLog';
+	frames.main_t.form1.CurPg.value=nun;
+	form1.CurPg.value=nun;
+	frames.main_t.form1.submit();
+	return false;
+}
+function lprint(){
+	frames.main_t.window.print();
+}
+function texport(t)
+{
+	frames.main_t.form1.CurPg.value=1;
+	frames.main_t.form1.exp.value="exp";
+  frames.main_t.form1.FunName.value=t;
+	frames.main_t.form1.submit();
+	frames.main_t.form1.FunName.value="ncsWebReplace";
+	frames.main_t.form1.exp.value="";
+}
+function cvtcode()
+{
+	  frames.main_t.form1.ccode.value=form1.ccode.value;
+    frames.main_t.form1.FunName.value = "ncsWebMailMonCvtCode";
+    frames.main_t.form1.submit();
+}	
+
+
+
+var cno;
+var currentTab;
+var tabBase;
+var firstFlag = true;
+
+function changeTabs(){
+if(firstFlag == true){
+currentTab = t0;
+
+cno=currentTab.id.substring(1);
+firstFlag = false;
+}
+
+if(window.event.srcElement.className == "tab4"||window.event.srcElement.className == "tab5"||window.event.srcElement.className == "tab7"||window.event.srcElement.className == "tab8"||window.event.srcElement.className == "tab9"){
+	var cno2=parseInt(cno)+1;
+	if(cno==0)
+		currentTab.className = "tab7";
+	else if(cno==9)
+		currentTab.className="tab8";
+	else
+		currentTab.className="tab5";
+
+  if(cno2<10)
+  	eval('document.all.t'+cno2).className="tab5";
+  else if(cno2==9)
+  	eval('document.all.t'+cno2).className="tab8";
+  	
+	currentTab = window.event.srcElement;
+	cno=currentTab.id.substring(1);
+	var cno1=parseInt(cno)+1;
+	if(cno==9){
+		currentTab.className = "tab6";
+	}
+  else if(cno==8){
+   currentTab.className="tab3";	 
+	 eval('document.all.t'+cno1).className="tab9";
+  }
+  else{
+	 currentTab.className="tab3";	 
+	 eval('document.all.t'+cno1).className="tab4";
+	}
+			
+
+var temp_desc;
+	if(currentTab.id=="t0"){		
+	  temp_desc='';
+		temp_desc=temp_desc+'&nbsp;<input name="pr" type="button" class="an3"   value="打 印" onclick="lprint()">';
+		
+		
+		temp_desc=temp_desc+'&nbsp;<input name="exp" type="button" class="an3"   value="导 出" onclick=texport("ncsWebNetLog")>';
+
+	  document.all.wlj3.innerHTML=temp_desc;	
+  
+  	var temp="/pronline/Msg?FunName@ncsWebReplace&fun@ncsWebNetLog&plate@ncsmsg_showinfo.htm&userid@"+form1.did.value+"&did@"+form1.did.value+"&sdate@"+form1.sdate.value+"&edate@"+form1.edate.value+"&uid@"+form1.uid.value;
+
+		document.all.data1.src=temp;  
+		
+	}
+	else if(currentTab.id=="t1"){
+		temp_desc='';
+		temp_desc=temp_desc+'&nbsp;<input name="pr" type="button" class="an3"   value="打 印" onclick="lprint()">';
+		temp_desc=temp_desc+'&nbsp;<input name="exp" type="button" class="an3"   value="导 出" onclick=texport("ncsWebNetIdTrac")>';
+	  document.all.wlj3.innerHTML=temp_desc;	 
+
+    	var temp="/pronline/Msg?FunName@ncsWebReplace&fun@ncsWebNetIdTrac&plate_flag@1&plate@ncsmsg_showinfo.htm&userid@"+form1.did.value+"&did@"+form1.did.value+"&sdate@"+form1.sdate.value+"&edate@"+form1.edate.value+"&uid@"+form1.uid.value;
+
+		document.all.data1.src=temp;	 
+	
+	}
+	else if(currentTab.id=="t2"){
+		temp_desc='&nbsp;';
+	//		temp_desc='&nbsp;<input name="hsear" type="button" class="an3"  onclick=goto("/pronline/Msg?FunName@ncWebCorpDepSearch&flag@5") value="查询">';		
+		temp_desc=temp_desc+'&nbsp;<input name="pr" type="button" class="an3"   value="打 印" onclick="lprint()">';
+		temp_desc=temp_desc+'&nbsp;<input name="exp" type="button" class="an3"   value="导 出" onclick=texport("ncsWebIpLog")>';
+	  document.all.wlj3.innerHTML=temp_desc;	
+	  var temp="/pronline/Msg?FunName@ncsWebReplace&fun@ncsWebIpLog&plate@ncsmsg_showinfo.htm&userid@"+form1.did.value+"&did@"+form1.did.value+"&sdate@"+form1.sdate.value+"&edate@"+form1.edate.value+"&uid@"+form1.uid.value;
+		document.all.data1.src=temp;
+	}
+	else if(currentTab.id=="t3"){
+		temp_desc='';
+//		temp_desc='&nbsp;<input name="hsear" type="button" class="an3"  onclick=goto("/pronline/Msg?FunName@ncWebCorpDepSearch&flag@6") value="查询">';		
+		temp_desc=temp_desc+'&nbsp;<input name="pr" type="button" class="an3"   value="打 印" onclick="lprint()">';
+		temp_desc=temp_desc+'&nbsp;<input name="exp" type="button" class="an3"   value="导 出" onclick=texport("ncsWebWebLog")>';
+	  document.all.wlj3.innerHTML=temp_desc;	
+	  var temp="/pronline/Msg?FunName@ncsWebReplace&fun@ncsWebWebLog&plate@ncsmsg_showinfo.htm&userid@"+form1.did.value+"&did@"+form1.did.value+"&sdate@"+form1.sdate.value+"&edate@"+form1.edate.value+"&uid@"+form1.uid.value;
+		document.all.data1.src=temp;
+
+	}
+  else if(currentTab.id=="t4"){
+		temp_desc='&nbsp;<input name="hsear" type="button" class="an3"  onclick=goto("/pronline/Msg?FunName@ncWebCorpDepSearch&flag@7") value="查询">';		
+		temp_desc=temp_desc+'&nbsp;<input name="pr" type="button" class="an3"   value="打 印" onclick="lprint()">';
+		temp_desc=temp_desc+'&nbsp;<input name="exp" type="button" class="an3"   value="导 出" onclick=texport("ncsWebMailLog")>';
+		temp_desc=temp_desc+'&nbsp;编码&nbsp;<select name="ccode"><option value="0">简体</option><option value="1">繁体</option><option value="2">UTF8</option><option value="3">日文</option></select>';
+		temp_desc=temp_desc+'&nbsp;<input name="cvt" type="button" class="an3"  onClick="cvtcode()"    value="转换">';
+	  document.all.wlj3.innerHTML=temp_desc;	   
+		  var temp="/pronline/Msg?FunName@ncsWebReplace&fun@ncsWebMailLog&plate@ncsmsg_showinfo.htm&userid@"+form1.did.value+"&did@"+form1.did.value+"&sdate@"+form1.sdate.value+"&edate@"+form1.edate.value+"&uid@"+form1.uid.value;
+		document.all.data1.src=temp;
+	}
+	else if(currentTab.id=="t5"){
+		temp_desc='&nbsp;<input name="hsear" type="button" class="an3"  onclick=goto("/pronline/Msg?FunName@ncWebCorpDepSearch&flag@9") value="查询">';		
+		temp_desc=temp_desc+'&nbsp;<input name="pr" type="button" class="an3"   value="打 印" onclick="lprint()">';
+		temp_desc=temp_desc+'&nbsp;<input name="exp" type="button" class="an3"   value="导 出" onclick=texport("ncsWebFormLog")>';
+
+	  document.all.wlj3.innerHTML=temp_desc;	   
+	 	var temp="/pronline/Msg?FunName@ncsWebReplace&fun@ncsWebFormLog&plate@ncsmsg_showinfo.htm&userid@"+form1.did.value+"&did@"+form1.did.value+"&sdate@"+form1.sdate.value+"&edate@"+form1.edate.value+"&uid@"+form1.uid.value;
+		document.all.data1.src=temp;
+
+	}
+	else if(currentTab.id=="t6"){
+		temp_desc='';
+//		temp_desc='&nbsp;<input name="hsear" type="button" class="an3"  onclick=goto("/pronline/Msg?FunName@ncWebCorpDepSearch&flag@8") value="查询">';		
+		temp_desc=temp_desc+'&nbsp;<input name="pr" type="button" class="an3"   value="打 印" onclick="lprint()">';
+		temp_desc=temp_desc+'&nbsp;<input name="exp" type="button" class="an3"   value="导 出" onclick=texport("ncsWebImLog")>';
+
+	  document.all.wlj3.innerHTML=temp_desc;	   
+	 	var temp="/pronline/Msg?FunName@ncsWebReplace&fun@ncsWebImLog&plate@ncsmsg_showinfo.htm&userid@"+form1.did.value+"&did@"+form1.did.value+"&sdate@"+form1.sdate.value+"&edate@"+form1.edate.value+"&uid@"+form1.uid.value;
+		document.all.data1.src=temp;  
+	}
+	else if(currentTab.id=="t7"){
+		temp_desc='&nbsp;<input name="hsear" type="button" class="an3"  onclick=goto("/pronline/Msg?FunName@ncWebCorpDepSearch&flag@30") value="查询">';		
+		temp_desc=temp_desc+'&nbsp;<input name="pr" type="button" class="an3"   value="打 印" onclick="lprint()">';
+		temp_desc=temp_desc+'&nbsp;<input name="exp" type="button" class="an3"   value="导 出" onclick=texport("ncsNetSesLog")>';
+
+	  document.all.wlj3.innerHTML=temp_desc;	   
+	 	var temp="/pronline/Msg?FunName@ncsWebReplace&fun@ncsNetSesLog&plate@ncsmsg_showinfo.htm&userid@"+form1.did.value+"&did@"+form1.did.value+"&sdate@"+form1.sdate.value+"&edate@"+form1.edate.value+"&uid@"+form1.uid.value;
+		document.all.data1.src=temp;  
+	}
+	else if(currentTab.id=="t8"){
+		temp_desc='&nbsp;<input name="hsear" type="button" class="an3"  onclick=goto("/pronline/Msg?FunName@ncWebCorpDepSearch&flag@10") value="查询">';		
+		temp_desc=temp_desc+'&nbsp;<input name="pr" type="button" class="an3"   value="打 印" onclick="lprint()">';
+		temp_desc=temp_desc+'&nbsp;<input name="exp" type="button" class="an3"   value="导 出" onclick=texport("ncsWebFobLog")>';
+
+	  document.all.wlj3.innerHTML=temp_desc;	   
+	 	var temp="/pronline/Msg?FunName@ncsWebReplace&fun@ncsWebFobLog&action_flag@1&plate@ncsmsg_showinfo.htm&userid@"+form1.did.value+"&did@"+form1.did.value+"&sdate@"+form1.sdate.value+"&edate@"+form1.edate.value+"&uid@"+form1.uid.value;
+		document.all.data1.src=temp; 	   
+
+	}
+	else if(currentTab.id=="t9"){
+		temp_desc='&nbsp;<input name="hsear" type="button" class="an3"  onclick=goto("/pronline/Msg?FunName@ncWebCorpDepSearch&flag@10") value="查询">';		
+		temp_desc=temp_desc+'&nbsp;<input name="pr" type="button" class="an3"   value="打 印" onclick="lprint()">';
+		temp_desc=temp_desc+'&nbsp;<input name="exp" type="button" class="an3"   value="导 出" onclick=texport("ncsWebFobLog")>';
+
+	  document.all.wlj3.innerHTML=temp_desc;	   
+	 	var temp="/pronline/Msg?FunName@ncsWebReplace&fun@ncsWebFobLog&action_flag@2&plate@ncsmsg_showinfo.htm&userid@"+form1.did.value+"&did@"+form1.did.value+"&sdate@"+form1.sdate.value+"&edate@"+form1.edate.value+"&uid@"+form1.uid.value;
+		document.all.data1.src=temp; 	   
+
+	}
+}
+}
+
+
+function ggf(){
+document.all.ccll.innerHTML="&nbsp;到 <input type='text' id='zhuanfa' name='smail' value='' size=18 > <input type='submit' name='Button' value='确定' onclick='frames.main.goto3()'>"
+}
+
+
+function init(){
+	var temp_desc;
+	if('[#s_flag#]'=='8'){
+//		firstFlag = false;
+		eval('document.all.t0').className="tab7";
+		eval('document.all.t1').className="tab5";
+		eval('document.all.t8').className="tab6";
+		
+		temp_desc='&nbsp;<input name="hsear" type="button" class="an3"  onclick=goto("/pronline/Msg?FunName@ncWebCorpDepSearch&flag@10") value="查询">';		
+		temp_desc=temp_desc+'&nbsp;<input name="pr" type="button" class="an3"   value="打 印" onclick="lprint()">';
+		temp_desc=temp_desc+'&nbsp;<input name="exp" type="button" class="an3"   value="导 出" onclick=texport("ncsWebFobLog")>';
+
+	  document.all.wlj3.innerHTML=temp_desc;	   
+	 	var temp="/pronline/Msg?FunName@ncsWebReplace&fun@ncsWebFobLog&plate@ncsmsg_showinfo.htm&userid@"+form1.did.value+"&did@"+form1.did.value+"&sdate@"+form1.sdate.value+"&edate@"+form1.edate.value+"&uid@"+form1.uid.value;
+		document.all.data1.src=temp; 	  	
+	}
+	else if('[#s_flag#]'=='2'){
+		eval('document.all.t0').className="tab7";
+		eval('document.all.t1').className="tab5";
+		eval('document.all.t2').className="tab3";
+		eval('document.all.t3').className="tab4";
+		temp_desc='&nbsp;<input name="hsear" type="button" class="an3"  onclick=goto("/pronline/Msg?FunName@ncWebCorpDepSearch&flag@5") value="查询">';		
+		temp_desc=temp_desc+'&nbsp;<input name="pr" type="button" class="an3"   value="打 印" onclick="lprint()">';
+		temp_desc=temp_desc+'&nbsp;<input name="exp" type="button" class="an3"   value="导 出" onclick=texport("ncsWebIpLog")>';
+	  document.all.wlj3.innerHTML=temp_desc;	
+	  var temp="/pronline/Msg?FunName@ncsWebReplace&fun@ncsWebIpLog&plate@ncsmsg_showinfo.htm&userid@"+form1.did.value+"&did@"+form1.did.value+"&sdate@"+form1.sdate.value+"&edate@"+form1.edate.value+"&uid@"+form1.uid.value;
+		document.all.data1.src=temp;
+	}
+	else if('[#s_flag#]'=='3'){
+		eval('document.all.t0').className="tab7";
+		eval('document.all.t1').className="tab5";
+		eval('document.all.t3').className="tab3";
+		eval('document.all.t4').className="tab4";
+		temp_desc='&nbsp;<input name="hsear" type="button" class="an3"  onclick=goto("/pronline/Msg?FunName@ncWebCorpDepSearch&flag@6") value="查询">';		
+		temp_desc=temp_desc+'&nbsp;<input name="pr" type="button" class="an3"   value="打 印" onclick="lprint()">';
+		temp_desc=temp_desc+'&nbsp;<input name="exp" type="button" class="an3"   value="导 出" onclick=texport("ncsWebWebLog")>';
+	  document.all.wlj3.innerHTML=temp_desc;	
+	  var temp="/pronline/Msg?FunName@ncsWebReplace&fun@ncsWebWebLog&plate@ncsmsg_showinfo.htm&userid@"+form1.did.value+"&did@"+form1.did.value+"&sdate@"+form1.sdate.value+"&edate@"+form1.edate.value+"&uid@"+form1.uid.value;
+		document.all.data1.src=temp;
+	}
+	else if('[#s_flag#]'=='4'){
+		eval('document.all.t0').className="tab7";
+		eval('document.all.t1').className="tab5";
+		eval('document.all.t4').className="tab3";
+		eval('document.all.t5').className="tab4";
+		temp_desc='&nbsp;<input name="hsear" type="button" class="an3"  onclick=goto("/pronline/Msg?FunName@ncWebCorpDepSearch&flag@7") value="查询">';		
+		temp_desc=temp_desc+'&nbsp;<input name="pr" type="button" class="an3"   value="打 印" onclick="lprint()">';
+		temp_desc=temp_desc+'&nbsp;<input name="exp" type="button" class="an3"   value="导 出" onclick=texport("ncsWebMailLog")>';
+		temp_desc=temp_desc+'&nbsp;编码&nbsp;<select name="ccode"><option value="0">简体</option><option value="1">繁体</option><option value="2">UTF8</option><option value="3">日文</option></select>';
+		temp_desc=temp_desc+'&nbsp;<input name="cvt" type="button" class="an3"  onClick="cvtcode()"    value="转换">';
+	  document.all.wlj3.innerHTML=temp_desc;	   
+		  var temp="/pronline/Msg?FunName@ncsWebReplace&fun@ncsWebMailLog&plate@ncsmsg_showinfo.htm&userid@"+form1.did.value+"&did@"+form1.did.value+"&sdate@"+form1.sdate.value+"&edate@"+form1.edate.value+"&uid@"+form1.uid.value;
+		document.all.data1.src=temp;
+	}
+		else if('[#s_flag#]'=='5'){
+		eval('document.all.t0').className="tab7";
+		eval('document.all.t1').className="tab5";
+		eval('document.all.t5').className="tab3";
+		eval('document.all.t6').className="tab4";
+		temp_desc='&nbsp;<input name="hsear" type="button" class="an3"  onclick=goto("/pronline/Msg?FunName@ncWebCorpDepSearch&flag@9") value="查询">';		
+		temp_desc=temp_desc+'&nbsp;<input name="pr" type="button" class="an3"   value="打 印" onclick="lprint()">';
+		temp_desc=temp_desc+'&nbsp;<input name="exp" type="button" class="an3"   value="导 出" onclick=texport("ncsWebFormLog")>';
+
+	  document.all.wlj3.innerHTML=temp_desc;	   
+	 	var temp="/pronline/Msg?FunName@ncsWebReplace&fun@ncsWebFormLog&plate@ncsmsg_showinfo.htm&userid@"+form1.did.value+"&did@"+form1.did.value+"&sdate@"+form1.sdate.value+"&edate@"+form1.edate.value+"&uid@"+form1.uid.value;
+		document.all.data1.src=temp;
+	}
+	 else if('[#s_flag#]'=='6'){
+		eval('document.all.t0').className="tab7";
+		eval('document.all.t1').className="tab5";
+		eval('document.all.t6').className="tab3";
+		eval('document.all.t7').className="tab4";
+		temp_desc='&nbsp;<input name="hsear" type="button" class="an3"  onclick=goto("/pronline/Msg?FunName@ncWebCorpDepSearch&flag@8") value="查询">';		
+		temp_desc=temp_desc+'&nbsp;<input name="pr" type="button" class="an3"   value="打 印" onclick="lprint()">';
+		temp_desc=temp_desc+'&nbsp;<input name="exp" type="button" class="an3"   value="导 出" onclick=texport("ncsWebImLog")>';
+
+	  document.all.wlj3.innerHTML=temp_desc;	   
+	 	var temp="/pronline/Msg?FunName@ncsWebReplace&fun@ncsWebImLog&plate@ncsmsg_showinfo.htm&userid@"+form1.did.value+"&did@"+form1.did.value+"&sdate@"+form1.sdate.value+"&edate@"+form1.edate.value+"&uid@"+form1.uid.value;
+		document.all.data1.src=temp; 
+	}
+	else if('[#s_flag#]'=='7'){
+		eval('document.all.t0').className="tab7";
+		eval('document.all.t1').className="tab5";
+		eval('document.all.t7').className="tab3";
+		eval('document.all.t8').className="tab4";
+		temp_desc='&nbsp;<input name="hsear" type="button" class="an3"  onclick=goto("/pronline/Msg?FunName@ncWebCorpDepSearch&flag@30") value="查询">';		
+		temp_desc=temp_desc+'&nbsp;<input name="pr" type="button" class="an3"   value="打 印" onclick="lprint()">';
+		temp_desc=temp_desc+'&nbsp;<input name="exp" type="button" class="an3"   value="导 出" onclick=texport("ncsNetSesLog")>';
+
+	  document.all.wlj3.innerHTML=temp_desc;	   
+	 	var temp="/pronline/Msg?FunName@ncsWebReplace&fun@ncsNetSesLog&plate@ncsmsg_showinfo.htm&userid@"+form1.did.value+"&did@"+form1.did.value+"&sdate@"+form1.sdate.value+"&edate@"+form1.edate.value+"&uid@"+form1.uid.value;
+		document.all.data1.src=temp; 
+	}
+	else{
+  	var temp="/pronline/Msg?FunName@ncsWebReplace&fun@ncsWebNetLog&plate@ncsmsg_showinfo.htm&userid@"+form1.did.value+"&did@"+form1.did.value+"&sdate@"+form1.sdate.value+"&edate@"+form1.edate.value+"&uid@"+form1.uid.value;
+
+		document.all.data1.src=temp;
+	}	
+}
+
+
+
+var dfd1="0"
+
+</script>
+<style>
+.conts  {visibility:hidden}
+
+table {  font-size: 9pt}
+ .style2 {
+	font-size: 20px;
+	font-weight: bold;
+	font-style: italic;
+	color: #0000ff;
+}
+</style>
+
+<style type="text/css">
+
+<!--
+body {  font-size: 9pt}
+.tas {  border-color: black #FFFFFF; border-style: solid; border-top-width: 0px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 1px}
+table {  font-size: 9pt}
+.gray1 { filter:gray }
+.ttbbd {  cursor: default}
+.nobordertext{border-width:1px;border-color:blue;background-color:#d0e1fa;width:150;}
+
+-->
+</style>
+<link REL=stylesheet HREF="/css/listdatetable.css" TYPE="text/css">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<script src="/js/calendar2.js"></script>
+</head>
+
+<body bgcolor=#E1E5E8  leftmargin="1" topmargin="0" onclick="changeTabs()"  style="overflow:hidden" onload="init()" >
+<form name="form1" id="form1" method="post" action="/pronline/Msg" target="main">
+<input type="hidden" name="FunName" value="">
+<input type="hidden" name="did" value="">
+<input type="hidden" name="uid" value="">
+<input type="hidden" name="sdate" value="">
+<input type="hidden" name="edate" value="">
+
+    <table border="0"  bordercolorlight=#aaaaaa bordercolordark=#ffffff  CELLPADDING="0" CELLSPACING="0" bgcolor=#8cb4e8 STYLE="width:100%; height:600">
+
+    <tr> 
+   	 <td  style="display:none;" height="26" colspan="10"><table width="100%"  border="0" cellpadding="0" cellspacing="0">
+   	 	   <tr>
+   	 	   	<td id="wlj"   style="font-size:10pt;color:#00237e;font-weight:bold;" align="center">本地日志</td>
+         
+         </tr>
+        </table>
+      </td>
+   </tr>	
+ 	
+      <tr height="26" >
+      	<td colspan="10">
+      		<table border="0" CELLPADDING="0" CELLSPACING="0" width="100%">
+      			<tr height="26">
+				    <td ID="t0" CLASS="tab3">上网日志</td>
+				    <td ID="t1" CLASS="tab4"  >虚拟身份</td> 
+				    <td ID="t2" CLASS="tab5"  >IP连接日志</td>
+				    <td ID="t3" CLASS="tab5"   >Web访问</td>
+				    <td ID="t4" CLASS="tab5"  >收发邮件</td>
+				    <td ID="t5" CLASS="tab5"  >网页表单</td>
+				    <td ID="t6" CLASS="tab5" >聊天记录</td>
+				    <td ID="t7" CLASS="tab5" >网络会话</td>
+				    <td ID="t8" CLASS="tab5" >告警日志</td>
+				    <td ID="t9" CLASS="tab8" >阻断日志</td>
+				    <td ID="t10" class="tab10" >&nbsp;</td>	   	   
+			      </tr> 
+			    </table>
+			  </tr>
+			</tr>
+
+		<tr height="25" style="position:relative;top:-2;left:1;">
+			<td colspan="11" valign="top" >			
+				<table  cellspacing=0   cellpadding="0" bgcolor=#E1E5E8 border="0" align="center" width="100%" >
+				    <tr >
+				      <td colspan="7">
+				        <table width="100%" height="25" border="0" align="center" cellpadding="0" cellspacing="0" background="/images/images2/table_bg8.jpg">
+				          <tr > 
+				          	<td >
+				          		<div id="wlj3" >
+				          			<input name="pr" type="button" class="an3"   value="打 印" onclick="lprint()">
+				          			<input name="exp" type="button" class="an3"   value="导 出" onclick="texport('ncsWebNetLog')">
+				          			</div>
+				          	</td>
+				          	<td  align="center">
+				         
+				          	</td>
+
+				           
+				        <td width="310" height="23"> 
+              <table align=right border=0 cellpadding=0 cellspacing=0 class=main>
+              <tbody> 
+                <td width="10%"><script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-06.gif' border=0 height=17 width=35 class='gray1'>")}
+                      else{
+                        document.write("<a href='#xxm'><img src='/images/zbuyer-06.gif' border=0 height=17 width=35 onClick='return gotoPage(1);' class='hand'>")}
+                   </script></td>
+                <td width="10%"><script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 class='gray1'>")}
+                      else {
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 onClick='return gotoPage(parseInt(form1.CurPg.value)-1);' class='hand'>")}
+                   </script></td>
+
+                <td align=middle background="" width=92>
+                    <input class=Main id=browsdopage maxlength=8 name=CurPg size=8 style="FONT-SIZE: 12px; HEIGHT: 17px; TEXT-ALIGN: center; WIDTH: 40px" value=0 onKeyPress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" onBlur="checkme(this)">
+                </td>
+                <td width="10%"><img src="/images/zbuyer-09.gif" border=0 height=17 width=16></td>
+                <td width="10%"><img align=middle border=0 height=17 src="/images/zbuyer-10.gif" width=17 onClick="return gotoPage(parseInt(form1.CurPg.value));" class="hand"><img align=middle height=17 src="/images/zbuyer-11.gif" width=3></td>
+                
+                
+						    <td width="10%"><img border=0 height=17 src="/images/zin1.gif" width=17 ></td>
+						    <td align=middle background="" width=92> 
+						      <input  class=Main id=browsdopage1 maxlength=7 name=TotPg size=3 style="FONT-SIZE: 12px; HEIGHT: 17px; TEXT-ALIGN: center; WIDTH: 45px" value='0'>
+						    </td>
+						    <td width="10%"><img align=middle height=17 src="/images/zbuyer-09.gif" width=16></td>
+						    <td align=middle background="" width=92> 
+						      <input  class=Main id=browsdopage1 maxlength=8 name=TotRec size=8 style="FONT-SIZE: 12px; HEIGHT: 17px; TEXT-ALIGN: center; WIDTH: 50px" value='0'>
+						    </td>
+						    <td width="10%"><img border=0 height=17 src="/images/zin3.gif" width=17 align="middle" ><img align=middle height=17  src="/images/zbuyer-11.gif" width=3></td>
+						                
+                <td width="10%"><script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 onClick='gotoPage(parseInt(form1.CurPg.value)+1);' class='hand'>")}
+                    </script></td>
+                <td width="10%"><script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 onClick='return gotoPage(form1.TotPg.value);' class='hand'>")}
+                    </script></td>
+              </tbody> 
+              </table>
+            </td>
+				            	
+				            
+				          </tr>
+				        </table>
+				     </td>
+				    </tr>    
+				</table>	
+		</td>
+</tr>
+
+</form>	
+	
+<tr> 
+
+<td HEIGHT="*" COLSPAN="10" ID="tabContents" align="left" valign="top" > 
+<div id="ff" name='ff' style="position:relative;top:-3">
+		<iframe name="main_t" id="data1" width="100%" height="100%" src="" frameborder="yes"> </iframe>
+
+</div>
+
+</td></tr></table>
+
+	
+
+
+</body>
+</html>

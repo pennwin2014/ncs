@@ -1,0 +1,81 @@
+
+
+<HTML>
+<HEAD>
+<TITLE>自动转发</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=content-type>
+<LINK 
+href="../temp/%D0%C2%C0%CB%CD%A8%D1%B6%C2%BC%A3%BA%20ivyiv.files/ShowMemberList.files/mystyle.css" rel=stylesheet type=text/css>
+<SCRIPT language=javascript>
+
+function SetCheck() {
+  document.toaddr.valid.checked=[#select#];
+  document.toaddr.backup.checked=[#backup#];
+ 
+ }
+function check(){
+  if(document.toaddr.content.value=="")
+  {
+      alert("请输入转发地址");
+      document.toaddr.content.focus();
+      return false;
+  }
+  return true;
+}
+
+</SCRIPT>
+<META content="MSHTML 5.00.2919.6307" name=GENERATOR>
+<style type="text/css">
+<!--
+.submit {  background-color: #FFCC66; font-size: 9pt}
+.type {  font-size: 9pt}
+.new {  color: #FF0000}
+-->
+</style>
+</HEAD>
+<BODY onload="SetCheck()" class=bgcw leftMargin=11 topMargin=5 marginwidth="11" marginheight="5" bgcolor="#F0FDE6">
+<form action="/pronline/Msg"  method="post" name="toaddr" onsubmit="return check()">
+<input type="hidden" name="nFunCode" value="17272" >
+<input type="hidden" name="sid" value="[#sid#]">
+  <span class="new"></span> <BR>
+<br>
+  <table border="0" width="100%" cellpadding="0" cellspacing="0" bordercolordark="#FFFFFF" class="type">
+    <tr bgcolor="#8ED573" valign="bottom"> 
+      <td align="left" colspan="4" height="15"> 
+        <div align="left"><b>自动转发</b></div>
+      </td>
+  </tr>
+    <tr bgcolor="#E2EEDB"> 
+      <td valign="middle"  width="15%" height="79"> 
+        <div align="center">转发地址到:</div>
+    </td>
+      <td colspan="3" height="79"> 
+        <textarea name="content" cols="60" rows="3">[#content#]</textarea>
+        <br>
+        (最多三个地址，各个地址之间用“<span class="new">，</span>”隔开） <br>
+      </td>
+  </tr>
+    <tr bgcolor="#E2EEDB"> 
+      <td valign="middle"  width="15%"> 
+        <div align="center">转发生效:</div>
+    </td>
+      <td width="36%"> 
+        <input type="checkbox" name="valid" value="1">
+    </td>
+      <td width="16%" align="center">保留副本 </td>
+      <td width="33%" height="40"> 
+        <input type="checkbox" name="backup" value="1">
+      </td>
+  </tr>
+  <tr> 
+    <td valign="middle" align="left" colspan="4" height="25"> 
+        <div align="center"><br>
+          <input type="image" border="0" name="imageField" src="../mailImages/bt10.GIF" width="52" height="24">
+        </div>
+    </td>
+  </tr>
+</table>
+<div align="center"><BR>
+  </div>
+</form>
+</BODY></HTML>

@@ -1,0 +1,70 @@
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<script>
+
+function printdate()
+{
+
+self.print();
+}
+function  Exp(){
+ self.location.href="/pronline/Msg?FunName@ncsWarnStatByArea&sdate1@[#sdate1#]&sdate2@[#sdate2#]&area_level@[#area_level#]&daochu@daochu";
+}
+
+function llprint(){
+// document.all.pprint.style.display="none"
+  window.print()
+
+}
+</script>
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+ <div style="height:610px;overflow-y:scroll;" >
+<table border="0" align="center" cellpadding="0" cellspacing="0" width="100%">
+  <tr> 
+    <td colspan="8" height="30"  class="ttt"> <table width="103%" border="0">
+        <tr> 
+          <td height="24" width="47%" align="right"> 
+           <b>上网场所统计(按地区)</b><b>([#sdate1#]--[#sdate2#]) </b></td>
+          <td width="23%" height="24" align="center">&nbsp;<input name="B3" type="button" class="an3" onClick="printdate()" value="打印">&nbsp;<input name="B4" type="button" class="an3" onClick="Exp()" value="导出"></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr align="center" valign="middle"> 
+    <td width="5%" height="18" bgcolor="#6382BD"  class="bord2"> 
+      <div align="center"><font color="#FFFFFF">序号</font></div></td>
+    <td width="19%" height="18" bgcolor="#6382BD"  class="bord2"> 
+      <div align="center"><font color="#FFFFFF">地区代码</font></div></td>
+      <td width="19%" height="18" bgcolor="#6382BD"  class="bord2"> 
+      <div align="center"><font color="#FFFFFF">报警数量</font></div></td>
+      	<td width="19%" height="18" bgcolor="#6382BD"  class="bord2"> 
+      <div align="center"><font color="#FFFFFF">阻断数量</font></div></td>
+      <td width="19%" height="18" bgcolor="#6382BD"  class="bord2"> 
+      <div align="center"><font color="#FFFFFF">主机在线数</font></div></td>
+      	
+    <td  width="19%" height="18" bgcolor="#6382BD"  class="bord2"> 
+      <div align="center"><font color="#FFFFFF">营业场所在线率</font></div></td>
+   
+  </tr>
+  <!-- [#SLPB#] -->
+  <tr height="18" bgcolor="#ffffff"> 
+    <td  class="bord1" align="center">&nbsp; 
+      <b> [#num#]</b></td>
+    <td  class="bord1">&nbsp;&nbsp;[#servicecode#]</td>
+    <td  class="bord1"  >&nbsp;[#warncount#]</td>
+    <td  class="bord1"  >&nbsp;[#errcount#]</td>
+    <td  class="bord1"  >&nbsp;[#onuid#]</td>
+    <td  class="bord3" align="right">[#onlinerate#]&nbsp;</td>    
+    
+  </tr>
+
+  <!-- [#SLPE#] -->
+</table>
+</div>	  
+</body>
+</html>

@@ -1,0 +1,23 @@
+form { margin-bottom:0} .listDataTable { FONT-SIZE: 9pt; FONT-FAMILY: "Arial";TABLE-LAYOUT:FIXED;word-wrap:normal 
+} .listTableHead { CURSOR: hand; FONT-FAMILY: "Arial"; border: #000000; border-style: 
+solid; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; 
+border-left-width: 1px } .onMouseOnTr { CURSOR: default; COLOR: #000000; BACKGROUND-COLOR: 
+#F2F2F2 } .listTableHeadO { CURSOR: s-resize; COLOR: #ffffff; FONT-FAMILY: "Arial"; 
+BACKGROUND-COLOR: #006699; border: #000000; border-style: solid; border-top-width: 
+1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px 
+} .listHeadClicked { CURSOR: n-resize; COLOR: #ffffff; BACKGROUND-COLOR: #990033; 
+border: #000000; border-style: solid; border-top-width: 1px; border-right-width: 
+1px; border-bottom-width: 1px; border-left-width: 1px } .listHeadClicked0 { CURSOR: 
+s-resize; COLOR: #ffffff; BACKGROUND-COLOR: #990033; border: #000000; border-style: 
+solid; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; 
+border-left-width: 1px } 
+ .listDataTable //数据表的总风格 
+ .listTableHead //数据表头的风格 
+ .onMouseOnTr //鼠标移到时风格 
+ .listTableHead0 //数据表头鼠标移到时的风格 
+ .listHeadClicked //表头被选择时的风格 
+ .listHeadClicked0 //表料再选择风格 
+body { font-size: 9pt} .tas { border-color: black #FFFFFF; border-style: solid; 
+border-top-width: 0px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 
+1px} table { font-size: 9pt} .gray1 { filter:gray } .ddd { font-size: 9pt; cursor: 
+hand}

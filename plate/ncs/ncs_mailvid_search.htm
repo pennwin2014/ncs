@@ -1,0 +1,390 @@
+<html>
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<title>main</title>
+<script>
+	function gotopage(flag){
+	if(form1.CurPg.value=='') form1.CurPg.value='1';
+	var lCur=parseInt(form1.CurPg.value);
+
+	if(flag=='1'){
+	  form1.CurPg.value=lCur-1;
+	}
+	else{
+	form1.CurPg.value=lCur+1;
+	}
+
+	form1.submit();
+}
+	
+	 function Edit(sid)
+    {
+	      t = "/pronline/Msg?FunName@ncsWebReplace&plate@ncs/qq_frm.htm&qq@"+sid+"&fun@qqShowpassword";   
+    var oDia=showModalDialog(t,window,
+		 "status:no;center:yes;help:no;minimize:no;maximize:no;border:thick;statusbar:no;dialogWidth:500px;scroll:none;dialogHeight:340px;overflow:none");	
+ 
+    }
+
+	
+var dfd1="0"
+
+
+function gotoPage(pagenum)
+
+{
+    form1.CurPg.value = pagenum;
+}
+
+
+
+
+ 
+
+function mouseovertr2 (o){
+var i;
+df=o.style.backgroundColor
+	o.style.backgroundColor= "#d0e1fa";
+	o.style.borderColor= "#FFFF00";
+	o.style.cursor="hand";	
+
+}
+
+function mouseouttr2(o){
+	o.style.backgroundColor=df
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#000000";
+}
+	
+	
+}
+    function Del()
+    {
+    var flag=0;
+    	    for(var i=1;i<document.all.DataTable.rows.length;i++)
+	    {
+	    if(document.all.DataTable.rows[i].cells[0].childNodes[0].checked)
+	    {
+		    flag=1;
+		    break;
+	    }
+	    }
+	    if(flag==0)
+	    {
+	    	alert('请先选择要删除的单位');
+	    	return false;
+	    }
+	    	return true;
+    }
+function checkme(p)
+{
+	var tt=p.value
+	if (tt>yy)
+	{
+		MM_changeProp('browsdopage','','value',yy,'INPUT/TEXT')
+	}
+	if (tt==0)
+	{
+		MM_changeProp('browsdopage','','value','1','INPUT/TEXT')
+	}
+}
+function showQuery111()
+{
+
+	temp="/chaxun_khzl.htm";
+    var oDia=showModalDialog(temp,window,"status:no;center:yes;help:no;minimize:no;maximize:no;border:thick;statusbar:no;dialogWidth:430px;scroll:none;dialogHeight:490px;overflow:none");	
+}
+
+
+function allChecked(){
+    if(dfd1=="1"){
+        dfd1="0"
+    }
+    else {
+         dfd1="1"
+    }
+	for(var i=0;i<document.all.DataTable.rows.length;i++)
+	{
+		if(typeof(document.all.DataTable.rows[i].cells[0].childNodes[0])=="object"
+
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].tagName=="INPUT"
+
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].type=="checkbox") {
+			if(dfd1=="1"){
+  			    document.all.DataTable.rows[i].cells[0].childNodes[0].checked="true";
+            }
+			else{
+                document.all.DataTable.rows[i].cells[0].childNodes[0].checked="";
+            }
+        }
+ 	}
+}
+
+
+// -->
+<!-- Hide
+var ll='[#CurPg#]'
+var yy='[#TotPg#]'
+function killErrors() {
+return true;
+}
+window.onerror = killErrors;
+// -->
+function caxun(){
+form1.CurPg.value='1';
+form1.FunName.value='ncsWebReplace';
+
+form1.submit();
+}
+function showuser(did,uid)
+{
+var temp_var="/pronline/Msg?FunName@ncsWebShowUserinfo&did@"+did+"+uid@"+uid;
+	showModalDialog(temp_var, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:520px;scroll:yes;dialogHeight:640px');
+}
+
+function showmx(name1,ntype1,ntype_desc,ltime,did,uid)
+{
+var temp_var="/pronline/Msg?FunName@ncsDispNetidMain&name1@"+name1+"+ntype@"+ntype1+"+ntype_desc@"+ntype_desc+"+ltime@"+ltime+"+did@"+did+"+uid@"+uid;
+	showModalDialog(temp_var, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:620px;scroll:yes;dialogHeight:640px');
+}
+function clearcon(){
+form1.vname.value='';
+form1.ntype.value='';
+form1.cname.value='';
+form1.uname.value='';
+form1.sdate.value='';
+form1.edate.value='';
+form1.stime.value='';
+form1.etime.value='';
+form1.userid.value='';
+}
+
+function showMailcont(name1){
+	var temp_var="/pronline/Msg?FunName@ncsWebReplace&plate@ncs/mailvid_det_frm.htm&name@"+name1;
+
+		showModalDialog(temp_var, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:1024px;scroll:yes;dialogHeight:640px');
+}
+function showQQLoginExit(name,lntype){
+	var temp_var="/pronline/Msg?FunName@ncsWebReplace&plate@ncs/qqvid_loginexit_frm.htm&name1@"+name+"+ntype@"+lntype;
+
+		showModalDialog(temp_var, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:720px;scroll:yes;dialogHeight:640px');
+}
+
+function showvname(name,lntype){
+	var temp_var="/pronline/Msg?FunName@ncsDispMtoQQ&name1@"+name+"+ntype@"+lntype;
+
+		showModalDialog(temp_var, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:620px;scroll:yes;dialogHeight:640px');
+}
+</script>
+<link REL=stylesheet HREF="/css/runmit.css" TYPE="text/css">
+<script src="/js/calendar.js"></script>
+<style type="text/css">
+<!--
+
+.tScroll5 {
+      overflow: scroll;
+    overflow-x:hidden;
+    height:450px;
+    cursor: default;
+    }
+A:link {TEXT-DECORATION:underline;color:#990000;}
+A:visited{TEXT-DECORATION:underline;color:#990000;}
+A:hover {TEXT-DECORATION:underline;color:#999900;}
+-->
+</style>
+<link href="../css/css.css" rel="stylesheet" type="text/css">
+<script src="/js/rmenu.js"></script>
+</head>
+<body marginheight=0 leftmargin=0 marginwidth=0 topMargin="0"  style="overflow:hidden" bgcolor="#DEE8FA">
+<form name="form1" method="post" action="/pronline/Msg">
+	 <input type="hidden" name="FunName" value="ncsWebReplace">
+   <input type="hidden" name="CurPg"      value="[#CurPg#]">
+	 <input type="hidden" name="TotPg"      value="[#TotPg#]">
+	 <input type="hidden" name="fun" value="ncsWebMailVidSearch">
+   <input type="hidden" name="userid" value="[#userid#]">
+   <input type="hidden" name="plate" value="ncsmsg_showinfo_new.htm">
+<table border="0" width=100%  cellspacing="0" cellpadding="0" align=center bgcolor='#ffffff'>
+	<tr>
+	   <td><table width="100%" cellspacing="0" cellpadding="0">
+         <tr height="30"> 
+         <td class="tabtitle" >邮件帐号库&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+         <td background="/images/images2/chaxun2-1.gif" > <input name="exp" type="submit" class="an3" value="导 出" onclick="form1.FunName.value='ncsWebMailVidSearch'"></td>
+         <td background="/images/images2/chaxun2-1.gif" align="right">     
+        	<a href="#xxm" onclick="gotopage('1')">[#pre#]</a>&nbsp;&nbsp;<a href="#xxm" onclick="gotopage('2')">[#next#]</a>&nbsp;&nbsp;&nbsp;&nbsp;
+ <!--        	 <table align=right border=0 cellpadding=0 cellspacing=0 class=main width=111>
+                <tbody> 
+                <td width="10%"><script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-06.gif' border=0 height=17 width=35 class='gray1'>")}
+                      else{
+                        document.write("<a href='#xxm'><img src='/images/zbuyer-06.gif' border=0 height=17 width=35 onClick='gotoPage(1);form1.submit()' class='hand'>")}
+                   </script></td>
+                <td width="10%"><script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 class='gray1'>")}
+                      else {
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]-1);form1.submit()' class='hand'>")}
+                   </script></td>
+                <td width="20%"><img src="/images/zbuyer-08.gif" border=0 height=17 width=32></td>
+                <td align=middle background="" width=92>
+                    <input class=Main id=browsdopage maxlength=3  name=browsdopage size=3 style="FONT-SIZE: 12px; HEIGHT: 17px; TEXT-ALIGN: center; WIDTH: 50px" value=[#CurPg#] onKeyPress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" onBlur="checkme(this)">
+                </td>
+                <td width="10%"><img src="/images/zbuyer-09.gif" border=0 height=17 width=16></td>
+                <td width="10%"><img align=middle border=0 height=17 src="/images/zbuyer-10.gif" width=17 onClick="gotoPage(form1.browsdopage.value);form1.submit()" class="hand"><img align=middle height=17 src="/images/zbuyer-11.gif" width=3></td>
+                
+                
+                <td width="10%"><img border=0 height=17 src="/images/zin1.gif" width=17 ></td>
+                <td align=middle background="" width=92> 
+                  <input  class=Main id=browsdopage1 maxlength=5 name=browsdopage12 size=3 style="FONT-SIZE: 12px; HEIGHT: 17px; TEXT-ALIGN: center; WIDTH: 50px" value='[#TotPg#]'>
+                </td>
+					    <td width="10%"><img align=middle height=17 src="/images/zbuyer-09.gif" width=16></td>
+					    <td align=middle background="" width=92> 
+					      <input  class=Main id=browsdopage1 maxlength=5 name=browsdopage12 size=3 style="FONT-SIZE: 12px; HEIGHT: 17px; TEXT-ALIGN: center; WIDTH: 50px;" value='[#TotRec#]'>
+					    </td>
+					    <td width="10%"><img border=0 height=17 src="/images/zin3.gif" width=17 align="middle" ><img align=middle height=17  src="/images/zbuyer-11.gif" width=3></td>
+                
+                <td width="10%"><script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]+1);form1.submit()' class='hand'>")}
+                    </script></td>
+                <td width="10%"><script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 onClick='gotoPage([#TotPg#]);form1.submit()' class='hand'>")}
+                    </script></td>
+              </tbody>
+            </table>  
+-->         	         	
+         	</td>
+         </tr>
+         
+         
+         </table>
+      </td>
+  </tr>
+  
+  <tr>
+      <td width="100%" align=center  valign=top bgcolor="#DEE8FA"> 
+      	
+      <div class="tScroll5" id="tC">	
+        <table id="DataTable" width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+
+          <tr class="tableHead"  height="20" style="top:expression(document.getElementById('tC').scrollTop)">
+            <td width="198" align="center" bgcolor="#6382BD" class="bord2" ><font color="#FFFFFF">帐号</font></td>
+             <td width="60" align="center" bgcolor="#6382BD" class="bord2" ><font color="#FFFFFF">类型</font></td>
+
+            <td width="90" bgcolor="#6382BD" align="center" class="bord2" ><font color="#FFFFFF"> 查看邮件</font></td>
+          
+            <td width="90" bgcolor="#6382BD" align="center" class="bord2" ><font color="#FFFFFF">上下线日志</font></td>
+            <td width="90" bgcolor="#6382BD" align="center" class="bord2" ><font color="#FFFFFF"> 使用人</font></td>
+             <td width="160" bgcolor="#6382BD" align="center" class="bord2" ><font color="#FFFFFF"> 上网场所</font></td>
+            <td width="90" bgcolor="#6382BD" align="center" class="bord2" ><font color="#FFFFFF"> 最近使用时间</font></td>
+
+
+          </tr>
+          [#SLPB#]
+          <tr height="20" bgcolor="#EEf0FA" onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" > 
+
+            <td  class="bord1_1" >&nbsp;[#name#]</td>
+            <td  class="bord1_1" >&nbsp;[#ntype_name#]</td>
+
+            <td  class="bord1_1" ><a href="#xxm" onclick=showMailcont("[#name#]")>查看邮件</a></td>
+            
+            <td  class="bord1_1" ><a href="#xxm" onclick=showQQLoginExit("[#name#]","[#lntype#]") >&nbsp;上下线轨迹</a></td>
+<!--            <td  class="bord1_1">&nbsp;[#ntype_name#] </td>
+            <td  class="bord1_1" align="right">[#count#]&nbsp;&nbsp;<a href="#xxm" onclick=showmx("[#name#]","[#lntype#]","[#ntype_name#]",'[#ltime#]','[#did#]','[#uid#]')>详细</a>&nbsp;</td>
+            <td  class="bord1_1" align="right">&nbsp;[#tot#]&nbsp;&nbsp;</td> 
+-->
+            <td  class="bord1_1" did="[#did#]" uid="[#uid#]">&nbsp;&nbsp;<a href="#xxm" onclick=showuser("[#did#]","[#uid#]")>[#dispname#]</a></td>
+            <td  class="bord1_1">&nbsp;&nbsp;&nbsp;[#cname#]</td> 
+            <td  class="bord1_1">&nbsp;[#lasttime#] </td>
+          
+          </tr>
+       
+          [#SLPE#]
+              
+          <!-- [#SLPB#] -->
+          <tr height="18" id=[#snum#] bgcolor="#EEf0FA"> 
+            <td   class="bord1_1">&nbsp; </td>
+            <td   class="bord1_1">&nbsp;</td>
+
+            <td   class="bord1_1">&nbsp;</td>
+            <td   class="bord1_1">&nbsp; </td>
+            <td   class="bord1_1">&nbsp; </td>
+            <td   class="bord1_1">&nbsp; </td>
+            <td   class="bord1_1">&nbsp;</td>
+
+          </tr>
+          <!-- [#SLPE#] -->
+
+          
+          
+        </table>
+      </div>    
+      </td>
+  </tr>
+  
+           <tr height="138"><td valign="top" colspan="7" bgcolor="#8cb4e8">
+          	  <table border=0 cellpadding=0 cellspacing=0 width="100%">
+          	  	<tr height="18">
+          	  		 <td width="90" valign="bottom" align="center" class="bordleft">虚拟身份查询</td>
+       	           <td width="740" class="bordright">&nbsp;</td>
+       	        </tr>
+       	        <tr height="110">
+       	        	<td colspan="2"  class="bordnr">
+       	        		<table border=0 cellpadding=0 cellspacing=0 width="100%">
+          	  	     <tr height="26">
+          	  	     	<td width="90" align="center">&nbsp;虚拟帐号</td>
+          	  	     	<td width="220"><select name="name_match" style="width:60px" ><option value='0'>等于</option><option value='1'>包含</option></select><input type="text" name="vname" value="[#vname#]" size="20" ></td>  
+          	  	     	<td width="90" align="center">&nbsp;帐号类别</td>
+          	  	     	<td width="220"><select name="ntype" style="width:190px" ><option value=''>不限</option>[#SLPB#]<option value="[#id#]">[#ntype#]</option>[#SLPE#]</select></td>  
+          	  	     	<td ><input name="chaxun1" type="button"  value=" 查 询 " onclick="caxun()"></td>	     	
+          	  	    </tr>
+          	  	      <tr height="26">
+          	  	     	<td width="90" align="center">&nbsp;使用单位</td>
+          	  	     	<td><input type="text" name="cname" value="[#cname#]" size="28"></td> 
+          	  	     	<td width="90" align="center">&nbsp;使用人</td>
+          	  	     	<td ><input type="text" name="uname" value="[#uname#]" size="26"></td>
+          	  	     	<td >&nbsp;</td> 	  	     	
+          	  	    </tr>
+          	  	      <tr height="26">
+          	  	     	<td width="90" align="center">&nbsp;最近使用时间从</td>
+          	  	     	<td><input type="text" name="sdate" value="[#sdate#]" size="18" onclick="fPopCalendar(sdate,sdate,'Up');return false">&nbsp;<select name="stime" style="width:70px" ><option value=""></option><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option></select></td> 
+          	  	     	<td width="90" align="center">&nbsp;到</td>
+          	  	     	<td width="220"><input type="text" name="edate" value="[#edate#]" size="18" onclick="fPopCalendar(edate,edate,'Up');return false">&nbsp;<select name="etime" style="width:50px" ><option value=""></option><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option></select></td> 
+          	  	     	<td ><input name="search" type="button"  value="清除条件" onclick="clearcon()"></td> 	  	     	
+          	  	    </tr>
+          	  	   </table>
+       	        	</td>
+       	        </tr>
+          	  </table>
+          	  </td>
+          </tr> 
+  
+  
+  
+</table>
+ </form>
+<script>form1.stime.value='[#stime#]';
+	      form1.etime.value='[#etime#]';
+	      form1.ntype.value='[#ntype#]';
+	      if('[#name_match#]'!=''){
+	      form1.name_match.value='[#name_match#]';
+	      }
+</script>
+
+</body>
+
+</html>

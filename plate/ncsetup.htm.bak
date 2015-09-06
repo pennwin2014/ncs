@@ -1,0 +1,14 @@
+<html>
+<head>
+<title>上网限制设定</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+</head>
+
+<frameset rows="40,*" frameborder="NO" border="0" framespacing="0"> 
+  <frame name="topFrame" scrolling="NO" noresize src="/pronline/Msg?FunName@ncWebReplace&userid@0&plate@ncsetup_menu.htm" >
+  <frame name="mainFrame" scrolling="NO" noresize src="/pronline/Msg?FunName@ncWebReplace&userid@0&plate@ncsetup_i_menu.htm" >
+</frameset>
+<noframes><body bgcolor="#FFFFFF" text="#000000">
+
+</body></noframes>
+</html>

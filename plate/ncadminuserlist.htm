@@ -1,0 +1,200 @@
+<!-- saved from url=(0022)http://internet.e-mail -->
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<style type="text/css">
+<!--
+body {  font-size: 9pt}
+.tas {  border-color: black #FFFFFF; border-style: solid; border-top-width: 0px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 1px}
+table {  font-size: 9pt}
+.hand {  cursor: hand}
+.gray1{filter:gray}
+-->
+</style>
+
+<SCRIPT LANGUAGE="JavaScript">
+function checkme(p)
+{
+	var tt=p.value
+	if (tt>yy)
+	{
+		MM_changeProp('browsdopage','','value',yy,'INPUT/TEXT')
+	}
+	if (tt==0)
+	{
+		MM_changeProp('browsdopage','','value','1','INPUT/TEXT')
+	}
+}
+
+function MM_findObj(n, d) 
+{ //v4.0
+  	var p,i,x;
+  	if(!d) d=document;
+  	if((p=n.indexOf("?"))>0&&parent.frames.length)
+  	{
+    	d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);
+    }
+  	if(!(x=d[n])&&d.all) x=d.all[n];
+  	for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  	for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  	if(!x && document.getElementById) x=document.getElementById(n); return x;
+}
+
+function MM_changeProp(objName,x,theProp,theValue)
+{ //v3.0
+  	var obj = MM_findObj(objName);
+  	if (obj && (theProp.indexOf("style.")==-1 || obj.style)) eval("obj."+theProp+"='"+theValue+"'");
+}
+
+function goto(a)
+{
+	window.open(a,"_self","")
+}
+
+function MM_reloadPage(init)
+{  //reloads the window if Nav4 resized
+  	if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+
+function mouseovertr2 (o)
+{
+	var i;
+	df=o.style.backgroundColor
+	o.style.backgroundColor= "#F2F2F2";
+	o.style.borderColor= "#3399ff";
+		
+	for(i=0; i<o.cells.length; i++)
+	{
+		o.cells(i).style.color="#000000";
+	}	
+}
+
+function mouseouttr2(o)
+{
+	o.style.backgroundColor=df
+	for(i=0; i<o.cells.length; i++)
+	{
+		o.cells(i).style.color="#000000";
+	}
+}
+
+function mouseovertd2(o)
+{
+	o.style.borderStyle="solid"
+	o.style.borderColor="#000000"
+	o.style.color="#ffffff"	
+}
+
+function mouseouttd2(o)
+{
+	o.style.color="#003366"
+	o.style.borderColor="#cccccc"
+}
+
+function gotoPage(pagenum)
+{
+    form1.CurPg.value = pagenum;
+}
+// -->
+<!-- Hide
+var ll=[#CurPg#]
+var yy=[#TotPg#]
+function killErrors() {
+return true;
+}
+window.onerror = killErrors;
+// -->
+</SCRIPT>
+
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" oncontextmenu="return false">
+<table width="100%" border="0" align="center"  cellpadding="0"  cellspacing=0 bordercolor="#DFDFDF">
+  <form name="form1" method="post" action="/pronline/Msg">
+    <input type="hidden" name="FunName" value="ncWebAdminUserList">
+    <input type="hidden" name="CurPg" value="[#CurPg#]">
+    <input type="hidden" name="PerRow" value="21">
+    <input type="hidden" name="Row"   value="22">
+    <input type="hidden" name="Col"   value="1">
+    <tr > 
+      <td   height="20" colspan="7" > <table width="100%" border="0" height="47">
+          <tr> 
+            <td width="64%" height="21">&nbsp;</td>
+            <td width="36%" height="21">&nbsp;</td>
+          </tr>
+          <tr> 
+            <td width="64%" height="35"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr> 
+                  <td width="53%">关键字: 
+                    <input type="text"   name="cond"> </td>
+                  <td> <div align="left"> 
+                      <input type="submit" name="search" value="查询">
+                      <font size="4"> 
+                      <input type="button" name="add" value="增加" onclick="goto('/pronline/Msg?FunName@ncWebAdminDispUserForm')">
+                      <input type="submit" name="del" value="删除">
+                      </font></div></td>
+                </tr>
+              </table></td>
+            <td width="36%" height="35"> <table align=right border=0 cellpadding=0 cellspacing=0 
+                        class=main width=111>
+                <tbody>
+                  <tr> 
+                    <td width="10%"><script>
+if (ll==1){document.write("<img src='/images/spy-06.gif' border=0 height=17 width=35 class='gray1'>")}
+else{document.write("<a href='#'><img src='/images/spy-06.gif' border=0 height=17 width=35 onClick='gotoPage(1);form1.submit()' class='hand'>")}
+</script></td>
+                    <td width="10%"><script>
+if (ll==1){document.write("<img src='/images/spy-03.gif' border=0 height=17 width=20 class='gray1'>")}
+else{document.write("<img src='/images/spy-03.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]-1);form1.submit()' class='hand'>")}
+</script></td>
+                    <td width="20%"><img src="/images/spy-08.gif" border=0 height=17 width=32></td>
+                    <td align=middle background="" width=92> <input class=Main id=browsdopage maxlength=3  name=browsdopage size=3 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 30px" value=[#CurPg#] onKeyPress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" onBlur="checkme(this)"> 
+                    </td>
+                    <td width="10%"><img src="/images/spy-09.gif" border=0 height=17 width=16></td>
+                    <td width="10%"><img align=middle border=0 height=17 src="/images/spy-10.gif" width=17 onClick="gotoPage(form1.browsdopage.value);form1.submit()" class="hand"><img align=middle height=17 src="/images/spy-11.gif" width=3></td>
+                    <td width="10%"><script>
+if (ll==yy){document.write("<img src='/images/spy-04.gif' border=0 height=17 width=20 class='gray1'>")}
+else if (yy==0){document.write("<img src='/images/spy-04.gif' border=0 height=17 width=20 class='gray1'>")}
+else{document.write("<img src='/images/spy-04.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]+1);form1.submit()' class='hand'>")}
+</script></td>
+                    <td width="10%"><script>
+if (ll==yy){document.write("<img src='/images/spy-05.gif' border=0 height=17 width=36 class='gray1'>")}
+else if (yy==0){document.write("<img src='/images/spy-05.gif' border=0 height=17 width=36 class='gray1'>")}
+else{document.write("<img src='/images/spy-05.gif' border=0 height=17 width=36 onClick='gotoPage([#TotPg#]);form1.submit()' class='hand'>")}
+</script></td>
+                  </tr>
+                </tbody>
+              </table></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr bgcolor="#6382BD" id=ignore > 
+      <td width="34"   height="18" class="bord1"><div align="center"><font color="#FFFFFF"></font> 
+        </div></td>
+      <td width="99" height="18" valign="bottom" class="bord1"> <div align="center"><font color="#FFFFFF">&nbsp;登录名</font></div></td>
+      <td  width="137" height="18" valign="bottom" class="bord1"> <div align="center"><font color="#FFFFFF">&nbsp;姓名</font></div></td>
+      <td  width="137" height="18" valign="bottom" class="bord1"><div align="center"><font color="#FFFFFF">&nbsp;用户级别</font></div></td>
+      <td  width="99" height="18" valign="bottom" class="bord1"><div align="center"><font color="#FFFFFF">&nbsp;部门</font></div></td>
+      <td   width="137" height="18" valign="bottom" bgcolor="#6382BD" class="bord1"><div align="center"><font color="#FFFFFF">&nbsp;加入时间</font></div></td>
+    </tr>
+    <!-- [#SLPB#] -->
+    <tr bgcolor="#FFFFFF" onDblClick="goto('/pronline/Msg?FunName@ncWebAdminDispUserForm&userid@[#userid#]')" onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)"> 
+      <td width="34"   height="20" valign="bottom" class="bord1"> <input type="checkbox" name="checkbox" value="checkbox"> 
+      </td>
+      <td   width="99" valign="bottom" class="bord1">&nbsp;[#username#] </a> </td>
+      <td   width="137" valign="bottom" class="bord1">&nbsp;[#dispname#] </td>
+      <td   width="137" valign="bottom" class="bord1">&nbsp;[#level#]</td>
+      <td   width="99" valign="bottom" class="bord1">&nbsp;[#groupname#]</td>
+      <td   width="137" valign="bottom" class="bord3">&nbsp;[#addtime#]</td>
+    </tr>
+  </form>
+  <!-- [#SLPE#] -->
+</table>
+<p>&nbsp;</p>
+</body>
+</html>

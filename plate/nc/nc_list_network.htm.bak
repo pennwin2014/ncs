@@ -1,0 +1,118 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<title>main</title>
+<script>
+function goto(t){
+self.location.href=t
+}
+function mouseovertr2 (o){
+var i;
+df=o.style.backgroundColor
+	o.style.backgroundColor= "#003399";
+	o.style.borderColor= "#FFFF00";
+	o.style.cursor="hand";	
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#ffffff";
+}	
+}
+
+function showf(s1,s2,s3) {
+    form_n.startip.value=s1;
+    form_n.stopip.value=s2;
+    form_n.id.value=s3;
+}
+
+    
+function mouseouttr2(o){
+	o.style.backgroundColor=df
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#000000";
+}
+	
+	
+}
+</script>
+<link REL=stylesheet HREF="/css/runmit.css" TYPE="text/css">
+<script src="/js/rmenu.js"></script>
+<style type="text/css">
+<!--
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+-->
+</style>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+<body marginheight=0 leftmargin=0 marginwidth=0 topMargin="0" BGCOLOR="Menu">
+
+<table border="0" width=100% height=100% cellspacing="0" cellpadding="0" align=center bgcolor='#ffffff'>
+<form name="form_n" method="post" action="/pronline/Msg"> 
+ <tr> 
+    <td width="100%"  valign=middle align=center height="25" bgcolor="#dfdfdf" class="ttt">
+      <table width="100%" border="0" cellspacing="0">
+        <tr> 
+          <td>&nbsp;&nbsp;起始 IP 
+            <input type="text" name="startip" size="16">
+            终止 IP 
+            <input type="text" name="stopip" size="16">
+            <input type="button" name="add" value="添加" class="an3">
+            <input type="button" name="modi" value="修改" class="an3">
+            <input type="button" name="del" value="删除" class="an3">
+              <input type="hidden" name="FunName" value="ncWebSaveNetwork">
+              <input type="hidden" name="flags"   value="[#flags#]">
+              <input type="hidden" name="sum"   value="[#sum#]">
+              <input type="hidden" name="id" >
+            </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+      <td width="100%"  valign=top align=center bgcolor="#BBBBBB"> 
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" height="100%">
+        <tr> 
+          <td class="bord2" background="/images/ttt.gif" height="20"><img src="/images/lline.gif" width="1" height="18" align="absmiddle">&nbsp;</td>
+          <td class="bord2" height="18" background="/images/ttt.gif"><img src="/images/lline.gif" width="1" height="18" align="absmiddle">&nbsp;起始 
+            IP 地址</td>
+          <td class="bord4" height="18" background="/images/ttt.gif"><img src="/images/lline.gif" width="1" height="18" align="absmiddle">&nbsp;终止 
+            IP 地址</td>
+        </tr>
+<!-- [#SLPB#] -->        
+        <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" onclick="showf('[#startip#]','[#stopip#]','[#id#]')" > 
+          <td class="bord1" width="25"> 
+            <input type="checkbox" name="ch[#num#]" value="[#startip#]">
+          </td>
+            <td class="bord1">&nbsp;[#startip#]</td>
+            <td class="bord3">&nbsp;[#stopip#]</td>
+        </tr>
+<!-- [#SLPE#] -->      
+<!-- [#SLPB#] -->        
+        <tr id=[#snum#]> 
+          <td class="bord1" width="25">&nbsp; 
+          </td>
+          <td class="bord1">&nbsp;</td>
+          <td class="bord3">&nbsp;</td>
+        </tr>
+<!-- [#SLPE#] -->      
+
+      </table>
+<!--//鼠标显示//-->
+              <script language="JavaScript">
+<!--
+var MenuBarColor ='#cccccc';
+DrawMouseRightButtonUpMenu();
+
+</script>
+  </form>
+</table>
+
+
+</body>
+
+</html>

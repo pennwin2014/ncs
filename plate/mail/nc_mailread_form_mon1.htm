@@ -1,0 +1,120 @@
+<!-- saved from url=(0022)http://internet.e-mail -->
+<html>
+<head>
+<title>邮件</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META content=no-cache http-equiv=Pragma>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<style type="text/css">
+<!--
+.cccv {  border-style: inset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.xan3 {  width: 100px; font-size: 12px; font-weight: normal; font-family: "宋体"}
+.anjujue {  background-image: url(/images/anjj.gif); width: 60px; background-repeat: no-repeat; height: 30px}
+.anfasong {  background-image: url(/images/ansend.gif); width: 60px; background-repeat: no-repeat; height: 30px}
+
+-->
+</style>
+<script language="JavaScript">
+<!--
+function  forwardmail(){
+      form1.FunName.value = "ncWebMailMonFwOne";
+	  form1.submit();
+}
+
+function cc(){
+     self.close();
+}
+
+
+function cvtcode()
+{
+     a = '[#ccode#]';
+	 if(a == '1') {
+         self.location.href="/pronline/Msg?FunName@ncUtlMailReadSelf&mailtype@[#mailtype#]&ccode@0&userid@[#userid#]&msgfile@[#msgfile#]&plate@[#plate#]"
+	 }
+	 else {
+         self.location.href="/pronline/Msg?FunName@ncUtlMailReadSelf&mailtype@[#mailtype#]&ccode@1&userid@[#userid#]&msgfile@[#msgfile#]&plate@[#plate#]"	     
+	 }
+}
+
+function gg(){
+document.all.ccll.innerHTML="到 &nbsp;<input type='text' id='smail' name='smail' value='' size='18' maxlength='63'> <input type='button' name='Button' value='确 定' onclick='forwardmail()'>"
+
+}
+
+
+//-->
+</script>
+</head>
+
+<body bgcolor="menu" text="#000000" >
+<form name="form1" method="post" action="/pronline/Msg">
+
+<table width="94%" border="0" align="center" height="36" cellspacing="0">
+  <tr> 
+      <td width="46%"> 
+        <input type="button" name="fw2" value="  关闭窗口"  onClick="cc()">
+        <input type="button" name="c2"     value="简繁"  onClick="cvtcode()">
+      </td>
+    <td width="54%">&nbsp; 
+      <div id="ccll">
+        </div>
+          <input type="hidden" name="mtype" value="ctl">
+          <input type="hidden" name="msgfile" value="[#msgfile#]">
+          <input type="hidden" name="FunName">
+		  </td>
+  </tr>
+</table>
+<table width="94%" border="0" cellspacing="0" align="center" height="10%">
+  <tr> 
+    <td width="109" height="26">发件人</td>
+    <td colspan="3" height="26"> 
+      <input type="text" name="textfield" value="[#from#]" size="50" readonly>
+    </td>
+  </tr>
+  <tr> 
+    <td width="109" height="32">收件人</td>
+    <td height="32" colspan="3"> 
+      <textarea name="textfield3" cols="50"  rows="1">[#to#]</textarea>
+    </td>
+  </tr>
+  <tr> 
+    <td width="109" height="32">日期</td>
+    <td height="32" colspan="3"> 
+      <input type="text" name="textfield2" value="[#date#]" size="50" readonly>
+    </td>
+  </tr>
+  <tr> 
+    <td width="109" height="32">抄送</td>
+    <td height="32" colspan="3"> 
+      <textarea name="textfield4" cols="50" rows="1" >[#cc#]</textarea>
+    </td>
+  </tr>
+  <tr> 
+    <td width="109" height="33">主题</td>
+    <td colspan="3" height="33"> 
+      <textarea name="sub" cols="50"  rows="1">[#sub#] </textarea>
+    </td>
+  </tr>
+  <tr> 
+    <td height="18" colspan="4"><img src="/images/hr.gif" width="100%" height="2"></td>
+  </tr>
+  <!-- [#SLPB#] -->
+  <tr> 
+    <td colspan="4" height="2"> 
+      <p> <a href="/pronline/Msg?FunName@ncWebMailCtlDownload&fname@[#name#]&type@[#type#]&disp@[#disp#]">[#disp#]</a></p>
+    </td>
+  </tr>
+  <!-- [#SLPE#] -->
+</table>
+
+<table width="94%" border="0" align="center">
+  <tr>
+    <td height="300"  ><iframe name="ttt" src="/pronline/Msg?FunName@ncWebMailCtlOutHtm&fname@[#fname#]" width="100%" height="100%" border="1" frameborder="1" scrolling="yes"></iframe></td>
+  </tr>
+</table>
+</form>
+</body>
+</html>

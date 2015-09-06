@@ -1,0 +1,180 @@
+<html>
+<head>
+<title>Setup WebList</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<script language="JavaScript" type="text/javascript">
+// 全部设置
+var imodflags=0;
+function DoUnload()
+{
+    if(imodflags == 1) {
+  	     if(confirm("要保存设置吗?")) {
+		     ClickSave();
+			return true;
+	    }
+   }
+}
+function GoToUrl(tt)
+{
+    window.open(tt,'_blank','left=10,top=100,width=700,height=600,fullscreen=0,toolbar=no,scrollbars=yes,resizable=1,menubar=no,status=0');
+}
+
+function ClickReset()
+{
+    imodflags = 0;
+	form1.submit();
+}
+
+ function ClickSave()
+ {
+    var str;
+	str="";
+    for(i=0;i<document.images.length;i++) {
+	    if(document.images[i].name.search("ctl") != -1) {
+             if(document.images[i].src.search("y1") != -1) {
+			     str = str + document.images[i].name + "=y;";
+			 }
+			 else if(document.images[i].src.search("x1") != -1) {
+			     str = str + document.images[i].name + "=x;";
+			 }
+		}
+	}
+	imodflags = 0;
+	document.form1.rtl.value=str;
+	document.form1.save.value="保存";
+	form1.submit();
+  }
+ 
+ function Do_AllSet(ppp,ggg)
+ {
+    for(i=0;i<document.images.length;i++) {
+	    if(document.images[i].name.search(ppp) != -1) {
+             document.images[i].src = "/images/"+ggg+".gif"
+		}
+	}
+	imodflags = 1;
+ }
+ 
+ 
+ function ClickImg(kk)  {
+    if (kk.src.search("y1.gif") != -1) {
+        kk.src = "/images/x1.gif"  
+    }
+    else if(kk.src.search("x1.gif")!= -1) {
+        kk.src = "/images/no.gif"
+    }
+    else {
+         kk.src = "/images/y1.gif"
+    }
+	imodflags = 1;
+}
+
+function ClickImga(kk,ii)  {
+    if (kk[ii].src.search("y1.gif") != -1) {
+        kk[ii].src = "/images/x1.gif"  
+    }
+    else if(kk[ii].src.search("x1.gif")!= -1) {
+        kk[ii].src = "/images/no.gif"
+    }
+    else {
+         kk[ii].src = "/images/y1.gif"
+    }
+	imodflags = 1;
+}
+
+function ClickImg1(indexedNum)  {
+        if (document.images[indexedNum].src.search("/images/y1.gif") != -1) {
+                document.images[indexedNum].src = "/images/x1.gif"  
+        
+        }
+        else {
+                if (document.images[indexedNum].src.search("/images/x1.gif") != -1) {
+                        document.images[indexedNum].src = "/images/y1.gif"
+                 }
+        }
+ 	   imodflags = 1;
+}
+
+
+
+ </script>
+ 
+<link REL=stylesheet HREF="/css/runmit.css" TYPE="text/css">
+<style type="text/css">
+<!--
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+-->
+</style>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<body bgcolor="#DEE8FA" link="#33FF99" alink="#FF0000" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0"  onUnLoad="DoUnload()">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td colspan="2"><table width="100%" height="27" border="0" align="center" cellpadding="0" cellspacing="0" background="/images/table_bg1.gif">
+        <tr > 
+          <td colspan="2"> <div align="center"><b><font color="#FFFFFF">互联网服务策略设置</font></b></div></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr> 
+    <td><form name="form1"  method="post" action="/pronline/Msg">
+        <br>
+        <table width="90%" border="0" align="center" cellspacing="0" bgcolor="#D6D3CE">
+          <tr> 
+            <td  class="bord3-1" colspan="3"> <div align="left"></div>
+              <table width="100%" border="0">
+                <tr> 
+                  <td width="28%"><div align="center">策略名称:[#pname#]</div></td>
+                  <td width="26%">缺省访问:[#vister#]</td>
+                  <td width="18%"><a href='javascript:Do_AllSet("ctla","no")'><img src="/images/setu.gif" border=0 alt="全部清除" align="middle" width="16" height="16"></a> 
+                    <a href='javascript:Do_AllSet("ctla","y1")'><img src="/images/sety.gif" border=0 alt="全部允许" align="middle" width="16" height="16"></a> 
+                    <a href='javascript:Do_AllSet("ctla","x1")'><img src="/images/setx.gif" border=0 alt="全部禁止" align="middle" width="16" height="16"></a> 
+                  </td>
+                  <td width="28%"><input type="hidden" name="rtl" > <input type="hidden" name="FunName" value="ncWebLim_SetIpPol"> 
+                    <input type="hidden" name="pid" value="[#pid#]"> <input type="hidden" name="pname" value="[#pname#]"> 
+                    <input type="hidden" name="save"> <input name="save1" type="button" class="an3" onClick="ClickSave()" value="保 存"> 
+                    <input name="save12" type="button" class="an3" onClick="ClickReset()" value="放 弃"> 
+                  </td>
+                </tr>
+              </table></td>
+          </tr>
+          [#SLPB#] 
+          <tr> 
+            <td  class="bord1-1" width="15%" height="2"> 
+              <div align="center"><a href="javascript:ClickImg(document.ctlax[#sid#])"> 
+                <img src="/images/[#gif#].gif" border=0 align="middle" width="16" height="16" name="ctlax[#sid#]"></a> 
+              </div></td>
+            <td width="77%" height="2" colspan="2"  class="bord3-2">&nbsp;<a href="Javascript:GoToUrl('/pronline/Msg?FunName@ncWebLimIpList&group@[#sid#]')">[#name#]</a> 
+            </td>
+          </tr>
+          [#SLPE#] 
+        </table>
+      </form></td>
+    <td valign="top">
+<table width="80%" border="0" align="center">
+        <tr> 
+          <td height="50"> 
+            <div align="center"></div></td>
+        </tr>
+        <tr> 
+          <td height="30"> <div align="center"><img src="/images/y1.gif" width="16" height="16"> 
+              允许 <img src="/images/x1.gif" width="16" height="16"> 禁止 <img src="/images/no.gif" width="16" height="16"> 
+              未设置</div></td>
+        </tr>
+        <tr> 
+          <td> <div align="center">您可以点击策略名称，系统将显示更详细设置</div></td>
+        </tr>
+        <tr> 
+          <td> <p>&nbsp;</p>
+            <p>&nbsp;</p></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

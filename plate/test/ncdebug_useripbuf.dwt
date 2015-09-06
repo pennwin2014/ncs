@@ -1,0 +1,36 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>Untitled Document</title>
+<!-- TemplateEndEditable -->
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+</head>
+
+<body>
+<table width="606" border="1">
+  <tr>
+    <th colspan="5" scope="col">缓存中IP地址 --总计[#sum#] </th>
+  </tr>
+  <tr>
+    <td width="49">序号</td>
+    <td width="195">IP地址</td>
+    <td width="137">最后访问时间</td>
+    <td width="125">状态</td>
+    <td width="66">&nbsp;</td>
+  </tr>
+  <!-- [#SLPB#] -->
+  <tr>
+    <td>[#num#]</td>
+    <td>[#sip#]</td>
+    <td>[#lasttime#]</td>
+    <td>[#flags#]</td>
+    <td>&nbsp;</td>
+  </tr>
+    <!-- [#SLPE#] -->
+</table>
+</body>
+</html>

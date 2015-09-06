@@ -1,0 +1,263 @@
+<html>
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<title>main</title>
+<script>
+var dfd1="0"
+
+
+function userdel()
+{
+    form1.FunName.value = "ncWebUploadDel";
+    form1.submit();
+}
+
+function goto1(t){
+ tt=showModalDialog(t, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:560px;scroll:no;dialogHeight:320px');
+}
+
+
+
+
+
+function goto(o)
+{
+
+var ccod=o.cells[0].childNodes[0].childNodes[0].value;
+var uid=o.cells[0].childNodes[0].childNodes[1].value;
+var msgfile=o.cells[0].childNodes[0].childNodes[2].value;
+var t="/pronline/Msg?FunName@ncWebPostRead&time@"+ccod+"&userid@"+uid+"&msgfile@"+msgfile;
+      window.open(t,'readpost','left=100,top=50,width=700,height=600,fullscreen=0,toolbar=no,scrollbars=yes,resizable=1,menubar=no,status=0');
+    }
+
+
+
+// -->
+var dfd1=0;
+function allChecked(){
+    if(dfd1=="1"){
+        dfd1="0"
+    }
+    else {
+         dfd1="1"
+    }
+   
+	for(var i=1;i<document.all.DataTable.rows.length;i++)
+	{
+		if(typeof(document.all.DataTable.rows[i].cells[0].childNodes[0].childNodes[0])=="object"
+
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].childNodes[0].tagName=="INPUT"
+
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].childNodes[0].type=="checkbox") {
+			if(dfd1=="1"){
+  			    document.all.DataTable.rows[i].cells[0].childNodes[0].childNodes[0].checked="true";
+            }
+			else{
+                document.all.DataTable.rows[i].cells[0].childNodes[0].childNodes[0].checked="";
+            }
+        }
+ 	}
+}
+
+function passdate()
+{
+parent.form1.CurPg.value='[#CurPg#]';
+parent.form1.TotPg.value='[#TotPg#]';
+parent.form1.TotRec.value='[#TotRec#]';
+parent.document.all.wlj.innerHTML='<b style="font-size: 10pt;color:#00237e;">本地日志([#title_name#])</b>';
+	parent.form1.did.value=form1.userid.value;
+	parent.form1.uid.value=form1.uid.value;
+	parent.form1.sdate.value=form1.sdate.value;
+	parent.form1.edate.value=form1.edate.value;
+}
+
+function qr(){
+
+	parent.form1.userid.value=form1.userid.value;
+	parent.form1.groupid.value=form1.groupid.value;
+	parent.form1.sdate.value=form1.sdate.value;
+	parent.form1.sdate1.value=form1.sdate1.value;
+	parent.form1.edate.value=form1.edate.value;
+	parent.form1.edate1.value=form1.edate1.value;
+	
+	parent.form1.dispname.value=form1.dispname.value;
+
+	parent.form1.sip.value=form1.sip.value;
+	
+	parent.form1.dip.value=form1.dip.value;
+	parent.form1.url.value=form1.url.value;
+	parent.form1.content.value=form1.content.value;
+	parent.form1.sub.value=form1.sub.value;
+ 
+}
+
+function cleara(){
+form1.userid.value='';
+form1.groupid.value='';
+form1.sdate.value='';
+form1.edate.value='';
+form1.sdate1.value='';
+form1.edate1.value='';
+form1.dispname.value='';
+
+form1.sip.value='';
+
+form1.dip.value='';
+form1.url.value='';
+form1.content.value='';
+form1.sub.value='';
+parent.form1.userid.value='';
+parent.form1.groupid.value='';
+parent.form1.sdate.value='';
+parent.form1.edate.value='';
+parent.form1.sdate1.value='';
+parent.form1.edate1.value='';
+
+parent.form1.dispname.value='';
+parent.form1.sip.value='';
+
+parent.form1.dip.value='';
+parent.form1.url.value='';
+parent.form1.sub.value='';
+parent.form1.content.value='';
+
+}
+
+function mouseovertr2 (o){
+var i;
+df=o.style.backgroundColor
+	o.style.backgroundColor= "#ffff00";
+	o.style.borderColor= "#FFFF00";
+	o.style.cursor="hand";	
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#000000";
+}	
+}
+
+function mouseouttr2(o){
+	o.style.backgroundColor=df
+	
+	
+}
+
+
+
+</script>
+
+<script src="/js/drawtable.js"></script>
+<script src="/js/calendar.js"></script>
+<SCRIPT language=JavaScript>
+<!--
+
+var recordID = null;
+var Table = new FlexibleTable ('DataTable', '100%', '458', 'center', 32, 'flexibleTableSpan');
+
+Table.Header ( '<span style="cursor: hand;" >姓名</span>','<span style="cursor: hand;" >单位名称</span>','<span style="cursor: hand;" >源地址</span>','论坛名称','网址和路径', '时间','主题','内容');
+Table.ColumnsWidth ('70','90','110','90', '140', '90', '200', '300');
+Table.HeaderAligment ('center', 'center','center', 'center','center', 'center', 'center', 'center');
+Table.BodyAligment ('center', 'left', 'left', 'left', 'left','left', 'left', 'left');
+
+Table.SetRowsTemplate (" onMouseOver=\"javascript:mouseovertr2(this);\" onMouseOut=\"javascript:mouseouttr2(this);\"  onDblClick=\"goto(this)\" ");
+[#SLPB#]
+Table.Row('<input type="hidden" name="time[#num#]" value="[#vtime#]"><input type="hidden" name="userid[#num#]" value="[#userid#]"><input type="hidden" name="msgfile[#num#]" value="[#file#]">&nbsp;[#dispname#] ','&nbsp;[#cname#] ','&nbsp;[#sip#] ','&nbsp;[#bbsname#] ','&nbsp;<a href="[#host#][#url#]&nbsp;" target="_blank">[#host#][#url#] </a>','&nbsp;[#vtime#] ','[#subject#]&nbsp;','&nbsp;[#content#] ');
+[#SLPE#]
+
+//-->
+</SCRIPT>
+
+
+<style type="text/css">
+<!--
+  .bordnr {
+	border-left: 1px solid #0148b2;
+	border-top: 1px solid #888888;
+	border-bottom: 1px solid #0148b2;
+	border-right: 1px solid #0148b2;
+	background-color:#d0e1fa;
+	} 
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+-->
+
+</style>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<BODY  style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px" bgcolor="#eaf3f5" leftMargin=2 topMargin=2 scroll=no onload="Table.Draw();passdate()">
+	<form name="form1" method="post" action="/pronline/Msg">
+  <input type="hidden" name="caWhere"    value="[#caWhere#]">
+	<input type="hidden" name="FunName" value="ncWebBBSform">
+	<input type="hidden" name="uid" value="[#uid#]">
+	<input type="hidden" name="userid" value="[#did#]">
+  <input type="hidden" name="zd_flag" value="[#zd_flag#]">
+	<input type="hidden" name="groupid" value="[#groupid#]">
+
+	
+		<TABLE style="BORDER-RIGHT: 1px inset; BORDER-TOP: 1px inset; BORDER-LEFT: 1px inset; BORDER-BOTTOM: 1px inset" height="100%" cellSpacing=0 cellPadding=0 width="100%" border=0>
+		
+  	<TR>
+    		<TD valign="top"><SPAN id=flexibleTableSpan></SPAN></TD>
+  	</TR>
+  	
+  	  	       	  <tr height="110">
+       	        	<td  class="bordnr" valign="top">
+       	        		<table border=0 cellpadding=0 cellspacing=0 width="100%">
+       	             <tr height="40">
+          	  	     	<td width="100" align="center">&nbsp;上网时间</td>
+          	  	     	<td width="150"><input type="text" name="sdate" value="[#sdate#]" size="11" maxlength="10"> <input type="button" name="sdate_but" style="position:relative;left:-21px;top:-2px;width:15px;height:17px" value='…' onclick="fPopCalendar(sdate,sdate,'Up');return false"><input type="text" style="position:relative;left:-19px;" name="sdate1" value="[#sdate1#]" size="4" maxlength="5"></td> 
+          	  	     	<td width="75" align="center">&nbsp;到</td>
+          	  	     	<td width="155"><input type="text" name="edate" value="[#edate#]" size="11" maxlength="10"> <input type="button" name="edate_but" style="position:relative;left:-19px;top:-2px;width:15px;height:17px" value='…' onclick="fPopCalendar(edate,edate,'Up');return false"><input type="text" style="position:relative;left:-17px;" name="edate1" value="[#edate1#]" size="4" maxlength="5"></td> 
+          	  	     	<td width="60" align="center">&nbsp;网址</td>
+          	  	     	<td ><input type="text" name="url" value="[#url#]" size="17"></td>
+          	  	     	<td width="80">&nbsp;论坛名称</td>
+          	  	     	<td width="90"><input type="text" name="attfile" value="[#bbsname#]" size="17"></td>
+          	  	     	<td width="110" align="center"><input name="cxx" type="submit"  value="查 询" onclick="qr()"></td> 	  	     	
+          	  	    </tr>
+          	  	     <tr height="30">
+          	  	     	<td  align="center">&nbsp;用户名</td>
+          	  	     	<td ><input type="text" name="dispname" value="[#dispname#]" size="13" >
+
+          	  	     		</td>  
+          	  	     	<td  align="center" >&nbsp;</td>
+          	  	     	<td >&nbsp;</td>
+          	  	     	<td  align="center">&nbsp;主题</td>
+          	  	     	<td ><input type="text" name="sub" value="[#subject#]" size="17"></td>
+          	  	     	<td >&nbsp;Mac地址</td>
+          	  	     	<td ><input type="text" name="mac" value="[#mac#]" size="13" ></td>  
+          	  	     	<td  align="center"><input name="clearaq" type="button"  value="清除条件" onclick="cleara()"></td>	     	
+          	  	    </tr>
+          	  	     <tr height="30">
+          	  	     	<td align="center">&nbsp;目标IP</td>
+          	  	     	<td ><input type="text" name="dip" value="[#dip#]" size="21" ></td>  
+          	  	     	<td  align="center">&nbsp;源IP</td>
+          	  	     	<td  ><input type="text" name="sip" value="[#sip#]" size="17"></td>
+          	  	     	<td  align="center">内容</td>
+          	  	     	<td colspan="3">
+                    <input type="text" name="content" size="43" maxlength="44" value="[#content#]" > 
+                   </td>
+ 
+          	  	     	<td  align="center">&nbsp;</td>	     	
+          	  	    </tr>
+
+          	  	   </table>
+       	        	</td>
+       	        </tr> 
+  	
+  	
+  	
+  	
+ 	</TABLE>
+ 		
+ </form>	
+ 
+</BODY>
+
+</html>
+
+</html>

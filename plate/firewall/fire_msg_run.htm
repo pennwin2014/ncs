@@ -1,0 +1,74 @@
+<html>
+
+<head>
+
+<title>Untitled Document</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+
+<script>
+
+function goto(t){
+
+self.location.href=t
+
+}
+function mouseovertr2 (o)
+{
+	var i;
+	df=o.style.backgroundColor
+	o.style.backgroundColor= "#003399";
+	o.style.borderColor= "#3399ff";
+		
+	for(i=0; i<o.cells.length; i++)
+	{
+		o.cells(i).style.color="#ffffff";
+	}	
+}
+
+function mouseouttr2(o)
+{
+	o.style.backgroundColor=df
+	for(i=0; i<o.cells.length; i++)
+	{
+		o.cells(i).style.color="#000000";
+	}
+}
+</script>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" oncontextmenu="return false">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+  <tr > 
+    <td colspan="3" > <div align="center">
+        <table width="100%" height="27" border="0" align="center" cellpadding="0" cellspacing="0" background="/images/table_bg1.gif">
+          <tr > 
+            <td colspan="2"> <div align="center"><strong><font color="#FFFFFF">出错的规则</font></strong></div></td>
+          </tr>
+        </table>
+      </div></td>
+  </tr>
+  <tr bgcolor="#6382BD" > 
+    <td width="8%" height="18" class="bord2"><div align="center"><font color="#FFFFFF">序号</font></div></td>
+    <td width="17%" height="18"  class="bord2"> <div align="center"><font color="#FFFFFF">索引</font></div></td>
+    <td width="75%" height="18" bgcolor="#6382BD" class="bord4"> 
+      <div align="center"><font color="#FFFFFF">命令内容</font></div></td>
+  </tr>
+  <!-- [#SLPB#] -->
+  <tr onmouseover="mouseovertr2(this)" onmouseout="mouseouttr2(this)"> 
+    <td width="8%" class="bord1">[#num#]</td>
+    <td  class="bord1" width="17%">[#index#] </td>
+    <td  class="bord3" width="75%">[#message#]</td>
+  </tr>
+  <!-- [#SLPE#] -->
+</table>
+
+  
+<div align="center"></div>
+
+</body>
+
+</html>

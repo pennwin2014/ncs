@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>角色管理</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/css.css" type="text/css">
+</head>
+
+<body bgcolor="#cccccc" text="#000000" leftmargin="12" topmargin="0">
+<table width="600" border="0" bgcolor="#cccccc" height="100" class="bord4">
+  <tr> 
+    <td height="108"> 
+      <form name="form1" method="post" action="/pronline/Msg" target="leftFrame">
+        <input type="hidden" name="FunName" value="ncAdminRoleModi">
+        <input type="hidden" name="id"     value="[#id#]">
+        <table width="98%" border="0" bgcolor="#AFAFC0" cellspacing="0" cellpadding="4">
+          <tr bgcolor="#8C8CA6"> 
+            <td colspan="4" class="bord2" bgcolor="#8C8CA6" height="32"> 
+              <div align="center"> 
+                <p><b><font color="#FFFFFF">角色信息</font></b></p>
+              </div>
+            </td>
+            <td class="bord4" width="25%" height="32">&nbsp;</td>
+          </tr>
+          <tr> 
+            <td width="10%" valign="bottom" height="21" class="bord1">代码</td>
+            <td width="36%" valign="bottom" height="21" class="bord1"> 
+              <input type="text" name="name" size="16" maxlength="31" value="[#name#]">
+            </td>
+            <td width="11%" valign="bottom" height="21" class="bord1">显示名</td>
+            <td colspan="2" valign="bottom" height="21" class="bord3"> 
+              <input type="text" name="dispname" size="16" maxlength="31" value="[#dispname#]">
+            </td>
+          </tr>
+          <tr> 
+            <td width="10%" valign="bottom" height="31" class="bord1">描述</td>
+            <td colspan="4" valign="bottom" height="31" class="bord3">
+              <input type="text" name="descr" size="60" maxlength="127" value="[#descr#]">
+            </td>
+          </tr>
+          <tr> 
+            <td colspan="5" height="28" class="bord3"> 
+              <div align="right"> 
+                <input type="submit" name="add"   value="增加" [#addflags#]>
+                <input type="submit" name="mod"   value="修改" [#modflags#]>
+                <input type="submit" name="bak"   value="返回" >
+              </div>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

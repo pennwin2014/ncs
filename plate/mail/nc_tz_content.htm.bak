@@ -1,0 +1,21 @@
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script>
+function goto(t){
+ location.href=t
+}
+<script>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+<p>网络督察邮件提醒：</p>
+<p> [#message#]</p>
+<p> <a href="http://192.168.0.1:8088/pronline/Msg?FunName@ncMailCtlCheck&sid@[#sid#]&fname@[#fn#]">点击此处可以查看并处理邮件. </a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>
+.
+

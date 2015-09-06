@@ -1,0 +1,13 @@
+<html>
+<head>
+<title>网络督察数据备份</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+</head>
+
+<frameset rows="33,*" frameborder="NO" border="0" framespacing="0" cols="*"> 
+  <frame  name="topFrame"  scrolling="NO" noresize src="ncbackup_top.htm" >
+  <frame  name="mainFrame1" src="nc_httplogb_index.htm">
+</frameset>
+<noframes><body bgcolor="#FFFFFF" text="#000000">
+</body></noframes>
+</html>

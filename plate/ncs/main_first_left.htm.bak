@@ -1,0 +1,131 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<style>
+	<!--
+
+.style1 {
+	font-size: 14px;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+.style5 {color: #FFFFFF}
+.style2 {
+	font-size: 12px;
+	color: #00237e;
+	font-weight: bold;
+}
+.wk {
+  text-align: center;
+	font-size: 12px;
+	color: #00237e;
+	font-weight: bold;
+	
+}
+.wk1 {
+  text-align: center;
+	font-size: 12px;
+}
+.bo3 {  border: #6995cf solid; border-width: 1px 1px 1px 1px}
+-->
+table {  font-size: 10pt}
+</style>
+
+</head>
+
+<body leftmargin="0" bgcolor="#0148b2" topmargin="0" marginwidth="0" marginheight="0"   onload="parent.parent.document.getElementById('changyj').src='/images/images2/yuanjiao2-1.gif' " style="overflow:hidden">
+<table width="154" border="0" cellspacing="0" cellpadding="0" >
+     <tr>
+        <td height="8" bgcolor="#8CB4E8"></td>
+      </tr>
+      <tr>
+        <td height="25" bgcolor="#448FD5"><div align="center" class="style1">系统信息</div></td>
+      </tr>
+         <tr>
+        <td height="510" bgcolor="#BFD7F9" valign="top">
+        	<table width="100%" border="0"  cellspacing="2" cellpadding="2" >
+        		<tr height="5"><td colspan="2"></td></tr>
+        		<tr height="20">
+        		  <td  class="style2" width="55">CPU状况</td>
+        	    <td title="cpu占有率:[#r1#]%" >
+        	    <table cellspacing="0" cellpadding="0">
+        	    	<tr><td width="71" height="16" class="bo3"><img src="/images/images2/green.gif" width="[#r1used#]" height="16"><img src="/images/images2/white.gif" width="[#r1free#]" height="16"></td></tr></table></td>
+        	 
+        	  </tr>
+        	  
+        	   <tr height="20">
+        		  <td  class="style2">内存状况</td>
+        	    <td  title="内存共[#mem#]KB;剩余[#free#]KB;使用率[#r5#]%">
+        	    	<table cellspacing="0" cellpadding="0">
+        	    	<tr><td width="71" height="16" class="bo3">
+        	    	<img src="/images/images2/green.gif" width="[#r5used#]" height="16"><img src="/images/images2/white.gif" width="[#r5free#]" height="16"></td></tr></table></td>
+        	 
+        	  </tr>
+        	  
+        	  <tr height="20">
+        		  <td  class="style2">交换空间</td>
+        	    <td title="共[#swap#]KB;剩下[#freeswap#]KB;使用率[#r6#]%">
+        	    	<table cellspacing="0" cellpadding="0">
+        	    	<tr><td width="71" height="16" class="bo3">
+        	    	<img src="/images/images2/green.gif" width="[#r6used#]" height="16"><img src="/images/images2/white.gif" width="[#r6free#]" height="16"></td></td></tr></table>
+        	 
+        	  </tr>
+
+            <tr><td colspan="2" height=5 ></td></tr>
+            
+            <tr >
+        		  
+        	    <td colspan="2" >
+        	        	 
+        	  </td>
+        	</tr>
+
+       <tr><td colspan="2" height=5 ></td></tr>
+	
+ [#SLPB#]       	
+        	 <tr height="22">
+        		  <td  class="style2" title="设备名:[#dev#]">[#mount#]</td>
+        	    <td title="已用:[#used#]KB;剩余:[#free#]KB;使用比例:[#rate#]%" >
+        	    	<table cellspacing="0" cellpadding="0">
+        	    	<tr><td width="71" height="16" class="bo3">
+        	    	<img src="/images/images2/green.gif" width="[#usedt#]" height="16"><img src="/images/images2/white.gif" width="[#freet#]" height="16"></td></tr></table></td>
+        	 
+        	  </tr>
+ [#SLPE#]
+      
+             	  <tr><td colspan="2"><hr style="border-bottom:solid 100 #8CB4E8" ></td> </tr>	  
+
+        	   <tr hreight="22">
+        	  	<td class="style2">当前进程</td>
+        	  	<td>[#sumprocess#]&nbsp;&nbsp;&nbsp;<a href="/pronline/Msg?FunName@ncWebLim_TestProcess&flags@1" target="_blank"><IMG height=5 
+                        src="/images/images2/more.gif" width=37 
+                        border=0></a></TD>
+        	  </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td height="6" bgcolor="#8CB4E8"></td>
+      </tr>
+      <tr height="5">
+        <td></td>
+      </tr>
+
+      <tr>
+        <td height="20"><span class="style5">&nbsp;版本号:[#version#]</span></td>
+      </tr>
+      <tr>
+        <td height="20"><span class="style5">&nbsp;序列号:[#prodsn#]</span></td>
+      </tr>
+       <tr>
+        <td height="20"><span class="style5">&nbsp;</span></td>
+      </tr>
+     
+     
+</table>
+</body>
+</html>

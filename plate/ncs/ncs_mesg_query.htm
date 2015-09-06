@@ -1,0 +1,113 @@
+<html>
+
+<head>
+<title>查询</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<!-- Infrastructure code for the tree -->
+<script>
+function queren()
+{
+form1.submit();
+self.close();
+
+}
+function init()
+{
+form1.service_code.value=dialogArguments.form1.service_code.value; 
+
+form1.message_title.value=dialogArguments.form1.message_title.value;
+form1.message_content.value=dialogArguments.form1.message_content.value;
+}
+</script>
+
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginheight="0"  oncontextmenu="return true" onload="init()">
+  <form name="form1" method="post" action="/pronline/Msg" target="sbpm_right">
+  <input type="hidden" name="FunName" value="ncsDispWbsMesg">
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+
+  <tr> 
+    <td colspan="2"><table width="100%" height="27" border="0" align="center" cellpadding="0" cellspacing="0" background="/images/table_bg1.gif">
+        <tr > 
+          <td colspan="2" > <div align="center"><strong><font color="#FFFFFF">
+             
+              消息查询</font></strong></div></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr> 
+    <td colspan="2"> 
+        <br>
+        <table width="95%" border="1"    bordercolorlight=#89ACED   bordercolordark=#ffffff    align="center" cellpadding="0" cellspacing="0" >
+          <tr> 
+            <td> 
+             <table width="100%" border="0" align="center" >
+                <tr>
+                  <td colspan="4">&nbsp;</td>
+                </tr>      
+                 <tr height="35"> 
+                  <td ></td>
+                  <td align="right"> <font color="#000000"><b><font size="2">场所代码&nbsp;</font></b></font></td>
+                  <td > <input type="text" name="service_code" size="27"></td>
+                  <td >&nbsp;&nbsp;</td>
+                </tr>
+
+                <tr height="35"> 
+                  <td ></td>
+                  <td align="right"> <font color="#000000"><b><font size="2">消息编号&nbsp;</font></b></font></td>
+                  <td > <input type="text" name="message_code" size="27"></td>
+                  <td >&nbsp;&nbsp;</td>
+                </tr> 
+               
+               <tr height="35"> 
+                  <td ></td>
+                  <td align="right"> <font color="#000000"><b><font size="2">时间从&nbsp;</font></b></font></td>
+                  <td > <input type="text" name="sdate" size="27" value="[#sdate#]"></td>
+                  <td >&nbsp;&nbsp; </td>
+                </tr> 
+                
+               <tr height="35"> 
+                  <td ></td>
+                  <td align="right"> <font color="#000000"><b><font size="2">到&nbsp;</font></b></font></td>
+                  <td > <input type="text" name="edate" size="27" value="[#edate#]"></td>
+                  <td >&nbsp;&nbsp; </td>
+                </tr> 
+               
+               
+                 <tr height="35"> 
+                  <td ></td>
+                  <td align="right"><font color="#000000"><b><font size="2">消息标题&nbsp;</font></b></td>
+                  <td ><input type="text" name="message_title" size="27">
+                  </td>
+                  <td >&nbsp;</td>
+                </tr> 
+                <tr height="35"> 
+                  <td ></td>
+                  <td align="right"><font color="#000000"><b><font size="2">消息内容&nbsp;</font></b></td>
+                  <td ><input type="text" name="message_content" size="27">
+                  </td>
+                  <td >&nbsp;</td>
+                </tr> 
+                
+                <tr height="35"> 
+                  
+                  <td colspan="4" align="center">&nbsp;&nbsp;<input name='Button' type='button' class='an3' onClick='queren()' value='确 认'>&nbsp;<input name='Button2' type='button' class='an3' onClick='self.close()' value='关 闭'> </td>
+                </tr> 
+               
+              </table>
+            </td>
+          </tr>          
+        </table>
+
+      </td>
+  </tr>
+</table>
+ </form>
+</body>
+</html>

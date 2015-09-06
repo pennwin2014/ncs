@@ -1,0 +1,153 @@
+<html>
+
+<head>
+
+<title>规则编辑</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<script>
+
+function goto(t){
+
+self.location.href=t
+
+}
+
+function custinput(t,y){
+var j=eval("document.all."+y)
+if(t.value.substr(0,5)=="$cust"){
+j.value=t.value.substr(16)
+j.disabled=0
+j.focus()
+}else{
+j.value=t.value.substr(16)
+j.disabled=1
+}
+}
+</script>
+
+</head>
+
+
+<body bgcolor="#CCCCCC" text="#000000" leftmargin="1" topmargin="1">
+<form name="form1" method="post" action="/profire/Msg#[#curindex#]"  target="fbot">
+
+  <table width="100%" border="0" cellspacing="0" bgcolor="#CCCCCC">
+    <tr> 
+      <td colspan="5" height="3" class="bord2"> 
+        <input type="hidden" name="FunName" value="fireWebModiTables">
+        <input type="hidden" name="index" value="[#index#]">
+        <input type="hidden" name="name"  value="[#name#]">
+        <div align="center"> <b>包过滤规则</b></div>
+      </td>
+      <td width="26%" height="3" class="bord4"> 
+        <div align="right"><b>索引号[[#index#]]</b></div>
+      </td>
+    </tr>
+    <tr> 
+      <td width="7%" height="2"  class="bord1"> 
+        <div align="right">执行序号</div>
+      </td>
+      <td width="27%" height="2" class="bord1">
+        <input type="text" name="num" size="10" maxlength="10" value="[#num#]">
+      </td>
+      <td width="7%" height="2" class="bord1"> 
+        <div align="right">处理方式</div>
+      </td>
+      <td width="26%" height="2" class="bord1"> [#type#]</td>
+      <td width="7%" height="2" class="bord1"> 
+        <div align="right">结果</div>
+      </td>
+      <td width="26%" height="2" class="bord3"> [#jump#]</td>
+    </tr>
+    <tr> 
+      <td width="7%" height="2" class="bord1"> 
+        <div align="right">说明</div>
+      </td>
+      <td colspan="3" height="2" class="bord1"> 
+        <input type="text" name="dispname" size="63" maxlength="63" value="[#dispname#]">
+      </td>
+      <td width="7%" height="2" class="bord1"> 
+        <div align="right">协议</div>
+      </td>
+      <td width="26%" height="2" class="bord3"> 
+        <div align="left"> [#prot#]</div>
+      </td>
+    </tr>
+    <tr> 
+      <td width="7%" class="bord1"> 
+        <div align="right">源地址</div>
+      </td>
+      <td width="27%" class="bord1"> [#sip#]</td>
+      <td width="7%" class="bord1"> 
+        <div align="right">源端口</div>
+      </td>
+      <td width="26%" class="bord1"> [#sport#]</td>
+      <td width="7%" class="bord1"> 
+        <div align="right">输入接口</div>
+      </td>
+      <td width="26%" class="bord3"> [#indev#]</td>
+    </tr>
+    <tr> 
+      <td width="7%" class="bord1"> 
+        <div align="right">目标地址</div>
+      </td>
+      <td width="27%" class="bord1"> [#dip#]</td>
+      <td width="7%" class="bord1"> 
+        <div align="right">目标端口</div>
+      </td>
+      <td width="26%" class="bord1"> [#dport#]</td>
+      <td width="7%" class="bord1"> 
+        <div align="right">输出接口</div>
+      </td>
+      <td width="26%" class="bord3"> [#outdev#]</td>
+    </tr>
+    <tr> 
+      <td width="7%" class="bord1"> 
+        <div align="right">限制</div>
+      </td>
+      <td width="27%" class="bord1"> 
+        <input type="text" name="limit" size="12" maxlength="12" value="[#limit#]">
+      </td>
+      <td width="7%" class="bord1"> 
+        <div align="right">触发阀值</div>
+      </td>
+      <td width="26%" class="bord1">
+        <input type="text" name="burst" size="12" maxlength="12" value="[#burst#]">
+      </td>
+      <td width="7%" class="bord1"> 
+        <div align="right">状态</div>
+      </td>
+      <td width="26%" class="bord3">[#state#] </td>
+    </tr>
+    <tr> 
+      <td width="7%" height="2" class="bord1"> 
+        <div align="right">TCP标志</div>
+      </td>
+      <td width="27%" height="2" class="bord1"> [#tcpflags#]</td>
+      <td width="7%" height="2" class="bord1"> 
+        <div align="right">TCP碎片</div>
+      </td>
+      <td width="26%" height="2" class="bord1"> 
+        <input type="checkbox" name="fragment" value="Yes" [#fragment#]>
+      </td>
+      <td colspan="2" height="2" class="bord3"> 
+        <div align="right"> 
+          <input type="submit" name="add" value="增加" class="an3">
+          <input type="submit" name="modi" value="修改" [#modi#] class="an3">
+          <input type="reset"   name="reset"  value="恢复" class="an3">
+        </div>
+      </td>
+    </tr>
+  </table>
+
+</form>
+
+<table width="100%" border="0">
+
+</table>
+</body>
+
+</html>
+

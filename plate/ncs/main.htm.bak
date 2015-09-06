@@ -1,0 +1,716 @@
+<head>
+ 	
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>新网程终端特征采集系统</title>
+<link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" /> 
+<link rel="stylesheet" type="text/css" href="/newver/resources/css/toolbars.css" />	
+<script type="text/javascript" src="/newver/resources/js/ext-all.js"></script> 
+<script type="text/javascript" src="/js/v9/treecorp.js"></script> 
+<link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-pronetway.css" />
+<style type="text/css">
+.form-search-trigger { background: url(/images/v4/zoom.gif);}
+
+.x-tab-default-top button, .x-tab-default-top.x-tab-inner {
+	height: 16px !important;
+	line-height: 16px;
+}
+.x-statusbar .x-status-busy {
+    padding-left: 25px !important;
+    background: transparent no-repeat 3px 0;
+}
+.x-statusbar .x-status-busy {
+    background: url(/images/loading.gif);
+}
+.add_dw {
+    background: url(/images/large/gman.gif) !important;
+}	 
+.add_sf {
+    background: url(/images/large/customers.png) !important;
+}	
+.dhs {
+    background: url(/images/large/earth.png) !important;
+}	
+.mggd {
+    background: url(/images/large/info.png) !important;
+}
+
+.search {
+    background: url(/images/large/search.png) no-repeat !important;
+}
+.lamp {
+    background: url(/images/large/lamp.png) no-repeat center !important;
+}
+.bk {
+    background: url(/images/large/bk.png) !important;
+}
+
+.sitemap {
+    background: url(/images/large/sitemap.png) !important;
+}
+.pencil {
+    background: url(/images/large/pencil.png) !important;
+}
+.address {
+    background: url(/images/large/address.png) !important;
+}
+.dvd {
+    background: url(/images/large/dvd.png) !important;
+}
+
+
+.refresh {
+	background: url(/images/large/refresh.png) 10px 0 no-repeat !important;
+	width:42px !important;	
+}
+
+.unlock {
+    background: url(/images/large/unlock.png) 10px 0 no-repeat !important;
+	width:42px !important;
+	//background-image: url(/images/large/unlock.png) !important;
+}
+
+.icon_frontpage{
+	background: url(/images/mac/top_icon/front_page.png) 0 0 no-repeat !important;
+	width:32px !important;
+	 //background: url(/images/mac/top_icon/front_page.png)  no-repeat center !important;
+}
+
+.icon_shortcut{
+	 background: url(/images/large/lamp.png) 10px 0 no-repeat !important;
+	 width:42px !important;
+}
+
+.icon_infoquery_mac{
+	background: url(/images/mac/top_icon/infoquery_mac.png) 17px 0 no-repeat !important;
+	width:49px !important;
+}
+
+.icon_infoquery_hotspot{
+	background: url(/images/mac/top_icon/infoquery_hotspot.png) 10px 0 no-repeat !important;
+	width:42px !important;
+}
+
+.icon_infoquery_place{
+	background: url(/images/mac/top_icon/infoquery_place.png) 20px 0 no-repeat !important;
+	width:52px !important;
+}
+
+.icon_infoquery_move{
+	background: url(/images/mac/top_icon/infoquery_move.png) 20px 0 no-repeat !important;
+	width:52px !important;
+}
+
+.icon_infoquery_current{
+	background: transparent url("/images/mac/top_icon/infoquery_id.png") no-repeat scroll 10px 0px !important;
+	width:42px !important;
+}
+
+.icon_alarm_controlmanage{
+	background: url(/images/mac/top_icon/alarm_controlmanage.png) 10px 0 no-repeat !important;
+	width:42px !important;
+}
+
+.icon_alarm_peoplecalled{
+	background: transparent url("/images/mac/top_icon/alarm_peoplecalled.png") no-repeat scroll 20px 0px !important;
+	width:52px !important;
+}
+
+.icon_dm_bab{
+	background: url(/images/mac/top_icon/dm_bab.png) 20px 0 no-repeat !important;
+	width:52px !important;
+}
+
+.icon_dm_sample{
+	background: url(/images/mac/top_icon/dm_sample.png) 10px 0 no-repeat !important;
+	width:42px !important;
+}
+
+.icon_dm_freCharact{
+	background: url(/images/mac/top_icon/dm_freCharact.png) 17px 0 no-repeat !important;
+	width:49px !important;
+}
+
+.icon_dm_track{
+	background: transparent url("/images/mac/top_icon/dm_track.png") no-repeat scroll 20px 0px !important;
+	width:42px !important;
+}
+
+.icon_dm_sus{
+	background: url(/images/mac/top_icon/dm_sus.png) 20px 0 no-repeat !important;
+	width:52px !important;
+}
+
+.icon_dm_crowd{
+	background: url(/images/mac/top_icon/dm_crowd.png) 10px 0 no-repeat !important;
+	width:42px !important;
+}
+
+.icon_operation_equipment{
+	background: url(/images/mac/top_icon/operation_equipment.png) 10px 0 no-repeat !important;
+	width:42px !important;
+}
+
+.icon_operation_normally{
+	background: url(/images/mac/top_icon/operation_normally.png) 10px 0 no-repeat !important;
+	width:42px !important;
+}
+.icon_operation_place{
+	background: url(/images/mac/top_icon/operation_place.png) 10px 0 no-repeat !important;
+	width:42px !important;
+}
+.icon_operation_safety{
+	background: url(/images/mac/top_icon/operation_safety.png) 20px 0 no-repeat !important;
+	width:52px !important;
+}
+.icon_operation_terminal{
+	background: url(/images/mac/top_icon/operation_terminal.png) 20px 0 no-repeat !important;
+	width:52px !important;
+}
+
+.icon_systemset_admin{
+	background: url(/images/mac/top_icon/systemset_admin.png) 17px 0 no-repeat !important;
+	width:49px !important;
+}
+.icon_systemset_alarm{
+	background: url(/images/mac/top_icon/systemset_alarm.png) 20px 0 no-repeat !important;
+	width:52px !important;
+}
+.icon_systemset_preferences{
+	background: url(/images/mac/top_icon/systemset_preferences.png) 20px 0 no-repeat !important;
+	width:52px !important;
+}
+.icon_systemset_log{
+	background: url(/images/mac/top_icon/systemset_log.png) 17px 0 no-repeat !important;
+	width:49px !important;
+}
+.icon_myaccount_username{
+	background: url(/images/mac/top_icon/myaccount_username.png) 10px 0 no-repeat !important;
+	width:42px !important;
+}
+.icon_myaccount_toolbar{
+	background: url(/images/mac/top_icon/myaccount_toolbar.png) 17px 0 no-repeat !important;
+	width:49px !important;
+}
+
+.edit {
+    background: url(/images/large/edit.png) !important;
+}
+.static {
+    background: url(/images/large/pie-chart_graph.png) !important;
+}
+.group {
+    background: url(/images/large/category.png) !important;
+}
+
+.users {
+    background: url(/images/large/user_friend.png) !important;
+}
+.macs {
+    background: url(/images/large/help_ring-buoy.png) no-repeat  !important;
+}
+.calculator {
+    background: url(/images/large/calculator.png) !important;
+}
+.szhtj {
+    background: url(/images/large/statistics.png) !important;
+}
+.xtyh {
+    background: url(/images/large/add.gif) !important;
+}
+.mark_flag {
+    background: url(/images/large/flag_mark_green.png) !important;
+}
+
+*{font-size:12px !important;}
+  
+.clsDeviceTitle{
+	text-align: right;
+	font-size:14px;
+	background-color: gray;
+} 
+
+.arrow{
+    background: url(/images/mac/arror-next.gif) left top no-repeat;
+	left: 34px !important;
+}
+
+.cls_menu_panel{
+	background:#ECFAFF !important;
+}
+
+.cls_menu_second_normal{
+	width:100% !important;
+    height: 35px !important;
+	background:#ECFAFF !important;
+	border-radius:0 !important;
+	//border : 1px solid #00B1F1 !important;
+}
+
+.cls_menu_second_normal button{
+	width:100% !important;
+    height: 35px !important;
+	//background:#ECFAFF !important;
+	background: url(/images/mac/menu_bk/bkN_second.png) !important;	
+	border-radius:0 !important;
+	//border-bottom:1px solid #00B1F1 !important;
+}
+
+.cls_menu_second_focus{
+	width:100% !important;
+    height: 35px !important;
+	background:#C8C8C8 !important;
+	border-radius:0 !important;
+	//border : 1px solid #00B1F1 !important;
+	
+}
+
+.cls_menu_second_focus button{
+	width:100% !important;
+    height: 35px !important;
+	background:#C8C8C8 !important;
+	border-radius:0 !important;
+	border-bottom:1px solid #00B1F1 !important;
+}
+
+
+.bkmenun_id_infoquery, .bkmenun_id_infoquery button{
+	width:100% !important;
+	height: 35px !important;
+	background: url(/images/mac/menu_bk/bkmenun_infoquery.png) !important;	
+	filter:"progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')" !important;  
+	-moz-background-size:100% 100% !important;  
+    background-size:100% 100% !important;  
+	margin:0px 0 0px 0px !important;	
+	border-bottom:1px solid #00B1F1 !important;
+	border-radius:0 !important;
+}
+
+.bkmenuf_id_infoquery, .bkmenuf_id_infoquery button{
+	width:100% !important;
+	height: 35px !important;
+	background: url(/images/mac/menu_bk/bkmenuf_infoquery.png) !important;	
+	filter:"progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')" !important;  
+	-moz-background-size:100% 100% !important;  
+    background-size:100% 100% !important;  
+	margin:0px 0 0px 0px !important;	
+	border-bottom:1px solid #00B1F1 !important;
+	border-radius:0 !important;
+}
+
+.bkmenun_id_alarm, .bkmenun_id_alarm button{
+	width:100% !important;
+	height: 35px !important;
+	background: url(/images/mac/menu_bk/bkmenun_alarm.png) !important;	
+	filter:"progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')" !important;  
+	-moz-background-size:100% 100% !important;  
+    background-size:100% 100% !important;  
+	margin:0px 0 0px 0px !important;	
+	border-bottom:1px solid #00B1F1 !important;
+	border-radius:0 !important;
+}
+
+.bkmenuf_id_alarm, .bkmenuf_id_alarm button{
+	width:100% !important;
+	height: 35px !important;
+	background: url(/images/mac/menu_bk/bkmenuf_alarm.png) !important;	
+	filter:"progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')" !important;  
+	-moz-background-size:100% 100% !important;  
+    background-size:100% 100% !important;  
+	margin:0px 0 0px 0px !important;	
+	border-bottom:1px solid #00B1F1 !important;
+	border-radius:0 !important;
+}
+
+.bkmenun_id_dm, .bkmenun_id_dm button{
+	width:100% !important;
+	height: 35px !important;
+	background: url(/images/mac/menu_bk/bkmenun_dm.png) !important;	
+	filter:"progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')" !important;  
+	-moz-background-size:100% 100% !important;  
+    background-size:100% 100% !important;  
+	margin:0px 0 0px 0px !important;	
+	border-bottom:1px solid #00B1F1 !important;
+	border-radius:0 !important;
+}
+
+.bkmenuf_id_dm, .bkmenuf_id_dm button{
+	width:100% !important;
+	height: 35px !important;
+	background: url(/images/mac/menu_bk/bkmenuf_dm.png) !important;	
+	filter:"progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')" !important;  
+	-moz-background-size:100% 100% !important;  
+    background-size:100% 100% !important;  
+	margin:0px 0 0px 0px !important;	
+	border-bottom:1px solid #00B1F1 !important;
+	border-radius:0 !important;
+}
+
+.bkmenun_id_operation, .bkmenun_id_operation button{
+	width:100% !important;
+	height: 35px !important;
+	background: url(/images/mac/menu_bk/bkmenun_operation.png) !important;	
+	filter:"progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')" !important;  
+	-moz-background-size:100% 100% !important;  
+    background-size:100% 100% !important;  
+	margin:0px 0 0px 0px !important;	
+	border-bottom:1px solid #00B1F1 !important;
+	border-radius:0 !important;
+}
+
+.bkmenuf_id_operation, .bkmenuf_id_operation button{
+	width:100% !important;
+	height: 35px !important;
+	background: url(/images/mac/menu_bk/bkmenuf_operation.png) !important;	
+	filter:"progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')" !important;  
+	-moz-background-size:100% 100% !important;  
+    background-size:100% 100% !important;  
+	margin:0px 0 0px 0px !important;	
+	border-bottom:1px solid #00B1F1 !important;
+	border-radius:0 !important;
+}
+
+.bkmenun_id_systemset, .bkmenun_id_systemset button{
+	width:100% !important;
+	height: 35px !important;
+	background: url(/images/mac/menu_bk/bkmenun_systemset.png) !important;	
+	filter:"progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')" !important;  
+	-moz-background-size:100% 100% !important;  
+    background-size:100% 100% !important;  
+	margin:0px 0 0px 0px !important;	
+	border-bottom:1px solid #00B1F1 !important;
+	border-radius:0 !important;
+}
+
+.bkmenuf_id_systemset, .bkmenuf_id_systemset button{
+	width:100% !important;
+	height: 35px !important;
+	background: url(/images/mac/menu_bk/bkmenuf_systemset.png) !important;	
+	filter:"progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')" !important;  
+	-moz-background-size:100% 100% !important;  
+    background-size:100% 100% !important;  
+	margin:0px 0 0px 0px !important;	
+	border-bottom:1px solid #00B1F1 !important;
+	border-radius:0 !important;
+}
+
+.bkmenun_id_myaccount, .bkmenun_id_myaccount button{
+	width:100% !important;
+	height: 35px !important;
+	background: url(/images/mac/menu_bk/bkmenun_myaccount.png) !important;	
+	filter:"progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')" !important;  
+	-moz-background-size:100% 100% !important;  
+    background-size:100% 100% !important;  
+	margin:0px 0 0px 0px !important;	
+	border-bottom:1px solid #00B1F1 !important;
+	border-radius:0 !important;
+}
+
+.bkmenuf_id_myaccount, .bkmenuf_id_myaccount button{
+	width:100% !important;
+	height: 35px !important;
+	background: url(/images/mac/menu_bk/bkmenuf_myaccount.png) !important;	
+	filter:"progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')" !important;  
+	-moz-background-size:100% 100% !important;  
+    background-size:100% 100% !important;  
+	margin:0px 0 0px 0px !important;	
+	border-bottom:1px solid #00B1F1 !important;
+	border-radius:0 !important;
+}
+
+.x-btn-inner{
+	text-align: left !important;
+}
+
+.x-tab-inner_2{
+	margin: 0 0 0 0 !important;
+	font-size: 11pt;
+	width : 130px !important;
+}   
+.cls_search{
+	//background: url(/images/mac/top_icon/bk_search.png) !important;
+	background: #00B1F1 !important;
+	margin-left:-150px;
+	border: solid 1px #FFF;
+	border-radius:10px 10px 10px 10px;
+	width:209px;
+	height:30px;
+	display:inline-block !important;
+}
+
+.cls_search img{
+	margin-left:15px;
+	margin-top:5px;
+	width:15px;
+	height:15px;
+}
+
+.cls_search input{
+	width:130px;
+	margin:6px 0 3px 40px;
+	margin-top:6px;
+	margin-left:20px;
+	color:#EBEBEB;
+	font-size:10px !important;
+	background:transparent;
+	border:1px;
+	border-bottom-style:none;
+	border-top-style:none;
+	border-left-style:none;
+	border-right-style:none;
+}
+
+
+</style>
+  
+
+    <script type="text/javascript">
+    	        var grid_height='';
+    	        var grid_width='';
+    	        var servicecode='';
+              var corpdid='';
+              var ncsgroupid='';
+    	        var dxtitle='';
+    	        var fcode='';
+    	
+     var ncapp;
+     var compidTmp;
+     var compNameTmp;
+     
+     var user_right;
+
+     
+     
+     
+        Ext.Loader.setConfig({enabled: true});
+        Ext.Loader.setPath('Ext.ux', '/newver/ux/');
+ 
+   //     Ext.Loader.setPath('Ext.app', 'classes');
+        Ext.require([
+    'Ext.tip.QuickTipManager',
+    'Ext.container.Viewport',
+    'Ext.layout.*',
+    'Ext.form.Panel',
+    'Ext.form.Label',
+    'Ext.grid.*',
+    'Ext.data.*',
+    'Ext.tree.*',
+     'Ext.panel.*',
+    'Ext.toolbar.*',
+    'Ext.button.*',
+    'Ext.selection.*',
+    'Ext.tab.Panel',
+    'Ext.tab.*',
+    'Ext.ux.TabCloseMenu',
+    'Ext.ux.layout.Center',
+     'Ext.chart.*',
+    'Ext.ux.statusbar.StatusBar'
+
+        ]);
+        
+     
+     	function _showwindows(htmvar, x0,y0,cx,cy,filed2,title0)
+    	{
+
+         	var win = new Ext.Window ({
+                         id:"addwindow3",
+                             title:title0,
+                             x:x0,
+                             y:y0,
+                             width:cx,
+                             height:cy,
+                             bodyPadding: 0,
+                             modal:false,
+                             resizable:true,
+                             draggable:true,
+                            maximizable:true ,
+                     	     html:htmvar,
+                     	     listeners:{
+                     	     	beforeclose:function(){
+               
+                     	     		 	var tabs_center=Ext.getCmp("layout_center");
+                      
+											        	var active = tabs_center.getActiveTab();
+      	
+											        	var active_id='lan_'+active.id;
+
+											    //    	var tabs_if=Ext.getCmp(active_id).getActiveTab();
+														//		var tabframe=active_id+'_'+tabs_if.id;
+															var tabframe=active_id;
+	alert(tabframe);			
+																eval(tabframe).reflash();
+                     	     		}
+                     	     	}
+                     	     		})
+                     	     win.show(); 
+                   	     
+        	
+
+        
+    	} 
+          
+          
+        
+      var store_status;    	
+      var fptest = Ext.create('Ext.FormPanel', { 
+
+     });
+     var wintest='';
+     var timeout_count=0;
+
+    function testright(){
+    	
+    	store_status.load();
+              fptest.getForm().doAction('submit',{
+              url:'/pronline/Msg',
+               method:'post',
+               params:{FunName:'ncsTestRight_v4'},
+    
+                success:function(form,action){   
+
+
+                	             
+                      timeout_count=0;
+             		     var msgaa=action.result.reason;
+       
+             		     if(msgaa=='license'){
+             		     	 if(!wintest){
+             	           msgaa=action.result.id;
+				              wintest=Ext.create('Ext.Window', {
+										       title: '系统提示',
+										       id:'wintest',     
+										 //       header:false,
+										        width: 250,
+										        x:600,
+										        y:210,
+										        height: 90,
+										        closable: true,
+										        modal: false,
+										  //      closeAction: 'hide',
+										        bodyPadding: 10,
+										        html:msgaa
+										    });
+
+										    
+                        wintest.show();
+                       }
+             		     }
+             		     	
+                },
+             		 failure:function(form,action){
+             		 	timeout_count++;
+             		 	  if(timeout_count>5) return;
+             		      if(!wintest){
+             	
+				              wintest=Ext.create('Ext.Window', {
+										       title: '系统提示',
+										       id:'wintest',     
+										 //       header:false,
+										        width: 250,
+										        x:600,
+										        y:210,
+										        height: 90,
+										        closable: true,
+										        modal: false,
+										  //      closeAction: 'hide',
+										        bodyPadding: 10,
+										        html:'登录超时，请重新登录！'
+										    });
+										     wintest.on("beforeclose", function() {
+                             self.location='/login2.htm';
+                          });
+										    
+                        wintest.show();
+                   }
+
+
+                 
+           		 }
+               }
+           )
+          
+   }
+   
+
+         Ext.onReady(function(){
+        	
+        	Ext.QuickTips.init();
+          ncapp = new ncViewer.App();
+
+           setInterval('testright()',20000);   
+     
+ store_status=Ext.create('Ext.data.Store', 
+{
+        		pageSize: 40,  
+       
+            fields: ['licuser', 'zccompute','psn','onuser','nwversion'],
+        		autoLoad:true,
+        		proxy: 
+        		{
+            			type: 'ajax',
+
+         			url: '/pronline/Msg?FunName@lan_showstatus',
+            			reader: {
+                			type:'json',
+                			root: 'eimdata',
+                			totalProperty: 'totalCount'
+            			},         
+            			simpleSortMode: true
+        		}
+        		,
+        listeners:{'load':function(){  
+      	  store_status.each(function(record){  
+      	  	 var cpsn=record.get('psn');  
+      	     var licuser=record.get('licuser');
+      	     var zccompute=record.get('zccompute');
+      	     var onuser=record.get('onuser');
+      	     var nwversion=record.get('nwversion');
+      	     var temp_status='&nbsp;&nbsp;产品序列号：'+'<font color=red>'+cpsn+'</font>';
+      	     temp_status=temp_status+'&nbsp;&nbsp;版本号：'+'<font color=red>'+ 'V1.6'+'</font>';
+      	    
+      	         var sb=Ext.getCmp('statusbar');
+                	sb.setStatus({
+                		text:temp_status,
+                		iconCls:'',
+                		clear:false
+                	});
+      	     
+      	    
+           }
+          );
+         
+ 
+     
+        }
+    } 
+  }   
+        );
+
+     
+              grid_height=Ext.getCmp('layout_center').getHeight()-56;
+            	grid_width=Ext.getCmp('layout_center').getWidth()-56;
+    
+        });
+      
+    </script>
+
+    <script type="text/javascript" src="/js/v9/ncViewer.js"></script> 
+    <script type="text/javascript">
+		var now=new Date();
+		var number = now.getYear().toString()+now.getMonth().toString()+now.getDate().toString()+now.getHours().toString()+now.getMinutes().toString()+now.getSeconds().toString(); 
+		document.write("\<script language=\"javascript\" type=\"text/javascript\" src=\"/pronline/Msg?FunName@ncsSysUserRoleConfig_v4&time@"+number+"\"><\/script\>");
+
+   </script>
+</head>
+<body>
+	  <form name="form1" id="form1" >
+		<input type="hidden" name="groupid" value="">
+		<input type="hidden" name="did" value="">
+		<input type="hidden" id="time_flag" name="time_flag" value="">
+		<input type="hidden" id="show_flag" name="show_flag" value="">
+	  <input type="hidden" id="fcode" name="fcode" value="">
+	  	  <input type="hidden" id="lb" name="lb" value="">
+		<input type="hidden" id="gid" name="gid" value="">
+	</form> 
+</body>
+</html>

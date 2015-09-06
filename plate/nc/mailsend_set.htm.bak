@@ -1,0 +1,172 @@
+<html>
+<head>
+<title>邮件分发参数设置</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<script language="javascript">
+	function changestyle(){
+	if(form1.MailReportType.value=='No'){
+     document.all.myhidd.style.display = 'none';
+	}else{
+		 document.all.myhidd.style.display = '';
+	}
+}
+function init(){
+	if(form1.MailReportType.value=='No'){
+     document.all.myhidd.style.display = 'none';
+	}else{
+		 document.all.myhidd.style.display = '';
+	}
+}
+function testmail(){
+	//form1.khwt_mail1.value=1;
+	var temp="/pronline/Msg?FunName@nc_opentest_mail";
+	var oDia=showModalDialog(temp,window,
+		  "status:no;center:yes;help:no;minimize:no;maximize:no;border:thick;statusbar:no;dialogWidth:530px;scroll:none;dialogHeight:400px;overflow:none");	
+}
+
+</script>
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" align="center" style="overflow:hidden" onload="init();">
+<form name="form1" method="post" action="/pronline/Msg">
+<input type="hidden" name="khwt_preple" value="">
+ <input type="hidden" name="khwt_man" value="">
+ <input type="hidden" name="khwt_title" value="">
+ <input type="hidden" name="khwt_content" value="">
+ <input type="hidden" name="temp_file" value="">
+<input name="reportid" type="hidden" value="">
+  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td valign="top" ><table width="100%" height="35" border="0" align="center" cellpadding="0" cellspacing="0" >
+          <tr > 
+            <td colspan="2"> <div style="font-size:11pt;color:#00237e;font-weight:bold;text-align: center;">邮件分发参数设置</div></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr> 
+      <td > 
+        <table width="70%" border="1"  bordercolorlight=#89ACED   bordercolordark=#ffffff   align="center" cellpadding="0" cellspacing="0" >
+          <tr> 
+            <td> 
+            	<table width="92%" border="0" align="center">
+                
+                <tr>
+                	<td>
+                		<table border="0" align="center" cellpadding="0" cellspacing="0">
+			                <tr> 
+			                  <td>&nbsp;</td>
+			                  <td>&nbsp;</td>
+			                  <td>&nbsp;</td>
+			                </tr>
+			                
+			                <tr>
+			                  <td width="19%"> <div align="right">发送方式:</div></td>
+			                  <td width="53%"> 
+			                  	<select name="MailReportType" style="width:255" onchange="changestyle();">
+			                  		<option value="No">系统直接发送</option>
+			                  		<option value="Yes">指定邮件服务器转发</option>
+			                  	</select> 
+			                  </td>
+			                  <td width="13%">&nbsp;</td>
+			                </tr>
+			                
+			                <tr> 
+			                  <td width="19%">&nbsp;</td>
+			                  <td width="53%">&nbsp;</td>
+			                  <td width="13%">&nbsp;</td>
+			                </tr>
+              			</table>
+              		</td>
+              	</tr>
+                <tr>
+                	<td>
+		              <div id="myhidd" >
+		               <table border="0" align="center" cellpadding="0" cellspacing="0">
+		                <tr> 
+		                  <td width="19%"> <div align="right">发&nbsp;件&nbsp;人:</div></td>
+		                  <td width="53%"> <input type="text" name="ncre_sender" size="35" maxlength="35" value="[#ncre_sender#]">
+		                  </td>
+		                  <td width="13%">&nbsp;</td>
+		                </tr>
+		                <tr> 
+		                  <td width="19%">&nbsp;</td>
+		                  <td width="53%">&nbsp;</td>
+		                  <td width="13%">&nbsp;</td>
+		                </tr>
+		                <tr> 
+		                  <td width="19%"> <div align="right">邮件账号:</div></td>
+		                  <td width="53%"> <input type="text" name="ncre_account" size="35" maxlength="35" value="[#ncre_account#]">           
+		                  </td>
+		                  <td width="13%">&nbsp;</td>
+		                </tr>
+		                <tr> 
+		                  <td width="19%">&nbsp;</td>
+		                  <td width="53%">&nbsp;</td>
+		                  <td width="13%">&nbsp;</td>
+		                </tr>
+		                <tr> 
+		                  <td width="19%"> <div align="right">账号密码:</div></td>
+		                  <td width="53%"> <input type="password" name="ncre_passwd" size="38" maxlength="35" value="[#ncre_passwd#]">           
+		                  </td>
+		                  <td width="13%">&nbsp;</td>
+		                </tr>
+		                <tr> 
+		                  <td width="19%">&nbsp;</td>
+		                  <td width="53%">&nbsp;</td>
+		                  <td width="13%">&nbsp;</td>
+		                </tr>
+		                <tr> 
+		                  <td width="19%"> <div align="right">邮件服务器地址:</div></td>
+		                  <td width="53%"> <input type="text" name="ncre_addr" size="35" maxlength="35" value="[#ncre_addr#]">           
+		                  </td>
+		                  <td width="13%">&nbsp;</td>
+		                </tr>
+		                <tr> 
+		                  <td width="19%">&nbsp;</td>
+		                  <td width="53%">&nbsp;</td>
+		                  <td width="13%">&nbsp;</td>
+		                </tr>
+		                <tr>
+		                  <td>&nbsp;</td>
+		                  <td>&nbsp;</td>
+		                  <td>&nbsp;</td>
+		                </tr>
+		              	</table>
+		              </div>
+              </td>
+            </tr>
+                
+              </table>
+              
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td height="70" ><table width="50%" border="0" align="center">
+          <tr> 
+            <td> <div align="center"> 
+                <input type="hidden" name="FunName" value="ncMailSendSave_par">
+                <input type="submit" name="ok" value="确 认" class="an3">
+                &nbsp; 
+                <input type="submit" name="App" value="应 用" class="an3">
+                &nbsp; 
+                <input type="button" name="add" value="测试"  class="an3" onclick="testmail();">>
+              </div></td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+
+</form>
+<script>
+	form1.MailReportType.value='[#MailReportType#]';
+</script>
+</body>
+</html>

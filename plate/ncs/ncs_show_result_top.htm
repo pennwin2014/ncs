@@ -1,0 +1,199 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>远程日志查询结果</TITLE>
+<META http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META   HTTP-EQUIV="pragma"   CONTENT="no-cache">  
+<META   HTTP-EQUIV="Cache-Control"   CONTENT="no-cache,   must-revalidate">  
+<META   HTTP-EQUIV="expires"   CONTENT="Wed,   26   Feb   1997   08:21:57   GMT">   
+<style type="text/css">
+<!--
+body {margin:0}
+div,td{font-family: 宋体;}
+a:link {color:#261cdc;text-decoration: underline}
+a:visited {color: #261cdc; text-decoration: underline}
+a.t:link{color:#261cdc;text-decoration: underline}a.t:hover{color:#261cdc;text-decoration: underline}a.t:visited{color:#800080;text-decoration: underline}
+td{font-size:12px; line-height:18px;}
+.red{color:#FF0000;}
+.fB{ font-weight:bold;}
+.pad10L{padding-left:10px; }.g{color:#666666}
+.pad0L{margin:15px 0 5px 15px;line-height:20px;table-layout:fixed;word-break:break-all;}
+.g{color:#666666}
+.i{font-size:16px;font-family:arial}
+a.top{font-family:arial}
+a.top:link {COLOR: #0000cc; text-decoration: underline}
+a.top:visited {COLOR: #800080; text-decoration: underline}
+a.top:active {COLOR: #0000cc; text-decoration: underline}
+.c{color:#7777CC;}a.c{color:#7777CC;}a.c:visited{color:#7777CC;}
+.ntb{width:100%;background-color:#0000cc;height:20px;line-height:20px;}
+.pg{font-size:14px;word-spacing:4px;font-family:arial;width:100%;text-align:center;height:30px;line-height:30px;}
+.pg *{font-family:arial}
+.pg font{font-size:16px;}
+.d{padding-left:10px;}
+.s{font-size:14px;table-layout:fixed; word-break :break-all;padding-left:10px;}
+.u{table-layout:fixed;word-break :break-all;padding-left:10px;}
+.BG3{border:1px solid #cccccc;margin-top:10px}
+.bgr3{background-color:#eeeeee;height:24px;line-height:24px}
+.pad5L{padding-left:5px; }
+/*以下为页首样式*/
+body,form{margin:0}
+.usrbar{margin-top:4px;padding-right:10px;font-size:12px;height:19px;line-height:19px;font-family:Arial;text-align:right}
+.hdch{margin-top:3px;height:21px;font-size:14px;font-family:arial}
+.wlk{color:#FFFFFF}
+a.wlk{color:#FFFFFF}
+a.wlk:visited{color:#FFFFFF}
+.style3 {color: #FFFFFF}
+.gr{color: #009933}
+#ft{clear:both;line-height:20px;background:#E6E6E6;text-align:center}
+#ft,#ft *{color:#77C;font-size:12px;font-family:Arial;white-space:nowrap}
+/*以下为ctpl增加*/
+td{font-size:12px;}
+table {border:none;}
+#tbl {table-layout:fixed;border-collapse: collapse;}
+#tbl thead tr {height:17px;line-height:17px;}
+#tbl thead td {background:#eee;padding-left:10px;}
+#tbList td {word-break :break-all;padding-left:10px;}
+#tbList tr {height:26px;}
+#forQuery td {word-break :break-all;padding-left:10px;}
+#forQuery tr {height:26px;}
+.tbl_alt {background:#eee}
+#tbList td a {color: #000;}
+#tbl td.s a{font-size:14px; color:#261CDC;}
+#tbl td.s a:visited{ color:#800080;}
+.sticky{}
+#zyq {float: right;width: 235px;overflow: hidden;margin:0 5px 0 0;}
+#topic_list {float:left;width:100%;margin:0 0 0 -245px;overflow:hidden;}
+#tbl {margin: 0 0 0 240px;}
+.ntb a:link{COLOR: #FFFFFF;text-decoration: underline}
+.ntb a:visited {COLOR: #FFFFFF; text-decoration: underline}
+.ntb a:active {COLOR: #FFFFFF; text-decoration: underline}
+/*以上为ctpl增加*/
+#yzm input{ime-mode:disabled;}
+#subMsg .postError{font-size:12px;color:#ff0000;margin-top:3px;}
+#signNamePanel {margin:5px 0 0 0;}
+
+-->
+</style>
+
+<SCRIPT>
+	
+	
+	function w1(){
+		form2.submit()
+	}
+	/* 最终调用函数ncsWebMailMonRead 显示邮件*/
+function goto(fname1, fname2, fname3, service_code){
+	
+	var tmp = fname1 + "/" + fname2 + "/" + fname3;
+	var t = "/pronline/Msg?FunName@ncsMailCommand&file_name@" + tmp + "&service_code@" + service_code;
+	showModalDialog(t, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:600px;scroll:no;dialogHeight:400px');
+}
+
+
+function show_mail_text(plate){
+	var t = "/pronline/Msg?FunName@ncsWebReplace&plate@" + plate;
+	showModalDialog(t, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:800px;scroll:no;dialogHeight:600px');
+}
+
+function gaoji()
+	{
+	showModalDialog("/pronline/Msg?FunName@ncsWebShowSearchAccessListPlate", window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:800px;scroll:yes;dialogHeight:300px');
+	}
+
+function checkWd()
+{
+	
+	if(form1.wd.value == "")
+	{
+		return false;
+	}
+	
+	return true;
+}
+
+
+
+
+</SCRIPT>
+
+
+</HEAD>
+<BODY onLoad="javascript:document.form1.reset()">
+<p align="left">
+	    <table><tr>
+          <p align="center"><td colspan="2" style="font-size:11pt;color:#00237e;font-weight:bold;text-align: center;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上网日志查询
+           </td></p>
+        </tr></table>
+	    
+	    
+	    <table cellpadding=0 cellspacing=0 id=l>
+	    	<tr><td style="padding-left:1px" nowrap>
+	    		<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a [#ct0#]>全&nbsp;部</a>
+	    		&nbsp;&nbsp;&nbsp;<a [#ct1#]>网&nbsp;页&nbsp;浏&nbsp;览</a>
+	    		&nbsp;&nbsp;&nbsp;<a [#ct2#]>网&nbsp;页&nbsp;表&nbsp;单</a>
+	    		&nbsp;&nbsp;&nbsp;<a [#ct3#]>网&nbsp;络&nbsp;聊&nbsp;天</a>
+	    		&nbsp;&nbsp;&nbsp;<a [#ct4#]>收&nbsp;发&nbsp;邮&nbsp;件</a>
+	    		
+	    		</div></td></tr>
+	    </table>
+	  
+<table cellpadding=0 cellspacing=0>
+	<tr valign=top><td style="height:62px;" nowrap>
+		
+		<div style="position:relative">
+		<form method="POST" action="/pronline/Msg" name="form1" target="parent" onSubmit="return checkWd()">
+			<input type="hidden" name="FunName" value="ncsWebSaveCondition">
+			
+			
+			<input type="hidden" name="ct" value="[#ct#]">
+			<input type="hidden" name="plate" value="[#plate#]">
+			<input type="hidden" name="net_content" value="">
+			<input type="hidden" name="task_name" value="">
+			
+			<input type="hidden" name="sdate" value="">
+			<input type="hidden" name="s_hour" value="">
+			<input type="hidden" name="s_min" value="">
+			<input type="hidden" name="edate" value="">
+			
+			<input type="hidden" name="e_hour" value="">
+			<input type="hidden" name="e_min" value="">
+			<input type="hidden" name="opt" value="">
+			<input type="hidden" name="net_ending_name" value="">
+			
+			<input type="hidden" name="destination_ip" value="">
+			<input type="hidden" name="net_username" value="">
+			<input type="hidden" name="user_name" value="">
+			<input type="hidden" name="certificate_type" value="">
+			
+			<input type="hidden" name="certificate_code" value="">
+			<input type="hidden" name="service_type2" value="[#service_type2#]">
+			
+			
+			
+			
+			
+			
+			<span id=in>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type=text name=wd value="[#wd#]" id=kw size=60 maxlength=100>
+			<input type=submit value="开始查询" id=sb class="an3">&nbsp;<a href="#xxm" onClick="gaoji()">高级</a></span>
+				<a href="/pronline/Msg?FunName@ncsShowSearchResult&plate@ncs/ncs_show_result_bot.htm&wd@[#wd#]&CurPg@[#CurPg#]&ct@[#ct#]&cmdNo@[#cmdNo#]&service_type@[#service_type#]" target="tree_bot">刷新查询结果</a><br>
+			
+			<div id="div_im" style="display:[#display1#]">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="service_type" [#check1#] value=1000>全部聊天
+      <input type="radio" name="service_type" [#check2#] value=1002>QQ
+      <input type="radio" name="service_type" [#check3#] value=1001>MSN
+      <input type="radio" name="service_type" [#check4#] value=1999>其他
+    </div>
+    <div id="div_mail" style="display:[#display2#]">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="service_type" [#check5#] value=0013>全部邮件
+      <input type="radio" name="service_type" [#check6#] value=0003>SMTP
+      <input type="radio" name="service_type" [#check7#] value=0004>POP3
+      <input type="radio" name="service_type" [#check8#] value=0006>Web Mail
+    </div>
+			
+		
+		</form>
+		</div>
+		
+		</td></tr>
+		
+		</table></p>
+		<BODY>
+		</HTML>

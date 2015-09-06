@@ -1,0 +1,481 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>数据中心_财经频道_腾讯网</title>
+<link href="css/css.css" rel="stylesheet" type="text/css">
+<link href="css/common_css.css" rel="stylesheet" type="text/css">
+
+
+<script>
+
+try {
+  document.domain = 'qq.com'
+} catch(e) {}
+
+var tree_menu_data = [{
+  id: '',
+  level: 0,
+  title: '数据中心首页',
+  url: 'dctr_modules/index_module.htm'
+},
+{
+  id: 'qgqp',
+  level: 0,
+  title: '千股千评',
+  url: 'dctr_modules/qgqp.htm'
+},
+{
+  level: 1,
+  title: '技术选股',
+  children: [{
+    id: 'ljzf',
+    title: '累计涨幅个股',
+    url: 'dctr_modules/ggsj.htm?t=1'
+  },
+  {
+    id: 'lxsz',
+    title: '连续上涨个股',
+    url: 'dctr_modules/ggsj.htm?t=2'
+  },
+  {
+    id: 'lxxd',
+    title: '连续下跌个股',
+    url: 'dctr_modules/ggsj.htm?t=3'
+  },
+  {
+    id: 'hsl',
+    title: '换手率统计',
+    url: 'dctr_modules/ggsj.htm?t=4'
+  },
+  {
+    id: 'ddmcpx',
+    title: '大卖单频现个股',
+    url: 'dctr_modules/ggsj.htm?t=5'
+  },
+  {
+    id: 'ddmrpx',
+    title: '大买单频现个股',
+    url: 'dctr_modules/ggsj.htm?t=6'
+  },
+  {
+    id: 'cjtz',
+    title: '成交突增个股',
+    url: 'dctr_modules/ggsj.htm?t=7'
+  },
+  {
+    id: 'ylcb',
+    title: '远离成本个股',
+    url: 'dctr_modules/ggsj.htm?t=8'
+  },
+  {
+    id: 'lzjz',
+    title: '量增价涨个股',
+    url: 'dctr_modules/ggsj.htm?t=9'
+  }]
+},
+{
+  level: 1,
+  title: '资金流向',
+  children: [{
+    id: 'dpzjlx',
+    title: '大盘资金流向',
+    url: 'dctr_modules/flow_dapan.htm'
+  },
+  {
+    id: 'bkzjlx',
+    title: '板块资金流向',
+    url: 'dctr_modules/flow_board.htm'
+  },
+  {
+    id: 'ggzjlx',
+    title: '个股资金流向',
+    url: 'dctr_modules/flow_stock.htm'
+  }]
+},
+{
+  level: 1,
+  title: '业绩报告大全',
+  children: [{
+    id: 'zxyjgg',
+    title: '最新业绩公告',
+    url: 'dctr_modules/nbyj.htm'
+  },
+  {
+    id: 'yjyg',
+    title: '业绩预告',
+    url: 'http://stock.finance.qq.com/cgi-bin/sstock/performance?t=2'
+  },
+  {
+    id: 'meigushouyi',
+    title: '年报每股收益排名',
+    url: 'dctr_modules/nbph.htm?t=1'
+  },
+  {
+    id: 'meigujzc',
+    title: '年报每股净资产排名',
+    url: 'dctr_modules/nbph.htm?t=2'
+  },
+  {
+    id: 'meiguxjl',
+    title: '年报每股现金流排名',
+    url: 'dctr_modules/nbph.htm?t=3'
+  },
+  {
+    id: 'jzcsy',
+    title: '年报净资产收益率排名',
+    url: 'dctr_modules/nbph.htm?t=4'
+  },
+  {
+    id: 'zylrzz',
+    title: '年报主营利润增长排名',
+    url: 'dctr_modules/nbph.htm?t=5'
+  }]
+},
+{
+  id: 'lhb',
+  level: 0,
+  title: '龙虎榜',
+  url: 'dctr_modules/lhb.htm'
+},
+{
+  id: 'dzjy',
+  level: 0,
+  title: '大宗交易数据',
+  url: 'dctr_modules/dzjy.htm'
+},
+{
+  id: 'dxf',
+  level: 0,
+  title: '大小非解禁',
+  url: 'dctr_modules/dxf.htm'
+},
+{
+  id: 'rzrq',
+  level: 0,
+  title: '融资融券',
+  url: 'http://stock.finance.qq.com/sstock/view/show.php?t=rzrq&c=show_default_info2'
+},
+{
+  id: 'xg',
+  level: 0,
+  title: '新股数据',
+  url: 'dctr_modules/xg.htm'
+},
+{
+  id: 'qzsj',
+  level: 0,
+  title: '期指数据',
+  url: 'http://stock.finance.qq.com/money/view/easyweb-show.php?t=lhb&c=show_if_lhb2'
+}];
+
+var g_customId_url_mapper = {
+  'ggzlzc' : ['ggzjlx', 'dctr_modules/flow_stock.htm?t=0'],
+  'ggzljc' : ['ggzjlx', 'dctr_modules/flow_stock.htm?t=1'],
+  'ggwrzc' : ['ggzjlx', 'dctr_modules/flow_stock.htm?t=2'],
+  'ggwrjc' : ['ggzjlx', 'dctr_modules/flow_stock.htm?t=3'],
+  'yjyg20111231' : ['yjyg', 'http://stock.finance.qq.com/cgi-bin/sstock/performance?t=2&displaytype=0&date=2011-12-31'],
+  'yjyg20110630' : ['yjyg', 'http://stock.finance.qq.com/cgi-bin/sstock/performance?t=2&displaytype=0&date=2011-06-30'],
+  'yjyg20110331' : ['yjyg', 'http://stock.finance.qq.com/cgi-bin/sstock/performance?t=2&displaytype=0&date=2011-03-31'],
+  'yjyg20101231' : ['yjyg', 'http://stock.finance.qq.com/cgi-bin/sstock/performance?t=2&displaytype=0&date=2010-12-31'],
+  'yjyg20100930' : ['yjyg', 'http://stock.finance.qq.com/cgi-bin/sstock/performance?t=2&displaytype=0&date=2010-09-30']
+  /*'yjyz' : ['yjyg', 'http://stock.finance.qq.com/cgi-bin/sstock/performance?t=2&displaytype=1'],
+  'yjyj' : ['yjyg', 'http://stock.finance.qq.com/cgi-bin/sstock/performance?t=2&displaytype=2'],
+  'yjyy' : ['yjyg', 'http://stock.finance.qq.com/cgi-bin/sstock/performance?t=2&displaytype=3'],
+  'yjyk' : ['yjyg', 'http://stock.finance.qq.com/cgi-bin/sstock/performance?t=2&displaytype=4'],
+  'yjds' : ['yjyg', 'http://stock.finance.qq.com/cgi-bin/sstock/performance?t=2&displaytype=5'],
+  'yjdj' : ['yjyg', 'http://stock.finance.qq.com/cgi-bin/sstock/performance?t=2&displaytype=6'],
+  'yjnk' : ['yjyg', 'http://stock.finance.qq.com/cgi-bin/sstock/performance?t=2&displaytype=7'],
+  'yjjk' : ['yjyg', 'http://stock.finance.qq.com/cgi-bin/sstock/performance?t=2&displaytype=8'],
+  'yjwdb' : ['yjyg', 'http://stock.finance.qq.com/cgi-bin/sstock/performance?t=2&displaytype=9'],
+  'yjbqd' : ['yjyg', 'http://stock.finance.qq.com/cgi-bin/sstock/performance?t=2&displaytype=10']*/
+  
+};
+
+//根据树形图数据，构建左侧树形列表
+function init_tree_menu(menu_data, ctn) {
+  var TMPLT = '<dl><dt style="@DTSTL@" onclick="@ONCLICK@">@TITLE@</dt><dd class="undis">@LIST@</dd></dl>';
+  var DECORATE_TITLE = '<a href="javascript:void(0);" onclick="onClickLeafNode(\'@URL@\');" id="leaf_@ID@_a">@TITLE@</a>';
+  var LEVEL_0_TITLE = '<a href="javascript:void(0);" onclick="onClickLeafNode(\'@URL@\');" style="background-image:none;color:#494949;">@TITLE@</a>';
+  var LI_TMPLT = '<li id="leaf_@ID@">' + DECORATE_TITLE + '</li>';
+  var id_url_mapper = {};
+  var result = [];
+  for (var i = 0; i < menu_data.length; i++) {
+    var data = menu_data[i];
+    var level = data['level'];
+    var html = '';
+    switch (level) {
+    case 0:
+      {
+        var html = TMPLT.replace(/@TITLE@/ig, LEVEL_0_TITLE).replace(/@TITLE@/ig, data['title']).replace(/@LIST@/ig, '').replace(/@URL@/ig, data['url']).replace(/@ONCLICK@/ig, "").replace(/@DTSTL@/ig, "background:url(http://img1.gtimg.com/finance/pics/hv1/212/189/758/49337357.gif);");
+        id_url_mapper['l' + data['id']] = data['url'];
+        break
+      }
+    case 1:
+      var li_html = [];
+      li_html.push('<ul>');
+      for (var j = 0; j < data['children'].length; j++) {
+        var child = data['children'][j];
+        li_html.push(LI_TMPLT.replace(/@TITLE@/ig, child['title']).replace(/@URL@/ig, child['url']).replace(/@ID@/ig, child['id']))
+        id_url_mapper['l' + child['id']] = child['url'];
+      }
+      li_html.push('</ul>');
+      html = TMPLT.replace(/@TITLE@/ig, data['title']).replace(/@LIST@/ig, li_html.join('')).replace(/@ONCLICK@/ig, "leftmenu(this,'dd');");
+      break;
+    }
+    result.push(html);
+  } !! $(ctn) ? $(ctn).innerHTML = result.join('') : '';
+  return id_url_mapper;
+}
+
+
+</script>
+
+</head>
+
+<body style="background-color:#fff;">
+
+
+<div id="channelNav">
+	<div class="hd">
+    	<div class="logo"><a boss="6098" target="_blank" href="http://finance.qq.com"><img src="http://mat1.gtimg.com/finance/financeNav0531/logo.png" alt="腾讯财经"></a><!--[if !IE]>|xGv00|e2fbf38a8c6a36e7f2c04914027d77d1<![endif]--></div>
+        <div class="subName"><img src="http://mat1.gtimg.com/finance/financeNav0531/name17.png" /></div>
+        
+
+
+
+    </div>
+</div>
+
+
+<div class="clr"></div>
+
+<div class="mar4"></div>
+
+<div class="page_header">
+  <span><a href="http://support.qq.com/beta2/simple/write.html?fid=390" target="_blank">意见反馈</a> | <a href="#" onclick="addBookmark();" class="fcred">收藏本页</a></span>
+  <div class="sk_wrap" id="stock_box1" style="margin-top:13px;">
+    <div class="idx_flip" style="margin-top:6px;">
+      <a href="javascript:void(0);" class="up" id="arr_up" title="点击向上滚动"></a>
+      <a href="javascript:void(0);" class="down" id="arr_do" title="点击向下滚动"></a>
+    </div>
+    <div class="idx" id="word" style="overflow: hidden; height: 29px; line-height: 29px;">
+      <p><a href="http://stockhtm.finance.qq.com/hqing/zhishu/000001.htm" title="上证指数:(000001)" target="_blank">上证指数:</a>&nbsp;<span id="topindex-sh000001"></span>&nbsp;<span></span>&nbsp;<span></span>&nbsp;|&nbsp;<a href="http://stockhtm.finance.qq.com/hqing/zhishu/399001.htm" title="深证成指:(399001)" target="_blank">深证成指:</a>&nbsp;<span id="topindex-sz399001"></span>&nbsp;<span></span>&nbsp;<span></span></p>
+      <p><a href="http://stockhtm.finance.qq.com/hk/ggcx/HSI.htm" title="恒生指数:(HSI)" target="_blank">恒生指数:</a>&nbsp;<span id="topindex-r_hkHSI"></span>&nbsp;<span></span>&nbsp;<span></span>&nbsp;|&nbsp;<a href="http://stockhtm.finance.qq.com/astock/ggcx/DJI.htm" title="道琼斯:(DJI)" target="_blank">道琼斯:</a>&nbsp;<span id="topindex-usDJI"></span>&nbsp;<span></span>&nbsp;<span></span></p>
+      <p><a href="http://stockhtm.finance.qq.com/astock/ggcx/IXIC.htm" title="纳斯达克:(IXIC)" target="_blank">纳斯达克:</a>&nbsp;<span id="topindex-usIXIC"></span>&nbsp;<span></span>&nbsp;<span></span>&nbsp;|&nbsp;法国CAC:&nbsp;<span id="topindex-gzFCHI"></span>&nbsp;<span></span>&nbsp;<span></span></p>
+      <p>德国DAX:&nbsp;<span id="topindex-gzGDAXI"></span>&nbsp;<span></span>&nbsp;<span></span>&nbsp;|&nbsp;日经225:&nbsp;<span id="topindex-gzN225"></span>&nbsp;<span></span>&nbsp;<span></span></p>
+      <p>海峡时报:&nbsp;<span id="topindex-gzFTSTI"></span>&nbsp;<span></span>&nbsp;<span></span>&nbsp;|&nbsp;台湾加权指数:&nbsp;<span id="topindex-gzTWII"></span>&nbsp;<span></span>&nbsp;<span></span></p>
+      <p>&nbsp;黄金:&nbsp;<span id="topindex-fqUS_GC_1"></span>&nbsp;<span></span>&nbsp;<span></span>&nbsp;|&nbsp;石油:&nbsp;<span id="topindex-fqUS_CL_1"></span>&nbsp;<span></span>&nbsp;<span></span></p>
+    </div>
+  </div>
+  <h1><a href="http://finance.qq.com/data/" style="display:block;width:100%;height:100%;"></a></h1>
+</div>
+
+
+<div class="page"><div class="page_wb">
+<div id="left">
+  <div class="left_wrap" id="left_wrap"></div>
+</div>
+
+<div id="right">
+  <div class="right_wrap" id="right_wrap">
+    <iframe src="about:blank" scrolling="no" id="moduleIframe" name="moduleIframe" frameborder="no" style="width:770px;min-height:720px;display:block;"></iframe>
+  </div>
+</div>
+
+
+<div class="clear"></div>
+</div></div>
+
+
+<script>var $=function(objectId){if(document.getElementById&&document.getElementById(objectId)){return document.getElementById(objectId)}else if(document.all&&document.all(objectId)){return document.all(objectId)}else if(document.layers&&document.layers[objectId]){return document.layers[objectId];}else{return false;}};var $N=function(s){return(typeof s=="object")?s:document.getElementsByName(s)};var Browser=new Object();Browser.ua=window.navigator.userAgent.toLowerCase();Browser.ie=/msie/.test(Browser.ua);String.prototype.trim=function(){return this.replace(/^\s*|\s*$/ig,"")};var Element={remove:function(){for(var i=0;i<arguments.length;i++){try{var script;while(script=$(arguments[i])){script.parentNode.removeChild(script);for(var prop in script){delete script[prop]}}}catch(e){}}}};var JsLoader={load:function(sId,sUrl,oOption){var _oOption=new Object();if(typeof oOption=="function")_oOption.onSuccess=oOption;else _oOption=oOption;_oOption.decay=_oOption.decay||1;_oOption.delay=_oOption.delay||1000;_oOption.count=_oOption.count||0;if(_oOption.timer)window.clearTimeout(_oOption.timer);Element.remove(sId);var _script=document.createElement("script");_script.setAttribute("id",sId);_script.setAttribute("type","text/javascript");_script.setAttribute("src",sUrl);document.getElementsByTagName("head")[0].appendChild(_script);_oOption.timer=window.setTimeout(function(){if($(sId))if(--_oOption.decay){_oOption.count++;JsLoader.load(sId,sUrl,_oOption)}else{if(typeof _oOption.onFailure=="function"){_oOption.onFailure()}}},_oOption.delay);if(Browser.ie){_script.onreadystatechange=function(){if(this.readyState=="loaded"||this.readyState=="complete"){Element.remove(_script);window.clearTimeout(_oOption.timer);if(typeof _oOption.isSuccess=="function"){if(!_oOption.isSuccess()){if(--_oOption.decay){_oOption.count++;JsLoader.load(sId,sUrl,_oOption)}else{if(typeof _oOption.onFailure=="function"){_oOption.onFailure()}}return}}if(typeof _oOption.onSuccess=="function")_oOption.onSuccess()}}}else{_script.onload=function(){Element.remove(_script);window.clearTimeout(_oOption.timer);if(typeof _oOption.isSuccess=="function"){if(!_oOption.isSuccess()){if(--_oOption.decay){_oOption.count++;JsLoader.load(sId,sUrl,_oOption)}else{if(typeof _oOption.onFailure=="function"){_oOption.onFailure()}}return}}if(typeof _oOption.onSuccess=="function")_oOption.onSuccess()}}}};var Cookie={setCookie:function(name,value,path,domain,secure){var expires=new Date();expires.setTime(expires.getTime()+2*30*24*60*60*1000);document.cookie=name+"="+escape(value)+"; expires="+expires.toGMTString()+"; path=/; domain=.finance.qq.com";document.cookie=name+"=; expires=Fri, 02-Jan-1970 00:00:00 GMT; path=/; domain=.qq.com"},getCookie:function(name){var arr=document.cookie.match(new RegExp("(^| )"+name+"=([^;]*)(;|$)"));if(arr!=null){return unescape(arr[2])}return null},clearCookie:function(name,path,domain){if(Cookie.getCookie(name)){document.cookie=name+"="+((path)?"; path="+path:"; path=/")+((domain)?"; domain="+domain:"")+";expires=Fri, 02-Jan-1970 00:00:00 GMT"}}};String.prototype.subFirst=function(l){if(this.length<=l)return this;var _str=this.replace(/\s/g,"");var _l=0;for(var i=0;i<_str.length;i++){var code=_str.charCodeAt(i);if(code>=0x0391&&code<=0xFFE5)_l+=1;else if(code==77||code==67||code==87){_l+=1}else _l+=2/3;if(_l>l)break}return _str.substr(0,i)};function setClass(ids,classes){if(ids&&typeof ids=="string"&&classes&&typeof classes=="string"){$(ids)?$(ids).setAttribute("class",classes):"";$(ids)?$(ids).setAttribute("className",classes):""}if(typeof ids=="object"&&typeof classes=="object"){for(var i=0;i<ids.length;i++){$(ids[i])?$(ids[i]).setAttribute("class",classes[i]):"";$(ids[i])?$(ids[i]).setAttribute("className",classes[i]):""}}}function FormatJsData(vT,vD,vN){var _html="";for(var j=0;j<(vN?Math.min(vD.length,vN):vD.length);j++){if(!vD[j])continue;var _row=vT;for(var k=0;k<vD[j].length;k++){_row=_row.replace(new RegExp("@"+k+"@","g"),vD[j][k])}if(typeof arguments[3]=="function")_row=arguments[3](_row,vD[j],j);_html+=_row}return _html}function MyPcTurnM(obj,Myclasson,tag,n){var Pobj=obj.parentNode;var Pid=Pobj.id;var Pdiv=Pobj.getElementsByTagName(tag);for(i=0;i<Pdiv.length;i++){if(Pdiv[i]==obj){Pdiv[i].className=Myclasson;if(n==undefined){$(Pid+i).className=""}}else{Pdiv[i].className="";if(n==undefined){$(Pid+i).className="undis"}}}};function indexMap(obj){var oObj=obj.parentNode.parentNode;var sItems=oObj.getElementsByTagName("dt");for(i=0;i<sItems.length;i++){if(obj.nextSibling.nodeType==1){sdds=sItems[i].nextSibling}else if(obj.nextSibling.nodeType==3){sdds=sItems[i].nextSibling.nextSibling};sdds.className=sItems[i]==obj?"":"undis"}};function FormatJsData(vT,vD,vN){var _html="";for(var j=0;j<(vN?Math.min(vD.length,vN):vD.length);j++){if(!vD[j])continue;var _row=vT;for(var k=0;k<vD[j].length;k++){_row=_row.replace(new RegExp("@"+k+"@","g"),vD[j][k])}if(typeof arguments[3]=="function")_row=arguments[3](_row,vD[j],j);_html+=_row}return _html;};var g_loadImg_timeId=null;function loadImg(src,ctn_id,interval){interval=isNaN(interval)?15000:interval;if(!!$(ctn_id)){window.clearTimeout(g_loadImg_timeId);$(ctn_id).setAttribute('src',src+'?'+Math.random());g_loadImg_timeId=window.setTimeout(arguments.callee,interval,src,ctn_id,interval)}};</script><!--[if !IE]>|xGv00|cf8fd6601d97f6683724a7d3654ad073<![endif]-->
+<script src="http://finance.qq.com/stock/global_js/common_util.htm" type="text/javascript"></script>
+
+<script language="javascript">
+
+//重新给颜色切换设置事件响应函数，以便支持iframe内的颜色切换
+var g_deltaHeight = 30;
+function getColor() {
+  if ($('ipt_fc_cn') && $('ipt_fc_en')) {
+    if ($('ipt_fc_cn').checked) return 0;
+    else return 1
+  } else return 0
+}
+function onInitColorChange() {
+  var _onChangeColor = function(color) {
+    if (typeof colorset == 'function') colorset(color);
+    if ($('moduleIframe')) {
+      try {
+        $('moduleIframe').contentWindow['onChangeColor'](color)
+      } catch(e) {
+        if (window.console) window.console.log('error in onOpenModuleInParent' + e)
+      }
+    }
+  };
+  if ($('ipt_fc_cn') && $('ipt_fc_en')) {
+    $('ipt_fc_cn').onclick = function() {
+      _onChangeColor(0)
+    }
+    $('ipt_fc_en').onclick = function() {
+      _onChangeColor(1)
+    }
+  }
+}
+
+//更改选中的左侧叶子节点的背景
+function setLeftNavBg(leaf_id)
+{
+    var p = $('left_wrap');
+    var pcli = p.getElementsByTagName('li');
+    for (var i=0; i<pcli.length; i++)
+    {
+        if (pcli[i].id == 'leaf_'+leaf_id)
+        {
+            pcli[i].style.background='url(http://mat1.gtimg.com/finance/images/stock/dcenter/bg_4.gif) no-repeat';
+            //$('leaf_'+leaf_id+'_a').style.background='url(http://mat1.gtimg.com/finance/images/stock/dcenter/bg_3.gif) no-repeat scroll -15px 0 transparent';
+            //$('leaf_'+leaf_id+'_a').style.background='';
+        }
+        else
+        {
+            pcli[i].style.background='url(http://mat1.gtimg.com/finance/images/stock/dcenter/bg_3.gif) no-repeat scroll 15px 0 transparent';
+        }
+    }
+    
+}
+
+//点击左侧列表的叶节点，叶节点表示可以直接打开页面的节点
+function onClickLeafNode(url){
+  var leaf_id = onOpenModule(url);
+  setLeftNavBg(leaf_id);
+  if(bossLog)
+    bossLog({sOp:1100,iParam:leaf_id});
+}
+
+var g_ahref= $('T');
+function onOpenModule(url) {
+  var moduleIframe = $('moduleIframe');
+  var color = getColor();
+  var changeColorQuery = '';
+  if(url.indexOf('?')!=-1)
+    changeColorQuery = '&change_color_' + color;
+  else
+    changeColorQuery = '?change_color_' + color;
+  moduleIframe.src = url + changeColorQuery;
+  var leaf_id = '',
+      leafHash = '';
+  if (g_id_url_mapper) {
+    for (var id in g_customId_url_mapper) {
+      if (!!url && (g_customId_url_mapper[id][1].indexOf(url) == 0 || url.indexOf(g_customId_url_mapper[id][1]) == 0)) {
+        if(g_ahref){
+          g_ahref.setAttribute('name', id);
+          g_ahref.setAttribute('id', id);
+        }
+        leafHash = id;
+        leaf_id = g_customId_url_mapper[id][0];
+        break;
+      }
+    }
+    if(leaf_id === ''){
+      for (var id in g_id_url_mapper) {
+        if (!!url && (g_id_url_mapper[id].indexOf(url) == 0 || url.indexOf(g_id_url_mapper[id]) == 0)) {
+          id = id.substring(1);
+          if(g_ahref){
+            g_ahref.setAttribute('name', id);
+            g_ahref.setAttribute('id', id);
+          }
+          leaf_id = leafHash = id;
+          break;
+        }
+      }
+    }
+  }
+  window.location.hash = leafHash;
+  return leaf_id;
+}
+
+
+function leftmenu(obj, tag, n) {
+  var dls = $("left").getElementsByTagName("dl");
+  if (n == 1) dls = $("A_index").getElementsByTagName("dd");
+  for (var i = 0; i < dls.length; i++) {
+    var Pdiv = dls[i].getElementsByTagName(tag);
+    if (obj == dls[i].firstChild) {
+      for (var j = 0; j < Pdiv.length; j++) {
+        if (Pdiv[j].className == "") {
+          dls[i].firstChild.className = "";
+          Pdiv[j].className = "undis"
+        } else if (Pdiv[j].className == "undis") {
+          dls[i].firstChild.className = "yk_on";
+          Pdiv[j].className = ""
+        }
+      }
+    } else {
+      for (var j = 0; j < Pdiv.length; j++) {
+        dls[i].firstChild.className = "";
+        Pdiv[j].className = "undis"
+      }
+    }
+  }
+}
+
+function getUrlByLeafId(leaf_id){
+  var url = g_id_url_mapper['l' + (leaf_id=='jsxg'?'ljzf':leaf_id)],
+      newLeafId = leaf_id;
+  if(!url && g_customId_url_mapper[leaf_id]){
+    var item = g_customId_url_mapper[leaf_id];
+    url = item[1];
+    newLeafId = item[0];
+  }
+  return [newLeafId, url];
+}
+
+var g_id_url_mapper = init_tree_menu(tree_menu_data, 'left_wrap');
+if (g_id_url_mapper) {
+  var hash = location.hash;
+  var href = location.href;
+  var leaf_id = '';
+  var pattern = '?';
+  if (hash) {
+    leaf_id = hash.substring(1);
+    if(leaf_id.indexOf('T')==0)
+      leaf_id = leaf_id.substring(1);
+  } else if (href.indexOf(pattern) != -1) {
+    var start = href.indexOf(pattern) + pattern.length;
+    var end = href.indexOf('&', start);
+    end = end == -1 ? href.length: end;
+    leaf_id = href.substring(start, end)
+  }
+  //leaf_id = leaf_id.toLowerCase().replace(/[^a-z]*/ig,'');
+  var rtn = getUrlByLeafId(leaf_id),
+      url = rtn[1],
+      newLeafId = rtn[0];
+  leaf_id = newLeafId;
+  var color = getColor();
+  if (url) {
+    onOpenModule(url);
+  } else {
+    onOpenModule('dctr_modules/index_module.htm');
+    leaf_id = '';
+  }
+  if('' === leaf_id || '0' === leaf_id) //如果是打开首页，则展开个股统计数据的列表，个股统计数据列表的第一个子页面id为准
+    leaf_id = 'jsxg';
+  if ($('leaf_' + (leaf_id=='jsxg'?'ljzf':leaf_id))) {
+    var dt = $('leaf_' + (leaf_id=='jsxg'?'ljzf':leaf_id)).parentNode.parentNode.parentNode.firstChild;
+    leftmenu(dt, 'dd');
+  }
+}
+
+function switchLeftMenu(leaf_id){
+  if ($('leaf_' + leaf_id)) {
+    var dt = $('leaf_' + leaf_id).parentNode.parentNode.parentNode.firstChild;
+    leftmenu(dt, 'dd');
+  }
+}
+
+</script>
+
+
+
+
+</body>
+</html>

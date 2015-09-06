@@ -1,0 +1,188 @@
+<html>
+<head>
+<title>基本参数设置</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" align="center" oncontextmenu="return false" >
+<form name="form1" method="post" action="/pronline/Msg">
+
+  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor=menu>
+    <tr> 
+      <td valign="top" ><table width="100%" height="27" border="0" align="center" cellpadding="0" cellspacing="0" background="/images/table_bg1.gif">
+          <tr > 
+            <td colspan="2"> <div align="center"><strong><font color="#FFFFFF">主机网络配置</font></strong></div></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr> 
+      <td valign="top" ><br>
+        <table width="70%" border="1"    bordercolorlight=#89ACED   bordercolordark=#ffffff    align="center" cellpadding="0" cellspacing="0" >
+          <tr> 
+            <td valign="top"> 
+              <table width="98%" border="0" align="center" height="8" >
+
+              </table>
+              <br>
+              <table width="90%" border="0" align="center">
+                <tr> 
+                  <td width="9%" height="14"> <b> </b></td>
+                  <td height="14"> <div align="left"><b> <font color="#333333">接入方式</font> 
+                      </b> </div></td>
+                  <td height="14"><b> 
+                    <input type="radio" name="gateway" value="bridge"   [#bridge#]>
+                    透明方式</b></td>
+                  <td width="13%" height="14"> <div align="left"></div></td>
+                </tr>
+                <tr> 
+                  <td width="9%" height="36">&nbsp;</td>
+                  <td height="36" align="center" colspan="2"> <table width="84%" border="0">
+                      <tr> 
+                        <td width="37%"> <div align="right">内网设备</div></td>
+                        <td width="31%"> <input type="text" name="aindev1" size="15" value="[#indev1#]"> 
+                        </td>
+                        <td width="32%"> <div align="right">外网设备</div></td>
+                        <td width="63%"> <input type="text" name="aoutdev1" size="15" value="[#outdev1#]"> 
+                        </td>
+                      </tr>
+                      <tr> 
+                        <td width="37%"> <div align="right">主机IP地址</div></td>
+                        <td width="31%"> <input type="text" name="aadminip" size="15" value="[#adminip#]" > 
+                        </td>
+                        <td width="32%"> <div align="right">掩码</div></td>
+                        <td width="63%"> <input type="text" name="aadminmask" size="15" value="[#adminmask#]"> 
+                        </td>
+                      </tr>
+                    </table></td>
+                  <td width="13%" height="36">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="9%" height="8"> <div align="right"></div></td>
+                  <td width="12%" height="8"><b> </b> </td>
+                  <td width="66%" height="8"><b> 
+                    <input type="radio" name="gateway" value="gateway" [#gateway#]>
+                    网关方式</b></td>
+                  <td width="13%" height="8">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="9%" height="62">&nbsp;</td>
+                  <td align="center" colspan="2" height="62"> <table width="85%" border="0">
+                      <tr> 
+                        <td width="21%" height="8">&nbsp;</td>
+                        <td width="26%" height="8">设备名</td>
+                        <td width="27%" height="8">IP地址</td>
+                        <td width="26%" height="8">掩码</td>
+                      </tr>
+                      <tr> 
+                        <td width="21%" height="8"> <div align="center">内网</div></td>
+                        <td width="26%" height="8"> <input type="text" name="bindev1" size="15" value="[#indev1#]"> 
+                        </td>
+                        <td width="27%" height="8"> <input type="text" name="binip1" size="15" value="[#inip1#]"> 
+                        </td>
+                        <td width="26%" height="8"> <input type="text" name="binmask1" size="15" value="[#inmask1#]"> 
+                        </td>
+                      </tr>
+                      <tr> 
+                        <td width="21%" height="20"> <div align="center">外网</div></td>
+                        <td width="26%" height="20"> <input type="text" name="boutdev1" size="15" value="[#outdev1#]"> 
+                        </td>
+                        <td width="27%" height="20"> <input type="text" name="[boutip1#]" size="15" value="[#outip1#]"> 
+                        </td>
+                        <td width="26%" height="20"> <input type="text" name="boutmask1" size="15" value="[#outmask1#]"> 
+                        </td>
+                      </tr>
+                    </table></td>
+                  <td width="13%" height="62">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="9%">&nbsp;</td>
+                  <td align="center" colspan="2"> <div align="left"><font color="#0000FF"><b><font color="#000000">主机信息</font></b></font></div></td>
+                  <td width="13%">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="9%" height="17">&nbsp;</td>
+                  <td align="center" colspan="2" height="17"> <table width="85%" border="0">
+                      <tr> 
+                        <td width="20%" height="14"> <div align="right">管理地址</div></td>
+                        <td colspan="3" height="14"> <input type="text" name="adminhost" size="31" value="[#adminhost#]"> 
+                        </td>
+                      </tr>
+                      <tr> 
+                        <td width="20%"> <div align="right">管理端口</div></td>
+                        <td width="27%"> <input type="text" name="adminport" size="15" value="[#adminport#]"> 
+                        </td>
+                        <td width="27%">用户验证端口</td>
+                        <td width="26%"> <input type="text" name="authport" size="15" value="[#authport#]"> 
+                        </td>
+                      </tr>
+                    </table></td>
+                  <td width="13%" height="17">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="9%" height="15"> <div align="right"><font color="#0000FF"><b></b></font></div></td>
+                  <td height="15" colspan="2"><b><font color="#333333">路由信息</font></b></td>
+                  <td width="13%" height="15">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="9%">&nbsp;</td>
+                  <td align="center" colspan="2"> <table width="85%" border="1">
+                      <tr> 
+                        <td> <div align="center"> 
+                            <textarea name="route" rows="4" cols="64">[#route#]</textarea>
+                          </div></td>
+                      </tr>
+                    </table></td>
+                  <td width="13%">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="9%" height="2"> <div align="right"><font color="#0000CC"><b></b></font></div></td>
+                  <td height="2" colspan="2"><font color="#0000CC"><b><font color="#333333">地址转换</font></b></font></td>
+                  <td width="13%" height="2">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="9%" height="79">&nbsp;</td>
+                  <td height="79" align="center" colspan="2"> <table width="85%" border="1">
+                      <tr> 
+                        <td> <div align="center"> 
+                            <textarea name="nat" rows="4" cols="64">[#nat#]</textarea>
+                          </div></td>
+                      </tr>
+                    </table></td>
+                  <td width="13%" height="79">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td align="center" colspan="2"></td>
+                  <td >&nbsp;</td>
+                </tr>
+              </table> </td>
+          </tr>
+
+        </table></td>
+    </tr>
+    <tr>
+      <td height="70" style='border-left: 1px solid rgb(253,244,249);border-right: 1px solid rgb(12,12,12);border-bottom: 1px solid rgb(12,12,12);border-top: 1px solid rgb(253,244,249);'> 
+        <table width="50%" border="0" align="center">
+          <tr> 
+            <td> <div align="right"> 
+                <input type="hidden" name="FunName" value="ncWebSystemSave_base">
+                <input type="submit" name="next" value="确认" class="an3">
+                &nbsp; 
+                <input type="submit" name="app" value="应用" class="an3">
+                &nbsp; 
+                <input type="reset" name="cancel" value="取消返回" class="an3-1" onClick="history.back()">
+                &nbsp; &nbsp; </div></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+
+</form>
+</body>
+</html>

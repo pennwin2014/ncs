@@ -1,0 +1,131 @@
+<html>
+
+<head>
+<title>查询</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<!-- Infrastructure code for the tree -->
+<style>
+.aaaa {font-size:10pt;color:#000000;font-weight:bold;}
+</style>
+<script>
+	var dfd1;
+	function allChecked(){
+    if(dfd1=="1"){
+        dfd1="0"
+    }
+    else {
+         dfd1="1"
+    }
+	for(var i=0;i<document.all.DataTable.rows.length;i++)
+	{
+		if(typeof(document.all.DataTable.rows[i].cells[0].childNodes[0])=="object"
+
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].tagName=="INPUT"
+
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].type=="checkbox") {
+			if(dfd1=="1"){
+  			    document.all.DataTable.rows[i].cells[0].childNodes[0].checked="true";
+            }
+			else{
+                document.all.DataTable.rows[i].cells[0].childNodes[0].checked="";
+            }
+        }
+ 	}
+}
+	
+function mouseovertr2 (o){
+var i;
+df=o.style.backgroundColor
+	o.style.backgroundColor= "#ffff00";
+	o.style.borderColor= "#FFFF00";
+	o.style.cursor="hand";	
+}
+
+function mouseouttr2(o){
+	o.style.backgroundColor=df
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#000000";
+}
+}
+	
+	
+function showf(id,lip,uip)
+{
+	form1.id.value=id;
+	form1.lip.value=lip;
+	form1.uip.value=uip;	
+}
+function Add(){
+	if(form1.lip.value==''){
+	alert('起始ip不能为空');
+	return false;
+	}
+	return true;
+}
+</script>
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginheight="0"   >
+  <form name="form1" method="post" action="/pronline/Msg" >
+  <input type="hidden" name="FunName" value="ncsCorpIp">
+  <input type="hidden" name="CurPg" value="[#CurPg#]">
+  <input type="hidden" name="id" value="">
+  <input type="hidden" name="userid" value="[#userid#]">
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+
+  <tr> 
+    <td colspan="2"> <table width="98%" border="1"    bordercolorlight=#89ACED   bordercolordark=#ffffff    align="center" cellpadding="0" cellspacing="0" >
+          <tr height="30"><td >
+          	<table width="100%" border="0" align="center" >
+          	<tr>
+             <td align="center" class="aaaa">
+             	[#corpname#] 网络出口IP轨迹
+            </td>
+             	</tr>
+            </table>
+          </td>
+        </tr>
+       <tr><td>         	      
+        <table  id="DataTable" width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" >
+          <tr >             
+            <td  bgcolor="#6382BD" height="18" class="bord2"> 
+              <div align="center"><font color="#FFFFFF">原IP地址</font></div></td>
+            <td  bgcolor="#6382BD" class="bord2"> 
+              <div align="center"><font color="#FFFFFF">当前IP地址</font></div></td> 
+            <td  bgcolor="#6382BD" class="bord4"> 
+              <div align="center"><font color="#FFFFFF">修改时间</font></div></td>
+          </tr>
+          <!-- [#SLPB#] -->
+          <tr height="18" onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" >           
+            <td   class="bord1">&nbsp;[#lip#]</td>            
+            <td   class="bord1">&nbsp;[#uip#]</td>
+            <td   class="bord3">&nbsp;[#stime#]</td>
+          </tr>
+          <!-- [#SLPE#] -->
+          <!-- [#SLPB#] -->
+          <tr id=[#snum#] height="18"> 
+            <td   class="bord1">&nbsp; </td>              
+            <td   class="bord1">&nbsp;</td> 
+           
+            <td   class="bord3">&nbsp;</td>
+          </tr>
+          <!-- [#SLPE#] -->
+        </table>
+         	
+          	</td>
+         </tr>
+        </table>
+
+      </td>
+  </tr>
+</table>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!-- saved from url=(0022)http://internet.e-mail -->
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<style type="text/css">
+<!--
+body {  font-size: 9pt}
+.tas {  border-color: black #FFFFFF; border-style: solid; border-top-width: 0px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 1px}
+table {  font-size: 9pt}
+.hand {  cursor: hand}
+.gray1{filter:gray}
+-->
+</style>
+<script>
+function lprint(){
+  MM_showHideLayers('plabel','','hide')
+  window.print()
+  MM_showHideLayers('plabel','','show')
+}
+</script>
+<script language="JavaScript">
+<!--
+
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+
+
+function MM_findObj(n, d) { //v4.0
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && document.getElementById) x=document.getElementById(n); return x;
+}
+
+function MM_showHideLayers() { //v3.0
+  var i,p,v,obj,args=MM_showHideLayers.arguments;
+  for (i=0; i<(args.length-2); i+=3) if ((obj=MM_findObj(args[i]))!=null) { v=args[i+2];
+    if (obj.style) { obj=obj.style; v=(v=='show')?'visible':(v='hide')?'hidden':v; }
+    obj.visibility=v; }
+}
+//-->
+</script>
+
+<SCRIPT LANGUAGE="JavaScript">
+function checkme(p)
+{
+	var tt=p.value
+	if (tt>yy)
+	{
+		MM_changeProp('browsdopage','','value',yy,'INPUT/TEXT')
+	}
+	if (tt==0)
+	{
+		MM_changeProp('browsdopage','','value','1','INPUT/TEXT')
+	}
+}
+
+function MM_findObj(n, d) 
+{ //v4.0
+  	var p,i,x;
+  	if(!d) d=document;
+  	if((p=n.indexOf("?"))>0&&parent.frames.length)
+  	{
+    	d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);
+    }
+  	if(!(x=d[n])&&d.all) x=d.all[n];
+  	for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  	for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  	if(!x && document.getElementById) x=document.getElementById(n); return x;
+}
+
+function MM_changeProp(objName,x,theProp,theValue)
+{ //v3.0
+  	var obj = MM_findObj(objName);
+  	if (obj && (theProp.indexOf("style.")==-1 || obj.style)) eval("obj."+theProp+"='"+theValue+"'");
+}
+
+function goto(a)
+{
+	window.open(a,"_self","")
+}
+
+function MM_reloadPage(init)
+{  //reloads the window if Nav4 resized
+  	if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+
+function mouseovertr2 (o)
+{
+	var i;
+	df=o.style.backgroundColor
+	o.style.backgroundColor= "#F2F2F2";
+	o.style.borderColor= "#3399ff";
+		
+	for(i=0; i<o.cells.length; i++)
+	{
+		o.cells(i).style.color="#000000";
+	}	
+}
+
+function mouseouttr2(o)
+{
+	o.style.backgroundColor=df
+	for(i=0; i<o.cells.length; i++)
+	{
+		o.cells(i).style.color="#000000";
+	}
+}
+
+function mouseovertd2(o)
+{
+	o.style.borderStyle="solid"
+	o.style.borderColor="#000000"
+	o.style.color="#ffffff"	
+}
+
+function mouseouttd2(o)
+{
+	o.style.color="#003366"
+	o.style.borderColor="#cccccc"
+}
+
+function gotoPage(pagenum)
+{
+    form1.CurPg.value = pagenum;
+}
+// -->
+<!-- Hide
+var ll=[#CurPg#]
+var yy=[#TotPg#]
+function killErrors() {
+return true;
+}
+window.onerror = killErrors;
+// -->
+</SCRIPT>
+
+</head>
+
+<body bgcolor="#DEE8FA" oncontextmenu="return false" topmargin="0" leftmargin="0">
+<form name="form1" method="post" action="/pronline/Msg">
+  <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td height="25" colspan="3"> 
+        <div align="center"><b>上网时间统计 （单位：秒）</b></div>
+      </td>
+    </tr>
+    <tr> 
+      <td colspan="3"  class="ttt"> 
+        <div id="mybut"> 
+          <table width="100%" border="0" cellpadding="0" cellspacing="0">
+            <tr> 
+              <td width="22%" height="6"> <p align="right">起始时间: 
+                  <input type="text"   name="sdate1"  value="[#sdate1#]" maxlength="12" size="12">
+                </p></td>
+              <td width="47%">终止时间: 
+                <input type="text" name="sdate2"  value="[#sdate2#]" maxlength="12" size="12">
+                [#sopt#] 
+                <input name="sear" type="submit" class="an3" value="查 询"> <input name="export" type="submit" class="an3" value="导 出"> 
+                <input name="pint1" type="button" class="an3"  onClick="lprint()" value="打 印" ></td>
+              <td width="31%"><table border=0 cellpadding=0 cellspacing=0 
+                        class=main width=202>
+                  <tbody>
+                    <tr> 
+                      <td width="21" valign="middle"> <script>
+if (ll==1){document.write("<img src='/images/spy-06.gif' border=0 height=17 width=35 class='gray1'>")}
+else{document.write("<a href='#'><img src='/images/spy-06.gif' border=0 height=17 width=35 onClick='gotoPage(1);form1.submit()' class='hand'>")}
+</script> </td>
+                      <td width="18" valign="middle"> <script>
+if (ll==1){document.write("<img src='/images/spy-03.gif' border=0 height=17 width=20 class='gray1'>")}
+else{document.write("<img src='/images/spy-03.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]-1);form1.submit()' class='hand'>")}
+</script> </td>
+                      <td width="35" valign="top"> 
+                        <div align="right"><img src="/images/spy-08.gif" border=0  height=17 width=35 align="middle"></div></td>
+                      <td align=middle background="" width=40> <input class=Main id=browsdopage3 maxlength=5  name=browsdopage size=5 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 30px" value=[#CurPg#] onKeyPress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" onBlur="checkme(this)"> 
+                      </td>
+                      <td width="17" valign="top"><img src="/images/spy-09.gif" border=0 height=17 width=16 align="middle"></td>
+                      <td width="21" valign="top"><img align=middle border=0 height=17 src="/images/spy-10.gif" width=17 onClick="gotoPage(form1.browsdopage.value);form1.submit()" class="hand"><img align=middle height=17 src="/images/spy-11.gif" width=3></td>
+                      <td width="10" valign="middle"> <script>
+if (ll==yy){document.write("<img src='/images/spy-04.gif' border=0 height=17 width=20 class='gray1'>")}
+else if (yy==0){document.write("<img src='/images/spy-04.gif' border=0 height=17 width=20 class='gray1'>")}
+else{document.write("<img src='/images/spy-04.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]+1);form1.submit()' class='hand'>")}
+</script> </td>
+                      <td width="40" valign="middle"> <script>
+if (ll==yy){document.write("<img src='/images/spy-05.gif' border=0 height=17 width=36 class='gray1'>")}
+else if (yy==0){document.write("<img src='/images/spy-05.gif' border=0 height=17 width=36 class='gray1'>")}
+else{document.write("<img src='/images/spy-05.gif' border=0 height=17 width=36 onClick='gotoPage([#TotPg#]);form1.submit()' class='hand'>")}
+</script> </td>
+                    </tr>
+                  </tbody>
+                </table></td>
+            </tr>
+            <tr>
+              <td height="6">&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+          </table>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <table  cellspacing=0  cellpadding="0" bordercolor="#DFDFDF" border="0" align="center" width="100%">
+    <input type="hidden" name="FunName" value="ncWebFlowCount">
+    <input type="hidden" name="way" value="[#caWay#]">
+    <input type="hidden" name="userid" value="[#userid#]">
+    <input type="hidden" name="CurPg" value="[#CurPg#]">
+    <tr bgcolor="#6382BD" id=ignore > 
+      <td width="99" height="18" class="bord2"> <div align="center"><font color="#FFFFFF">&nbsp;时间</font></div></td>
+      <!-- [#SLPB#] -->
+      <td width="99" height="18"  class="bord2"><div align="center"><font color="#FFFFFF">&nbsp;[#service#]</font></div></td>
+      <!-- [#SLPE#] -->
+    </tr>
+    <!-- [#SLPB#] -->
+    <tr bgcolor="#C0C0C0"> 
+      <td   width="99" valign="bottom" bgcolor="#FFFFFF" class="bord1">&nbsp;[#sdate#] 
+      </td>
+      <!-- [#SLPB#] -->
+      <td   width="99" valign="bottom" bgcolor="#FFFFFF" class="bord1">&nbsp;[#stime#] 
+      </td>
+      <!-- [#SLPE#] -->
+    </tr>
+    <!-- [#SLPE#] -->
+  </table>
+<p>&nbsp;</p>
+</form>
+</body>
+</html>

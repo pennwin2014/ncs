@@ -1,0 +1,16 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+</head>
+
+<frameset rows="100,*" cols="*" framespacing="4" frameborder="yes" border="1" bordercolor="#0148b2" >
+<!--  <frame frameborder="no" src="/pronline/Msg?FunName@ncWebTreeDispClass&plate@tree/tree_gdrz_top.htm" name="treeTop" noresize="noresize">
+-->
+  <frame frameborder="no" src="/pronline/Msg?FunName@ncsWebTreeDispGroup_nolimit&fname@ncsWebDispDeptForm_new&plate@tree/tree_gdrz_nolimit.htm" name="treeTop" noresize="noresize">
+  <frame frameborder="no" src="/pronline/Msg?FunName@ncWebTreeDispCorp&plate@tree/tree_hisgdrz_bot.htm" name="treeBot" >
+</frameset>
+<noframes><body >
+
+</body></noframes>
+</html>

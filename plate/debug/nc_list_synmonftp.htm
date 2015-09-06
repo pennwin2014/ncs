@@ -1,0 +1,167 @@
+<html>
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<title>main</title>
+<script>
+var dfd1="0"
+function gotoPage(pagenum)
+{
+    form1.CurPg.value = pagenum;
+}
+
+
+function dispsearch()
+{
+    window.open('/pronline/Msg?FunName@ncWebDispSuser','RUNMIT_New','left=100,top=200,width='+525+',height='+245+',fullscreen=0,toolbar=no,scrollbars=no,resizable=0,menubar=no,status=0');
+}
+
+function mouseovertr2 (o){
+var i;
+df=o.style.backgroundColor
+	o.style.backgroundColor= "#003399";
+	o.style.borderColor= "#FFFF00";
+	o.style.cursor="hand";	
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#ffffff";
+}	
+}
+
+function mouseouttr2(o){
+	o.style.backgroundColor=df
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#000000";
+}
+	
+	
+}
+
+function checkme(p)
+{
+	var tt=p.value
+	if (tt>yy)
+	{
+		MM_changeProp('browsdopage','','value',yy,'INPUT/TEXT')
+	}
+	if (tt==0)
+	{
+		MM_changeProp('browsdopage','','value','1','INPUT/TEXT')
+	}
+}
+
+function allChecked(){
+    if(dfd1=="1"){
+        dfd1="0"
+    }
+    else {
+         dfd1="1"
+    }
+	for(var i=0;i<document.all.DataTable.rows.length;i++)
+	{
+		if(typeof(document.all.DataTable.rows[i].cells[0].childNodes[0])=="object"
+
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].tagName=="INPUT"
+
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].type=="checkbox") {
+			if(dfd1=="1"){
+  			    document.all.DataTable.rows[i].cells[0].childNodes[0].checked="true";
+            }
+			else{
+                document.all.DataTable.rows[i].cells[0].childNodes[0].checked="";
+            }
+        }
+ 	}
+}
+
+
+// -->
+<!-- Hide
+function killErrors() {
+return true;
+}
+window.onerror = killErrors;
+// -->
+
+</script>
+<link REL=stylesheet HREF="/css/runmit.css" TYPE="text/css">
+<script src="/js/rmenu.js"></script>
+<style type="text/css">
+<!--
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+-->
+</style>
+<link href="/css/css.css" rel="stylesheet" type="text/css">
+</head>
+<body marginheight=0 leftmargin=0 marginwidth=0 topMargin="0" BGCOLOR="Menu">
+<form name="form1" method="post" action="/pronline/Msg">
+<table border="0" width=100% height=100% cellspacing="0" cellpadding="0" align=center bgcolor='#ffffff'>
+  <tr> 
+      <td width="100%"  valign=middle align=center height="40" bgcolor="#DEE8FA" class="ttt"> 
+        <table width="100%" border="0" cellspacing="0">
+        <tr>
+            <td height="22">&nbsp;
+              <input type="hidden" name="FunName" value="ncsDebugClientOnline">
+             <input type="hidden" name="CurPg"      value="[#CurPg#]"> 
+             内存中同步-FORM</td>
+          </tr>
+      </table>
+        <input type="hidden" name="TotPg"      value="[#TotPg#]"></td>
+  </tr>
+  <tr>
+      <td width="100%" align=center  valign=top bgcolor="#DEE8FA"> 
+        <table id="DataTable" width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+          <tr> 
+            <td width="60" height="20"  bgcolor="#6382BD" class="bord2">序号</td>
+            <td width="105" bgcolor="#6382BD" class="bord2">Ftype</td>
+            <td width="83" bgcolor="#6382BD" class="bord2">Service</td>
+            <td width="121" bgcolor="#6382BD" class="bord2">&nbsp;</td>
+            <td width="117" bgcolor="#6382BD" class="bord2">sip</td>
+            <td width="133" bgcolor="#6382BD" class="bord2">eip</td>
+            <td width="158" bgcolor="#6382BD" class="bord2">&nbsp;</td>
+            <td width="122" bgcolor="#6382BD" class="bord2">&nbsp;</td>
+            <td width="109" bgcolor="#6382BD" class="bord2">&nbsp;</td>
+            <td width="113" bgcolor="#6382BD" class="bord2">flags</td>
+          </tr>
+          <!-- [#SLPB#] -->
+          <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)"> 
+            <td width="60" height="16" class="bord1">&nbsp;[#num#]</td>
+            <td width="105" class="bord1">&nbsp;[#ftype#]</td>
+            <td width="83" height="16" class="bord1">&nbsp;[#service#]</td>
+            <td width="121" height="16" class="bord1">&nbsp;</td>
+            <td width="117" class="bord1">&nbsp;[#sip#]</td>
+            <td width="133" class="bord1">&nbsp;[#eip#]</td>
+            <td width="158" class="bord1">&nbsp;[#content#]</td>
+            <td width="122" class="bord1">&nbsp;</td>
+            <td width="109" class="bord1">&nbsp;[#content#]</td>
+            <td width="113" class="bord1">&nbsp;[#flags#]</td>
+          </tr>
+          <!-- [#SLPE#] -->
+          <!-- [#SLPB#] -->
+          <tr id=[#snum#]> 
+            <td width="60" height="16" class="bord1">&nbsp;</td>
+            <td width="105" class="bord1">&nbsp;</td>
+            <td width="83" height="16" class="bord1">&nbsp;</td>
+            <td width="121" height="16" class="bord1">&nbsp; </td>
+            <td width="117" class="bord1">&nbsp;</td>
+            <td width="133" class="bord1">&nbsp;</td>
+            <td width="158" class="bord1">&nbsp;</td>
+            <td width="122" class="bord1">&nbsp;</td>
+            <td width="109" class="bord1">&nbsp;</td>
+            <td width="113" class="bord1">&nbsp;</td>
+          </tr>
+          <!-- [#SLPE#] -->
+        </table>
+      </td>
+  </tr>
+</table>
+ </form>
+</body>
+
+</html>

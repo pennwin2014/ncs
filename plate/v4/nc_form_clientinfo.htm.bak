@@ -1,0 +1,547 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<title>单位管理</title>
+    <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" /> 
+       
+    
+      
+    <script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+    
+  <script>  
+    
+Ext.require([
+    'Ext.form.*',
+    'Ext.layout.container.Column',
+    'Ext.window.MessageBox',
+    'Ext.fx.target.Element',
+    'Ext.data.*'
+]);
+
+
+Ext.onReady(function(){
+
+    Ext.define('State', {
+        extend: 'Ext.data.Model',
+        fields: [
+            {type: 'string', name: 'groupid'},
+            {type: 'string', name: 'groupname'}
+        ]
+    });
+    // The data for all states
+    var states = [
+    [#SLPB#]
+        {"groupid":"[#groupid#]","groupname":"[#groupname#]"},
+    [#SLPE#]
+        {"groupid":"0","groupname":"未知"}
+        
+    ];
+    var store = Ext.create('Ext.data.Store', {
+        model: 'State',
+        data: states
+    });
+
+    var groupCombo = Ext.create('Ext.form.field.ComboBox', {
+        fieldLabel: '单位属组',
+        valueField:'groupid',
+        displayField: 'groupname',
+        name : 'groupid',      
+        value:'[#groupid#]',
+        allowBlank: false,
+        forceSelection: true,
+        store: store,
+        queryMode: 'local',
+        typeAhead: true
+    });
+
+
+
+
+
+    Ext.define('State', {
+        extend: 'Ext.data.Model',
+        fields: [
+            {type: 'string', name: 'groupid'},
+            {type: 'string', name: 'groupname'}
+        ]
+    });
+    // The data for all states
+    var fuzt = [
+        {"groupid":"1","groupname":"装机营业"},
+        {"groupid":"2","groupname":"勒令停业"},
+        {"groupid":"3","groupname":"暂停营业"},
+        {"groupid":"4","groupname":"拆机"},
+        {"groupid":"5","groupname":"维护状态"},
+        {"groupid":"9","groupname":"其他"}
+    ];
+    var store_fuzt = Ext.create('Ext.data.Store', {
+        model: 'State',
+        data: fuzt
+    });
+
+    var jrfs = [
+        {"groupid":"01","groupname":"专网真实IP地址"},
+        {"groupid":"02","groupname":"专线"},
+        {"groupid":"03","groupname":"ADSL拨号"},
+        {"groupid":"04","groupname":"ISDN"},
+        {"groupid":"05","groupname":"普通拨号"},
+        {"groupid":"06","groupname":"Cable Moderm 拨号"},
+        {"groupid":"07","groupname":"电力线"},
+        {"groupid":"08","groupname":"无线上网"},
+        {"groupid":"99","groupname":"其他"}
+    ];
+    var store_jrfs = Ext.create('Ext.data.Store', {
+        model: 'State',
+        data: jrfs
+    });
+
+    var jkzt = [
+        {"groupid":"0","groupname":"正常监控"},
+        {"groupid":"1","groupname":"重点监控"},
+        {"groupid":"2","groupname":"一般监控"}
+        
+    ];
+    var store_jkzt = Ext.create('Ext.data.Store', {
+        model: 'State',
+        data: jkzt
+    });
+
+
+    var fcod = [
+        {"groupid":"","groupname":""}
+        [#SLPB#]
+        ,{"groupid":"[#fcod#]","groupname":"[#fname#]"}
+        [#SLPE#]
+      
+    ];
+    var store_fcod = Ext.create('Ext.data.Store', {
+        model: 'State',
+        data: fcod
+    });
+
+    var yysj = [
+        {"groupid":"0","groupname":""}
+        [#SLPB#]
+        ,
+        {"groupid":"[#dateid#]","groupname":"[#datename#]"}
+        [#SLPE#]
+        
+    ];
+    var store_yysj = Ext.create('Ext.data.Store', {
+        model: 'State',
+        data: yysj
+    });
+
+
+
+
+    var groupCombo = Ext.create('Ext.form.field.ComboBox', {
+        fieldLabel: '单位属组',
+        valueField:'groupid',
+        displayField: 'groupname',
+        name : 'groupid',      
+        value:'[#groupid#]',
+        allowBlank: false,
+        width:250,
+      
+        forceSelection: true,
+        store: store,
+        queryMode: 'local',
+        typeAhead: true
+    });
+
+    var fwztCombo = Ext.create('Ext.form.field.ComboBox', {
+        fieldLabel: '服务状态',
+        valueField:'groupid',
+        displayField: 'groupname',
+        name : 'servicestate',      
+        value:'[#servicestate#]',
+        allowBlank: true,
+        forceSelection: false,
+        store: store_fuzt,
+        queryMode: 'local',
+        typeAhead: true
+    });
+    var jrfsCombo = Ext.create('Ext.form.field.ComboBox', {
+        fieldLabel: '接入方式',
+        valueField:'groupid',
+        displayField: 'groupname',
+        name : 'jointype',      
+        value:'[#jointype#]',
+        allowBlank: true,
+        forceSelection: false,
+        store: store_jrfs,
+        queryMode: 'local',
+        typeAhead: true
+    });
+
+    var yysjCombo = Ext.create('Ext.form.field.ComboBox', {
+        fieldLabel: '&nbsp;营业时间段',
+        valueField:'groupid',
+        displayField: 'groupname',
+        name : 'dateid',      
+        value:'[#dateid#]',
+        allowBlank: true,
+        forceSelection: false,
+         width:250,
+        store: store_yysj,
+        queryMode: 'local',
+        labelWidth: 90,
+        typeAhead: true
+    });
+
+    var jkztCombo = Ext.create('Ext.form.field.ComboBox', {
+        fieldLabel: '监控级别',
+        valueField:'groupid',
+        displayField: 'groupname',
+        name : 'monflag',      
+        value:'[#monflag#]',
+        allowBlank: true,
+        forceSelection: false,
+        store: store_jkzt,
+        queryMode: 'local',
+        typeAhead: true
+    });
+    
+    
+    
+    
+    var jrcsCombo = Ext.create('Ext.form.field.ComboBox', {
+        fieldLabel: '接入厂商',
+        valueField:'groupid',
+        width:250,
+        displayField: 'groupname',
+        name : 'fcode',      
+        value:'[#fcode#]',
+        allowBlank: true,
+        forceSelection: true,
+        store: store_fcod,
+        queryMode: 'local',
+        typeAhead: true
+    });
+
+
+    var BaseInfoGroup = {
+        xtype: 'fieldset',
+        title: '基本信息',
+//        layout: 'hbox',
+
+       layout: 'anchor',
+        defaults: {
+            anchor: '100%',
+            height:28,
+            labelStyle: 'padding-left:4px;'
+        },
+        collapsible: false,
+        items: [           
+            {
+            labelWidth: 90,
+            layout: 'hbox',
+            xtype: 'container',
+           
+            items:[{
+            xtype: 'textfield',
+            name: 'username',
+            value: '[#groupcode#][#username#]',
+            allowBlank: false,
+            width:250,
+
+            fieldLabel: '单位编码'},
+            {
+	            xtype: 'textfield',
+	            labelWidth: 90,
+	            name: 'dispanme',
+	            value: '[#dispname#]',
+	            allowBlank: false,
+	            fieldLabel: '&nbsp;&nbsp;单位名称'
+            }
+            ]
+        },{        
+            layout: 'hbox',
+            xtype: 'container',
+
+            items:[
+         
+	            groupCombo,
+	            {
+	              labelWidth: 90,
+		            xtype: 'textfield',
+		           
+		            name: 'area',
+		            value: '[#area#]',
+		            fieldLabel: '&nbsp;&nbsp;所属地区'
+	            }
+            ]
+        
+        },
+        
+         {
+            labelWidth: 90,
+            layout: 'hbox',
+            xtype: 'container',
+            
+            items:[
+            jrcsCombo,
+             yysjCombo
+            ]
+        }
+        
+        
+        , {
+            xtype: 'radiogroup',
+            fieldLabel: '单位类别',
+            cls: 'x-check-group-alt',
+            anchor: '100%',
+            columns: 6,
+            items: [
+                {boxLabel: '酒店宾馆', name: 'gtype', inputValue: 1 [#jdcheck#]},
+                {boxLabel: '图书馆', name: 'gtype', inputValue: 2 [#ylscheck#]},
+                {boxLabel: '学校', name: 'gtype', inputValue: 3 [#xxcheck#]},
+                {boxLabel: '娱乐场所', name: 'gtype', inputValue: 4 [#ylcheck#]},
+                {boxLabel: '一般企业', name: 'gtype', inputValue: 5 [#qycheck#]},
+                {boxLabel: '网吧', name: 'gtype', inputValue: 6 [#wbcheck#]},
+                {boxLabel: '其它', name: 'gtype', inputValue: 9 [#qtcheck#]}
+            ]
+        }
+        
+        ,{
+            xtype: 'textfield',
+            name: 'address',
+            value: '[#address#]',
+            fieldLabel: '单位地址'
+        }
+        ,{
+            xtype: 'textfield',
+            name: 'demo',
+            value:'[#demo#]',
+            fieldLabel: '备注'
+        }
+        ]
+    };
+
+    var individual = {
+        xtype: 'container',
+        
+        layout: 'hbox',
+       
+        
+        items: [{
+            xtype: 'fieldset',
+             collapsible: true,
+            flex: 1,
+            title: '联系信息',
+            defaultType: 'checkbox', // each item will be a checkbox
+            layout: 'anchor',
+            defaults: {
+                anchor: '100%',
+                hideEmptyLabel: false
+            },
+            items: [{
+                xtype: 'textfield',
+                name: 'ceoname',
+                value:'[#ceoname#]',
+                fieldLabel: '负责人'
+            }, {
+                xtype: 'textfield',
+                name: 'handphone',
+                value:'[#handphone#]',
+                fieldLabel: '负责人电话'
+            }, {
+                xtype: 'textfield',
+                name: 'postcode',
+                value:'[#postcode#]',
+                fieldLabel: '邮编'
+            }, {
+                xtype: 'textfield',
+                name: 'contact',
+                value:'[#contact#]',
+                fieldLabel: '信息安全员'
+            }
+            , {
+                xtype: 'textfield',
+                name: 'email_addr',
+                value:'[#email_addr#]',
+                fieldLabel: '信安员Email'
+            }
+            , {
+                xtype: 'textfield',
+                name: 'telphone',
+                value:'[#telphone#]',
+                fieldLabel: '信安员电话'
+            } 
+            , {
+                xtype: 'textfield',
+                name: 'areaman',
+                value:'[#areaman#]',
+                fieldLabel: '网监负责人'
+            }  , {
+                xtype: 'textfield',
+                name: 'areatel',
+                value:'[#areatel#]',
+                fieldLabel: '网监电话'
+            }
+            ]
+        }, {
+            xtype: 'component',
+            width: 10
+        }, {
+            xtype: 'fieldset',
+            flex: 1,
+            title: '上网信息',
+            defaultType: 'textfield', 
+            collapsible: true,
+            layout: 'anchor',
+            defaults: {
+                anchor: '100%',
+                hideEmptyLabel: false
+            },
+            items: [{
+                xtype: 'numberfield',
+                name: 'end_num111',
+                minValue: 0,
+                value: '[#end_num#]',
+                fieldLabel: '上网终端数'
+            },
+            {
+                xtype: 'numberfield',
+                name: 'servernum',
+                value:'[#servernum#]',
+                minValue: 0,
+                fieldLabel: '服务器数'
+            },fwztCombo,
+             jrfsCombo
+            , {
+                xtype: 'textfield',
+                name: 'joincode',
+                value:'[#joincode#]',
+                fieldLabel: '服务商代码'
+            }, {
+                xtype: 'textfield',
+                name: 'entrance_ip',
+                value:'[#entrance_ip#]',
+                fieldLabel: '出口IP地址'
+            }, 
+            jkztCombo,{
+                xtype: 'textfield',
+                name: 'addtime',
+                value:'[#addtime#]',
+                fieldLabel: '加入时间'
+            }, {
+                xtype: 'hidden',
+                name: 'FunName',
+                value:'ncsWebClientAdd_v4'
+            }]
+        }, {
+            xtype: 'component',
+            width: 5
+        }
+        
+        ]
+    };
+
+
+
+    var fp = Ext.create('Ext.FormPanel', {         
+        frame: true,
+        method:'POST',
+        name:'form1',
+        fieldDefaults: {
+            labelWidth: 110
+        },
+        width: 600,
+        height:540,
+        renderTo:'corp_edit',
+
+        bodyPadding: 10,
+        items: [
+            BaseInfoGroup,
+            individual
+
+        ],
+        buttons: [{
+            text: '保存',
+            handler: function(){
+           if(fp.getForm().isValid()){
+             this.disabled=true;
+             
+             var guserid=document.getElementById("form1").userid.value;
+
+                     
+              fp.getForm().doAction('submit',{
+              url:'/pronline/Msg',
+               method:'post',
+               params:{userid:guserid},
+    
+                success:function(form,action){ 
+               
+          					Ext.Msg.alert('操作',"保存成功");
+          					document.getElementById("form1").userid.value=action.result.id;
+  
+                },
+             		 failure:function(form,action){
+
+            		  alert(action.result.id);
+                  Ext.Msg.alert('操作',"保存失败");
+                 
+           		 }
+               }
+           )
+  //           alert('cccc');
+        this.disabled=false;     
+ //           if(fp.getForm().isValid()){
+ //                 Ext.Msg.alert('Submitted Values', 'The following will be sent to the server: <br />'+
+ //                     fp.getForm().getValues(true).replace(/&/g,', '));                        
+ //              }
+               
+             
+            }
+         }
+        },{
+            text: '重置',
+            style : 'margin-right:0px',
+            handler: function(){
+                fp.getForm().reset();
+            }
+        },{
+            text: '关闭',
+            style : 'margin-right:170px',
+            handler: function(){
+                   var win = parent.Ext.getCmp('addwindow');
+                  if (win) {win.close();}
+
+            }
+        }]
+    });
+    
+    if(document.getElementById("form1").userid.value==''){
+
+       fp.getForm().getValues().groupid=document.getElementById("form1").groupid.value;
+    
+    }
+  
+    
+});
+
+
+
+
+</script>
+    
+    
+</head>
+<body onunload="parent.reflash()">
+    <div id="corp_edit"></div>
+    
+    <div id="joinfac" class="x-hide-display">
+         <select name="faccode"><option value="aaaa">fffff</option>/</select>
+    </div> 
+    
+    
+    
+    <form name="form1" id="form1">
+    	<input type="hidden" name="userid" value="[#userid#]">
+    	<input type="hidden" name="groupid" value="[#groupid#]">
+    </form>
+</body>
+</html>

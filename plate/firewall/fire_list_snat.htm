@@ -1,0 +1,96 @@
+<html>
+
+<head>
+
+<title>Untitled Document</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+
+<script>
+
+function goto(t){
+
+self.location.href=t
+
+}
+function mouseovertr2 (o)
+{
+	var i;
+	df=o.style.backgroundColor
+	o.style.backgroundColor= "#F2F2F2";
+	o.style.borderColor= "#3399ff";
+		
+	for(i=0; i<o.cells.length; i++)
+	{
+		o.cells(i).style.color="#000000";
+	}	
+}
+
+function mouseouttr2(o)
+{
+	o.style.backgroundColor=df
+	for(i=0; i<o.cells.length; i++)
+	{
+		o.cells(i).style.color="#000000";
+	}
+}
+</script>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+
+
+<body bgcolor="#CCCCCC" text="#000000" oncontextmenu="return false" leftmargin="1" topmargin="1">
+<table border="0" cellspacing="0" bgcolor="#C0C0C0" width="100%">
+  <tr > 
+    <td class="bord2" height="18" background="/images/ttt.gif"> 
+      <div align="center">索引</div>
+    </td>
+    <td class="bord2" height="18" background="/images/ttt.gif"> 
+      <div align="center">执行序号</div>
+    </td>
+    <td class="bord2" height="18" background="/images/ttt.gif"> 
+      <div align="center">网络接口</div>
+    </td>
+    <td class="bord2" height="18" background="/images/ttt.gif"> 
+      <div align="center">源地址</div>
+    </td>
+    <td class="bord2" height="18" background="/images/ttt.gif">伪装类型</td>
+    <td class="bord2" height="18" background="/images/ttt.gif"> 
+      <div align="center">伪装地址</div>
+    </td>
+    <td class="bord4" height="18" background="/images/ttt.gif"> 
+      <div align="center">删除</div>
+    </td>
+  </tr>
+  <!-- [#SLPB#] -->
+  <tr onmouseover="mouseovertr2(this)" onmouseout="mouseouttr2(this)"> 
+    <td class="bord1"> <a name=[#num#] href="/profire/Msg?FunName@fireWebDispNatForm&index@[#index#]&type@[#type#]" target="ftop"> 
+      <div align="center">&nbsp;[#index#]</div>
+      </a> </td>
+    <td class="bord1"><a href="/profire/Msg?FunName@fireWebDispNatForm&index@[#index#]&type@[#type#]" target="ftop">[#num#] 
+      </a></td>
+    <td class="bord1"> 
+      <div align="left"><a href="/profire/Msg?FunName@fireWebDispNatForm&index@[#index#]&type@[#type#]" target="ftop"> 
+        &nbsp;[#outdev#]</a> </div>
+    </td>
+    <td class="bord1"><a href="/profire/Msg?FunName@fireWebDispNatForm&index@[#index#]&type@[#type#]" target="ftop">&nbsp;[#sip#]</a> 
+    </td>
+    <td class="bord1"><a href="/profire/Msg?FunName@fireWebDispNatForm&index@[#index#]&type@[#type#]" target="ftop">[#nattype#]</a> 
+    </td>
+    <td class="bord1"><a href="/profire/Msg?FunName@fireWebDispNatForm&index@[#index#]&type@[#type#]" target="ftop"> 
+      &nbsp;[#to#]</a> </td>
+    <td class="bord3"> 
+      <div align="center"><a href="/profire/Msg?FunName@fireWebDispNatForm&index@[#index#]&type@[#type#]"> 
+        </a><a href="/profire/Msg?FunName@fireWebDelNat&index@[#index#]&type@[#type#]"><img src="/images/ChromeClose_Down.gif" width="22" height="22" border="0"></a></div>
+    </td>
+  </tr>
+  <!-- [#SLPE#] -->
+</table>
+
+  
+<div align="center"></div>
+
+</body>
+
+</html>

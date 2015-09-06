@@ -1,0 +1,262 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<title>用户带宽设置</title>
+<script>
+    function goto(t){
+        self.location.href=t;
+    }
+    
+      
+	function setprio(t){
+       j=form1.prio.options.length; 
+       for(i=0;i<j;i++) { 
+           gv = form1.prio.options[i].value;
+           if(gv == t) {
+               form1.prio.selectedIndex = i;
+           }
+       }
+    }
+
+	function setservice(t){
+       j=form1.service.options.length; 
+       for(i=0;i<j;i++) { 
+           gv = form1.service.options[i].value;
+           if(gv == t) {
+               form1.service.selectedIndex = i;
+           }
+       }
+    }
+	  
+	function setcname(t){
+	   j=form1.cname.options.length; 
+	   for(i=0;i<j;i++) { 
+           gv = form1.cname.options[i].value;
+           if(gv == t) {
+               form1.cname.selectedIndex = i;
+           }
+       }
+    }
+	
+	
+
+	  
+    function mouseovertr2 (o){
+        var i;
+        df=o.style.backgroundColor
+	    o.style.backgroundColor= "#003399";
+	    o.style.borderColor= "#FFFF00";
+	    o.style.cursor="hand";	
+        for(i=0; i<o.cells.length; i++)
+        {
+	        o.cells(i).style.color="#ffffff";
+        }	
+    }
+	
+  
+    function showf(lsid,lnum,ldip,ldmask,lservice,lprio,lcalss,lurate,ldrate) {
+        form1.sid.value=lsid;
+        form1.gnum.value=lnum;
+        form1.dip.value=ldip;
+		form1.dmask.value=ldmask;
+		setservice(lservice);
+		form1.urate.value=lurate;
+		form1.drate.value=ldrate;
+		setcname(lcalss);
+		setprio(lprio);
+    }
+    
+    function mouseouttr2(o){
+	    o.style.backgroundColor=df
+        for(i=0; i<o.cells.length; i++)
+        {
+	        o.cells(i).style.color="#000000";
+        }
+    }
+
+    var dfd1="0"
+    function allChecked(){
+        if(dfd1=="1"){
+            dfd1="0"
+        }
+        else {
+            dfd1="1"
+        }
+	    for(var i=0;i<document.all.DataTable.rows.length;i++)
+	    {
+		    if(typeof(document.all.DataTable.rows[i].cells[0].childNodes[0])=="object"
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].tagName=="INPUT"
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].type=="checkbox") {
+			    if(dfd1=="1"){
+  			        document.all.DataTable.rows[i].cells[0].childNodes[0].checked="true";
+                }
+			    else{
+                    document.all.DataTable.rows[i].cells[0].childNodes[0].checked="";
+                }
+            }
+ 	    }
+    }
+    
+</script>
+
+<link REL=stylesheet HREF="/css/runmit.css" TYPE="text/css">
+<script src="/js/rmenu.js"></script>
+<style type="text/css">
+<!--
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+-->
+</style>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+<body marginheight=0 leftmargin=0 marginwidth=0 topMargin="0" BGCOLOR="Menu">
+
+<form name="form1" method="post" action="/pronline/Msg"> 
+<table border="0" width=98% height=100% cellspacing="0" cellpadding="0" align=center bordercolor="#D4D4D4" bgcolor="#BCBCBC">
+ <tr> 
+      <td width="100%"  valign=middle align=center height="2" class="ttt"> 
+        <table width="841" border="0" cellspacing="0">
+          <tr> 
+            <td colspan="2" width="853"> 
+              <table width="818" border="1">
+                <tr> 
+                  <td height="158" colspan="2" width="839"> 
+                    <table width="816" border="0" height="145">
+                      <tr> 
+                        <td height="15" colspan="6"> 
+                          <div align="center"><strong>[#gname#]带宽设置</strong></div>
+                        </td>
+                      </tr>
+                      <tr> 
+                        <td colspan="6"> <img src="/images/hr.gif" width="843" height="1"></td>
+                      </tr>
+                      <tr> 
+                        <td width="91" height="16"> 
+                          <p align="right">序号</p>
+                        </td>
+                        <td width="170" height="16"> 
+                          <input name="gnum" type="text" id="gnum" value="[#num#]" size="11" maxlength="11" >
+                        </td>
+                        <td width="119" height="16"> 
+                          <p align="right">目标地址</p>
+                        </td>
+                        <td width="170" height="16"> 
+                          <input name="dip" type="text" id="dip" value="[#dip#]" size="15" maxlength="15">
+                        </td>
+                        <td width="89" height="16"> 
+                          <p align="right">掩码</p>
+                        </td>
+                        <td width="180" height="16"> 
+                          <p align="left"> 
+                            <input name="dmask" type="text" id="dmask" value="[#dmask#]" size="2" maxlength="2">
+                          </p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td height="2"><div align="right">服务</div></td>
+                        <td height="2">[#sservice#]</td>
+                        <td height="2"><div align="right">网络通道</div></td>
+                        <td height="2">[#scname#]</td>
+                        <td height="2"><div align="right">优先级</div></td>
+                        <td height="2">[#sprio#]</td>
+                      </tr>
+                      <tr> 
+                        <td width="91" height="2"> 
+                          <p align="right">上传速率</p>
+                        </td>
+                        <td width="170" height="2"> 
+                          <input name="urate" type="text" id="urate" value="[#urate#]" size="11" maxlength="11">
+                          Kbit
+                        </td>
+                        <td width="119" height="2"> 
+                          <p align="right">下传速率</p>
+                        </td>
+                        <td width="170" height="2"> 
+                          <input name="drate" type="text" id="drate" value="[#drate#]" size="11" maxlength="11">
+                          Kbit
+                        </td>
+                        <td height="2" colspan="2">(说明:不填表示不作限制)</td>
+                      </tr>
+                      <tr> 
+                        <td height="4" colspan="6"> <img src="/images/hr.gif" width="842" height="2"></td>
+                      </tr>
+                      <tr> 
+                        <td colspan="6" height="25"> 
+                          <div align="center"> 
+                            <table width="96%" border="0">
+                              <tr> 
+                                <td width="85%" height="26"> 
+                                  <div align="center"> 
+                                    <input type="hidden" name="flags"     value="[#flags#]">
+                                    <input type="submit" name="add" value="添加" >
+                                    <input type="submit" name="modi" value="修改" >
+                                    <input type="submit" name="del" value="删除" >
+                                    <input type="submit" name="app" value="应用" >
+                                    <input type="hidden" name="FunName" value="ncWebTcUserList">
+                                    <input type="hidden" name="sid"   value="[#sid#]">
+                                    <input type="hidden" name="gid"   value="[#gid#]">
+                                    <input type="hidden" name="gname"   value="[#gname#]">
+                                  </div>
+                                </td>
+                                <td width="15%">&nbsp;</td>
+                              </tr>
+                            </table>
+                          </div>
+                        </td>
+                      </tr>
+                    </table>                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+    </td>
+  </tr>
+  <tr>
+      <td width="100%"  valign=top align=center bgcolor="#BBBBBB"> 
+        <table  id="DataTable" width="861" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" height="60" >
+          <tr  height="21" > 
+            <td class="bord2" background="/images/ttt.gif" height="22" width="58"><img src="/images/lline.gif" width="1" height="18" align="absmiddle">&nbsp;&nbsp;<a href="#" onClick="allChecked()" >全选</a> 
+            </td>
+            <td class="bord2" height="22" background="/images/ttt.gif" width="72">序号</td>
+            <td class="bord2" height="22" background="/images/ttt.gif" width="134">目标地址</td>
+            <td class="bord2" background="/images/ttt.gif" width="104">服务</td>
+            <td class="bord2" background="/images/ttt.gif" width="125">网络通道</td>
+            <td class="bord2" background="/images/ttt.gif" width="115">上传速率</td>
+            <td class="bord2" background="/images/ttt.gif" width="128">下传速率</td>
+            <td class="bord2" height="22" background="/images/ttt.gif" width="125">优先级</td>
+          </tr>
+          <!-- [#SLPB#] -->
+          <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" onclick="showf('[#lsid#]','[#lnum#]','[#ldip#]','[#ldmask#]','[#lservice#]','[#lprio#]','[#lcname#]','[#lurate#]','[#ldrate#]')"> 
+            <td class="bord1" width="58" height="17"> 
+              <input type="checkbox" name="ch[#anum#]" value="[#lsid#]">
+            </td>
+            <td class="bord1" width="72" height="17">&nbsp;[#lnum#]</td>
+            <td class="bord1" width="134" height="17">&nbsp;[#ldip#][#lp#][#ldmask#]</td>
+            <td class="bord1" width="104">&nbsp;[#lservname#]</td>
+            <td class="bord1" width="125">&nbsp;[#lcdispname#]</td>
+            <td class="bord1" width="115">&nbsp;[#lurate#]</td>
+            <td class="bord1" width="128">&nbsp;[#ldrate#]</td>
+            <td class="bord1" width="125" height="17">&nbsp;[#lprio#]</td>
+          </tr>
+          <!-- [#SLPE#] -->
+          <!-- [#SLPB#] -->
+          <tr id=[#snum#]> 
+            <td class="bord1" width="58" height="21">&nbsp; </td>
+            <td class="bord1" width="72" height="21">&nbsp;</td>
+            <td class="bord1" width="134" height="21">&nbsp;</td>
+            <td class="bord1" width="104">&nbsp;</td>
+            <td class="bord1" width="125">&nbsp;</td>
+            <td class="bord1" width="115">&nbsp;</td>
+            <td class="bord1" width="128">&nbsp;</td>
+            <td class="bord1" width="125" height="21">&nbsp;</td>
+          </tr>
+          <!-- [#SLPE#] -->
+        </table>
+</table>
+  </form>
+</body>
+</html>

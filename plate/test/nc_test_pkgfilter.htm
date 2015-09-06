@@ -1,0 +1,41 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+</head>
+
+<body bgcolor="#CCCCCC" text="#000000">
+<form action="/pronline/Msg" method="post" name="form1" target="_parent">
+  <table width="992" border="1">
+    <tr>
+      <td colspan="4"><div align="center"><strong>过滤条件</strong></div></td>
+    </tr>
+    <tr>
+      <td width="1" rowspan="3">&nbsp; </td>
+      <td width="374">源IP地址
+      <input name="sip" type="text" value="[#sip#]" size="15" maxlength="15">
+      端口
+      <input name="sport" type="text" value="[#sport#]" size="5" maxlength="5">      </td>
+      <td colspan="2">目标IP地址
+        <input name="dip" type="text" value="[#dip#]" size="15" maxlength="15">
+端口
+<input name="dport" type="text" value="[#dport#]" size="5" maxlength="5">
+<input name="FunName" type="hidden" id="FunName" value="ncWebTestDispPkgMain"></td>
+    </tr>
+    <tr>
+      <td>方向[#flags#] 协议[#ntype#] </td>
+      <td width="252">位置
+      <input name="pos" type="text" id="pos" value="[#pos#]" size="8" maxlength="8"></td>
+      <td>长度
+      <input name="nlen" type="text" id="nlen" value="[#nlen#]" size="8" maxlength="8"></td>
+    </tr>
+    <tr>
+      <td colspan="2">格式
+      <input name="plate" type="text" id="plate" value="[#plate#]" size="63" maxlength="63"></td>
+      <td width="337"><input type="submit" name="Submit" value="确认"></td>
+    </tr>
+  </table>
+</form>
+<!-- [#SLPB#] -->
+</body>
+</html>

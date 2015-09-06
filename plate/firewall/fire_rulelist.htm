@@ -1,0 +1,89 @@
+<html>
+
+<head>
+
+<title>Untitled Document</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+
+<script>
+
+function goto(t){
+
+self.location.href=t
+
+}
+function mouseovertr2 (o)
+{
+	var i;
+	df=o.style.backgroundColor
+	o.style.backgroundColor= "#F2F2F2";
+	o.style.borderColor= "#3399ff";
+		
+	for(i=0; i<o.cells.length; i++)
+	{
+		o.cells(i).style.color="#000000";
+	}	
+}
+
+function mouseouttr2(o)
+{
+	o.style.backgroundColor=df
+	for(i=0; i<o.cells.length; i++)
+	{
+		o.cells(i).style.color="#000000";
+	}
+}
+</script>
+<link rel="stylesheet" href="/css.css" type="text/css">
+</head>
+
+
+
+<body bgcolor="#CCCCCC" text="#000000" oncontextmenu="return false" leftmargin="1" topmargin="1">
+<table width="100%" border="0" cellspacing="0" bgcolor="#FFFFFF">
+  <tr > 
+    <td width="10%" class="bord2" height="18" background="/images/ttt.gif">索引</td>
+
+    <td width="14%" class="bord2" height="18" background="/images/ttt.gif"> 
+      <div align="center">序号</div>
+
+    </td>
+
+    <td class="bord2" height="18" background="/images/ttt.gif"> 
+      <div align="center">名称</div>
+
+    </td>
+
+    <td width="10%" class="bord4" height="18" background="/images/ttt.gif"> 
+      <div align="center">删除</div>
+
+    </td>
+
+  </tr>
+
+  <!-- [#SLPB#] -->
+
+  <tr onmouseover="mouseovertr2(this)" onmouseout="mouseouttr2(this)">
+
+    <td width="10%" class="bord1">[#index#]</td>
+
+    <td width="14%" class="bord1">[#num#]</td>
+
+    <td class="bord1"> <a target="ftop" title="[#dispname#]" href="/profire/Msg?FunName@fireWebDispTables&index@[#index#]">[#des#]</a></td>
+
+    <td width="10%" class="bord3" bgcolor="dfdfdf"> 
+      <input type="button" name="Button" value="删除" class="anniu101" onclick="goto('/profire/Msg?FunName@fireWebDelRule&index@[#index#]')">
+    </td>
+
+  </tr>
+
+  <!-- [#SLPE#] -->
+
+</table>
+
+  <div align="center"></div>
+
+</body>
+
+</html>

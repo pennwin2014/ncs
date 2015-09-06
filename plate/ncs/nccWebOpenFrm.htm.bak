@@ -1,0 +1,24 @@
+
+<!--新建,编辑,删除页面模版-->
+<html>
+
+<head>
+
+<title>远程查询</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+
+</head>
+
+<body  >
+<iframe  height="555" name="list" id="list" width="100%"  border="0" frameborder="0" src="/pronline/Msg?FunName@ncsWebReplace&fname@nccWebShowIplog&plate@ncsmsg_showncc.htm&ProId@[#did#]&uid@[#uid#]&did@[#did#]&sdate@[#sdate#]&edate@[#edate#]&cname@[#cname#]" scrolling=no> </iframe>
+</body>
+
+</html>  

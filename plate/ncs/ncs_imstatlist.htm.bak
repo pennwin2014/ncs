@@ -1,0 +1,167 @@
+<html>
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<title>main</title>
+<script>
+var dfd1="0"
+function showuser(did,uid)
+{
+var temp_var="/pronline/Msg?FunName@ncsWebShowUserinfo&did@"+did+"+uid@"+uid;
+	showModalDialog(temp_var, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:520px;scroll:yes;dialogHeight:640px');
+}
+
+function gotopage(flag)
+{
+   var lCur=parseInt(form1.CurPg.value);
+ 
+    if(flag=='1'){
+      lCur=lCur-1;
+    }
+    else{
+    lCur=lCur+1;
+    }
+    form1.CurPg.value = lCur;
+    form1.submit();
+}
+
+
+
+</script>
+
+<link REL=stylesheet HREF="/css/listdatetable.css" TYPE="text/css">
+
+<script src="/js/calendar.js"></script>
+<style type="text/css">
+<!--
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+ .bordnr {
+	border-left: 1px solid #0148b2;
+	border-top: 1px solid #888888;
+	border-bottom: 1px solid #0148b2;
+	border-right: 1px solid #0148b2;
+	background-color:#d0e1fa;
+	} 
+.tScrollw {
+    SCROLLBAR-FACE-COLOR: #c1d8f9; 
+    OVERFLOW: scroll;
+    SCROLLBAR-SHADOW-COLOR: #c1d8f9; 
+    SCROLLBAR-3DLIGHT-COLOR: #c1d8f9;
+     SCROLLBAR-ARROW-COLOR: #5985ce; 
+     SCROLLBAR-DARKSHADOW-COLOR: #c1d8f9;
+    overflow-x:hidden;
+    height:540px;
+    cursor: default;
+    }
+  tr.tableHead {
+    position:relative;
+    height: 18px; 
+    text-align: center;
+    }   
+-->
+</style>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<script src="/js/rmenu.js"></script>
+</head>
+<body marginheight=0 leftmargin=1  marginwidth=0 topMargin="0" style="overflow:hidden"  >
+<form name="form1" method="post" action="/pronline/Msg">
+
+    <input type="hidden" name="FunName" value="ncsImStat">
+
+    <input type="hidden" name="CurPg"      value="[#CurPg#]">
+    <input type="hidden" name="TotPg"      value="[#TotPg#]">
+    <input type="hidden" name="tid" value="[#tid#]">
+    <input type="hidden" name="gid" value="[#gid#]">
+    <input type="hidden" name="did" value="[#did#]">
+    <input type="hidden" name="cheIDS" value="[#cheIDS#]">
+    <input type="hidden" name="gname" value="[#gname#]">
+    <input type="hidden" name="dispname" value="">
+    <input type="hidden" name="opt" value="[#opt#]">
+    <input type="hidden" name="sortby" value="[#sortby#]">
+
+  <table border="0" width=100% height=100% cellspacing="0" cellpadding="0" align=center bgcolor="#DEE8FA">
+  	 <tr> 
+    <td ><table width="100%" height="35" border="0" align="center" cellpadding="0" cellspacing="0" >
+        <tr > 
+          <td  > <div style="font-size:11pt;color:#00237e;font-weight:bold;text-align: center;">
+             
+              [#title#]即时通讯记录数统计报表</div></td>
+              <td width="150" align="right">
+ 
+              	&nbsp;</td>
+        </tr>
+      </table></td>
+  </tr>
+
+  	<tr> 
+    <td > 
+        
+        <table width="99%" border="1"    bordercolorlight=#89ACED   bordercolordark=#ffffff    align="center" cellpadding="0" cellspacing="0" >
+          <tr height="30"> 
+            <td colspan="2">&nbsp;
+            	时间从&nbsp;<input type="text" name="sdate1" size="11" value="[#sdate1#]"><input type="button" name="sdate_but" style="position:relative;left:-15px;top:-2px;width:15px;height:17px" value='…' onclick="fPopCalendar(sdate1,sdate1,'Down');return false">
+ 
+            	到&nbsp;<input type="text" name="sdate2" size="11" value="[#sdate2#]" ><input type="button" name="sdate_but" style="position:relative;left:-15px;top:-2px;width:15px;height:17px" value='…' onclick="fPopCalendar(sdate2,sdate2,'Down');return false">
+ 
+           
+            	<input name="submit1" type="button" class="an3"  onclick="form1.submit();form1.submit1.disabled=1"  value="确认" >
+            	<input name="exp" type="submit" class="an3"    value="导出" >
+            	<input name="tjtj" type="submit" class="an3"    value="统计条件" onclick="form1.FunName.value='ncsImDet_Con'">
+            	
+            	
+                <a href="#xxm" onclick="gotopage('1')">[#pre#]</a>
+                <a href="#xxm" onclick="gotopage('2')">[#next#]</a>
+            	</td>
+          </tr>
+
+  	
+  	
+  	
+  	
+  	
+  	
+    <tr> 
+   
+      <td width="100%"  valign=top align=center bgcolor="#DEE8FA">
+      	<div class="tScrollw" id="tC">
+        <table id="DataTable" class="listDataTable" width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+          <tr class="tableHead"  style="top:expression(document.getElementById('tC').scrollTop)"  bgcolor="#6382BD" height="20">
+
+            <td width="350" align="center" class="bord2"> &nbsp;单位名称</td>
+            <td  align="center" class="bord2" > 即时通讯工具</td>
+
+
+            <td width="100" align="center" class="bord4" >记录数</td>
+          </tr>
+          <!-- [#SLPB#] -->
+          <tr >   
+            <td class="bord1"    >&nbsp;[#name#]</td>
+          
+            <td class="bord1"    >&nbsp;[#servdesc#]</td>
+
+            <td class="bord3"  align="right">&nbsp;[#count#]&nbsp;</td>
+          </tr>
+          <!-- [#SLPE#] -->
+        
+        </table>
+      </div>
+      </td>
+  </tr>
+  
+
+  
+  
+  
+</table>
+ </form>
+ 
+
+
+</body>
+
+</html>

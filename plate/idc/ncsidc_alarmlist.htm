@@ -1,0 +1,312 @@
+<!-- saved from url=(0022)http://internet.e-mail -->
+<html>
+<head>
+<title>告警信息组合查询</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META content=no-cache http-equiv=Pragma>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<style type="text/css">
+<!--
+body {  font-size: 9pt}
+.tas {  border-color: black #FFFFFF; border-style: solid; border-top-width: 0px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 1px}
+table {  font-size: 9pt}
+.hand {  cursor: hand}
+.gray1{filter:gray}
+-->
+</style>
+
+<SCRIPT LANGUAGE="JavaScript">
+function checkme(p)
+{
+	var tt=p.value
+	if (tt>yy)
+	{
+		MM_changeProp('browsdopage','','value',yy,'INPUT/TEXT')
+	}
+	if (tt==0)
+	{
+		MM_changeProp('browsdopage','','value','1','INPUT/TEXT')
+	}
+}
+
+function MM_findObj(n, d) 
+{ //v4.0
+  	var p,i,x;
+  	if(!d) d=document;
+  	if((p=n.indexOf("?"))>0&&parent.frames.length)
+  	{
+    	d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);
+    }
+  	if(!(x=d[n])&&d.all) x=d.all[n];
+  	for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  	for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  	if(!x && document.getElementById) x=document.getElementById(n); return x;
+}
+
+function MM_changeProp(objName,x,theProp,theValue)
+{ //v3.0
+  	var obj = MM_findObj(objName);
+  	if (obj && (theProp.indexOf("style.")==-1 || obj.style)) eval("obj."+theProp+"='"+theValue+"'");
+}
+
+function goto_idc(a)
+{
+	window.open(a,"_self","")
+}
+
+function MM_reloadPage(init)
+{  //reloads the window if Nav4 resized
+  	if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+
+function mouseovertr2 (o)
+{
+	var i;
+	df=o.style.backgroundColor
+	o.style.backgroundColor= "#003399";
+	o.style.borderColor= "#3399ff";
+		
+	for(i=0; i<o.cells.length; i++)
+	{
+		o.cells(i).style.color="#ffffff";
+	}	
+}
+
+function mouseouttr2(o)
+{
+	o.style.backgroundColor=df
+	for(i=0; i<o.cells.length; i++)
+	{
+		o.cells(i).style.color="#000000";
+	}
+}
+
+function mouseovertd2(o)
+{
+	o.style.borderStyle="solid"
+	o.style.borderColor="#000000"
+	o.style.color="#ffffff"	
+}
+
+function mouseouttd2(o)
+{
+	o.style.color="#003366"
+	o.style.borderColor="#cccccc"
+}
+
+function allChecked(){
+    if(dfd1=="1"){
+        dfd1="0"
+    }
+    else {
+         dfd1="1"
+    }
+	for(var i=0;i<document.all.DataTable.rows.length;i++)
+	{
+		if(typeof(document.all.DataTable.rows[i].cells[0].childNodes[0])=="object"
+
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].tagName=="INPUT"
+
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].type=="checkbox") {
+			if(dfd1=="1"){
+  			    document.all.DataTable.rows[i].cells[0].childNodes[0].checked="true";
+            }
+			else{
+                document.all.DataTable.rows[i].cells[0].childNodes[0].checked="";
+            }
+        }
+ 	}
+}
+function st_ed(flag,sid){
+   	form1.st_flags.value=flag;
+		form1.mo_sid.value=sid;
+		form1.modi_st.value='modi';
+		form1.submit();
+}
+function gotoPage(pagenum)
+{
+    form1.CurPg.value = pagenum;
+}
+
+
+function init()
+{
+//		form1.idc_type.value=31;
+//	form1.idcdomain.value="";
+//	form1.sid.value="";
+//		form1.idcname.value="";
+//	form1.password.value="";
+//		form1.email.value="";
+//   	form1.ip.value="192.168.8.206";
+//	form1.startdate.value="";
+//	form1.enddate.value="";
+//	form1.keyword.value="";
+//	form1.idcindex.value=0;
+//	form1.num.value=10;
+//	form1.idcid.value="";
+//	form1.city.value="";
+	//form1.FunName.value="/pronline/Msg?FunName@ncs_idc_net_show&domain@"+form1.idcdomain.value+"&id@"+form1.sid.value+"&name@"+form1.idcname.value+"&password@"+form1.password.value+"&email@"+form1.email.value+"&ip@"+form1.ip.value+"&startdate@"+form1.startdate.value+"&enddate@"+form1.enddate.value+"&index@"+form1.idcindex.value+"&num@"+form1.num.value+"&city@"+form1.city.value;
+	//alert(form1.FunName.value);
+	//document.getElementById("list").src="/pronline/Msg?FunName@ncs_idc_alarm_search&domain@"+form1.idcdomain.value+"&keyword@"+form1.keyword.value+"&index@"+form1.idcindex.value+"&num@"+form1.num.value+"&city@"+form1.city.value+"&idcid="+form1.idcid.value;
+//	document.getElementById("list").src="/pronline/Msg?FunName@ncsIdcSearch&name@"+form1.idcname.value+"&email@"+form1.email.value+"&ip@"+form1.ip.value+"&index@"+form1.idcindex.value+"&num@"+form1.num.value+"&city@"+form1.city.value+"&idcid="+form1.idcid.value+"&type="+form1.idc_type.value;
+	//pronline/Msg?FunName@ncs_idc_net_show&domain@&id@&name@&password@&email@&ip@&startdate@&enddate@&index@0&num@10&city@
+	
+//	alert(1);
+	form1.submit();
+}
+
+// -->
+<!-- Hide
+var ll=[#CurPg#]
+var yy=[#TotPg#]
+function killErrors() {
+return true;
+}
+window.onerror = killErrors;
+// -->
+</SCRIPT>
+
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" oncontextmenu="return false">
+<table width="100%" border="0" align="center"  cellpadding="0"  cellspacing=0 bordercolor="#DFDFDF">
+  <form name="form1" method="post" action="/pronline/Msg">
+    <input type="hidden" name="FunName" value="ncsIdcSearch">
+    <input type="hidden" name="CurPg" value="[#CurPg#]">
+    <input type="hidden" name="groupid1" value="[#groupid#]">
+    <input type="hidden" name="mo_sid" value="[#mo_sid#]">
+    <input type="hidden" name="modi_st" value="[#modi_st#]">
+    <input type="hidden" name="st_flags" value="[#st_flags#]">
+    <input type="hidden" name="type" value="31">
+    <input type="hidden" name="PerRow" value="">
+    <input type="hidden" name="Row"   value="">
+    <input type="hidden" name="Col"   value="">
+    <tr >
+      <td colspan="9">
+      	
+      	<table width="100%" height="27" border="0" align="center" cellpadding="0" cellspacing="0" background="/images/table_bg1.gif">
+          <tr height="30"> 
+          	<td class="tabtitle" >告警信息组合查询&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td background="/images/images2/chaxun2-1.gif" align="right"> 
+            	<table align=right border=0 cellpadding=0 cellspacing=0 
+                        class=main width=111>
+                <tbody>
+                      <td width="10%"> <script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-06.gif' border=0 height=17 width=35 class='gray1'>")}
+                      else{
+                        document.write("<a href='#xxm'><img src='/images/zbuyer-06.gif' border=0 height=17 width=35 onClick='gotoPage(1);form1.submit()' class='hand'>")}
+                   </script> </td>
+                      <td width="10%"> <script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 class='gray1'>")}
+                      else {
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]-1);form1.submit()' class='hand'>")}
+                   </script> </td>
+                      <td width="20%" valign="top"><img src="/images/zbuyer-08.gif" border=0 height=17 width=32></td>
+                      <td align=middle background="" width=92> <input class=Main id=browsdopage3 maxlength=7  name=browsdopage size=7 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 50px;position:relative;top:-2px;" value=[#CurPg#] onKeyPress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" onBlur="checkme(this)"> 
+                      </td>
+                      <td width="10%" valign="top"><img src="/images/zbuyer-09.gif" border=0 height=17 width=16></td>
+                      <td width="10%" valign="top"><img align=middle border=0 height=17 src="/images/zbuyer-10.gif" width=17 onClick="gotoPage(form1.browsdopage.value);form1.submit()" class="hand"><img align=middle height=17 src="/images/zbuyer-11.gif" width=3></td>
+                      <td width="10%" valign="top"><img border=0 height=17 src="/images/zin1.gif" width=17 ></td>
+                      <td align=middle background="" width=92> <input  class=Main id=browsdopage122 maxlength=7 name=browsdopage12 size=7 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 50px;position:relative;top:-2px;" value='[#TotPg#]'> 
+                      </td>
+                      <td width="10%" valign="top"><img align=middle height=17 src="/images/zbuyer-09.gif" width=16></td>
+                      <td align=middle background="" width=92> <input  class=Main id=browsdopage122 maxlength=7 name=browsdopage12 size=7 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 50px;position:relative;top:-2px;" value='[#TotRec#]'> 
+                      </td>
+                      <td width="10%" valign="top"><img border=0 height=17 src="/images/zin3.gif" width=17 align="middle" ><img align=middle height=17  src="/images/zbuyer-11.gif" width=3></td>
+                      <td width="10%"> <script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]+1);form1.submit()' class='hand'>")}
+                    </script> </td>
+                      <td width="10%"> <script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 onClick='gotoPage([#TotPg#]);form1.submit()' class='hand'>")}
+                    </script> </td>
+                    </tbody>
+              </table>
+            	</td>
+          </tr>
+        </table></td>
+ 
+    </tr>
+    
+    <tr > 
+      <td   colspan="9" > <table width="100%" border="0"  class="ttt">
+          <tr> 
+            <td width="84%" height="25"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr> 
+                 <td>&nbsp;用户名：<input name="name" size="12" type="text" value="[#name#]" />
+   						</td>
+   						<td>&nbsp;邮箱：<input name="email" size="12" type="text" value="[#email#]" />&nbsp;Ip：<input name="ip" size="14" type="text" value="[#ip#]" />
+   						机房名：<input name="idcjfname" size="14" type="text" value="[#idcjfname#]" />
+   						&nbsp;区域：<input name="city" size="12" type="text" value="[#city#]" />&nbsp;<input type="button" class="an3"  name="search" value="搜 索"  onclick="init();"  /></td>
+                </tr>
+              </table>
+             </td>
+            <td width="36%" > &nbsp;</td>
+          </tr>
+        </table>
+       </td>
+    </tr>
+    
+    
+    
+     <tr width="100%"><td><table width="100%" border="0" cellspacing="0" cellpadding="0" style="TABLE-LAYOUT: fixed">
+    <tr bgcolor="#6382BD" id=ignore > 
+    	<!--
+      <td width="28"   height="18" class="bord2">
+      <div align="center"><font color="#FFFFFF">&nbsp; </font> </div></td>-->
+ <!--     <td width="70" height="18" bgcolor="#6382BD" class="bord2"> 
+        <div align="center"><font color="#FFFFFF">&nbsp;告警部门</font></div></td>
+      <td width="110" height="18" bgcolor="#6382BD" class="bord2"> 
+        <div align="center"><font color="#FFFFFF">&nbsp;告警时间</font></div></td>
+      <td  width="80" height="18" bgcolor="#6382BD" class="bord2"> 
+        <div align="center"><font color="#FFFFFF">&nbsp;告警IP</font></div></td>
+       <td width="80"  height="18" bgcolor="#6382BD" class="bord2"> 
+        <div align="center"><font color="#FFFFFF">&nbsp;告警位置</font></div></td>-->
+             <td  width="800" height="18" bgcolor="#6382BD" class="bord2"> 
+        <div width="800"  align="center"><font color="#FFFFFF">&nbsp;告警信息</font></div></td>  	
+       
+     	 <td  width="80" height="18" bgcolor="#6382BD" class="bord2"> 
+        <div align="center"><font color="#FFFFFF">&nbsp;机房名</font></div></td>
+      <td  width="65" height="18" bgcolor="#6382BD" class="bord2"> 
+        <div align="center"><font color="#FFFFFF">&nbsp;区域</font></div></td>
+
+    </tr>
+    <!-- [#SLPB#] -->
+ <!--   <tr bgcolor="#FFFFFF" onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" onDblClick="goto_idc('/pronline/Msg?FunName@ncsIdcRlue_am&idc_sid@[#idc_sid#]')"> -->
+    <tr bgcolor="#FFFFFF" onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" > 
+     <!--
+      <td width="28"   height="20" valign="bottom" class="bord1" align="right"> <input type="checkbox" name="chk[#num#]" value="[#idc_sid#]"> 
+      </td> 
+      <td width="70" height="20" valign="bottom" class="bord1" align="right">&nbsp;[#alarmdep#] </td>
+      <td width="110" height="20" valign="bottom" class="bord1" align="center">&nbsp;[#alarmtime#] </td>
+      <td width="80" valign="bottom" class="bord1" align="center">&nbsp;[#alarmip#] </td>
+      <td width="80" valign="bottom" class="bord1" align="center">&nbsp;[#alarmposition#] </td>-->
+      <td width="800" height="20" valign="bottom" class="bord1" align="left" title="[#alarmmessage#]">&nbsp;[#alarmmessage#]</td>
+      <td width="80" valign="bottom" class="bord1" align="center" title="[#idcname#]">&nbsp;[#idcname#]</td>
+      <td width="65" valign="bottom" class="bord3" align="center" title="[#city#]">&nbsp;[#city#]</td>
+     <!--
+      <td valign="bottom" class="bord3" align="center">&nbsp;<input type="button" value="[#idc_status#]" onclick=st_ed('[#idc_sflag#]','[#idc_sid#]') style="background-color:white;LEFT: 0px; WIDTH: 50px; POSITION: relative; TOP: 2px"  size="5"></td>
+     -->
+    </tr>
+    <!-- [#SLPE#] -->
+      </table></td></tr>
+  </form>
+</table>
+<p>&nbsp;</p>
+</body>
+</html>

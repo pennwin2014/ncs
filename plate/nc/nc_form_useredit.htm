@@ -1,0 +1,187 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<script>
+    function goto(t) {
+	    if(form1.limitid.value != '0') {
+            window.open(t+'&id@'+form1.limitid.value,'RUNMIT_new','width=800,height=600,fullscreen=0,toolbar=no,scrollbars=no,resizable=1,menubar=no,status=0');
+		}
+		else {
+		    alert(" 策略没有定义");
+		}
+	}
+
+    function goto1(t) {
+	    if(form1.userid.value != '') {
+            window.open(t+'&id@'+form1.userid.value,'RUNMIT_new','width=800,height=600,fullscreen=0,toolbar=no,scrollbars=no,resizable=1,menubar=no,status=0');
+		}
+		else {
+		    alert(" 请先保存用户信息");
+		}
+	}
+	 
+</script>
+
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0"  oncontextmenu="return false" >
+<form name="form1" method="post" action="/pronline/Msg">
+
+  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td align="center"  ><table width="100%" height="27" border="0" align="center" cellpadding="0" cellspacing="0" background="/images/table_bg1.gif">
+          <tr > 
+            <td colspan="2"> <div align="center"><strong><font color="#FFFFFF">新增用户</font></strong></div></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr> 
+      <td align="center"  ><br>
+        <table width="70%" border="1"    bordercolorlight=#89ACED   bordercolordark=#ffffff    cellpadding="0" cellspacing="0">
+          <tr> 
+            <td valign="top"><br> 
+              <table width="90%" border="0" align="center">
+                <tr> 
+                  <td width="70"><strong>用户信息</strong></td>
+                  <td>&nbsp;</td>
+                </tr>
+              </table>
+              <table width="90%" border="0" align="center">
+                <tr> 
+                  <td colspan="2"><img src="/images/ans10.gif" width="32" height="32" align="absmiddle"> 
+                    您可以修改用户的登录名和密码,及用户所属部门</td>
+                </tr>
+                <tr> 
+                  <td height="26" width="23%">登录名</td>
+                  <td height="26" width="77%"> <input type="text" name="username" value="[#username#]" size="15" maxlength="15"> 
+                  </td>
+                </tr>
+                <tr> 
+                  <td height="26" width="23%">用户显示名 </td>
+                  <td height="26" width="77%"> <input type="text" name="dispname" value="[#dispname#]" size="15" maxlength="15"> 
+                  </td>
+                </tr>
+                <tr> 
+                  <td width="23%">密码 </td>
+                  <td width="77%"> <input type="password" name="password" size="31" maxlength="31" value="[#password#]" > 
+                  </td>
+                </tr>
+                <tr> 
+                  <td width="23%">密码确认 </td>
+                  <td width="77%"> <input type="password" name="password1" size="31" maxlength="31" value="[#password#]" > 
+                  </td>
+                </tr>
+                <tr> 
+                  <td width="23%">部门</td>
+                  <td width="77%">[#dept#] </td>
+                </tr>
+                <tr> 
+                  <td width="23%">邮件地址</td>
+                  <td width="77%"> <input type="text" name="email" size="31" maxlength="63" value="[#email#]"> 
+                  </td>
+                </tr>
+              </table>
+              <table width="90%" border="0" align="center">
+                <tr> 
+                  <td width="70"><strong>地址信息</strong></td>
+                  <td>&nbsp;</td>
+                </tr>
+              </table>
+              <table width="90%" border="0" align="center">
+                <tr> 
+                  <td colspan="2"><img src="/images/anb55.gif" width="32" height="32" align="absmiddle"> 
+                    用户所使用的电脑在您的网络上的逻辑地址和物理地址,以及它在网络督察中的状态.</td>
+                </tr>
+                <tr> 
+                  <td width="23%" >IP 地址 </td>
+                  <td width="77%" > <input type="text" name="ip" value="[#ip#]"  size="15" maxlength="15"> 
+                  </td>
+                </tr>
+                <tr> 
+                  <td width="23%" height="28" >MAC 地址 </td>
+                  <td width="77%" height="28"> <input type="text" name="mac" value="[#mac#]" size="22" maxlength="22"> 
+                  </td>
+                </tr>
+              </table>
+              <table width="90%" border="0" align="center">
+                <tr> 
+                  <td width="70" height="12"><strong>访问控制</strong></td>
+                  <td height="12">&nbsp;</td>
+                </tr>
+              </table>
+              <table width="90%" border="0" align="center">
+                <tr> 
+                  <td width="23%" >带宽限制</td>
+                  <td colspan="2" > <input type="text" name="limit" value="[#limit#]" size="15" maxlength="12" > 
+                  </td>
+                </tr>
+                <tr> 
+                  <td width="23%" >使用状态 </td>
+                  <td colspan="2" > [#use#]</td>
+                </tr>
+                <tr> 
+                  <td width="23%">预定义控制策略</td>
+                  <td width="42%"> [#limitid#] 
+                    <input name="Button2" type="button" class="an3-1" onclick="goto('/pronline/Msg?FunName@ncWebLim_Dispmenu&plate@nc/nc_lim_setrule.htm&gtype@4')" value="查看策略"> 
+                  </td>
+                  <td width="35%"> <input name="Button22" type="button" class="an3-2" onClick="goto1('/pronline/Msg?FunName@ncWebLim_Dispmenu&plate@nc/nc_lim_setmenu.htm&gtype@1')" value="定制访问控制策略"> 
+                  </td>
+                </tr>
+                <tr> 
+                  <td width="23%" height="25">&nbsp;</td>
+                  <td width="42%" height="25"> [#post#]通过POST发送表单 </td>
+                  <td width="35%" height="25"> [#webip#]使用IP地址访问网站</td>
+                </tr>
+              </table>
+              <table width="90%" border="0" align="center">
+                <tr> 
+                  <td width="70"><strong>访问时间</strong></td>
+                  <td>&nbsp;</td>
+                </tr>
+              </table>
+              <table width="90%" border="0" align="center">
+                <tr> 
+                  <td width="23%">加入时间 </td>
+                  <td width="77%"> <input type="text" name="addtime" value="[#addtime#]" readonly> 
+                  </td>
+                </tr>
+                <tr> 
+                  <td width="23%">最后访问时间 </td>
+                  <td width="77%"> <input type="text" name="addtime" value="[#addtime#]" readonly> 
+                  </td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+              </table></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr>
+      <td height="70" align="center"  > 
+        <table width="50%" border="0" align="center">
+          <tr> 
+            <td> <div align="right"> 
+                <input type="hidden" name="FunName" value="ncWebUserAdd">
+                <input type="hidden" name="userid" value="[#userid#]">
+                <input type="submit" name="save" value="保 存" class="an3">
+                &nbsp; 
+                <input type="submit" name="ok" value="保存继续" class="an3-1">
+                &nbsp; 
+                <input type="reset" name="cancel" value="取消返回" class="an3-1" onClick="history.back()">
+                &nbsp; &nbsp; </div></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

@@ -1,0 +1,275 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<script>
+
+     function Add()
+    {
+	    if(form1.username.value=='')
+	    {
+	    	alert('请填写登陆名');
+	    	return false;
+	    	}
+	    if(form1.username.value=='')
+	    {
+	    	alert('请填写密码');
+	    	return false;
+	    }
+	    if(form1.password.value=='')
+	    {
+	    	alert('请填写密码');
+	    	return false;
+	    	}
+	    if(form1.password.value!=form1.password1.value)
+	    {
+	    	alert('密码不一致');
+	    	return false;
+	    	}	
+	    if(form1.groupid.value=='')
+	    {
+	    alert('请选择单位类别');
+	    return false;
+	    }
+	    if(form1.dispname.value=='')
+	    {
+	    alert('请填写单位名称');
+	    return false;
+	    }	
+	    	
+	    	return true;
+    }
+	 
+</script>
+
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0"  oncontextmenu="return false" >
+<form name="form1" method="post" action="/pronline/Msg">
+
+  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td align="center"  ><table width="100%" height="35" border="0" align="center" cellpadding="0" cellspacing="0" >
+          <tr > 
+            <td colspan="2"> <div style="font-size:11pt;color:#00237e;font-weight:bold;text-align: center;">单位信息维护</div></td>
+          </tr>
+		  <tr>
+      <td height="70" align="center"  ><table width="50%" border="0" align="center">
+          <tr> 
+            <td> <div align="right"> 
+                <input type="hidden" name="FunName" value="ncsWebClientAdd">
+                <input type="hidden" name="userid" value="[#userid#]">
+                <input type="submit" name="save" value="保 存" class="an3" onClick="return Add()">
+&nbsp;                &nbsp; 
+                <input type="reset" name="cancel" value="取消返回" class="an3-1" onClick="history.back()">
+                &nbsp; &nbsp; </div></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+        </table></td>
+    </tr>
+    <tr> 
+      <td align="center"  >
+        <table width="75%" border="1"    bordercolorlight=#89ACED   bordercolordark=#ffffff    cellpadding="0" cellspacing="0">
+          <tr> 
+            <td valign="top"><br> 
+              <table width="90%" border="0" align="center">
+                <tr> 
+                  <td width="70"><strong>单位信息</strong></td>
+                  <td>&nbsp;</td>
+                </tr>
+              </table>
+              <table width="90%" border="0" align="center">
+                <tr> 
+                  <td height="26" width="24%">登录名</td>
+                  <td height="26" width="76%"> <input type="text" name="username" value="[#username#]" size="15" maxlength="15"> 
+                  </td>
+                </tr>
+
+                <tr height="26"> 
+                  <td >密码 </td>
+                  <td > <input type="password" name="password" size="33" maxlength="31" value="[#password#]" > 
+                  </td>
+                </tr>
+                <tr height="26"> 
+                  <td >密码确认 </td>
+                  <td > <input type="password" name="password1" size="33" maxlength="31" value="[#password#]" > 
+                  </td>
+                </tr height="26">
+                <tr height="26">
+                <td>属组</td>
+                <td><select name="groupid" style="width:222px">
+                   [#SLPB#]
+                   <option value="[#groupid#]">[#groupname#]</option>
+                   [#SLPE#]
+                   </select>
+                   </td>
+                 </tr>
+				 
+               <tr height="26">
+                <td>单位类别</td>
+                <td><select name="gtype" style="width:222px">
+                  
+                   <option value="1" [#selected1#]>酒店宾馆</option>
+                   <option value="2" [#selected2#]>图书馆阅览室</option>
+                   <option value="3" [#selected3#]>学校</option>
+                   <option value="4" [#selected4#]>娱乐场所</option>
+                   <option value="5" [#selected5#]>一般企业</option>
+				   <option value="9" [#selected9#]>其他</option>
+                   </select>
+                   </td>
+                 </tr>
+				  <tr height="26">
+                <td>服务状态</td>
+                <td><select name="servicestate" style="width:222px">
+                  
+                   <option value="1" [#selected01#]>装机开始服务</option>
+                   <option value="2" [#selected02#]>装机停止服务</option>
+                   <option value="3" [#selected03#]>未装机开始服务</option>
+                   <option value="4" [#selected04#]>未装机停止服务</option>
+				   <option value="9" [#selected09#]>其他</option>
+				   
+                   </select>
+                   </td>
+                 </tr>
+				 <tr height="26">
+                <td>接入方式</td>
+                <td><select name="jointype" style="width:222px">
+                  
+                   <option value="01" [#selected001#]>专网真实IP地址</option>
+                   <option value="02" [#selected002#]>专线</option>
+                   <option value="03" [#selected003#]>ADSL拨号</option>
+                   <option value="04" [#selected004#]>ISDN</option>
+                   <option value="05" [#selected005#]>普通拨号</option>
+				   <option value="06" [#selected006#]>Cable Moderm 拨号</option>
+				   <option value="07" [#selected007#]>电力线</option>
+				   <option value="08" [#selected008#]>无线上网</option>
+				   <option value="09" [#selected099#]>其他</option>
+				   
+                   </select>
+                   </td>
+                 </tr>
+				 
+				<tr height="26"> 
+                  <td height="26" >接入服务商代码</td>
+                  <td height="26" > <input type="text" name="joincode" value="[#joincode#]" size="33" maxlength="31"> 
+                  </td>
+                </tr>
+				<tr height="26"> 
+                  <td height="26" >服务场所代码</td>
+                  <td height="26" > <input type="text" name="servicecode" value="[#servicecode#]" size="33" maxlength="31"> 
+                  </td>
+                </tr>
+				<tr height="26"> 
+                  <td height="26" >终端数</td>
+                  <td height="26" > <input type="text" name="endnum" value="[#endnum#]" size="33" maxlength="31"> 
+                  </td>
+                </tr>
+				<tr height="26"> 
+                  <td height="26" >服务器数</td>
+                  <td height="26" > <input type="text" name="servernum" value="[#servernum#]" size="33" maxlength="31"> 
+                  </td>
+                </tr>
+                <tr height="26"> 
+                  <td height="26" >单位名称</td>
+                  <td height="26" > <input type="text" name="dispname" value="[#dispname#]" size="63" maxlength="63"> 
+                  </td>
+                </tr>
+                <tr height="26"> 
+                  <td>单位地址</td>
+                  <td ><input name="address" type="text" id="address" value="[#address#]" size="63" maxlength="127"></td>
+                </tr>
+				<tr height="26">
+                  <td  >法人代表(负责人)</td>
+                  <td  ><input name="ceoname" type="text" id="contact" value="[#ceoname#]" size="31" maxlength="31"></td>
+                </tr>
+                <tr height="26">
+                  <td >法人代表(负责人)电话</td>
+                  <td ><input type="text" name="handphone" value="[#handphone#]" size="31" maxlength="31"></td>
+                </tr>
+				 <tr height="26">
+                  <td >邮编</td>
+                  <td ><input type="text" name="postcode" value="[#postcode#]" size="31" maxlength="31"></td>
+                </tr>
+                <tr height="26"> 
+                  <td >信息安全员E-Mail地址</td>
+                  <td > <input type="text" name="email" size="31" maxlength="63" value="[#email#]"> 
+                  </td>
+                </tr>
+           
+                
+                <tr height="26">
+                  <td >信息安全员</td>
+                  <td ><input type="text" name="contact" value="[#contact#]" size="31" maxlength="31"></td>
+                </tr>
+                <input type="hidden" name="ip" value="[#ip#]">
+                 <tr height="26">
+                  <td >信息安全员联系电话</td>
+                  <td ><input type="text" name="telphone" value="[#telphone#]" size="31" maxlength="31"></td>
+                </tr>
+				
+                 <tr height="26">
+                  <td >从业人数</td>
+                  <td ><input type="text" name="empnum" value="[#empnum#]" size="31" maxlength="31"></td>
+                </tr>
+				<tr height="26">
+                  <td >所属地区</td>
+                  <td ><input type="text" name="area" value="[#area#]" size="31" maxlength="31"></td>
+                </tr>
+                
+                 <tr height="26">
+                  <td >管理单位负责人</td>
+                  <td ><input type="text" name="areaman" value="[#areaman#]" size="31" maxlength="31"></td>
+                </tr>
+                <tr height="26">
+                  <td >管理单位负责人电话</td>
+                  <td ><input type="text" name="areatel" value="[#areatel#]" size="31" maxlength="31"></td>
+                </tr>
+                <tr height="26"> 
+                  <td >出口IP地址 </td>
+                  <td > <input type="text" name="ip" value="[#ip#]" readonly> 
+                  </td>
+                </tr>
+				<tr height="26"> 
+                  <td >状态 </td>
+                  <td > <input type="text" name="userflags" value="[#userflags#]" readonly> 
+                  </td>
+                </tr>
+                <tr height="26"> 
+                  <td >加入时间 </td>
+                  <td > <input type="text" name="addtime" value="[#addtime#]" readonly> 
+                  </td>
+                </tr>
+                <tr height="26"> 
+                  <td width="23%">最后操作时间 </td>
+                  <td width="77%"> <input name="lasttime" type="text" id="lasttime" value="[#lasttime#]" readonly> 
+                  </td>
+                </tr>
+				
+				<tr height="104"> 
+                  <td width="23%">备注 </td>
+                  <td width="77%"> <textarea name="demo" cols="63" rows="5" value=[#demo#]></textarea> 
+                  </td>
+                </tr>
+                <tr height="26">
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+              </table></td>
+          </tr>
+        </table></td>
+    </tr>
+    
+  </table>
+</form>
+<script> form1.groupid.value='[#groupid#]';
+	form1.gtype.value='[#gtype#]'
+	</script>
+</body>
+</html>

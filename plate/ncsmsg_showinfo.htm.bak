@@ -1,0 +1,99 @@
+<html>
+<head>
+<title>[#message#]</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<script>
+function goto(){
+form1.submit();
+//    self.location.href="/pronline/Msg?FunName@[#fun#]&groupid@[#groupid#]&action_flag@[#action_flag#]&userid@[#userid#]&plate@[#plate#]&rycx@[#rycx#]&CurPg@[#CurPg#]&TotPg@[#TotPg#]&lcount@[#lcount#]&cond@[#cond#]&service@[#service#]&trantype@[#trantype#]&sip@[#sip#]&dip@[#dip#]&port@[#port#]&sdate@[#sdate#]&edate@[#edate#]&username@[#username#]&sorta@[#sorta#]&ordera@[#ordera#]&title@[#title#]&host@[#host#]&uri@[#uri#]&dport@[#dport#]&mailsub@[#mailsub#]&mailfrom@[#mailfrom#]&mailto@[#mailto#]&ysf@[#ysf#]&fjflag@[#fjflag#]&url@[#url#]&prot@[#prot#]&mesg@[#mesg#]&warntype@[#warntype#]";
+}
+</script>
+
+<style type="text/css">
+<!--
+.style2 {
+	font-size: 16px;
+	font-weight: bold;
+	font-style: italic;
+	color: #FFFF33;
+}
+-->
+</style>
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" oncontextmenu="return false" onLoad="goto()" >
+			<form name="form1" method="post" action="/pronline/Rmsg">
+		<input type="hidden" name="FunName" value="[#fun#]">
+		<input type="hidden" name="CurPg" value="[#CurPg#]">
+		<input type="hidden" name="groupid" value="[#groupid#]">
+		<input type="hidden" name="userid" value="[#userid#]">
+		<input type="hidden" name="uid" value="[#uid#]">
+		<input type="hidden" name="did" value="[#did#]">
+		<input type="hidden" name="plate" value="[#plate#]">
+		<input type="hidden" name="sdate" value="[#sdate#]">
+		<input type="hidden" name="edate" value="[#edate#]">
+		<input type="hidden" name="rycx" value="[#rycx#]">
+		<input type="hidden" name="TotPg" value="[#TotPg#]">
+		<input type="hidden" name="CurPg" value="[#CupPg#]">
+		<input type="hidden" name="cond" value="[#cond#]">
+		<input type="hidden" name="lcount" value="[#lcount#]">
+		<input type="hidden" name="service" value="[#service#]">
+		<input type="hidden" name="trantype" value="[#trantype#]">
+		<input type="hidden" name="sip" value="[#sip#]">
+		<input type="hidden" name="dip" value="[#dip#]">
+		<input type="hidden" name="port" value="[#port#]">
+		<input type="hidden" name="username" value="[#username#]">
+		<input type="hidden" name="sorta" value="[#sorta#]">
+		<input type="hidden" name="ordera" value="[#ordera#]">
+		<input type="hidden" name="title" value="[#title#]">
+		<input type="hidden" name="host" value="[#host#]">
+		<input type="hidden" name="uri" value="[#uri#]">
+		<input type="hidden" name="dport" value="[#dport#]">
+		<input type="hidden" name="mailsub" value="[#mailsub#]">
+		<input type="hidden" name="mailfrom" value="[#mailfrom#]">
+		<input type="hidden" name="mailto" value="[#mailto#]">
+		<input type="hidden" name="ysf" value="[#ysf#]">
+		<input type="hidden" name="fjflag" value="[#fjflag#]">
+		<input type="hidden" name="url" value="[#url#]">
+		<input type="hidden" name="prot" value="[#prot#]">
+		<input type="hidden" name="mesg" value="[#mesg#]">
+		<input type="hidden" name="warntype" value="[#warntype#]">
+		<input type="hidden" name="idcard" value="[#idcard#]">
+		<input type="hidden" name="position" value="[#position#]">
+		<input type="hidden" name="servicecode" value="[#servicecode#]">
+		<input type="hidden" name="compname" value="[#compname#]">
+		<input type="hidden" name="action_flag" value="[#action_flag#]">
+		<input type="hidden" name="mac" value="[#mac#]">
+<table border=0 cellspacing=0 width="100%" cellpadding=0 align="center">
+  <tbody>
+    <tr>
+      <td id=clearStart valign="top"><table width="100%" height="27" border="0" align="center" cellpadding="0" cellspacing="0" background="/images/table_bg1.gif">
+          <tr > 
+            <td colspan="2"> <div align="center"><strong></strong></div></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr> 
+      <td id=clearStart height="500" valign="top"> <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>       
+   <table width="400" height="200" border="1" align="center" cellpadding="0"   cellspacing="0"     bordercolorlight=#3162B3   bordercolordark=#ffffff bgcolor=#006994>          <tr> 
+              <td valign="middle" >
+        <table width="88%" border="0" align="center">
+                <tr> 
+                  <td width="57%" height="100"> <div align="center" class="style2">系统正在查询，请耐心等待.........</div></td>
+                </tr>
+              </table>
+           </td>
+          </tr>
+        </table>
+        <p>&nbsp;</p></td>
+    </tr>
+  </tbody>
+</table>
+<p>&nbsp;</p>
+</form>
+</body>
+</html>

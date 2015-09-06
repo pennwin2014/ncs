@@ -1,0 +1,72 @@
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<script>
+function gotoPg(t){
+      self.location.href="/pronline/Msg?FunName@ncWebPrintNetUse_u&sdate@[#sdate#]&edate@[#edate#]&time@[#time#]&userid@[#userid#]&dispname@[#dispname#]&rownum@[#rownum#]&startpg@"+t+"&sumpage@[#sumpage#]";
+}
+function  doExport(){
+  self.location.href="/pronline/Msg?FunName@ncWebPrintNetUse_u&daochu@dc&sdate@[#sdate#]&edate@[#edate#]&sort@[#sort#]&userid@[#userid#]&rownum@[#rownum#]&dispname@[#dispname#]&time@[#time#]";
+}
+
+
+function llprint(){
+// document.all.pprint.style.display="none"
+  window.print()
+
+}
+</script>
+</head>
+<!-- [#SLPB#] -->
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<table border="0" align="center" cellpadding="0" cellspacing="0" width="100%">
+  <tr> 
+    <td height="37" colspan="4"  class="ttt"> <table width="100%" border="0">
+        <tr> 
+          <td height="24" width="57%"> 
+            <p align="right"><b>[#dispname#]上网情况统计([#sdate#]--[#edate#]) </b></p></td>
+          <td height="24" width="15%"> <div align="right">
+              <input name="exp" type="button" class="an3" onClick="doExport()" value="导 出">
+            </div></td>
+          <td height="24" width="28%" id="pprint"> [#SLPB#]&nbsp; 
+            <input name="B[#pnum#]" type="button" class="an3" onClick="[#prun#]" value="[#butname#]">
+            [#SLPE#] </td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr align="center" valign="middle"> 
+    <td width="11%" height="18" bgcolor="#6382BD"  class="bord2"> <div align="center"><font color="#FFFFFF">序号</font></div></td>
+    <td  width="40%" height="18" bgcolor="#6382BD"  class="bord2"> <div align="center"><font color="#FFFFFF">访问时间</font></div></td>
+    <td width="22%" height="18" bgcolor="#6382BD"  class="bord2"> <div align="center"><font color="#FFFFFF">时间</font></div></td>
+    <td  width="27%" height="18" bgcolor="#6382BD"  class="bord2"> <div align="center"><font color="#FFFFFF">流量</font></div></td>
+  </tr>
+  <!-- [#SLPB#] -->
+  <tr> 
+    <td width="11%" bgcolor="#FFFFFF"  class="bord1"> 
+      <div align="center">&nbsp; 
+        [#num#]</div></td>
+    <td  width="40%" bgcolor="#FFFFFF"  class="bord1">&nbsp; [#startdate#] [#starttime#]</td>
+    <td width="22%" bgcolor="#FFFFFF"  class="bord1"> 
+      <div >[#ltime#]&nbsp;</div></td>
+    <td width="27%" bgcolor="#FFFFFF"  class="bord3"> 
+      <div>[#lbytes#]&nbsp;</div></td>
+  </tr>
+  <!-- [#SLPE#] -->
+</table>
+<table border="0" align="center" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+  <!-- [#SLPB#] -->
+  <tr bgcolor="#FFFFFF"> 
+    <td width="51%" height="14"  class="bord1"> <div align="center"><strong>合 
+        计</strong></div></td>
+    <td width="22%" height="14" bgcolor="#FFFFFF"  class="bord1"> <div >[#sumtime#]&nbsp;</div></td>
+    <td width="27%" height="14"  class="bord3"> <div >[#sumbytes#]&nbsp;</div></td>
+  </tr>
+  <!-- [#SLPE#] -->
+</table>
+<p>&nbsp;</p>
+<p align="center">第 [#pages#]页</p>  
+<xmp style='page-break-after:always'></xmp>
+<!-- [#SLPE#] -->
+</html>

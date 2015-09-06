@@ -1,0 +1,186 @@
+<html>
+<head>
+<title>基本参数设置</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+
+<style>
+	.bord12 { border: #89ACED solid; border-width: 1px 0px 0px}
+</style>
+<script>
+function gotoRight(id){
+form1.sid.value=id;
+form1.submit();
+}
+
+function modi(){
+	if(form1.netid.value==''){
+	alert('网络ID不能为空');
+	return false;
+	}
+	if(form1.netmask.value==''){
+	alert('掩码不能为空');
+	return false;
+	}
+	if(form1.iprange.value==''){
+	alert('地址池不能为空');
+	return false;
+	}
+	if(form1.routers.value==''){
+	alert('缺省网关不能为空');
+	return false;
+	}
+	
+	return true;
+}
+</script>
+<link rel="stylesheet" href="/css/main.css" type="text/css">
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" align="center"  style="overflow:hidden">
+<form name="form1" method="post" action="/pronline/Msg">
+	 <input type="hidden" name="FunName" value="ncWebDHCPSet">
+   <input type="hidden" name="sid" value="[#id#]">
+   <input type="hidden" name="sum" value="[#sum#]">
+  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr height="30">
+       <td colspan="2"> <div style="font-size:11pt;color:#00237e;font-weight:bold;text-align: center;">DHCP服务参数设置</div></td>
+    </tr>
+    
+    
+    <tr> 
+      <td valign="top" >
+        <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" >
+          <tr> 
+            <td valign="top" >
+            	<table width="100%" border="1"   bordercolorlight=#89ACED   bordercolordark=#ffffff  align="center" cellpadding="0" cellspacing="0">
+            	  <tr >
+            	  	<td rowspan="2" width="150" valign="top" height="560">
+            	  		
+            	  		<table width="142" border="1" bordercolorlight=#89ACED   bordercolordark=#ffffff cellspacing="0" cellpadding="0" bgcolor="#dEE8eA">
+	
+  <tr height="50">
+  <td colspan="2">&nbsp;
+    	网络ID:<br>&nbsp;<input type="text" name="nid" size="15">
+      
+    </td>
+   </tr>
+   <tr height="28">
+    <td colspan="2">
+    	<input name="add" type="submit" value="增加" class="an3" >
+      <input name="del" type="submit" value="删除" Onclick="return Del()" class="an3">
+    </td>
+   </tr>
+   
+   <tr><td colspan="2" width="100%" height="495" valign="top">
+   	  
+  <table id="DataTable" border="0" cellspacing="0" cellpadding="0">   
+  <tr> 
+    <td colspan="2" style="font-size:10pt;color:#00237e;font-weight:bold;"><img src="/tree/base.gif" width="19" height="16"> DHCP网络ID列表</td>
+  </tr>
+    <!-- [#SLPB#] -->
+  <tr> 
+    <td width="20%"><img src="/tree/joinbottom.gif" width="14" height="16"><input type="checkbox" style="width:18px;height:18px" name="ch[#iNum#]" value="[#lid#]" ></td>
+    <td width="80%" onClick="gotoRight('[#lid#]')" ><a href="#xxm">[#lNetid#]</a></td>
+  </tr>
+<!-- [#SLPE#] -->
+</table>
+</td>
+</tr>
+</table>          	  		
+            	  	</td>
+            	  	<td valign="top">
+            	  		<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0"  >
+            	  			<tr  >
+							<td valign="top"  >
+							<table width="100%"  cellspacing="0" cellpadding="0" >
+
+<tr >
+
+							<td width="30" height="26"></td>
+							<td style="font-size:13px;color:#00237e;font-weight:bold;">基本参数</td>
+							<td  align="right"  > </td>
+</tr>
+
+</table>
+</td>
+
+
+
+
+
+            	  			</tr>
+            	  			 <tr height="30" style="font-size:13px"  >
+            	  				<td width="100" align="right">服务状态</td>
+            	  			<td><select name="status"><option value="1">启用</option><option value="0">停用</option></select>
+            	  					
+            	  				</td>
+            	  			</tr>
+            	  			<tr height="30" style="font-size:13px"  >
+            	  				<td width="80" align="right">网络ID&nbsp;</td>
+            	  				<td><input type="text" name="netid" value="[#netid#]" size="14" maxlength="63">
+            	  					&nbsp;掩码&nbsp;<input type="text" name="netmask" value="[#netmask#]" size="14" maxlength="15">&nbsp;&nbsp;(设置DHCP服务的网段)
+            	  				</td>
+            	  			</tr>
+            	  			<tr height="30" style="font-size:13px"  >
+            	  				<td align="right">域名&nbsp;</td>
+            	  				<td><input type="text" name="domainname" value="[#domainname#]" size="36" maxlength="64">&nbsp;&nbsp;(可选)</td>
+            	  			</tr>
+            	  			
+            	  			<tr height="30" style="font-size:13px"  > 
+            	  				<td align="right">DNS&nbsp;</td>
+            	  				<td><input type="text" name="dnsserver" value="[#dnsserver#]" size="36" maxlength="64">&nbsp;&nbsp;(多个DNS,用“，”分隔)</td>
+            	  			</tr>
+            	  			
+            	  			<tr height="30" style="font-size:13px"  >
+            	  				<td align="right">地址池&nbsp;</td>
+            	  				<td><input type="text" name="iprange" value="[#iprange#]" size="36" maxlength="255">
+            	  					子网掩码&nbsp;<input type="text" name="subnetmask" value="[#subnetmask#]" size="14" maxlength="15">
+            	  					</td>
+            	  			</tr>
+            	  			<tr height="30" style="font-size:13px"  ><td></td>
+            	  				  <td>(指定DHCP分配的IP地址范围，格式如：192.168.1.1 192.168.1.10 如果有多个区间，之间用","分隔)</td>
+            	  				</tr>
+            	  			<tr height="30" style="font-size:13px" >
+            	  				<td align="right">默认租约期&nbsp;</td>
+            	  				<td><input type="text" name="defleasetime" value="[#defleasetime#]" size="15" maxlength="10">&nbsp;秒&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最长租约期&nbsp;<input type="text" name="maxleasetime" value="[#maxleasetime#]" size="15" maxlength="10">&nbsp;秒</td>
+            	  			</tr>
+            	  			<tr height="30" style="font-size:13px" >
+            	  				<td align="right">缺省网关&nbsp;</td>
+            	  				<td><input type="text" name="routers" value="[#routers#]" size="15" maxlength="20">&nbsp;</td>
+            	  			</tr>
+            	  			
+            	  			<tr height="35" style="font-size:13px" >
+            	  				<td align="left" colspan="2" class="bord12">
+            	  				<input type="submit" name="mod" value="保 存" onclick="return modi()" class="an3" >&nbsp;
+            	  				<input type="reset" name="fq" value="放 弃" class="an3" >&nbsp;
+            	  				<input type="submit" name="app" value="应 用" class="an3" >
+            	  			</td>
+            	  			</tr>
+            	  	  </table>
+            	  	</td>
+            	  </tr>
+            	  
+            	  <tr height="300">
+            	  
+            	  	<td valign="top">
+            	  		<iframe name="main_t" id="data1" width="100%" height="300" src="/pronline/Msg?FunName@ncWebDhcpFixIp&id@[#id#]" frameborder="no"> </iframe>
+            	  		
+            	  		</td>
+            	  </tr>
+            	</table>
+            	
+          </td>
+        </tr>
+      </table>       
+     </td>
+    </tr>      
+  </table>
+</form>
+<script>form1.status.value='[#status#]';</script>
+</body>
+</html>

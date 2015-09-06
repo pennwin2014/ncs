@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <title>Tabs Example</title>
+    <style type="text/css">
+    	
+ .x-tab-default-top button, .x-tab-default-top.x-tab-inner {
+		height: 16px !important;
+		line-height: 16px;
+	}
+    	
+    
+      *{font-size:12px!important;}
+   
+  </style>
+    <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" />
+
+    <script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+        <script type="text/javascript">
+             	
+        	Ext.require('Ext.tab.*');
+
+    Ext.onReady(function(){
+
+    var tabs = Ext.createWidget('tabpanel', {
+        renderTo: 'procy',
+        width: 888,
+        height:530,
+        activeTab: 0,
+         defaults :{
+            bodyPadding: 0
+        },
+        items: [
+        {          
+            title: '关键词布控',
+            html: '<iframe  id="bkxxIframe" name="bkxxIframe" src="/pronline/Msg?FunName@ncsWebReplace&plate@v4/case/ncs_caseprocy_det_keyword.htm&cid@[#cid#]"  scrolling="yes" width=865 height=470  FrameBorder=0 ></iframe>'
+        },{          
+            title: '阀值布控',
+            html: '<iframe  id="bkxxIframe" name="bkxxIframe" src="/pronline/Msg?FunName@ncsWebReplace&plate@v4/case/ncs_caseprocy_det_maxvalue.htm&cid@[#cid#]"  scrolling="yes" width=865 height=470  FrameBorder=0 ></iframe>'
+        },{          
+            title: '告警方式',
+            html: '<iframe  id="bkxxIframe" name="bkxxIframe" src="/pronline/Msg?FunName@ncsWebReplace&plate@v4/case/ncs_caseprocy_det_warnway.htm&cid@[#cid#]"  scrolling="yes" width=865 height=470  FrameBorder=0 ></iframe>'
+        }
+        ]
+    });
+ 
+
+});
+
+        </script> 
+</head>
+<body  >
+    <div id="procy">
+
+    </div>
+    	    
+  <form name="form1" id="form1" >
+		<input type="hidden" name="groupid" value="">
+		<input type="hidden" name="did" value="">
+	</form> 
+    
+   
+</body>
+</html>

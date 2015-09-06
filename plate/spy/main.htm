@@ -1,0 +1,265 @@
+<html>
+<head>
+<title>网络督察</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<style type="text/css">
+<!--
+table {  font-size: 9pt}
+
+.coolButton2 {
+	HEIGHT: 20px; MARGIN: 1px; WIDTH: 20px
+}
+.gray1{filter:gray
+}
+-->
+</style>
+<script language="JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+// -->
+
+function MM_findObj(n, d) { //v4.0
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && document.getElementById) x=document.getElementById(n); return x;
+}
+
+function MM_dragLayer(objName,x,hL,hT,hW,hH,toFront,dropBack,cU,cD,cL,cR,targL,targT,tol,dropJS,et,dragJS) { //v3.0
+  //Copyright 1998 Macromedia, Inc. All rights reserved.
+  var i,j,aLayer,retVal,curDrag=null,NS=(navigator.appName=='Netscape'), curLeft, curTop;
+  if (!document.all && !document.layers) return false;
+  retVal = true; if(!NS && event) event.returnValue = true;
+  if (MM_dragLayer.arguments.length > 1) {
+    curDrag = MM_findObj(objName); if (!curDrag) return false;
+    if (!document.allLayers) { document.allLayers = new Array();
+      with (document) if (NS) { for (i=0; i<layers.length; i++) allLayers[i]=layers[i];
+        for (i=0; i<allLayers.length; i++) if (allLayers[i].document && allLayers[i].document.layers)
+          with (allLayers[i].document) for (j=0; j<layers.length; j++) allLayers[allLayers.length]=layers[j];
+      } else for (i=0;i<all.length;i++) if (all[i].style&&all[i].style.position) allLayers[allLayers.length]=all[i];}
+    curDrag.MM_dragOk=true; curDrag.MM_targL=targL; curDrag.MM_targT=targT;
+    curDrag.MM_tol=Math.pow(tol,2); curDrag.MM_hLeft=hL; curDrag.MM_hTop=hT;
+    curDrag.MM_hWidth=hW; curDrag.MM_hHeight=hH; curDrag.MM_toFront=toFront;
+    curDrag.MM_dropBack=dropBack; curDrag.MM_dropJS=dropJS;
+    curDrag.MM_everyTime=et; curDrag.MM_dragJS=dragJS;
+    curDrag.MM_oldZ = (NS)?curDrag.zIndex:curDrag.style.zIndex;
+    curLeft= (NS)?curDrag.left:curDrag.style.pixelLeft; curDrag.MM_startL = curLeft;
+    curTop = (NS)?curDrag.top:curDrag.style.pixelTop; curDrag.MM_startT = curTop;
+    curDrag.MM_bL=(cL<0)?null:curLeft-cL; curDrag.MM_bT=(cU<0)?null:curTop -cU;
+    curDrag.MM_bR=(cR<0)?null:curLeft+cR; curDrag.MM_bB=(cD<0)?null:curTop +cD;
+    curDrag.MM_LEFTRIGHT=0; curDrag.MM_UPDOWN=0; curDrag.MM_SNAPPED=false; //use in your JS!
+    document.onmousedown = MM_dragLayer; document.onmouseup = MM_dragLayer;
+    if (NS) document.captureEvents(Event.MOUSEDOWN|Event.MOUSEUP);
+  } else {
+    var theEvent = ((NS)?objName.type:event.type);
+    if (theEvent == 'mousedown') {
+      var mouseX = (NS)?objName.pageX : event.clientX + document.body.scrollLeft;
+      var mouseY = (NS)?objName.pageY : event.clientY + document.body.scrollTop;
+      var maxDragZ=null; document.MM_maxZ = 0;
+      for (i=0; i<document.allLayers.length; i++) { aLayer = document.allLayers[i];
+        var aLayerZ = (NS)?aLayer.zIndex:aLayer.style.zIndex;
+        if (aLayerZ > document.MM_maxZ) document.MM_maxZ = aLayerZ;
+        var isVisible = (((NS)?aLayer.visibility:aLayer.style.visibility).indexOf('hid') == -1);
+        if (aLayer.MM_dragOk != null && isVisible) with (aLayer) {
+          var parentL=0; var parentT=0;
+          if (!NS) { parentLayer = aLayer.parentElement;
+            while (parentLayer != null && parentLayer.style.position) {
+              parentL += parentLayer.offsetLeft; parentT += parentLayer.offsetTop;
+              parentLayer = parentLayer.parentElement; } }
+          var tmpX=mouseX-(((NS)?pageX:style.pixelLeft+parentL)+MM_hLeft);
+          var tmpY=mouseY-(((NS)?pageY:style.pixelTop +parentT)+MM_hTop);
+          var tmpW = MM_hWidth;  if (tmpW <= 0) tmpW += ((NS)?clip.width :offsetWidth);
+          var tmpH = MM_hHeight; if (tmpH <= 0) tmpH += ((NS)?clip.height:offsetHeight);
+          if ((0 <= tmpX && tmpX < tmpW && 0 <= tmpY && tmpY < tmpH) && (maxDragZ == null
+              || maxDragZ <= aLayerZ)) { curDrag = aLayer; maxDragZ = aLayerZ; } } }
+      if (curDrag) {
+        document.onmousemove = MM_dragLayer; if (NS) document.captureEvents(Event.MOUSEMOVE);
+        curLeft = (NS)?curDrag.left:curDrag.style.pixelLeft;
+        curTop = (NS)?curDrag.top:curDrag.style.pixelTop;
+        MM_oldX = mouseX - curLeft; MM_oldY = mouseY - curTop;
+        document.MM_curDrag = curDrag;  curDrag.MM_SNAPPED=false;
+        if(curDrag.MM_toFront) {
+          eval('curDrag.'+((NS)?'':'style.')+'zIndex=document.MM_maxZ+1');
+          if (!curDrag.MM_dropBack) document.MM_maxZ++; }
+        retVal = false; if(!NS) event.returnValue = false;
+    } } else if (theEvent == 'mousemove') {
+      if (document.MM_curDrag) with (document.MM_curDrag) {
+        var mouseX = (NS)?objName.pageX : event.clientX + document.body.scrollLeft;
+        var mouseY = (NS)?objName.pageY : event.clientY + document.body.scrollTop;
+        newLeft = mouseX-MM_oldX; newTop  = mouseY-MM_oldY;
+        if (MM_bL!=null) newLeft = Math.max(newLeft,MM_bL);
+        if (MM_bR!=null) newLeft = Math.min(newLeft,MM_bR);
+        if (MM_bT!=null) newTop  = Math.max(newTop ,MM_bT);
+        if (MM_bB!=null) newTop  = Math.min(newTop ,MM_bB);
+        MM_LEFTRIGHT = newLeft-MM_startL; MM_UPDOWN = newTop-MM_startT;
+        if (NS) {left = newLeft; top = newTop;}
+        else {style.pixelLeft = newLeft; style.pixelTop = newTop;}
+        if (MM_dragJS) eval(MM_dragJS);
+        retVal = false; if(!NS) event.returnValue = false;
+    } } else if (theEvent == 'mouseup') {
+      document.onmousemove = null;
+      if (NS) document.releaseEvents(Event.MOUSEMOVE);
+      if (NS) document.captureEvents(Event.MOUSEDOWN); //for mac NS
+      if (document.MM_curDrag) with (document.MM_curDrag) {
+        if (typeof MM_targL =='number' && typeof MM_targT == 'number' &&
+            (Math.pow(MM_targL-((NS)?left:style.pixelLeft),2)+
+             Math.pow(MM_targT-((NS)?top:style.pixelTop),2))<=MM_tol) {
+          if (NS) {left = MM_targL; top = MM_targT;}
+          else {style.pixelLeft = MM_targL; style.pixelTop = MM_targT;}
+          MM_SNAPPED = true; MM_LEFTRIGHT = MM_startL-MM_targL; MM_UPDOWN = MM_startT-MM_targT; }
+        if (MM_everyTime || MM_SNAPPED) eval(MM_dropJS);
+        if(MM_dropBack) {if (NS) zIndex = MM_oldZ; else style.zIndex = MM_oldZ;}
+        retVal = false; if(!NS) event.returnValue = false; }
+      document.MM_curDrag = null;
+    }
+    if (NS) document.routeEvent(objName);
+  } return retVal;
+}
+function goto(y){
+window.open(y,"_self","")
+}
+//-->
+</script>
+</head>
+
+<body bgcolor="#AFAFC0" text="#000000"  oncontextmenu="return false" leftmargin="0" topmargin="0">
+<table width="100%" border="0" bgcolor="#CCCCCC" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td bgcolor="#CCCCCC" colspan="2">
+      <table width="100%" border="0" height="24">
+        <tr>
+          <td width="1%">&nbsp;</td>
+          <td width="6%"><font color="#666666">设置(F)</font> </td>
+          <td width="6%"><font color="#666666">察看(W)</font></td>
+          <td width="6%"><font color="#666666">统计(S)</font></td>
+          <td width="81%"><font color="#666666">帮助(H)</font></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr background="images/topbg.gif"> 
+    <td height="62" background="images/topbg.gif" width="46"> 
+     <script>
+a=screen.width/2-156
+b=screen.height/2-140
+document.write("<div id='Layer1' style='position:absolute; left:"+a+"px; top:"+b+"px; width:312px; height:148px; z-index:1'> ")
+</script>
+    <form name="nclogin" method="post" action="/pronline/Msg?FunName@ncWebLogin">
+        <table width="100%" border="0" height="100%"  cellspacing="0" cellpadding="0">
+          <tr>
+            <td height="20" background="images/logobb_r1_c1.gif"><img src="images/logobb_r1_c1.gif" width="312" height="20" onMouseDown="MM_dragLayer('Layer1','',0,0,0,0,true,false,-1,-1,-1,-1,false,false,0,'',false,'')" onMouseUp="MM_dragLayer('Layer1','',0,0,0,0,true,false,0,0,0,0,false,false,0,'',false,'')"></td>
+          </tr>
+          <tr> 
+            <td background="images/logobb_r2_c1.gif">
+              <table width="100%" border="0">
+                <tr> 
+                  <td width="13%">&nbsp;</td>
+                  <td width="25%">&nbsp;</td>
+                  <td width="47%">&nbsp;</td>
+                  <td width="15%">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="13%">&nbsp;</td>
+                  <td width="25%">用户名</td>
+                  <td width="47%"> 
+                    <input type="text" name="textfield" size="16">
+                  </td>
+                  <td width="15%">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="13%">&nbsp;</td>
+                  <td width="25%">密码</td>
+                  <td width="47%"> 
+                    <input type="password" name="textfield2" size="16">
+                  </td>
+                  <td width="15%">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="13%" height="40">&nbsp;</td>
+                  <td colspan="2" height="40"> 
+                    <div align="center">
+                      <input type="submit" name="Submit" value=" 确 定 " onclick="goto('main2.htm')">
+                      <input type="reset" name="Submit2" value=" 取 消 ">
+                    </div>
+                  </td>
+                  <td width="15%" height="40">&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+     </form>      
+     </td>
+
+    <td height="75" background="images/topbg.gif" width="978"> 
+      <table border="0" width="900">
+        <tr> 
+          <td width="7%"> 
+            <div align="center"><img align=absMiddle height=36 src="images/ans10.gif" width=36 class="gray1"><br>
+              用户查询</div>
+          </td>
+          <td width="7%"> 
+            <div align="center"><img align=absMiddle height=36 src="images/ans1.gif" width=36 class="gray1"><br>
+监控报表</div>
+          </td>
+          <td width="7%"> 
+            <div align="center"><img align=absMiddle height=36 src="images/ans7.gif" width=36 class="gray1"><br>
+              页面访问</div>
+          </td>
+          <td width="7%"> 
+            <div align="center"><img align=absMiddle height=36 src="images/ans3.gif" width=36 class="gray1"><br>
+              用户状态</div>
+          </td>
+          <td width="7%"> 
+            <div align="center"><img align=absMiddle height=36 src="images/ans4.gif" width=36 class="gray1"><br>
+              添加用户 </div>
+          </td>
+          <td width="7%"> 
+            <div align="center"><img align=absMiddle height=36 src="images/ans6.gif" width=36 class="gray1"><br>
+              当前纪录</div>
+          </td>
+          <td width="7%"> 
+            <div align="center"><img align=absMiddle height=36 src="images/ans8.gif" width=36 class="gray1"><br>
+              访问监控</div>
+          </td>
+          <td width="7%"> 
+            <div align="center"><img align=absMiddle height=36 src="images/ans18.gif" width=36 class="gray1"><br>
+              访问限制</div>
+          </td>
+          <td width="7%"> 
+            <div align="center"><img align=absMiddle height=36 src="images/ans11.gif" width=36 class="gray1"><br>
+              历史纪录</div>
+          </td>
+          <td width="7%"> 
+            <div align="center"><img align=absMiddle height=36 src="images/ans13.gif" width=36 class="gray1"><br>
+              网络信息</div>
+          </td>
+          <td width="7%"> 
+            <div align="center"><img align=absMiddle height=36 src="images/ans14.gif" width=36 class="gray1"><br>
+              系统设置</div>
+          </td>
+          <td width="7%"> 
+            <div align="center"><img align=absMiddle height=36 src="images/ans16.gif" width=36 class="gray1"><br>
+              图表统计</div>
+          </td>
+          <td width="7%">
+            <div align="center"><img align=absMiddle height=36 src="images/ans17.gif" width=36 class="gray1"><br>
+              排行榜</div>
+          </td>
+          <td width="9%"> 
+            <div align="center"><img align=absMiddle height=36 src="images/ans15.gif" width=36 class="gray1"><br>
+              浏览器</div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

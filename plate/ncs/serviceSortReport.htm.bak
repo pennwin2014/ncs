@@ -1,0 +1,189 @@
+
+
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
+<style>
+v\:*         { behavior: url(#default#VML) }
+o\:*         { behavior: url(#default#VML) }
+.shape       { behavior: url(#default#VML) }
+
+.style4 {color: #00237e; font-size: 13px; font-weight: bold; }
+
+</style>
+<link href="/css/css.css" rel="stylesheet" type="text/css">
+<head>
+	<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+	 <meta name="GENERATOR" content="Microsoft Visual Studio .NET 7.1">
+  <meta name="ProgId" content="VisualStudio.HTML">
+  <meta name="Originator" content="Microsoft Visual Studio .NET 7.1">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>网址访问统计图表</title>
+<style>
+	.bord2_1 {	border-top: 1px solid #666666;
+	border-right: 0px solid #294767;
+	border-bottom: 1px solid #666666;
+	border-left: 1px solid #666666;}
+	.bord1 { left: 5px; top: 5px; clip:  rect(5px 5px 5px 5px); border: #999999 solid; border-width: 0px 0px 1px 1px}
+A:link{
+text-decoration:underline;
+font-size:9pt;
+}
+A:visited{
+text-decoration:underline;
+font-size:9pt;
+}
+A:hover{text-decoration:underline;
+font-size:9pt;
+}
+A:active{text-decoration:underline;
+font-size:9pt;
+}
+	
+	
+TD {	FONT-SIZE: 9pt}
+</style>
+<script src="/js/calendar3.js"></script>
+<script>
+	function savexp(){
+	if(confirm("统计结果将被保存，您可以在历史报表查看中查看!")){
+	return true;
+	}
+	return false;
+	}
+	
+	
+		function openreport(t){
+		window.open(t,'open_report','height=600, width=900, top=50, left=50,toolbar=no,scrollbars=no,resizable=1,menubar=no,status=no;');
+	}
+</script>
+
+
+</head>
+
+<body topmargin=5 leftmargin=0 bgcolor="#DEE8FA" scroll=AUTO >
+
+	<table width="100%" border="0" align="left" cellpadding="0" cellspacing="0">
+    <form name="form1" method="post" action="/pronline/Msg">
+    	<input type="hidden" name="FunName" value="ncsServiceSortTopN">
+    	<input type="hidden" name="plate" value="ncmsg_ipquery.htm">
+    	<input type="hidden" name="cheIDS" value="[#cheIDS#]">
+    	<input type="hidden" name="cheIDW" value="[#cheIDW#]">
+    	<input type="hidden" name="groupid" value="[#groupid#]">
+    	<input type="hidden" name="dispname" value="[#dispname#]">
+    	<input type="hidden" name="opt" value="[#opt#]">
+    	<input type="hidden" name="did" value="[#did#]">
+    <input type="hidden" name="tid" value="[#tid#]">
+    <input type="hidden" name="gid" value="[#gid#]">
+    <input type="hidden" name="gname" value="[#gname#]">
+     <input type="hidden" name="sortby" value="[#sortby#]">
+  <input type="hidden" name="fun" value="ncsWeekReport">
+
+
+  <tr> 
+    <td colspan="2"><table width="100%" height="35" border="0" align="center" cellpadding="0" cellspacing="0" >
+        <tr > 
+          <td colspan="2" > <div style="font-size:11pt;color:#00237e;font-weight:bold;text-align: center;">
+             
+              [#title#]用户使用网络服务TOP</div></td>
+        </tr>
+      </table></td>
+  </tr>
+
+<tr> 
+    <td colspan="2"> 
+        
+        <table width="99%" border="1"    bordercolorlight=#89ACED   bordercolordark=#ffffff    align="center" cellpadding="0" cellspacing="0" >
+          <tr height="30"> 
+            <td colspan="2">
+            	
+            	&nbsp;
+            	日期从&nbsp;<input type="text" name="sdate1" size="11" value="[#sdate1#]"><input type="button" name="sdate_but" style="position:relative;left:-15px;top:-2px;width:15px;height:17px" value='…' onclick="fPopCalendar(sdate1,sdate1,'Down');return false">
+            	
+            	到&nbsp;<input type="text" name="sdate2" size="11" value="[#sdate2#]" ><input type="button" name="sdate_but" style="position:relative;left:-15px;top:-2px;width:15px;height:17px" value='…' onclick="fPopCalendar(sdate2,sdate2,'Down');return false">
+            	时间段&nbsp;
+            	 <select name="worktime" >
+                    <option value="">不限</option>
+                    <option value="1">工作时间</option>
+                    <option value="2">非工作时间</option>
+               </select>
+            	
+            <!--
+            	统计方式
+            	<select name="stattype" style="width:50px;">
+            		<option value="0">前台统计</option>
+            		<option value="1">后台统计</option>
+            	</select>
+            -->
+            	<input name="submit1" type="submit" class="an3"   value="确认" onclick="form1.FunName.value='ncsServiceSortTopN'">&nbsp;
+            	  	<input name="export" type="submit" class="an3"    value="导出" onclick="form1.FunName.value='ncsServiceSortTopN'">
+            	  	
+            	  	<input name="con" type="submit" class="an3"    value="统计条件" onclick="form1.FunName.value='ncsServiceSort_Con'">
+        <!--    	<input name="expsql" type="submit" class="an3"    value="保存结果" onclick="return savexp()">	
+        -->
+            	</td>
+          </tr>
+          <tr bgcolor="#ffffff">
+          	<td>
+          		<table  width="100%" align="center" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+          			<tr>
+          			
+          				<td width="98%" valign="top">
+          					
+          				<table id="DataTable"  class="listDataTable" width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+          			[#SLPB#]	
+                   <tr    bgcolor="#eeeeee" height="22">                  	
+                   	<td width="80"  class="bord1" rowspan="[#ros#]"> &nbsp;[#gsname#]</td>
+				            <td width="40" align="center" class="bord1"> &nbsp;序号</td>
+				            <td  align="center" class="bord1" width="120"> 单位</td>
+				            <td  align="center" class="bord1" width="120"> 用户</td>
+				            <td  align="center" class="bord1" width="110"> IP地址</td>
+				            <td  align="center" class="bord1" width="110"> MAC地址</td>
+				            <td  align="center" class="bord1" > [#gsname#]</td>
+				            <td width="100" align="center" class="bord1" > 流量（MB)</td>
+				            <td width="80" align="center" class="bord1" > 百分比</td>
+				          </tr>
+                 [#SLPB#]
+ 
+                  <tr    bgcolor="#ffffff" height="22">
+				            <td  align="center" class="bord1"> &nbsp;[#num_s#]</td>
+				            <td  align="center" class="bord1" >&nbsp;[#cn_s#]</td>
+				            <td   class="bord1" >&nbsp [#dep_s#]</td>
+				            
+				            <td   class="bord1" >&nbsp [#IP_s#]</td>
+				            <td   class="bord1" >&nbsp [#MAC_s#]</td>
+				            <td   class="bord1" >&nbsp; [#dep_sd#]</td>				            
+				            <td  align="right" class="bord1" > [#bytes#]&nbsp;</td>
+				            <td align="center" class="bord1" > [#percent#]</td>
+				          </tr>
+                  [#SLPE#]
+                [#SLPE#]
+               
+ 
+				        
+          	    </table>
+          			 </td>
+          			
+          			</tr>
+      			
+          			
+          	  </table>
+          	
+          </tr>
+       
+ 
+
+       
+        </table>
+     </td>
+    </tr>
+	</table>
+
+</form>
+<script>
+	form1.worktime.value='[#worktime#]';
+</script>
+</body>
+</html> 

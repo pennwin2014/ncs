@@ -1,0 +1,79 @@
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<script>
+function gotopag(t){
+  self.location.href="/pronline/Msg?FunName@ncs_errbycorp_stat&sdate1@[#sdate1#]&sdate2@[#sdate2#]&groupid@[#groupid#]&userid@[#userid#]&sort1@[#sort1#]&sort2@[#sort2#]&aord1@[#aord1#]&aord2@[#aord2#]&recnum@[#recnum#]&opt@[#opt#]&udisp@[#udisp#]&date_flag@[#date_flag#]&startpg@"+t;
+}
+function printdate()
+{
+
+self.print();
+}
+function  Exp(){
+ self.location.href="/pronline/Msg?FunName@ncs_errbycorp_stat&sdate1@[#sdate1#]&sdate2@[#sdate2#]&groupid@[#groupid#]&userid@[#userid#]&sort1@[#sort1#]&sort2@[#sort2#]&aord1@[#aord1#]&aord2@[#aord2#]&recnum@[#recnum#]&opt@[#opt#]&udisp@[#udisp#]&date_flag@[#date_flag#]&daochu@daochu";
+}
+
+function llprint(){
+// document.all.pprint.style.display="none"
+  window.print()
+
+}
+</script>
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+
+[#SLPB#]
+<table border="0" align="center" cellpadding="0" cellspacing="0" width="100%">
+  <tr> 
+    <td colspan="8" height="30"  class="ttt"> <table width="103%" border="0">
+        <tr> 
+          <td height="24" width="37%" align="right"> 
+           <b>阻断信息统计</b><b>([#sdate1#]--[#sdate2#]) </b></td>
+          <td width="33%" height="24" align="center">[#prename#]&nbsp;[#nextname#]&nbsp;[#print#]&nbsp;[#exp#]</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr align="center" valign="middle"> 
+    <td width="5%" height="18" bgcolor="#6382BD"  class="bord2"> 
+      <div align="center"><font color="#FFFFFF">序号</font></div></td>
+    <td  width="25%" height="18" bgcolor="#6382BD"  class="bord2"> 
+      <div align="center"><font color="#FFFFFF">公司名称</font></div></td>
+    <td width="45%" bgcolor="#6382BD"  class="bord2"><font color="#FFFFFF">[#groupname#]</font></td>
+    <td width="25%" height="18" bgcolor="#6382BD"  class="bord2"> 
+      <div align="center"><font color="#FFFFFF">阻断次数</font></td>
+   
+  </tr>
+  <!-- [#SLPB#] -->
+  <tr height="18" bgcolor="#ffffff"> 
+    <td  class="bord1" align="center">&nbsp; 
+      <b> [#num#]</b></td>
+    <td  class="bord1">&nbsp;&nbsp;<b> [#dispname#]</b></td>
+    <td  class="bord1" align="center" >&nbsp;<b>[#warntype#]</b></td>
+    <td  class="bord3" align="right"><b>[#sumcount#]&nbsp;&nbsp;</b></td>    
+    
+  </tr>
+  <!-- [#SLPB#] -->
+  <tr bgcolor="#ffffff" height="18"> 
+    <td  class="bord1">&nbsp;</td>
+    <td  class="bord1">&nbsp;</td>
+    <td  class="bord1">&nbsp;[#warntype#]</td>
+    <td  class="bord3" align="right">&nbsp;[#lcount#]&nbsp;&nbsp;</td>     
+  </tr>
+  <!-- [#SLPE#] -->
+  <!-- [#SLPE#] -->
+</table>
+	  
+<p align="center">第 [#pages#]页</p>
+<xmp style='page-break-after:always'></xmp>
+         
+<p>&nbsp;</p>
+
+
+[#SLPE#]
+</body>
+</html>

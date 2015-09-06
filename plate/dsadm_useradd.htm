@@ -1,0 +1,62 @@
+<html>
+<head>
+<title>增加一个用户</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+<form name="form1" method="post" action="/pronline/Msg">
+  <input type="hidden" name="FunName" value="dsAdmUserAdd">
+  <input type="hidden" name="flist" value="dispname,">
+  <table width="53%" border="1">
+    <tr> 
+      <td colspan="2"> 
+        <div align="center">组信息</div>
+      </td>
+    </tr>
+    <tr> 
+      <td width="21%">登录名</td>
+      <td width="79%"> 
+        <input type="text" name="name" maxlength="31" size="31">
+      </td>
+    </tr>
+    <tr> 
+      <td width="21%"> 
+        <p>用户名</p>
+      </td>
+      <td width="79%"> 
+        <input type="text" name="dispname" size="31" maxlength="31">
+      </td>
+    </tr>
+    <tr>
+      <td width="21%">口令</td>
+      <td width="79%">
+        <input type="password" name="key1" maxlength="31" size="31">
+      </td>
+    </tr>
+    <tr> 
+      <td width="21%">口令</td>
+      <td width="79%"> 
+        <input type="password" name="key2" maxlength="31" size="31">
+      </td>
+    </tr>
+    <tr> 
+      <td width="21%">组</td>
+      <td width="79%"> 
+        <select name="groupname">
+<!-- [#SLPB#] -->
+          <option value="[#name#]">[#name#]</option>
+<!--  [#SLPE#] -->
+        </select>
+      </td>
+    </tr>
+    <tr> 
+      <td width="21%">&nbsp;</td>
+      <td width="79%"> 
+        <input type="submit" name="Submit" value="Submit">
+      </td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

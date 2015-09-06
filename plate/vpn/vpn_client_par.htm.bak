@@ -1,0 +1,189 @@
+<html>
+<head>
+<title>系统功能选项</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<script>
+	function openDr()
+{
+    t = "/pronline/Msg?FunName@ncWebReplace&plate@vpn/vpn_drzs_frm.htm";
+    
+    var oDia=showModalDialog(t,window,
+		 "status:no;center:yes;help:no;minimize:no;maximize:no;border:thick;statusbar:no;dialogWidth:500px;scroll:none;dialogHeight:400px;overflow:none");	
+
+
+}
+	
+	
+	function resetfac(){
+	if(confirm("执行该操作将清除所有的数据，您真的要这样做吗?")) {
+		if(confirm("请再次确认?")){
+		return true;
+		}
+	}
+	return false;
+	}
+</script>
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" align="center"  style="overflow:hidden">
+<form name="form1" method="post" action="/pronline/Msg">
+
+  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td valign="top" ><table width="100%" height="35" border="0" align="center" cellpadding="0" cellspacing="0" >
+          <tr > 
+            <td colspan="2"> <div style="font-size:11pt;color:#00237e;font-weight:bold;text-align: center;">VPN客户端设置</div></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr> 
+      <td >
+        <table width="90%" height="0%" border="1"  bordercolorlight=#89ACED   bordercolordark=#ffffff   align="center" cellpadding="0" cellspacing="0">
+          <tr> 
+            <td valign="top" height="411" width="100%"> 
+            	<table width="95%" border="0" align="center">
+            		
+                <tr height="30"> 
+                  <td width="15%">&nbsp;VPN连接名称</td>
+                  <td width="35%">&nbsp;<input type="text" name="vpnname" style="width:120px;" value="[#vpnname#]" maxlength="16">&nbsp;&nbsp
+                  <td width="15%">&nbsp;</td>
+                  <td width="35%">&nbsp;<input type="button" name="imort" class="an3-1" value="导入证书" onClick="openDr()" ></td>
+                </tr>
+               
+                <tr height="30"> 
+                  <td >&nbsp;连接VPN服务器</td>
+                  <td >&nbsp;<select name="state" style="width:120px;"><option value="0">停用</option><option value="1">启用</option></select>&nbsp;&nbsp
+                  <td >&nbsp;上网流量通过VPN</td>
+                  <td >&nbsp;<select name="redir" style="width:120px;"><option value="0">否</option><option value="1">是</option></select></td>
+                </tr>
+               
+               
+                <tr height="30"> 
+                  <td colspan="2">&nbsp;
+                  	<table width="95%" height="0%" border="1"  bordercolorlight=#89ACED   bordercolordark=#ffffff   align="center" cellpadding="0" cellspacing="0">
+                  		<tr><td>	
+                  			<table width="95%" border="0" align="center">
+                   <tr height="40"> 
+				            <td colspan="2"> <div style="font-size:10pt;color:#00237e;font-weight:bold;text-align: center;">主用VPN服务器</div></td>
+				          </tr>
+				          <tr height="30">
+				          	<td>&nbsp;IP地址</td>
+				          	<td><input type="text" name="ip1" style="width:120px;" value="[#ip1#]" maxlength="16"></td>
+				          </tr>
+				          
+				         <tr height="30">
+				          <td >&nbsp;TCP/UDP协议</td>
+                  <td ><select name="prot1" style="width:120px;"><option value="17">UDP</option><option value="6">TCP</option></select></td>
+				          </tr>
+				          
+				         <tr height="30">
+				          <td >&nbsp;端口</td>
+                  <td ><input type="text" name="port1" style="width:120px;" value="[#port1#]" maxlength="6"></td>
+				          </tr>
+				          <tr height="30px">
+				          	<td>&nbsp;</td>
+				          	<td>&nbsp;</td>
+				          </tr>
+				          
+				          
+                  	</table>
+                  </td>
+                </tr>
+              </table>
+                  	
+                  	</td>
+                  	
+                  	
+                  	
+                  	
+                  	
+                 <td colspan="2">&nbsp;
+                 	
+                 	
+                 	
+                 	 <table width="95%" height="0%" border="1"  bordercolorlight=#89ACED   bordercolordark=#ffffff   align="center" cellpadding="0" cellspacing="0">
+                  		<tr><td>	
+                  			<table width="95%" border="0" align="center">
+                   <tr height="40"> 
+				            <td colspan="2"> <div style="font-size:10pt;color:#00237e;font-weight:bold;text-align: center;">备用VPN服务器</div></td>
+				          </tr>
+				          <tr height="30">
+				          	<td>&nbsp;IP地址</td>
+				          	<td><input type="text" name="ip2" style="width:120px;" value="[#ip2#]" maxlength="16"></td>
+				          </tr>
+				          
+				         <tr height="30">
+				          <td >&nbsp;TCP/UDP协议</td>
+                  <td ><select name="prot2" style="width:120px;"><option value="17">UDP</option><option value="6">TCP</option></select></td>
+				          </tr>
+				          
+				         <tr height="30">
+				          <td >&nbsp;端口</td>
+                  <td ><input type="text" name="port2" style="width:120px;" value="[#port2#]" maxlength="6"></td>
+				          </tr>
+				          <tr height="30px">
+				          	<td>&nbsp;</td>
+				          	<td>&nbsp;</td>
+				          </tr>
+				          
+				          
+                  	</table>
+                  </td>
+                </tr>
+              </table>
+                 	
+                 	
+                 	
+                 	
+                 	</td>
+                
+                </tr>
+               
+               
+               
+               
+              </table>
+              </td>
+              
+              
+
+              
+              
+              
+              
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td height="70" ><table width="100%" border="0" align="center">
+          <tr> 
+            <td> <div align="center"> 
+                <input type="hidden" name="FunName" value="vpnClientSave_par">
+                <input type="submit" name="next" value="确 认" class="an3">
+                &nbsp; 
+
+                <input type="reset" name="cancel" value="取 消" class="an3-1" >
+                &nbsp;
+                <input type="submit" name="app" value="应 用" class="an3">
+                &nbsp; 
+              </div></td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+</form>
+<script>
+	form1.state.value='[#state#]';
+	form1.prot1.value='[#prot1#]';
+	form1.prot2.value='[#prot2#]';
+	form1.redir.value='[#redir#]';
+	
+	</script>
+</body>
+</html>

@@ -1,0 +1,223 @@
+<html>
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<title>main</title>
+<script>
+var dfd1="0"
+function gotoPage(pagenum)
+
+{
+    form1.CurPg.value = pagenum;
+}
+
+function userdel()
+{
+    form1.FunName.value = "ncWebMailCtlDel";
+    form1.submit();
+}
+
+// function goto(t){
+// self.location.href=t
+// }
+
+function goto(t){
+ tt=showModalDialog(t, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:500px;scroll:yes;dialogHeight:480px');
+}
+
+
+function goto1(t){
+ tt=showModalDialog(t, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:490px;scroll:yes;dialogHeight:330px');
+}
+
+function dosort(t) {
+    form1.order.value = t;
+    form1.submit();
+}
+
+function mouseovertr2 (o){
+var i;
+df=o.style.backgroundColor
+	o.style.backgroundColor= "#003399";
+	o.style.borderColor= "#FFFF00";
+	o.style.cursor="hand";	
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#ffffff";
+}	
+}
+
+function mouseouttr2(o){
+	o.style.backgroundColor=df
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#000000";
+}
+	
+	
+}
+
+function checkme(p)
+{
+	var tt=p.value
+	if (tt>yy)
+	{
+		MM_changeProp('browsdopage','','value',yy,'INPUT/TEXT')
+	}
+	if (tt==0)
+	{
+		MM_changeProp('browsdopage','','value','1','INPUT/TEXT')
+	}
+}
+
+function allChecked(){
+    if(dfd1=="1"){
+        dfd1="0"
+    }
+    else {
+         dfd1="1"
+    }
+	for(var i=0;i<document.all.DataTable.rows.length;i++)
+	{
+		if(typeof(document.all.DataTable.rows[i].cells[0].childNodes[1])=="object"
+
+				&&document.all.DataTable.rows[i].cells[0].childNodes[1].tagName=="INPUT"
+
+				&&document.all.DataTable.rows[i].cells[0].childNodes[1].type=="checkbox") {
+			if(dfd1=="1"){
+  			    document.all.DataTable.rows[i].cells[0].childNodes[1].checked="true";
+            }
+			else{
+                document.all.DataTable.rows[i].cells[0].childNodes[1].checked="";
+            }
+        }
+ 	}
+}
+
+
+// -->
+<!-- Hide
+var ll=[#CurPg#]
+var yy=[#TotPg#]
+function killErrors() {
+return true;
+}
+window.onerror = killErrors;
+// -->
+
+</script>
+
+<link REL=stylesheet HREF="/css/listdatetable.css" TYPE="text/css">
+<script src="/js/tablecssall.js"></script>
+<script src="/js/rmenu.js"></script>
+<style type="text/css">
+<!--
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+-->
+</style>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+<body marginheight=0 leftmargin=0 marginwidth=0 topMargin="0" BGCOLOR="Menu">
+<form name="form1" method="post" action="/pronline/Msg">
+  <table border="0" width=100% height=100% cellspacing="0" cellpadding="0" bgcolor='#ffffff'>
+    <tr> 
+      <td width="100%"  valign=middle align=center height="40" bgcolor="#DEE8FA" class="ttt"> 
+        <table width="100%" border="0" cellspacing="0">
+          <tr>
+            <td width="85%">&nbsp;&nbsp; 周期 [#sss#] 
+              <input name="cselect" type="submit" class="an3" value="确 认">
+              或指定时间: 
+              <input type="text" name="sdate" size="11" maxlength="11" value="[#sdate#]">
+              到
+              <input type="text" name="edate" size="11" maxlength="11" value="[#edate#]">
+              排序:[#sorder#]
+              <input name="cinput" type="submit" class="an3" value="确 认">
+              <input name="exp" type="submit" class="an3" value="导 出">
+              <input type="hidden" name="FunName" value="ncWebCountMailMonByBm">
+              <input type="hidden" name="CurPg"      value="[#CurPg#]">
+              <input type="hidden" name="TotPg"      value="[#TotPg#]">
+              <input type="hidden" name="order0"     value="[#order#]">
+            <td width="15%"> 
+              <table align=right border=0 cellpadding=0 cellspacing=0 class=main width=85>
+                
+                  <td valign="bottom" align="right" width="24"> <img border=0 height=17 src="/images/zin1.gif" width=17 ></td>
+                  <td align=middle background="" width=38> 
+                    <input  class=Main id=browsdopage1 maxlength=5 name=browsdopage12 size=3 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 30px" value='[#TotRec#]'>
+                </td>
+                  <td width="23" valign="bottom"> <img border=0 height=17 src="/images/zin3.gif" width=17 align="middle" ></td>
+               
+              </table>
+          </td>
+        </tr>
+      </table>
+      </td>
+  </tr>
+  <tr>
+      <td width="100%"  valign=top align=center bgcolor="#DEE8FA"> 
+        <table id="DataTable" class="listDataTable" width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+          <tr> 
+            <td width="19" height="18" bgcolor="#6382BD" class="bord2">
+<div align="center"><font color="#FFFFFF">&nbsp;</font> 
+              </div></td>
+            <td width="121" height="18" bgcolor="#6382BD" class="bord2" onclick="dosort('1')">
+<div align="center"><font color="#FFFFFF">部门</font></div></td>
+            <td width="96" height="18" bgcolor="#6382BD" class="bord2" onclick="dosort('2')" >
+<div align="center"><font color="#FFFFFF">总数量</font></div></td>
+            <td width="121" height="18" bgcolor="#6382BD" class="bord2" onclick="dosort('3')" >
+<div align="center"><font color="#FFFFFF"> 
+                总流量(KB)</font></div></td>
+            <td width="110" height="18" bgcolor="#6382BD" class="bord2" onclick="dosort('4')">
+<div align="center"><font color="#FFFFFF"> 
+                发送数量</font></div></td>
+            <td width="131" height="18" bgcolor="#6382BD" class="bord2" onclick="dosort('5')">
+<div align="center"><font color="#FFFFFF"> 
+                发送流量(KB)</font></div></td>
+            <td height="18" bgcolor="#6382BD" class="bord2" onclick="dosort('6')"> 
+              <div align="center"><font color="#FFFFFF"> 接收数量</font></div></td>
+            <td width="144" height="18" bgcolor="#6382BD" class="bord2" onclick="dosort('7')">
+<div align="center"><font color="#FFFFFF">接收流量(KB)</font></div></td>
+          </tr>
+          <!-- [#SLPB#] -->
+          <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)"> 
+            <td class="bord1" nowrap width="19">&nbsp;[#num#] </td>
+            <td class="bord1" title="&nbsp;[#groupname#]" nowrap width="121">&nbsp;[#groupname#]</td>
+            <td class="bord1" nowrap  width="96" >&nbsp;[#lcount#] 
+            </td>
+            <td class="bord1" nowrap  width="121" >&nbsp;[#lflowt#]</td>
+            <td class="bord1" nowrap width="110"   >&nbsp;[#lcounts#]</td>
+            <td class="bord1" nowrap width="131" > &nbsp;[#lflows#]</td>
+            <td class="bord1" nowrap >&nbsp;[#lcountr#]</td>
+            <td class="bord1" nowrap width="144" >&nbsp;[#lflowr#]</td>
+          </tr>
+          <!-- [#SLPE#] -->
+          <!-- [#SLPB#] -->
+          <tr id=[#snum#] onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)"> 
+            <td class="bord1" width="19">&nbsp;</td>
+            <td class="bord1" width="121">&nbsp;</td>
+            <td class="bord1" width="96">&nbsp;</td>
+            <td class="bord1" width="121">&nbsp; </td>
+            <td class="bord1" width="110">&nbsp;</td>
+            <td class="bord1" width="131">&nbsp;</td>
+            <td class="bord1">&nbsp;</td>
+            <td class="bord1" width="144">&nbsp;</td>
+          </tr>
+          <!-- [#SLPE#] -->
+        </table>
+        <!--//鼠标显示//-->
+        <script language="JavaScript">
+<!--
+var MenuBarColor ='#cccccc';
+DrawMouseRightButtonUpMenu();
+
+</script>
+      </td>
+  </tr>
+</table>
+ </form>
+</body>
+</html>

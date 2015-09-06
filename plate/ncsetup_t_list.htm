@@ -1,0 +1,110 @@
+<html>
+<head>
+<title>端口限制</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<style type="text/css">
+<!--
+body {  font-size: 9pt}
+.tas {  border-color: black #FFFFFF; border-style: solid; border-top-width: 0px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 1px}
+table {  font-size: 9pt}
+.gray1 { filter:gray }
+.ttbbd {  cursor: default}
+-->
+</style>
+<script>
+function goto(t){
+parent.formFrame.location.href=t
+}
+
+function mouseovertr2 (o){
+var i;
+df=o.style.backgroundColor
+	o.style.backgroundColor= "#003399";
+	o.style.borderColor= "#FFFF00";
+	o.style.cursor="hand";	
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#ffffff";
+}	
+}
+
+function showf(s1,s2,s3) {
+    form_n.startip.value=s1;
+    form_n.stopip.value=s2;
+    form_n.id.value=s3;
+}
+
+    
+function mouseouttr2(o){
+	o.style.backgroundColor=df
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#000000";
+}
+	
+	
+}
+
+
+</script>
+
+</head>
+
+<body bgcolor="#cccccc" text="#000000" topmargin="0" leftmargin="12" >
+<form name="form1" method="post" action="/pronline/Msg">
+  <input type="hidden" name="FunName" value="ncWebSetupInternet_save">
+  <input type="hidden" name="userid"  value="[#userid#]">
+  <input type="hidden" name="flags"  value="3">
+  <input type="hidden" name="plate"  value="ncsetup_t_list.htm">
+  <input type="hidden" name="sum"    value="[#sum#]">
+  <table width="100%" border="0" cellspacing="0" cellpadding="4">
+    <tr bordercolor="#CCCCCC" > 
+      <td height="30" colspan="7" class="bord4"> 
+        <div align="left"> 
+          <input type="button" name="Button" value="新增" class="an3" onClick="goto('/pronline/Msg?FunName@ncWebSetupInternet_form&plate@ncsetup_t_form.htm&userid@[#userid#]&flags@3')">
+          <input type="submit" name="del" value="删除" class="an3">
+        </div>
+      </td>
+    </tr>
+    <tr> 
+      <td width="5%" class="bord1"> 
+        <div align="center"><b><font color="#000000">&nbsp;</font></b></div>
+      </td>
+      <td width="7%" class="bord1"> 
+        <p align="center"><b><font color="#000000">序列号</font></b></p>
+      </td>
+      <td width="8%" class="bord1"><b><font color="#000000">操作</font></b></td>
+      <td width="5%" class="bord1"> 
+        <div align="center"><b><font color="#000000">频度</font></b></div>
+      </td>
+      <td width="24%" class="bord1"> 
+        <div align="center"><b><font color="#000000">起止时间</font></b></div>
+      </td>
+      <td width="26%" class="bord1"><b><font color="#000000">起止IP地址</font></b></td>
+      <td width="25%" class="bord3"><b><font color="#000000">起止TCP端口</font></b></td>
+    </tr>
+    <!-- [#SLPB#] -->
+    <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" onclick="goto('/pronline/Msg?FunName@ncWebSetupInternet_form&id@[#id#]&userid@[#userid#]&plate@ncsetup_t_form.htm&flags@3&num@[#num#]')"> 
+      <td width="5%" height="27" class="bord1"> 
+        <div align="center">
+          <input type="checkbox" name="chk[#num#]" value="[#id#]">
+        </div>
+      </td>
+      <td width="7%" height="27" class="bord1"> 
+        <div align="center">[#id#]</div>
+      </td>
+      <td width="8%" height="27" class="bord1">[#flags#]</td>
+      <td width="5%" height="27" class="bord1"> 
+        <div align="center">每天</div>
+      </td>
+      <td width="24%" height="27" class="bord1"> 
+        <div align="center">[#starttime#]-[#stoptime#]</div>
+      </td>
+      <td width="26%" height="27" class="bord1">[#lowerip#]--[#upperip#]</td>
+      <td width="25%" height="27" class="bord3">[#lowerport#]--[#upperport#]</td>
+    </tr>
+    <!-- [#SLPE#] -->
+  </table>
+</form></body>
+</html>

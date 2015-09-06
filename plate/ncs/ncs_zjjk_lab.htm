@@ -1,0 +1,252 @@
+<html>
+<head>
+<title>NetworkSet</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<style>
+.conts{visibility:hidden}
+.tab{
+	border-top:thin solid #FFFFFF;
+	border-right:thin solid gray;
+	border-left:thin solid #FFFFFF;
+	font-family:Verdana;
+	font-size:10pt;
+	text-align:center;
+	font-weight:normal;
+	border-bottom-width: thin;
+	border-bottom-style: double;
+	border-bottom-color: gray;
+}
+.tab1{
+	border-top:thin none #FFFFFF;
+	border-right:thin solid gray;
+	border-left:thin none #FFFFFF;
+	font-family:Verdana;
+	font-size:10pt;
+	text-align:center;
+	font-weight:normal;
+	border-bottom-width: thin;
+	border-bottom-style: none;
+	border-bottom-color: gray;
+}
+.selTab{border-left:solid thin white;
+border-top:solid thin white;
+border-right:solid thin black;
+font-weight:bold;
+text-align:center}
+</style>
+<script language="javascript">
+
+function goto(o){
+window.open(o,"_self","")
+}
+
+</script>
+<script LANGUAGE="JavaScript">
+//this is the tab switching function
+var currentTab;
+var tabBase;
+var firstFlag = true;
+
+function changeTabs(){
+if(firstFlag == true){
+currentTab = t0;
+tabBase = t0base;
+firstFlag = false;
+}
+if(window.event.srcElement.className == "tab"){
+currentTab.className = "tab";
+tabBase.style.backgroundColor = "white";
+currentTab = window.event.srcElement;
+tabBaseID = currentTab.id + "base";
+tabContentID = currentTab.id + "Contents";
+tabBase = document.all(tabBaseID);
+tabContent = document.all(tabContentID);
+currentTab.className = "selTab";
+tabBase.style.backgroundColor = "";
+//tabContents.innerHTML = tabContent.innerHTML;
+if(tabContent.id=="t0Contents"){
+	var temp="/pronline/Msg?FunName@ncsWebNetLog&flag@1&userid@[#did#]&uid@[#uid#]&sdate@"+form1.sdate.value+"&edate@"+form1.edate.value;
+  document.all.xxmd.src=temp;
+}
+else if(tabContent.id=="t1Contents"){
+	if((form1.did.value=='0')||(form1.did.value==''))
+	{
+		alert('远程查询要选择单位');
+		return;
+	}
+	var temp="/pronline/Msg?FunName@ncsWebReplace&cond@&flag@1&fname@nccWebShowIplog&plate@ncsmsg_showncc.htm&ProId@"+form1.did.value+"&uid@[#uid#]&did@"+form1.did.value+"&sdate@"+form1.sdate.value+"&edate@"+form1.edate.value+"&cname@"+form1.cname.value;
+  document.all.xxmd.src=temp;
+}
+else if(tabContent.id=="t2Contents"){
+	if((form1.did.value=='0')||(form1.did.value==''))
+	{
+		alert('远程查询要选择单位');
+		return;
+	}
+	var temp="/pronline/Msg?FunName@ncsWebReplace&fname@nccWebWebLog&plate@ncsmsg_showncc.htm&ProId@"+form1.did.value+"&uid@[#uid#]&did@"+form1.did.value+"&sdate@"+form1.sdate.value+"&edate@"+form1.edate.value+"&cname@"+form1.cname.value;
+
+  document.all.xxmd.src=temp;
+
+}
+else if(tabContent.id=="t3Contents"){
+	if((form1.did.value=='0')||(form1.did.value==''))
+	{
+		alert('远程查询要选择单位');
+		return;
+	}
+	var temp="/pronline/Msg?FunName@ncsWebReplace&fname@nccWebUploadList&plate@ncsmsg_showncc.htm&ProId@"+form1.did.value+"&uid@[#uid#]&did@"+form1.did.value+"&sdate@"+form1.sdate.value+"&edate@"+form1.edate.value+"&cname@"+form1.cname.value;
+
+  document.all.xxmd.src=temp;
+}
+else if(tabContent.id=="t4Contents"){
+	if((form1.did.value=='0')||(form1.did.value==''))
+	{
+		alert('远程查询要选择单位');
+		return;
+	}
+	var temp="/pronline/Msg?FunName@ncsWebReplace&fname@nccMailMonList&plate@ncsmsg_showncc.htm&ProId@"+form1.did.value+"&uid@[#uid#]&did@"+form1.did.value+"&sdate@"+form1.sdate.value+"&edate@"+form1.edate.value+"&cname@"+form1.cname.value;
+
+  document.all.xxmd.src=temp;
+}
+else if(tabContent.id=="t5Contents"){
+	if((form1.did.value=='0')||(form1.did.value==''))
+	{
+		alert('远程查询要选择单位');
+		return;
+	}
+	var temp="/pronline/Msg?FunName@ncsWebReplace&fname@nccWebImList&plate@ncsmsg_showncc.htm&ProId@"+form1.did.value+"&uid@[#uid#]&did@"+form1.did.value+"&sdate@"+form1.sdate.value+"&edate@"+form1.edate.value+"&cname@"+form1.cname.value;
+
+  document.all.xxmd.src=temp;
+}
+else if(tabContent.id=="t6Contents"){
+	if((form1.did.value=='0')||(form1.did.value==''))
+	{
+		alert('远程查询要选择单位');
+		return;
+	}
+	var temp="/pronline/Msg?FunName@ncsWebReplace&fname@nccWebNetSesLog&plate@ncsmsg_showncc.htm&ProId@"+form1.did.value+"&uid@[#uid#]&did@"+form1.did.value+"&sdate@"+form1.sdate.value+"&edate@"+form1.edate.value+"&cname@"+form1.cname.value;
+
+  document.all.xxmd.src=temp;
+}
+else if(tabContent.id=="t7Contents"){
+
+//frames.document.all.xx1.src="/pronline/Msg?FunName@ncsdefaultruleSet&userid@[#userid#]&flag@[#flag#]&uflags@[#uflags#]";
+}
+}
+}</script>
+<style>
+.conts  {visibility:hidden}
+.tab{border-top:solid thin #E0E0E0;border-right:solid thin gray;border-left:solid thin #E0E0E0;font-family:Verdana;font-size:10pt;text-align:center;font-weight:normal;background-color:dfdfdf;cursor:default}
+.selTab{border-left:solid thin white;border-top:solid thin white;border-right:solid thin black;font-weight:bold;text-align:center;background-color:Dfdfdf;cursor:default}
+.selTabBase{border-top:solid thin #dfdfdf }
+.TabBase{border-top:solid thin #DEE8FA}
+table {  font-size: 9pt}
+</style>
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Hide
+function killErrors() {
+return true;
+}
+window.onerror = killErrors;
+// -->
+
+function init()
+{
+	
+	var temp="/pronline/Msg?FunName@ncsWebNetLog&flag@1&userid@[#did#]&uid@[#uid#]&sdate@"+form1.sdate.value+"&edate@"+form1.edate.value;
+  document.all.xxmd.src=temp;
+}
+</SCRIPT>
+<style type="text/css">
+<!--
+body {  font-size: 9pt}
+.tas {  border-color: black #FFFFFF; border-style: solid; border-top-width: 0px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 1px}
+table {  font-size: 9pt}
+.gray1 { filter:gray }
+.ttbbd {  cursor: default}
+-->
+</style>
+
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="1" topmargin="0" onclick="changeTabs()"  style="overflow:hidden" onload="init()">
+<form name="form1" id="form1" method="post" action="/pronline/Msg" >
+	<input type="hidden" name="did" value="[#did#]">
+	<input type="hidden" name="uid" value="[#uid#]">
+	<input type="hidden" name="FunName" value="ncsWebReplace">
+	<input type="hidden" name="plate" value="ncs/ncs_swgj_lab.htm">
+	<input type="hidden" name="fname" value="ncsWebNetLog">
+	<input type="hidden" name="flag" value="1">
+	<input type="hidden" name="cname" value="[#cname#]">
+<table width="100%"  border="1" cellpadding="0" cellspacing="0" bordercolorlight=#6B9ADA bordercolordark=#ffffff >
+          <tr> 
+            <td  valign="top"> 
+              <div align="right">            	
+                <table width="100%" height="25" border="0" align="center" cellpadding="0" cellspacing="0" >
+                  <tr >
+                <td  width="130"> 
+	              <table width="120"  border=1 cellpadding="0" cellspacing="0"    bordercolorlight=#6B9ADA bordercolordark=#ffffff   >
+	                <tr> 
+	                  <td width="120" height="23" valign="middle" >                    
+	                     <div align="center" style="font-size: 10pt"><font color="#D58000"><strong>主机监控</strong></font> 
+	                            </div>
+	                  </td>
+	                        
+	                </tr>
+	              </table>
+            </td>
+                  	
+                    <td align="right">查询对象&nbsp;<input type="text" name="udname" value="[#udname#]" size="15" readonly>&nbsp; 时间&nbsp;<input type="text" name="sdate" value="[#sdate#]" size="15">&nbsp;到&nbsp;<input type="text" name="edate" value="[#edate#]" size="15">
+                    	<input type="submit" name="qr" value="确认" class="an3" >
+    &nbsp;&nbsp;&nbsp;&nbsp;
+										</td> 
+                  </tr>
+                </table>
+              </div></td>
+          </tr>
+ </table>
+  <div id="xxx" STYLE="position:absolute; top:32px; height:94%; width:100%; left:0px; border:none thin gray; visibility: visible"> 
+    <table border="0"  bordercolorlight=#aaaaaa bordercolordark=#ffffff  CELLPADDING="0" CELLSPACING="0" bgcolor=#DEE8FA STYLE="width:100%; height:100%">
+      <tr height="22">
+	    <td ID="t0" CLASS="seltab"    width="100">敏感资料</td>
+	    <td ID="t1" CLASS="tab"  width="100">IP访问</td> 
+	    <td ID="t2" CLASS="tab"     width="100">网站访问</td>
+	    <td ID="t3" CLASS="tab"     width="100">网页表单</td>
+	    <td ID="t4" CLASS="tab"     width="100">收发邮件</td>
+	    <td ID="t5" CLASS="tab"     width="100">聊天记录</td>
+	    <td ID="t6" CLASS="tab"     width="100">网络会话</td>
+	    <td ID="t7"      width="300" #DEE8FA></td>
+	   
+      </tr> 
+<tr > 
+<td ID="t0base"  STYLE="height:1; border-left:solid thin white" width="29"></td>
+<td ID="t1base" STYLE="height:1; border-left:solid thin white" width="29"></td>
+<td ID="t2base" STYLE="height:1; border-left:solid thin white" width="29"> </td>
+<td ID="t3base" STYLE="height:1; border-left:solid thin white" width="29"> </td>
+<td ID="t4base" STYLE="height:1; border-left:solid thin white" width="29"> </td>
+<td ID="t5base" STYLE="height:1; border-left:solid thin white" width="29"> </td>
+<td ID="t6base" STYLE="height:1; border-left:solid thin white" width="29"> </td>
+<td ID="t7base" STYLE="height:1; border-left:solid thin white" width="29"> </td>
+
+</tr> 
+<tr> 
+<td HEIGHT="*" COLSPAN="8" ID="tabContents" align="left" > 
+<iframe name="xx1" id="xxmd" src="" width="99%" height="100%" ></iframe>
+
+</td></tr></table>
+</div> 
+<div CLASS="conts" ID="t0Contents"> 0 </div>
+<div CLASS="conts" ID="t1Contents"> 1 </div>
+<div CLASS="conts" ID="t2Contents"> 2 </div>
+<div CLASS="conts" ID="t3Contents"> 3 </div>
+<div CLASS="conts" ID="t4Contents"> 4 </div>
+<div CLASS="conts" ID="t5Contents"> 5 </div>
+<div CLASS="conts" ID="t6Contents"> 6 </div>
+<div  ID="t7Contents"> 7 </div>
+</form>
+</body>
+</html>

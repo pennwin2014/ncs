@@ -1,0 +1,49 @@
+<html>
+<head><title>NetUse</title>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<script>
+<!--
+function goto(t){
+    openwinflag=window.open(t,'RUNMIT_New','left=100,top=100,width='+600+',height='+210+',fullscreen=0,toolbar=no,scrollbars=no,resizable=0,menubar=no,status=0');
+//parent.sbpm_right.location.href=t
+}
+var flags = '[#flags#]'
+function goto3(){
+  if(flags == '1') {
+      parent.sbpm_right.location.href="/pronline/Msg?FunName@ncWebReplace_mon&plate@ncusermon_00.htm[#filter#]";
+  }
+}
+
+
+
+function goto2(t){
+  menus1.location.href=t
+}
+-->
+</script>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312"></head>
+
+<body leftmargin=0 topmargin=0 marginwidth="0" marginheight="0" onload="goto3()" oncontextmenu="return false">
+<table border=0 lightborder="#000000" blackborder="#ffffff"  width=135 height=100% cellspacing="0" cellpadding="0">
+  <tr> 
+    <td width=100% height='25' align='center' bgcolor='Menu' style='border-left: 1px solid rgb(253,244,249);border-right: 1px solid rgb(12,12,12);border-bottom: 1px solid rgb(12,12,12);border-top: 1px solid rgb(253,244,249);cursor:hand' nowrap  onclick="goto('/pronline/Msg?FunName@ncWebIpDispFilterForm&[#filter#]')">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="26%"><div align="center"><img src="/images/arrow5.gif" width="15" height="16"></div></td>
+          <td width="74%" valign="bottom">输入过滤条件 </td>
+        </tr>
+      </table></td>
+  <tr> 
+    <td id=td_menu1 height=100% colspan="2"> 
+      <div id="menu1" style="display:block;"> 
+        <table border=0 width=134 height="100%" cellspacing="0" cellpadding="0">
+          <tr> 
+            <td><iframe name="menus1" width=135 height=100% FrameBorder=0 src='/pronline/Msg?FunName@ncWebListUserTree_mon&plate@nc/nc_tree_monip.htm&[#filter#]' ></iframe></td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

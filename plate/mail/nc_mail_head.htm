@@ -1,0 +1,63 @@
+<html>
+<head>
+<title>电子邮件-收件夹</title>
+<meta http-equiv="目录类型" content="文本/html; 字符集=gb2312">
+</head><STYLE type=text/css>BODY {
+	FONT-FAMILY: "宋体"; FONT-SIZE: 9pt
+}
+TD {
+	FONT-FAMILY: "宋体"; FONT-SIZE: 9pt
+}
+A {
+	COLOR: #008000; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #ff0000; TEXT-DECORATION: underline
+}
+</STYLE>
+
+<script language="javascript">
+
+function DeleteMail()
+{
+    parent.window.opener.location="/pronline/Msg?nFunCode=19912&sid=[#sid#]&fold=[#fold#]&require=forward&from=[#from#]&curmsg=[#curmsg#]&pagenum=1";
+    parent.window.close();
+}
+
+</script>
+
+
+<body bgcolor="#F0FDE6">
+<FORM action="/mail/pronline"  method="post" name="inmail" >
+  <br>
+  <table width="100%" border="0" cellpadding="0" bordercolordark="#FFFFFF">
+    <tr bgcolor="#8ED573"> 
+      <td width="61" height="14" bgcolor="#E2EEDB"> 
+        <div align="right">发件人:</div>
+      </td>
+      <td width="238" height="14" bgcolor="#E2EEDB"> 
+        <div align="left">[#from#]</div>
+      </td>
+      <td width="82" height="14" bgcolor="#E2EEDB"> 
+        <div align="right">收件人:</div>
+      </td>
+      <td width="151" height="14" bgcolor="#E2EEDB">[#to#]</td>
+      <td width="159" height="14" bgcolor="#E2EEDB"> 
+        <div align="right">时间:</div>
+      </td>
+      <td width="277" height="14" bgcolor="#E2EEDB"> 
+        <div align="left">[#date#]</div>
+      </td>
+    </tr>
+    <tr bgcolor="#E2EEDB"> 
+      <td width="61" height="20" bgcolor="#E2EEDB"> 
+        <div align="right">主题:</div>
+      </td>
+      <td colspan="5" height="20" bgcolor="#E2EEDB">[#subject#]</td>
+    </tr>
+  </table>
+  <p><br>
+</p>
+</form>
+</body>
+</html>

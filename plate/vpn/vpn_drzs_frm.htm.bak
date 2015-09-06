@@ -1,0 +1,15 @@
+<html>
+<head>
+<title>证书导入</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+
+</head>
+
+<body onunload="dialogArguments.form1.submit()">
+<iframe height="100%" name="list" id="list" width="100%" frameborder="0" src="/pronline/Msg?FunName@ncWebReplace&title_name@导入VPN客户端证书&funname@vpnDrNext&plate@vpn/vpn_drzs_first.htm" scrolling="yes"></iframe>
+</body>
+</html>

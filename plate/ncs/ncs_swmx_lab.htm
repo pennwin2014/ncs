@@ -1,0 +1,239 @@
+<html>
+<head>
+<title>上网日志</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<style>
+.conts{visibility:hidden}
+.tab{
+	border-top:thin solid #FFFFFF;
+	border-right:thin solid gray;
+	border-left:thin solid #FFFFFF;
+	font-family:Verdana;
+	font-size:10pt;
+	text-align:center;
+	font-weight:normal;
+	border-bottom-width: thin;
+	border-bottom-style: double;
+	border-bottom-color: gray;
+}
+.tab1{
+	border-top:thin none #FFFFFF;
+	border-right:thin solid gray;
+	border-left:thin none #FFFFFF;
+	font-family:Verdana;
+	font-size:10pt;
+	text-align:center;
+	font-weight:normal;
+	border-bottom-width: thin;
+	border-bottom-style: none;
+	border-bottom-color: gray;
+}
+.selTab{border-left:solid thin white;
+border-top:solid thin white;
+border-right:solid thin black;
+font-weight:bold;
+text-align:center}
+</style>
+<script language="javascript">
+
+function goto(o){
+window.open(o,"_self","")
+}
+
+</script>
+<script LANGUAGE="JavaScript">
+//this is the tab switching function
+var currentTab;
+var tabBase;
+var firstFlag = true;
+var cno;
+function changeTabs(){
+
+var ctab=window.event.srcElement;
+var ctabID = ctab.id ;
+var tContent = document.all(ctabID);
+
+
+if(firstFlag == true){
+currentTab = t0;
+cno=currentTab.id.substring(1);
+firstFlag = false;
+}
+
+if(window.event.srcElement.className == "tab4"||window.event.srcElement.className == "tab5"||window.event.srcElement.className == "tab7"||window.event.srcElement.className == "tab8"||window.event.srcElement.className == "tab9"){
+	var cno2=parseInt(cno)+1;
+	
+	if(cno==0)
+		currentTab.className = "tab7";
+	else if(cno==5)
+		currentTab.className="tab8";
+	else
+		currentTab.className="tab5";
+
+  if(cno2<5)
+  	eval('document.all.t'+cno2).className="tab5";
+  else if(cno2==5)
+  	eval('document.all.t'+cno2).className="tab8";
+  	
+	currentTab = window.event.srcElement;
+	cno=currentTab.id.substring(1);
+	var cno1=parseInt(cno)+1;
+
+	if(cno==5){
+		currentTab.className = "tab6";
+	}
+  else if(cno==4){
+   currentTab.className="tab3";	 
+	 eval('document.all.t'+cno1).className="tab9";
+  }
+  else{
+	 currentTab.className="tab3";	 
+	 eval('document.all.t'+cno1).className="tab4";
+	}
+	 
+		
+	
+	
+tabContentID = currentTab.id ;
+
+//alert(currentTab.id.substring(1));
+
+tabContent = document.all(tabContentID);
+//tabContents.innerHTML = tabContent.innerHTML;
+if(tabContent.id=="t0"){
+	 var title_desc="IP连接记录";
+  document.all.wlj.innerHTML=title_desc;
+	var temp="/pronline/Msg?FunName@ncsSesIplog&usid@[#usid#]&did@[#did#]";
+  document.all.xxmd.src=temp;
+ 
+}
+else if(tabContent.id=="t1"){
+  var title_desc="网站访问记录";
+  document.all.wlj.innerHTML=title_desc;
+	var temp="/pronline/Msg?FunName@ncsSesHttplog&usid@[#usid#]&did@[#did#]";
+  document.all.xxmd.src=temp;
+
+}
+else if(tabContent.id=="t2"){
+
+  var title_desc="邮件记录";
+  document.all.wlj.innerHTML=title_desc;
+	var temp="/pronline/Msg?FunName@ncsSesMaillog&usid@[#usid#]&did@[#did#]";
+  document.all.xxmd.src=temp;
+
+}
+else if(tabContent.id=="t3"){
+
+  var title_desc="BBS发贴";
+  document.all.wlj.innerHTML=title_desc;
+	var temp="/pronline/Msg?FunName@ncsSesBBSform&usid@[#usid#]&did@[#did#]";
+  document.all.xxmd.src=temp;
+
+}
+else if(tabContent.id=="t4"){
+	
+  var title_desc="聊天内容";
+  document.all.wlj.innerHTML=title_desc;
+	var temp="/pronline/Msg?FunName@ncsSesIm&usid@[#usid#]&did@[#did#]";
+  document.all.xxmd.src=temp;
+}
+
+else if(tabContent.id=="t5"){
+  var title_desc="搜索日志";
+  document.all.wlj.innerHTML=title_desc;
+	var temp="/pronline/Msg?FunName@ncsSesSearch&usid@[#usid#]&did@[#did#]";
+  document.all.xxmd.src=temp;
+}
+
+
+}
+}</script>
+
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Hide
+function killErrors() {
+return true;
+}
+window.onerror = killErrors;
+// -->
+function cxw()
+{
+	frames.xx1.form1.sdate.value=form1.sdate.value;
+	frames.xx1.form1.edate.value=form1.edate.value;
+	frames.xx1.form1.submit();
+}
+function init()
+{
+	
+	var temp="/pronline/Msg?FunName@ncsSesIplog&usid@[#usid#]&did@[#did#]";
+  document.all.xxmd.src=temp;
+}
+</SCRIPT>
+<style type="text/css">
+<!--
+body {  font-size: 9pt}
+.tas {  border-color: black #FFFFFF; border-style: solid; border-top-width: 0px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 1px}
+table {  font-size: 9pt}
+.gray1 { filter:gray }
+.ttbbd {  cursor: default}
+.nobordertext{border-width:1px;border-color:blue;background-color:#d0e1fa;width:150;}
+
+-->
+</style>
+
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<script src="/js/calendar2.js"></script>
+</head>
+
+<body bgcolor="#8cb4e8" leftmargin="0" topmargin="0" onclick="changeTabs()"  style="overflow:hidden" onload="init()">
+<form name="form1" id="form1" method="post" action="/pronline/Msg" >
+	<input type="hidden" name="did" value="[#did#]">
+	<input type="hidden" name="uid" value="[#uid#]">
+	<input type="hidden" name="FunName" value="ncsWebReplace">
+	<input type="hidden" name="plate" value="ncs/ncs_swgj_lab.htm">
+	<input type="hidden" name="fname" value="ncsWebNetLog">
+	<input type="hidden" name="flag" value="1">
+	<input type="hidden" name="cname" value="[#cname#]">
+	<input type="hidden" name="udname" value="[#udname#]" >
+	<input type="hidden" name="sdate" value="">
+	<input type="hidden" name="edate" value="">
+<table width="100%" class="bord5"  bordercolorlight=#8cb4e8   bordercolordark=#8cb4e8 cellpadding="0" cellspacing="0" bgcolor=#8cb4e8 >
+   <tr> 
+   	 <td height="26"><table width="100%"  border="0" cellpadding="0" cellspacing="0">
+   	 	   <tr>
+   	 	   	<td id="wlj"   style="font-size:11pt;color:#00237e;font-weight:bold;" align="center">上网日志</td>
+         
+         </tr>
+        </table>
+      </td>
+   </tr>
+  </table>
+
+    <table border="0"  bordercolorlight=#aaaaaa bordercolordark=#ffffff  CELLPADDING="0" CELLSPACING="0" bgcolor=#8cb4e8 STYLE="width:100%; height:100%">
+      <tr height="26">
+	    <td ID="t0" CLASS="tab3" >IP连接记录</td>
+	    <td ID="t1" CLASS="tab4" >网站记录</td> 
+	    <td ID="t2" CLASS="tab5" >收发邮件</td>
+	    <td ID="t3" CLASS="tab5" >BBS发贴</td>
+	    <td ID="t4" CLASS="tab5" >聊天记录</td>
+	<!--    <td ID="t5" CLASS="tab5" >网络会话</td>
+	-->
+	    <td ID="t5" CLASS="tab8" >搜索日志</td>
+	   
+	    <td  class="tab10">&nbsp;</td>
+
+      </tr> 
+
+<tr> 
+<td HEIGHT="*" COLSPAN="7" valign="top" ID="tabContents" style="position:relative;top:-2;" align="left" > 
+<iframe name="xx1" id="xxmd" src="" width="100%" height="570" frameborder="no"></iframe>
+
+</td></tr></table>
+ 
+</form> 
+
+</body>
+</html>

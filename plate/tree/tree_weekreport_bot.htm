@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+
+<script>
+   cp = [#CurPg#];
+   tp = [#TotPg#];
+   function gotoPage(t){
+       if(t==1) {
+           form1.app.value = "next";
+       }
+       else if(t == (-1)) {
+           form1.app.value = "prev";
+       }
+       cp = cp + t;
+       if(cp <= 0) cp = 1;
+       if(cp > tp) cp = tp;
+       
+       form1.CurPg.value = cp;
+       form1.submit();
+       return;
+   }
+   
+   function gotoRight(id,cn){
+
+       top.sbpm_right.form1.did.value=id;
+       
+       top.sbpm_right.form1.tid.value='';
+      top.sbpm_right.form1.dispname.value=cn;
+ //     top.sbpm_right.form1.groupname.value='';
+       top.sbpm_right.form1.submit();
+   }
+
+</script>
+<link REL=stylesheet HREF="/css/listdatetable.css" TYPE="text/css">
+</head>
+
+<style type="text/css">
+<!--
+
+a:link {
+	text-decoration: none;	color: #00237e;
+}
+a:visited {
+	text-decoration: none;	color: #00237e;
+}
+a:hover {
+	text-decoration: none;
+	color: #00237e;
+}
+a:active {
+	text-decoration: none;
+	color: #00237e;
+    font-weight: bold;
+}
+-->
+
+</style></head>
+<style>
+<!--
+.css1 {
+	border: 1px solid #C5C5C5;
+	height: 15px;
+	font-size: 12px;
+}
+table {
+	font-size: 12px;
+	font-family: "Arial", "Helvetica", "sans-serif";
+	 "Verdana", "Arial", "Helvetica", "sans-serif", "宋体"; 
+}
+
+
+-->
+</style>
+
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" bgcolor="#d0e1fa" style="SCROLLBAR-FACE-COLOR: #c1d8f9; OVERFLOW: scroll; SCROLLBAR-SHADOW-COLOR: #c1d8f9; SCROLLBAR-3DLIGHT-COLOR: #c1d8f9; SCROLLBAR-ARROW-COLOR: #5985ce; SCROLLBAR-DARKSHADOW-COLOR: #c1d8f9;">
+<table width="154" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td height="20" colspan="2">
+     <table  height="15" border="0" cellpadding="0" cellspacing="0">
+        <form action="/pronline/Msg" method="post" name="form1" id="form1">
+        <tr> 
+          <td> <div align="left">&nbsp;
+              <input name="name" type="text"  value="[#name#]" class="css1" size="14" maxlength="31">
+              <input name="FunName" type="hidden" value="ncWebTreeDispCorp">
+              <input name="CurPg"   type="hidden" value="[#CurPg#]">
+              <input name="TotRec"  type="hidden" value="[#TotRec#]">
+              <input name="groupid"  type="hidden" value="[#groupid#]">
+              <input name="plate"   type="hidden" value="[#plate#]">
+              <input name="flag" type="hidden" value="[#flag#]">
+              <input name="fname"   type="hidden" value="[#fname#]">
+            </div></td>
+          <td><div align="left">
+            <script>
+                if(cp < tp) {
+                        document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 alt='转下页,共[#TotPg#]页 当前为第[#CurPg#]页' onClick='gotoPage(1);form1.submit()' class='hand'>");
+                }
+                else {
+                        document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 alt='已经是最后一页,共[#TotPg#]页 当前为第[#CurPg#]页' class='gray1'>");
+                }
+                if(cp > 1) {
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 alt='转上页,共[#TotPg#]页 当前为第[#CurPg#]页' onClick='gotoPage(-1);form1.submit()' class='hand'>");
+                }
+                else {
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 alt='已是第一页,共[#TotPg#]页 当前为第[#CurPg#]页'  class='gray1'>");
+                }
+            </script>
+          </div></td>
+        </tr>
+        </form>
+      </table></td>
+  </tr>
+  <!-- [#SLPB#] -->
+  <tr> 
+    <td width="20%"><img src="/images/joinbottom.gif" width="14" height="16"><img src="/images/page.gif" ></td>
+    <td width="80%"><a onClick="gotoRight('[#userid#]','[#dispname#]')" href="#xxm"><font color="#00237e">[#dispname#]  </font></a></td>
+  </tr>
+<!-- [#SLPE#] -->
+  
+</table>
+<p>　</p>
+</body>
+</html>

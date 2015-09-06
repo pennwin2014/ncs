@@ -1,0 +1,163 @@
+<html>
+<head>
+<title>分类管理</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<script>
+      function  goto() {
+         parent.sbpm_left.location.href='/pronline/Msg?FunName@ncs_userclasslist&plate@tree/ncs_netidtree.htm';
+    }
+	
+	function dodel() {
+	    if(confirm("真的要删除吗?")) {
+		    form1.ddd.value = "yes";
+			form1.submit();
+			return false;
+	    }
+		return true;
+	}
+	
+	function setname(){
+	  var t_s,ii;
+       j=form1.nid.options.length; 
+	   t=form1.nid.value;
+       for(i=0;i<j;i++) { 
+           gv = form1.nid.options[i].value;
+           if(gv == t) {
+           		 ii=i+1;
+               form1.nname.value = form1.nid.options[i].text;
+               t_s="form1.statu"+ii;
+               form1.mstatus.value=eval(t_s).value;
+           }
+       }
+       
+    }
+	
+</script>
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onload="setname()"  >
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td><table width="100%" height="27" border="0" align="center" cellpadding="0" cellspacing="0" background="/images/table_bg1.gif">
+        <tr > 
+          <td colspan="2"> <div align="center"><strong><b><font color="#FFFFFF">网络账号类别管理</font></b></strong></div></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr> 
+    <td> 
+
+      <form name="form1" method="post" action="/pronline/Msg">
+        <input type="hidden" name="FunName" value="ncsNetidGroupEdit" >
+        <input type="hidden" name="plate" value="ncs/ncs_netidgroup.htm" >
+        <input type="hidden" name="ddd">
+        [#SLPB#]
+        <input type="hidden" name="statu[#num#]" value="[#lstatus#]">
+        [#SLPE#]
+        <br>
+        <table width="70%" border="1"    bordercolorlight=#89ACED   bordercolordark=#ffffff  align="center" cellpadding="0" cellspacing="0">
+          <tr> 
+            <td> <br> <table width="90%" border="0" align="center">
+                <tr> 
+                  <td height="15" colspan="2"><b>新建一个网络账号类别</b></td>
+                  <td height="15">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td height="15"> 类别名称</td>
+                  <td height="15" valign="bottom"> <input type="text" name="gname" size="31" maxlength="63"> 
+                  	状态
+                      <select name="status" >
+                        <option value="0">停用</option>
+                        <option value="1" selected>启用</option>
+                      </select>
+                  </td>
+                  <td width="120"> <div align="center">
+                      <input type="submit" name="add" value="确认" class="an3">
+                    </div></td>
+                </tr>
+              </table>
+              <table width="90%" border="0" align="center">
+                <tr>
+                  <td>&nbsp;</td>
+                  <td width="141">&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td><b>删除一个类别</b></td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td> 要删除的分类名称&nbsp;&nbsp; 
+                    <select name="did">
+                      <!-- [#SLPB#] -->
+                      <option value="[#id#]">[#name#]</option>
+                      <!-- [#SLPE#] -->
+                    </select></td>
+                  <td>&nbsp; </td>
+                  <td width="120"> <div align="center">
+                      <input type="button" name="del" value="删除"  onclick="dodel()" class="an3">
+                    </div></td>
+                </tr>
+                <tr> 
+                  <td colspan="3"> <div align="center"><br>
+                    </div></td>
+                </tr>
+              </table>
+              <table width="90%" border="0" align="center">
+                <tr> 
+                  <td colspan="2"><b>修改一个类别</b></td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="71"> 类别名称</td>
+                  <td> 
+                    <select name="nid" onchange="setname()">
+                      <!-- [#SLPB#] -->
+                      <option value="[#id#]">[#name#]</option>
+                      <!-- [#SLPE#] -->
+                    </select>
+                  </td>
+                  <td>改为 
+                    <input type="text" name="nname" size="16" maxlength="31">
+                    状态
+                      <select name="mstatus" >
+                        <option value="0">停用</option>
+                        <option value="1" selected>启用</option>
+                      </select>
+                  </td>
+                  <td width="120"> <div align="center">
+                      <input type="submit" name="modi" value="确认"   class="an3">
+                    </div></td>
+                </tr>
+                <tr> 
+                  <td colspan="4"> <div align="center"><br>
+                    </div></td>
+                </tr>
+              </table></td>
+          </tr>
+        </table>
+      </form>
+      
+    </td>
+  </tr>
+  <tr>
+    <td height="70"><table width="50%" border="0" align="center">
+        <tr> 
+          <td> <div align="right"> 
+              <input type="button" name="Button" value="刷新类别树"  class="an3-1"  onClick="goto()">
+
+            </div></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+</body>
+</html>

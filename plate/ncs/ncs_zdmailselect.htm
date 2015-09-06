@@ -1,0 +1,199 @@
+<html>
+
+<head>
+<title>选择字段</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<!-- Infrastructure code for the tree -->
+<script>
+function queren()
+{
+var temp_str='';
+if(form1.did.checked)
+temp_str=temp_str+"did,";
+if(form1.uid.checked)
+temp_str=temp_str+"udisp,";
+
+if(form1.sdate.checked)
+temp_str=temp_str+"sdate,";
+
+if(form1.mailfrom.checked)
+temp_str=temp_str+"mailfrom,";
+
+if(form1.host.checked)
+temp_str=temp_str+"host,";
+if(form1.mailto.checked)
+temp_str=temp_str+"mailto,";
+
+if(form1.sip.checked)
+temp_str=temp_str+"sip,";
+
+if(form1.mailsub.checked)
+temp_str=temp_str+"mailsub,";
+
+if(form1.mailsize.checked)
+temp_str=temp_str+"mailsize,";
+if(form1.mailasize.checked)
+temp_str=temp_str+"mailasize,";
+if(form1.flags.checked)
+temp_str=temp_str+"flags,";
+dialogArguments.form1.zd.value=temp_str;
+self.close();
+
+dialogArguments.form1.submit();
+
+}
+function init()
+{
+
+var temp_zd='[#zd#]';
+
+if(temp_zd.indexOf('did')!=-1)
+form1.did.checked=true;
+
+if(temp_zd.indexOf('udisp')!=-1)
+form1.uid.checked=true;
+
+if(temp_zd.indexOf('sdate')!=-1)
+form1.sdate.checked=true;
+
+if(temp_zd.indexOf('mailfrom')!=-1)
+form1.mailfrom.checked=true;
+
+if(temp_zd.indexOf('host')!=-1)
+form1.host.checked=true;
+
+if(temp_zd.indexOf('mailto')!=-1)
+form1.mailto.checked=true;
+
+if(temp_zd.indexOf('sip')!=-1)
+form1.sip.checked=true;
+
+if(temp_zd.indexOf('mailsub')!=-1)
+form1.mailsub.checked=true;
+
+if(temp_zd.indexOf('mailsize')!=-1)
+form1.mailsize.checked=true;
+
+if(temp_zd.indexOf('mailasize')!=-1)
+form1.mailasize.checked=true;
+
+if(temp_zd.indexOf('flags')!=-1)
+form1.flags.checked=true;
+}
+</script>
+
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginheight="0"  oncontextmenu="return true" onload="init()">
+  <form name="form1" method="post" action="/pronline/Msg" target="sbpm_right">
+ 
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+
+  <tr> 
+    <td colspan="2"><table width="100%" height="27" border="0" align="center" cellpadding="0" cellspacing="0" background="/images/table_bg1.gif">
+        <tr > 
+          <td colspan="2" > <div align="center"><strong><font color="#FFFFFF">
+             
+              选择字段</font></strong></div></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr> 
+    <td colspan="2"> 
+        <br>
+        <table width="95%" border="1"    bordercolorlight=#89ACED   bordercolordark=#ffffff    align="center" cellpadding="0" cellspacing="0" >
+          <tr> 
+            <td> 
+             <table width="100%" border="0" align="center" >
+                <tr>
+                  <td colspan="4">&nbsp;</td>
+                </tr>
+
+                <tr height="35"> 
+                  <td width="10%"></td>
+                  <td width="30%" align="right"> <font color="#000000"><b><font size="2">单位名称</font></b></font></td>
+                  <td width="10%" align="left">
+                  <input type="checkbox" name="did" value="1">
+                  </td>
+                  <td width="30%" align="right"><b><font size="2">用户名</font></b>                   
+                  </td>
+                  <td width="10%" align="left"><input type="checkbox" name="uid" value="1">
+                  </td>
+                  <td width="10%"></td>
+                </tr>
+                
+                <tr height="35"> 
+                  <td ></td>
+                  <td  align="right"> <font color="#000000"><b><font size="2">日期</font></b></font></td>
+                  <td  align="left">
+                  <input type="checkbox" name="sdate" value="1">
+                  </td>
+                  <td align="right"><b><font size="2">发件人</font></b>                   
+                  </td>
+                  <td align="left"><input type="checkbox" name="mailfrom" value="1">
+                  </td>
+                  <td></td>
+                </tr>
+                <tr height="35"> 
+                  <td ></td>
+                  <td  align="right"> <font color="#000000"><b><font size="2">主机名</font></b></font></td>
+                  <td  align="left">
+                  <input type="checkbox" name="host" value="1">
+                  </td>
+                  <td align="right"><b><font size="2">收件人</font></b>                   
+                  </td>
+                  <td align="left"><input type="checkbox" name="mailto" value="1">
+                  </td>
+                  <td></td>
+                </tr>
+               <tr height="35"> 
+                  <td ></td>
+                  <td  align="right"> <font color="#000000"><b><font size="2">源IP地址</font></b></font></td>
+                  <td  align="left">
+                  <input type="checkbox" name="sip" value="1">
+                  </td>
+                  <td align="right"><b><font size="2">主&nbsp;&nbsp;题</font></b>                   
+                  </td>
+                  <td align="left"><input type="checkbox" name="mailsub" value="1">
+                  </td>
+                  <td></td>
+                </tr>
+               <tr height="35"> 
+                  <td ></td>
+                  <td  align="right"> <font color="#000000"><b><font size="2">邮件类别</font></b></font></td>
+                  <td  align="left">
+                  <input type="checkbox" name="flags" value="1">
+                  </td>
+                  <td align="right"><b><font size="2">有无附件</font></b>                   
+                  </td>
+                  
+                  <td align="left"><input type="checkbox" name="mailasize" value="1"></td>
+                </tr>
+                 <tr height="35"> 
+                  <td ></td>
+                  <td  align="right"> <font color="#000000"><b><font size="2">邮件大小</font></b></font></td>
+                  <td  align="left">
+                  <input type="checkbox" name="mailsize" value="1">
+                  </td>
+                  <td align="right"><b><font size="2"></font></b>                   
+                  </td>
+                  <td align="left">
+                  </td>
+                  <td></td>
+                </tr>
+              </table>
+            </td>
+          </tr>          
+        </table>
+<p align="center"><input name='Button' type='button' class='an3' onClick='queren()' value='确 认'></p>
+      </td>
+  </tr>
+</table>
+ </form>
+</body>
+</html>

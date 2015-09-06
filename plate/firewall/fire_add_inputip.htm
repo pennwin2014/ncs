@@ -1,0 +1,308 @@
+<html>
+
+<head>
+
+<title>Untitled Document</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+
+
+<body bgcolor="#CCCCCC" text="#000000" leftmargin="1" topmargin="1">
+<form name="form1" method="post" action="/profire/Msg"  target="fbot">
+
+  <table width="100%" border="0" cellspacing="0" bgcolor="#FFFFFF">
+    <tr> 
+
+      <td colspan="5" height="14" class="bord2"> 
+
+        <input type="hidden" name="FunName" value="fireWebAddTables">
+
+        <input type="hidden" name="index" value="[#index#]">
+
+        <input type="hidden" name="id" value="[#id#]">
+
+        <div align="center"> <b>包过滤规则</b></div>
+
+      </td>
+
+      <td width="23%" height="14"  class="bord4"> 
+
+        <div align="right"><b>索引号[[#index#]]</b></div>
+
+      </td>
+
+    </tr>
+
+    <tr> 
+
+      <td width="11%" height="6"  class="bord1">名称</td>
+
+      <td width="23%" height="6" class="bord1"> 
+
+        <input type="text" name="name" size="24" maxlength="31" value="[#name#]">
+
+      </td>
+
+      <td width="11%" height="6" class="bord1"> 
+
+        <div align="right">序号</div>
+
+      </td>
+
+      <td width="23%" height="6" class="bord1"> 
+
+        <input type="text" name="num" size="10" maxlength="10" value="[#num#]">
+
+      </td>
+
+      <td width="11%" height="6" class="bord1"> 
+
+        <div align="right">处理方式</div>
+
+      </td>
+
+      <td width="23%" height="6" class="bord3"> 
+
+        <select name="jump">
+
+          <option value="[#jump#]" selected>[#jumpv#]</option>
+
+          <option value="ACCEPT">允许</option>
+
+          <option value="DROP">禁止</option>
+
+          <option value="LOG">日志</option>
+
+        </select>
+
+      </td>
+
+    </tr>
+
+    <tr valign="middle"> 
+
+      <td width="11%" height="2" class="bord1">说明</td>
+
+      <td colspan="3" height="2" class="bord1"> 
+
+        <input type="text" name="dispname" size="63" maxlength="63" value="[#dispname#]">
+
+        <div align="right"></div>
+
+      </td>
+
+      <td width="11%" height="2" class="bord1"> 
+
+        <div align="right">类型</div>
+
+      </td>
+
+      <td width="23%" height="2" class="bord3"> 
+
+        <select name="type">
+
+          <option value="[#type#]" selected>[#typev#]</option>
+
+          <option value="FORWARD">转发</option>
+
+          <option value="INPUT">输入</option>
+
+          <option value="OUTPUT">输出</option>
+
+        </select>
+
+      </td>
+
+    </tr>
+
+    <tr> 
+
+      <td width="11%" height="28" class="bord1">源地址</td>
+
+      <td width="23%" height="28" class="bord1"> 
+
+        <input type="text" name="sip" size="24" maxlength="63" value="[#sip#]">
+
+      </td>
+
+      <td width="11%" height="28" class="bord1"> 
+
+        <div align="right">目标地址</div>
+
+      </td>
+
+      <td width="23%" height="28" class="bord1"> 
+
+        <input type="text" name="dip" size="24" maxlength="63" value="[#dip#]">
+
+      </td>
+
+      <td width="11%" height="28" class="bord1"> 
+
+        <div align="right">源端口</div>
+
+      </td>
+
+      <td width="23%" height="28" class="bord3"> 
+
+        <input type="text" name="sport" size="24" maxlength="31" value="[#sport#]">
+
+      </td>
+
+    </tr>
+
+    <tr> 
+
+      <td width="11%" class="bord1"><font size="3">目标端口</font></td>
+
+      <td width="23%" class="bord1"> 
+
+        <input type="text" name="dport" value="[#dport#]" size="24" maxlength="31">
+
+      </td>
+
+      <td width="11%" class="bord1">
+
+        <div align="right">输入设备</div>
+
+      </td>
+
+      <td width="23%" class="bord1"> 
+
+        <select name="indev">
+
+          <option value="[#indev#]" selected>[#indevv#]</option>
+
+          <!-- [#SLPB#] -->
+
+          <option value="[#idevlst#]">[#idevlstv#]</option>
+
+          <!-- [#SLPE#] -->
+
+        </select>
+
+      </td>
+
+      <td width="11%" class="bord1"> 
+
+        <div align="right">输出设备</div>
+
+      </td>
+
+      <td width="23%" class="bord3"> 
+
+        <select name="outdev">
+
+          <option value="[#outdev#]" selected>[#outdevv#]</option>
+
+          <!-- [#SLPB#] -->
+
+          <option value="[#odevlst#]">[#odevlstv#]</option>
+
+          <!-- [#SLPE#] -->
+
+        </select>
+
+      </td>
+
+    </tr>
+
+    <tr> 
+
+      <td width="11%" height="2" class="bord1">协议</td>
+
+      <td width="23%" height="2" class="bord1"> 
+
+        <select name="prot">
+
+          <option value="[#prot#]" selected>[#protv#]</option>
+
+          <option value="tcp">tcp</option>
+
+          <option value="udp">udp</option>
+
+          <option value="icmp">icmp</option>
+
+          <option value="all">全部</option>
+
+        </select>
+
+      </td>
+
+      <td width="11%" height="2" class="bord1"> 
+
+        <div align="right">限制</div>
+
+      </td>
+
+      <td width="23%" height="2" class="bord1"> 
+
+        <input type="text" name="limit" size="12" maxlength="12" value="[#limit#]">
+
+      </td>
+
+      <td width="11%" height="2" class="bord1"> 
+
+        <div align="right">触发阀值</div>
+
+      </td>
+
+      <td width="23%" height="2" class="bord3"> 
+
+        <input type="text" name="burst" size="12" maxlength="12" value="[#burst#]">
+
+      </td>
+
+    </tr>
+
+    <tr> 
+
+      <td width="11%" height="2" class="bord1">TCP标志</td>
+
+      <td width="23%" height="2" class="bord1"> 
+
+        <select name="tcpflag">
+
+          <option value="[#tcpflag#]" selected>[#tcpflagv#]</option>
+
+          <!-- [#SLPB#] -->
+
+          <option value="[#tcpflst#]">[#tcpflstv#]</option>
+
+          <!-- [#SLPE#] -->
+
+        </select>
+
+      </td>
+
+      <td width="11%" height="2" class="bord1"> 
+
+        <div align="right">TCP碎片</div>
+
+      </td>
+
+      <td width="23%" height="2" class="bord1"> 
+
+        <input type="checkbox" name="fragment" value="Yes" [#fragment#]>
+
+      </td>
+
+      <td colspan="2" height="2" class="bord3"> 
+        <div align="right">
+          <input type="submit" name="Submit" value="确认" class="an3">
+        </div>
+      </td>
+
+    </tr>
+
+  </table>
+
+</form>
+
+</body>
+
+</html>
+

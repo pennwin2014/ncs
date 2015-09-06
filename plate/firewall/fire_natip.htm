@@ -1,0 +1,132 @@
+<html>
+
+<head>
+
+<title>Untitled Document</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+
+
+<body bgcolor="#CCCCCC" text="#000000" leftmargin="1" topmargin="1">
+<form name="form1" method="post" action="/profire/Msg" target="fbot">
+  <table width="100%" border="0" cellspacing="0" cellpadding="4" bgcolor="#FFFFFF">
+    <tr> 
+
+      <td colspan="3" class="bord2"> 
+
+        <div align="center"><b>
+          <input type="hidden" name="FunName" value="fireWebAddNat">
+          <input type="hidden" name="type" value="9">
+          <input type="hidden" name="index" value="[#index#]">
+          IP地址映射</b></div>
+
+      </td>
+
+      <td width="29%" class="bord4"> 
+
+        <div align="right"><b>索引号：[[#index#]]</b></div>
+
+      </td>
+
+    </tr>
+
+    <tr> 
+
+      <td width="22%" class="bord1"> 
+
+        <div align="right">序号</div>
+
+      </td>
+
+      <td width="27%" class="bord1"> 
+
+        <input type="text" name="num" size="10" maxlength="10" value="[#num#]">
+
+      </td>
+
+      <td width="22%" class="bord1"> 
+
+        <div align="right">内部地址</div>
+
+      </td>
+
+      <td width="27%" class="bord3"> 
+
+        <input type="text" name="sip" size="31" maxlength="63" value="[#sip#]">
+
+      </td>
+
+    </tr>
+
+    <tr> 
+
+      <td width="22%" class="bord1"> 
+
+        <div align="right">网络接口</div>
+
+      </td>
+
+      <td width="29%" class="bord1"> 
+
+        <select name="dev">
+
+          <option value="[#dev#]" selected>[#devv#]</option>
+
+          <!-- [#SLPB#] -->
+
+          <option value="[#devlst#]">[#devlstv#]</option>
+
+          <! --[#SLPE#] -->
+
+        </select>
+
+      </td>
+
+      <td width="22%" class="bord1"> 
+
+        <div align="right">外部地址</div>
+
+      </td>
+
+      <td width="29%" class="bord3"> 
+
+        <input type="text" name="to" size="31" maxlength="63" value="[#to#]">
+
+      </td>
+
+    </tr>
+
+    <tr> 
+
+      <td width="22%" class="bord1">
+
+        <div align="right">掩码地址</div>
+
+      </td>
+
+      <td width="27%" class="bord1">
+
+        <input type="text" name="netmask" size="31" maxlength="31" value="[#netmask#]">
+
+      </td>
+
+      <td colspan="2" class="bord3"> 
+        <div align="right">
+          <input type="submit" name="Submit" value="确认" class="an3">
+          <input type="submit" name="Submit2" value="放弃" class="an3">
+        </div>
+      </td>
+
+    </tr>
+
+  </table>
+
+  </form>
+
+</body>
+
+</html>
+

@@ -1,0 +1,123 @@
+<html>
+<head>
+<title>用户高级查询</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<script language="JavaScript">
+function  dosearch(){
+    self.close()
+    form1.submit()
+}
+
+</script>
+</head>
+
+<body bgcolor="#BED1F5" leftmargin="0" topmargin="0">
+<form name="form1" method="post" action="/pronline/Msg" target="sbpm_right">
+  <table border="0"    cellpadding="0" cellspacing="0">
+    <tr> 
+      <td width="21" height="35">&nbsp; </td>
+      <td width="475">
+<table width="150" height="25" border="1" cellpadding="0"    cellspacing="0"   bordercolorlight=#6B9ADA   bordercolordark=#ffffff background="/images/cell_bg.gif" >
+          <tr> 
+            <td><strong><font color="#B08500">&nbsp;&nbsp;&nbsp;查询条件</font></strong> 
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr> 
+      <td colspan="2"> <table width="530" border="1"    cellpadding="0" cellspacing="0"     bordercolorlight=#6B9ADA   bordercolordark=#ffffff bgcolor="#DEE8FA">
+          <tr> 
+            <td> <table width="512" border="0" cellpadding="4">
+                <tr> 
+                  <td width="14%"> <div align="right">登录名</div></td>
+                  <td width="32%"> <input type="text" name="username" size="15" maxlength="15"> 
+                    <input type="hidden" name="FunName" value="ncUtilUserHSearch"> 
+                  </td>
+                  <td width="15%"> <div align="right">显示名</div></td>
+                  <td width="39%"> <div align="left"> 
+                      <input type="text" name="dispname" size="15" maxlength="15">
+                    </div></td>
+                </tr>
+                <tr> 
+                  <td width="14%" height="8"> <div align="right">部 门</div></td>
+                  <td width="32%" height="8"> [#sgroup#]</td>
+                  <td width="15%" height="8"> <div align="right">E-Mail</div></td>
+                  <td width="39%" height="8"> <input type="text" name="email" size="20" maxlength="63"> 
+                  </td>
+                </tr>
+                <tr> 
+                  <td width="14%"> <div align="right">IP地址</div></td>
+                  <td width="32%"> <input type="text" name="ip" size="16" maxlength="16"> 
+                  </td>
+                  <td width="15%"> <div align="right">MAC地址</div></td>
+                  <td width="39%"> <input type="text" name="mac" size="16" maxlength="16"> 
+                  </td>
+                </tr>
+                <tr> 
+                  <td width="14%"> <div align="right">状 态</div></td>
+                  <td width="32%"> <select name="status">
+                      <option value=" " selected>全部</option>
+                      <option value="0" >正常</option>
+                      <option value="1">禁止</option>
+                      <option value="9">免监控</option>
+                    </select> </td>
+                  <td width="15%"> <div align="right">加入日期</div></td>
+                  <td width="39%"> <input type="text" name="addtime" size="4" maxlength="4"> 
+                    <select name="aunit">
+                      <option value="1" selected>日</option>
+                      <option value="2">周</option>
+                      <option value="3">月</option>
+                    </select> <select name="afw">
+                      <option value="0" selected>以内</option>
+                      <option value="1">以前</option>
+                      <option value="2">刚好</option>
+                    </select> </td>
+                </tr>
+                <tr> 
+                  <td width="14%"> <div align="right">最后访问</div></td>
+                  <td width="32%"> <input type="text" name="lasttime" size="4" maxlength="4"> 
+                    <select name="lunit">
+                      <option value="1" selected>日</option>
+                      <option value="2">周</option>
+                      <option value="3">月</option>
+                    </select> <select name="lfw">
+                      <option value="0" selected>以内</option>
+                      <option value="1">以前</option>
+                      <option value="2">刚好</option>
+                    </select> </td>
+                  <td width="15%"> <div align="right">排 序</div></td>
+                  <td width="39%"> <select name="sort">
+                      <option value="a.username">登录名</option>
+                      <option value="a.dispname" selected>显示名</option>
+                      <option value="b.groupname">部门</option>
+                      <option value="a.ip">IP地址</option>
+                      <option value="a.addtime">加入日期</option>
+                      <option value="a.lasttime">最后访问</option>
+                    </select> <select name="sortby">
+                      <option value="0">升序</option>
+                      <option value="1" selected>降序</option>
+                    </select> </td>
+                </tr>
+                <tr> 
+                  <td colspan="4"><div align="center"> 
+                      <input name="ok" type="button" class="an3" onClick="dosearch()" value="确 认">
+                      &nbsp; 
+                      <input name="close" type="button" class="an3" onClick="self.close()" value="关 闭">
+                    </div></td>
+                </tr>
+              </table>
+              <br>
+            </td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr> 
+      <td height="35" colspan="2"> <div align="center"> </div></td>
+    </tr>
+  </table>
+</form>
+<p>&nbsp;</p>
+</body>
+</html>

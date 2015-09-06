@@ -1,0 +1,239 @@
+<html>
+<head>
+<title>电子邮件-收件夹</title>
+<meta http-equiv="目录类型" content="文本/html; 字符集=gb2312">
+<STYLE type=text/css>BODY {
+	FONT-FAMILY: "宋体"; FONT-SIZE: 9pt
+}
+TD {
+	FONT-FAMILY: "宋体"; FONT-SIZE: 9pt
+}
+A {
+	COLOR: #008000; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #ff0000; TEXT-DECORATION: underline
+}
+.unnamed1 {  font-size: 9pt}
+</STYLE>
+<script language="javascript">
+function SelectAll()
+{
+  
+  for(var i=0;i<document.inbox.length;i++)
+  {
+        var box=document.inbox.elements[i]
+        
+         if (box.name.substr(0,4)== 'cbox')
+            box.checked = document.inbox.selectall.checked
+  }
+}
+
+function setValue(code,require,msg)
+{
+    var targetName;
+
+	document.inbox.nFunCode.value=code;
+    document.inbox.require.value=require;
+    document.inbox.curmsg.value=msg.value;
+    if(require=="")
+       targetName='read';
+    else
+       targetName=require;
+	document.inbox.target=targetName;
+	var AtWnd = window.open("",targetName,"width=500,height=360,resizable=yes,scrollbars=yes,menubar=yes,status=0");
+
+    if ((window != null) && (!AtWnd.opener))
+		AtWnd.opener = window;
+		
+    document.inbox.submit();
+
+    if(msg.value.charAt(msg.value.length-1) != 'S')
+		msg.value += 'S';
+}
+
+function toSubmit(require)
+{
+    if(document.inbox.curmsg.value=="")
+     {
+         alert("对不起，请先预览或阅读该封 E-mail,再回复或转发");
+         return ;
+      }
+    document.inbox.nFunCode.value='16910';
+    document.inbox.require.value=require;    
+    document.inbox.target='_self';
+    document.inbox.submit();
+    
+}
+
+function deleteMail()
+{
+    var IsDelete=false;
+    for(var i=0;i<document.inbox.length;i++)
+    {
+        var box=document.inbox.elements[i]
+        
+         if (box.name.substr(0,4)== 'cbox'&&box.checked==true)
+         {
+            IsDelete=true;
+            break;
+         }
+    }
+    if(!IsDelete)
+    {
+       alert("对不起，请先选择你要删除的邮件！");
+       return ;
+     }
+     document.inbox.nFunCode.value='16912';
+     document.inbox.target='_self';
+     document.inbox.submit();
+     
+}
+
+function copyOrMove(code)
+{
+    var Is=false;
+    for(var i=0;i<document.inbox.length;i++)
+    {
+        var box=document.inbox.elements[i]
+        
+         if (box.name.substr(0,4)== 'cbox'&&box.checked==true)
+         {
+            Is=true;
+            break;
+         }
+    }
+    if(!Is)
+    {
+       alert("对不起，请先选择你要操作的邮件！");
+       return ;
+     }
+     document.inbox.nFunCode.value=code;
+     document.inbox.target='_self';
+     document.inbox.submit();
+     
+}
+function toPage(page)
+{
+    document.inbox.pagenum.value=page;
+    document.inbox.nFunCode.value='16909';
+    document.inbox.target='_self';
+    document.inbox.submit();
+}
+</script>
+</head>
+
+<body bgcolor="#F0FDE6">
+<form action="/pronline/Msg"  method="post" name="inbox" >
+<input type="hidden" name="nFunCode" >
+<input type="hidden" name="sid" value="[#sid#]">
+<input type="hidden" name="fold" value="[#fold#]">
+<input type="hidden" name="pagenum" value="1">
+<input type="hidden" name="headersum" value="[#headersum#]">
+<input type="hidden" name="require" >
+<input type="hidden" name="curmsg" >
+  <p><font face=Arial><b><font size="3">[#username#]@</font><font face=Arial><b><font size="3">[#hostname#]</font></b></font></b></font> 
+  </p>
+  <table border=0 cellpadding=0 cellspacing=0 width=100%>
+    <tr bgcolor="#8ED573"> 
+      <td height=18 colspan="3"> 
+        <div align="center"><b><font color="#000000"><span 
+      style="FONT-SIZE: 9pt"><b><span lang=EN-US style='font-family:Wingdings;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";mso-char-type:symbol;
+mso-symbol-font-family:Wingdings'><span style='mso-char-type:symbol;mso-symbol-font-family:
+Wingdings'><font color="#0000FF">1</font><font color="#0000FF"></font><font color="#0000FF"> 
+          </font></span></span></b>收件夹 </span>[#fold#]中共有[#totalnum#]封邮件，其中[#totalnew#]封未读 
+          </font></b></div>
+      </td>
+    </tr>
+    <tbody> 
+    <tr> 
+      <td height=30 colspan="2" class="unnamed1">&nbsp;</td>
+      <td height=30 width="442" align="center" class="unnamed1"> 
+        <div align="right">当前第[#curpage#]页　　[#SLPB010#] <a href="javascript:toPage('[#page#]')">[#page#]</a> 
+          [#SLPE#] </div>
+      </td>
+    </tr>
+    </tbody> 
+  </table>
+  <table width="100%" border="0" cellpadding="0">
+    <tr bgcolor="#CCFFCC"> 
+      <td width="59" bgcolor="#8ED573" class="unnamed1"> 
+        <div align="center">阅读</div>
+      </td>
+      <td width="51" bgcolor="#8ED573" class="unnamed1"> 
+        <div align="center">选择</div>
+      </td>
+      <td width="220" height="20" bgcolor="#8ED573" class="unnamed1"> 
+        <div align="center">答复/发件人</div>
+      </td>
+      <td width="180" bgcolor="#8ED573"> 
+        <div align="center">主题</div>
+      </td>
+      <td width="156" bgcolor="#8ED573"> 
+        <div align="center">接收日期</div>
+      </td>
+      <td width="99" bgcolor="#8ED573"> 
+        <div align="center">长度</div>
+      </td>
+    </tr>
+    [#SLPB050#] 
+    <tr bgcolor="#FFFFFF"> 
+      <td width="59" height="20" bgcolor="#E2EEDB" class="unnamed1"> 
+        <input type="hidden" name="msg[#i#]" value="[#msg#]">
+        <div align="center"><a href="javascript:setValue('16913','',document.inbox.msg[#i#])">[#image#]</a></div>
+      </td>
+      <td width="51" height="20" align="center" bgcolor="#E2EEDB" class="unnamed1"> 
+        <input type="checkbox" name="cbox[#i#]" value="1">
+      </td>
+      <td width="220" height="20" bgcolor="#E2EEDB" class="unnamed1"> 
+        <div align="center"><a href="javascript:setValue('16910','reply',document.inbox.msg[#i#])">[#from#]</a> 
+        </div>
+      </td>
+      <td width="180" height="20" bgcolor="#E2EEDB"> 
+        <div align="center">[#subject#]</div>
+      </td>
+      <td width="156" height="20" bgcolor="#E2EEDB"> 
+        <div align="center">[#date#]</div>
+      </td>
+      <td width="99" height="20" align="center" bgcolor="#E2EEDB">[#size#]</td>
+    </tr>
+    [#SLPE#] 
+  </table>
+  <table border=0 cellpadding=0 cellspacing=0 width=100%>
+    <tbody class="unnamed1"> 
+    <tr> 
+      <td height=17 width="209" align="center">&nbsp;</td>
+      <td height=17 width="233" align="center">&nbsp;</td>
+      <td height=17 width="228" align="center">&nbsp;</td>
+    </tr>
+    </tbody> 
+  </table>  
+  <table bgcolor=#ff9900 border=0 cellpadding=0 cellspacing=0 width=100%>
+    <tbody> 
+    <tr align=middle height=22 bgcolor="#8ED573"> 
+      <td height=39 width=91>将选中的邮件 </td>
+      <td height=39 width=118 valign="middle"> 
+        <input type="button" name="move" value="移动" onclick="copyOrMove('16915')">
+        <input type="button" name="copy" value="复制" onclick="copyOrMove('16916')">
+        到 </td>
+      <td height=39 width=240 align="left"> 
+        <select name="destFold">
+          <option value="Inbox">收件箱</option>
+          <option value="Sent">发件箱</option>
+          <option value="Draft">草稿箱</option>
+          <option value="Trash">垃圾箱</option>
+        </select>
+      </td>
+      <td height=39 width=151> 
+        <input type="checkbox" name="selectall" onclick="SelectAll()">
+        全部选中
+        <input type="button" name="delete" value="删除" onClick="deleteMail()">
+      </td>
+    </tr>
+    </tbody> 
+  </table>
+<p><br>
+</p>
+</form></body>
+</html>

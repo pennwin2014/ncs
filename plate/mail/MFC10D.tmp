@@ -1,0 +1,130 @@
+<!-- saved from url=(0022)http://internet.e-mail -->
+<html>
+<head>
+<title>邮件查询</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META content=no-cache http-equiv=Pragma>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<style type="text/css">
+<!--
+.cccv {  border-style: inset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.xan3 {  width: 100px; font-size: 12px; font-weight: normal; font-family: "宋体"}
+.anjujue {  background-image: url(/images/anjj.gif); width: 60px; background-repeat: no-repeat; height: 30px}
+.anfasong {  background-image: url(/images/ansend.gif); width: 60px; background-repeat: no-repeat; height: 30px}
+
+-->
+</style>
+<script language="JavaScript">
+<!--
+function gg(){
+ self.close()
+ form1.submit()
+}
+
+//-->
+</script>
+</head>
+
+<body bgcolor="menu" text="#000000" >
+<form name="form1" method="post" action="/pronline/Msg"  target="sbpm_right">
+  <table width="499" border="0" cellspacing="0" align="center" height="10%">
+    <tr> 
+      <td colspan="6" height="27"> 
+        <div align="center">邮件查询 
+          <input type="hidden" name="FunName" value="ncWebMailCtlSearch">
+        </div>
+      </td>
+    </tr>
+    <tr> 
+      <td width="89" height="26">用户名包含</td>
+      <td height="26" width="106"> 
+        <input type="text" name="username" size="16" maxlength="32" >
+      </td>
+      <td height="26" width="74">部门</td>
+      <td height="26" colspan="3">[#sgroup#]</td>
+    </tr>
+    <tr> 
+      <td width="89" height="26">发件人包含</td>
+      <td colspan="5" height="26"> 
+        <input type="text" name="from" size="32" >
+      </td>
+    </tr>
+    <tr> 
+      <td width="89" height="32">收件人包含</td>
+      <td height="32" colspan="5"> 
+        <input type="text" name="to" size="32" maxlength="63" >
+      </td>
+    </tr>
+    <tr> 
+      <td width="89" height="32">日期范围</td>
+      <td height="32" colspan="5"> 
+        <input type="text" name="ddd" size="8" maxlength="8">
+        <select name="unit">
+          <option value="1" selected>天</option>
+          <option value="2">周</option>
+          <option value="3">月</option>
+        </select>
+        以内 或从 
+        <input type="text" name="sdate" size="12" maxlength="12" >
+        到 
+        <input type="text" name="edate" size="12" maxlength="12" >
+      </td>
+    </tr>
+    <tr> 
+      <td width="89" height="33">主题包含</td>
+      <td colspan="5" height="33"> 
+        <input type="text" name="sub" size="50" maxlength="63" >
+      </td>
+    </tr>
+    <tr> 
+      <td width="89" height="32">邮件大于</td>
+      <td height="32" width="106"> 
+        <input type="text" name="msize" size="12" >
+      </td>
+      <td height="32" width="74">附件大于</td>
+      <td height="32" width="90"> 
+        <input type="text" name="asize" size="12" maxlength="12">
+      </td>
+      <td height="32" width="37">状态</td>
+      <td height="32" width="101"> 
+        <select name="status">
+          <option value="0" selected>全部</option>
+          <option value="1">正常发送</option>
+          <option value="2">拒绝发送</option>
+          <option value="3">未处理</option>
+          <option value="4">转发</option>
+        </select>
+      </td>
+    </tr>
+    <tr> 
+      <td width="89" height="32">排序 </td>
+      <td height="32" colspan="5"> 
+        <input type="radio" name="osort" value="date" checked>
+        日期 
+        <input type="radio" name="osort" value="from">
+        发件人 
+        <input type="radio" name="osort" value="to">
+        收件人 
+        <input type="radio" name="osort" value="msize">
+        邮件大小 
+        <select name="orderby">
+          <option value="0" selected>升序</option>
+          <option value="1">降序</option>
+        </select>
+      </td>
+    </tr>
+    <tr> 
+      <td width="89" height="33">&nbsp;</td>
+      <td colspan="5" height="33"> 
+        <div align="center"> 
+          <input type="button" name="ok"  value="开始查询" onClick="gg()">
+          <input type="button" name="can1" value="返回" onClick="self.close()">
+        </div>
+      </td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<html>
+<head>
+<title>分类管理</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0"  >
+<table width="100%" height="309" border="0"  align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><table width="100%" height="27" border="0" align="center" cellpadding="0" cellspacing="0" >
+        <tr > 
+          <td colspan="2" style="font-size:11pt;color:#00237e;">> <div align="center"><strong>系统在线信息</font></div></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr> 
+    <td> <form name="form1" method="post" action="/pronline/Msg">
+        <div align="center"> 
+          <table width="85%" border="0" height="100%">
+            <tr> 
+              <td height="470"> <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor=menu>
+                  <tr> 
+                    <td height="28" colspan="2" align="center" valign="middle"  class="bord3-1"> 
+                      <input type="hidden" name="FunName" value="ncWebLimSaveDefault" >
+                      <b>系统当前信息</b></td>
+                  </tr>
+                  <tr> 
+                    <td width="50%" height="23" align="center" valign="middle"  class="bord3-1"> 
+                      产品序列号&nbsp;[#prodsn#]</td>
+                    <td width="50%" height="22" align="center" valign="middle"  class="bord3-1"> 
+                      最大用户数 [#users#]</td>
+                  </tr>
+                  <tr> 
+                    <td height="23" align="center" valign="middle"  class="bord3-1"> 
+                      当前时间 [#curtime#]</td>
+                    <td height="22" align="center" valign="middle"   class="bord3-1"> 
+                      当前进程数 [#sumprocess#]</td>
+                  </tr>
+                  <tr> 
+                    <td height="28" colspan="2"  class="bord3-1"> <div align="center"><b>CPU及内存使用情况</b></div></td>
+                  </tr>
+                  <tr> 
+                    <td colspan="2" > <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+                        <tr> 
+                          <td height="23" colspan="3" class="bord3-1"> <div align="center">CPU占有率 
+                              [#r1#]%</div></td>
+                          <td class="bord3-1">&nbsp;<img src="/images/red.gif" width="[#r1used#]" height="16"><img src="/images/yellow.gif" width="[#r1free#]" height="16"></td>
+                        </tr>
+                        <tr> 
+                          <td width="15%" height="23" class="bord3-1"> 
+                            <div align="right">&nbsp; </div></td>
+                          <td width="15%" class="bord3-1"> 
+                            <div align="center">总数</div></td>
+                          <td width="15%" class="bord3-1"> 
+                            <div align="center">空闲</div></td>
+                          <td width="55%" class="bord3-1">&nbsp;</td>
+                        </tr>
+                        <tr> 
+                          <td height="23" class="bord3-1"> 
+                            <div align="center">内 存</div></td>
+                          <td  class="bord3-1"> 
+                            <div align="right">[#mem#] KB&nbsp;&nbsp;</div></td>
+                          <td  class="bord3-1"> 
+                            <div align="right">[#free#] KB&nbsp;&nbsp;</div></td>
+                          <td width="55%"  class="bord3-1">&nbsp;<img src="/images/red.gif" width="[#r5used#]" height="16"><img src="/images/yellow.gif" width="[#r5free#]" height="16"></td>
+                        </tr>
+                        <tr> 
+                          <td height="23"  class="bord3-1"> 
+                            <div align="center">交换空间</div></td>
+                          <td  class="bord3-1"> 
+                            <div align="right">[#swap#] KB&nbsp;&nbsp;</div></td>
+                          <td  class="bord3-1"> 
+                            <div align="right">[#freeswap#] KB&nbsp;&nbsp;</div></td>
+                          <td width="55%" class="bord3-1">&nbsp;<img src="/images/red.gif" width="[#r6used#]" height="16"><img src="/images/yellow.gif" width="[#r6free#]" height="16"></td>
+                        </tr>
+                      </table></td>
+                  </tr>
+                  <tr> 
+                    <td height="28" colspan="2"  class="bord3-1"> <div align="center"><b>磁盘情况</b></div></td>
+                  </tr>
+                  <tr> 
+                    <td colspan="2" > <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+                        <tr> 
+                          <td width="15%" height="23"  class="bord3-1"> 
+                            <div align="center">设备名</div></td>
+                          <td width="15%"  class="bord3-1">
+<div align="center">挂接点</div></td>
+                          <td width="15%"  class="bord3-1"><div align="center">总共空间</div></td>
+                          <td width="15%"  class="bord3-1">
+<div align="center">已用空间</div></td>
+                          <td width="40%"  class="bord3-1">
+<div align="center">图示</div></td>
+                        </tr>
+                        <!--						[#SLPB#]  -->
+                        <tr> 
+                          <td height="23"  class="bord3-1">&nbsp;&nbsp;[#dev#]</td>
+                          <td  class="bord3-1">&nbsp;&nbsp;[#mount#]</td>
+                          <td width="15%"  class="bord3-1" align="right">&nbsp;[#total#]KB&nbsp;</td>
+                          <td  class="bord3-1" align="right">&nbsp;&nbsp;[#used#]KB&nbsp;</td>
+                          <td  class="bord3-1">&nbsp;<img src="/images/red.gif" width="[#usedt#]" height="16"><img src="/images/yellow.gif" width="[#freet#]" height="16">[#rate#]%</td>
+                        </tr>
+                        <!--						[#SLPE#]  -->
+                      </table></td>
+                  </tr>
+                  <tr> 
+                    <td height="28" colspan="2"  class="bord3-1"> <div align="center"><font color="#000000"><b>系统运行情况</b></font></div></td>
+                  </tr>
+                  <tr> 
+                    <td height="25" colspan="2"> <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+                        <tr> 
+                          <td width="21%" height="23"  class="bord3-1">&nbsp;</td>
+                          <td width="16%"  class="bord3-1"><div align="center">最大限制&nbsp;</div></td>
+                          <td width="15%"  class="bord3-1"><div align="center">当前数量</div></td>
+                          <td width="48%"  class="bord3-1"><div align="center">图示</div></td>
+                        </tr>
+                        <tr> 
+                          <td width="21%"  class="bord3-1"> <div align="center">在线用户数</div></td>
+                          <td width="16%"  class="bord3-1"> <div align="left">&nbsp;&nbsp;[#maxuser#]</div></td>
+                          <td width="15%"  class="bord3-1">&nbsp;&nbsp;[#curuser#]</td>
+                          <td width="48%"  class="bord3-1">&nbsp;<img src="/images/red.gif" width="[#usertotal#]" height="16"><img src="/images/yellow.gif" width="[#userfree#]" height="16">[#userrate#]%</td>
+                        </tr>
+                        <tr> 
+                          <td width="21%"  class="bord3-1"> <div align="center">当前IP连接</div></td>
+                          <td width="16%"  class="bord3-1">&nbsp;&nbsp;[#maxip#]</td>
+                          <td width="15%"  class="bord3-1">&nbsp;&nbsp;[#curip#]</td>
+                          <td width="48%"  class="bord3-1">&nbsp;<img src="/images/red.gif" width="[#iptotal#]" height="16"><img src="/images/yellow.gif" width="[#ipfree#]" height="16">[#iprate#]%</td>
+                        </tr>
+                        <tr> 
+                          <td width="21%"  class="bord3-1"> <div align="center">HTTP连接总数</div></td>
+                          <td width="16%"  class="bord3-1">&nbsp;&nbsp;[#maxhttp#]</td>
+                          <td width="15%"  class="bord3-1">&nbsp;&nbsp;[#curhttp#]</td>
+                          <td width="48%"  class="bord3-1">&nbsp;<img src="/images/red.gif" width="[#httptotal#]" height="16"><img src="/images/yellow.gif" width="[#httpfree#]" height="16">[#httprate#]%</td>
+                        </tr>
+                        <tr> 
+                          <td width="21%"  class="bord3-1"> <div align="center">活动规则总数</div></td>
+                          <td width="16%"  class="bord3-1">&nbsp;&nbsp;[#maxrule#]&nbsp;</td>
+                          <td width="15%"  class="bord3-1">&nbsp;&nbsp;[#currule#]&nbsp;</td>
+                          <td width="48%"  class="bord3-1">&nbsp;<img src="/images/red.gif" width="[#ruletotal#]" height="16"><img src="/images/yellow.gif" width="[#rulefree#]" height="16">[#rulerate#]%</td>
+                        </tr>
+                      </table></td>
+                  </tr>
+                </table></td>
+            </tr>
+          </table>
+        </div>
+      </form></td>
+  </tr>
+</table>
+</body>
+</html>

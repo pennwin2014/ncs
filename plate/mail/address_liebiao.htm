@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0058)http://address.sina.com.cn/cgi-bin/addrbook/ShowMemberList -->
+<HTML>
+<HEAD>
+<TITLE>通讯录</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=content-type>
+<SCRIPT language="javascript">
+function SetValue1(rad)
+{
+	rad.value = 1;
+}
+
+function SetValue2(rad)
+{
+	rad.value = 2;
+}
+
+function myTrim(str)
+{
+	var i;
+	for(i = 0; (i < str.value.length)&&((str.value.charAt(i) == ' ')||(str.value.charAt(i) == ',')); i++);
+	if( (i > 0)&&(i < str.value.length) )
+		str.value = str.value.substring(i);
+}
+
+function addAddress()
+{
+	for(var i = 0; i < document.forms.length; i++)
+	{
+		with(document.forms[i])	
+		{
+			if(type.value == 0)		//0 for personal email
+			{
+				if(rad.value == 1)
+				{
+					window.opener.document.forms[0].to.value = window.opener.document.forms[0].to.value + ',' + email.value;
+					myTrim(window.opener.document.forms[0].to);
+				}
+				else if(rad.value == 2)
+				{
+					window.opener.document.forms[0].cc.value = window.opener.document.forms[0].cc.value + ',' + email.value;
+					myTrim(window.opener.document.forms[0].cc);
+				}
+			}
+			else if(type.value == 1)		//1 for group email
+			{
+				if(rad.value == 1)
+				{
+					window.opener.document.forms[0].to.value = window.opener.document.forms[0].to.value + ',' + gemail.value;
+					myTrim(window.opener.document.forms[0].to);
+				}
+				else if(rad.value == 2)
+				{
+					window.opener.document.forms[0].cc.value = window.opener.document.forms[0].cc.value + ',' + gemail.value;
+					myTrim(window.opener.document.forms[0].cc);
+				}
+			}
+		}
+	}
+	window.close();
+}
+</SCRIPT>
+<META content="MSHTML 5.00.2919.6307" name=GENERATOR>
+<style type="text/css">
+<!--
+.submit {  background-color: #FFCC66; font-size: 9pt}
+.type {  font-size: 9pt}
+-->
+</style>
+</HEAD>
+<BODY class=bgcw leftMargin=11 topMargin=5 marginwidth="11" marginheight="5" bgcolor="#F0FDE6" onLoad='window.focus()'>
+  <div align="center"><span class="type">　　　　　　　 </span> 　　　　　　　　　　　　　　　　　　　　　　 
+    <br>
+  </div>
+  
+<table border="0" width="100%" align="center" cellpadding="2" bordercolordark="#FFFFFF" class="type">
+  <tr valign="bottom"> 
+    <td align="left" width="10%" class="type"> 
+      <div align="center"><span class="type"><font size="3" class="type">地 址 列 
+        表</font>　</span></div>
+    </td>
+    <td colspan="2" width="10%" class="type">&nbsp;</td>
+    <td width="31%" class="type"> 
+      <div align="right"><img src="../mailImages/bt8.GIF" width="52" height="24" align="absmiddle"></div>
+    </td>
+  </tr>
+  <tr valign="bottom"> 
+    <td align="left" width="10%" bgcolor="#8ED573" class="type"> 
+      <div align="center">发送</div>
+    </td>
+    <td colspan="2" bgcolor="#8ED573" width="10%" class="type"> 
+      <div align="center">抄送</div>
+    </td>
+    <td width="31%" bgcolor="#8ED573" class="type"> 
+      <div align="center">收件人</div>
+    </td>
+  </tr>
+  [#SLPB099#] 
+  <form name="form[#i#]">
+    <input type="hidden" name="type" value="0">
+    <!-- 0 for personal email --> 
+    <tr valign="bottom"> 
+      <td height="24" align="left" width="10%" bgcolor="#E2EEDB" class="type"> 
+        <div align="center"> 
+          <input type="radio" name="rad" value="1" onclick="SetValue1(rad)">
+        </div>
+      </td>
+      <td colspan="2" bgcolor="#E2EEDB" class="type" height="24"> 
+        <div align="center"> 
+          <input type="radio" name="rad" value="2" onClick="SetValue2(rad)">
+        </div>
+      </td>
+      <td width="31%" bgcolor="#E2EEDB" class="type" height="24"> 
+        <div align="center">[#name#](个人)</div>
+      </td>
+      <input type="hidden" name="email" value="[#email#]">
+    </tr>
+  </form>
+  [#SLPE#]
+  [#SLPB099#] 
+  <form name="gform[#gi#]">
+    <input type="hidden" name="type" value="1">
+    <!-- 1 for group email --> 
+    <tr valign="bottom"> 
+      <td align="left" width="10%" bgcolor="#E2EEDB" class="type"> 
+        <div align="center"> 
+          <input type="radio" name="rad" value="1" onclick="SetValue1(rad)">
+        </div>
+      </td>
+      <td colspan="2" bgcolor="#E2EEDB" class="type"> 
+        <div align="center"> 
+          <input type="radio" name="rad" value="2" onclick="SetValue2(rad)">
+        </div>
+      </td>
+      <td width="31%" bgcolor="#E2EEDB" class="type"> 
+        <div align="center">[#group#](团体)</div>
+      </td>
+    </tr>
+    <input type="hidden" name="gemail" value="[#gemail#]">
+  </form>
+  [#SLPE#] 
+  <tr> 
+    <td valign="middle" align="left" colspan="5"> 
+      <div align="center"><br>
+      </div>
+      <form name="endform">
+        <input type="hidden" name="type" value="2">
+        <!-- 2 for end form --> 
+        <div align="center"> <a href="javascript:addAddress()"><img src="../mailImages/bt1.GIF" width="52" height="24" border="0"></a>　　 
+          <a href="javascript:window.close()"><img src="../mailImages/bt11.GIF" width="52" height="24" border="0"></a> 
+        </div>
+      </form>
+    </td>
+  </tr>
+</table>
+</BODY></HTML>

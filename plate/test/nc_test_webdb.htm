@@ -1,0 +1,58 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+</head>
+
+<body bgcolor="#C0C0C0" text="#000000">
+<table width="75%" border="1">
+  <tr>
+    <td>
+      <div align="center">网址库</div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <form name="form1" method="post" action="/pronline/Msg">
+        网址：
+        <input type="text" name="name">
+        起始记录:
+        <input type="text" name="startrec">
+        <input type="submit" name="Submit" value="Submit">
+        <input type="hidden" name="FunName" value="ncWebLim_TestIplist">
+        <input type="hidden" name="flags" value="[#flags#]">
+      </form>
+    </td>
+  </tr>
+  <tr>
+    <td bgcolor="#99FF33"> 
+      <table width="91%" border="1">
+        <tr>
+          <td width="21%">Time:[#time#]</td>
+          <td width="32%">Count:[#count#]</td>
+          <td width="33%">记录总数[#sumrec#]</td>
+          <td width="14%">&nbsp;</td>
+        </tr>
+        <tr> 
+          <td width="21%">序号</td>
+          <td width="32%">URL</td>
+          <td width="33%">长度</td>
+          <td width="14%">ID</td>
+        </tr>
+       <!-- [#SLPB#] -->
+        <tr> 
+          <td width="21%">[#num#]</td>
+          <td width="32%">[#url#]</td>
+          <td width="33%">[#len#]</td>
+          <td width="14%">[#id#]</td>
+        </tr>
+		<!-- [#SLPE#] -->
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

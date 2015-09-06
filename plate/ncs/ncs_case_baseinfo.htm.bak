@@ -1,0 +1,153 @@
+<html>
+
+<head>
+<title>查询</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<!-- Infrastructure code for the tree -->
+<style>
+.aaaa {font-size:10pt;color:#000000;font-weight:bold;}
+</style>
+<script>
+function Add()
+{
+ if(form1.casename.value==""){
+ alert("请填写案件名称");
+ return false;
+ }
+ return true;
+ }
+
+</script>
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginheight="0"  style="overflow:hidden" onload="parent.form1.sid.value='[#sid#]';parent.form1.modflag.value='[#modflag#]'">
+  <form name="form1" method="post" action="/pronline/Msg" >
+  <input type="hidden" name="FunName" value="ncsCaseAddSave">
+  <input type="hidden" name="sid" value="[#sid#]">
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+
+  <tr> 
+    <td colspan="2"><table width="100%" height="27" border="0" align="center" cellpadding="0" cellspacing="0" >
+        <tr > 
+          <td align="right" style="font-size:11pt;color:#00237e;font-weight:bold;">&nbsp;&nbsp;&nbsp; 
+             案件基本信息</td>
+             <td align="right"><input name="search" type="submit" class="an3" value="保存" onclick="return Add()">                     
+             <input name="clo" type="button" class="an3" onclick="self.close()" value="关闭">&nbsp;&nbsp;</td>
+        </tr>
+      </table></td>
+        
+  </tr>
+  <tr> 
+    <td colspan="2"> <table width="98%" border="1"    bordercolorlight=#89ACED   bordercolordark=#ffffff    align="center" cellpadding="0" cellspacing="0" >
+          <tr> 
+            <td> 
+             <table width="100%" border="0" align="center" >
+  
+                <tr height="30"> 
+                  <td width="2%"></td>
+                  <td width="13%" align="right"> <font color="#000000"><b><font size="2">案件名称</font></b></font></td>
+                  <td width="35%" align="left">
+                  <input type="text" name="casename" size="20" value="[#casename#]">
+                  </td>
+                  <td width="13%" class="aaaa" >&nbsp;案件编号</td>
+                  <td width="35%"><input type="text" name="casecode" size="20" value="[#casecode#]"></td>
+                  <td width="2%">                   
+                  </td>
+                </tr>
+                <tr height="30"> 
+                  <td ></td>
+                  <td  align="right" class="aaaa"> 案件种类</td>
+                  <td  align="left">
+                  <select name="casetype" style="width:152">
+                  <option value="0">自办</option>
+                  <option value="1">协同办案</option>
+                  <option value="3">其它</option>
+        
+                </select>
+                  </td>
+                  <td class="aaaa">&nbsp;案件类型</td>
+                  <td > <select name="caseclass" style="width:152">
+                  <option value="1">侵犯公民人身权利民主</option>
+                  <option value="2">危害公共安全</option>
+                  <option value="3">破坏社会主义秩序</option>
+                  <option value="4">其它</option>
+                </select></td>
+                  <td >                   
+                  </td>
+                </tr>
+                <tr height="30"> 
+                  <td ></td>
+                  <td  align="right" class="aaaa"> 所属区域</td>
+                  <td  align="left">
+                 <select name="groupid" style="width:152">
+                 	[#SLPB#]
+                  <option value="[#groupid#]">[#name#]</option>
+                  [#SLPE#]
+                
+                </select>
+                  </td>
+                  <td class="aaaa">&nbsp;立案单位</td>
+                  <td >
+                 <select name="casedept" style="width:152">
+                 	[#SLPB#]
+                  <option value="[#name#]">[#name#]</option>
+                  [#SLPE#]
+
+                </select>
+                  	</td>
+                  <td >                   
+                  </td>
+                </tr>
+                <tr height="30"> 
+                  <td ></td>
+                  <td  align="right" class="aaaa"> 立案时间</td>
+                  <td  align="left">
+                 <input type="text" name="casedate" size="20" value='[#casedate#]'>
+                  </td>
+                  <td class="aaaa">&nbsp;操作人员</td>
+                  <td ><input type="text" name="addby" size="20" value='[#addby#]'></td>
+                  <td >                   
+                  </td>
+                </tr>
+                <tr height="30"> 
+                  <td ></td>
+                  <td  align="right" class="aaaa"> 案件状态</td>
+                  <td  align="left">
+                 <select name="flags" style="width:152">
+                  <option value="0">未布控</option>
+                  <option value="1">已布控</option>
+                  <option value="9">已撤消</option>
+                </select>
+                  </td>
+                  <td class="aaaa">&nbsp;失效时间</td>
+                  <td ><input type="text" name="expiretime" size="20" value='[#expiretime#]'></td>
+                  <td >                   
+                  </td>
+                  <td >                   
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr height="26"><td style="font-size:11pt;color:#00237e;font-weight:bold;">&nbsp;案情简介:</td></tr>
+          <tr><td><textarea name="cmemo" rows="22" cols="98">[#cmemo#]</textarea></td></tr>
+        </table>
+
+      </td>
+  </tr>
+</table>
+</form>
+<script> form1.casetype.value='[#casetype#]';
+	       form1.caseclass.value='[#caseclass#]';
+	       form1.groupid.value='[#groupid#]';
+	       form1.flags.value='[#flags#]';
+	       form1.casedept.value='[#casedept#]';
+
+	      </script>
+</body>
+</html>

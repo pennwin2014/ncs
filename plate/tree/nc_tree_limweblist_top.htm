@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<script>
+	  function Del()
+    {
+      var flag=0;
+    	for(var i=1;i<parent.treeBot.document.all.DataTable.rows.length;i++)
+	    {
+	    
+	    if(parent.treeBot.document.all.DataTable.rows[i].cells[0].childNodes[1].checked)
+	    {	  
+		    flag=1;
+		    break;
+	    }
+	    }
+	    if(flag==0)
+	    {
+	    	alert('请先选择要删除的策略');
+	    	return false;
+	    }
+	    parent.treeBot.form1.del.value="del";
+	    parent.treeBot.form1.submit();
+	    	
+    }
+function openDr()
+{
+    t = "/web_dr_frm.htm";
+    
+    var oDia=showModalDialog(t,window,
+		 "status:no;center:yes;help:no;minimize:no;maximize:no;border:thick;statusbar:no;dialogWidth:500px;scroll:none;dialogHeight:350px;overflow:none");	
+
+//    openwinflag=window.open(t,'address','left=200,top=300,width='+400+',height='+150+',fullscreen=0,toolbar=no,scrollbars=no,resizable=0,menubar=no,status=0');
+}  
+   function goto(t){
+       parent.treeBot.location.href=t+'[#par#]&var@[#var#]';
+   }
+
+   function gotoRight(t){
+       top.sbpm_right.main2.location.href=t+'[#par#]&var@[#var#]';
+   }
+
+   function clickImage(kk)
+   {
+       for(i=0;i<document.images.length;i++) {
+           if(document.images[i].src.search("/tree/folderopen.gif") != -1) {
+                document.images[i].src = "/tree/folder.gif";
+           }
+       }
+       kk.src = "/images/folderopen.gif";
+   }
+       
+</script>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<style>
+<!--
+
+.css1 {
+	border: 1px solid #C5C5C5;
+	height: 15px;
+	font-size: 12px;
+}
+table {
+	font-size: 12px;
+	font-family: "Arial", "Helvetica", "sans-serif";
+	 "Verdana", "Arial", "Helvetica", "sans-serif", "宋体"; 
+}
+
+
+
+
+a:link {
+	text-decoration: none;	color: #00237e;
+}
+a:visited {
+	text-decoration: none;	color: #00237e;
+}
+a:hover {
+	text-decoration: none;
+	color: #00237e;
+}
+a:active {
+	text-decoration: none;
+	color: #00237e;
+    font-weight: bold;
+}
+
+
+-->
+</style>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" bgcolor="#d0e1fa"  >
+	<form name="form1" id="form1" method="post" action="/pronline/Msg" target="treeBot">
+  <input type="hidden" name="FunName" value="ncsWebLimWebClass">
+  <input type="hidden" name="sid" value="">
+  <input type="hidden" name="plate" value="tree/nc_tree_limweblist_bot.htm">
+	<table width="142" border="1" cellspacing="0" cellpadding="0">
+		
+		
+	<tr >
+    <td colspan="2" width="142">
+    	<table width="100%">
+    	<tr> 
+    		<td colspan="2"><img src="/images/base.gif" width="19" height="16"> 自定义网址库维护</td>
+ 		  </tr>    		
+    	<tr><td>
+    	&nbsp;类别&nbsp;<input type="text" name="name" size="12"></td>
+    	</tr>
+    	<tr><td>
+    	&nbsp;使用状态&nbsp;<select name="status">
+                        <option value="0">停用</option>
+                        <option value="1" selected>启用</option>
+                        </select></td>
+    	</tr>
+    </table>
+  </td>
+  </tr>
+  <tr height="25"> 
+    <td colspan="2">
+    	<table width="100%">
+    		<tr><td align="center">
+    	<input name="add" type="submit" class="an3" value="添加" onclick="return Add()">
+    	<input name="dr" type="button" class="an3" value="导入网址" onClick="openDr()">
+    </td>
+   </tr>
+   <tr height="25">
+   	<td align="center">
+   	  <input name="modi" type="submit" class="an3" value="修改" >
+      <input name="del" type="button" class="an3" value="删除" Onclick="Del()">
+    </td>
+  </tr>
+  </table>
+</td>
+</tr>
+
+	<tr><td colspan="2" width="100%" > 	 
+  <table id="DataTable" border="0" cellspacing="0" cellpadding="0">   
+   <tr> 
+    <td colspan="2"><img src="/images/base.gif" width="19" height="16"> <a onClick="gotoRight('/pronline/Msg?FunName@ncWebLimWebClassCx');goto('/pronline/Msg?FunName@ncsWebLimWebClass&plate@tree/nc_tree_limweblist_bot.htm&rownum@30')" href="#xxm">网址库查询</a></td>
+  </tr> 
+  <tr> 
+    <td><img src="/images/joinbottom.gif" width="19" height="16"><a onClick="clickImage(document.k1);goto('/pronline/Msg?FunName@ncsWebLimWebClass&plate@tree/nc_tree_limweblist_bot.htm&rownum@30&flags@9')" href="#xxm"><img name="k1" src="/images/folder.gif" width="19" height="16" border="0"></a></td>
+    <td width="96" onClick="clickImage(document.k1);gotoRight('/pronline/Msg?FunName@ncsWebLimWebClass&flags@9');goto('/pronline/Msg?FunName@ncsWebLimWebClass&plate@tree/nc_tree_limweblist_bot.htm&rownum@30&flags@9')" ><a href="#xxm">系统网址库 </a></td>
+  </tr>
+  <tr> 
+    <td><img src="/images/joinbottom.gif" width="19" height="16"><a onClick="clickImage(document.k2);goto('/pronline/Msg?FunName@ncsWebLimWebClass&plate@tree/nc_tree_limweblist_bot.htm&rownum@30&flags@8')" href="#xxm"><img name="k2" src="/images/folder.gif" width="19" height="16" border="0"></a></td>
+    <td width="96" onClick="clickImage(document.k2);gotoRight('/pronline/Msg?FunName@ncsWebLimWebClass&flags@8');goto('/pronline/Msg?FunName@ncsWebLimWebClass&plate@tree/nc_tree_limweblist_bot.htm&rownum@30&flags@8')" ><a href="#xxm">自定义网址库 </a></td>
+  </tr>
+</table>
+</td>
+</tr>
+
+
+</table>
+</form>
+</body>
+</html>

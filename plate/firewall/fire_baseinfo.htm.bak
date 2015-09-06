@@ -1,0 +1,91 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script>
+function goto(t){
+self.location.href=t
+}
+</script>
+</head>
+
+<body bgcolor="#999999" text="#000000" oncontextmenu="return false" ondblclick="goto('/new.htm')">
+<form name="form1" method="post" action="/pronline/Msg">
+  <table width="91%" border="0" height="335">
+    <tr> 
+      <td height="32" colspan="6"> 
+        <div align="left">当前配置:[#conffile#]
+          <input type="hidden" name="FunName" value="fireWebModiDefault">
+        </div>
+      </td>
+    </tr>
+    <tr> 
+      <td colspan="6" height="31"> 
+        <div align="center">防火墙默认策略</div>
+      </td>
+    </tr>
+    <tr> 
+      <td width="18%" height="34"> 
+        <div align="right">通过本机转发数据包</div>
+      </td>
+      <td width="15%" height="34"> 
+        <select name="forward">
+          <option value="[#forward#]" selected>[#forwardv#]</option>
+          <option value="DROP">禁止</option>
+          <option value="ACCEPT">允许</option>
+        </select>
+      </td>
+      <td width="16%" height="34">进入本机数据包</td>
+      <td width="17%" height="34"> 
+        <select name="input">
+          <option value="[#input#]" selected>[#inputv#]</option>
+          <option value="DROP">禁止</option>
+          <option value="ACCEPT">允许</option>
+        </select>
+      </td>
+      <td width="18%" height="34">从本机发出的数据包</td>
+      <td width="16%" height="34"> 
+        <select name="output">
+          <option value="[#output#]" selected>[#outputv#]</option>
+          <option value="DROP">禁止</option>
+          <option value="ACCEPT">允许</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3" height="24">&nbsp;</td>
+      <td height="24">&nbsp;</td>
+      <td height="24">&nbsp;</td>
+      <td height="24">&nbsp;</td>
+    </tr>
+    <tr> 
+      <td colspan="3" height="22"> 
+        <div align="right"></div>
+      </td>
+      <td height="22">&nbsp;</td>
+      <td height="22"> 
+        <div align="right"> 
+          <input type="submit" name="Submit" value="确认">
+          <input type="submit" name="Submit2" value="放弃">
+        </div>
+      </td>
+      <td height="22">&nbsp;</td>
+    </tr>
+    <tr> 
+      <td colspan="6" height="20"> 
+        <div align="center">防火墙具体策略</div>
+      </td>
+    </tr>
+    <tr> 
+      <td colspan="6" height="321"> 
+        <table width="100%" border="0">
+          <tr> 
+            <td height="308"><iframe src="/pronline/Msg?FunName@fireWebDispRuleLst" width="100%" height="100%" border="1" frameborder="1" scrolling="yes"></iframe></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

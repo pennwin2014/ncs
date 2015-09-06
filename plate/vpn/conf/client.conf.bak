@@ -1,0 +1,20 @@
+client
+dev tun
+proto [#prot#]
+[#zremote#]
+[#bremote#]
+;remote 192.168.7.160 1194
+resolv-retry infinite
+nobind
+persist-key
+persist-tun
+ca ca-c.crt
+cert [#vpnname#].crt
+key [#vpnname#].key
+ns-cert-type server
+tls-auth ta-c.key 1
+comp-lzo
+verb 4
+[#redirect#]
+;redirect-gateway def1
+

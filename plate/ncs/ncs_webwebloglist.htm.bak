@@ -1,0 +1,154 @@
+<html>
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<title>main</title>
+<script>
+var dfd1="0"
+function gotoPage(pagenum)
+{
+		form1.FunName.value='ncsWebWebLog';
+    form1.CurPg.value = pagenum;
+}
+
+function lprint()
+{
+form1.cx.style.display="none";
+form1.rycx.style.display="none";
+form1.hsear.style.display="none";
+form1.pr.style.display="none";
+form1.exp.style.display="none";
+window.print();
+
+form1.cx.style.display="";
+form1.rycx.style.display="";
+form1.hsear.style.display="";
+form1.pr.style.display="";
+form1.exp.style.display="";
+}
+
+function passdate()
+{
+parent.form1.CurPg.value='[#CurPg#]';
+parent.form1.TotPg.value='[#TotPg#]';
+parent.form1.TotRec.value='[#TotRec#]';
+
+parent.document.all.wlj.innerHTML='<b style="font-size: 10pt;color:#00237e;">本地日志([#title_name#])</b>';
+	parent.form1.did.value=form1.userid.value;
+	parent.form1.uid.value=form1.uid.value;
+	parent.form1.sdate.value=form1.sdate.value;
+	parent.form1.edate.value=form1.edate.value;
+}
+function showuser(did,uid)
+{
+var temp_var="/pronline/Msg?FunName@ncsWebShowUserinfo&did@"+did+"+uid@"+uid;
+	showModalDialog(temp_var, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:520px;scroll:yes;dialogHeight:640px');
+}
+
+function goto(t){
+ tt=showModalDialog(t, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:520px;scroll:yes;dialogHeight:620px');
+}
+
+function allChecked(){
+    if(dfd1=="1"){
+        dfd1="0"
+    }
+    else {
+         dfd1="1"
+    }
+	for(var i=0;i<document.all.DataTable.rows.length;i++)
+	{
+		if(typeof(document.all.DataTable.rows[i].cells[0].childNodes[0])=="object"
+
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].tagName=="INPUT"
+
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].type=="checkbox") {
+			if(dfd1=="1"){
+  			    document.all.DataTable.rows[i].cells[0].childNodes[0].checked="true";
+            }
+			else{
+                document.all.DataTable.rows[i].cells[0].childNodes[0].checked="";
+            }
+        }
+ 	}
+}
+
+// -->
+<!-- Hide
+var ll=[#CurPg#]
+var yy=[#TotPg#]
+function killErrors() {
+return true;
+}
+window.onerror = killErrors;
+// -->
+
+</script>
+
+<script src="/js/drawtable.js"></script>
+<SCRIPT language=JavaScript>
+<!--
+var recordID = null;
+var Table = new FlexibleTable ('DataTable', '100%', '587', 'center', 32, 'flexibleTableSpan');
+
+Table.Header ('<input type="button" name="b1" value="全选"  class="anniu_1"  onClick="allChecked()">', '单位名称', '用户名', '上网时间','网址/路径','目标IP端口','流量','标题','源IP','网址库类别');
+Table.ColumnsWidth ('40', '90', '90', '110', '160', '103', '50','60','80','60');
+Table.HeaderAligment ('center', 'center', 'center', 'center', 'center', 'center', 'center','center', 'center', 'center');
+Table.BodyAligment ('center', 'left', 'left', 'left', 'left', 'left','right','left', 'left', 'left');
+
+Table.SetRowsTemplate (" onMouseOver=\"javascript:mouseovertr2(this);\" onMouseOut=\"javascript:mouseouttr2(this);\" onClick=\"setSelect(this);\"  ");
+[#SLPB#]
+Table.Row('<input type="checkbox" name="ch[#num#]" value="[#sid#]">','&nbsp;[#cname#]','<a href="#xxm" onclick=showuser("[#did#]","[#uid#]")>&nbsp;[#udisp#]</a>','&nbsp;[#sdate#]','&nbsp;<a href="[#host#]" target="_blank">[#host#]</a>','&nbsp;[#dip#]&nbsp;','[#sumbyte#]&nbsp;','&nbsp;[#title#]','&nbsp;[#sip#]','&nbsp;[#urtype#]');
+[#SLPE#]
+//-->
+</SCRIPT>
+
+
+<style type="text/css">
+<!--
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+-->
+
+</style>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<BODY oncontextmenu="return false;" style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px" bgcolor="#DEE8FA" leftMargin=2 topMargin=2 scroll=no onload="passdate();Table.Draw()">
+	<form name="form1" method="post" action="/pronline/Msg">
+		<input type="hidden" name="plate" value="ncsmsg_showinfo.htm">
+    <input type="hidden" name="FunName" value="ncsWebReplace">
+    <input type="hidden" name="fun" value="ncsWebWebLog">
+    <input type="hidden" name="CurPg"      value="[#CurPg#]">
+    <input type="hidden" name="TotPg"      value="[#TotPg#]">
+    <input type="hidden" name="lcount"      value="[#TotRec#]">
+    <input type="hidden" name="cond" value="">
+    <input type="hidden" name="userid" value="[#userid#]">
+    <input type="hidden" name="uid" value="[#uid#]">
+    <input type="hidden" name="groupid" value="[#groupid#]">
+    <input type="hidden" name="host" value="[#host#]">
+    <input type="hidden" name="uri" value="[#uri#]">
+    <input type="hidden" name="username" value="[#username#]">
+    <input type="hidden" name="sdate" value="[#sdate#]">
+    <input type="hidden" name="edate" value="[#edate#]">
+    <input type="hidden" name="sip" value="[#sip#]">
+    <input type="hidden" name="dip" value="[#dip#]">
+    <input type="hidden" name="title" value="[#title#]">
+    <input type="hidden" name="dport" value="[#dport#]">
+    <input type="hidden" name="sorta" value="[#sorta#]">
+    <input type="hidden" name="ordera" value="[#ordera#]">
+    <input type="hidden" name="exp" value="">
+		<TABLE  height="100%" cellSpacing=0 cellPadding=0 width="100%" border=0>
+
+  	<TR>
+    		<TD valign="top" height="590"><SPAN id=flexibleTableSpan></SPAN></TD>
+  	</TR>
+ 	</TABLE>
+ 		
+ </form>		
+</BODY>
+</html>

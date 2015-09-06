@@ -1,0 +1,56 @@
+<!-- saved from url=(0022)http://internet.e-mail -->
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+
+<SCRIPT LANGUAGE="JavaScript">
+var ll='[#CurPg#]';
+var yy='[#TotPg#]';
+parent.form1.CurPg.value=ll;
+parent.form1.TotPg.value=yy;
+parent.form1.TotRec.value='[#TotRec#]';
+function w1()
+{
+	
+var yy='<tbody>';
+ yy=yy+'<div class="tScroll" id="tC" onscroll="setscrollvaue()">';
+  yy = yy + '<table cellspacing=0 bordercolor="#DFDFDF"  class="listDataTable" border="0" align="center" width="100%" >';  
+  yy = yy + '<tr bgcolor="#6382BD" class="tableHead"  style="top:expression(document.getElementById(\'tC\').scrollTop)">'; 
+
+  [#SLPB#]
+  yy = yy + '<td width="[#width#]" align="center" class="bord2"> <font color="#FFFFFF">[#titlename#]</font></td>';
+  [#SLPE#]
+
+  yy = yy + '</tr>';
+  [#SLPB#]
+  yy = yy + '<tr bgcolor="#FFFFFF" onmouseover="mouseovertr2(this)" class="bord1"  onmouseout="mouseouttr2(this)"   valign="top">';
+  [#SLPB#]
+    yy = yy + '<td class="[#bord#]" align="[#align#]"  nowrap title=\'[#detname2#]\'>&nbsp;[#detname#]&nbsp;</td>';
+  [#SLPE#]
+  yy = yy + '</tr>';
+  [#SLPE#]
+ [#SLPB#] 
+  yy = yy + '<tr id=[#snum#] height="18" bgcolor="#ffffff">'; 
+  [#SLPB#]
+  yy=yy+'<td class="bord1" >[#spance#]</td>'; 
+  [#SLPE#]
+  yy=yy+'<td class="bord3" >&nbsp;</td>';
+  yy = yy + '</tr>';
+   [#SLPE#]   
+  yy=yy+'</table>';
+yy=yy+'</div>';
+  yy = yy + '</tbody>'
+
+  parent.ff.innerHTML=(yy);
+  parent.document.getElementById("tC").scrollTop=parent.form1.sctop.value;
+}
+setTimeout('w1()',500);
+
+ </SCRIPT> 
+
+</head>
+<body>
+
+</body>
+</html>

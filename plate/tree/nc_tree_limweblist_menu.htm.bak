@@ -1,0 +1,14 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+</head>
+
+<frameset rows="100,*" cols="*" framespacing="1" frameborder="yes" border="1">
+  <frame src="/pronline/Msg?FunName@ncsWebReplace&plate@tree/nc_tree_limweblist_top.htm" name="treeTop">
+  <frame src="/pronline/Msg?FunName@ncsWebLimWebClass&plate@tree/nc_tree_limweblist_bot.htm&rownum@30" name="treeBot" >
+</frameset>
+<noframes><body>
+
+</body></noframes>
+</html>

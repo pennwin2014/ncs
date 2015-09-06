@@ -1,0 +1,217 @@
+<html>
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<title>main</title>
+<script>
+var dfd1="0"
+
+function DoSort(sname)
+{
+    form1.sort.value=sname;
+	form1.submit();
+}
+
+function gotoPage(pagenum)
+
+{
+    form1.CurPg.value = pagenum;
+}
+
+function doexport(){
+    self.location.href="/pronline/Msg?FunName@ncWebUserExportCsv";
+}
+
+
+function userdel()
+{
+    form1.FunName.value = "ncWebDelSomeUser";
+    form1.submit();
+}
+
+function doModiBm()
+{
+    form1.FunName.value = "ncWebModiSomeUserBm";
+    form1.submit();
+}
+
+
+ function dispsearch()
+ {
+      window.open('/pronline/Msg?FunName@ncWebDispSuser','RUNMIT_New','left=100,top=200,width='+525+',height='+245+',fullscreen=0,toolbar=no,scrollbars=no,resizable=0,menubar=no,status=0');
+ }
+ 
+function goto(t){
+self.location.href=t+'&groupid0@[#groupid0#]&cond@[#cond#]&CurPg@[#CurPg#]'
+}
+
+function mouseovertr2 (o){
+var i;
+df=o.style.backgroundColor
+	o.style.backgroundColor= "#003399";
+	o.style.borderColor= "#FFFF00";
+	o.style.cursor="hand";	
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#ffffff";
+}	
+}
+
+function mouseouttr2(o){
+	o.style.backgroundColor=df
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#000000";
+}
+	
+	
+}
+
+function checkme(p)
+{
+	var tt=p.value
+	if (tt>yy)
+	{
+		MM_changeProp('browsdopage','','value',yy,'INPUT/TEXT')
+	}
+	if (tt==0)
+	{
+		MM_changeProp('browsdopage','','value','1','INPUT/TEXT')
+	}
+}
+
+function allChecked(){
+    if(dfd1=="1"){
+        dfd1="0"
+    }
+    else {
+         dfd1="1"
+    }
+	for(var i=0;i<document.all.DataTable.rows.length;i++)
+	{
+		if(typeof(document.all.DataTable.rows[i].cells[0].childNodes[0])=="object"
+
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].tagName=="INPUT"
+
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].type=="checkbox") {
+			if(dfd1=="1"){
+  			    document.all.DataTable.rows[i].cells[0].childNodes[0].checked="true";
+            }
+			else{
+                document.all.DataTable.rows[i].cells[0].childNodes[0].checked="";
+            }
+        }
+ 	}
+}
+
+
+// -->
+<!-- Hide
+var ll=[#CurPg#]
+var yy=[#TotPg#]
+function killErrors() {
+return true;
+}
+window.onerror = killErrors;
+// -->
+
+</script>
+<link REL=stylesheet HREF="/css/runmit.css" TYPE="text/css">
+<script src="/js/rmenu.js"></script>
+<style type="text/css">
+<!--
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+-->
+</style>
+<link href="../css/css.css" rel="stylesheet" type="text/css">
+</head>
+<body marginheight=0 leftmargin=0 marginwidth=0 topMargin="0" BGCOLOR="Menu">
+<form name="form1" method="post" action="/pronline/Msg">
+<table border="0" width=100% height=100% cellspacing="0" cellpadding="0" align=center bgcolor='#ffffff'>
+  <tr> 
+      <td width="100%"  valign=middle align=center height="40" bgcolor="#DEE8FA" class="ttt"> 
+        <table width="100%" border="0" cellspacing="0">
+
+        <tr>
+          <td height="21">部门改为:[#sgroup#]
+            <input name="export2"type="button" class="an3"   onClick="doModiBm()" value="确认"></td>
+        </tr>
+      </table>
+        <input type="hidden" name="TotPg"      value="[#TotPg#]"></td>
+  </tr>
+  <tr>
+      <td width="100%" align=center  valign=top bgcolor="#DEE8FA"> 
+        <table id="DataTable" width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+          <tr> 
+            <td width="46" height="20" bgcolor="#6382BD" class="bord2"> 
+              <input type="button" name="b1" value="全选" class="anniu_1"  onClick="allChecked()">
+            </td>
+            <td width="142" bgcolor="#6382BD" class="bord2" onClick="DoSort('a.username')">
+<div align="center"><font color="#FFFFFF">姓 
+                名</font></div></td>
+            <td width="142" bgcolor="#6382BD" class="bord2" onClick="DoSort('a.dispname')">
+<div align="center"><font color="#FFFFFF">登录名</font></div></td>
+            <td width="135" bgcolor="#6382BD" class="bord2" onClick="DoSort('a.ip')">
+<div align="center"><font color="#FFFFFF">IP 
+                地址</font></div></td>
+            <td width="146" bgcolor="#6382BD" class="bord2" onClick="DoSort('a.mac')">
+<div align="center"><font color="#FFFFFF">MAC 
+                地址</font></div></td>
+            <td width="160" bgcolor="#6382BD" class="bord2" onClick="DoSort('b.groupname')">
+<div align="center"><font color="#FFFFFF">部 
+                门</font></div></td>
+            <td width="254" bgcolor="#6382BD" class="bord2" onClick="DoSort('a.email')">
+<div align="center"><font color="#FFFFFF">邮件地址</font></div></td>
+            <td width="254" bgcolor="#6382BD" class="bord2" onClick="DoSort('a.lasttime')">
+<div align="center"><font color="#FFFFFF">最后上线时间</font></div></td>
+            <td width="120" bgcolor="#6382BD" class="bord4" onClick="DoSort('a.useflags')">
+<div align="center"><font color="#FFFFFF">状 
+                态</font></div></td>
+          </tr>
+          <!-- [#SLPB#] -->
+          <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)" onDblclick="goto('/pronline/Msg?FunName@ncWebDispUserModiForm&userid@[#userid#]')"> 
+            <td width="46" height="16" class="bord1"> <input type="checkbox" name="ch[#num#]" value="[#userid#]"></td>
+            <td width="142" height="16" class="bord1">&nbsp;[#dispname#]</td>
+            <td width="142" height="16" class="bord1">&nbsp;[#username#]</td>
+            <td width="135" height="16" class="bord1">&nbsp;[#ip#] </td>
+            <td width="146" height="16" class="bord1">&nbsp;[#mac#]</td>
+            <td width="160" height="16" class="bord1">[#groupname#]</td>
+            <td width="254" height="16" class="bord1">[#email#]&nbsp;</td>
+            <td width="254" height="16" class="bord1">[#adate#]&nbsp;</td>
+            <td width="120" height="16" class="bord3">&nbsp;[#status#]</td>
+          </tr>
+          <!-- [#SLPE#] -->
+          <!-- [#SLPB#] -->
+          <tr id=[#snum#]> 
+            <td width="46" height="16" class="bord1">&nbsp; </td>
+            <td width="142" height="16" class="bord1">&nbsp;</td>
+            <td width="142" height="16" class="bord1">&nbsp;</td>
+            <td width="135" height="16" class="bord1">&nbsp; </td>
+            <td width="146" height="16" class="bord1">&nbsp;</td>
+            <td width="160" height="16" class="bord1">&nbsp;</td>
+            <td width="254" height="16" class="bord1">&nbsp;</td>
+            <td width="254" height="16" class="bord1">&nbsp;</td>
+            <td width="120" height="16" class="bord3">&nbsp;</td>
+          </tr>
+          <!-- [#SLPE#] -->
+        </table>
+    
+<!--//鼠标显示//-->
+              <script language="JavaScript">
+<!--
+var MenuBarColor ='#cccccc';
+DrawMouseRightButtonUpMenu();
+
+</script>
+      </td>
+  </tr>
+</table>
+ </form>
+</body>
+
+</html>

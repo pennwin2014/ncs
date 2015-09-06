@@ -1,0 +1,210 @@
+<html>
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<title>main</title>
+<script>
+var dfd1="0"
+function gotoPage(pagenum)
+
+{
+		form1.FunName.value='ncsWebMailLog';
+    form1.CurPg.value = pagenum;
+}
+
+
+
+function setSelect(o){
+var ccod=o.cells[0].childNodes[0].childNodes[1].value;
+
+parent.form1.ccode.value=ccod;
+
+}
+
+function goto1(t){
+ tt=showModalDialog(t, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:520px;scroll:yes;dialogHeight:620px');
+}
+
+
+function lprint()
+{
+form1.cx.style.display="none";
+form1.rycx.style.display="none";
+form1.hsear.style.display="none";
+form1.pr.style.display="none";
+form1.exp.style.display="none";
+window.print();
+
+form1.cx.style.display="";
+form1.rycx.style.display="";
+form1.hsear.style.display="";
+form1.pr.style.display="";
+form1.exp.style.display="";
+}
+function showuser(did,uid)
+{
+var temp_var="/pronline/Msg?FunName@ncsWebShowUserinfo&did@"+did+"+uid@"+uid;
+	showModalDialog(temp_var, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:520px;scroll:yes;dialogHeight:640px');
+}
+
+
+
+function goto(o)
+{
+  var msid=o.cells[0].childNodes[0].childNodes[0].value;
+	var ccod=o.cells[0].childNodes[0].childNodes[1].value;
+	var uid=o.cells[0].childNodes[0].childNodes[2].value;
+	var msgfile=o.cells[0].childNodes[0].childNodes[3].value;
+
+	var t="/pronline/Msg?FunName@ncsWebReplace&fname@ncsWebMailMonRead&plate@ncs/mailReadFrm.htm&ccode@"+ccod+"&userid@"+uid+"&msgfile@"+msgfile+"&msid@"+msid;
+
+  tt=showModalDialog(t, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:540px;scroll:yes;dialogHeight:600px');
+}
+
+
+function passdate()
+{
+parent.form1.CurPg.value='[#CurPg#]';
+	
+parent.document.all.wlj.innerHTML='<b style="font-size: 10pt;color:#00237e;">邮件日志([#title_name#])</b>';
+
+parent.document.all.page.innerHTML='[#page#]&nbsp;&nbsp;';
+}
+
+
+// -->
+<!-- Hide
+var ll=[#CurPg#]
+var yy=[#TotPg#]
+function killErrors() {
+return true;
+}
+window.onerror = killErrors;
+// -->
+
+</script>
+
+<script src="/js/drawtable.js"></script>
+<SCRIPT language=JavaScript>
+<!--
+
+var recordID = null;
+var Table = new FlexibleTable ('DataTable', '100%', '430', 'center', 32, 'flexibleTableSpan');
+
+Table.Header ('<input type="button" name="b1" value="全选"  class="anniu_1"  onClick="allChecked()">', '单位名称', '用户名', '日期','邮件类别','发件人','收件人','主题','邮件大小','附件');
+Table.ColumnsWidth ('40', '90', '90', '110', '60', '100', '100','160','60','40');
+Table.HeaderAligment ('center', 'center', 'center', 'center', 'center', 'center', 'center','center','center','center');
+Table.BodyAligment ('center', 'left', 'left', 'center', 'center', 'left','left','left','right','center');
+
+Table.SetRowsTemplate (" onMouseOver=\"javascript:mouseovertr2(this);\" onMouseOut=\"javascript:mouseouttr2(this);\" onClick=\"setSelect(this);\" onDblClick=\"goto(this)\" ");
+[#SLPB#]
+Table.Row('<input type="checkbox" name="chk[#num#]" value="[#sid#]"><input type="hidden" name="ccod[#num#]" value="[#ccode#]"><input type="hidden" name="userid[#num#]" value="[#uid#]"><input type="hidden" name="msgfile[#num#]" value="[#file#]">','&nbsp;[#cname#]','<a href="#xxm" onclick=showuser("[#did#]","[#uid#]")>&nbsp;[#dispname#]</a>','&nbsp;[#sdate#]','&nbsp;[#mtype#]','&nbsp;[#mailfrom#] ','&nbsp;[#mailto#]&nbsp;','&nbsp;[#mailsub#] ','[#msize#]&nbsp;','[#fj#]');
+[#SLPE#]
+
+//-->
+</SCRIPT>
+
+
+<style type="text/css">
+<!--
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+-->
+
+</style>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<BODY  style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px" bgcolor="#DEE8FA" leftMargin=2 topMargin=2 scroll=no onload="passdate();Table.Draw()">
+	<form name="form1" method="post" action="/pronline/Msg">
+	<form name="form1" method="post" action="/pronline/Msg">
+	<input type="hidden" name="userid" value="[#userid#]">
+	<input type="hidden" name="plate" value="ncsmsg_showinfo.htm">
+	  <input type="hidden" name="export1" value="">
+  <input type="hidden" name="FunName" value="ncsWebReplace">
+  <input type="hidden" name="fun" value="ncsMailSearch_ib">
+  <input type="hidden" name="CurPg"      value="[#CurPg#]">
+  <input type="hidden" name="TotPg"      value="[#TotPg#]">
+  <input type="hidden" name="lcount"      value="[#TotRec#]">
+
+  <input type="hidden" name="uid" value="[#uid#]">
+  <input type="hidden" name="did" value="[#userid#]">
+  <input type="hidden" name="groupid" value="[#groupid#]">
+  <input type="hidden" name="zd_flag" value="[#zd_flag#]">
+<TABLE  height="100%" cellSpacing=0 cellPadding=0 width="100%" border=0>
+  	<TR>
+    		<TD valign="top"><SPAN id=flexibleTableSpan></SPAN></TD>
+  	</TR>
+  	
+  	  	  	      <tr height="110">
+       	        	<td  class="bordnr" valign="top">
+       	        		<table border=0 cellpadding=0 cellspacing=0 width="100%">
+       	             <tr height="40">
+          	  	     	<td  align="center">&nbsp;上网时间</td>
+          	  	     	<td><input type="text" name="sdate" value="[#sdate#]" size="12" maxlength="10"> <input type="button" name="sdate_but" style="position:relative;left:-21px;top:-2px;width:15px;height:17px" value='…' onclick="fPopCalendar(sdate,sdate,'Up');return false">&nbsp;</td> 
+          	  	     	<td  align="center">&nbsp;到</td>
+          	  	     	<td ><input type="text" name="edate" value="[#edate#]" size="12" maxlength="10"> <input type="button" name="edate_but" style="position:relative;left:-21px;top:-2px;width:15px;height:17px" value='…' onclick="fPopCalendar(edate,edate,'Up');return false">&nbsp;</td> 
+          	  	     	<td  align="center">&nbsp;MAC地址</td>
+          	  	     	<td ><input type="text" name="mac" value="[#mac#]" size="18"></td>
+          	  	     	<td>&nbsp;位置/房号</td>
+          	  	     	<td><input type="text" name="position" value="[#position#]" size="18" ></td>
+          	  	     	<td align="center"><input name="cxx" type="submit"  value="查 询" onclick="form1.CurPg.value='1'"></td> 	  	     	
+          	  	    </tr>
+          	  	     <tr height="30">
+          	  	     	<td width="90" align="center">&nbsp;用户名</td>
+          	  	     	<td width="180">
+                      <input type="text" name="username" value="[#dispname#]" size="20" >
+
+          	  	     		</td>  
+          	  	     	<td width="80" align="center">&nbsp;证件号</td>
+          	  	     	<td width="180"><input type="text" name="idcard" value="[#idcard#]" size="19"></td>
+          	  	     	<td width="80" align="center">&nbsp;源IP</td>
+          	  	     	<td ><input type="text" name="sip" value="[#sip#]" size="18"></td>
+          	  	     	<td width="65">&nbsp;场所代码</td>
+          	  	     	<td><input type="text" name="servicecode" size="18" maxlength="32" value="[#servicecode#]" > </td>  
+          	  	     	<td width="120" align="center"><input name="clearaq" type="button"  value="清除条件" onclick="cleara()"></td>	     	
+          	  	    </tr>
+          	  	    
+          	  	     <tr height="30">
+          	  	     	<td width="90" align="center">&nbsp;发件人</td>
+          	  	     	<td width="180">
+                      <input type="text" name="mailfrom" value="[#mailfrom#]" size="20" >
+
+          	  	     		</td>  
+          	  	     	<td width="80" align="center">&nbsp;收件人</td>
+          	  	     	<td width="180"><input type="text" name="mailto" value="[#mailto#]" size="19"></td>
+          	  	     	<td width="80" align="center">主题</td>
+          	  	     	<td ><input type="text" name="mailsub" value="[#subject#]" size="18" ></td>
+          	  	     	<td width="65">&nbsp;邮件类型</td>
+          	  	     	<td> <select name="flags" style="width:60;">
+          	  	      <option value="">全部</option>
+                      <option value="2">POP3</option>
+                      <option value="1">SMTP</option>
+                      <option value="3">WebMail</option>
+                    </select></td>  
+          	  	     	<td width="120" align="center">&nbsp;</td>	     	
+          	  	    </tr>
+          	  	    
+          	  	    
+
+          	  	   </table>
+       	        	</td>
+       	        </tr> 
+  	
+  	
+  	
+  	
+  	
+  	
+ 	</TABLE>
+ 		
+ </form>		
+ <script>
+ 	 form1.flags.value='[#flags#]';
+ 	</script>
+</BODY>
+</html>

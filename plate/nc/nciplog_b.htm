@@ -1,0 +1,138 @@
+<!-- saved from url=(0022)http://internet.e-mail -->
+<html>
+<head>
+<title>访问记录</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/css.css" type="text/css">
+<style type="text/css">
+<!--
+body {  font-size: 9pt}
+.tas {  border-color: black #FFFFFF; border-style: solid; border-top-width: 0px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 1px}
+table {  font-size: 9pt}
+.hand {  cursor: hand}
+.gray1{filter:gray}
+
+-->
+</style>
+<SCRIPT>
+function goto(a)
+{
+	window.open("ip"+a+".htm","_self","")
+}
+
+
+function gotoPage(pagenum)
+{
+    if(pagenum >= yy) {
+       pagenum = yy;
+    }
+    window.open("ip"+pagenum+".htm","_self","");
+}
+// -->
+<!-- Hide
+var ll=[#CurPg#]
+var yy=[#TotPg#]
+function killErrors() {
+return true;
+}
+window.onerror = killErrors;
+// -->
+</SCRIPT>
+
+</head>
+
+<body bgcolor="#CCCCCC" text="#000000" oncontextmenu="return false" topmargin="0" leftmargin="0">
+<form id="form1" name="form1" method="post" action="">
+  <table width="100%" border="0">
+    <tr> 
+      <td height="31" bgcolor="#CCCCCC"> 
+        <div align="right"> 
+          <table width="100%" border="0" cellspacing="0" cellpadding="1">
+            <tr> 
+              <td valign="bottom" height="17"> 
+                <table border=0 cellpadding=0 cellspacing=0 
+                        class=main align="right" width="323">
+                  <tbody> 
+                  <tr> 
+                    <td>&nbsp;</td>
+                    <td>&nbsp; </td>
+                    <td width="17"> 
+                      <script>
+if (ll==1){document.write("<img src='spy-06.gif' border=0 height=17 width=35 class='gray1'>")}
+else{document.write("<img src='spy-06.gif' border=0 height=17 width=35 onClick='gotoPage(1)' class='hand'>")}
+</script>
+                    </td>
+                    <td width="17"> 
+                      <script>
+if (ll==1){document.write("<img src='spy-03.gif' border=0 height=17 width=20 class='gray1'>")}
+else{document.write("<img src='spy-03.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]-1)' class='hand'>")}
+</script>
+                    </td>
+                    <td width="32"><img src="spy-08.gif" border=0 height=17 width=32 align="middle"></td>
+                    <td align=middle background="" width=40> 
+                      <input class=Main id=browsdopage maxlength=5  name=browsdopage size=3 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 30px" value=[#CurPg#] onKeyPress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" onBlur="checkme(this)">
+                    </td>
+                    <td width="16"><img src="spy-09.gif" border=0 height=17 width=16 align="middle"></td>
+                    <td width="17"><img align=middle border=0 height=17 src="spy-10.gif" width=17 onClick="gotoPage(form1.browsdopage.value)" class="hand"> 
+                    </td>
+                    <td width="8"> <img align=middle height=17 src="spy-11.gif" width=8></td>
+                    <td width="10"> 
+                      <script>
+if (ll==yy){document.write("<img src='spy-04.gif' border=0 height=17 width=20 class='gray1'>")}
+else if (yy==0){document.write("<img src='spy-04.gif' border=0 height=17 width=20 class='gray1'>")}
+else{document.write("<img src='spy-04.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]+1)' class='hand'>")}
+</script>
+                    </td>
+                    <td width="36"> 
+                      <script>
+if (ll==yy){document.write("<img src='spy-05.gif' border=0 height=17 width=36 class='gray1'>")}
+else if (yy==0){document.write("<img src='spy-05.gif' border=0 height=17 width=36 class='gray1'>")}
+else{document.write("<img src='spy-05.gif' border=0 height=17 width=36 onClick='gotoPage([#TotPg#])' class='hand'>")}
+</script>
+                    </td>
+                  </tr>
+                  </tbody> 
+                </table>
+                <div align="right"><b>[#username#]网络访问记录</b></div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <table  cellspacing=0  cellpadding="0" bordercolor="#DFDFDF" border="1" align="center" width="100%">
+    <input type="hidden" name="FunName" value="ncWebQyeIp">
+    <input type="hidden" name="CurPg" value="[#CurPg#]">
+    <input type="hidden" name="userid" value="[#userid#]">
+    <tr bgcolor="#CCCCCC" > 
+      <td height="20" background="lable1.gif" class="bord1" width="0%">&nbsp; </td>
+      <td class="bord1" valign="bottom" width="11%">&nbsp;用户名</td>
+      <td class="bord1" valign="bottom" width="7%">&nbsp;IP地址</td>
+      <td class="bord1" valign="bottom" width="8%">&nbsp;访问地址</td>
+      <td class="bord1" valign="bottom" width="8%">&nbsp;端口号</td>
+      <td class="bord1" valign="bottom" width="11%">&nbsp;服务</td>
+      <td class="bord1" valign="bottom" width="19%">&nbsp;开始时间</td>
+      <td class="bord1" valign="bottom" width="8%">&nbsp;连接时间</td>
+      <td class="bord1" bgcolor="#CCCCCC"  valign="bottom" width="10%">&nbsp;上行流量</td>
+      <td class="bord1" width="18%" valign="bottom">&nbsp;下行流量</td>
+    </tr>
+    <!--   [#SLPB#] -->
+    <tr bgcolor="#CCCCCC" bordercolor="#CCCCCC"> 
+      <td   height="20" class="bord1" width="0%">&nbsp; </td>
+      <td class="bord1" valign="bottom" width="11%">&nbsp;[#username#]</td>
+      <td class="bord1" valign="bottom" width="7%">&nbsp;[#sip#]</td>
+      <td class="bord1" valign="bottom" width="8%">&nbsp;[#dip#]</td>
+      <td class="bord1" valign="bottom" width="8%">&nbsp;[#port#]</td>
+      <td class="bord1" valign="bottom" width="11%">&nbsp;[#service#]</td>
+      <td class="bord1" valign="bottom" width="19%">&nbsp;[#sdate#] [#stime#]</td>
+      <td class="bord1" valign="bottom" width="8%">&nbsp;[#conn#]</td>
+      <td class="bord1" valign="bottom" width="10%">&nbsp;[#ubytes#]</td>
+      <td class="bord1" valign="bottom" width="18%">&nbsp;[#dbytes#]</td>
+    </tr>
+    <!-- [#SLPE#] -->
+  </table>
+<p>&nbsp;</p>
+</form>
+</body>
+</html>

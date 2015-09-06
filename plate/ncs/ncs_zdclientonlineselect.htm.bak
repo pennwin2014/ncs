@@ -1,0 +1,157 @@
+<html>
+
+<head>
+<title>选择字段</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<!-- Infrastructure code for the tree -->
+<script>
+function queren()
+{
+var temp_str='';
+if(form1.dwjc.checked)
+temp_str=temp_str+"dwjc,";
+if(form1.dwmc.checked)
+temp_str=temp_str+"dwmc,";
+
+if(form1.sxsl.checked)
+temp_str=temp_str+"sxsl,";
+
+if(form1.ip.checked)
+temp_str=temp_str+"ip,";
+
+if(form1.xxsl.checked)
+temp_str=temp_str+"xxsl,";
+
+if(form1.zxyh.checked)
+temp_str=temp_str+"zxyh,";
+
+if(form1.lxsj.checked)
+temp_str=temp_str+"lxsj,";
+
+dialogArguments.form1.zd.value=temp_str;
+self.close();
+
+dialogArguments.form1.submit();
+
+}
+function init()
+{
+
+var temp_zd='[#zd#]';
+
+if(temp_zd.indexOf('dwjc')!=-1)
+form1.dwjc.checked=true;
+
+
+if(temp_zd.indexOf('dwmc')!=-1)
+form1.dwmc.checked=true;
+
+if(temp_zd.indexOf('ip')!=-1)
+form1.ip.checked=true;
+
+if(temp_zd.indexOf('sxsl')!=-1)
+form1.sxsl.checked=true;
+if(temp_zd.indexOf('xxsl')!=-1)
+form1.xxsl.checked=true;
+if(temp_zd.indexOf('sxsl')!=-1)
+form1.sxsl.checked=true;
+if(temp_zd.indexOf('zxyh')!=-1)
+form1.zxyh.checked=true;
+
+if(temp_zd.indexOf('lxsj')!=-1)
+form1.lxsj.checked=true;
+}
+</script>
+
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginheight="0"  oncontextmenu="return true" onload="init()">
+  <form name="form1" method="post" action="/pronline/Msg" target="sbpm_right">
+ 
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+
+  <tr> 
+    <td colspan="2"><table width="100%" height="27" border="0" align="center" cellpadding="0" cellspacing="0" background="/images/table_bg1.gif">
+        <tr > 
+          <td colspan="2" > <div align="center"><strong><font color="#FFFFFF">
+             
+              选择字段</font></strong></div></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr> 
+    <td colspan="2"> 
+        <br>
+        <table width="95%" border="1"    bordercolorlight=#89ACED   bordercolordark=#ffffff    align="center" cellpadding="0" cellspacing="0" >
+          <tr> 
+            <td> 
+             <table width="100%" border="0" align="center" >
+                <tr>
+                  <td colspan="4">&nbsp;</td>
+                </tr>
+
+                <tr height="35"> 
+                  <td width="10%"></td>
+                  <td width="30%" align="right"> <font color="#000000"><b><font size="2">单位简称</font></b></font></td>
+                  <td width="10%" align="left">
+                  <input type="checkbox" name="dwjc" value="1">
+                  </td>
+                  <td width="30%" align="right"><b><font size="2">单位名称</font></b>                   
+                  </td>
+                  <td width="10%" align="left"><input type="checkbox" name="dwmc" value="1">
+                  </td>
+                  <td width="10%"></td>
+                </tr>
+                
+                <tr height="35"> 
+                  <td ></td>
+                  <td  align="right"> <font color="#000000"><b><font size="2">IP地址</font></b></font></td>
+                  <td  align="left">
+                  <input type="checkbox" name="ip" value="1">
+                  </td>
+                  <td align="right"><b><font size="2">上行速率</font></b>                   
+                  </td>
+                  <td align="left"><input type="checkbox" name="sxsl" value="1">
+                  </td>
+                  <td></td>
+                </tr>
+                <tr height="35"> 
+                  <td ></td>
+                  <td  align="right"> <font color="#000000"><b><font size="2">下行速率</font></b></font></td>
+                  <td  align="left">
+                  <input type="checkbox" name="xxsl" value="1">
+                  </td>
+                  <td align="right"><b><font size="2"></font></b>                   
+                  </td>
+                  <td align="left">
+                  </td>
+                  <td></td>
+                </tr>
+                <tr height="35"> 
+                  <td ></td>
+                  <td  align="right"> <font color="#000000"><b><font size="2">在线用户</font></b></font></td>
+                  <td  align="left">
+                  <input type="checkbox" name="zxyh" value="1">
+                  </td>
+                  <td align="right"><b><font size="2">最后时间</font></b>                   
+                  </td>
+                  <td align="left"><input type="checkbox" name="lxsj" value="1">
+                  </td>
+                  <td></td>
+                </tr>
+              </table>
+            </td>
+          </tr>          
+        </table>
+<p align="center"><input name='Button' type='button' class='an3' onClick='queren()' value='确 认'></p>
+      </td>
+  </tr>
+</table>
+ </form>
+</body>
+</html>

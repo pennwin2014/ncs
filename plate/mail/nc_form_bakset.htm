@@ -1,0 +1,125 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<body bgcolor="#dfdfdf" text="#000000" topmargin="2"  oncontextmenu="return false" >
+<form name="form1" method="post" action="/pronline/Msg">
+<table width="80%" border="0" height="80%">
+  <tr> 
+      <td valign="top" height="2"> 
+        <table width="98%" border="0" align="center">
+        <tr> 
+            <td width="120">邮件备份设定</td>
+            <td width="473"><img src="/images/hr.gif" width="100%" height="2"></td>
+        </tr>
+      </table>
+        <table width="96%" border="0" align="center">
+          <tr> 
+            <td colspan="2">当空间不足时:</td>
+          </tr>
+          <tr> 
+            <td height="26" width="23%"> 
+              <div align="right">通知：</div>
+            </td>
+            <td height="26" width="77%"> 
+              <input type="text" name="tzmail" value="[#tzmail#]" size="31" maxlength="63">
+            </td>
+          </tr>
+          <tr> 
+            <td width="23%"> 
+              <div align="right"> 
+                <input type="radio" name="nodsk" value="stop" [#stop#]>
+              </div>
+            </td>
+            <td width="77%">停止备份</td>
+          </tr>
+          <tr> 
+            <td width="23%"> 
+              <div align="right"> 
+                <input type="radio" name="nodsk" value="del"  [#del#]>
+              </div>
+            </td>
+            <td width="77%"> 删除旧邮件</td>
+          </tr>
+          <tr> 
+            <td colspan="2">远端备份服务器：</td>
+          </tr>
+          <tr> 
+            <td width="23%"> 
+              <div align="right">主机IP:</div>
+            </td>
+            <td width="77%"> 
+              <input type="text" name="rip" value="[#remoteip#]" size="31" maxlength="63">
+            </td>
+          </tr>
+          <tr> 
+            <td width="23%" height="15"> 
+              <div align="right">主机名称:</div>
+            </td>
+            <td width="77%" height="15"> 
+              <input type="text" name="rhost" value="[#remotehost#]" size="31" maxlength="63">
+            </td>
+          </tr>
+          <tr> 
+            <td width="23%" height="15"> 
+              <div align="right">共享名:</div>
+            </td>
+            <td width="77%" height="15"> 
+              <input type="text" name="rshare" value="[#remoteshare#]" size="31" maxlength="63">
+            </td>
+          </tr>
+          <tr> 
+            <td width="23%" height="15"> 
+              <div align="right">帐号:</div>
+            </td>
+            <td width="77%" height="15"> 
+              <input type="text" name="ruser" value="[#remoteuser#]" size="31" maxlength="63">
+            </td>
+          </tr>
+          <tr> 
+            <td width="23%" height="15"> 
+              <div align="right">密码:</div>
+            </td>
+            <td width="77%" height="15"> 
+              <p> 
+                <input type="password" name="rpass"  size="31" maxlength="63" value="[#remotepass#]">
+              </p>
+            </td>
+          </tr>
+          <tr> 
+            <td width="23%" height="15">
+              <div align="right">启用状态:</div>
+            </td>
+            <td width="77%" height="15"> [#sss#]</td>
+          </tr>
+        </table>
+        <p><br>
+          <img src="/images/hr.gif" width="100%" height="2"><br>
+        </p>
+        </td>
+  </tr>
+  <tr> 
+    <td height="20"> 
+      <div align="center">
+          <input type="hidden" name="FunName" value="ncWebMailCtlSaveBakSet">
+          <input type="submit" name="add" value="确认" class="an3">
+          <input type="submit" name="test" value="测试" class="an3">
+          <input type="reset" name="cancel" value="取消返回" class="an3" onClick="history.back()">
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td height="20">&nbsp;</td>
+  </tr>
+</table>
+  <div align="center"></div>
+</form>
+</body>
+</html>

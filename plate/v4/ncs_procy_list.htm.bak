@@ -1,0 +1,3 @@
+{"totalCount":[#TotRec#],"eimdata": [[#SLPB#][#dh#]{"msg": "[#namet#][#cmsg#]&nbsp;[#msg#]","num": "[#num#]", "sid": "[#sid#]","no1":"[#no1#]","rule_id":"[#rule_id#]","rule_name":"[#rule_name#]","set_time":"[#set_time#]","validation_time":"[#validation_time#]","no":"[#no#]","tab":"[#tab#]","xz":"[#xz#]","cmsg":"[#cmsg#]","namet":"[#namet#]","tp":"[#tp#]","userid":"[#userid#]","uflags":"[#uflags#]","timetype":"[#timetype#]","starttime":"[#starttime#]","stoptime":"[#stoptime#]","flags":"[#flags#]","conflags":"[#conflags#]","trantype":"[#trantype#]","lowerip":"[#lowerip#]","upperip":"[#upperip#]","lowerport":"[#lowerport#]","upperport":"[#upperport#]","url":"[#url#]","service":"[#service#]"}[#SLPE#]
+
+]}

@@ -1,0 +1,14 @@
+html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+</head>
+
+<frameset rows="62,*" frameborder="NO" border="0" framespacing="0" cols="*"> 
+  <frame name="topFrame" scrolling="NO" noresize src="file:///E|/Program%20Files/Macromedia/Dreamweaver%204/Lessons/Lesson%20Files/UntitledFrame-2" >
+  <frame name="mainFrame" src="file:///E|/Program%20Files/Macromedia/Dreamweaver%204/Lessons/Lesson%20Files/Untitled-2">
+</frameset>
+<noframes><body bgcolor="#FFFFFF" text="#000000">
+
+</body></noframes>
+</html>

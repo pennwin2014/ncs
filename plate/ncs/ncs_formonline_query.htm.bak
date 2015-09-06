@@ -1,0 +1,124 @@
+<html>
+
+<head>
+<title>查询</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<!-- Infrastructure code for the tree -->
+<script>
+	function init()
+	{
+	form1.url.value=dialogArguments.form1.urlpath.value;
+	form1.host.value=dialogArguments.form1.url.value;
+
+	form1.ysf.value=dialogArguments.form1.ysf.value;
+	form1.msize.value=dialogArguments.form1.msize.value;
+	form1.fjflag.value=dialogArguments.form1.fjflag.value;	
+	form1.username.value=dialogArguments.form1.username.value;
+
+		}
+function queren()
+{
+dialogArguments.form1.urlpath.value=form1.url.value;
+dialogArguments.form1.url.value=form1.host.value;
+
+dialogArguments.form1.ysf.value=form1.ysf.value;
+dialogArguments.form1.msize.value=form1.msize.value;
+
+dialogArguments.form1.fjflag.value=form1.fjflag.value;
+dialogArguments.form1.username.value=form1.username.value;
+dialogArguments.form1.submit();
+self.close();
+
+}
+function clear1()
+{
+
+	form1.host.value='';
+	form1.url.value='';
+	form1.sip.value='';
+	form1.ysf.value='';
+	form1.username.value='';
+	form1.fjflag.value='';
+}
+</script>
+
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginheight="0"  oncontextmenu="return true" onload="init()">
+  <form name="form1" method="post" action="/pronline/Msg" target="main">
+  <input type="hidden" name="FunName" value="ncsWebFormOnline">
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+
+  <tr> 
+    <td colspan="2"><table width="100%" height="27" border="0" align="center" cellpadding="0" cellspacing="0" background="/images/table_bg1.gif">
+        <tr > 
+          <td colspan="2" > <div align="center"><strong><font color="#FFFFFF">             
+              设置实时网页表单信息过滤条件</font></strong></div></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr> 
+    <td colspan="2"> 
+        <br>
+        <table width="95%" border="1"    bordercolorlight=#89ACED   bordercolordark=#ffffff    align="center" cellpadding="0" cellspacing="0" >
+          <tr> 
+            <td> 
+             <table width="100%" border="0" align="center" >
+             
+                  <tr height="35">
+                  <td ></td>
+                  <td > <font color="#000000"><b><font size="2">网址</font></b></font></td>
+                  <td > <input type="text" name="host" size="27"></td>
+                  <td > </td>
+                </tr> 
+                <tr height="35">
+                  <td ></td>
+                  <td > <font color="#000000"><b><font size="2">路径</font></b></font></td>
+                  <td > <input type="text" name="url" size="27"></td>
+                  <td > </td>
+                </tr>             
+
+         
+               <tr height="35"> 
+                  <td ></td>
+                  <td > <font color="#000000"><b><font size="2">表单大小</font></b></font></td>
+                  <td > <select name="ysf"><option value="1">大于</option>
+                  <option value="2">小于</option><option value="3">等于</option></select><input type="text" name="msize" size="19"></td>
+                  <td >&nbsp;&nbsp; </td>
+                </tr> 
+            
+                <tr height="35"> 
+                  <td ></td>
+                  <td> <font color="#000000"><b><font size="2">用户名</font></b></font></td>
+                  <td > <input type="text" name="username" size="27"></td>
+                  <td >&nbsp;&nbsp;</td>
+                </tr> 
+                <tr height="35"> 
+                  <td ></td>
+                  <td> <font color="#000000"><b><font size="2">有无附件</font></b></font></td>
+                  <td ><select name="fjflag" style="width:200"><option value="">不限</option>
+                  <option value="1">无</option><option value="2">有</option></select></td>
+                  <td >&nbsp;&nbsp;</td>
+                </tr> 
+  
+              </table>
+            </td>
+          </tr>
+ 
+        </table>
+
+      </td>
+  </tr>
+           
+</table>
+          <p align="center"><input name='Button' type='button' class='an3' onClick='queren()' value='确 认'> 
+          	<input name='Button' type='button' class='an3' onClick='clear1()' value='清零'>
+          	</p>
+ </form>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<html>
+<head>
+<title>Groupinfo</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+
+<link rel="stylesheet" href="../css/css.css" type="text/css">
+
+</head>
+
+
+<body bgcolor="#DEE8FA">
+<form action="/pronline/upload" method="post" enctype="multipart/form-data" name="form1" >
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td valign="top"> <table width="100%" height="24" border="0" cellpadding="0" cellspacing="0" >
+    	      <tr> 
+            <td >               
+                <table width="100%" height="30" border="0" align="center" cellpadding="0" cellspacing="0" >
+                  <tr >              
+                    <td valign="middle">
+                      <div align="center"><strong><b> <font size="3">
+                    [#title_name#]</b></font> </strong></div></td>                  
+                  </tr>
+                </table>
+              </td>
+          </tr>
+    	
+       
+      </table></td>
+  </tr>
+  <tr> 
+    <td> 
+        <table width="100%" border="1" cellspacing="0" bordercolorlight=#89ACED   bordercolordark=#ffffff cellpadding="0">
+          <tr> 
+            <td> 
+              <table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+                <tr> 
+                  <td>
+                    <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0" bgcolor="#DEE8FA">
+                      <tr> 
+                        <td height="20">&nbsp;</td>
+                        <td height="20">&nbsp;</td>
+                      </tr>
+                      <tr> 
+                        <td width="16%" height="30"><div align="right">证书压缩包</div>
+                          <input type="hidden" name="UploadPath" value="/home/ncmysql/nc/upload"></td>
+                        <td width="84%" height="30"> <input type="file" name="fname" style="width:350px">
+                           </td>
+                      </tr>
+                      <tr> 
+                        <td height="20">&nbsp;</td>
+                        <td height="20" valign="baseline" >(压缩包zip格式，里面必须包含ca-c.crt,ta.key,VPN连接名称.crt,VPN连接名称.key四个文件)</td>
+                      </tr>
+                      <tr bgcolor="#DEE8FA"> 
+                        <td height="120" colspan="2"> 
+                          <div align="center" valign="bottom"> 
+                            <input name="ok" type="submit" class="anniu01" id="ok2" value="确 认">
+                            &nbsp; 
+                            <input name="return" type="button" onClick="self.close()"   class="anniu01" value="返 回">
+                            <input name="FunName" type="hidden" value="[#funname#]">
+                          </div></td>
+                      </tr>
+                    </table></td>
+                </tr>
+              </table>
+</td>
+
+          </tr>
+        </table>
+      </td>
+  </tr>
+</table></form>
+<br>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<body bgcolor="#dfdfdf" text="#000000" topmargin="2" align="center" oncontextmenu="return false" >
+<form name="form1" method="post" action="/pronline/Msg">
+<table width="80%" border="0" height="80%">
+  <tr> 
+      <td valign="top" height="394"> 
+        <table width="98%" border="0" align="center">
+          <tr> 
+            <td>
+              <div align="center"><b>邮件历史数据导入</b></div>
+            </td>
+          </tr>
+        </table>
+        <table width="96%" border="0" align="center">
+          <tr> 
+            <td colspan="2"><img src="/images/hr.gif" width="100%" height="2"></td>
+          </tr>
+          <tr> 
+            <td colspan="2" height="21">以下为系统检测到的文件:</td>
+          </tr>
+          <tr> 
+            <td width="23%"> 
+              <div align="right">目录中已存在文件</div>
+            </td>
+            <td width="77%"> 
+              <textarea name="textfield" cols="50" rows="6">
+[#SLPB#][#efile#]                     [#esize#]
+[#SLPE#]
+              </textarea>
+            </td>
+          </tr>
+          <tr> 
+            <td width="23%" height="15"> 
+              <div align="right">不存在的文件</div>
+            </td>
+            <td width="77%" height="15"> 
+              <textarea name="textarea" cols="50" rows="6">
+[#SLPB#] [#nfile#]
+[#SLPE#]
+              </textarea>
+            </td>
+          </tr>
+          <tr> 
+            <td colspan="2" height="15"><img src="/images/hr.gif" width="100%" height="2"></td>
+          </tr>
+          <tr> 
+            <td width="23%" height="15"> 
+              <div align="right">当前磁盘空间:</div>
+            </td>
+            <td width="77%" height="15">总共 [<b>[#total#]</b>KB] 已使用 [<b>[#used#]</b>KB] 
+              可用 [<b>[#free#]</b>KB]</td>
+          </tr>
+        </table>
+        <table width="98%" border="0" align="center">
+          <tr> 
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+        <p><br>
+          <img src="/images/hr.gif" width="100%" height="2"><br>
+        </p>
+        </td>
+  </tr>
+  <tr> 
+    <td height="20"> 
+        <div align="center">
+          <input type="hidden" name="FunName" value="ncWebMailDoImport">
+          <input type="hidden" name="mailctl" value="[#mailctl#]">
+          <input type="hidden" name="mailmon" value="[#mailmon#]">
+          <input type="hidden" name="rip" value="[#rip#]">
+          <input type="hidden" name="rhost" value="[#rhost#]">
+          <input type="hidden" name="rshare" value="[#rshare#]">
+          <input type="hidden" name="ruser" value="[#ruser#]">
+          <input type="hidden" name="rpass" value="[#rpass#]">
+          <input type="hidden" name="sdate" value="[#sdate#]">
+          <input type="hidden" name="edate" value="[#edate#]">
+         <input type="reset" name="cancel" value="返回" class="an3" onClick="history.back()">
+          <input type="submit" name="ok" value="开始导入" class="an3" >
+        </div>
+    </td>
+  </tr>
+  <tr>
+    <td height="20">&nbsp;</td>
+  </tr>
+</table>
+</form>
+</body>
+</html>

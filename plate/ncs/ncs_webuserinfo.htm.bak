@@ -1,0 +1,158 @@
+<html>
+
+<head>
+<title>用户信息</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<!-- Infrastructure code for the tree -->
+<script>
+function closewin()
+{
+alert('fff');
+var win=parent.Ext.getCmp('userwindow');
+if(win) {win.close();}
+}
+</script>
+
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginheight="0"  oncontextmenu="return true">
+  <form name="form1" method="post" action="/pronline/Msg" target="sbpm_right">
+  <input type="hidden" name="FunName" value="ncsWebNetId">
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+
+
+  <tr> 
+    <td colspan="2"> 
+        <br>
+        <table width="95%" border="0"    bordercolorlight=#89ACED   bordercolordark=#ffffff    align="center" cellpadding="0" cellspacing="0" >
+          <tr> 
+            <td> 
+             <table width="100%" border="0" align="center" >
+               
+
+                <tr height="28"> 
+                  <td width="8%"></td>
+                  <td width="24%" align="left"> <font color="#000000"><b><font size="2">用户登陆名</font></b></font></td>
+                  <td width="40%" align="left">
+                 <input type="text" size="27" name="username" value="[#username#]"readonly>
+                  </td>
+                  <td width="28%">                   
+                  </td>
+                </tr>
+                <tr height="28"> 
+                  <td ></td>
+                  <td align="left"><font color="#000000"><b><font size="2">用户显示名</font></b></td>
+                  <td > <input type="text" size="27" name="udsp" value="[#udsp#]" readonly></td>
+                  <td >&nbsp;</td>
+                </tr> 
+                <tr height="28"> 
+                  <td ></td>
+                  <td align="left"><font color="#000000"><b><font size="2">所属单位</font></b></td>
+                  <td > <input type="text" size="27" name="cdsp" value="[#cdsp#]" readonly></td>
+                  <td >&nbsp;</td>
+                </tr> 
+                 <tr height="28"> 
+                  <td ></td>
+                  <td align="left"><font color="#000000"><b><font size="2">上网场所代码</font></b></td>
+                  <td > <input type="text" size="27" name="cdsp" value="[#servicecode#]" readonly></td>
+                  <td >&nbsp;</td>
+                </tr> 
+                <tr height="28">
+                  <td ></td>
+                  <td align="left"> <font color="#000000"><b><font size="2">公司类别</font></b></font></td>
+                  <td > <input type="text" name="tname" size="27" value="[#tname#]" readonly></td>
+                  <td > </td>
+                </tr> 
+                <tr height="28"> 
+                  <td ></td>
+                  <td align="left"> <font color="#000000"><b><font size="2">E-MAIL</font></b></font></td>
+                  <td > <input type="text" name="EMAIL" size="27" value="[#email#]" readonly></td>
+                  <td >&nbsp;&nbsp;</td>
+                </tr> 
+                <tr height="28"> 
+                  <td ></td>
+                  <td align="left"> <font color="#000000"><b><font size="2">用户IP</font></b></font></td>
+                  <td > <input type="text" name="ip" value="[#ip#]" size="27" readonly></td>
+                  <td >&nbsp;&nbsp; </td>
+                </tr> 
+                <tr height="28"> 
+                  <td ></td>
+                  <td align="left"> <font color="#000000"><b><font size="2">用户MAC</font></b></font></td>
+                  <td > <input type="text" name="MAC" value="[#mac#]" size="27" readonly></td>
+                  <td >&nbsp;&nbsp; </td>
+                </tr> 
+                <tr height="28"> 
+                  <td ></td>
+                  <td align="left"> <font color="#000000"><b><font size="2">上网终端名称</font></b></font></td>
+                  <td > <input type="text" name="compname" value="[#compname#]" size="27" readonly></td>
+                  <td >&nbsp;&nbsp; </td>
+                </tr> 
+                              
+                <tr height="28"> 
+                  <td ></td>
+                  <td align="left"> <font color="#000000"><b><font size="2">证件类型</font></b></font></td>
+                  <td >	<select name="idfytype" style="width:200px">
+		                  		        <option value="11" selected>身份证</option>
+                  								<option value="15" >学生证</option>
+                  								<option value="90">军官证</option>
+                  								<option value="91" >警官证</option>
+                  								<option value="92">士兵证</option>
+                  								<option value="93">户口薄</option>
+                  								<option value="94">护照</option>
+                  								<option value="95">台胞证</option>
+                  								<option value="96">同乡证</option>
+                  								<option value="99">其他证件</option>
+                  								<option value="111" selected>身份证</option>
+                  		</select> </td>
+                  <td >&nbsp;&nbsp;</td>
+                </tr> 
+                <tr height="28"> 
+                  <td ></td>
+                  <td align="left"> <font color="#000000"><b><font size="2">证件号码</font></b></font></td>
+                  <td > <input type="text" name="idcard" size="27" value="[#idcard#]" readonly></td>
+                  <td >&nbsp;&nbsp;</td>
+                </tr> 
+                <tr height="28"> 
+                  <td ></td>
+                  <td align="left"> <font color="#000000"><b><font size="2">发证单位</font></b></font></td>
+                  <td > <input type="text" name="idfyunit" size="27" value="[#idfyunit#]" readonly></td>
+                  <td >&nbsp;&nbsp;</td>
+                </tr> 
+                <tr height="28"> 
+                  <td ></td>
+                  <td align="left"> <font color="#000000"><b><font size="2">房间号/位置</font></b></font></td>
+                  <td > <input type="text" name="position" size="27" value="[#position#]" readonly></td>
+                  <td >&nbsp;&nbsp;</td>
+                </tr> 
+                <tr height="28"> 
+                  <td ></td>
+                  <td align="left"> <font color="#000000"><b><font size="2">国家代码</font></b></font></td>
+                  <td > <input type="text" name="country" size="27" value="[#country#]" readonly></td>
+                  <td >&nbsp;&nbsp;</td>
+                </tr> 
+                
+                
+                <tr height="28"> 
+                  <td ></td>
+                  <td align="left"> <font color="#000000"><b><font size="2">最后上线</font></b></font></td>
+                  <td > <input type="text" name="sdate" size="27" maxlength="20" value="[#sdate#]" readonly></td>
+                  <td ></td>
+                </tr> 
+
+              </table>
+            </td>
+          </tr>          
+        </table>
+       <p align="center"><input type="button" class="an3" name="qr" value="关闭" onclick="closewin()"></p>
+      </td>
+  </tr>
+</table>
+ </form>
+ <script>form1.idfytype.value='[#idfytype#]';</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<html>
+<head>
+<title>Groupinfo</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<script language="javascript">
+
+
+function goBack()
+{
+	history.back();
+	return false;
+}
+
+
+</script>
+
+<body bgcolor="#DEE8FA">
+<table width="100%" border="0" align="center" cellspacing="0" cellpadding="0" bgcolor="#DEE8FA">
+  
+  <tr> 
+    <td align="center"> 
+    	<form action="/pronline/Msg" method="post"  name="form1" >
+
+        <table width="100%" border="0" align="center" cellspacing="0" cellpadding="0">
+        	            <tr >              
+                    <td align="center">
+                      <div align="center"><strong><b> <font size="3">
+                    导入证书</b></font> </strong></div></td>                  
+                  </tr>
+        	
+        	
+          <tr> 
+            <td align="center"> 
+              <table width="95%" height="200" border="1" align="center" bordercolorlight=#89ACED   bordercolordark=#ffffff cellspacing="0" cellpadding="0">
+               <tr><td valign="top">[#buf#]</td>
+              </tr>
+              <tr><td>[#mesg#]</td>
+              </tr>
+
+              </table>
+                 </td>
+
+          </tr>
+          
+          <tr height="40"><td align="center"><input name="ok" type="button" class="an3" id="ok2" value="关闭" onclick="self.close()">
+          </td>
+        </tr>
+        </table>
+        
+        
+        
+      </form></td>
+  </tr>
+</table>
+<br>
+</body>
+</html>

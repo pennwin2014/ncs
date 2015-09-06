@@ -1,0 +1,211 @@
+<!-- saved from url=(0022)http://internet.e-mail -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>aa</title>
+<link rel="stylesheet" href="../publiccss/css.css" type="text/css">
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Hide
+function killErrors() {
+return true;
+}
+window.onerror = killErrors;
+// -->
+</SCRIPT>
+<script>
+
+function goto(t){
+main2.location.href=t
+}
+function goleft(t){
+mainleft.location.href=t
+}
+
+function mouseovertd2 (o){
+dff=o.style.backgroundColor
+	o.style.border="1"
+	o.style.borderStyle="solid"
+	o.style.borderColor="#000000"
+	o.style.color="#ffffff"
+o.style.backgroundColor="#dfdfdf"
+o.style.cursor="hand";	
+}
+
+function mouseouttd2 (o){
+	o.style.backgroundColor=dff
+	o.style.color="#000000"
+	o.style.borderColor="#ffffff"
+}
+function getchar(){
+
+if(event.keyCode==13){
+form1.submit();
+}
+
+}
+
+function getchar2(){
+
+if(event.keyCode==13){
+alert('ffff');
+MM_swapImgRestore();
+}
+
+}
+
+</script>
+<script language="javascript">
+var pp=0
+function opq(){
+if(pp==0){
+document.all.leftoo.style.display="none";
+
+document.all.rw.innerHTML="<a href='#' onMouseOut='MM_swapImgRestore()' onMouseOver=MM_swapImage('arr','','../images/arrarr2a.gif',1)><img name='arr' border='0' src='../images/arrarr2.gif'  width='10' height='147' onclick='opq()' class='handon'  id='arr' ></a>"
+pp=1;}else{
+document.all.leftoo.style.display="";
+document.all.rw.innerHTML="<a href='#' onMouseOut='MM_swapImgRestore()' onMouseOver=MM_swapImage('arr','','../images/arrarra.gif',1)><img name='arr' border='0' src='../images/arrarr.gif'  width='10' height='147' onclick='opq()' class='handon'  id='arr' ></a>"
+pp=0
+}
+}
+
+
+</script>
+<STYLE type=text/css>
+.over {  border-color: #FFFFFF #000000 #000000 #FFFFFF; border-style: solid; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px}
+.out {  border: #2A83A1; border-style: solid; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px}
+
+a:visited {color: #ffffff;font-size: 14pt;font-weight:bold;}
+a:link {  color: #ffffff;font-size: 14pt;font-weight:bold; }
+a:hover {  color: yellow;}
+.coolButton2 {
+	HEIGHT: 20px; MARGIN: 1px; WIDTH: 100px;
+}
+.gray1{filter:gray
+}
+table {  font-size: 9pt}
+
+.nohand {  cursor: default}
+.dd {  cursor: default}
+
+.bglay {  border: 2px #999999 inset}
+.caidan {  font-size: 9pt; color: #FFFFFF}
+.sojin {  text-indent: 20pt}
+.handon {  cursor: hand}
+.mel1 {  line-height: 4px}
+.an1 {  border-color: #C7C5B8 #000000 black; border-style: inset; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 1px}
+.an2 {  border-color: black #000000 black menu; border-style: inset; border-top-width: 0px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 1px}
+.handme {  cursor: hand}
+.sjx {  font-size: 14px; font-weight: bold; color: #FFFFFF}
+
+.headtd1 {  background: #1F6788; border: 2px outset; border-color: #2A83A1; cursor: hand; font-size: 9pt}
+.headtd2 {  background: #2A83A1; border: 2px outset; border-color: #dfdfdf #2A83A1 #2A83A1 
+            #dfdfdf; cursor: hand; font-size: 9pt}
+.bodytd  {  background: #999999; border: 2px solid; border-color: #dfdfdf #ECE9D8 #ECE9D8 #dfdfdf; font-size: 9pt}
+.handme2 {  padding-top: 2px; padding-right: 2px; padding-bottom: 2px; padding-left: 2px; 
+            cursor: hand; border: 1px #2A83A1 solid }
+</STYLE>
+<script language="JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+  //document.all.main.height=document.all.main.document.body.scrollHeight;	
+  //document.all.main.width=document.all.main.document.body.scrollWidth;
+}
+
+function MM_findObj(n, d) { //v4.0
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && document.getElementById) x=document.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+</script>
+
+</head>
+
+<body bgcolor="#daeBE9" text="#000000"   leftmargin="0" topmargin="0"  oncontextmenu="return false" onLoad="document.getElementById('xxmg').blur();MM_preloadImages('../images/arrarra.gif')" onkeydown="getchar2()">
+	<form name="form1" id="nclogin" method="post" action="/pronline/Msg">
+		<input type="hidden" name="FunName" value="ncsWebAuth2">
+		<input type="hidden" name="username" value="[#username#]">
+<input type="password" style="width:0px;" id="mg1" name="password5" onblur="MM_swapImgRestore()">
+    <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr > 
+          
+
+        <td> 
+          <table width="600" border="0" cellspacing="0" cellpadding="0" align="center" height="100%">
+             <tr> 
+             	<td align="center">
+               <span onclick="MM_swapImage('Img1','','/images/images2/wj/1-0.jpg');document.getElementById('mg1').focus();form1.password5.value='';" 
+                 ><img align=absMiddle name="Img1" width="64" height="64"
+                 src="/images/images2/wj/1-1.jpg" ></span>
+                 <input type="pa1" style="width:0px;" id="xx1" name="pa2" onblur="MM_swapImgRestore()">
+             </td>
+             <td align="center">
+               <span onclick="MM_swapImage('Img2','','/images/images2/wj/2-0.jpg');document.getElementById('mg1').focus();form1.password5.value='';" 
+                 ><img align=absMiddle name="Img2" width="64" height="64"
+                 src="/images/images2/wj/2-1.jpg" ></span>
+                 <input type="pa2" style="width:0px;" id="xx2" name="pa2" onblur="MM_swapImgRestore()">
+             </td>
+             <td align="center">
+               <span onclick="MM_swapImage('Img3','','/images/images2/wj/3-0.jpg');document.getElementById('mg1').focus();form1.password5.value='';" 
+                 ><img align=absMiddle name="Img3" width="64" height="64"
+                 src="/images/images2/wj/3-1.jpg" ></span>
+                 <input type="pa3" style="width:0px;" id="xx3" name="pa3" onblur="MM_swapImgRestore()">
+             </td>
+             
+             
+             
+             	
+             	
+             	
+                <td align="center">
+               <span onclick="MM_swapImage('Img4','','/images/images2/vista_netcenter1.png');document.getElementById('xxmg').focus();form1.password2.value='';" 
+                 ><img align=absMiddle name="Img4" width="64" height="64"
+                 src="/images/images2/vista_netcenter0.png" ></span>
+                 <input type="password" style="width:0px;" id="xxmg" name="password2" onblur="MM_swapImgRestore()" onkeydown="getchar()">
+             </td>
+             
+             
+             
+             
+             
+            <td align="center">
+               <span onclick="MM_swapImage('Img5','','/images/images2/wj/4-1.jpg');document.getElementById('mg1').focus();form1.password5.value='';" 
+                 ><img align=absMiddle name="Img5" width="64" height="64"
+                 src="/images/images2/wj/4-0.jpg" ></span>
+                 <input type="pa5" style="width:0px;" id="xx3" name="pa3" onblur="MM_swapImgRestore()" >
+             </td>
+             
+             
+            </tr>
+          </table>         
+       </td>
+          
+    </tr>
+       
+      </table>
+   
+</form>
+</body>
+
+</html>

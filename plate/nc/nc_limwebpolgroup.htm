@@ -1,0 +1,185 @@
+<html>
+<head>
+<title>分类管理</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<script>
+      function  goto() {
+         parent.sbpm_left.location.href='/pronline/Msg?FunName@ncWebLimWebPolList&plate@nc/nc_limwebpoltree.htm';
+     }
+	
+	function dodel() {
+	    if(confirm("真的要删除吗?")) {
+		    form1.ddd.value = "yes";
+			form1.submit();
+			return false;
+	    }
+		return true;
+	}
+	
+	 function setvister(t){
+       j=form1.vister.options.length; 
+       for(i=0;i<j;i++) { 
+           gv = form1.vister.options[i].value;
+           if(gv == t) {
+               form1.vister.selectedIndex = i;
+           }
+       }
+    }
+	
+	 function setnvister(t){
+       j=form1.nvister.options.length; 
+       for(i=0;i<j;i++) { 
+           gv = form1.nvister.options[i].value;
+           if(gv == t) {
+               form1.nvister.selectedIndex = i;
+           }
+       }
+    }
+	
+	
+	function setname(){
+       j=form1.nid.options.length; 
+	   t=form1.nid.value;
+       for(i=0;i<j;i++) { 
+           gv = form1.nid.options[i].value;
+           if(gv == t) {
+               form1.nname.value = form1.nid.options[i].text;
+           }
+       }
+    }
+	
+	
+</script>
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onload="setname();setvister('#vister#]')"  oncontextmenu="return false" >
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td> <div align="center"> 
+        <table width="100%" height="27" border="0" align="center" cellpadding="0" cellspacing="0" background="/images/table_bg1.gif">
+          <tr > 
+            <td colspan="2"> <div align="center"><strong> <b><font color="#FFFFFF"><b>定义网址库访问策略</b></font></b> 
+                </strong></div></td>
+          </tr>
+        </table>
+      </div></td>
+  </tr>
+  <tr> 
+    <td> <br> <form name="form1" method="post" action="/pronline/Msg">
+        <input type="hidden" name="FunName" value="ncWebLimWebPolEdit" >
+        <input type="hidden" name="plate" value="nc/nc_limwebpolgroup.htm" >
+        <input type="hidden" name="ddd">
+        <table width="70%" height="97%" border="1"    bordercolorlight=#89ACED   bordercolordark=#ffffff   align="center" cellpadding="0" cellspacing="0">
+          <tr> 
+            <td> <br> 
+              <table width="90%" border="0" align="center">
+                <tr> 
+                  <td colspan="5"><b>新建一个访问策略</b></td>
+                </tr>
+                <tr> 
+                  <td> 分类名称</td>
+                  <td> 
+                    <input type="text" name="gname" size="16" maxlength="63">
+                  </td>
+                  <td> 
+                    <div align="right">缺省访问</div></td>
+                  <td> 
+                    <select name="vister">
+                      <option value="9" selected>无</option>
+                      <option value="1">允许</option>
+                      <option value="0">禁止</option>
+                    </select>
+                  </td>
+                  <td width="128"> 
+                    <div align="right"></div>
+                    <div align="center">
+                      <input type="submit" name="add" value="确 认" class="an3">
+                    </div></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+              </table>
+              <table width="90%" border="0" align="center">
+                <tr>
+                  <td><b>删除一个访问策略</b></td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td> 要删除的策略名称&nbsp;&nbsp;&nbsp;&nbsp; 
+                    <select name="did">
+                      <!-- [#SLPB#] -->
+                      <option value="[#id#]">[#name#]</option>
+                      <!-- [#SLPE#] -->
+                    </select></td>
+                  <td>&nbsp; </td>
+                  <td width="128"> <div align="center">
+                      <input type="button" name="del" value="删 除"  onclick="dodel()" class="an3">
+                    </div></td>
+                </tr>
+                <tr> 
+                  <td colspan="3"> 
+                    <div align="center"><br>
+                    </div></td>
+                </tr>
+              </table>
+              <table width="90%" border="0" align="center">
+                <tr> 
+                  <td colspan="6"><b>修改一个策略名称</b></td>
+                </tr>
+                <tr> 
+                  <td width="72"> 策略名称</td>
+                  <td> 
+                    <select name="nid" onChange="setname()">
+                      <!-- [#SLPB#] -->
+                      <option value="[#id#]">[#name#]</option>
+                      <!-- [#SLPE#] -->
+                    </select>
+                  </td>
+                  <td> 
+                    <div align="right">改为:</div></td>
+                  <td> 
+                    <input type="text" name="nname" size="16" maxlength="31" value="[#nname#]">
+                  </td>
+                  <td width="128" colspan="2"> <div align="center">
+                      <input type="submit" name="modi" value="确 认"   class="an3">
+                    </div></td>
+                </tr>
+                <tr> 
+                  <td colspan="6"> <div align="center"><br>
+                    </div></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+</td>
+  </tr>
+  <tr>
+    <td height="70">
+<table width="50%" border="0" align="center">
+        <tr> 
+          <td> <div align="right"> 
+              <input type="button" name="Button" value="刷新分类树"  class="an3-1"  onClick="goto()">
+              &nbsp; 
+              <input type="button" name="Button" value="返 回"  onClick="history.back(-1)" class="an3">
+            </div></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+</body>
+</html>

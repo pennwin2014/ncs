@@ -1,0 +1,107 @@
+<html>
+<head>
+<title>Groupinfo</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<script language="javascript">
+
+function selectChange()
+{
+    var xtype = document.getElementById('ntype');
+	var grade = xtype.options[xtype.selectedIndex].value;
+     // alert(grade);
+}
+function goBack()
+{
+	history.back();
+	return false;
+}
+
+
+</script>
+
+<body bgcolor="#DEE8FA">
+<table width="100%" border="0" align="center" cellspacing="0" cellpadding="0" bgcolor="#DEE8FA">
+  
+  <tr> 
+    <td align="center"> 
+    	<form action="/pronline/Msg" method="post"  name="form1" >
+    	<input name="FunName" type="hidden" value="ncs_imp_MAC">
+    	<input type="hidden" name="fname" value="[#fname#]">
+        <table width="100%" border="0" align="center" cellspacing="0" cellpadding="0">
+          <tr> 
+            <td align="center"> 
+              <table width="100%" border="0" align="center" bordercolorlight=#89ACED   bordercolordark=#ffffff cellspacing="0" cellpadding="0">
+
+                <tr> 
+                  <td align="center">
+                    <table width="100%" border="0" align="center" cellpadding="0"  bgcolor="#DEE8FA">
+
+                      <tr>
+                        <!--<td height="25"><div align="right">虚拟身份类别&nbsp;</div></td>-->
+						 <td height="25"><div align="right">终端分组名称&nbsp;</div></td>
+						
+                        <td height="25" valign="baseline">
+                        <select id="ntype"  onchange="selectChange();"  name="sname_type" style="width:300px">
+            			      [#SLPB#]
+                        <option   value="[#sname#]">[#sname#]</option>
+                        [#SLPE#]
+                         </select>
+                        </td>
+                      </tr>
+                      <tr>
+                       <!-- <td height="25"><div align="right">虚拟身份帐号&nbsp;</div></td>-->
+					   <td height="25"><div align="right">终端分组成员信息&nbsp;</div></td>
+                        <td height="25" valign="baseline">
+                        <select name="keyword" style="width:300px">
+                        <option value="[#urlname_num#]">[#urlname#]</option>
+            			      [#SLPB#]
+                        <option value="[#iNum#]">[#caTemp#]</option>
+                        [#SLPE#]
+                        <option value="">无</option>
+                         </select>
+                        </td>
+                      </tr>
+                       <!--           
+					  <tr>
+					 <td height="25"><div align="right">分组描述&nbsp;</div>
+                        <td height="25" valign="baseline">
+                        <select name="defclass" style="width:300px">
+            			      [#SLPB#]
+                        <option  value="[#id#]">[#name#]</option>
+                        [#SLPE#]
+                         </select>
+                        </td>
+                      </tr>  
+					 -->
+                      <tr>
+                        <td height="25"><div align="right">忽略第一行</div></td>
+                        <td height="25" valign="baseline"><input type="checkbox" name="first" value="checkbo"  >
+
+                        	</td>
+                      </tr>
+                      <tr>
+                        <td height="25"><div align="right"> </div></td>
+                        <td height="25" valign="baseline"> <input name="ok" type="button" class="anuse3" id="ok" value="确 认" onclick="if(form1.sname_type.value==''){ alert('终端分组名称'); return;};form1.submit();document.all.ok.disabled=1;">
+                        <input name="return" type="button" onClick="javascript:history.back();"   class="anuse3" value="返 回"></td>
+                      </tr>
+                    </table></td>
+                </tr>
+              </table>
+</td>
+
+          </tr>
+        </table>
+      </form></td>
+  </tr>
+</table>
+<br>
+</body>
+</html>

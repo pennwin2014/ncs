@@ -1,0 +1,230 @@
+<html>
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<title>main</title>
+<script>
+var dfd1="0"
+
+function gotoPage(pagenum)
+
+{
+    form1.CurPg.value = pagenum;
+}
+
+
+ function dispsearch()
+ {
+      window.open('/pronline/Msg?FunName@ncWebDispSuser','RUNMIT_New','left=100,top=200,width='+525+',height='+245+',fullscreen=0,toolbar=no,scrollbars=no,resizable=0,menubar=no,status=0');
+ }
+
+function mouseovertr2 (o){
+var i;
+df=o.style.backgroundColor
+	o.style.backgroundColor= "#003399";
+	o.style.borderColor= "#FFFF00";
+	o.style.cursor="hand";	
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#ffffff";
+}	
+}
+
+function mouseouttr2(o){
+	o.style.backgroundColor=df
+for(i=0; i<o.cells.length; i++)
+{
+	o.cells(i).style.color="#000000";
+}
+	
+	
+}
+
+function checkme(p)
+{
+	var tt=p.value
+	if (tt>yy)
+	{
+		MM_changeProp('browsdopage','','value',yy,'INPUT/TEXT')
+	}
+	if (tt==0)
+	{
+		MM_changeProp('browsdopage','','value','1','INPUT/TEXT')
+	}
+}
+
+function allChecked(){
+    if(dfd1=="1"){
+        dfd1="0"
+    }
+    else {
+         dfd1="1"
+    }
+	for(var i=0;i<document.all.DataTable.rows.length;i++)
+	{
+		if(typeof(document.all.DataTable.rows[i].cells[0].childNodes[0])=="object"
+
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].tagName=="INPUT"
+
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].type=="checkbox") {
+			if(dfd1=="1"){
+  			    document.all.DataTable.rows[i].cells[0].childNodes[0].checked="true";
+            }
+			else{
+                document.all.DataTable.rows[i].cells[0].childNodes[0].checked="";
+            }
+        }
+ 	}
+}
+
+
+// -->
+<!-- Hide
+var ll=[#CurPg#]
+var yy=[#TotPg#]
+function killErrors() {
+return true;
+}
+window.onerror = killErrors;
+// -->
+
+</script>
+<link REL=stylesheet HREF="/css/runmit.css" TYPE="text/css">
+<script src="/js/rmenu.js"></script>
+<style type="text/css">
+<!--
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+-->
+</style>
+<link href="/css/css.css" rel="stylesheet" type="text/css">
+</head>
+<body marginheight=0 leftmargin=0 marginwidth=0 topMargin="0" BGCOLOR="Menu">
+<form name="form1" method="post" action="/pronline/MsgL">
+<table border="0" width=100% height=100% cellspacing="0" cellpadding="0" align=center bgcolor='#ffffff'>
+  <tr> 
+      <td width="100%"  valign=middle align=center height="40" bgcolor="#DEE8FA" class="ttt"> 
+        <table width="100%" border="0" cellspacing="0">
+        <tr>
+            <td width="51%" height="29">&nbsp;
+              <input type="hidden" name="FunName" value="ncsDebugClientOnline">
+             <input type="hidden" name="CurPg"      value="[#CurPg#]"> 
+             在线表单</td>
+            <td width="49%" height="29"> 
+              <table align=right border=0 cellpadding=0 cellspacing=0 class=main width=111>
+                            <tbody> 
+                <td width="10%"><script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-06.gif' border=0 height=17 width=35 class='gray1'>")}
+                      else{
+                        document.write("<a href='#'><img src='/images/zbuyer-06.gif' border=0 height=17 width=35 onClick='gotoPage(1);form1.submit()' class='hand'>")}
+                   </script></td>
+                <td width="10%"><script>
+                      if (ll==1){
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 class='gray1'>")}
+                      else {
+                        document.write("<img src='/images/zbuyer-03.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]-1);form1.submit()' class='hand'>")}
+                   </script></td>
+                <td width="20%"><img src="/images/zbuyer-08.gif" border=0 height=17 width=32></td>
+                <td align=middle background="" width=92>
+                    <input class=Main id=browsdopage maxlength=3  name=browsdopage size=3 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 50px" value=[#CurPg#] onKeyPress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" onBlur="checkme(this)">
+                </td>
+                <td width="10%"><img src="/images/zbuyer-09.gif" border=0 height=17 width=16></td>
+                <td width="10%"><img align=middle border=0 height=17 src="/images/zbuyer-10.gif" width=17 onClick="gotoPage(form1.browsdopage.value);form1.submit()" class="hand"><img align=middle height=17 src="/images/zbuyer-11.gif" width=3></td>
+                
+                
+    <td width="10%"><img border=0 height=17 src="/images/zin1.gif" width=17 ></td>
+    <td align=middle background="" width=92> 
+      <input  class=Main id=browsdopage1 maxlength=5 name=browsdopage12 size=3 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 50px" value='[#TotPg#]'>
+    </td>
+    <td width="10%"><img align=middle height=17 src="/images/zbuyer-09.gif" width=16></td>
+    <td align=middle background="" width=92> 
+      <input  class=Main id=browsdopage1 maxlength=5 name=browsdopage12 size=3 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 50px" value='[#TotRec#]'>
+    </td>
+    <td width="10%"><img border=0 height=17 src="/images/zin3.gif" width=17 align="middle" ><img align=middle height=17  src="/images/zbuyer-11.gif" width=3></td>
+                
+                <td width="10%"><script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-04.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]+1);form1.submit()' class='hand'>")}
+                    </script></td>
+                <td width="10%"><script>
+                        if (ll==yy){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else if (yy==0){
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 class='gray1'>")}
+                        else{
+                            document.write("<img src='/images/zbuyer-05.gif' border=0 height=17 width=36 onClick='gotoPage([#TotPg#]);form1.submit()' class='hand'>")}
+                    </script></td>
+              </tbody> 
+
+            </table>          </td>
+        </tr>
+      </table>
+        <input type="hidden" name="TotPg"      value="[#TotPg#]"></td>
+  </tr>
+  <tr>
+      <td width="100%" align=center  valign=top bgcolor="#DEE8FA"> 
+        <table id="DataTable" width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+          <tr> 
+            <td width="46" height="20" bgcolor="#6382BD" class="bord2">&nbsp; 
+            </td>
+            <td width="98" bgcolor="#6382BD" class="bord2">
+<div align="center"><font color="#FFFFFF">单位</font></div></td>
+            <td width="104" bgcolor="#6382BD" class="bord2" >
+<div align="center"><font color="#FFFFFF">类别</font></div></td>
+            <td width="89" bgcolor="#6382BD" class="bord2" >
+            <div align="center"><font color="#FFFFFF">用户</font></div></td>
+            <td width="109" bgcolor="#6382BD" class="bord2" >Host</td>
+            <td width="109" bgcolor="#6382BD" class="bord2" >Url</td>
+            <td width="93" bgcolor="#6382BD" class="bord2" >asize</td>
+            <td width="93" bgcolor="#6382BD" class="bord2" >file</td>
+            <td width="93" bgcolor="#6382BD" class="bord2" >msize</td>
+            <td width="97" bgcolor="#6382BD" class="bord2" >
+<div align="center"><font color="#FFFFFF">上传时间</font></div></td>
+          </tr>
+          <!-- [#SLPB#] -->
+          <tr onMouseOver="mouseovertr2(this)" onMouseOut="mouseouttr2(this)"> 
+            <td width="46" height="16" class="bord1"> [#num#] </td>
+            <td width="98" height="16" class="bord1">&nbsp;[#dw#]</td>
+            <td width="104" height="16" class="bord1">[#lb#]</td>
+            <td width="89" height="16" class="bord1">&nbsp;[#dispname#] </td>
+            <td width="109" class="bord1">[#host#]</td>
+            <td width="109" class="bord1">[#url#]</td>
+            <td width="93" class="bord1">[#asize#]</td>
+            <td width="93" class="bord1">[#file#]</td>
+            <td width="93" class="bord1">[#msize#]</td>
+            <td width="97" height="16" class="bord1">[#starttime#]&nbsp;</td>
+          </tr>
+          <!-- [#SLPE#] -->
+          <!-- [#SLPB#] -->
+          <tr id=[#snum#]> 
+            <td width="46" height="16" class="bord1">&nbsp; </td>
+            <td width="98" height="16" class="bord1">&nbsp;</td>
+            <td width="104" height="16" class="bord1">&nbsp;</td>
+            <td width="89" height="16" class="bord1">&nbsp; </td>
+            <td width="109" class="bord1">&nbsp;</td>
+            <td width="109" class="bord1">&nbsp;</td>
+            <td width="93" class="bord1">&nbsp;</td>
+            <td width="93" class="bord1">&nbsp;</td>
+            <td width="93" class="bord1">&nbsp;</td>
+            <td width="97" height="16" class="bord1">&nbsp;</td>
+          </tr>
+          <!-- [#SLPE#] -->
+        </table>
+    
+           
+      </td>
+  </tr>
+</table>
+ </form>
+</body>
+
+</html>

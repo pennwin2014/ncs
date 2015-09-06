@@ -1,0 +1,60 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<title>Web地址列表</title>
+<script>
+    function goto(t){
+        nclim_main.location.href=t;
+    }
+</script>
+<style type="text/css">
+<!--
+.ttt {  border-style: outset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.nnoo {  filter: Gray}
+-->
+</style>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+<body marginheight=0 leftmargin=0 marginwidth=0 topMargin="0" bordercolor="#D4D4D4" bgcolor="#DEE8FA">
+<form name="form1" method="post" action="/pronline/Msg"> 
+  <table width=100% border="0" align=center cellpadding="0" cellspacing="0">
+    <tr> 
+      <td colspan="2"> 
+          <table width="100%" height="27" border="0" align="center" cellpadding="0" cellspacing="0" background="/images/table_bg1.gif">
+            <tr > 
+              <td colspan="2"> <div align="center"><strong> <b><font color="#FFFFFF">[#appname#]&nbsp;访问控制设置</font></b> </iframe> 
+                  </strong></div></td>
+            </tr>
+          </table>
+          <b></b></div></td>
+    </tr>
+    <tr> 
+      <td width="85%" height="30"> 
+        <div align="center"> 
+          <input name="base" type="button" class="an3-1" onClick="goto('/pronline/Msg?FunName@ncWebLim_Listbase&gtype@[#gtype#]&id@[#id#]')" value="全部规则">
+          <input name="out" type="button" class="an3-1" onclick="goto('/pronline/Msg?FunName@ncWebLim_Listout&flags@1&gtype@[#gtype#]&id@[#id#]')" value="上网控制">
+          <input name="iplist2" type="button" class="an3-3" onClick="goto('/pronline/Msg?FunName@ncWebLim_Listout&flags@4&gtype@[#gtype#]&id@[#id#]')" value="应用控制策略">
+          <input name="weblist" type="button" class="an3-3" onClick="goto('/pronline/Msg?FunName@ncWebLim_Listout&flags@5&gtype@[#gtype#]&id@[#id#]')" value="网址库控制策略">
+          <input name="service" type="button" class="an3-1" onClick="goto('/pronline/Msg?FunName@ncWebLim_Listout&flags@2&gtype@[#gtype#]&id@[#id#]')" value="应用限制">
+          <input name="web" type="button" class="an3-1" onClick="goto('/pronline/Msg?FunName@ncWebLim_Listout&flags@6&gtype@[#gtype#]&id@[#id#]')" value="网址限制">
+          <input name="ip" type="button" class="an3-1"  onClick="goto('/pronline/Msg?FunName@ncWebLim_Listout&flags@3&gtype@[#gtype#]&id@[#id#]')" value="IP地址限制">
+        </div></td>
+      <td width="15%"> 
+        <div align="center"> <a href="/pronline/Msg?FunName@ncWebLimApp&option@0"><img src="/images/sety.gif" width="16" height="16" alt="使新设置的规则起作用" border="0"></a> 
+        </div></td>
+    </tr>
+    <tr> 
+      <td height="30" colspan="2" valign="bottom"><table width="100%" border="0" height="590" cellspacing="0" cellpadding="0">
+          <tr> 
+            <td><iframe name="nclim_main" src="/pronline/Msg?FunName@ncWebLim_Listbase&gtype@[#gtype#]&id@[#id#]" width="100%" height="100%"  scrolling="	auto" FrameBorder=0></iframe> 
+            </td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

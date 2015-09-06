@@ -1,0 +1,47 @@
+var WebType=[
+[#SLPB#]
+    [[#ida#],'[#namea#]',[
+[#SLPB#] [[#idb#],'[#nameb#]'],
+[#SLPE#]]
+[#SLPE#]];
+
+function change_it(id2) {
+　get_select=form1.wid1.selectedIndex; 
+  j=form1.wid2.options.length; 
+　for(k=0;k<j;k++) form1.wid2.options.remove(1); 
+  for(i=0;i<WebType[get_select][2].length;i++) { 
+    　var ttt=document.createElement("OPTION"); 
+　    form1.wid2.options.add(ttt); 
+　    ttt.innerText=WebType[get_select][2][i][1]; 
+　    ttt.value=WebType[get_select][2][i][0]; 
+      if(ttt.value == id2) {
+          form1.wid2.selectedIndex = i;
+      }
+  }
+}
+
+function webtypeinit() {
+  for(i=0;i<WebType.length;i++) { 
+    　var ttt=document.createElement("OPTION"); 
+　    form1.wid1.options.add(ttt); 
+　    ttt.innerText=WebType[i][1]; 
+　    ttt.value=WebType[i][0];
+  }
+  form1.wid1.selectedIndex = 0;
+  change_it(0);
+}
+
+function curwebtype(id1,id2) {
+  for(i=0;i<WebType.length;i++) { 
+　    if(WebType[i][0]==id1) {
+          form1.wid1.selectedIndex = i;
+          for(j=0;i<WebType[i][2].length;i++) { 
+              if(WebType[i][2][j][0] == id2) {
+                  form1.wid2.selectedIndex = j;
+                  return;
+              }
+          }
+      }
+  }
+  return 0;
+}

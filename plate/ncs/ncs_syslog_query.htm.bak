@@ -1,0 +1,137 @@
+<html>
+
+<head>
+<title>查询</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<!-- Infrastructure code for the tree -->
+<script>
+function queren()
+{
+form1.submit();
+self.close();
+
+}
+function init()
+{
+form1.opname.value=dialogArguments.form1.opname.value; 
+form1.ipaddr.value=dialogArguments.form1.ipaddr.value;
+form1.sdate.value=dialogArguments.form1.sdate.value;
+form1.edate.value=dialogArguments.form1.edate.value;
+form1.result.value=dialogArguments.form1.result.value;
+form1.descr.value=dialogArguments.form1.descr.value;
+}
+</script>
+
+</head>
+
+<body bgcolor="#DEE8FA" leftmargin="0" topmargin="0" marginheight="0"  oncontextmenu="return true" onload="init()">
+  <form name="form1" method="post" action="/pronline/Msg" target="sbpm_right">
+  <input type="hidden" name="FunName" value="ncsWebAdmQyeSysLog">
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+
+  <tr> 
+    <td colspan="2"><table width="100%" height="27" border="0" align="center" cellpadding="0" cellspacing="0" background="/images/table_bg1.gif">
+        <tr > 
+          <td colspan="2" > <div align="center"><strong><font color="#FFFFFF">
+             
+              系统操作日志查询</font></strong></div></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr> 
+    <td colspan="2"> 
+        <br>
+        <table width="95%" border="1"    bordercolorlight=#89ACED   bordercolordark=#ffffff    align="center" cellpadding="0" cellspacing="0" >
+          <tr> 
+            <td> 
+             <table width="100%" border="0" align="center" >
+                <tr>
+                  <td colspan="4">&nbsp;</td>
+                </tr>      
+                 <tr height="35"> 
+                  <td ></td>
+                  <td align="right"> <font color="#000000"><b><font size="2">操作员&nbsp;</font></b></font></td>
+                  <td > <input type="text" name="opname" size="27"></td>
+                  <td >&nbsp;&nbsp;</td>
+                </tr>
+
+                <tr height="35"> 
+                  <td ></td>
+                  <td align="right"> <font color="#000000"><b><font size="2">IP地址&nbsp;</font></b></font></td>
+                  <td > <input type="text" name="ipaddr" size="27"></td>
+                  <td >&nbsp;&nbsp;</td>
+                </tr> 
+                <tr height="35"> 
+                  <td ></td>
+                  <td align="right"> <font color="#000000"><b><font size="2">行为类型&nbsp;</font></b></font></td>
+                  <td > <select name="action" style="width:200">
+                  <option value="">全部</option>
+                  <option value="01">鉴别与登录</option>
+                  <option value="02">修改鉴别信息</option>
+                  <option value="03">修改系统配置</option>
+                  <option value="04">修改下发审计策略</option>
+                  
+                  <option value="05">增加修改删除用户</option>
+                  <option value="06">查询信息</option>
+                  <option value="07">统计各类数据</option>
+                  <option value="09">数据接收下发</option>
+                  <option value="10">备份与恢复</option>
+                  <option value="11">系统启动与关闭</option>
+                  <option value="99">其它</option>
+                  </select></td>
+                  <td >&nbsp;&nbsp; </td>
+                </tr> 
+               <tr height="35"> 
+                  <td ></td>
+                  <td align="right"> <font color="#000000"><b><font size="2">时间从&nbsp;</font></b></font></td>
+                  <td > <input type="text" name="sdate" size="27" value="[#sdate#]"></td>
+                  <td >&nbsp;&nbsp; </td>
+                </tr> 
+                
+               <tr height="35"> 
+                  <td ></td>
+                  <td align="right"> <font color="#000000"><b><font size="2">到&nbsp;</font></b></font></td>
+                  <td > <input type="text" name="edate" size="27" value="[#edate#]"></td>
+                  <td >&nbsp;&nbsp; </td>
+                </tr> 
+                 <tr height="35"> 
+                  <td ></td>
+                  <td align="right"><font color="#000000"><b><font size="2">结果&nbsp;</font></b></td>
+                  <td ><select name="result" style="width:200">
+                  <option value="">全部</option>
+                  <option value="成功">成功</option>
+                  <option value="失败">失败</option>
+                  </select></td>
+                  <td >&nbsp;</td>
+                </tr> 
+                
+                 <tr height="35"> 
+                  <td ></td>
+                  <td align="right"><font color="#000000"><b><font size="2">事件描述&nbsp;</font></b></td>
+                  <td ><input type="text" name="descr" size="27">
+                  </td>
+                  <td >&nbsp;</td>
+                </tr> 
+                
+                
+                <tr height="35"> 
+                  
+                  <td colspan="4" align="center">&nbsp;&nbsp;<input name='Button' type='button' class='an3' onClick='queren()' value='确 认'>&nbsp;<input name='Button2' type='button' class='an3' onClick='self.close()' value='关 闭'> </td>
+                </tr> 
+               
+              </table>
+            </td>
+          </tr>          
+        </table>
+
+      </td>
+  </tr>
+</table>
+ </form>
+</body>
+</html>

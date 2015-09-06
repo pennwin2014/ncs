@@ -1,0 +1,3 @@
+{"totalCount":[#TotRec#],"eimdata": [[#SLPB#][#dh#]{"groupid": "[#groupid#]","gwid":"[#gwid#]","mac": "[#mac#]", "version": "[#version#]", "address": "[#address#]","servicecode": '[#servicecode#]',"plate":'[#plate#]',"line":'[#line#]',"mapid":'[#mapid#]',"ssid":'[#ssid#]',"longitude":'[#longitude#]',"latitude":'[#latitude#]',"flags":'[#flags#]',"corpname":"[#corpname#]","lasttime":"[#lasttime#]","servicename":"[#servicename#]","aptype":"[#aptype#]","fcode":"[#fcode#]","uptimestep":"[#uptimestep#]","fname":"[#fname#]"}[#SLPE#]
+
+]}

@@ -1,0 +1,161 @@
+<html>
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Jon Eyrick" CONTENT="no-cache">
+<title>main</title>
+<script>
+
+function caxun(){
+form1.CurPg.value='1';
+form1.FunName.value='ncsWebReplace';
+
+form1.submit();
+}
+
+function clearcon(){
+form1.vname.value='';
+form1.ntype.value='';
+form1.cname.value='';
+form1.uname.value='';
+form1.sdate.value='';
+form1.edate.value='';
+form1.stime.value='';
+form1.etime.value='';
+}
+</script>
+<link REL=stylesheet HREF="/css/runmit.css" TYPE="text/css">
+<script src="/js/calendar.js"></script>
+<style type="text/css">
+<!--
+
+.tScroll5 {
+      overflow: scroll;
+    overflow-x:hidden;
+    height:440px;
+    cursor: default;
+    }
+A:link {TEXT-DECORATION:underline;color:#990000;}
+A:visited{TEXT-DECORATION:underline;color:#990000;}
+A:hover {TEXT-DECORATION:underline;color:#999900;}
+-->
+</style>
+<link href="../css/css.css" rel="stylesheet" type="text/css">
+</head>
+<body marginheight=0 leftmargin=0 marginwidth=0 topMargin="0"  style="overflow:hidden" bgcolor="#DEE8FA">
+<form name="form1" method="post" action="/pronline/Msg">
+	 <input type="hidden" name="FunName" value="ncsNetidStat">
+   <input type="hidden" name="CurPg"      value="[#CurPg#]">
+	 <input type="hidden" name="TotPg"      value="[#TotPg#]">
+	 <input type="hidden" name="fun" value="ncsWebVidSearch">
+   <input type="hidden" name="userid" value="[#userid#]">
+   <input type="hidden" name="plate" value="ncsmsg_showinfo_new.htm">
+<table border="0" width=100%  cellspacing="0" cellpadding="0" align=center bgcolor='#ffffff'>
+	<tr>
+	   <td><table width="100%" cellspacing="0" cellpadding="0">
+         <tr height="30"> 
+         <td class="tabtitle" >虚拟身份统计信息&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+         <td background="/images/images2/chaxun2-1.gif" ><input name="exp"type="submit" class="an3" value="导 出"></td>
+         <td background="/images/images2/chaxun2-1.gif" align="right">        	
+         &nbsp;
+      </td>
+    </tr>
+  </table>
+</td>
+  </tr>
+  
+  <tr>
+      <td width="100%" align=center  valign=top bgcolor="#DEE8FA"> 
+      	
+      <div class="tScroll5" id="tC">	
+        <table id="DataTable" width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+
+          <tr class="tableHead"  height="20" style="top:expression(document.getElementById('tC').scrollTop)">
+            <td width="98" align="center" bgcolor="#6382BD" class="bord2" ><font color="#FFFFFF">类别</font></td>
+            <td width="300" bgcolor="#6382BD" align="center" class="bord2" ><font color="#FFFFFF">虚拟身份</font></td>
+            <td width="160" bgcolor="#6382BD" align="center" class="bord2" ><font color="#FFFFFF"> 数量</font></td>
+          </tr>
+          [#SLPB#]
+          <tr height="20" bgcolor="#EEf0FA"> 
+            <td  class="bord1_1"><font color="red">&nbsp;&nbsp;&nbsp;[#classname#]</font></td>
+            <td  class="bord1_1" align="center"><font color="red">&nbsp;[#ccount#]</font></td>
+            <td  class="bord1_1"><font color="red">&nbsp;[#csum#] </font></td>
+          </tr>
+          [#SLPB#]
+          <tr height="18" bgcolor="#EEf0FA"  onDblclick="goto('/pronline/MsgL?FunName@ncsWebDispClientAddForm&userid@[#userid#]')"> 
+
+            <td  class="bord1_1">&nbsp;</td>
+            <td  class="bord1_1">&nbsp;[#name#]</td>
+            <td  class="bord1_1">&nbsp;[#sum#]</td>
+          </tr>
+          [#SLPE#]
+          [#SLPE#]
+         
+      
+          <!-- [#SLPB#] -->
+          <tr height="18" id=[#snum#] bgcolor="#EEf0FA"> 
+            <td   class="bord1_1">&nbsp; </td>
+            <td   class="bord1_1">&nbsp;</td>
+            <td   class="bord1_1">&nbsp;</td>
+
+          </tr>
+          <!-- [#SLPE#] -->
+
+          
+          
+        </table>
+      </div>    
+      </td>
+  </tr>
+  
+           <tr height="138"><td valign="top" colspan="7" bgcolor="#8cb4e8">
+          	  <table border=0 cellpadding=0 cellspacing=0 width="100%">
+          	  	<tr height="18">
+          	  		 <td width="90" valign="bottom" align="center" class="bordleft">虚拟身份查询</td>
+       	           <td width="740" class="bordright">&nbsp;</td>
+       	        </tr>
+       	        <tr height="110">
+       	        	<td colspan="2"  class="bordnr">
+       	        		<table border=0 cellpadding=0 cellspacing=0 width="100%">
+          	  	     <tr height="26">
+          	  	     	<td width="90" align="center">&nbsp;虚拟帐号</td>
+          	  	     	<td width="220"><select name="name_match" style="width:60px" ><option value='0'>等于</option><option value='1'>包含</option></select><input type="text" name="vname" value="[#vname#]" size="20" ></td>
+          	  	     	<td width="90" align="center">&nbsp;帐号类别</td>
+          	  	     	<td width="220"><select name="ntype" style="width:190px" ><option value=''>不限</option>[#SLPB#]<option value="[#id#]">[#ntype#]</option>[#SLPE#]</select></td>  
+          	  	     	<td ><input name="chaxun1" type="button"  value=" 查 询 " onclick="caxun()"></td>	     	
+          	  	    </tr>
+          	  	      <tr height="26">
+          	  	     	<td width="90" align="center">&nbsp;使用单位</td>
+          	  	     	<td><input type="text" name="cname" value="[#cname#]" size="28"></td> 
+          	  	     	<td width="90" align="center">&nbsp;使用人</td>
+          	  	     	<td ><input type="text" name="uname" value="[#uname#]" size="26"></td>
+          	  	     	<td >&nbsp;</td> 	  	     	
+          	  	    </tr>
+          	  	      <tr height="26">
+          	  	     	<td width="90" align="center">&nbsp;最近使用时间从</td>
+          	  	     	<td><input type="text" name="sdate" value="[#sdate#]" size="18" onclick="fPopCalendar(sdate,sdate,'Up');return false">&nbsp;<select name="stime" style="width:70px" ><option value=""></option><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option></select></td> 
+          	  	     	<td width="90" align="center">&nbsp;到</td>
+          	  	     	<td width="220"><input type="text" name="edate" value="[#edate#]" size="18" onclick="fPopCalendar(edate,edate,'Up');return false">&nbsp;<select name="etime" style="width:50px" ><option value=""></option><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option></select></td> 
+          	  	     	<td ><input name="search" type="button"  value="清除条件" onclick="clearcon()"></td> 	  	     	
+          	  	    </tr>
+          	  	   </table>
+       	        	</td>
+       	        </tr>
+          	  </table>
+          	  </td>
+          </tr> 
+  
+  
+  
+</table>
+ </form>
+<script>form1.stime.value='[#stime#]';
+	      form1.etime.value='[#etime#]';
+	      form1.ntype.value='[#ntype#]';
+</script>
+</body>
+
+</html>

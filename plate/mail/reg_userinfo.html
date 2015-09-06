@@ -1,0 +1,288 @@
+<!-- saved from url=(0022)http://internet.e-mail -->
+<html>
+<head>
+<title>填写个人资料</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<style type="text/css">
+<!--
+.unnamed1 {  font-size: 9pt}
+-->
+</style>
+</head>
+
+<body bgcolor="#F0FDE6">
+<script language="JavaScript">
+
+function str_isEmpty(s)
+{
+    if (s == null || s.length == 0) return true;
+    return false;
+}
+
+function str_isWhitespace(s)
+{   var i,c;
+ 
+    // Is s empty?
+    if (str_isEmpty(s)) return true;
+ 
+    // Search through string's characters one by one
+    // until we find a non-whitespace character.
+    // When we do, return false; if we don't, return true.
+ 
+    for (i = 0; i < s.length; i++)
+    {
+       // Check that current character isn't whitespace.
+       c = s.charAt(i);
+       if(!(c == ' ' || c == '\n' || c == '\r' || c == '\t'))
+	   return false;
+    }
+    
+    // All characters are whitespace.
+    return true;
+}
+
+
+
+function check()
+{
+	if (str_isWhitespace(document.frmlogin.truename.value))
+    {
+    	alert("请填写你的姓名!");
+    	return false;
+    }
+    if ((document.frmlogin.password1.value.length >18) || (document.frmlogin.password1.value.length < 6))
+    {
+    	alert("密码不能少于6位或多于18位!");
+    	return false;
+    }
+	if (document.frmlogin.password2.value != document.frmlogin.password1.value)
+    {
+    	alert("请正确重复你的密码!");
+    	return false;
+    }
+	if (str_isWhitespace(document.frmlogin.question.value))
+    {
+    	alert("请填写你的密码提示!");
+    	return false;
+    }
+    if (str_isWhitespace(document.frmlogin.answer.value))
+    {
+ 	    alert("请填写你的密码答案!");
+    	return false;
+    }
+
+	if (str_isWhitespace(document.frmlogin.usersfid.value))
+    {
+    	alert("请填写你的身份证号!");
+    	return false;
+    }
+
+	if (str_isWhitespace(document.frmlogin.provice.value))
+    {
+	    alert("请填写你的城市!");
+	    return false;
+    }
+}
+
+</script>
+<font color=red  size=5><b><font size="+1" color="#339933" class="unnamed1">第三步：填写用户信息</font></b></font> 
+<hr noshade align="left" width="100%" color="99cc99">
+[#username#] 
+<form action="/pronline/Msg" method="POST" name=frmlogin onsumbit="return check()">
+  <input name=nFunCode type=hidden value="16803">
+  <input type="hidden" name="sid" value=[#sid#]>
+  <table width="100%" border="0">
+    <tr align="center"> 
+      <td height="12"> 
+        <div align="left"><font color="#FF3333" class="unnamed1">请注意：带有 ** 号的栏目是必须填写的，其他的栏目可以不填</font> 
+        </div>
+      </td>
+    </tr>
+  </table>
+  <table border="0" width="100%" cellpadding="0" bordercolordark="#FFFFFF">
+    <tr> 
+      <td valign="middle" align="right"     
+width="35%" bgcolor="#E2EEDB" class="unnamed1" height="25">您的登录名:</td>
+      <td bgcolor="#E2EEDB" class="unnamed1" height="25"> &nbsp; [#username#]@ynmail.com</td>
+    </tr>
+    <tr> 
+      <td valign="middle" align="right" width="35%" bgcolor="#E2EEDB" class="unnamed1" height="25">您的姓名:</td>
+      <td bgcolor="#E2EEDB" class="unnamed1" height="25"> 
+        <input type="text" name="truename" size="30" value="" >
+        ** </td>
+    </tr>
+    <tr> 
+      <td valign="middle" align="right" width="35%" bgcolor="#E2EEDB" class="unnamed1" height="25">性别:</td>
+      <td bgcolor="#E2EEDB" class="unnamed1" height="25"> 
+        <input type="radio" name="sex" value="0">
+        男 
+        <input type="radio" name="sex" value="1">
+        女 </td>
+    </tr>
+    <tr> 
+      <td valign="middle" align="right" width="35%" bgcolor="#E2EEDB" class="unnamed1" height="25">密码:</td>
+      <td bgcolor="#E2EEDB" class="unnamed1" height="25"> 
+        <input type="password" name="password" size="30" value="">
+        ** </td>
+    </tr>
+    <tr> 
+      <td valign="middle" align="right" width="35%" bgcolor="#E2EEDB" class="unnamed1" height="25">确定密码:</td>
+      <td bgcolor="#E2EEDB" class="unnamed1" height="25"> 
+        <input type="password" name="password2">
+      </td>
+    </tr>
+    <tr> 
+      <td valign="middle" align="right" width="35%" bgcolor="#E2EEDB" class="unnamed1" height="25">密码提示问题:</td>
+      <td bgcolor="#E2EEDB" class="unnamed1" height="25"> 
+        <input type="text" name="question" size="30" value="" >
+        ** <span class="chinese"><font color="#CC3366" class="lemon3">例如：你的名字是？</font></span></td>
+    </tr>
+    <tr> 
+      <td valign="middle" align="right" width="35%" bgcolor="#E2EEDB" class="unnamed1" height="25">密码提示问题答案:</td>
+      <td bgcolor="#E2EEDB" class="unnamed1" height="25"> 
+        <input type="text" name="answer" size="30" value="" >
+        ** <font color="#CC3366"><span class="chinese"><span class="lemon3">例如：lemon</span></span></font></td>
+    </tr>
+    <!--<tr>    
+      <td valign="middle" align="left" width="35%" bgcolor="#D1D573"><font color="#000000" class="lemon1">你的联系E-mail：</font></td>   
+      <td colspan="2" bgcolor="#EEEDDB" class="lemon1">    
+        <input type="text" name="email" size="30">   
+      </td>   
+    </tr>--> 
+    <tr> 
+      <td valign="middle" align="right" bgcolor="#E2EEDB" class="unnamed1" height="25">您的生日:</td>
+      <td bgcolor="#E2EEDB" class="unnamed1" height="25"> 
+        <input type="text" name="year" size="4" maxlength="4" value="" >
+        <span class="lemon1">年</span> 
+        <input type="text" name="month" size="2" maxlength="2" value="" >
+        <span class="lemon1">月</span> 
+        <input type="text" name="day" size="2" maxlength="2" value="" >
+        <span class="lemon1">日</span> ** </td>
+    </tr>
+    <tr> 
+      <td valign="middle" align="right" bgcolor="#E2EEDB" class="unnamed1" height="25">身份证号码:</td>
+      <td bgcolor="#E2EEDB" class="unnamed1" height="25"> 
+        <input type="text" name="certnum">
+      </td>
+    </tr>
+    <tr> 
+      <td valign="middle" align="right" bgcolor="#E2EEDB" class="unnamed1" height="25">所获得的最高学历:</td>
+      <td bgcolor="#E2EEDB" class="unnamed1" height="25"> 
+        <select name="education" size="1">
+          <option value="6" selected>请选择: </option>
+          <option value="0">小学 </option>
+          <option value="1">初中 </option>
+          <option value="2">高中</option>
+          <option value="3">大学</option>
+          <option value="4">硕士</option>
+          <option value="5">博士</option>
+        </select>
+      </td>
+    </tr>
+    <tr> 
+      <td valign="middle" align="right" bgcolor="#E2EEDB" class="unnamed1" height="25">婚姻状况:</td>
+      <td bgcolor="#E2EEDB" class="unnamed1" height="25"> 
+        <select name="marital" size="1">
+          <option value="2">请选择: </option>
+          <option value="1">未婚 </option>
+          <option value="0">已婚 </option>
+        </select>
+      </td>
+    </tr>
+    <tr> 
+      <td valign="middle" align="right" bgcolor="#E2EEDB" class="unnamed1" height="25">工作状况:</td>
+      <td bgcolor="#E2EEDB" class="unnamed1" height="25"> 
+        <select name="jobtype" size="1">
+          <option value="7">请选择: </option>
+          <option value="4">学生 </option>
+          <option value="0">全职 </option>
+          <option value="1">兼职 </option>
+          <option value="2">老板 </option>
+          <option value="3">家庭主妇 </option>
+          <option value="5">退休 </option>
+          <option value="6">失业中 </option>
+        </select>
+        ** </td>
+    </tr>
+    <tr> 
+      <td valign="middle" align="right" width="35%" bgcolor="#E2EEDB" class="unnamed1" height="25">你的职业:</td>
+      <td bgcolor="#E2EEDB" class="unnamed1" height="25"> 
+        <select name="occupation" size="1">
+          <option value="10" selected>请选择： </option>
+          <option value="1">计算机业 </option>
+          <option value="0">金融业 </option>
+          <option value="2">商业 </option>
+          <option value="3">服务行业 </option>
+          <option value="4">教育业 </option>
+          <option value="5">工程师 </option>
+          <option value="6">主管，经理 </option>
+          <option value="7">政府部门 </option>
+          <option value="8">制造业 </option>
+          <option value="9">销售/广告/市场 </option>
+        </select>
+        ** </td>
+    </tr>
+    <!--<tr>    
+      <td valign="middle" align="left" width="35%" bgcolor="#D1D573" class="lemon1">请输入你的公司名:</td>   
+      <td colspan="2" bgcolor="#EEEDDB" class="lemon1">    
+        <input type="text" size="30" name="companyname" value="">   
+      </td>   
+    </tr>--> 
+    <tr> 
+      <td width="35%" bgcolor="#E2EEDB" height="25" class="unnamed1"> 
+        <div align="right">请选择你所在的省份:</div>
+      </td>
+      <td width="65%" bgcolor="#E2EEDB" height="25" class="unnamed1"> 
+        <select name=province size=1>
+          <option value="40" selected>请选择你所在的省份:</option>
+          <option value="12">黑龙江</option>
+          <option value="22">吉林</option>
+          <option value="13">辽宁</option>
+          <option value="23">内蒙古 </option>
+          <option value="2">北京</option>
+          <option value="14">上海</option>
+          <option value="5">天津</option>
+          <option value="28">重庆</option>
+          <option value="9">河北</option>
+          <option value="10">山东</option>
+          <option value="27">江苏</option>
+          <option value="8">河南</option>
+          <option value="25">安徽</option>
+          <option value="29">浙江</option>
+          <option value="30">江西</option>
+          <option value="4">福建</option>
+          <option value="6">湖南</option>
+          <option value="7">湖北</option>
+          <option value="0">广东</option>
+          <option value="1">广西</option>
+          <option value="21">云南</option>
+          <option value="3">海南岛</option>
+          <option value="26">贵州</option>
+          <option value="20">四川</option>
+          <option value="15">甘肃</option>
+          <option value="19">宁夏</option>
+          <option value="24">陕西</option>
+          <option value="11">山西</option>
+          <option value="16">青海</option>
+          <option value="17">新疆</option>
+          <option value="18">西藏</option>
+          <option value="33">香港</option>
+          <option value="34">澳门</option>
+          <option value="31">其他</option>
+        </select>
+      </td>
+    </tr>
+  </table>
+  <table align="center" width="312">
+    <tr>    
+      <td valign="middle" align="center"> 
+        <input type="image" border="0" name="imageField" src="../mailImages/bt1.GIF" width="52" height="24">
+      </td>   
+      <td colspan="2" align="center"> <a href="/" target="_self"> </a> <a href="../../statichtml/login_index.html"><img src="../mailImages/bt11.GIF" width="52" height="24" border="0"></a> 
+      </td>   
+    </tr>   
+  </table>   
+      
+  
+</form>   
+

@@ -1,0 +1,154 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<body bgcolor="#CCCCCC" text="#000000">
+<form name="form1" method="post" action="/pronline/Msg">
+  <table width="98%" border="1">
+    <tr> 
+      <td colspan="6"> 
+        <div align="center">访问控制测试 
+          <input type="hidden" name="FunName" value="ncWebLim_TestLimit">
+        </div>
+      </td>
+    </tr>
+    <tr> 
+      <td width="12%">&nbsp;</td>
+      <td width="25%">&nbsp; </td>
+      <td width="15%">&nbsp;</td>
+      <td width="22%">&nbsp;</td>
+      <td width="12%">&nbsp;</td>
+      <td width="14%">&nbsp;</td>
+    </tr>
+    <tr> 
+      <td width="12%">Username</td>
+      <td width="25%"> [#username#]</td>
+      <td width="15%">协议</td>
+      <td width="22%"> 
+        <select name="prot">
+          <option value="6" selected>TCP</option>
+          <option value="17">UDP</option>
+        </select>
+      </td>
+      <td colspan="2"> 
+        <input type="checkbox" name="debug" value="1" checked>
+        显示调试信息 </td>
+    </tr>
+    <tr> 
+      <td width="12%">Dip</td>
+      <td width="25%"> 
+        <input type="text" name="dip" maxlength="16" size="16" value="[#dip#]">
+      </td>
+      <td width="15%">Dport</td>
+      <td width="22%"> 
+        <input type="text" name="dport" maxlength="16" size="16" value="[#dport#]">
+      </td>
+      <td width="12%">&nbsp; </td>
+      <td width="14%">&nbsp;</td>
+    </tr>
+    <tr> 
+      <td width="12%">Url</td>
+      <td width="25%"> 
+        <input type="text" name="url" maxlength="63" size="31" value="[#url#]">
+      </td>
+      <td width="15%">访问时间</td>
+      <td width="22%"> 
+        <input type="text" name="sdate" maxlength="31" size="31" value="[#sdate#]">
+      </td>
+      <td width="12%">&nbsp; </td>
+      <td width="14%">&nbsp;</td>
+    </tr>
+    <tr> 
+      <td width="12%">循环次数</td>
+      <td width="25%"> 
+        <input type="text" name="times" maxlength="16" size="16" value="[#times#]">
+      </td>
+      <td width="15%">&nbsp; </td>
+      <td width="22%">&nbsp;</td>
+      <td width="12%">&nbsp;</td>
+      <td width="14%">&nbsp;</td>
+    </tr>
+    <tr> 
+      <td colspan="6" height="27"> 
+        <div align="center"> 
+          <input name="testip" type="submit" class="an3" value="测试TCP">
+          <input name="testhttp" type="submit" class="an3" value="测试HTTP">
+          <input name="loadall" type="submit" class="an3-1" value="装载访问规则">
+        </div>
+      </td>
+    </tr>
+    <tr> 
+      <td width="12%">起止时间</td>
+      <td width="25%">[#begin#]--[#end#] </td>
+      <td width="15%"> 
+        <div align="right">使用时间</div>
+      </td>
+      <td width="22%">[#rtime#]秒</td>
+      <td width="12%">处理速度</td>
+      <td width="14%">[#rrate#]次/秒</td>
+    </tr>
+    <tr> 
+      <td width="12%" height="19">访问结果</td>
+      <td width="25%" height="19">[#return#] </td>
+      <td width="15%" height="19">作用时间</td>
+      <td width="22%" height="19">[#stop#]</td>
+      <td width="12%" height="19">&nbsp;</td>
+      <td width="14%" height="19">&nbsp;</td>
+    </tr>
+    <tr> 
+      <td width="12%">&nbsp;</td>
+      <td width="25%">&nbsp;</td>
+      <td width="15%">&nbsp;</td>
+      <td width="22%">&nbsp;</td>
+      <td width="12%">&nbsp;</td>
+      <td width="14%">&nbsp;</td>
+    </tr>
+    <tr> 
+      <td width="12%">模拟数据</td>
+      <td width="25%">&nbsp; </td>
+      <td width="15%">&nbsp;</td>
+      <td width="22%">&nbsp;</td>
+      <td width="12%">&nbsp;</td>
+      <td width="14%">&nbsp;</td>
+    </tr>
+    <tr> 
+      <td width="12%">外部起始IP</td>
+      <td width="25%"> 
+        <input type="text" name="textfield56" maxlength="16" size="16">
+      </td>
+      <td width="15%">外部终止IP地址</td>
+      <td width="22%"> 
+        <input type="text" name="textfield57" maxlength="16" size="16">
+      </td>
+      <td width="12%">URL</td>
+      <td width="14%"> 
+        <input type="text" name="textfield58" maxlength="16" size="16">
+      </td>
+    </tr>
+    <tr> 
+      <td width="12%">&nbsp;</td>
+      <td width="25%">装载用户信息</td>
+      <td width="15%">测试IP地址</td>
+      <td width="22%">测试HTTP访问</td>
+      <td width="12%">&nbsp;</td>
+      <td width="14%">&nbsp;</td>
+    </tr>
+    <tr> 
+      <td width="12%">&nbsp;</td>
+      <td width="25%"> 
+        <input name="loaduser" type="submit" class="an3" value="用户装载">
+      </td>
+      <td width="15%">&nbsp;</td>
+      <td width="22%"> 
+        <input name="Submit" type="submit" class="an3" value="开始测试">
+      </td>
+      <td width="12%">&nbsp;</td>
+      <td width="14%">&nbsp;</td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!-- saved from url=(0022)http://internet.e-mail -->
+<html>
+<head>
+<title>邮件</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META content=no-cache http-equiv=Pragma>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+<style type="text/css">
+<!--
+.cccv {  border-style: inset; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px}
+.xan3 {  width: 100px; font-size: 12px; font-weight: normal; font-family: "宋体"}
+.anjujue {  background-image: url(/images/anjj.gif); width: 60px; background-repeat: no-repeat; height: 30px}
+.anfasong {  background-image: url(/images/ansend.gif); width: 60px; background-repeat: no-repeat; height: 30px}
+
+-->
+</style>
+<script language="JavaScript">
+<!--
+function ccc() {
+  window.returnValue="0"
+}
+
+
+function ggc(){
+window.returnValue="0"
+self.close()
+}
+function ggd(){
+window.returnValue="1"
+self.close()
+}
+function ggf(){
+document.all.ccll.innerHTML="到 &nbsp;<input type='text' id='zhuanfa' name='zhuanfa' value='' size=18 > <input type='button' name='Button' value='确 定' onclick='hh()'>"
+}
+//-->
+</script>
+</head>
+
+<body bgcolor="#ffffff" text="#000000">
+<form name="form1" method="post" action="/pronline/Msg">
+<table width="94%" border="0" align="center" height="36" cellspacing="0">
+  <tr> 
+    <td width="41%"> 
+      <div align="right">
+        <input name="FunName" type="hidden" value="ncsUtlMailReadSelf">
+        <input name="userid" type="hidden" value="[#userid#]">
+		<input name="msgfile" type="hidden" value="[#msgfile#]">
+		<input name="plate" type="hidden" value="[#plate#]">
+		<input name="mailtype" type="hidden" value="[#mailtype#]">
+		<input name="lId" type="hidden" value="[#lId#]">
+		
+		<!--
+        编码:[#ccode#]
+          <input name="cvtcode" type="submit" id="cvtcode" value="确认">
+    -->
+          <input type="button" name="close"     value="关闭"  onClick="ggc()">
+      </div>
+    </td>
+    <td width="59%">&nbsp; 
+      <div id="ccll"> </div>
+    </td>
+  </tr>
+</table>
+<table width="94%" border="0" cellspacing="0" align="center" height="10%">
+  <tr> 
+    <td width="109" height="26">发件人</td>
+    <td colspan="3" height="26"> 
+      <input type="text" name="textfield" value="[#from#]" size="50" disabled>
+    </td>
+  </tr>
+  <tr> 
+    <td width="109" height="32">收件人</td>
+    <td height="32" colspan="3"> 
+      <input type="text" name="textfield3" value="[#to#]" size="50" disabled>
+    </td>
+  </tr>
+  <tr> 
+    <td width="109" height="32">日期</td>
+    <td height="32" colspan="3"> 
+      <input type="text" name="textfield2" value="[#date#]" size="50" disabled>
+    </td>
+  </tr>
+  <tr> 
+    <td width="109" height="32">抄送</td>
+    <td height="32" colspan="3"> 
+      <input type="text" name="textfield4" value="[#cc#]" size="50" disabled>
+    </td>
+  </tr>
+  <tr> 
+    <td width="109" height="33">主题</td>
+    <td colspan="3" height="33"> 
+      <input type="text" name="sub" value="[#sub#] " size="50" disabled>
+    </td>
+  </tr>
+   
+</table>
+</form>
+<div style="height:400px;overflow: scroll;">
+<table width="94%" border="0" align="center">
+  <tr>
+    <td height="346"  valign="top">
+    	[#content#]
+    	</td>
+  </tr>
+</table>
+</div>
+</body>
+</html>

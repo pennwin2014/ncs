@@ -1,0 +1,62 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/css.css" type="text/css">
+</head>
+
+<body bgcolor="#cccccc" text="#000000" topmargin="0" leftmargin="12" >
+<table width="100%" border="0" bgcolor="#AFAFC0" cellspacing="0" cellpadding="4">
+  <tr bordercolor="#CCCCCC" > 
+    <td height="30" colspan="7" class="bord4"> 
+      <div align="right"> 
+        <table width="100%" border="0">
+          <tr> 
+            <td width="76%">&nbsp;</td>
+            <td width="24%"> 
+              <div align="right"><b><a href="/pronline/Msg?FunName@ncWebSetupInternet_form&plate@ncsetup_t_form.htm&userid@[#userid#]&flags@3" target="formFrame">新增</a></b></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+  <tr bgcolor="#8C8CA6"> 
+    <td width="5%" class="bord1"> 
+      <div align="center"></div>
+    </td>
+    <td width="7%" class="bord1"> 
+      <p align="center"><font color="#FFFFFF">序列号</font></p>
+    </td>
+    <td width="8%" class="bord1"><font color="#FFFFFF">操作</font></td>
+    <td width="5%" class="bord1"> 
+      <div align="center"><font color="#FFFFFF">频度</font></div>
+    </td>
+    <td width="20%" class="bord1"> 
+      <div align="center"><font color="#FFFFFF">起止时间</font></div>
+    </td>
+    <td width="33%" bgcolor="#8C8CA6" class="bord1"><font color="#FFFFFF">起止IP地址</font></td>
+    <td width="22%" class="bord1"><font color="#FFFFFF">起止TCP端口</font></td>
+  </tr>
+  <!-- [#SLPB#] -->
+  <tr> 
+    <td width="5%" height="27" class="bord1"> 
+      <div align="center"></div>
+    </td>
+    <td width="7%" height="27" class="bord1"> 
+      <div align="center">[#id#]</div>
+    </td>
+    <td width="8%" height="27" class="bord1">[#flags#]</td>
+    <td width="5%" height="27" class="bord1"> 
+      <div align="center">每天</div>
+    </td>
+    <td width="20%" height="27" class="bord1"> 
+      <div align="center">[#starttime#]-[#stoptime#]</div>
+    </td>
+    <td width="33%" height="27" class="bord1">[#lowerip#]--[#upperip#]</td>
+    <td width="22%" height="27" class="bord1">[#lowerport#]--[#upperport#]</td>
+  </tr>
+  <!-- [#SLPE#] -->
+</table>
+</body>
+</html>

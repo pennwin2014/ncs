@@ -1,0 +1,523 @@
+<html>
+<head>
+<title>归档日志</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<style>
+#page{font:13px simsun;white-space:nowrap}#page a,#page strong{display:inline-block;vertical-align:text-bottom;text-align:center;text-decoration:none;overflow:hidden;margin-right:5px;background:#dee8fa}#page a{cursor:pointer}#page a:hover{background:0}#page .n:hover,#page a:hover .pc{background:#ebebeb}#page .n{height:22px;padding:0 1px;border:1px solid #e7ecf0}#page span{display:block}#page .pc{width:16px;height:22px;border:1px solid #e7ecf0;cursor:pointer}#page .fk{width:20px;height:22px;cursor:pointer}#page strong .fk,#page strong .pc{cursor:auto}#page strong .pc{border:0;width:24px;height:23px;line-height:24px}#page .nums{display:inline-block;vertical-align:text-bottom}
+	
+.conts{visibility:hidden}
+.tab{
+width:90;
+text-align: center;
+background-image:url("/images/images2/biaoqian2.gif");background-repeat:no-repeat;
+color:#0067c6;
+font-weight:bold;
+cursor:hand;
+}
+.selTab{
+width:90;
+text-align: center;
+ background-image: url("/images/images2/biaoqian.gif"); background-repeat:no-repeat; 
+color:#00224f;
+font-weight:bold;
+cursor:hand;
+}
+.tab1{
+	border-top:thin none #FFFFFF;
+	border-right:thin solid gray;
+	border-left:thin none #FFFFFF;
+	font-family:Verdana;
+	font-size:10pt;
+	text-align:center;
+	font-weight:normal;
+	border-bottom-width: thin;
+	border-bottom-style: none;
+	border-bottom-color: gray;
+}
+
+</style>
+<script language="javascript">
+var ll=0;
+var yy=1;
+
+</script>
+<script LANGUAGE="JavaScript">
+//this is the tab switching function
+
+function gotoPage(nun)
+{
+
+	if(nun<1){
+	 form1.CurPg.value=1;
+	 return;
+	}
+//	if(nun>form1.TotPg.value){
+//		form1.CurPg.value=form1.TotPg.value;
+//		return;
+//	}
+	frames.main_t.form1.CurPg.value=nun;
+	frames.main_t.form1.submit();
+}
+
+function expdc()
+{
+  frames.main_t.form1.export1.value='export';
+	frames.main_t.form1.CurPg.value=1;
+frames.main_t.form1.FunName.value=form1.FunName.value;
+	frames.main_t.form1.submit();
+	frames.main_t.form1.export1.value='';
+}
+
+function goto(t){
+self.location.href=t
+}
+
+function goto1(t){
+ showModalDialog(t, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:550px;scroll:no;dialogHeight:420px');
+}
+function clear1(){
+	form1.where.value='';
+	form1.caWhere.value='';
+//	form1.groupid.value='';
+	form1.service.value='';
+	form1.prot.value='';
+	form1.sip.value='';
+	form1.dip.value='';
+	form1.dport.value='';
+	form1.mac.value='';
+	form1.ddd.value='';
+	form1.bef.value='';
+	form1.unit.value='';
+	form1.sdate.value='';
+	form1.edate.value='';
+	form1.stime.value='';
+	form1.etime.value='';
+	form1.byt_rflag.value='';
+	form1.byt.value='';
+	form1.byt_in.value='';
+	form1.dtype.value='';
+	form1.asize.value='';
+	form1.msize.value='';
+	form1.sdate1.value='';
+	form1.edate1.value='';
+	form1.mtype.value='';
+	form1.username.value='';
+	form1.from.value='';
+	form1.to.value='';
+	form1.sub.value='';
+	form1.mesg.value='';
+	form1.idfyno.value='';
+	form1.tjfun.value='';
+  form1.attfile.value='';
+  form1.content.value='';
+  form1.lcount.value='';
+  form1.urlid.value='';
+  form1.webtitle.value='';
+  form1.username_match.value='';
+  form1.idfyno_match.value='';
+}
+function goto2(t){
+	var temp_t;
+	temp_t=t+"&groupid@"+form1.groupid.value;
+ tt=showModalDialog(temp_t, window, 'status:no;center:yes;help:no;minimize:no;maximize:yew;border:thick;statusbar:no;dialogWidth:520px;scroll:yes;dialogHeight:520px');
+}
+
+var cno;
+var currentTab;
+var tabBase;
+var firstFlag = true;
+
+function changeTabs(){
+if(firstFlag == true){
+currentTab = t0;
+tabBase = t0base;
+cno=currentTab.id.substring(1);
+firstFlag = false;
+}
+
+if(window.event.srcElement.className == "tab4"||window.event.srcElement.className == "tab5"||window.event.srcElement.className == "tab7"||window.event.srcElement.className == "tab8"||window.event.srcElement.className == "tab9"){
+	var cno2=parseInt(cno)+1;
+	if(cno==0)
+		currentTab.className = "tab7";
+	else if(cno==9)
+		currentTab.className="tab8";
+	else
+		currentTab.className="tab5";
+
+  if(cno2<9)
+  	eval('document.all.t'+cno2).className="tab5";
+  else if(cno2==9)
+  	eval('document.all.t'+cno2).className="tab8";
+  	
+	currentTab = window.event.srcElement;
+	cno=currentTab.id.substring(1);
+	var cno1=parseInt(cno)+1;
+	if(cno==9){
+		currentTab.className = "tab6";
+	}
+  else if(cno==8){
+   currentTab.className="tab3";	 
+	 eval('document.all.t'+cno1).className="tab9";
+  }
+  else{
+	 currentTab.className="tab3";	 
+	 eval('document.all.t'+cno1).className="tab4";
+	}
+	 
+		
+	
+	
+tabContentID = currentTab.id + "Contents";
+tabContent = document.all(tabContentID);
+
+var temp_desc;
+
+	if(tabContent.id=="t0Contents"){	
+//		temp_desc='&nbsp;<input name="hsear" type="button" class="an3"  onclick=goto2("/pronline/Msg?FunName@ncWebDispNetSearch") value="查 询">';		
+temp_desc='';				
+		temp_desc=temp_desc+'&nbsp;<input name="exp" type="button" class="an3" id="exp" onclick="expdc()" value="导 出" >';
+
+	  document.all.wlj3.innerHTML=temp_desc;
+	   
+	  document.all.wlj.innerHTML='<b style="font-size: 10pt;color:#00237e;">用户上网日志</b>';
+	  form1.opmsg.value='1072';
+		form1.FunName.value='ncsUserlogSearch_ib';
+    clear1();
+		form1.CurPg.value='1';
+		form1.submit();
+	}
+	else if(tabContent.id=="t1Contents"){
+//		temp_desc='&nbsp;<input name="hsear" type="button" class="an3"  onclick=goto1("/pronline/Msg?FunName@ncWebIpDispSform") value="查 询">';
+//		temp_desc=temp_desc+'&nbsp;<input name="hsear" type="submit" class="an3"   value="刷 新">';	
+temp_desc='';			
+		temp_desc=temp_desc+'&nbsp;<input name="export2" type="button" class="an3" onclick="expdc()"  value="导 出" >';
+	  document.all.wlj3.innerHTML=temp_desc;
+	   
+	  document.all.wlj.innerHTML='<b style="font-size: 10pt;color:#00237e;">IP连接日志</b>';
+	  form1.opmsg.value='1073';
+	//   clear1();
+
+		form1.FunName.value='ncsIpSearch_ib';
+		form1.CurPg.value='1';
+		form1.submit();
+//			alert('fff');
+	}
+	else if(tabContent.id=="t2Contents"){
+//		temp_desc='&nbsp;<input name="hsear" type="button" class="an3"  onclick=goto1("/pronline/Msg?FunName@ncWebHttpDispSform") value="查 询">';
+//		temp_desc=temp_desc+'&nbsp;<input name="hsear" type="submit" class="an3"   value="刷 新">';	
+temp_desc='';			
+		temp_desc=temp_desc+'&nbsp;<input name="export" type="button" class="an3" onclick="expdc()" id="export"  value="导 出" >';
+	  document.all.wlj3.innerHTML=temp_desc;
+	   
+	  document.all.wlj.innerHTML='<b style="font-size: 10pt;color:#00237e;">网站访问日志</b>';
+	  form1.opmsg.value='1074';
+	  clear1();
+		form1.FunName.value='ncsHttpSearch_ib';
+		form1.CurPg.value='1';
+		form1.submit();
+	}
+	else if(tabContent.id=="t3Contents"){
+		temp_desc='';
+//		temp_desc='&nbsp;<input name="hsear" type="button" class="an3"  onclick=goto1("/pronline/Msg?FunName@ncWebHttpDispSform&caflag@1") value="查 询">';	
+		temp_desc=temp_desc+'&nbsp;<input name="exp" type="button" class="an3" onclick="expdc()" id="exp"  value="导 出" >';
+	  document.all.wlj3.innerHTML=temp_desc;
+	   
+	  document.all.wlj.innerHTML='<b style="font-size: 10pt;color:#00237e;">外发表单日志</b>';
+	  form1.opmsg.value='1075';
+	  clear1();
+		form1.FunName.value='ncsFormonSearch_ib';
+		form1.CurPg.value='1';
+		form1.submit();
+	}
+	else if(tabContent.id=="t4Contents"){
+		temp_desc='';
+//		temp_desc='&nbsp;<input name="hsear" type="button" class="an3"  onclick=goto1("/pronline/Msg?FunName@ncWebHttpDispSform&caflag@1") value="查 询">';	
+		temp_desc=temp_desc+'&nbsp;<input name="exp" type="submit" class="an3" id="exp"  value="导 出" onclick="export()" >';
+	  document.all.wlj3.innerHTML=temp_desc;
+	   
+	  document.all.wlj.innerHTML='<b style="font-size: 10pt;color:#00237e;">BBS表单</b>';
+	  form1.opmsg.value='1075';
+	  clear1();
+		form1.FunName.value='ncWebBBSform';
+		form1.CurPg.value='1';
+		form1.submit();
+	}
+	
+	
+	else if(tabContent.id=="t5Contents"){
+		temp_desc='编码:<select name="ccode"  onChange="cvtcode()"><option value="0" selected>简体</option><option value="1">繁体</option><option value="2">UTF8</option><option value="3">日文</option></select>&nbsp;';		
+		temp_desc=temp_desc+'&nbsp;<input name="exp1" type="submit" class="an3" id="exp1"  value="导出列表" > <input name="exp" type="button" class="an3"  onClick="mexp()"    value="导出内容">';
+
+	  document.all.wlj3.innerHTML=temp_desc;   
+	  document.all.wlj.innerHTML='<b style="font-size: 10pt;color:#00237e;">邮件日志&nbsp;&nbsp;&nbsp;&nbsp;</b>';
+	  form1.opmsg.value='1076';
+	  clear1();
+		form1.FunName.value='ncsMailSearch_ib';
+		form1.flags.value='';
+		form1.CurPg.value='1';
+		form1.submit();
+	}
+	else if(tabContent.id=="t6Contents"){
+		temp_desc='';
+//		temp_desc='&nbsp;<input name="hsear" type="button" class="an3"  onclick=goto1("/pronline/Msg?FunName@ncWebImDispSform") value="查 询">';		
+		temp_desc=temp_desc+'&nbsp;<input name="exp" type="submit" class="an3" id="exp"  value="导 出" >';
+		temp_desc=temp_desc+'&nbsp;<input name="LP" type="button" class="an3" id="lp"  value="打印" onclick="frames.main_t.mprint()">';
+	  document.all.wlj3.innerHTML=temp_desc;
+	   
+	  document.all.wlj.innerHTML='<b style="font-size: 10pt;color:#00237e;">聊天记录</b>';
+	  form1.opmsg.value='1077';
+		form1.FunName.value='ncsImSearch_ib';
+		
+	  clear1();
+		form1.CurPg.value='1';
+		form1.submit();
+	}
+	else if(tabContent.id=="t7Contents"){
+		temp_desc='';
+//		temp_desc='&nbsp;<input name="hsear" type="button" class="an3"  onclick=goto2("/pronline/Msg?FunName@ncWebDispNetSesSearch") value="查询">';		
+		temp_desc=temp_desc+'&nbsp;<input name="exp" type="button" class="an3" id="exp"  value="导 出" >';
+
+	  document.all.wlj3.innerHTML=temp_desc;
+	   
+	  document.all.wlj.innerHTML='<b style="font-size: 10pt;color:#00237e;">搜索日志</b>';
+	  form1.opmsg.value='1078';
+		form1.FunName.value='ncsSearchLog_ib';
+		clear1();
+		form1.CurPg.value='1';
+		
+		form1.submit();
+	}
+	else if(tabContent.id=="t8Contents"){
+		temp_desc='';
+//		temp_desc='&nbsp;<input name="hsear" type="button" class="an3"  onclick=goto1("/pronline/Msg?FunName@ncWebErrDispSform") value="查询">';	
+		temp_desc=temp_desc+'&nbsp;<input name="exp" type="submit" class="an3" id="exp"  value="导 出" >';
+
+	  document.all.wlj3.innerHTML=temp_desc;
+	   
+	  document.all.wlj.innerHTML='<b style="font-size: 10pt;color:#00237e;">上网阻断日志</b>';
+	  form1.opmsg.value='1079';
+		form1.FunName.value='ncWebErrNewLog';
+		form1.plate.value='nc/nc_error_listnow.htm';
+    clear1();
+		form1.CurPg.value='1';
+		form1.submit();
+	}
+	else if(tabContent.id=="t9Contents"){
+		temp_desc='';
+
+//		temp_desc='&nbsp;<input name="hsear" type="button" class="an3"  onclick=goto1("/pronline/Msg?FunName@ncWebWarnDispSform&flag@1") value="查询">';		
+		temp_desc=temp_desc+'&nbsp;<input name="exp" type="submit" class="an3" id="exp"  value="导 出" >';
+
+	  document.all.wlj3.innerHTML=temp_desc;
+
+	  document.all.wlj.innerHTML='<b style="font-size: 10pt;color:#00237e;">上网告警日志</b>';
+	  form1.opmsg.value='1080';
+		form1.FunName.value='ncWebWarnLog';
+    clear1();
+		form1.CurPg.value='1';
+		form1.submit();
+	}
+}
+}
+function mexp()
+{
+    frames.main_t.form1.FunName.value="ncWebMailMonExport";
+    frames.main_t.form1.submit();
+}
+
+function init(){
+
+}
+
+
+var dfd1="0"
+function cvtcode()
+{
+	  frames.main_t.form1.ccode.value=form1.ccode.value;
+    frames.main_t.form1.FunName.value = "ncWebMailMonCvtCode";
+    frames.main_t.form1.submit();
+}
+
+</script>
+<style>
+.conts  {visibility:hidden}
+
+.selTabBase{border-top:solid thin #dfdfdf }
+.TabBase{border-top:solid thin #DEE8FA}
+table {  font-size: 9pt}
+ .style2 {
+	font-size: 20px;
+	font-weight: bold;
+	font-style: italic;
+	color: #0000ff;
+}
+</style>
+
+<style type="text/css">
+
+<!--
+body {  font-size: 9pt}
+.tas {  border-color: black #FFFFFF; border-style: solid; border-top-width: 0px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 1px}
+table {  font-size: 9pt}
+.gray1 { filter:gray }
+.ttbbd {  cursor: default}
+
+-->
+</style>
+<link REL=stylesheet HREF="/css/listdatetable.css" TYPE="text/css">
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+</head>
+
+<body bgcolor="#8cb4e8" leftmargin="1" topmargin="0" onclick="changeTabs()"  style="overflow:hidden" onload="init()">
+<form name="form1" id="form1" method="post" action="/pronline/Msg" target="main_t">
+<input type="hidden" name="FunName" value="ncsUserlogSearch_ib">
+<input type="hidden" name="CurPg" value="">
+<input type="hidden" name="where" value="">
+<input type="hidden" name="caWhere" value="">
+<input type="hidden" name="opmsg" value="">
+<input type="hidden" name="groupid" value="">
+<input type="hidden" name="userid" value="">
+<input type="hidden" name="service" value="">
+<input type="hidden" name="prot" value="">
+<input type="hidden" name="sip" value="">
+<input type="hidden" name="dip" value="">
+<input type="hidden" name="dport" value="">
+<input type="hidden" name="mac" value="">
+<input type="hidden" name="ddd" value="">
+<input type="hidden" name="bef" value="">
+<input type="hidden" name="unit" value="">
+<input type="hidden" name="sdate" value="">
+<input type="hidden" name="edate" value="">
+<input type="hidden" name="stime" value="">
+<input type="hidden" name="etime" value="">
+<input type="hidden" name="byt_rflag" value="">
+<input type="hidden" name="byt" value="">
+<input type="hidden" name="byt_in" value="">
+<input type="hidden" name="dtype" value="">
+<input type="hidden" name="flags" value="">
+<input type="hidden" name="ip" value="">
+<input type="hidden" name="attfile" value="">
+<input type="hidden" name="content" value="">
+<input type="hidden" name="host" value="">
+<input type="hidden" name="url" value="">
+<input type="hidden" name="asize" value="">
+<input type="hidden" name="msize" value="">
+<input type="hidden" name="sdate1" value="">
+<input type="hidden" name="edate1" value="">
+<input type="hidden" name="mtype" value="">
+<input type="hidden" name="username" value="">
+<input type="hidden" name="dispname" value="">
+<input type="hidden" name="from" value="">
+<input type="hidden" name="to" value="">
+<input type="hidden" name="sub" value="">
+<input type="hidden" name="mesg" value="">
+<input type="hidden" name="uri" value="">
+<input type="hidden" name="idfyno" value="">
+<input type="hidden" name="username_match" value="">
+<input type="hidden" name="idfyno_match" value="">
+<input type="hidden" name="mac_match" value="">
+<input type="hidden" name="ip_match" value="">
+<input type="hidden" name="urlid" value="">
+<input type="hidden" name="webtitle" value="">
+<input type="hidden" name="refresh_flag" value="2">
+<input type="hidden" name="plate" value="nc/nc_im_listnow.htm">
+<input type="hidden" name="tjfun" value="">
+<input type="hidden" name="temp_plate" value="">
+<input type="hidden" name="funcode" value="">
+<input type="hidden" name="labname" value="gdrz">
+<input type="hidden" name="lcount" value="">
+    <table border="0"  bordercolorlight=#aaaaaa bordercolordark=#ffffff  CELLPADDING="0" CELLSPACING="0" bgcolor=#8cb4e8 STYLE="width:100%; height:100%">
+      <tr height="26" >
+	    <td ID="t0" CLASS="tab3">上下线日志</td>
+	    <td ID="t1" CLASS="tab4"  >IP连接日志</td> 
+	    <td ID="t2" CLASS="tab5"  >网站访问日志</td>
+	    <td ID="t3" CLASS="tab5"   >外发表单日志</td>
+	    
+	    <td ID="t4" CLASS="tab5"   >BBS表单</td>
+	    
+	    <td ID="t5" CLASS="tab5"  >收发邮件日志</td>
+	    <td ID="t6" CLASS="tab5" >聊天记录</td>
+	    <td ID="t7" CLASS="tab5" >搜索日志</td>
+	    <td ID="t8" CLASS="tab5" >上网阻断日志</td>
+	    <td ID="t9" CLASS="tab8" >告警日志</td>
+	    <td ID="t10" class="tab10" ></td>	   
+      </tr> 
+			<tr > 
+			<td ID="t0base"  STYLE="height:1; border-left:solid thin white"></td>
+			<td ID="t1base" STYLE="height:1; border-left:solid thin white" ></td>
+			<td ID="t2base" STYLE="height:1; border-left:solid thin white" > </td>
+			<td ID="t3base" STYLE="height:1; border-left:solid thin white" > </td>
+			<td ID="t4base" STYLE="height:1; border-left:solid thin white" > </td>
+			<td ID="t5base" STYLE="height:1; border-left:solid thin white" > </td>
+			<td ID="t6base" STYLE="height:1; border-left:solid thin white" > </td>
+			<td ID="t7base" STYLE="height:1; border-left:solid thin white" > </td>
+			<td ID="t8base" STYLE="height:1; border-left:solid thin white" > </td>
+			<td ID="t9base" STYLE="height:1; border-left:solid thin white" > </td>
+			<td ID="t10base" STYLE="height:1; border-left:solid thin white" > </td>
+			</tr> 
+		<tr height="25" style="position:relative;top:-3;left:1;">
+			<td colspan="11" valign="top" >			
+				<table  cellspacing=0   cellpadding="0" bgcolor=#E1E5E8 border="0" align="center" width="100%" >
+				    <tr >
+				      <td colspan="7">
+				        <table width="100%" height="25" border="0" align="center" cellpadding="0" cellspacing="0" background="/images/images2/table_bg8.jpg">
+				          <tr > 
+				          	<td >
+				          		<div id="wlj3" >&nbsp;
+				          			<input name="exp" type="submit" class="an3" id="exp"  value="导 出" >
+				          			</div>
+				          	</td>
+				          	<td  align="center">
+				          		<div id="wlj" >
+	                   <b style="font-size: 10pt;color:#00237e;">用户上网日志</b>
+				          		</div>
+				          	</td>
+
+				           
+				        <td width="310" height="28"> 
+              <table align=right border=0 cellpadding=0 cellspacing=0 class=main>
+              <tbody>
+              	<span> 
+               <p id="page" style="display:"><a href="#xxm" onclick='gotoPage("1")' class="n">&lt;上一页</a><a href="#xxm" onclick="gotoPage(1)"><span class="pc">1</span></a><strong><span class="pc">2</span></strong><a href="#xxm" onclick="gotoPage(3)"><span class="pc">3</span></a><a href="#xxm" onclick="gotoPage(parseInt(form1.CurPg.value)+1)" class="n">下一页&gt;</a><span class="nums"  style="margin-left:20px" >不少于200条记录</span>
+               	</p>
+              </span>
+              </tbody> 
+              </table>
+            </td>
+				            	
+				            
+				          </tr>
+				        </table>
+				     </td>
+				    </tr>    
+				</table>	
+		</td>
+</tr>	
+<tr> 
+
+<td HEIGHT="*" COLSPAN="11" ID="tabContents" align="left" valign="top" > 
+<div id="ff" name='ff' style="position:relative;top:-3;">
+		<iframe name="main_t" id="data1" width="100%" height="100%" src="/pronline/Msg?FunName@ncsUserlogSearch_ib" frameborder="yes" scroll="no"> </iframe>
+
+</div>
+
+</td></tr></table>
+
+	</form>	
+
+<div CLASS="conts" ID="t0Contents"> 0 </div>
+<div CLASS="conts" ID="t1Contents"> 1 </div>
+<div CLASS="conts" ID="t2Contents"> 2 </div>
+<div CLASS="conts" ID="t3Contents"> 3 </div>
+<div CLASS="conts" ID="t4Contents"> 4 </div>
+<div CLASS="conts" ID="t5Contents"> 5 </div>
+<div CLASS="conts" ID="t6Contents"> 6 </div>
+<div  ID="t7Contents"> 7 </div>
+<div  ID="t8Contents"> 8 </div>
+<div  ID="t9Contents"> 9 </div>
+<div  ID="t10Contents"> 10 </div>
+</body>
+</html>

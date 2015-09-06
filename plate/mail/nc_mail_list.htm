@@ -1,0 +1,316 @@
+<!-- saved from url=(0022)http://internet.e-mail -->
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/css.css" type="text/css">
+<style type="text/css">
+<!--
+body {  font-size: 9pt}
+.tas {  border-color: black #FFFFFF; border-style: solid; border-top-width: 0px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 1px}
+table {  font-size: 9pt}
+.hand {  cursor: hand}
+.gray1{filter:gray}
+-->
+</style>
+<script>
+var dfd1="0"
+function allChecked()
+{
+if(dfd1=="1"){dfd1="0"}
+else{dfd1="1"}
+	for(var i=0;i<document.all.DataTable.rows.length;i++)
+	{
+		if(typeof(document.all.DataTable.rows[i].cells[0].childNodes[0])=="object"
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].tagName=="INPUT"
+				&&document.all.DataTable.rows[i].cells[0].childNodes[0].type=="checkbox")
+			if(dfd1=="1"){
+ 			document.all.DataTable.rows[i].cells[0].childNodes[0].checked="true";
+				}
+			else{
+ 			document.all.DataTable.rows[i].cells[0].childNodes[0].checked="";
+				}
+						}
+
+}
+var aa
+function showaa(){
+var ggg=window.showModalDialog("/pronline/Msg?FunName@ncMailShowSetup",aa,"status:no;center:yes;help:no;minimize:no;maximize:no;border:thick;statusbar:no;dialogWidth:490px;scroll:no;dialogHeight:340px")
+form1.from.value=ggg[0]
+form1.to.value=ggg[1]
+form1.subject.value=ggg[2]
+form1.content.value=ggg[3]
+form1.msize1.value=ggg[4]
+form1.FunName.value="ncMailSetup"
+form1.submit()
+}
+
+function showbb(){
+var bb=window.showModalDialog("/pronline/Msg?FunName@ncMailSetEmailSend",aa,"status:no;center:yes;help:no;minimize:no;maximize:no;border:thick;statusbar:no;dialogWidth:260px;scroll:no;dialogHeight:80px")
+if(bb != 0) {
+form1.email.value=bb
+form1.FunName.value="ncMailEmailSend"
+form1.submit()
+}
+}
+
+function showcc(){
+  form1.FunName.value="ncMailEmailRemove"
+  form1.submit()
+}
+
+function lprint(){
+  MM_showHideLayers('mybut','','hide')
+  MM_showHideLayers('plabel','','hide')
+  window.print()
+  MM_showHideLayers('plabel','','show')
+  MM_showHideLayers('mybut','','show')
+}
+</script>
+<script language="JavaScript">
+<!--
+
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+
+
+function MM_findObj(n, d) { //v4.0
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && document.getElementById) x=document.getElementById(n); return x;
+}
+
+function MM_showHideLayers() { //v3.0
+  var i,p,v,obj,args=MM_showHideLayers.arguments;
+  for (i=0; i<(args.length-2); i+=3) if ((obj=MM_findObj(args[i]))!=null) { v=args[i+2];
+    if (obj.style) { obj=obj.style; v=(v=='show')?'visible':(v='hide')?'hidden':v; }
+    obj.visibility=v; }
+}
+//-->
+</script>
+
+
+<script language = "Javascript" src = "/js/selecttime.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+function checkme(p)
+{
+	var tt=p.value
+	if (tt>yy)
+	{
+		MM_changeProp('browsdopage','','value',yy,'INPUT/TEXT')
+	}
+	if (tt==0)
+	{
+		MM_changeProp('browsdopage','','value','1','INPUT/TEXT')
+	}
+}
+
+function MM_findObj(n, d) 
+{ //v4.0
+  	var p,i,x;
+  	if(!d) d=document;
+  	if((p=n.indexOf("?"))>0&&parent.frames.length)
+  	{
+    	d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);
+    }
+  	if(!(x=d[n])&&d.all) x=d.all[n];
+  	for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  	for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  	if(!x && document.getElementById) x=document.getElementById(n); return x;
+}
+
+function MM_changeProp(objName,x,theProp,theValue)
+{ //v3.0
+  	var obj = MM_findObj(objName);
+  	if (obj && (theProp.indexOf("style.")==-1 || obj.style)) eval("obj."+theProp+"='"+theValue+"'");
+}
+
+function goto(a)
+{
+	window.open(a,"_self","")
+}
+
+function MM_reloadPage(init)
+{  //reloads the window if Nav4 resized
+  	if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+
+function mouseovertr2 (o)
+{
+	var i;
+	df=o.style.backgroundColor
+	o.style.backgroundColor= "#F2F2F2";
+	o.style.borderColor= "#3399ff";
+		
+	for(i=0; i<o.cells.length; i++)
+	{
+		o.cells(i).style.color="#000000";
+	}	
+}
+
+function mouseouttr2(o)
+{
+	o.style.backgroundColor=df
+	for(i=0; i<o.cells.length; i++)
+	{
+		o.cells(i).style.color="#000000";
+	}
+}
+
+function mouseovertd2(o)
+{
+	o.style.borderStyle="solid"
+	o.style.borderColor="#000000"
+	o.style.color="#ffffff"	
+}
+
+function mouseouttd2(o)
+{
+	o.style.color="#003366"
+	o.style.borderColor="#cccccc"
+}
+
+function gotoPage(pagenum)
+{
+    form1.CurPg.value = pagenum;
+}
+// -->
+<!-- Hide
+var ll=[#CurPg#]
+var yy=[#TotPg#]
+function killErrors() {
+return true;
+}
+window.onerror = killErrors;
+// -->
+</SCRIPT>
+
+</head>
+
+<body bgcolor="#AFAFC0" text="#000000" oncontextmenu="return false" topmargin="0" leftmargin="0">
+<form id="form1" name="form1" method="post" action="/pronline/Msg">
+  <table width="100%" border="0">
+     <input type="hidden" name="FunName" value="ncMailReadFoldHeads" >
+     <input type="hidden" name="fold" value="[#fold#]" >
+     <input type="hidden" name="email" value="[#email#]" >
+     <input type="hidden" name="sum" value="[#sum#]" >
+     <input type="hidden" name="userid" value="[#userid#]">
+     <input type="hidden" name="CurPg" value="[#CurPg#]">
+     <input type="hidden" name="username" value="[#username#]">
+    <tr> 
+      <td width="70%"> 
+        <div align="right"> 
+          <table width="100%" border="0" cellspacing="0" cellpadding="1">
+            <tr> 
+              <td> 
+                <div align="left">条件: 
+                  <input type="text" name="cond" value="[#cond#]">
+                  <input type="submit" name="s1" value="查询">
+                  <input type="button" name="Button" value="敏感信息监控设置" onclick="showaa()">
+                  <input type="button" name="dell" value="删除" onclick="showcc()">
+                  <input type="button" name="send" value="转发" onclick="showbb()">
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </td>
+      <td width="30%"> 
+        <div id="plabel"> 
+          <table border=0 cellpadding=0 cellspacing=0 
+                        class=main align="right" width="323">
+            <tbody> 
+            <tr> 
+              <td>&nbsp; </td>
+              <td width="17"><script>
+if (ll==1){document.write("<img src='/images/spy-06.gif' border=0 height=17 width=35 class='gray1'>")}
+else{document.write("<img src='/images/spy-06.gif' border=0 height=17 width=35 onClick='gotoPage(1);form1.submit()' class='hand'>")}
+</script></td>
+              <td width="17"><script>
+if (ll==1){document.write("<img src='/images/spy-03.gif' border=0 height=17 width=20 class='gray1'>")}
+else{document.write("<img src='/images/spy-03.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]-1);form1.submit()' class='hand'>")}
+</script></td>
+              <td width="32"><img src="/images/spy-08.gif" border=0 height=17 width=32 align="middle"></td>
+              <td align=middle background="" width=40> 
+                <input class=Main id=browsdopage maxlength=3  name=browsdopage size=3 style="FONT-SIZE: 12px; HEIGHT: 18px; TEXT-ALIGN: center; WIDTH: 30px" value=[#CurPg#] onKeyPress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" onBlur="checkme(this)">
+              </td>
+              <td width="16"><img src="/images/spy-09.gif" border=0 height=17 width=16 align="middle"></td>
+              <td width="17"><img align=middle border=0 height=17 src="/images/spy-10.gif" width=17 onClick="gotoPage(form1.browsdopage.value);form1.submit()" class="hand"> 
+              </td>
+              <td width="8"> <img align=middle height=17 src="/images/spy-11.gif" width=8></td>
+              <td width="10"><script>
+if (ll==yy){document.write("<img src='/images/spy-04.gif' border=0 height=17 width=20 class='gray1'>")}
+else if (yy==0){document.write("<img src='/images/spy-04.gif' border=0 height=17 width=20 class='gray1'>")}
+else{document.write("<img src='/images/spy-04.gif' border=0 height=17 width=20 onClick='gotoPage([#CurPg#]+1);form1.submit()' class='hand'>")}
+</script></td>
+              <td width="36"><script>
+if (ll==yy){document.write("<img src='/images/spy-05.gif' border=0 height=17 width=36 class='gray1'>")}
+else if (yy==0){document.write("<img src='/images/spy-05.gif' border=0 height=17 width=36 class='gray1'>")}
+else{document.write("<img src='/images/spy-05.gif' border=0 height=17 width=36 onClick='gotoPage([#TotPg#]);form1.submit()' class='hand'>")}
+</script></td>
+            </tr>
+            </tbody> 
+          </table>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <table width="100%" border="0" cellpadding="0" id="DataTable">
+    <tr bgcolor="#999999"> 
+      <td width="62" class="unnamed1"> <font color="#FFFFFF"> 
+        <input type="button" name="Button" value="全选" class="anniu102" onclick="allChecked()">
+        </font></td>
+      <td width="140" height="20" class="unnamed1"> 
+        <div align="center"><font color="#FFFFFF">发件人</font></div>
+      </td>
+      <td width="161" height="20" class="unnamed1"> 
+        <div align="left"><font color="#FFFFFF">收件人</font></div>
+      </td>
+      <td width="492"> 
+        <div align="center"><font color="#FFFFFF">主题</font></div>
+      </td>
+      <td width="151"> 
+        <div align="center"><font color="#FFFFFF">接收日期</font></div>
+      </td>
+      <td width="127"> 
+        <div align="center"><font color="#FFFFFF">长度</font></div>
+      </td>
+    </tr>
+    [#SLPB050#] 
+    <tr bgcolor="#FFFFFF"> 
+      <td width="62" height="20" align="center" bgcolor="#E2EEDB" class="unnamed1"> 
+        <input type="checkbox" name="v[#num#]" value="[#msg#]" >
+      </td>
+      <td width="140" height="20" bgcolor="#E2EEDB" class="unnamed1"><a href="/pronline/Msg?FunName@ncMailReadMail&userid@[#userid#]&curmsg@[#msg#]&fold@[#fold#]" target="_blank">[#from#]</a></td>
+      <td width="161" height="20" bgcolor="#E2EEDB" class="unnamed1"> 
+        <div align="left"><a href="/pronline/Msg?FunName@ncMailReadMail&userid@[#userid#]&curmsg@[#msg#]&fold@[#fold#]" target="_blank">[#to#]</a></div>
+      </td>
+      <td width="492" height="20" bgcolor="#E2EEDB"> 
+        <div align="left"><a href="/pronline/Msg?FunName@ncMailReadMail&userid@[#userid#]&curmsg@[#msg#]&fold@[#fold#]" target="_blank">[#subject#]</a></div>
+      </td>
+      <td width="151" height="20" bgcolor="#E2EEDB"> 
+        <div align="center">[#date#]</div>
+      </td>
+      <td width="127" height="20" align="center" bgcolor="#E2EEDB">[#size#]</td>
+    </tr>
+    [#SLPE#] 
+  </table>
+  <p>&nbsp;</p>
+
+  <input type="hidden" name="from">
+  <input type="hidden" name="to">
+  <input type="hidden" name="subject">
+  <input type="hidden" name="content">
+  <input type="hidden" name="msize1">
+</form>
+</body>
+</html>

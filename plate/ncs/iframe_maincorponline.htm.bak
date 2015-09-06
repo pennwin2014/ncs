@@ -1,0 +1,63 @@
+<!-- saved from url=(0022)http://internet.e-mail -->
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta http-equiv="refresh" content="5">
+
+<SCRIPT LANGUAGE="JavaScript">
+	
+var yy='';
+function w1()
+{
+
+  yy = yy + '<table   width="100%" border="0" cellspacing="0" cellpadding="0"  >';
+  yy=yy+'<tr height="20" bgcolor="#eeeeee" >';  	
+  yy=yy+'<td width="165" class="bord4" height="20" align="center" >单位名称</td>';
+  yy=yy+'<td width="100" align="center" class="bord4" >IP地址</td>';          
+  yy=yy+' <td class="bord4" align="center">在线用户</td>' 
+    yy=yy+' <td class="bord4" align="center">版本</td>'
+  yy=yy+' <td class="bord3" align="center">状态</td>'
+  yy=yy+'</tr>';   
+  // [#SLPB#]
+  yy=yy+'<tr bgcolor="#fffefe" height="18">';
+  yy=yy+'<td  class="bord1">&nbsp;<font color="#00237e"><a href="#xxm" onclick=goto2("[#userid#]")>[#detname#]</a></font> </td>';
+  yy=yy+'<td  class="bord1">&nbsp;[#ip#]</td>';         
+  yy=yy+'<td  class="bord1" align="right">[#usernum#]&nbsp;&nbsp;</td>'; 
+    yy=yy+'<td  class="bord1">&nbsp;[#version#]</td>';   
+  yy=yy+'<td  class="bord3" align="right">[#status#]&nbsp;&nbsp;</td>'; 
+  yy=yy+'</tr>';
+// [#SLPE#]
+
+  // [#SLPB#]
+  yy=yy+'<tr BGCOLOR="#fffefe" id="[#snum#]" height="18">';
+  yy=yy+'<td  class="bord1">&nbsp;</td>';
+  yy=yy+'<td  class="bord1">&nbsp;</td>';  
+  yy=yy+'<td  class="bord1">&nbsp;</td>';  
+  yy=yy+'<td  class="bord1">&nbsp;</td>';
+  yy=yy+'<td  class="bord3">&nbsp;</td>';             
+  yy=yy+'</tr>';
+// [#SLPE#]
+yy=yy+'</table>';
+  yy = yy + ''
+
+  parent.document.all.wlj2.innerHTML=(yy);
+  parent.document.all.liveclock.innerHTML='[#curtime#]';
+  parent.document.all.curuser.innerHTML='[#curuser#]';
+  parent.document.all.zcuser.innerHTML='[#maxuser#]';
+  parent.document.all.lcase.innerHTML='[#lcase#]';
+  parent.document.all.runtime.innerHTML='[#runtime#]';
+
+ 
+}
+
+ </SCRIPT> 
+
+</head>
+<body marginheight=0 leftmargin=5 marginwidth=0 topMargin="5" bottomMargin="5" rightMargin="5" BGCOLOR="#ffffff">
+<SCRIPT LANGUAGE="JavaScript">
+setTimeout(' w1()',1000)
+
+ </SCRIPT> 
+</body>
+</html>
