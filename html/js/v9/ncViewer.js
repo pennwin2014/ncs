@@ -57,6 +57,13 @@ var left_tabs_glob='';
 function isInFocus(itmid){
 	var tabs_center=Ext.getCmp("layout_center");
 	var activeTab = tabs_center.getActiveTab();
+	if (activeTab || (typeof activeTab != "undefined")){
+		if(tabs_center.items.length>0){
+			activeTab = tabs_center.items.items[0];
+		}else{
+			return false;
+		}
+	}
 	if(activeTab.id == itmid){
 		return true;
 	}else{
