@@ -198,8 +198,8 @@ function showMacWindow(mac, tm){
 		frame: true,
         layout: 'form',
         activeTab: 0,
-        items: [{              
-            html: '<iframe src="/mac/infoquery/macterm/peopletrack/track.htm" frameborder="no" style="width:100%;height:500px;"></iframe>'
+        items: [{
+			html: '<iframe src="/mac/datamining/track/track.htm" frameborder="no" style="width:100%;height:500px;"></iframe>'			
         }]
     });
 	var tabPaneledit = new Ext.Panel({
