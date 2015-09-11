@@ -1,1023 +1,2064 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+
 <!--script type="text/javascript" src="/newver/jquery/jquery-1.8.2.min.js"></script-->
+
 <script type="text/javascript" src="/newver/jquery/jquery-1.7.2.js"></script>
+
 <script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+
 <script type="text/javascript" src="/newver/chart/highcharts.js"></script>
+
 <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" /> 
 
+
+
 <title>首页</title>
+
 <style>
 
+
+
 html,body{
+
     -webkit-text-size-adjust:none;
+
 	font-family: 微软雅黑;
+
 }
+
 .device_main{height:100%;}
+
 .main_top{position:absolute;background-color:#F0F3F8; width:100%; height:30px;border: solid 1px #00B1F1;z-index:101;}
+
 .main_content{position:absolute;overflow:auto;height:86%;width:100%;background-color:#EAEAEA;}
+
 .main_gap_line{z-index:10100;top:0;left:26.5%;position:fixed;height:100%;width:1px;background-color:#00B1F1;}
+
 .main_left{position:absolute;background-color:#EAEAEA;top:30px;width:27%;height:100%;z-index:100;}
+
 .main_center{position:absolute;background-color:#EAEAEA;top:30px;left:27%; width:73%;height:100%; /*border-top-width: 0px; border-right-width: 1px;border-left-width: 1px; border-bottom-width: 0px;border-color:#00B1F1;border-style:solid;*/}
+
 .main_top_left{position:absolute;left:0;width:27%;height:100%;/*border-width:1px;border-color:#00B1F1;border-style:solid;*/}
+
 .main_top_center{position:absolute;left:27%;width:73%;height:100%;/*border-width:1px;border-color:#00B1F1;border-style:solid;*/}
 
+
+
 .info_block{ position:relative; border: solid 1px #00B1F1; margin-left:5%;  width:90%; height:105px; margin-top:20px;border-radius:0px 0px 15px 15px;}
+
 .info_logo{position:absolute;left:6px;top:4px;width:75px;height:90px;}
+
 .info_title{position:absolute;left:100px;top:75px;font-size:12px; color:#143554; font-weight:bold;width:106px;text-align:center;}
+
 .info_text_single{ display:block;position:absolute;color:#143554;font-size:12px;left:80px;top:25px;width:65px;text-align:right;}
+
 .info_number_single{position:absolute;color:#EE0225;left:150px;top:19px;font-size:22px;}
+
 .info_text_first{ display:block;position:absolute;color:#143554;font-size:12px;left:80px;top:19px;width:65px;text-align:right;}
+
 .info_number_first{position:absolute;font-size:22px;left:150px;top:10px;}
+
 .info_text_second{display:block; position:absolute;color:#143554;font-size:12px;left:80px;top:37px;width:65px;text-align:right;}
+
 .info_number_second{position:absolute;font-size:22px;left:150px;top:30px;}
+
 /*
+
 .info_block{ position:relative; border: solid 1px #00B1F1; margin-left:5%;  width:90%; height:13.671875%; margin-top:2.6041666666666665%;border-radius:0px 0px 15px 15px;}
+
 .info_logo{position:absolute;left:1.935483870967742%;top:3.8095238095238093%;width:24.193548387096776%;height:85.71428571428571%;}
+
 .info_title{position:absolute;left:32.25806451612903%;top:71.42857142857143%;font-size:12px; color:#143554; font-weight:bold;width:34.193548387096776%;text-align:center;}
+
 .info_text_single{ display:block;position:absolute;color:#143554;font-size:12px;left:25.806451612903224%;top:23.80952380952381%;width:20.967741935483872%;text-align:right;}
+
 .info_number_single{position:absolute;color:#EE0225;left:48.38709677419355%;top:18.095238095238095%;font-size:22px;}
+
 .info_text_first{ display:block;position:absolute;color:#143554;font-size:12px;left:25.806451612903224%;top:18.095238095238095%;width:20.967741935483872%;text-align:right;}
+
 .info_number_first{position:absolute;font-size:22px;left:48.38709677419355%;top:9.523809523809524%;}
+
 .info_text_second{display:block; position:absolute;color:#143554;font-size:12px;left:25.806451612903224%;top:35.23809523809524%;width:20.967741935483872%;text-align:right;}
+
 .info_number_second{position:absolute;font-size:22px;left:48.38709677419355%;top:28.571428571428573%;}
+
 */
 
+
+
 .tab_group1{ position:absolute;left:1%; top:0px; width:49%;}
+
 .tab_group2{ position:absolute;left:51%; top:0px; width:49%;}
+
 .cls_tab_normal{ position:relative;background-color:#FFF; border: solid 1px #00B1F1; width:98%; height:220px; margin-top:20px;border-radius:0px 0px 15px 15px;}
+
 .cls_tab_hide{display:none;position:relative;background-color:#FFF; border: solid 1px #00B1F1; width:98%; height:220px; margin-top:20px;border-radius:0px 0px 15px 15px;}
+
 .tab_top{position:absolute; top:0px;left:0px; height:28px; line-height:28px; width:100%;background-color:#D5DDF0; border-color:#00B1F1; border-style: solid; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 1px; border-left-width: 0px; font-weight:bold; color:#0D3967; text-align:left;}
+
 .tab_top span{margin-left:10px;}
+
 .tab_top img{float:right;margin:7px 10px 0 0;}
+
 .cls_chart_rect{position:absolute; top:29px; left:0px; height:80%; width:95%; text-align:center}
+
 .cls_chart_rect_with_buttons{position:absolute; top:50px; left:0px; height:70%; width:95%; text-align:center}
 
+
+
 .tab_btn_group{position:absolute; top:31px; height:20px; width:100%;}
+
 .tab_button_normal{cursor:pointer;display:-moz-inline-box;display:inline-block;text-align:center;background-color:#FFF;color:#0D3967;margin-left:1%;height:95%;width:50px;border-radius:3px 3px 3px 3px;}
+
 .tab_button_focus{cursor:pointer;display:-moz-inline-box;display:inline-block;text-align:center;background-color:#BEDCF5;color:#0D3967;margin-left:1%;height:95%;width:50px;border-radius:3px 3px 3px 3px;}
 
 
 
+
+
+
+
 .select_btn1{ width:150px; position:absolute; height:100%; left:10px; background-color:#F0F3F8;}
+
 .select_btn2{ width:150px; position:absolute; height:100%; left:10px; background-color:#F0F3F8;}
 
+
+
 .cls_listitem1{height:30px; line-height:30px;display:none; text-align:left; background-color:#F0F3F8;color:#000}
+
 .cls_listitem1 p, .cls_listitem2 p{margin-left:20px;}
+
 .cls_listitem2{height:30px; line-height:30px;display:none; margin-left:20px; text-align:left; background-color:#F0F3F8;color:#000}
 
+
+
 </style>
+
 <script>
+
 	function doOnResize(){
+
 		var ph = parent.window.innerHeight ? parent.window.innerHeight : parent.document.body.clientHeight;
+
 		$(".main_content").height(ph-131);
+
 	}
+
 /*
+
 	function doOnload(){
+
 		var ph = parent.window.innerHeight ? parent.window.innerHeight : parent.document.body.clientHeight;
+
 		$(".main_content").height(ph-130);	
+
 	}
+
 	window.onresize=doOnResize;
+
 	window.onload=doOnload;
+
 */
+
 	var chart1;
+
 	var chart2;
+
 	var chart3;
+
 	var chart4;
+
 	var chart5;
+
 	var chart6;
+
 	function doSth(mac){
+
 		alert("get mac="+mac);
+
 	}
+
 	
+
 	function getRandom(n){
+
 		return Math.floor(Math.random()*n+1);
+
 	}
+
 		
+
 	function setChartData2(online_number, total_number){
+
 		if(total_number == 0){
+
 			total_number = 2;
+
 			online_number = 1;
+
 		}
+
 		var data = [];
+
 		data.push({x:0, y:online_number, name:'在线'});
+
 		data.push({x:1, y:(total_number-online_number), name:'离线'});		
+
 		chart2.series[0].setData(data);
+
 	}
+
     
 
+
+
 	function createChart2(){
-		chart2 = new Highcharts.Chart({ 
-			chart: { 
-				type: 'pie',
-				renderTo: 'container2'  
-			}, 
-			exporting:{
-                enabled:false
-            },
-			credits: {
-				enabled: false
-			},
-			title: { 
-				text: '' 
-			}, 
-			plotOptions: {
-				pie: {
-					allowPointSelect: true,
-					cursor: 'pointer',
+
+	    chart2 = new Highcharts.Chart({ 
+
+	        chart: { 
+
+	            type: 'pie',
+
+	            renderTo: 'container2'  
+
+	        }, 
+
+	        exporting:{
+
+	            enabled:false
+
+	        },
+
+	        credits: {
+
+	            enabled: false
+
+	        },
+
+	        title: { 
+
+	            text: '' 
+
+	        }, 
+
+	        plotOptions: {
+
+	            pie: {
+
+	                allowPointSelect: true,
+
+	                cursor: 'pointer',
+	                events: {
+	                    click: function (event) {
+	                        parent.macGlobalCtx.setIdOperationStatus(event.point.x);
+	                        jumpToDetail('id_operation_equipment');
+	                    }
+                        
+					},
+
 					dataLabels: {
+
 						enabled: true,
+
 						format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+
 						style: {
+
 							color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+
 						}
+
 					}
+
 				}
+
 			},
+
 			tooltip: {
+
 				pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+
 			},
+
 			series: [{
+
 				type: 'pie',
+
 				name: '比例',
+
 				data: []
+
 			}]
+
 		}); 
+
 	}
-	
 
 	
+
+
+
+	
+
 	function setRangeDataByType(tChart, reqType){
+
 		if(!parent.isInFocus("itm_frontPage")){
+
 			return;
+
 		}
+
 		Ext.Ajax.request({     
+
 			url: '/pronline/Msg?FunName@macFrontPageRange&groupid=1&range_type='+reqType,  
+
 			method: 'GET',
+
 			success: function(resp,opts) {   
+
 				try{
+
 					var respText = resp.responseText; 
+
 					var respRecord = eval("("+respText+")");
+
 					var tmpData = [];
+
 					var colNum = 0;
+
 					var colValue = 0;
+
 					var sumCount = parseFloat(respRecord.sumCount);
+
 					for(var i in respRecord.data){
+
 						colNum = parseInt(respRecord.data[i].collect_number);
+
 						colValue = respRecord.data[i].collect_name;
+
 						if((reqType == 'factory')||(reqType == 'warn')){
+
 							tmpData.push({x:i, y:colNum, name:colValue});
+
 						}else{
+
 							tmpData.push({x:i, y:(Math.round(colNum*10000.0/sumCount)/100), name:colValue});
+
 						}
+
 					}
+
 					if(tmpData.length == 0){
+
 						tmpData.push({x:0, y:0, name:"无数据"});
+
 					}
+
 					tChart.series[0].setData(tmpData);	
+
 				}catch(e){
+
 					//console.log(e.message);
+
 				}
+
 						
+
 			},   
+
 			failure: function(resp,opts) {   
+
 				var respText = eval("("+respText+")");
+
 				alert('错误', respText.error);   
+
 			}   				 
+
 		});
+
 	}
+
 	
+
 	function getChartData3(){
+
 		setRangeDataByType(chart3, 'service');	
+
 	}
+
 	
+
 	function getChartData4(){
+
 		setRangeDataByType(chart4, 'factory');
+
 	}
+
 	
+
 	function getChartData5(){
+
 		setRangeDataByType(chart5, 'device');
+
 	}
+
 	
+
 	function getChartData6(){
+
 		setRangeDataByType(chart6, 'warn');
+
 	}
+
 	
+
 	function getStdValue(str){
+
 		var totalLen = str.length;
+
 		var resultStr = str;
+
 		if(totalLen > 5){
+
 			resultStr = str.substr(0, 5)+"..";
+
 		}
+
 		return resultStr;
+
 	}
+
 	
+
 	function createChart3(){
+
 		chart3 = new Highcharts.Chart({ 
+
 			chart: { 
+
 				type: 'column',
+
 				renderTo: 'container3'  
+
 			}, 
+
 			exporting:{
+
                 enabled:false
+
             },
+
 			credits: {
+
 				enabled:false
+
 			},
+
 			title: { 
+
 				text: '' 
+
 			}, 
+
 			subtitle: {
+
 				text: ''
+
 			},
+
 			plotOptions: {
+
 				bar: {
+
 					dataLabels: {
+
 						enabled: true
+
 					},
+
 					enableMouseTracking: false
+
 				},
+
 				series: {
+
                     borderWidth: 0,
+                    events: {
+                        click: function (event) {
+                            parent.macGlobalCtx.setIdOperationStatus(event.point.name);
+                            jumpToDetail('id_infoquery_place');
+                        }
+                    },
                     dataLabels: {
+
                         enabled: true,
+
                         format: '{point.y:.1f}%'
+
                     }
+
                 }
+
 			},
+
 			xAxis: { 
+
 				type: 'category',
+
 				labels: { 
+
 					//rotation: -45,
+
 					formatter: function() { 
+
 						return getStdValue(this.value);
+
 					} 
+
 				} 
+
 			}, 
+
 			yAxis: { 
+
 				title: { 
+
 					text: '来源百分比前5'
+
 					/*
+
 					text: '<b>'+'来源百分比前5'+'</b>',
+
 						style: {
+
 							color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+
 						}	
+
 					*/
+
 				}, 
+
 				min: 0 
+
 			}, 
+
 			tooltip: { 
+
 			//这种模式下，每点的tooltip单独显示 
+
 				shared: false, 
+
 				formatter: function() { 
+
 					var s = '<b>'+ this.point.name +'</b>'+'<br/>   占'+this.point.y +'%<br/>'; 
+
 					return s; 
+
 				} 
+
 			}, 
+
 			legend: {
+
 				enabled: false
+
 			},
+
 			series: [{ 
+
 				name: '场所采集排行', 
+
 				colorByPoint: true,
+
 				data: [] 
+
 			}] 
+
 		}); 
+
 		getChartData3();
+
 		setInterval("getChartData3()", 50000);
+
 	}
+
 	
+
 	
+
 	function createChart5(){
+
 		chart5 = new Highcharts.Chart({ 
+
 			chart: { 
+
 				type: 'column',
+
 				renderTo: 'container5'  
+
 			}, 
+
 			exporting:{
+
                 enabled:false
+
             },
+
 			credits: {
+
 				enabled:false
+
 			},
+
 			title: { 
+
 				text: '' 
+
 			}, 
+
 			subtitle: {
+
 				text: ''
+
 			},
+
 			plotOptions: {
+
 				bar: {
+
 					dataLabels: {
+
 						enabled: true
+
 					},
+			
 					enableMouseTracking: false
+
 				},
+
 				series: {
+
                     borderWidth: 0,
+                    events: {
+                        click: function (event) {
+                            parent.macGlobalCtx.setIdOperationStatus(event.point.name);
+                            jumpToDetail('id_operation_equipment');
+                        }
+
+                    },
                     dataLabels: {
+
                         enabled: true,
+
                         format: '{point.y:.1f}%'
+
                     }
+
                 }
+
 			},
+
 			xAxis: { 
+
 				type: 'category',
+
 				labels: { 
+
 					//rotation: -45,
+
 					formatter: function() { 
+
 						return getStdValue(this.value);
+
 					} 
+
 				} 
+
 			}, 
+
 			yAxis: { 
+
 				title: { 
+
 					text: '来源百分比前5'
+
 				/*
+
 						text: '<b>'+'来源百分比前5'+'</b>',
+
 						style: {
+
 							color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+
 						}
+
 				*/
+
 				}, 
+
 				min: 0 
+
 			}, 
+
 			tooltip: { 
+
 			//这种模式下，每点的tooltip单独显示 
+
 				shared: false, 
+
 				formatter: function() { 
+
 					var s = '<b>'+ this.point.name +'</b>'+'<br/>   占'+this.point.y +'%<br/>'; 
+
 					return s; 
+
 				} 
+
 			}, 
+
 			legend: {
+
 				enabled: false
+
 			},
+
 			series: [{ 
+
 				name: '设备采集排行', 
+
 				colorByPoint: true,
+
 				data: [ ] 
+
 			}] 
+
 		}); 
+
 		getChartData5();
+
 		setInterval("getChartData5()", 10000);
+
 	}
+
 	
+
 	
+
 	function createChart4(){
+
 		chart4 = new Highcharts.Chart({ 
+
 			chart: { 
+
 				type: 'column',
+
 				renderTo: 'container4'  
+
 			}, 
+
 			title: { 
+
 				text: '' 
+
 			},
+
 			exporting:{
+
                 enabled:false
+
             },
+
 			credits: {
+
 				enabled:false
+
 			},			
+
 			subtitle: {
+
 				text: ''
+
 			},
+
 			plotOptions: {
+
 				bar: {
+
 					dataLabels: {
+
 						enabled: true
+
 					},
+
 					enableMouseTracking: false
+
 				},
+
 				series: {
+
                     borderWidth: 0,
+
                     dataLabels: {
+
                         enabled: true,
+
                         format: '{point.y}'
+
                     }
+
                 }
+
 			},
+
 			xAxis: { 
+
 				type: 'category',
+
 				labels: { 
+
 					//rotation: -45,
+
 					formatter: function() { 
+
 						var s = getStdValue(this.value);
+
 						return s;
+
 					} 
+
 				} 
+
 			}, 
+
 			yAxis: { 
+
 				title: { 
+
 					text: '设备数量' 
+
 				}, 
+
 				min: 0 
+
 			}, 
+
 			tooltip: { 
+
 			//这种模式下，每点的tooltip单独显示 
+
 				shared: false, 
+
 				formatter: function() { 
+
 					var s = '<b>'+ this.point.name +'</b>'+'<br/>   有'+this.point.y +'个<br/>'; 
+
 					return s; 
+
 				} 
+
 			}, 
+
 			legend: {
+
 				enabled: false
+
 			},
+
+			series: [{ 
+
+
+
+				colorByPoint: true,
+
+				data: [] 
+
+			}] 
+
+		}); 
+
+		getChartData4();
+
+		setInterval("getChartData4()", 10000);
+
+	}
+
+	
+
+	function createChart6(){
+
+		chart6 = new Highcharts.Chart({ 
+
+			chart: { 
+
+				type: 'column',
+
+				renderTo: 'container6'  
+
+			}, 
+
+			title: { 
+
+				text: '' 
+
+			},
+
+			exporting:{
+
+                enabled:false
+
+            },
+
+			credits: {
+
+				enabled:false
+
+			},			
+
+			subtitle: {
+
+				text: ''
+
+			},
+
+			plotOptions: {
+
+				bar: {
+
+					dataLabels: {
+
+						enabled: true
+
+					},
+
+					enableMouseTracking: false
+
+				}
+
+			},
+
+			xAxis: { 
+
+				type: 'category',
+
+				labels: { 
+
+					//rotation: -45,
+
+					formatter: function() { 
+
+						var s = getStdValue(this.value);
+
+						return s;
+
+					} 
+
+				} 
+
+			}, 
+
+			yAxis: { 
+
+				title: { 
+
+					text: '区域告警数量' 
+
+				}, 
+
+				min: 0 
+
+			}, 
+
+			tooltip: { 
+
+			//这种模式下，每点的tooltip单独显示 
+
+				shared: false, 
+
+				formatter: function() { 
+
+					var s = '<b>'+ this.point.name +'</b>'+'<br/>   有'+this.point.y +'个<br/>'; 
+
+					return s; 
+
+				} 
+
+			}, 
+
+			legend: {
+
+				enabled: false
+
+			},
+
 			series: [{ 
 
 				colorByPoint: true,
-				data: [] 
-			}] 
-		}); 
-		getChartData4();
-		setInterval("getChartData4()", 10000);
-	}
-	
-	function createChart6(){
-		chart6 = new Highcharts.Chart({ 
-			chart: { 
-				type: 'column',
-				renderTo: 'container6'  
-			}, 
-			title: { 
-				text: '' 
-			},
-			exporting:{
-                enabled:false
-            },
-			credits: {
-				enabled:false
-			},			
-			subtitle: {
-				text: ''
-			},
-			plotOptions: {
-				bar: {
-					dataLabels: {
-						enabled: true
-					},
-					enableMouseTracking: false
-				}
-			},
-			xAxis: { 
-				type: 'category',
-				labels: { 
-					//rotation: -45,
-					formatter: function() { 
-						var s = getStdValue(this.value);
-						return s;
-					} 
-				} 
-			}, 
-			yAxis: { 
-				title: { 
-					text: '区域告警数量' 
-				}, 
-				min: 0 
-			}, 
-			tooltip: { 
-			//这种模式下，每点的tooltip单独显示 
-				shared: false, 
-				formatter: function() { 
-					var s = '<b>'+ this.point.name +'</b>'+'<br/>   有'+this.point.y +'个<br/>'; 
-					return s; 
-				} 
-			}, 
-			legend: {
-				enabled: false
-			},
-			series: [{ 
-				colorByPoint: true,
+
 				name: '区域告警数', 
+
 				data: [ ] 
+
 			}] 
+
 		}); 	
+
 		getChartData6();
+
 		setInterval("getChartData6()", 10000);
+
 	}
+
 	
+
 	function getLeftBlockData(){
 
+
+
 		if(!parent.isInFocus("itm_frontPage")){
+
 			return ;
+
 		}
 
+
+
 		Ext.Ajax.request({     
+
 			url: '/pronline/Msg?FunName@macFrontPageLeftBlocks&groupid@1',  
+
 			method: 'GET',
+
 			success: function(resp,opts) {   
+
 				try{
+
 					var respText = resp.responseText; 
+
 					var respRecord = eval("("+respText+")");
+
 					//实时在线终端统计
+
 					$("#id_number01").text(respRecord.onlineTerms);
+
 					//采集终端MAC数量
+
 					$("#id_number11").text(respRecord.todayTermMac);		
+
 					$("#id_number12").text(respRecord.totalTermMac);
+
 					//采集设备部署统计
+
 					$("#id_number21").text(respRecord.onlineCollectDevices);		
+
 					$("#id_number22").text(respRecord.totalCollectDevices);
+
 					setChartData2(parseInt(respRecord.onlineCollectDevices), parseInt(respRecord.totalCollectDevices));
+
 					//身份关联统计
+
 					$("#id_number31").text(respRecord.realIdentities);		
+
 					$("#id_number32").text(respRecord.virtualIdentities);
+
 					//当前告警统计：当前实时告警数
+
 					$("#id_number41").text(respRecord.currentRealAlarms);		
+
 					//布控告警统计：布控产生信息待处理数
+
 					$("#id_number51").text(respRecord.deployAlarms);		
+
 					//场所统计：在线场所数、场所总数
+
 					$("#id_number61").text(respRecord.onlinePlaces);		
+
 					$("#id_number62").text(respRecord.totalPlaces);
+
 					//移动采集设备统计：移动采集设备在线数、移动采集设备总数
+
 					$("#id_number71").text(respRecord.onlineCollectMobiles);	
+
 					$("#id_number72").text(respRecord.totalCollectMobiles);
+
 					//采集热点统计：采集非合规热点数、采集热点信息总数
+
 					$("#id_number81").text(respRecord.illegalSpots);		
+
 					$("#id_number82").text(respRecord.totalSpots);		
+
 				}catch(e){
+
 					//console.log(e.message);
+
 				}					
+
 			},   
+
 			failure: function(resp,opts) {   
+
 				var respText = eval("("+respText+")");
+
 				alert('错误', respText.error);   
+
 			}   				 
+
 		});
+
 	}
+
 	
+
 	function setLeftBlock(){
+
 		getLeftBlockData();
+
 		setInterval("getLeftBlockData()", 10000);
+
 	}
+
 	var current_chart_type = 'day';
+
 	function createChart1(){
+
 		chart1 = new Highcharts.Chart({ 
+
 			chart: { 
+
 				type: 'area',
+
 				renderTo: 'container1'  
+
 			}, 
+
 			title: { 
+
 				text: '' 
+
 			}, 
+
 			exporting:{
+
                 enabled:false
+
             },
+
 			credits: {
+
 				enabled: false
+
 			},
+
 			xAxis: { 
+
 				lineColor: '#0F3D71',
+
 				lineWidth: 2,
+
 				gridLineDashStyle: 'longdash',
+
 				type: 'datetime', 
+
 				labels: { 
+
 					formatter: function() { 
+
 						if(current_chart_type == 'day'){
+
 							return Highcharts.dateFormat('%H时', this.value); 
+
 						}else if(current_chart_type == 'week'){
+
 							return Highcharts.dateFormat('%m/%d', this.value); 
+
 						}else if(current_chart_type == 'month'){
+
 							return Highcharts.dateFormat('%m/%d', this.value); 
+
 						}else{
+
 							return Highcharts.dateFormat('%y年%m月', this.value); 
+
 						}						
+
 					} 
+
 				},
+
 				gridLineWidth: 1
+
 			}, 
+
 			yAxis: { 
+
 				lineColor: '#0F3D71',
+
 				lineWidth: 2,
+
 				gridLineDashStyle: 'longdash',
+
 				title: { 
+
 					text: '' 
+
 				}, 
+
 				min: 0 
+
 			}, 
+
 			plotOptions: {
+
 				series: {
+
 					fillColor: {
+
 						linearGradient: [0, 0, 0, 300],
+
 						stops: [
+
 							[0, Highcharts.getOptions().colors[0]],
+
 							[1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+
 						]
+
 					}
+
 				}
+
 			},
+
 			tooltip: { 
+
 			//这种模式下，每点的tooltip单独显示 
+
 				shared: false, 
+
 				formatter: function() { 
+
 					var s;
+
 					if(current_chart_type == 'day'){
+
 						s = Highcharts.dateFormat("%H时", this.point.x) +'   '+this.point.y +'个<br/>'; 
+
 					}else if((current_chart_type == 'week')||(current_chart_type == 'month')){
+
 						//s = Highcharts.dateFormat("%H时", this.point.x) +'   '+this.point.y +'个<br/>'; 
+
 						s = Highcharts.dateFormat("%m月%d日", this.point.x) +'   '+this.point.y +'个<br/>'; 
+
 					}else{
+
 						s = Highcharts.dateFormat("%y年%m月", this.point.x) +'   '+this.point.y +'个<br/>'; 
+
 					}
+
 					return s; 
+
 				}  
+
 			}, 
+
 			legend: {
+
 				enabled: false
+
 			},
+
 			series: [{ 
+
 				name: '终端采集数量', 
+
 				data: [] 
+
 			}] 
+
 		});
+
 		getChart1Data("day");
+
 		$("#btnDay").click(function(){
+
 			$(this).css({"background-color":"#BEDCF5"});
+
 			$("#btnWeek").css({"background-color":"#FFF"});
+
 			$("#btnMonth").css({"background-color":"#FFF"});
+
 			$("#btnSeason").css({"background-color":"#FFF"});
+
 			$("#btnYear").css({"background-color":"#FFF"});
+
 			getChart1Data("day");
+
 		});
+
 		$("#btnWeek").click(function(){
+
 			$(this).css({"background-color":"#BEDCF5"});
+
 			$("#btnDay").css({"background-color":"#FFF"});
+
 			$("#btnMonth").css({"background-color":"#FFF"});
+
 			$("#btnSeason").css({"background-color":"#FFF"});
+
 			$("#btnYear").css({"background-color":"#FFF"});
+
 			getChart1Data("week");
+
 		});
+
 		$("#btnMonth").click(function(){
+
 			$(this).css({"background-color":"#BEDCF5"});
+
 			$("#btnDay").css({"background-color":"#FFF"});
+
 			$("#btnWeek").css({"background-color":"#FFF"});
+
 			$("#btnSeason").css({"background-color":"#FFF"});
+
 			$("#btnYear").css({"background-color":"#FFF"});
+
 			getChart1Data("month");
+
 		});
+
 		$("#btnSeason").click(function(){
+
 			$(this).css({"background-color":"#BEDCF5"});
+
 			$("#btnDay").css({"background-color":"#FFF"});
+
 			$("#btnWeek").css({"background-color":"#FFF"});
+
 			$("#btnMonth").css({"background-color":"#FFF"});
+
 			$("#btnYear").css({"background-color":"#FFF"});
+
 			getChart1Data("season");
+
 		});
+
 		$("#btnYear").click(function(){
+
 			$(this).css({"background-color":"#BEDCF5"});
+
 			$("#btnDay").css({"background-color":"#FFF"});
+
 			$("#btnWeek").css({"background-color":"#FFF"});
+
 			$("#btnSeason").css({"background-color":"#FFF"});
+
 			$("#btnMonth").css({"background-color":"#FFF"});
+
 			getChart1Data("year");
+
 		});
+
 	}
+
 	
+
 	$(function () {
+
 		//重新改变窗口高度
+
 		setInterval("doOnResize();", 1000);		
+
 		//第一个chart
+
 		createChart1();
+
 		//第二个chart
+
 	    createChart2();
+
 	    //第三个chart
+
 		createChart3();
+
 		//第四个chart
+
 		createChart4();
+
 		//第五个chart
+
 		createChart5();
+
 		//第六个chart
+
 		createChart6();
+
 		//获取左边的块的数据
+
 		setLeftBlock();
+
 	});
+
       
+
 	
+
 	function getChart1Data(request_type){
+
 		
+
 			
+
 		
+
 		current_chart_type = request_type;
+
 		Ext.Ajax.request({     
+
 						url: '/pronline/Msg?FunName@macFrontPageChart1&username@admin&request_type@'+request_type,  
+
 						method: 'GET',
+
 						success: function(resp,opts) {   
+
 							var tmpData = [];
+
 							try{
+
 								var respText = resp.responseText; 
+
 								var respRecord = eval("("+respText+")");
+
 								var colNum = 0;
+
 								var colTime;
+
 								for(var i in respRecord.data){
+
 									colNum = parseInt(respRecord.data[i].collect_number);
+
 									colTime = parseInt(respRecord.data[i].collect_time);
+
 									var unixTimestamp = new Date(colTime * 1000);
+
 									var commonTime = unixTimestamp.getTime();
+
 									var commonOffset = unixTimestamp.getTimezoneOffset()*60000;
+
 									commonTime = commonTime - commonOffset;
+
 									tmpData.push({x:commonTime, y:colNum, name:'第'+i+'个点'});
+
 								}
+
 							}catch(e){
+
 								//console.log(e.message);
+
 							}						
+
 							chart1.series[0].setData(tmpData); 							
+
 						},   
+
 						failure: function(resp,opts) {   
+
 							var respText = eval("("+respText+")");
+
 							alert('错误', respText.error);   
+
 						}   				 
+
 		});			
+
 	}
+
 		
+
 	function showlist1(){
+
 		$(".cls_listitem1").show();
+
 	}
+
 	
+
 	function hidelist1(){		
+
 		$(".cls_listitem1").hide();
+
 	}		
+
 		
+
 	function showlist2(){
+
 		$(".cls_listitem2").show();
+
 	}
+
 	
+
 	function hidelist2(){		
+
 		$(".cls_listitem2").hide();
+
 	}
+
 	
+
 	function charthide(tabid){
+
 		var mySpan = $("#right"+tabid).find('span');//.toggle();	
+
 		if(mySpan.css("display")=="block"){
+
 			mySpan.css("display","none");
+
 		}
+
 		else{
+
 			mySpan.css("display","block");
+
 		}	
+
 		
+
 		var id = "hchart"+tabid;
+
 		$("#"+id).animate({
+
             height:'toggle' 	 
+
 		});				
+
 	}
+
 	
+
 	function showbg(tid){
+
 		var divcss ={ "background-color":"#BEBEBE","color":"#FFF"}
+
 		$("#right"+tid).css(divcss);		
+
 	}
+
 	
+
 	function hidebg(tid){
+
 		var divcss1 = { "background-color":"#F0F3F8","color":"#000"}
+
 		$("#right"+tid).css(divcss1);	
+
 	}
+
 		
+
 	function selectlist(tid){	
+
 		var mySpan = $("#right"+tid).find('span');//.toggle();	
+
 		if(mySpan.css("display")=="block"){
+
 			mySpan.css("display","none");
+
 		}
+
 		else{
+
 			mySpan.css("display","block");
+
 		}	
+
 	//	$("#right"+tid).find('span').toggle();
+
 		var id = "hchart"+tid;
+
 		$("#"+id).animate({
+
              height:'toggle' 	 
+
 		});
+
 	}	
+
 		
+
 	function selectmode(tid){
+
 		//$("#left"+tid).find('span').toggle();
+
 		var mySpan = $("#left"+tid).find('span');//.toggle();	
+
 		if(mySpan.css("display")=="block"){
+
 			mySpan.css("display","none");
+
 		}
+
 		else{
+
 			mySpan.css("display","block");
+
 		}	
+
 		$("#info_"+tid).animate({
+
              height:'toggle' 
+
     	});
+
 	}	
+
 	function jumpToDetail(destId){
+
 		parent.jumpToDestPage(destId);
+
 	}
+
 	function focusBlock(tid){
+
 		var txtop = $("#info_"+tid).css('top');
+
 		var txleft = $("#info_"+tid).css('left');
+
 		$("#info_"+tid).css("top", -5);
+
 		$("#info_"+tid).css("left", 5); 
+
 	}
+
 	function unfocusBlock(tid){
+
 		var txtop = $("#info_"+tid).css('top');
+
 		var txleft = $("#info_"+tid).css('left');
+
 		$("#info_"+tid).css("top", 0);
+
 		$("#info_"+tid).css("left", 0); 
+
 	}
+
 </script>
+
 </head>
+
+
 
 <body>
 
+
+
 	<div class="device_main">
+
 		<div class="main_content">
+
 			<div class="main_left">
+
 				<div class="info_block" id="info_0" onclick="jumpToDetail('id_infoquery_id')" onmouseover="focusBlock(0)" onmouseout="unfocusBlock(0)" style="cursor:hand;cursor: pointer;background-color:#FAEFF3;">
+
 					<img class="info_logo" src="/images/mac/chart/logo0.png"/>
+
 					<span class="info_text_single" id="id_info01">在线数:</span>		
+
 					<span class="info_number_single" id="id_number01">500</span>
+
 					<span class="info_title">在线终端统计</span>						
+
 				</div>
+
 				<div class="info_block" id="info_1" onmouseover="focusBlock(1)" onmouseout="unfocusBlock(1)" style="cursor:hand;cursor: pointer;background-color:#ECEDE8;">
+
 					<img class="info_logo" src="/images/mac/chart/logo1.png"/>
+
 					<span class="info_title">MAC库统计</span>
+
 					<span class="info_text_first" id="id_info11">今日新增数:</span>
+
 					<span class="info_number_first" id="id_number11" style="color:#FF8000">100</span>
+
 					<span class="info_text_second" id="id_info12">采集总数:</span>
+
 					<span class="info_number_second" id="id_number12" style="color:#FF8000">1000</span>
+
 				</div>
+
 				<div class="info_block" id="info_2" onmouseover="focusBlock(2)" onmouseout="unfocusBlock(2)" style="cursor:hand;cursor: pointer;background-color:#DDF0EE;">
+
 					<img class="info_logo" src="/images/mac/chart/logo2.png"/>
+
 					<span class="info_title">设备安装统计</span>
+
 					<span class="info_text_first" id="id_info21" >在线设备数:</span>
+
 					<span class="info_number_first" id="id_number21" style="color:#007F00">100</span>
+
 					<span class="info_text_second" id="id_info22" >总数:</span>
+
 					<span class="info_number_second" id="id_number22" style="color:#007F00">1000</span>
+
 				</div>	
+
 				<div class="info_block" id="info_3" onmouseover="focusBlock(3)" onmouseout="unfocusBlock(3)" style="cursor:hand;cursor: pointer;background-color:#EAE1F7;display:none;">
+
 					<img class="info_logo" src="/images/mac/chart/logo3.png"/>
+
 					<span class="info_title">身份关联统计</span>
+
 					<span class="info_text_first" id="id_info31" >实名身份:</span>
+
 					<span class="info_number_first" id="id_number31" style="color:#7237CA">100</span>
+
 					<span class="info_text_second" id="id_info32" >虚拟身份:</span>
+
 					<span class="info_number_second" id="id_number32" style="color:#7237CA">1000</span>
+
 				</div>
+
 				<div class="info_block" id="info_4" onclick="jumpToDetail('id_systemset_alarm')" onmouseover="focusBlock(4)" onmouseout="unfocusBlock(4)" style="cursor:hand;cursor: pointer;background-color:#CBE6F5;">
+
 					<img class="info_logo" src="/images/mac/chart/logo4.png"/>
+
 					<span class="info_title">当前告警统计</span>
+
 					<span class="info_text_single" id="id_info41">实时告警数:</span>
+
 					<span class="info_number_single" id="id_number41" style="color:#1615FE">1000</span>
+
 				</div>
+
 				<div class="info_block" id="info_5" onmouseover="focusBlock(5)" onmouseout="unfocusBlock(5)" style="cursor:hand;cursor: pointer;background-color:#FAEFF3;">
+
 					<img class="info_logo" src="/images/mac/chart/logo5.png"/>
+
 					<span class="info_title">布控告警统计</span>
+
 					<span class="info_text_single" id="id_info51">待处理数:</span>					
+
 					<span class="info_number_single" id="id_number51">1000</span>
+
 				</div>
+
 				<div class="info_block" id="info_6" onmouseover="focusBlock(6)" onmouseout="unfocusBlock(6)" style="cursor:hand;cursor: pointer;background-color:#ECEDE8;">
+
 					<img class="info_logo" src="/images/mac/chart/logo6.png"/>
+
 					<span class="info_title">场所统计</span>
+
 					<span class="info_text_first" id="id_info61">在线数:</span>
+
 					<span class="info_number_first" id="id_number61" style="color:#FF8000">100</span>
+
 					<span class="info_text_second" id="id_info62" >场所总数:</span>
+
 					<span class="info_number_second" id="id_number62" style="color:#FF8000">1000</span>
+
 				</div>
+
 				<div class="info_block" id="info_7" onmouseover="focusBlock(7)" onmouseout="unfocusBlock(7)" style="cursor:hand;cursor: pointer;background-color:#DDF0EE;display:none;">
+
 					<img class="info_logo" src="/images/mac/chart/logo7.png"/>
+
 					<span class="info_title">移动设备统计</span>
+
 					<span class="info_text_first" id="id_info71">在线数:</span>
+
 					<span class="info_number_first" id="id_number71" style="color:#007F00">100</span>
+
 					<span class="info_text_second" id="id_info72">总数:</span>
+
 					<span class="info_number_second" id="id_number72" style="color:#007F00">1000</span>
+
 				</div>
+
 				<div class="info_block" id="info_8" onmouseover="focusBlock(8)" onmouseout="unfocusBlock(8)" style="cursor:hand;cursor: pointer;background-color:#EAE1F7;">
+
 					<img class="info_logo" src="/images/mac/chart/logo8.png"/>
+
 					<span class="info_title">采集热点统计</span>
+
 					<span class="info_text_first" id="id_info81">非合规:</span>
+
 					<span class="info_number_first" id="id_number81" style="color:#7237CA">100</span>
+
 					<span class="info_text_second" id="id_info82">总数:</span>
+
 					<span class="info_number_second" id="id_number82" style="color:#7237CA">1000</span>
+
 				</div>
+
 			</div>
+
 			<div class="main_gap_line">
+
 			</div>
+
 			<div class="main_center">
+
 				<div class="tab_group1">
+
 					<div id="hchart1" class="cls_tab_normal">
+
 						<div class="tab_top">
+
 							<span>终端采集数量</span>
+
 							<img onclick="charthide(1)" src="/images/mac/exit.png" />
+
 						</div>
+
 						<div class="tab_btn_group">
+
 							<span class="tab_button_focus" id="btnDay">今日</span>
+
 							<span class="tab_button_normal" id="btnWeek">近一周</span>
+
 							<span class="tab_button_normal" id="btnMonth">近一月</span>
+
 							<span class="tab_button_normal" id="btnSeason">本季度</span>
+
 							<span class="tab_button_normal" id="btnYear">本年</span>
+
 						</div>
+
 						<div id="container1" class="cls_chart_rect_with_buttons"></div>
+
 					</div>
+
 					
+
 					<div id="hchart3" class="cls_tab_normal">
+
 						<div  class="tab_top">
+
 							<span>场所采集排行</span>
+
 							<img  onclick="charthide(3)" src="/images/mac/exit.png" />
+
 						</div>
+
 						<div id="container3" class="cls_chart_rect"></div>
+
 					</div>
+
 				   
+
 					<div id="hchart5" class="cls_tab_normal">
+
 						<div class="tab_top">
+
 							<span>设备采集排行</span>
+
 							<img onclick="charthide(5)" src="/images/mac/exit.png" />
+
 						</div>
+
 						<div id="container5" class="cls_chart_rect"></div>
+
 					</div>
+
 				</div>
+
 				
+
 				<div class="tab_group2">
+
 					<div  id="hchart2" class="cls_tab_normal">
+
 						<div class="tab_top">
+
 							<span>设备在线分析</span>
+
 							<img onclick="charthide(2)" src="/images/mac/exit.png" />
+
 						</div>
+
 						<div id="container2" class="cls_chart_rect"></div>
+
 					</div>
+
 					
+
 					<div id="hchart4" class="cls_tab_normal">
+
 						<div  class="tab_top">
+
 							<span>接入设备厂商</span>
+
 							<img onclick="charthide(4)" src="/images/mac/exit.png" />
+
 						</div>
+
 						<div id="container4" class="cls_chart_rect"></div>
+
 					</div>
+
 				   
+
 					<div id="hchart6" class="cls_tab_normal">
+
 						<div class="tab_top">
+
 							<span>告警数量排行</span>
+
 							<img onclick="charthide(6)" src="/images/mac/exit.png" />
+
 						</div>
+
 						<div id="container6" class="cls_chart_rect"></div>
+
 					</div>  
+
 				</div>
+
 			</div>
+
 			<div class="main_top">
+
 				<div class="main_top_left">
+
 					<div class="select_btn1"  onmouseout="hidelist1()" onmouseover="showlist1()">
+
 						<div style=" color:#0D3967;text-align:left; height:30px; line-height:30px;">
+
 							<img style=" margin-top:5px; margin-right:5px;"  src="/images/mac/u70.png"/>选择显示模块
+
 						</div>
+
 						<div class="cls_listitem1" id="left0" onclick="selectmode(0);"  onmouseover="showbg(this.id);" onmouseout="hidebg(this.id);">
+
 							<span style="display:block;color:#55AC60;float:left;">&radic;</span><p>在线终端统计</p>
+
 						</div>
+
 						<div class="cls_listitem1" id="left1" onclick="selectmode(1);"  onmouseover="showbg(this.id);" onmouseout="hidebg(this.id);">
+
 							<span style="display:block;color:#55AC60;float:left;">&radic;</span><p>MAC库统计</p>
+
 						</div>
+
 						<div class="cls_listitem1" id="left2" onclick="selectmode(2);" onmouseover="showbg(this.id);" onmouseout="hidebg(this.id);">
+
 							<span style="display:block;color:#55AC60;float:left;">&radic;</span><p>设备安装统计</p>
+
 						</div>
+
 						<div class="cls_listitem1" id="left3" onclick="selectmode(3);"  onmouseover="showbg(this.id);" onmouseout="hidebg(this.id);">
+
 							<span style="display:none;color:#55AC60;float:left;">&radic;</span><p>身份关联统计</p>
+
 						</div>
+
 						<div class="cls_listitem1" id="left4" onclick="selectmode(4);"  onmouseover="showbg(this.id);" onmouseout="hidebg(this.id);">
+
 							<span style="display:block;color:#55AC60;float:left;">&radic;</span><p>当前告警统计</p>
+
 						</div>
+
 						<div class="cls_listitem1" id="left5" onclick="selectmode(5);"  onmouseover="showbg(this.id);" onmouseout="hidebg(this.id);">
+
 							<span style="display:block;color:#55AC60;float:left;">&radic;</span><p>布控告警统计</p>
+
 						</div>  
+
 						<div class="cls_listitem1" id="left6" onclick="selectmode(6);"  onmouseover="showbg(this.id);" onmouseout="hidebg(this.id);">
+
 							<span style="display:block;color:#55AC60;float:left;">&radic;</span><p>场所统计</p>
+
 						</div> 
+
 						<div class="cls_listitem1" id="left7" onclick="selectmode(7);"  onmouseover="showbg(this.id);" onmouseout="hidebg(this.id);">
+
 							<span style="display:none;color:#55AC60;float:left;">&radic;</span><p>移动设备统计</p>
+
 						</div> 
+
 						<div class="cls_listitem1" id="left8" onclick="selectmode(8);"  onmouseover="showbg(this.id);" onmouseout="hidebg(this.id);">
+
 							<span style="display:block;color:#55AC60;float:left;">&radic;</span><p>采集热点统计</p>
+
 						</div> 
+
 					</div>	
+
 				</div>
+
 				<div class="main_top_center">
+
 					<div class="select_btn2"  onmouseout="hidelist2()" onmouseover="showlist2()">
+
 						<div style="color:#0D3967;text-align:left; height:30px; line-height:30px;">
+
 							<img style=" margin-top:5px; margin-right:5px;"  src="/images/mac/u70.png"/>
+
 							选择显示模块
+
 						</div>
+
 						<div class="cls_listitem2" id="right1" onclick="selectlist(1);"  onmouseover="showbg(this.id);" onmouseout="hidebg(this.id);">
+
 							<span style="display:block; color:#55AC60;float:left;">&radic;</span><p>终端采集数量</p>
+
 						</div>
+
 						<div class="cls_listitem2" id="right2" onclick="selectlist(2);" onmouseover="showbg(this.id);" onmouseout="hidebg(this.id);">
+
 							<span style="display:block; color:#55AC60;float:left;">&radic;</span><p>设备在线分析</p>
+
 						</div>
+
 						<div class="cls_listitem2" id="right3" onclick="selectlist(3);"  onmouseover="showbg(this.id);" onmouseout="hidebg(this.id);">
+
 							<span style="display:block; color:#55AC60;float:left;">&radic;</span><p>场所采集排行</p>
+
 						</div>
+
 						<div class="cls_listitem2" id="right4" onclick="selectlist(4);"  onmouseover="showbg(this.id);" onmouseout="hidebg(this.id);">
+
 							<span style="display:block; color:#55AC60;float:left;">&radic;</span><p>接入设备厂商</p>
+
 						</div>
+
 						<div class="cls_listitem2" id="right5" onclick="selectlist(5);"  onmouseover="showbg(this.id);" onmouseout="hidebg(this.id);">
+
 							<span style="display:block; color:#55AC60;float:left;">&radic;</span><p>设备采集排行</p>
+
 						</div>
+
 						<div class="cls_listitem2" id="right6" onclick="selectlist(6);"  onmouseover="showbg(this.id);" onmouseout="hidebg(this.id);">
+
 							<span style="display:block; color:#55AC60;float:left;">&radic;</span><p>告警数量排行</p>
+
 						</div>	  
+
 					</div>
+
 				</div>
+
 			</div>
+
 		</div>
+
 		
+
 		
+
     </div>
+
 	
+
 </body>
+
 </html>
+

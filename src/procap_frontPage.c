@@ -34,6 +34,10 @@ static  pattern_tree  *psAcbmTree_bab = NULL;     // 伴随行为Acbm模式树
 //#include "ncfileserver.h"
 #define MAX_TIMEOUT_SECONDS (15*60)
 //#define SHOWBAB_DEBUG 1
+#define FRONTTYPE_TODAYMACS "0001"
+#define FRONTTYPE_TOTALMACS "0002"
+#define FRONTTYPE_TOPPLACE "0003"
+
 
 struct servicedata_s
 {
@@ -1063,6 +1067,22 @@ static int isInOnlinePlaceMemory(utShmHead *psShmHead, char* placename)
     return 0;
 }
 
+int getMacCount(utShmHead* psShmHead, long* pTodayTermMac, long* pTotalTermMac)
+{
+    uint8 lUserId = 0;
+    int iReturn = dsCltGetMyInfo(1, "Userid", &lUserId);
+    if(iReturn == 0 && lUserId > 0)
+    {
+        ncsMacFrontpageObj* psData = (ncsMacFrontpageObj *)utShmHashLookA(psShmHead, NCS_LNK_FRONTPAGE, (char*)(&lUserId));
+        if(psData)
+        {
+            psData->lastAskTime = time(0);
+            (*pTodayTermMac) = psData->todayMacCount;
+            (*pTotalTermMac) = psData->totalMacCount;
+        }
+    }
+    return 0;
+}
 
 
 int macFrontPageLeftBlocks(utShmHead *psShmHead, int iFd, utMsgHead *psMsgHead)
@@ -1074,6 +1094,7 @@ int macFrontPageLeftBlocks(utShmHead *psShmHead, int iFd, utMsgHead *psMsgHead)
         utMsgPrintMsg(psMsgHead);
     }
     utPltDbHead *psDbHead = utPltInitDb();
+
     long onlineTerms = 0;
     long todayTermMac = 0;
     long totalTermMac = 0;
@@ -1127,63 +1148,12 @@ int macFrontPageLeftBlocks(utShmHead *psShmHead, int iFd, utMsgHead *psMsgHead)
     //printf("caStemptime=%s,leTime=%lu\n", caStemptime, letime);
     //当天的0点
     long lstime = utTimStrToLong("%Y/%m/%d %H:%M", caStemptime);
-    //统计今日终端数量
-    memset(sql, 0, sizeof(sql));
 
-    /*
-    if(strlen(caServicecodes) > 0)
-    {
-        snprintf(sql, sizeof(sql), "select ifnull(count(distinct(mac)), 0) from %s where stime>=%d and stime<=%d and servicecode in (%s)", table_name, lstime, letime, caServicecodes);
+    //统计今日终端数量和终端总数
+    getMacCount(psShmHead, &todayTermMac, &totalTermMac);
 
-    }
-    */
-    if(strlen(caGroupSql) > 0)
-    {
-        snprintf(sql, sizeof(sql), "select ifnull(count(distinct(mac)), 0) from %s where stime>=%d and stime<=%d and %s", table_name, lstime, letime, caGroupSql);
-    }
-    else
-    {
-        snprintf(sql, sizeof(sql), "select ifnull(count(distinct(mac)), 0) from %s where stime>=%d and stime<=%d", table_name, lstime, letime);
-    }
-    iReturn = pasDbOneRecord(sql, 0, UT_TYPE_LONG, 4, &todayTermMac);
-    if(iReturn != 0)
-    {
-        printf("errsql=%s,iRet=%d\n", sql, iReturn);
-        utPltPutVar(psDbHead, "result", "0");
-        utPltOutToHtml(iFd, psMsgHead, psDbHead, "mac/frontPage/leftBlock.htm");
-        return -1;
-    }
-    //统计终端总数
-    memset(sql, 0, sizeof(sql));
-    if(strlen(caGroupSql) > 0)
-    {
-        snprintf(sql, sizeof(sql), "select ifnull(count(distinct(mac)),0) from nctermmacs where %s", caGroupSql);
-    }
-    else
-    {
-        snprintf(sql, sizeof(sql), "select ifnull(count(distinct(mac)),0) from nctermmacs");
-    }
-    /*
-    if(strlen(caServicecodes) > 0)
-    {
-        snprintf(sql, sizeof(sql), "select ifnull(count(distinct(mac)),0) from nctermmacs where servicecode in (%s)", caServicecodes);
-    }
-    else
-    {
-        snprintf(sql, sizeof(sql), "select ifnull(count(distinct(mac)),0) from nctermmacs");
-    }
-    */
 
-    //snprintf(sql, sizeof(sql), "select ifnull(sum(lcount),0) from ncmactermcount");
-    iReturn = pasDbOneRecord(sql, 0, UT_TYPE_LONG, 4, &totalTermMac);
-    if(iReturn != 0)
-    {
-        printf("errsql=%s,iRet=%d\n", sql, iReturn);
-        utPltPutVar(psDbHead, "result", "0");
-        utPltOutToHtml(iFd, psMsgHead, psDbHead, "mac/frontPage/leftBlock.htm");
-        return -1;
-    }
-    totalTermMac = totalTermMac + todayTermMac;
+
     // DO:在线设备和设备总数,在线移动设备和移动设备总数
     ApCount mApCount;
     memset(&mApCount, 0, sizeof(ApCount));
@@ -2560,6 +2530,310 @@ static int insertOperationAlarmToDB(struct db_nctermsysalarm* pPlaceData)
             pPlaceData->updatetime, pPlaceData->description, pPlaceData->status);
     printf("sql=%s\n", sql);
     iReturn = pasDbExecSqlF(sql);
+    return 0;
+}
+
+
+struct s_userInfo
+{
+    uint8 userId;
+    char name[32];
+};
+
+char *getDsGroupcodeSqlByUserId(char *field, ulong lUserId)
+{
+    static char caReturn[1024];
+    char caIds[1024], caTempid[1024];
+    char caGroupcode[20];
+    char caTempcode[1024];
+    char caOpt[256];
+    pasLHashInfo sHashInfo;
+    int iReturn, iNum;
+    pasDbCursor *psCur;
+    long lLen;
+    typedef struct ncsDsData_s
+    {
+        long len;                //字段长度
+        char codes[1024];
+        long count;
+    } ncsDsData;
+    char *pHash;
+    ncsDsData *psData;
+
+    memset(caReturn, 0, sizeof(caReturn));
+
+
+    if(lUserId <= 0)
+    {
+        return &caReturn[0];
+    }
+
+    memset(caOpt, 0, sizeof(caOpt));
+    pasDbOneRecord("select opt from dsuser where id=:id", 1, "id", UT_TYPE_LONG, lUserId, UT_TYPE_STRING, 255, caOpt);
+    if(strstr(caOpt, "all") || strlen(caOpt) == 0)
+    {
+        return &caReturn[0];
+    }
+
+    pHash = (unsigned char *)pasLHashInit(100, 100, sizeof(struct ncsDsData_s), 0, 4);
+    if(pHash == NULL)
+    {
+        return &caReturn[0];
+    }
+    //
+    long lId = 0;
+    psCur = pasDbOpenSqlF("select groupcode from ncsgroup where   groupid in(%s) ", caOpt);
+    if(psCur)
+    {
+        iReturn = 0;
+        lId = 0;
+        memset(caGroupcode, 0, sizeof(caGroupcode));
+        iReturn = pasDbFetchInto(psCur,
+                                 UT_TYPE_STRING, 14, caGroupcode);
+        iNum = 0;
+        while(iReturn == 0 || iReturn == 1405)
+        {
+            lLen = strlen(caGroupcode);
+            psData = (ncsDsData *)pasLHashLookA(pHash, (char*)&lLen);
+            if(psData)
+            {
+                if(psData->count == 0)
+                {
+                    sprintf(psData->codes, "\"%s\"", caGroupcode);
+                }
+                else
+                {
+                    sprintf(psData->codes + strlen(psData->codes), ",\"%s\"", caGroupcode);
+                }
+                psData->count++;
+            }
+
+
+
+
+            memset(caGroupcode, 0, sizeof(caGroupcode));
+            iReturn = pasDbFetchInto(psCur,
+                                     UT_TYPE_STRING, 14, caGroupcode);
+        }
+        pasDbCloseCursor(psCur);
+    }
+
+
+    //       sprintf(caReturn,"%s",caOpt);
+    sprintf(caIds, "%s", caOpt);
+    iNum = 0;
+    while(strlen(caIds) > 0)
+    {
+        memset(caTempid, 0, sizeof(caTempid));
+        iNum = 0;
+
+        psCur = pasDbOpenSqlF("select groupid,groupcode from ncsgroup where   pid in(%s) ", caIds);
+        if(psCur)
+        {
+            iReturn = 0;
+            lId = 0;
+            memset(caGroupcode, 0, sizeof(caGroupcode));
+            iReturn = pasDbFetchInto(psCur, UT_TYPE_ULONG, 4, &lId,
+                                     UT_TYPE_STRING, 14, caGroupcode);
+            while(iReturn == 0 || iReturn == 1405)
+            {
+                if(iNum == 100) break;
+
+                lLen = strlen(caGroupcode);
+                psData = (ncsDsData *)pasLHashLookA(pHash, (char*)&lLen);
+                if(psData)
+                {
+                    if(psData->count == 0)
+                    {
+                        sprintf(psData->codes, "\"%s\"", caGroupcode);
+                    }
+                    else
+                    {
+                        sprintf(psData->codes + strlen(psData->codes), ",\"%s\"", caGroupcode);
+                    }
+                    psData->count++;
+                }
+
+                if(iNum == 0)
+                {
+                    sprintf(caTempid, "%lu", lId);
+
+                }
+                else
+                {
+                    sprintf(caTempid + strlen(caTempid), ",%lu", lId);
+
+                }
+
+                memset(caGroupcode, 0, sizeof(caGroupcode));
+                iReturn = pasDbFetchInto(psCur, UT_TYPE_ULONG, 4, &lId,
+                                         UT_TYPE_STRING, 14, caGroupcode);
+
+                iNum++;
+
+            }
+        }
+        pasDbCloseCursor(psCur);
+        strcpy(caIds, caTempid);
+    }
+
+    //拼装SQL语句
+    psData = (ncsDsData *)pasLHashFirst(pHash, &sHashInfo);
+    iNum = 0;
+    memset(caReturn, 0, sizeof(caReturn));
+    while(psData)
+    {
+        if(iNum == 0)
+        {
+            sprintf(caReturn, "( left(%s,%d) in (%s) ", field, psData->len, psData->codes);
+        }
+        else
+        {
+            sprintf(caReturn + strlen(caReturn), " or left(%s,%d) in (%s) ", field, psData->len, psData->codes);
+        }
+        iNum++;
+        psData = (ncsDsData *)pasLHashNext(&sHashInfo);
+    }
+
+    if(iNum > 0)
+    {
+        sprintf(caReturn + strlen(caReturn), ")");
+    }
+    free(pHash);
+    return &caReturn[0];
+}
+
+
+int ncsStatMacFront(utShmHead *psShmHead)
+{
+    char sql[8024] = "";
+    unsigned char* pHash_user = NULL;
+    pasDbCursor *psCur;
+    struct s_userInfo tmpUser;
+    struct s_userInfo* psUser = NULL;
+    pasLHashInfo sHashInfo;
+	char caGroupSql[8024] = "";
+    int iReturn = 0;
+   
+
+    iReturn = pasConnect(psShmHead);
+    if(iReturn < 0)
+    {
+        printf("conn psShmHead fail iReturn=%d\n", iReturn);
+        sleep(60);
+        return 0;
+    }
+
+    utShmFreeHash(psShmHead, NCS_LNK_FRONTPAGE);
+    utShmHashInit(psShmHead, NCS_LNK_FRONTPAGE, 2000, 2000, sizeof(ncsMacFrontpageObj), 0, 8);
+    while(1)
+    {
+        //1、所有用户装入内存
+        pHash_user = (unsigned char *)pasLHashInit(2000, 2000, sizeof(struct s_userInfo), 0, 8);
+        if(pHash_user == NULL)
+        {
+            printf("分配内存出错\n");
+            return 0;
+        }
+        memset(sql, 0, sizeof(sql));
+        sprintf(sql, "select id,name from dsuser");
+        psCur = pasDbOpenSql(sql, 0);
+        if(psCur)
+        {
+            memset(&tmpUser, 0, sizeof(tmpUser));
+            iReturn = pasDbFetchInto(psCur,
+                                     UT_TYPE_LONG8, 8, &tmpUser.userId,
+                                     UT_TYPE_STRING, 32, tmpUser.name);
+
+            while((iReturn == 0) || (iReturn == 1405))
+            {
+                psUser = (struct s_userInfo*)pasLHashLookA(pHash_user, (char*)&tmpUser.userId);
+                if(psUser)
+                {
+                    psUser->userId = tmpUser.userId;
+                    strcpy(psUser->name, tmpUser.name);
+                }
+                memset(&tmpUser, 0, sizeof(tmpUser));
+                iReturn = pasDbFetchInto(psCur,
+                                         UT_TYPE_LONG8, 8, &tmpUser.userId,
+                                         UT_TYPE_STRING, 32, tmpUser.name);
+				//printf("======%llu,%s=====\n", tmpUser.userId, tmpUser.name);
+            }
+            pasDbCloseCursor(psCur);
+        }
+        char table_name[1024] = "";
+        char  year[10];
+        char  mon[10];
+        char caStemptime[24] = "";
+        memset(year, 0, sizeof(year));
+        memset(mon, 0 , sizeof(mon));
+        time_t now;
+        time(&now);
+        timeToStringEx(now, year, mon);
+        int syear = atoi(year);
+        int smonth = atoi(mon);
+        snprintf(table_name + strlen(table_name), 1024 - strlen(table_name), "ncmactermatt_if_%4u%02u", syear, smonth);
+
+        //2、统计当天目前时间以前的所有的小时
+        long letime = time(0);
+        sprintf(caStemptime, "%s 00:00", utTimFormat("%Y/%m/%d", letime));
+        //当天的0点
+        long lstime = utTimStrToLong("%Y/%m/%d %H:%M", caStemptime);
+        //遍历该内存
+        psUser = (struct s_userInfo*)pasLHashFirst(pHash_user, &sHashInfo);
+        while(psUser)
+        {
+            //读取共享内存该用户的信息
+            ncsMacFrontpageObj* psData = (ncsMacFrontpageObj *)utShmHashLookA(psShmHead, NCS_LNK_FRONTPAGE, (char*)(&psUser->userId));
+            if(psData)
+            {
+                psData->lastModTime = letime;
+				printf("\n====userid=%llu====asktime=%lu\n\n", psUser->userId, psData->lastAskTime);
+                if(letime - psData->lastAskTime < 30)
+                {        
+                    memset(caGroupSql, 0, sizeof(caGroupSql));
+                    strcpy(caGroupSql, (char*)getDsGroupcodeSqlByUserId("servicecode", psUser->userId));
+                    //统计今日终端数量
+                    memset(sql, 0, sizeof(sql));
+                    if(strlen(caGroupSql) > 0)
+                    {
+                        snprintf(sql, sizeof(sql), "select ifnull(count(distinct(mac)), 0) from %s where stime>=%d and stime<=%d and %s", table_name, lstime, letime, caGroupSql);
+                    }
+                    else
+                    {
+                        snprintf(sql, sizeof(sql), "select ifnull(count(distinct(mac)), 0) from %s where stime>=%d and stime<=%d", table_name, lstime, letime);
+                    }
+                    iReturn = pasDbOneRecord(sql, 0, UT_TYPE_LONG, 4, &psData->todayMacCount);
+                    if(iReturn != 0)
+                    {
+                        printf("errsql=%s,iRet=%d\n", sql, iReturn);
+                    }
+                    //统计mac总数
+                    memset(sql, 0, sizeof(sql));
+                    if(strlen(caGroupSql) > 0)
+                    {
+                        snprintf(sql, sizeof(sql), "select ifnull(count(distinct(mac)),0) from nctermmacs where %s", caGroupSql);
+                    }
+                    else
+                    {
+                        snprintf(sql, sizeof(sql), "select ifnull(count(distinct(mac)),0) from nctermmacs");
+                    }
+
+                    iReturn = pasDbOneRecord(sql, 0, UT_TYPE_LONG, 4, &psData->totalMacCount);
+                    if(iReturn != 0)
+                    {
+                        printf("errsql=%s,iRet=%d\n", sql, iReturn);
+                    }
+					printf("totay=%lu, total=%lu\n\n", psData->todayMacCount, psData->totalMacCount);
+                }
+            }
+            psUser = (struct s_userInfo*)pasLHashNext(&sHashInfo);
+        }
+        if(pHash_user)
+            free(pHash_user);
+		printf("\n\n========休息10秒========\n\n");
+        sleep(10);
+    }
     return 0;
 }
 

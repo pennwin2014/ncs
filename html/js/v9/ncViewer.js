@@ -8,6 +8,34 @@ var bMyaccount = false;
 var globalSelectId = "";
 var globalSelectGroupId = "itm_infoquery";
 var DEFAULT_SEARCH_TEXT = "MAC/手机号/场所名称";
+function f_MacGlobalContext(){
+//私有变量
+	this.id_operation_status = -1;
+	this.globalInfoMac = "";
+	this.globalInfoTime = "";
+//公共接口
+	this.getIdOperationStatus = function(){
+        return this.id_operation_status;
+    }
+	this.setIdOperationStatus = function(status){
+		this.id_operation_status = status;
+	}
+
+	this.getGlobalInfoMac = function(){
+		return this.globalInfoMac;
+	}
+	this.getGlobalInfoTime = function(){
+		return this.globalInfoTime;
+	}
+	this.setGlobalInfoMac = function(mac){
+		this.globalInfoMac = mac;
+	}
+	this.setGlobalInfoTime = function(tm){
+		this.globalInfoTime = tm;
+	}
+}
+
+var macGlobalCtx = new f_MacGlobalContext(); 
 
 var mapInfoquery = {
 	'id_infoquery_mac':['itm_infoquery_mac','MAC日志查询','mac_infoquery_mac'], 
@@ -57,7 +85,8 @@ var left_tabs_glob='';
 function isInFocus(itmid){
 	var tabs_center=Ext.getCmp("layout_center");
 	var activeTab = tabs_center.getActiveTab();
-	if (activeTab || (typeof activeTab != "undefined")){
+	//if (activeTab || (typeof activeTab == "undefined")){
+	if (!activeTab || typeof(activeTab)=="undefined" || activeTab==0){
 		if(tabs_center.items.length>0){
 			activeTab = tabs_center.items.items[0];
 		}else{
@@ -133,8 +162,26 @@ function jumpToDestPage(resultId, mac){
 	);   
 	if(i>0){
 		tabs_center.setActiveTab(m);
-		eval("lan_itm_infoquery_mac_s").setFieldMac(mac);
-		eval("lan_itm_infoquery_mac_s").setFieldVname(mac);
+		try{
+			eval("lan_itm_infoquery_mac_s").setFieldMac(mac);
+		}catch(e){
+			
+		}
+		try{
+			eval("lan_itm_infoquery_mac_s").setFieldVname(mac);
+		}catch(e){
+			
+		}
+		try{
+			eval("lan_itm_operation_equipment_s").id_operation_tabload();
+		}catch(e){
+			
+		}	
+		try{
+			eval("lan_itm_infoquery_mac_s").id_operation_tabload();			
+		}catch(e){
+			
+		}
 		return;
     } 
 	if(tab_len>5){
@@ -148,33 +195,19 @@ function jumpToDestPage(resultId, mac){
 		title: title,
 		items:[grid]
 	}).show();
-	eval("lan_itm_infoquery_mac_s").setFieldMac(mac);
-	eval("lan_itm_infoquery_mac_s").setFieldVname(mac);
+	//eval("lan_itm_infoquery_mac_s").setFieldMac(mac);
+	//eval("lan_itm_infoquery_mac_s").setFieldVname(mac);
 }
 
-var globalInfoMac = "";
-var globalInfoTime = "";
 
-function getGlobalInfoMac(){
-	return globalInfoMac;
-}
-function getGlobalInfoTime(){
-	return globalInfoTime;
-}
-function setGlobalInfoMac(mac){
-	globalInfoMac = mac;
-}
-function setGlobalInfoTime(tm){
-	globalInfoTime = tm;
-}
 
 function showMacWindow_freCharact(mac, tm){
 	eval("lan_itm_dm_freCharact_s").setPlaceValue(mac);
 	winSearchListFre.hide();
 }
 function showMacWindow(mac, tm){	
-	setGlobalInfoMac(mac);
-	setGlobalInfoTime(tm);
+	macGlobalCtx.setGlobalInfoMac(mac);
+	macGlobalCtx.setGlobalInfoTime(tm);
 	var tabPanel = new Ext.TabPanel({
 		title: '特征分析',
 		frame: true,        
@@ -1943,6 +1976,7 @@ Ext.define('ncViewer.App', {
 		}
 	},
     onItemClick:function(item){
+		//alert("click "+item.title);
     	 //bbbb=document.all('ltitle');
 		toggleClickItem(item.itemid);
     	var tab_title='';

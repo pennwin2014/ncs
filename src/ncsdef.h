@@ -46,6 +46,7 @@
 
 #define  NCS_LNK_MACPROCYOBJ    74                /* MAC布控策略布控场所 */
 #define  NCS_LNK_BABPROCYOBJ    75                /* 伴随行为分析 */
+#define  NCS_LNK_FRONTPAGE      76                /*首页数据*/
 
 
 #define  NCS_MAX_CLIENT      100
@@ -781,5 +782,13 @@ typedef struct ncsBabProcyObj_s {
     char   code[32];                  // cid_type_did           type_id值为9_9 时代表
     unsigned long id;               //ID  部门，或单位ID 0 代表全部    
 } ncsBabProcyObj; 
+typedef struct ncsMacFrontpageObj_s {           
+    uint8 userId;                      //用户id
+    ulong lastAskTime;                 //最新请求时间
+    ulong lastModTime;                 //最新更新时间
+    ulong todayMacCount;               //今日新增mac数
+    ulong totalMacCount;               // 总mac数
+} ncsMacFrontpageObj; 
+
 
 #endif

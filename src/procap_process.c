@@ -24,6 +24,7 @@
 int ncsStatMacWarn(utShmHead *psShmHead);
 int ncsStatMacBab(utShmHead *psShmHead);
 int ncsStatMacDevWarn(utShmHead *psShmHead);
+int ncsStatMacFront(utShmHead *psShmHead);
 static int ncsStartOnTimeDo(utShmHead *psShmHead)
 {
     /* 设置定时进程  */
@@ -150,6 +151,8 @@ int ncsStartSomeProcess_mac(utShmHead *psShmHead)
     pasUtlSetProcessName(psShmHead, "MacBab", ncsStatMacBab, 68400L, 0);
     //启动运维告警进程
     pasUtlSetProcessName(psShmHead, "MacDevWarn", ncsStatMacDevWarn, 68400L, 0);
+	//启动首页数据统计进程
+    pasUtlSetProcessName(psShmHead, "MacFront", ncsStatMacFront, 68400L, 0);
     iReturn = pasUtlStartProcess(psShmHead);
     return iReturn;
 }

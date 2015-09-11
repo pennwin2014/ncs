@@ -56,17 +56,10 @@ drop table if exists ncbabplacetimemac;
 create table ncbabplacetimemac (
 	cid          int unsigned,     -- 策略id
 	servicecode   char(32),     -- 场所编码
-	timestr       char(20),     -- 时间2015080112
+	---timestr       char(20),     -- 时间2015080112
     mac   char(20),  -- 伴随mac
-	--从mac日志表得到的详情信息
-	stime       bigint        NOT NULL,                    -- 采集时间
-    vtype       int(1)        default 0,                   -- 身份类型
-    vname       char(64)      default ' ',                 -- 身份内容
-    ssid        char(255)     default ' ',                 -- SSID,若多个用逗号分隔    
-    apname      char(21)      NOT NULL,                    -- AP名称
-    apmac       char(17)      NOT NULL,                    -- APMac地址
-    longitude   char(11)      NOT NULL,                    -- 经度
-    latitude    char(11)      NOT NULL                    -- 维度
+	starttime    int unsigned,     -- 起始时间
+    endtime        int unsigned,     --  结束时间
 ) engine=InnoDB;
 create unique index uqidx_ncbabplacetimemac_cid_servicecode_timestr_mac on ncbabplacetimemac(cid,servicecode,timestr,mac); 
 ALTER TABLE ncbabplacetimemac ADD CONSTRAINT fk_ncbabplacetimemac_cid FOREIGN KEY (cid) REFERENCES ncbabtask(cid) ON DELETE CASCADE ON UPDATE CASCADE;
