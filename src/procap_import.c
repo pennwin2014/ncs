@@ -93,7 +93,7 @@ static char *getDsGroupids()
     return &caReturn[0];
 }
 
-static char *getServicecodesByDids(utShmHead *psShmHead, char *caGroupids)
+static char *getServicecodesByDids2(utShmHead *psShmHead, char *caGroupids)
 {
     static char caReturn[8024];
     char caAllGroupIds[8024];

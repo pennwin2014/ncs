@@ -13,6 +13,7 @@ function f_MacGlobalContext(){
 	this.id_operation_status = -1;
 	this.globalInfoMac = "";
 	this.globalInfoTime = "";
+	this.phoneNumber = ""; 
 //公共接口
 	this.getIdOperationStatus = function(){
         return this.id_operation_status;
@@ -32,6 +33,12 @@ function f_MacGlobalContext(){
 	}
 	this.setGlobalInfoTime = function(tm){
 		this.globalInfoTime = tm;
+	}
+	this.getPhoneNumber = function(){
+		return this.phoneNumber;
+	}
+	this.setPhoneNumber = function(number){
+		this.phoneNumber = number;
 	}
 }
 
@@ -172,6 +179,13 @@ function jumpToDestPage(resultId, mac){
 		}catch(e){
 			
 		}
+		
+		try{
+			eval("lan_"+itemid+"_s").id_operation_tabload();
+		}catch(e){
+			
+		}
+		/*
 		try{
 			eval("lan_itm_operation_equipment_s").id_operation_tabload();
 		}catch(e){
@@ -182,6 +196,12 @@ function jumpToDestPage(resultId, mac){
 		}catch(e){
 			
 		}
+		try{
+			eval("lan_itm_systemset_alarm_s").id_operation_tabload();			
+		}catch(e){
+			
+		}	
+		*/		
 		return;
     } 
 	if(tab_len>5){
@@ -414,6 +434,7 @@ function doSearchByKeyword_freCharact(tKeyword)
 						showSearchResult_freCharact(getNeedMac(respRecord.data[0].mac));
 					}	
 				}else if(respRecord.result == "1"){
+					macGlobalCtx.setPhoneNumber(respRecord.data[0].mac);
 					jumpToDestPage(respRecord.itemid, respRecord.data[0].mac);
 				}else{
 					alert("类型错误");
@@ -453,6 +474,7 @@ function doSearchByKeyword(tKeyword)
 						showSearchResult();
 					}	
 				}else if(respRecord.result == "1"){
+					macGlobalCtx.setPhoneNumber(respRecord.data[0].mac);
 					jumpToDestPage(respRecord.itemid, respRecord.data[0].mac);
 				}else{
 					alert("类型错误");
