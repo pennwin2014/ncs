@@ -129,18 +129,29 @@ int reOrganizePointList(s_eachpoint* pFirstNode)
         printf("next stime=%llu, current stime=%llu", pNextNode->starttime, pNode->starttime);
         if(pNextNode->starttime - pNode->starttime < 3600)
         {
-            printf(",合并\n");
             if(strcmp(pNextNode->servicecode, pNode->servicecode) == 0)
             {
-                pNode->endtime = pNextNode->endtime;
+            	printf(",合并\n");
+				if(pNextNode->starttime>pNode->endtime)
+                	pNode->endtime = pNextNode->starttime;
                 pNode->pNext = pNextNode->pNext;
                 free(pNextNode);
                 continue;
-            }
+            }else{
+				printf(",场所切换不合并\n");
+				printf("my etime=%llu, next stime=%llu\n", pNode->endtime, pNextNode->starttime);
+				pNode->endtime = pNextNode->starttime;
+				
+			}
         }
         else
         {
             printf(",不合并\n");
+			if(pNode->endtime>pNextNode->starttime)
+			{
+				printf("but etime=%llu, next stime=%llu\n", pNode->endtime, pNextNode->starttime);
+				pNode->endtime = pNextNode->starttime;				
+			}
         }
         pNode = pNode->pNext;
     }
@@ -150,6 +161,22 @@ int reOrganizePointList(s_eachpoint* pFirstNode)
 * 展示列表
 */
 
+
+/**
+* 取列表长度
+*/
+ulong getPointListLength(s_eachpoint* pFirstNode)
+{
+	if(!pFirstNode)
+       return -1;
+	s_eachpoint* pNode = pFirstNode->pNext;
+	ulong lLen = 0;
+	while(pNode){
+		lLen++;
+		pNode = pNode->pNext;
+	}
+	return lLen;
+}
 
 
 

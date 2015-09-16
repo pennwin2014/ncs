@@ -24,6 +24,12 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 
+struct s_maccount
+{
+    char mac[20];
+	ulong count;
+};
+
 
 
 struct s_macinfo
@@ -81,6 +87,7 @@ int addToPointList(s_eachpoint* pFirstNode, s_eachpoint* pPoint);
 int reOrganizePointList(s_eachpoint* pFirstNode);
 
 
+ulong getPointListLength(s_eachpoint* pFirstNode);
 
 
 

@@ -559,7 +559,31 @@
         win.show(); 
 	} 
           
-          
+      function _showmapinfo(obj,title,store,record,apname,sdate_cx,edate_cx,stime_cx,etime_cx,field8)
+    	{
+
+         	var win = Ext.create(obj,{
+					        title: title,
+					        field1: store,
+					        field2:record,
+					        field3:apname,
+					        field4:sdate_cx,
+					        field5:edate_cx,
+					        field6:stime_cx,
+					        field7:etime_cx,
+					        field8:field8,
+							    layout:'fit',
+							    viewConfig:{
+								  forceFit:true,
+								  scrollOffset:0
+							}		
+		        });
+		  
+				
+			      win.showAt(200,50); 	
+
+        
+    	}           
         
     var store_status;    	
     var fptest = Ext.create('Ext.FormPanel', { 
@@ -685,6 +709,8 @@
 	var number = now.getYear().toString()+now.getMonth().toString()+now.getDate().toString()+now.getHours().toString()+now.getMinutes().toString()+now.getSeconds().toString(); 
 	document.write("\<script language=\"javascript\" type=\"text/javascript\" src=\"/pronline/Msg?FunName@ncsSysUserRoleConfig_v9&time@"+number+"\"><\/script\>");
 </script>
+<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=9ac2d10856d92017d2d8d82ce004a820"></script>
+
 </head>
 <body>
 	<form name="form1" id="form1" >

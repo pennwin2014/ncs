@@ -1,0 +1,373 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<!--script type="text/javascript" src="/newver/jquery/jquery-1.8.2.min.js"></script-->
+<script type="text/javascript" src="http://cdn.hcharts.cn/jquery/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="/newver/chart/highcharts.js"></script>
+<script src="/newver/chart/modules/drilldown.js"></script>
+<script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+<link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" /> 
+
+<title>首页</title>
+<style>
+
+html,body{
+    -webkit-text-size-adjust:none;
+	 font-family: 微软雅黑;	 
+}
+
+.cls_tab_normal{ position:relative;background-color:#FFF; border: solid 1px #00B1F1;left:0px; width:100%; height:460px; margin-top:10px;border-radius:15px 15px 15px 15px;}
+.cls_chart_rect_with_buttons{position:absolute; top:10px; left:20px; height:90%; width:95%; text-align:center}
+
+</style>
+<script>
+	Date.prototype.Format = function (fmt) { //author: meizz 
+    var o = {
+        "M+": this.getMonth() + 1, //月份 
+        "d+": this.getDate(), //日 
+        "h+": this.getHours(), //小时 
+        "m+": this.getMinutes(), //分 
+        "s+": this.getSeconds(), //秒 
+        "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+        "S": this.getMilliseconds() //毫秒 
+    };
+    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+    for (var k in o)
+        if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+    return fmt;
+}
+function getLocalTime(tm) {
+    var tt = new Date(parseInt(tm) * 1000);
+    return tt;
+}
+	var chart1;
+	var smap1 ={};
+	var smap2 ={};
+	var smap3 ={};
+	
+var mymonth=[];
+var myday=[];
+var myhour={};
+	function getRandom(n){
+		return Math.floor(Math.random()*n+1);
+	}
+   var cid='';
+	  try{
+          cid = parent.Ext.getCmp('cid').value;
+         
+      }
+      catch (e) { }
+	var current_chart_type = 'day';
+	function createChart1(){
+		
+		Highcharts.setOptions({
+			lang: {
+				drillUpText: '<< 返回 {series.name}'
+			}
+		});
+		/*
+		//var  mac = parent.Ext.getCmp('mac').value;
+	
+		chart1 = new Highcharts.Chart({ 
+			chart: { 
+				type: 'column',
+				renderTo: 'container1'  ,
+				events: {
+					drilldown: function (e) {
+						if (!e.seriesOptions) {
+						 
+							var chart = this,                         
+								series = {
+										name: e.point.name,
+										data:myhour[e.point.name]
+									};
+
+							// Show the loading label
+							chart.showLoading('等待 ...');
+
+							setTimeout(function () {
+								chart.hideLoading();
+								chart.addSeriesAsDrilldown(e.point, series);
+							}, 1000);
+						}
+
+					}
+				}
+			}, 
+			title: { 
+				text: '伴随MAC出现的时间段' 
+			}, 
+			xAxis: { 			
+				type: 'category'			
+			}, 			
+			tooltip: {
+			    pointFormat: '伴随mac重合次数: <b>{point.y}</b>'
+			},
+			plotOptions: {
+			    series: {
+			        cursor: 'pointer',
+			        point: {
+			            events: {
+			                click: function (e) {
+								if(e.point.name.length==5)
+									location.href = '/mac/datamining/bab/map2.htm';
+		
+			                }
+			            }
+			        }
+			    }
+			},
+			legend: {
+			    align: 'center',
+			    backgroundColor: '#FFFFFF',
+			    floating: true,
+			    borderWidth: 0,
+			    verticalAlign: 'bottom',
+			    x: 0,
+			    y: 23
+			  
+			},
+			series: [{ 
+				name: '每日伴随MAC数量', 
+				data: [] 
+			}] ,
+			drilldown: {
+				drillUpButton: {
+					relativeTo: 'spacingBox',
+					position: {
+						y: 0,
+						x: 0
+					},
+					theme: {
+						fill: 'white',
+						'stroke-width': 1,
+						stroke: 'silver',
+						r: 0,
+						states: {
+							hover: {
+								fill: '#bada55'
+							},
+							select: {
+								stroke: '#039',
+								fill: '#bada55'
+							}
+						}
+					}
+
+				},
+				series: []
+			}
+		});
+		getChart1Data();
+		*/
+		getChart1Data();
+		// Create the chart
+		chart1 = new Highcharts.Chart({ 
+			chart: { 
+				type: 'column',
+				renderTo: 'container1'  ,
+				events: {
+					drilldown: function (e) {
+						if (!e.seriesOptions) {						 
+							var chart = this,                         
+								series = {
+										name: e.point.name,
+										data:myhour[e.point.name]
+									};
+
+							// Show the loading label
+							chart.showLoading('请稍候 ...');
+							setTimeout(function () {
+								chart.hideLoading();
+								chart.addSeriesAsDrilldown(e.point, series);
+							}, 1000);
+						}
+					/*
+						if (!e.seriesOptions) {
+
+							var chart = this,
+								drilldowns = {
+									'Animals': {
+										name: 'Animals',
+										data: [
+											['Cows', 112],
+											['Sheep', 3]
+										], drilldown: true
+									},
+									'Fruits': {
+										name: 'Fruits',
+										data: [
+											['Apples', 5],
+											['Oranges', 7],
+											['Bananas', 2]
+										]
+									},
+									'Cars': {
+										name: 'Cars',
+										data: [
+											['Toyota', 1],
+											['Volkswagen', 2],
+											['Opel', 5]
+										]
+									}
+								},
+								series = drilldowns[e.point.name];
+
+							// Show the loading label
+							chart.showLoading('Simulating Ajax ...');
+
+							setTimeout(function () {
+								chart.hideLoading();
+								chart.addSeriesAsDrilldown(e.point, series);
+							}, 1000);
+						}
+					*/
+					}
+				}
+			},
+			title: {
+				text: 'Async drilldown'
+			},
+			xAxis: {
+				type: 'category'
+			},
+			legend: {
+				enabled: false
+			},
+			plotOptions: {
+				series: {
+					borderWidth: 0,
+					dataLabels: {
+						enabled: true
+					}
+				}
+			},
+			series: [{
+				name: '每日伴随MAC数量',
+				colorByPoint: true,
+				data: [{
+					name: 'Animals',
+					y: 5,
+					drilldown: true
+				}, {
+					name: 'Fruits',
+					y: 2,
+					drilldown: true
+				}, {
+					name: 'Cars',
+					y: 4,
+					drilldown: true
+				}]
+			}],
+			drilldown: {
+				drillUpButton: {
+					relativeTo: 'spacingBox',
+					position: {
+						y: 0,
+						x: 0
+					},
+					theme: {
+						fill: 'white',
+						'stroke-width': 1,
+						stroke: 'silver',
+						r: 0,
+						states: {
+							hover: {
+								fill: '#bada55'
+							},
+							select: {
+								stroke: '#039',
+								fill: '#bada55'
+							}
+						}
+					}
+
+				},
+				series: []
+			}
+		});
+		
+	}
+	
+	$(function () {
+		createChart1();		
+	});
+      
+	
+	function getChart1Data() {
+	    
+		Ext.Ajax.request({     
+						url: '/pronline/Msg?FunName@macGetBabMacTimeCount&cid@'+cid,  
+						method: 'GET',
+						success: function(resp,opts) {   
+							
+							try{
+							 
+								var respText = resp.responseText; 
+								var respRecord = eval("("+respText+")");
+								
+								
+								for(var i in respRecord.eimdata){									 
+									var stime = getLocalTime(respRecord.eimdata[i].stime).Format("yyyy/MM/dd hh:mm:ss");
+									var etime = getLocalTime(respRecord.eimdata[i].etime).Format("yyyy/MM/dd hh:mm:ss");
+									if(stime.substr(0,7) in smap1)
+									{
+										smap1[stime.substr(0,7)] = [smap1[stime.substr(0,7)][0]+1];
+									}
+									else
+										smap1[stime.substr(0,7)] = [1];			
+									if(stime.substr(0,10) in smap2)
+									{
+										smap2[stime.substr(0,10)] = [smap2[stime.substr(0,10)][0]+1];
+									}
+									else
+										smap2[stime.substr(0,10)] = [1];
+									if(stime.substr(0,13) in smap3)
+									{
+										smap3[stime.substr(0,13)][0]++;
+									}
+									else
+										smap3[stime.substr(0,13)] = [1, etime];						
+								}
+								
+								for(var i in smap1)
+									mymonth.push({name:i, y:smap1[i][0],  drilldown:true});
+								myday = [];
+								for(var i in smap2)
+									myday.push({name:i, y:smap2[i][0],  drilldown:true});
+								myhour = {};
+								for(var i in smap3){
+									if(i.substr(0,10) in myhour){
+										myhour[i.substr(0,10)].push({name:i.substr(11,2)+'~'+smap3[i][1].substr(11,2), y:parseInt(smap3[i][0])});
+									}
+									else{
+										myhour[i.substr(0,10)]=[{name:i.substr(11,2)+'~'+smap3[i][1].substr(11,2), y:parseInt(smap3[i][0])}];
+									}
+								}
+							}catch(e){
+								//console.log(e.message);
+							}						
+							chart1.series[0].setData(myday); 
+						},   
+						failure: function(resp,opts) {   
+							var respText = eval("("+respText+")");
+							alert('错误', respText.error);   
+						}   				 
+		});
+		
+	}
+
+</script>
+</head>
+
+<body>
+
+
+					<div id="hchart1" class="cls_tab_normal">
+						<div id="container1" class="cls_chart_rect_with_buttons"></div>
+					</div>			
+			
+	
+</body>
+</html>

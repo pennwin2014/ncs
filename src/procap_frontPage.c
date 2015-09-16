@@ -25,6 +25,7 @@
 
 
 #include "pas_acbm.h"
+#include "bab_list.h"
 
 static  pattern_data  *psAcbmPat_bab = NULL;      // 伴随行为模式内容
 static  pattern_tree  *psAcbmTree_bab = NULL;     // 伴随行为Acbm模式树
@@ -1284,34 +1285,6 @@ int macFrontPageLeftBlocks(utShmHead *psShmHead, int iFd, utMsgHead *psMsgHead)
                 }
 
             }
-
-            /*
-            if(psClient[i].status == 1)
-            {
-                if(psOnline)
-                {
-                    onlinePlaces++;
-                }
-                else
-                {
-
-                    offlinePlaces++;
-                }
-            }
-            else if(psClient[i].status == 3)
-            {
-                onlinePlaces++;
-            }
-            else if(psClient->status == 2)
-            {
-                offlinePlaces++;
-            }
-            else
-            {
-                //不会出现这种
-                offlinePlaces++;
-            }
-            */
         }
     }
     totalPlaces = offlinePlaces + onlinePlaces;
@@ -1565,265 +1538,19 @@ int macFrontPageSearch(utShmHead *psShmHead, int iFd, utMsgHead *psMsgHead)
 
     return iReturn;
 }
-static int insertToDB(long lDebug, s_macinfo* pInfoNode)
+
+struct db_nctermsysalarm
 {
-    char sql[2048] = "";
-    if(((strlen(pInfoNode->mac) > 0) && (strlen(pInfoNode->servicecode) > 0)))
-    {
-        memset(sql, 0, sizeof(sql));
-        sprintf(sql, "insert into ncbabplacetimemac(cid,mac,servicecode,starttime,endtime) \
-        	 values(%lu,'%s','%s',%llu,%llu) ", pInfoNode->cid,
-                pInfoNode->mac, pInfoNode->servicecode, pInfoNode->starttime, pInfoNode->endtime);
-        macPrint(lDebug, "insert db sql=%s", sql);
-        int iReturn = pasDbExecSqlF(sql);
-        macPrint(lDebug, "insert db sql = %s\n", sql);
-    }
-    return 0;
-}
+    uint4 sid;//    int   unsigned auto_increment primary key,
+    char alarmcode[14];//     char(14),                                -- ?????
+    char alarmlevel[32];//    char(32) default ' ',                -- ???? 1-?? 2-?? 3-??
+    char devtype[4];//       char(4),                             -- 01 -AP 02-?? 03-???? 04-????
+    uint4 alarmtime;//          int default 0,                         -- ????
+    uint4 updatetime;//         int default 0,                  -- ??????
+    char description[128];//          char(128),                          -- ????
+    uint4 status;//           int default 0,                    -- 0??? 1-???
+};
 
-static int deleteSameRule(long lDebug, uint4 cid)
-{
-    char sql[1024] = "";
-    sprintf(sql, "delete from ncbabplacetimemac where cid=%lu", cid);
-    macPrint(lDebug, "delete db sql = %s\n", sql);
-    return pasDbExecSqlF(sql);
-}
-
-static int updateReportTime(long lDebug, uint4 cid)
-{
-    char sql[1024] = "";
-    sprintf(sql, "update ncbabtask set reoporttime=%lu where cid=%lu", time(0), cid);
-
-    macPrint(lDebug, "update db sql = %s\n", sql);
-
-    return pasDbExecSqlF(sql);
-}
-
-void doDbSearchMacs(long lDebug, unsigned char* pHash_allMacs, s_eachpoint* pTmpNode)
-{
-    struct s_macinfo* psMacinfo = NULL;
-    char sql[8023] = "";
-    int iReturn = 0;
-    pasDbCursor *psCur;
-    char caMac[20] = "";
-    memset(sql, 0, sizeof(sql));
-    sprintf(sql, "select distinct(mac) from ncmactermatt_if_%s where servicecode='%s' and mac!='%s' stime>%llu and stime<%llu",
-            utTimFormat("%Y%m", time(0)), pTmpNode->servicecode, pTmpNode->mac, pTmpNode->starttime, pTmpNode->endtime);
-    macPrint(lDebug, "get diff mac sql = %s\n", sql);
-    psCur = pasDbOpenSql(sql, 0);
-    if(psCur)
-    {
-        memset(caMac, 0, sizeof(caMac));
-        iReturn = pasDbFetchInto(psCur, UT_TYPE_STRING, 17, caMac);
-        while((iReturn == 0) || (iReturn == 1405))
-        {
-
-            psMacinfo = (struct s_macinfo*)pasLHashLookA(pHash_allMacs, (char*)&caMac);
-            if(psMacinfo)
-            {
-                // DO: 拷贝数据
-                memcpy(psMacinfo->mac, caMac, sizeof(psMacinfo->mac));
-                memcpy(psMacinfo->servicecode, pTmpNode->servicecode, sizeof(psMacinfo->servicecode));
-                psMacinfo->starttime = pTmpNode->starttime;
-                psMacinfo->endtime =  pTmpNode->endtime;
-                psMacinfo->cid = pTmpNode->cid;
-            }
-            memset(caMac, 0, sizeof(caMac));
-            iReturn = pasDbFetchInto(psCur, UT_TYPE_STRING, 17, caMac);
-        }
-        pasDbCloseCursor(psCur);
-    }
-    else
-    {
-        macPrint(lDebug, "sql=[%s],cur is null\n", sql);
-    }
-}
-
-int doDbInsertMacs(long lDebug, unsigned char* pHash_allMacs)
-{
-    struct s_macinfo* psMacs = NULL;
-    pasLHashInfo sHashInfo;
-    psMacs = (struct s_macinfo*)pasLHashFirst(pHash_allMacs, &sHashInfo);
-    while(psMacs)
-    {
-        insertToDB(lDebug, psMacs);
-        psMacs = (struct s_macinfo*)pasLHashNext(&sHashInfo);
-    }
-    return 0;
-}
-
-int ncsStatMacBab(utShmHead *psShmHead)
-{
-    pasDbCursor *psCur;
-    char sql[2048] = "";
-    long lSumTask = 0, taskCount = 0;
-    unsigned char* pHash_task = NULL;
-    unsigned char* pHash_allMacs = NULL;
-    struct s_babtask tmpTask;
-    struct s_eachpoint tmpPoint;
-    struct s_babtask* psTask = NULL;
-    pasLHashInfo sHashInfo;
-    char caServerlist[8024] = "";
-    long babDebug = utComGetVar_ld(psShmHead, "BabDebug", 0);
-    int iReturn = pasConnect(psShmHead);
-    if(iReturn < 0)
-    {
-        printf("conn psShmHead fail iReturn=%d\n", iReturn);
-        sleep(60);
-        return 0;
-    }
-    while(1)
-    {
-        //1、统计总共有多少条规则
-        memset(sql, 0, sizeof(sql));
-        sprintf(sql, "select count(cid) from ncbabtask where length(mac)>0");
-        iReturn = pasDbOneRecord(sql, 0, UT_TYPE_LONG, 4, &lSumTask);
-        macPrint(babDebug, "iReturn=%d,lSumTask=%d\n", iReturn, lSumTask);
-        if(iReturn != 0 || lSumTask == 0)
-        {
-            macPrint(babDebug, "不进入后面过程，休眠一段时间后继续\n\n");
-            sleep(3 * 60);
-            continue;
-            //return 0;
-        }
-        //2、取出所有规则的明细信息装入哈希
-        pHash_task = (unsigned char *)pasLHashInit(5000, 5000, sizeof(struct s_babtask), 0, 4);
-        if(pHash_task == NULL)
-        {
-            printf("分配内存出错\n");
-            return 0;
-        }
-        memset(sql, 0, sizeof(sql));
-        sprintf(sql, "select cid,groupid,starttime,endtime,dids,mac,maccount,servcount from ncbabtask");
-        psCur = pasDbOpenSql(sql, 0);
-        if(psCur)
-        {
-            memset(&tmpTask, 0, sizeof(tmpTask));
-            iReturn = pasDbFetchInto(psCur,
-                                     UT_TYPE_LONG, 4, &tmpTask.cid,
-                                     UT_TYPE_LONG, 4, &tmpTask.groupid,
-                                     UT_TYPE_LONG8, 8, &tmpTask.starttime,
-                                     UT_TYPE_LONG8, 8, &tmpTask.endtime,
-                                     UT_TYPE_STRING, 250, tmpTask.dids,
-                                     UT_TYPE_STRING, 18, tmpTask.mac);
-
-            macPrint(babDebug, "first sql=[%s],fetchinto ret=%d\n", sql, iReturn);
-
-            while((iReturn == 0) || (iReturn == 1405))
-            {
-                macPrint(babDebug, "fetch into ret=%d,cid=%d,mac=%s\n", iReturn, tmpTask.cid, tmpTask.mac);
-                if(strlen(tmpTask.mac) == 17)
-                {
-                    psTask = (struct s_babtask *)pasLHashLookA(pHash_task, (char*)&tmpTask.cid);
-                    if(psTask)
-                    {
-                        psTask->cid = tmpTask.cid;
-                        psTask->groupid = tmpTask.groupid;
-                        psTask->starttime = tmpTask.starttime;
-                        psTask->endtime = tmpTask.endtime;
-                        strcpy(psTask->dids, tmpTask.dids);
-                        strcpy(psTask->mac, tmpTask.mac);
-                    }
-                }
-                else
-                {
-                    macPrint(babDebug, "主mac不为17位, mac=[%s]\n", tmpTask.mac);
-                }
-
-                memset(&tmpTask, 0, sizeof(tmpTask));
-                iReturn = pasDbFetchInto(psCur,
-                                         UT_TYPE_LONG, 4, &tmpTask.cid,
-                                         UT_TYPE_LONG, 4, &tmpTask.groupid,
-                                         UT_TYPE_LONG8, 8, &tmpTask.starttime,
-                                         UT_TYPE_LONG8, 8, &tmpTask.endtime,
-                                         UT_TYPE_STRING, 250, tmpTask.dids,
-                                         UT_TYPE_STRING, 18, tmpTask.mac);
-            }
-            pasDbCloseCursor(psCur);
-        }
-        else
-        {
-            printf("error sql=[%s],cur is null\n", sql);
-        }
-        //3、遍历哈希表做任务对应的统计
-        psTask = (struct s_babtask*)pasLHashFirst(pHash_task, &sHashInfo);
-        taskCount = 0;
-        while(psTask)
-        {
-            memset(caServerlist, 0, sizeof(caServerlist));
-            // DO:根据dids获取servicecode的列表
-            strcpy(caServerlist, getServicecodesByDids(psShmHead, psTask->dids));
-            macPrint(babDebug, "finish get servicecode list %s\n", caServerlist);
-            //创建一个单链表用于存放时间段+servicecode组合
-            s_eachpoint* pPointList = createPointList();  //用于存放时间点+地点的单链表
-            memset(sql, 0, sizeof(sql));
-            //e.g. select mac,servicecode,from_unixtime(stime) from ncmactermatt_if_201508 where mac='20-02-AF-C5-43-AC' group by stime
-            if(strlen(caServerlist) > 0)
-            {
-                sprintf(sql, "select servicecode,stime from ncmactermatt_if_%s where mac='%s' and stime>%llu and stime<%llu and servicecode in (%s) group by stime", utTimFormat("%Y%m", time(0)), psTask->mac, psTask->starttime, psTask->endtime, caServerlist);
-            }
-            else
-            {
-                sprintf(sql, "select servicecode,stime from ncmactermatt_if_%s where mac='%s' and stime>%llu and stime<%llu group by stime", utTimFormat("%Y%m", time(0)), psTask->mac, psTask->starttime, psTask->endtime);
-            }
-            psCur = pasDbOpenSql(sql, 0);
-            if(psCur)
-            {
-                memset(&tmpPoint, 0, sizeof(tmpPoint));
-                tmpPoint.cid = psTask->cid;
-				memcpy(tmpPoint.mac, psTask->mac, sizeof(tmpPoint.mac));
-                iReturn = pasDbFetchInto(psCur, 
-                                         UT_TYPE_STRING, 16, tmpPoint.servicecode,
-                                         UT_TYPE_LONG8, 8, &tmpPoint.starttime);
-                tmpPoint.endtime = tmpPoint.starttime + 3600;//离开时间默认为起始时间+1小时
-                while((iReturn == 0) || (iReturn == 1405))
-                {
-                    addToPointList(pPointList, &tmpPoint);
-                    memset(&tmpPoint, 0, sizeof(tmpPoint));
-                    tmpPoint.cid = psTask->cid;
-					memcpy(tmpPoint.mac, psTask->mac, sizeof(tmpPoint.mac));
-                    iReturn = pasDbFetchInto(psCur,
-                                             UT_TYPE_STRING, 16, tmpPoint.servicecode,
-                                             UT_TYPE_LONG8, 8, &tmpPoint.starttime);
-                    tmpPoint.endtime = tmpPoint.starttime + 3600;
-
-                }
-                pasDbCloseCursor(psCur);
-            }
-
-            //整理列表里相隔时间过近的点,合并为一个点
-            reOrganizePointList(pPointList);
-            s_eachpoint* pTmpNode = pPointList->pNext;
-            //统计所有的mac地址
-            while(pTmpNode)
-            {
-                pHash_allMacs = (unsigned char *)pasLHashInit(5000, 5000, sizeof(struct s_macinfo), 0, 17);
-                if(pHash_allMacs == NULL)
-                {
-                    printf("分配内存出错\n");
-                    return 0;
-                }
-                doDbSearchMacs(pHash_allMacs, pTmpNode);
-                //遍历pHash_allPoints，将所有的点存入数据库
-                doDbInsertMacs(pHash_allMacs);
-                //释放存放所有点的哈希表
-                if(pHash_allMacs)
-                    free(pHash_allMacs);
-                pTmpNode = pTmpNode->pNext;
-            }
-
-            //释放内存
-            destroyPointList(pPointList);
-            psTask = (struct s_babtask*)pasLHashNext(&sHashInfo);
-            macPrint(babDebug, "====================finish %d task, total %d=================== \n", (++taskCount), lSumTask);
-            sleep(2);
-        }
-        if(pHash_task)
-            free(pHash_task);
-        macPrint(babDebug, "\n================finish one round, will start in 3*60s...===========\n\n");
-        sleep(3 * 60);
-    }
-}
 static int insertOperationAlarmToDB(struct db_nctermsysalarm* pPlaceData)
 {
     char sql[2048] = "";
@@ -2154,6 +1881,9 @@ int ncsStatMacFront(utShmHead *psShmHead)
     }
     return 0;
 }
+
+
+
 
 int ncsStatMacDevWarn(utShmHead *psShmHead)
 {
@@ -2692,6 +2422,1229 @@ int ncsWebClientAdd_wif_v9(utShmHead *psShmHead, int iFd, utMsgHead *psMsgHead)
     }
 }
 
+//查询该servicecode对应的场所信息
+int macGetBabDeviceInfo(utShmHead *psShmHead, int iFd, utMsgHead *psMsgHead)
+{
+    long babDebug = utComGetVar_ld(psShmHead, "BabDebug", 0);
+    if(babDebug)
+    {
+        utMsgPrintMsg(psMsgHead);
+    }
+    utPltDbHead *psDbHead = utPltInitDb();
+    char sql[1024] = "";
+    int iReturn = 0;
+    char caServicecode[33] = "";
+    long devcount = 0;
+    char caGroupname[32] = "";
+    char caDispname[255] = "";
+    char caAddress[255] = "";
+    iReturn = utMsgGetSomeNVar(psMsgHead, 1,
+                               "servicecode",  UT_TYPE_STRING, sizeof(caServicecode) - 1, caServicecode);
+
+    //布控告警待处理数
+    memset(sql, 0, sizeof(sql));
+    snprintf(sql, sizeof(sql), "select ifnull(count(*), 0) from ncaplist where servicecode=%s", caServicecode);
+    iReturn = pasDbOneRecord(sql, 0, UT_TYPE_LONG, 4, &devcount);
+    if(iReturn != 0)
+    {
+        utPltPutVar(psDbHead, "retcode", "1");
+        utPltPutVar(psDbHead, "retmsg", "查表出错");
+        utPltOutToHtml(iFd, psMsgHead, psDbHead, "mac/datamining/bab/serviceinfo.htm");
+        return -1;
+    }
+    utPltPutVarF(psDbHead, "devcount", "%lu", devcount);
+    if(strlen(caServicecode) > 7)
+    {
+        //经营性质
+        if(caServicecode[6] == '0')
+        {
+            utPltPutVar(psDbHead, "business", "性质0");
+        }
+        else if('1' == caServicecode[6])
+        {
+            utPltPutVar(psDbHead, "business", "性质1");
+        }
+        memset(sql, 0, sizeof(sql));
+        snprintf(sql, sizeof(sql), "select b.groupname,a.dispname,a.address from ncsuser a,ncsgroup b where left(a.username,6)=b.groupcode and a.username='%s'", caServicecode);
+        pasDbOneRecord(sql, 0, UT_TYPE_STRING, sizeof(caGroupname) - 1, caGroupname,
+                       UT_TYPE_STRING, sizeof(caDispname) - 1, caDispname,
+                       UT_TYPE_STRING, sizeof(caAddress) - 1, caAddress);
+        utPltPutVar(psDbHead, "area", caGroupname);
+        utPltPutVar(psDbHead, "dispname", caDispname);
+        utPltPutVar(psDbHead, "address", caAddress);
+        utPltPutVar(psDbHead, "servicecode", caServicecode);
+    }
+    else
+    {
+        utPltPutVar(psDbHead, "retcode", "2");
+        utPltPutVar(psDbHead, "retmsg", "servicecode不足7位");
+        utPltOutToHtml(iFd, psMsgHead, psDbHead, "mac/datamining/bab/serviceinfo.htm");
+        return -1;
+    }
+    utPltPutVar(psDbHead, "retcode", "0");
+    utPltOutToHtml(iFd, psMsgHead, psDbHead, "mac/datamining/bab/serviceinfo.htm");
+    return 0;
+}
+/*
+struct s_babtime
+{
+    uint8 stime;
+    uint8 etime;
+};
+*/
+int macGetBabMacPlaceCount(utShmHead *psShmHead, int iFd, utMsgHead *psMsgHead)
+{
+    long babDebug = utComGetVar_ld(psShmHead, "BabDebug", 0);
+    if(babDebug)
+    {
+        utMsgPrintMsg(psMsgHead);
+    }
+    utPltDbHead *psDbHead = utPltInitDb();
+
+    char caServicecode[32] = "";
+    char caCid[8] = "";
+    char caMac[20] = "";
+    int iReturn, iNum;
+    pasDbCursor *psCur;
+    long lCount = 0;
+    char sql[2048] = "";
+
+    iReturn = utMsgGetSomeNVar(psMsgHead, 2,
+                               "cid",  UT_TYPE_STRING, sizeof(caCid) - 1, caCid,
+                               "mac",  UT_TYPE_STRING, 17, caMac);
+    if(strlen(caMac) != 17)
+    {
+        utPltPutVar(psDbHead, "retcode", "3");
+        utPltPutVar(psDbHead, "retmsg", "mac地址长度不为17");
+        utPltOutToHtml(iFd, psMsgHead, psDbHead, "mac/datamining/bab/macplacecountlist.htm");
+        return -1;
+    }
+    if(strlen(caCid) == 0)
+    {
+        utPltPutVar(psDbHead, "retcode", "2");
+        utPltPutVar(psDbHead, "retmsg", "cid不能为空");
+        utPltOutToHtml(iFd, psMsgHead, psDbHead, "mac/datamining/bab/macplacecountlist.htm");
+        return -1;
+    }
+
+    //统计该mac在每个servicecode出现的次数
+    memset(sql, 0, sizeof(sql));
+    snprintf(sql, sizeof(sql), "select servicecode,ifnull(count(mac),0) from ncbabplacetimemac where cid=%s and mac='%s' group by servicecode", caCid, caMac);
+    macPrint(babDebug, "========bab sql=[%s]==========\n", sql);
+    psCur = pasDbOpenSqlF(sql);
+    if(psCur)
+    {
+        iReturn = 0;
+        lCount = 0;
+        memset(caServicecode, 0, sizeof(caServicecode));
+        iReturn = pasDbFetchInto(psCur,
+                                 UT_TYPE_STRING, sizeof(caServicecode) - 1, caServicecode,
+                                 UT_TYPE_LONG, 4, &lCount);
+        iNum = 0;
+        while(iReturn == 0 || iReturn == 1405)
+        {
+            iNum++;
+            if(iNum > 1)
+            {
+                utPltPutLoopVar(psDbHead, "dh", iNum, ",");
+            }
+            utPltPutLoopVarF(psDbHead, "maccount", iNum, "%lu", lCount);
+            utPltPutLoopVarF(psDbHead, "servicecode", iNum, "%s", caServicecode);
+
+            lCount = 0;
+            memset(caServicecode, 0, sizeof(caServicecode));
+            iReturn = pasDbFetchInto(psCur,
+                                     UT_TYPE_STRING, sizeof(caServicecode) - 1, caServicecode,
+                                     UT_TYPE_LONG, 4, &lCount);
+
+        }
+        pasDbCloseCursor(psCur);
+    }
+
+    utPltPutVarF(psDbHead, "totalcount", "%lu", iNum);
+    utPltPutVar(psDbHead, "cid", caCid);
+    utPltPutVar(psDbHead, "mac", caMac);
+    utPltPutVar(psDbHead, "retcode", "0");
+    utPltPutVar(psDbHead, "retmsg", "成功");
+    utPltOutToHtml(iFd, psMsgHead, psDbHead, "mac/datamining/bab/macplacecountlist.htm");
+    return 0;
+}
+#define TIMESTR_LENGTH 12
+
+uint8 getUnixtimeByStr12(char* str12)
+{
+    int offset = 0;
+    char caYear[5] = "";
+    char caMonth[3] = "";
+    char caDay[3] = "";
+    char caHour[3] = "", caMin[3] = "";
+    char caTempTime1[20] = "", caTempTime2[20] = "";
+    if(strlen(str12) != TIMESTR_LENGTH)
+    {
+        return 0;
+    }
+    offset = 0;
+    memcpy(caYear, str12 + offset, 4);
+    offset += 4;
+    memcpy(caMonth, str12 + offset, 2);
+    offset += 2;
+    memcpy(caDay, str12 + offset, 2);
+    offset += 2;
+    memcpy(caHour, str12 + offset, 2);
+    offset += 2;
+    memcpy(caMin, str12 + offset, 2);
+    offset += 2;
+    snprintf(caTempTime1, sizeof(caTempTime1), "%s/%s/%s %s:%s", caYear, caMonth, caDay, caHour, caMin);
+    return utTimStrToLong("%Y/%m/%d %H:%M", caTempTime1);
+
+}
+//返回在特定时间段下每个场所的mac的个数
+int macGetBabPlaceMacCount(utShmHead *psShmHead, int iFd, utMsgHead *psMsgHead)
+{
+    long babDebug = utComGetVar_ld(psShmHead, "BabDebug", 0);
+    if(babDebug)
+    {
+        utMsgPrintMsg(psMsgHead);
+    }
+    utPltDbHead *psDbHead = utPltInitDb();
+
+    char caServicecode[32] = "";
+    char caCid[8] = "";
+    char caTimePeriod1[13] = "";
+    char caTimePeriod2[13] = "";
+    uint8 lStime = 0, lEtime = 0;
+    int iReturn, iNum = 0;
+    pasDbCursor *psCur;
+    long lCount = 0;
+    char sql[2048] = "";
+
+    iReturn = utMsgGetSomeNVar(psMsgHead, 3,
+                               "cid",  UT_TYPE_STRING, sizeof(caCid) - 1, caCid,
+                               "timeperiod1",  UT_TYPE_STRING, sizeof(caTimePeriod1) - 1, caTimePeriod1,
+                               "timeperiod2",  UT_TYPE_STRING, sizeof(caTimePeriod2) - 1, caTimePeriod2);
+    //201509111637
+    if((strlen(caTimePeriod1) != TIMESTR_LENGTH) && (strlen(caTimePeriod1) != 0))
+    {
+        utPltPutVar(psDbHead, "retcode", "4");
+        utPltPutVar(psDbHead, "retmsg", "起始时间段参数不为12位");
+        utPltOutToHtml(iFd, psMsgHead, psDbHead, "mac/datamining/bab/placemaccountlist.htm");
+        return -1;
+    }
+    //201509111726
+    if((strlen(caTimePeriod2) != TIMESTR_LENGTH) && (strlen(caTimePeriod2) != 0))
+    {
+        utPltPutVar(psDbHead, "retcode", "4");
+        utPltPutVar(psDbHead, "retmsg", "结束时间段参数不为12位");
+        utPltOutToHtml(iFd, psMsgHead, psDbHead, "mac/datamining/bab/placemaccountlist.htm");
+        return -1;
+    }
+
+    lStime = getUnixtimeByStr12(caTimePeriod1);
+    lEtime = getUnixtimeByStr12(caTimePeriod2);
+    lEtime = lEtime + 60;//多加一分钟
+
+    if(strlen(caCid) == 0)
+    {
+        utPltPutVar(psDbHead, "retcode", "2");
+        utPltPutVar(psDbHead, "retmsg", "cid不能为空");
+        utPltOutToHtml(iFd, psMsgHead, psDbHead, "mac/datamining/bab/placemaccountlist.htm");
+        return -1;
+    }
+
+    //统计每servicecode出现的mac个数
+    memset(sql, 0, sizeof(sql));
+    if((strlen(caTimePeriod1) == TIMESTR_LENGTH) && (strlen(caTimePeriod2) == TIMESTR_LENGTH))
+        snprintf(sql, sizeof(sql), "select servicecode,count(distinct(mac)) from ncbabplacetimemac where cid=%s and starttime>=%llu and endtime<=%llu group by servicecode", caCid, lStime, lEtime);
+    else
+        snprintf(sql, sizeof(sql), "select servicecode,count(distinct(mac)) from ncbabplacetimemac where cid=%s group by servicecode", caCid);
+    macPrint(babDebug, "========bab sql=[%s]==========\n", sql);
+    psCur = pasDbOpenSqlF(sql);
+    if(psCur)
+    {
+        iReturn = 0;
+        lCount = 0;
+        memset(caServicecode, 0, sizeof(caServicecode));
+        iReturn = pasDbFetchInto(psCur,
+                                 UT_TYPE_STRING, sizeof(caServicecode) - 1, caServicecode,
+                                 UT_TYPE_LONG, 4, &lCount);
+        iNum = 0;
+        while(iReturn == 0 || iReturn == 1405)
+        {
+            iNum++;
+            if(iNum > 1)
+            {
+                utPltPutLoopVar(psDbHead, "dh", iNum, ",");
+            }
+            utPltPutLoopVarF(psDbHead, "maccount", iNum, "%lu", lCount);
+            utPltPutLoopVarF(psDbHead, "servicecode", iNum, "%s", caServicecode);
+
+            lCount = 0;
+            memset(caServicecode, 0, sizeof(caServicecode));
+            iReturn = pasDbFetchInto(psCur,
+                                     UT_TYPE_STRING, sizeof(caServicecode) - 1, caServicecode,
+                                     UT_TYPE_LONG, 4, &lCount);
+
+        }
+        pasDbCloseCursor(psCur);
+    }
+
+    utPltPutVarF(psDbHead, "totalcount", "%lu", iNum);
+    utPltPutVar(psDbHead, "cid", caCid);
+    utPltPutVar(psDbHead, "retcode", "0");
+    utPltPutVar(psDbHead, "retmsg", "成功");
+    utPltOutToHtml(iFd, psMsgHead, psDbHead, "mac/datamining/bab/placemaccountlist.htm");
+    return 0;
+}
+
+//返回某时间段，该servicecode的每个mac的伴随次数
+int macGetBabMacCount(utShmHead *psShmHead, int iFd, utMsgHead *psMsgHead)
+{
+    long babDebug = utComGetVar_ld(psShmHead, "BabDebug", 0);
+    if(babDebug)
+    {
+        utMsgPrintMsg(psMsgHead);
+    }
+    utPltDbHead *psDbHead = utPltInitDb();
+
+    char caServicecode[32] = "";
+    char caCid[8] = "";
+    int iReturn, iNum;
+    pasDbCursor *psCur;
+    long lCount = 0;
+    char caMac[20] = "";
+    char caTimePeriod1[13] = "";
+    char caTimePeriod2[13] = "";
+    uint8 lStime = 0, lEtime = 0;
+    char sql[2048] = "";
+
+    iReturn = utMsgGetSomeNVar(psMsgHead, 4,
+                               "servicecode",  UT_TYPE_STRING, sizeof(caServicecode) - 1, caServicecode,
+                               "cid",  UT_TYPE_STRING, sizeof(caCid) - 1, caCid,
+                               "timeperiod1",  UT_TYPE_STRING, sizeof(caTimePeriod1) - 1, caTimePeriod1,
+                               "timeperiod2",  UT_TYPE_STRING, sizeof(caTimePeriod2) - 1, caTimePeriod2);
+    if(strlen(caServicecode) < 7)
+    {
+        utPltPutVar(psDbHead, "retcode", "1");
+        utPltPutVar(psDbHead, "retmsg", "servicecode不足7位");
+        utPltOutToHtml(iFd, psMsgHead, psDbHead, "mac/datamining/bab/maccountlist.htm");
+        return -1;
+    }
+    if(strlen(caCid) == 0)
+    {
+        utPltPutVar(psDbHead, "retcode", "2");
+        utPltPutVar(psDbHead, "retmsg", "cid不能为空");
+        utPltOutToHtml(iFd, psMsgHead, psDbHead, "mac/datamining/bab/maccountlist.htm");
+        return -1;
+    }
+    if((strlen(caTimePeriod1) != TIMESTR_LENGTH) && (strlen(caTimePeriod1) != 0))
+    {
+        utPltPutVar(psDbHead, "retcode", "3");
+        utPltPutVar(psDbHead, "retmsg", "起始时间段不足12位");
+        utPltOutToHtml(iFd, psMsgHead, psDbHead, "mac/datamining/bab/maccountlist.htm");
+        return -1;
+    }
+    if((strlen(caTimePeriod2) != TIMESTR_LENGTH) && (strlen(caTimePeriod2) != 0))
+    {
+        utPltPutVar(psDbHead, "retcode", "4");
+        utPltPutVar(psDbHead, "retmsg", "结束时间段不足12位");
+        utPltOutToHtml(iFd, psMsgHead, psDbHead, "mac/datamining/bab/maccountlist.htm");
+        return -1;
+    }
+    lStime = getUnixtimeByStr12(caTimePeriod1);
+    lEtime = getUnixtimeByStr12(caTimePeriod2) ;
+    lEtime += 60;
+    //统计每个mac出现的次数
+    memset(sql, 0, sizeof(sql));
+    if((strlen(caTimePeriod1) == TIMESTR_LENGTH) && (TIMESTR_LENGTH == strlen(caTimePeriod2)))
+        snprintf(sql, sizeof(sql), "select mac,ifnull(count(mac),0) from(select mac,starttime from ncbabplacetimemac where cid=%s and servicecode='%s' and starttime>=%llu and endtime<=%llu group by mac,starttime)aa group by mac", caCid, caServicecode, lStime, lEtime);
+    else
+        snprintf(sql, sizeof(sql), "select mac,ifnull(count(mac),0) from(select mac,starttime from ncbabplacetimemac where cid=%s and servicecode='%s' group by mac,starttime)aa group by mac", caCid, caServicecode);
+    macPrint(babDebug, "========bab sql=[%s]==========\n", sql);
+    psCur = pasDbOpenSqlF(sql);
+    if(psCur)
+    {
+        iReturn = 0;
+        lCount = 0;
+        memset(caMac, 0, sizeof(caMac));
+        iReturn = pasDbFetchInto(psCur,
+                                 UT_TYPE_STRING, 17, caMac,
+                                 UT_TYPE_LONG, 4, &lCount);
+        iNum = 0;
+        while(iReturn == 0 || iReturn == 1405)
+        {
+            iNum++;
+            if(iNum > 1)
+            {
+                utPltPutLoopVar(psDbHead, "dh", iNum, ",");
+            }
+            utPltPutLoopVarF(psDbHead, "maccount", iNum, "%lu", lCount);
+            utPltPutLoopVarF(psDbHead, "mac", iNum, "%s", caMac);
+
+            memset(caMac, 0, sizeof(caMac));
+            iReturn = pasDbFetchInto(psCur,
+                                     UT_TYPE_STRING, 17, caMac,
+                                     UT_TYPE_LONG, 4, &lCount);
+        }
+        pasDbCloseCursor(psCur);
+    }
+
+    utPltPutVarF(psDbHead, "totalcount", "%lu", iNum);
+    utPltPutVar(psDbHead, "cid", caCid);
+    utPltPutVar(psDbHead, "servicecode", caServicecode);
+    utPltPutVar(psDbHead, "retcode", "0");
+    utPltPutVar(psDbHead, "retmsg", "成功");
+    utPltOutToHtml(iFd, psMsgHead, psDbHead, "mac/datamining/bab/maccountlist.htm");
+    return 0;
+}
+
+
+int macGetBabMacTimeDetail(utShmHead *psShmHead, int iFd, utMsgHead *psMsgHead)
+{
+    long babDebug = utComGetVar_ld(psShmHead, "BabDebug", 0);
+    if(babDebug)
+    {
+        utMsgPrintMsg(psMsgHead);
+    }
+    utPltDbHead *psDbHead = utPltInitDb();
+
+    char caCid[8] = "";
+    int iReturn, iNum, offset = 0;
+    pasDbCursor *psCur;
+    long lCount = 0;
+    uint8 lStime = 0, lEtime = 0;
+    char caMac[20] = "";
+    char caServicecode[32] = "";
+    char caTimePeriod[13] = "";
+    char caYear[5] = "";
+    char caMonth[3] = "";
+    char caDay[3] = "";
+    char caShour[3] = "", caEhour[3] = "";
+    char caTempTime1[20] = "", caTempTime2[20] = "";
+    char sql[2048] = "";
+
+    iReturn = utMsgGetSomeNVar(psMsgHead, 2,
+                               "cid",  UT_TYPE_STRING, sizeof(caCid) - 1, caCid,
+                               "timeperiod",  UT_TYPE_STRING, sizeof(caTimePeriod) - 1, caTimePeriod);
+
+    if(strlen(caTimePeriod) != 12)
+    {
+        utPltPutVar(psDbHead, "retcode", "4");
+        utPltPutVar(psDbHead, "retmsg", "时间段参数不为12位");
+        utPltOutToHtml(iFd, psMsgHead, psDbHead, "mac/datamining/bab/timemacdetail.htm");
+        return -1;
+    }
+    offset = 0;
+    memcpy(caYear, caTimePeriod + offset, 4);
+    offset += 4;
+    memcpy(caMonth, caTimePeriod + offset, 2);
+    offset += 2;
+    memcpy(caDay, caTimePeriod + offset, 2);
+    offset += 2;
+    memcpy(caShour, caTimePeriod + offset, 2);
+    offset += 2;
+    memcpy(caEhour, caTimePeriod + offset, 2);
+    snprintf(caTempTime1, sizeof(caTempTime1), "%s/%s/%s %s:00", caYear, caMonth, caDay, caShour);
+    snprintf(caTempTime2, sizeof(caTempTime2), "%s/%s/%s %s:00", caYear, caMonth, caDay, caEhour);
+    printf("caTempTime1=[%s],caTempTime2=[%s]\n", caTempTime1, caTempTime2);
+
+    if(strlen(caCid) == 0)
+    {
+        utPltPutVar(psDbHead, "retcode", "2");
+        utPltPutVar(psDbHead, "retmsg", "cid不能为空");
+        utPltOutToHtml(iFd, psMsgHead, psDbHead, "mac/datamining/bab/timemacdetail.htm");
+        return -1;
+    }
+
+    memset(sql, 0, sizeof(sql));
+    snprintf(sql, sizeof(sql), "select mac,servicecode,ifnull(count(mac),0) from ncbabplacetimemac where cid=%s and starttime>=%llu and endtime<=%llu group by servicecode,mac", caCid, lStime, lEtime);
+    macPrint(babDebug, "========time mac detail sql=[%s]==========\n", sql);
+    psCur = pasDbOpenSqlF(sql);
+    if(psCur)
+    {
+        lCount = 0;
+        memset(caServicecode, 0, sizeof(caServicecode));
+        memset(caMac, 0, sizeof(caMac));
+        iReturn = pasDbFetchInto(psCur,
+                                 UT_TYPE_STRING, sizeof(caMac) - 1, caMac,
+                                 UT_TYPE_STRING, sizeof(caServicecode) - 1, caServicecode,
+                                 UT_TYPE_LONG, 4, &lCount);
+        iNum = 0;
+        while(iReturn == 0 || iReturn == 1405)
+        {
+            iNum++;
+            if(iNum > 1)
+            {
+                utPltPutLoopVar(psDbHead, "dh", iNum, ",");
+            }
+            utPltPutLoopVarF(psDbHead, "maccount", iNum, "%lu", lCount);
+            utPltPutLoopVarF(psDbHead, "mac", iNum, "%s", caMac);
+            utPltPutLoopVarF(psDbHead, "servicecode", iNum, "%s", caServicecode);
+            lCount = 0;
+            memset(caServicecode, 0, sizeof(caServicecode));
+            memset(caMac, 0, sizeof(caMac));
+            iReturn = pasDbFetchInto(psCur,
+                                     UT_TYPE_STRING, sizeof(caMac) - 1, caMac,
+                                     UT_TYPE_STRING, sizeof(caServicecode) - 1, caServicecode,
+                                     UT_TYPE_LONG, 4, &lCount);
+
+
+
+        }
+        pasDbCloseCursor(psCur);
+    }
+    utPltPutVarF(psDbHead, "totalcount", "%lu", iNum);
+    utPltPutVar(psDbHead, "cid", caCid);
+    utPltPutVar(psDbHead, "retcode", "0");
+    utPltPutVar(psDbHead, "retmsg", "成功");
+    utPltOutToHtml(iFd, psMsgHead, psDbHead, "mac/datamining/bab/timemacdetail.htm");
+    return 0;
+}
+
+//返回每个时间段的mac个数(包括按天统计和按小时统计)
+int macGetBabMacTimeCount(utShmHead *psShmHead, int iFd, utMsgHead *psMsgHead)
+{
+    long babDebug = utComGetVar_ld(psShmHead, "BabDebug", 0);
+    if(babDebug)
+    {
+        utMsgPrintMsg(psMsgHead);
+    }
+    utPltDbHead *psDbHead = utPltInitDb();
+
+    char caCid[8] = "";
+    int iReturn, iNum = 0;
+    pasDbCursor *psCur;
+    long lCount = 0;
+    char caTime[16] = "";
+    char caStime[20] = "", caEtime[20] = "";
+    char sql[2048] = "";
+
+    iReturn = utMsgGetSomeNVar(psMsgHead, 1,
+                               "cid",  UT_TYPE_STRING, sizeof(caCid) - 1, caCid);
+
+    if(strlen(caCid) == 0)
+    {
+        utPltPutVar(psDbHead, "retcode", "2");
+        utPltPutVar(psDbHead, "retmsg", "cid不能为空");
+        utPltOutToHtml(iFd, psMsgHead, psDbHead, "mac/datamining/bab/timemaccount.htm");
+        return -1;
+    }
+    iNum = 0;
+
+    //按小时统计的次数
+    memset(sql, 0, sizeof(sql));
+    snprintf(sql, sizeof(sql), "select from_unixtime(starttime),from_unixtime(endtime),ifnull(count(distinct(mac)),0) from ncbabplacetimemac where cid=%s group by starttime,endtime", caCid);
+    macPrint(babDebug, "========time hour mac count sql=[%s]==========\n", sql);
+    psCur = pasDbOpenSqlF(sql);
+    if(psCur)
+    {
+        lCount = 0;
+        memset(caStime, 0, sizeof(caStime));
+        memset(caEtime, 0, sizeof(caEtime));
+        iReturn = pasDbFetchInto(psCur,
+                                 UT_TYPE_STRING, sizeof(caStime) - 1, caStime,
+                                 UT_TYPE_STRING, sizeof(caEtime) - 1, caEtime,
+                                 UT_TYPE_LONG, 4, &lCount);
+
+        while(iReturn == 0 || iReturn == 1405)
+        {
+            // DO:根据caStime,caEtime 计算caTime
+            //201508011455 52
+            removeAll(caStime, ' ');
+            removeAll(caStime, '-');
+            removeAll(caStime, ':');
+            //20150801 1510 25
+            removeAll(caEtime, ' ');
+            removeAll(caEtime, '-');
+            removeAll(caEtime, ':');
+            memset(caTime, 0, sizeof(caTime));
+            memcpy(caTime, caStime, 12);
+            memcpy(caTime + 12, caEtime + 8, 4);
+            iNum++;
+            if(iNum > 1)
+            {
+                utPltPutLoopVar(psDbHead, "dh", iNum, ",");
+            }
+            utPltPutLoopVar(psDbHead, "timeflag", iNum, "hour");
+            utPltPutLoopVarF(psDbHead, "maccount", iNum, "%lu", lCount);
+            utPltPutLoopVarF(psDbHead, "timevalue", iNum, "%s", caTime);
+            lCount = 0;
+            memset(caStime, 0, sizeof(caStime));
+            memset(caEtime, 0, sizeof(caEtime));
+            iReturn = pasDbFetchInto(psCur,
+                                     UT_TYPE_STRING, sizeof(caStime) - 1, caStime,
+                                     UT_TYPE_STRING, sizeof(caEtime) - 1, caEtime,
+                                     UT_TYPE_LONG, 4, &lCount);
+        }
+        pasDbCloseCursor(psCur);
+    }
+
+    /*
+    //按小时统计2
+    memset(sql, 0, sizeof(sql));
+    snprintf(sql, sizeof(sql), "select bb,count(distinct(mac)) from (select left(from_unixtime(starttime),13) bb,mac from ncbabplacetimemac where cid=%s)aa group by bb", caCid);
+    macPrint(babDebug, "========time day mac count sql=[%s]==========\n", sql);
+    psCur = pasDbOpenSqlF(sql);
+    if(psCur)
+    {
+        lCount = 0;
+        memset(caTime, 0, sizeof(caTime));
+        iReturn = pasDbFetchInto(psCur,
+                                 UT_TYPE_STRING, sizeof(caTime) - 1, caTime,
+                                 UT_TYPE_LONG, 4, &lCount);
+        while(iReturn == 0 || iReturn == 1405)
+        {
+            removeAll(caTime, ' ');
+            removeAll(caTime, '-');
+            removeAll(caTime, ':');
+            iNum++;
+            if(iNum > 1)
+            {
+                utPltPutLoopVar(psDbHead, "dh", iNum, ",");
+            }
+            utPltPutLoopVar(psDbHead, "timeflag", iNum, "hour");
+            utPltPutLoopVarF(psDbHead, "timevalue", iNum, "%s", caTime);
+            utPltPutLoopVarF(psDbHead, "maccount", iNum, "%lu", lCount);
+            lCount = 0;
+            memset(caTime, 0, sizeof(caTime));
+            iReturn = pasDbFetchInto(psCur,
+                                     UT_TYPE_STRING, sizeof(caTime) - 1, caTime,
+                                     UT_TYPE_LONG, 4, &lCount);
+
+        }
+        pasDbCloseCursor(psCur);
+    }
+    */
+    //按天统计的次数
+    memset(sql, 0, sizeof(sql));
+    snprintf(sql, sizeof(sql), "select bb,count(distinct(mac)) from (select left(from_unixtime(starttime),10) bb,mac from ncbabplacetimemac where cid=%s)aa group by bb", caCid);
+    macPrint(babDebug, "========time day mac count sql=[%s]==========\n", sql);
+    psCur = pasDbOpenSqlF(sql);
+    if(psCur)
+    {
+        lCount = 0;
+        memset(caTime, 0, sizeof(caTime));
+        iReturn = pasDbFetchInto(psCur,
+                                 UT_TYPE_STRING, sizeof(caTime) - 1, caTime,
+                                 UT_TYPE_LONG, 4, &lCount);
+        while(iReturn == 0 || iReturn == 1405)
+        {
+            removeAll(caTime, ' ');
+            removeAll(caTime, '-');
+            removeAll(caTime, ':');
+            iNum++;
+            if(iNum > 1)
+            {
+                utPltPutLoopVar(psDbHead, "dh", iNum, ",");
+            }
+            utPltPutLoopVar(psDbHead, "timeflag", iNum, "day");
+            utPltPutLoopVarF(psDbHead, "timevalue", iNum, "%s", caTime);
+            utPltPutLoopVarF(psDbHead, "maccount", iNum, "%lu", lCount);
+            lCount = 0;
+            memset(caTime, 0, sizeof(caTime));
+            iReturn = pasDbFetchInto(psCur,
+                                     UT_TYPE_STRING, sizeof(caTime) - 1, caTime,
+                                     UT_TYPE_LONG, 4, &lCount);
+
+        }
+        pasDbCloseCursor(psCur);
+    }
+    //按月统计的次数
+    memset(sql, 0, sizeof(sql));
+    snprintf(sql, sizeof(sql), "select bb,count(distinct(mac)) from (select left(from_unixtime(starttime),7) bb,mac from ncbabplacetimemac where cid=%s)aa group by bb", caCid);
+    macPrint(babDebug, "========time day mac count sql=[%s]==========\n", sql);
+    psCur = pasDbOpenSqlF(sql);
+    if(psCur)
+    {
+        lCount = 0;
+        memset(caTime, 0, sizeof(caTime));
+        iReturn = pasDbFetchInto(psCur,
+                                 UT_TYPE_STRING, sizeof(caTime) - 1, caTime,
+                                 UT_TYPE_LONG, 4, &lCount);
+        while(iReturn == 0 || iReturn == 1405)
+        {
+            removeAll(caTime, ' ');
+            removeAll(caTime, '-');
+            removeAll(caTime, ':');
+            iNum++;
+            if(iNum > 1)
+            {
+                utPltPutLoopVar(psDbHead, "dh", iNum, ",");
+            }
+            utPltPutLoopVar(psDbHead, "timeflag", iNum, "month");
+            utPltPutLoopVarF(psDbHead, "timevalue", iNum, "%s", caTime);
+            utPltPutLoopVarF(psDbHead, "maccount", iNum, "%lu", lCount);
+            lCount = 0;
+            memset(caTime, 0, sizeof(caTime));
+            iReturn = pasDbFetchInto(psCur,
+                                     UT_TYPE_STRING, sizeof(caTime) - 1, caTime,
+                                     UT_TYPE_LONG, 4, &lCount);
+
+        }
+        pasDbCloseCursor(psCur);
+    }
+
+    utPltPutVarF(psDbHead, "totalcount", "%lu", iNum);
+    utPltPutVar(psDbHead, "cid", caCid);
+    utPltPutVar(psDbHead, "retcode", "0");
+    utPltPutVar(psDbHead, "retmsg", "成功");
+    utPltOutToHtml(iFd, psMsgHead, psDbHead, "mac/datamining/bab/timemaccount.htm");
+    return 0;
+}
+
+//返回特定mac在某场所某时间段内所有的时间段
+int macGetBabMacDetail(utShmHead *psShmHead, int iFd, utMsgHead *psMsgHead)
+{
+    long babDebug = utComGetVar_ld(psShmHead, "BabDebug", 0);
+    if(babDebug)
+    {
+        utMsgPrintMsg(psMsgHead);
+    }
+    utPltDbHead *psDbHead = utPltInitDb();
+
+    char caServicecode[32] = "";
+    char caCid[8] = "";
+    char caMac[20] = "";
+    int iReturn, iNum;
+    pasDbCursor *psCur;
+    long lCount = 0;
+    char caTimePeriod1[13] = "";
+    char caTimePeriod2[13] = "";
+    uint8 lStime = 0, lEtime = 0;
+    char sql[2048] = "";
+
+    iReturn = utMsgGetSomeNVar(psMsgHead, 5,
+                               "servicecode",  UT_TYPE_STRING, sizeof(caServicecode) - 1, caServicecode,
+                               "mac",  UT_TYPE_STRING, sizeof(caMac) - 1, caMac,
+                               "cid",  UT_TYPE_STRING, sizeof(caCid) - 1, caCid,
+                               "timeperiod1",  UT_TYPE_STRING, sizeof(caTimePeriod1) - 1, caTimePeriod1,
+                               "timeperiod2",  UT_TYPE_STRING, sizeof(caTimePeriod2) - 1, caTimePeriod2);
+    
+    if(strlen(caServicecode) < 7)
+    {
+        utPltPutVar(psDbHead, "retcode", "1");
+        utPltPutVar(psDbHead, "retmsg", "servicecode不足7位");
+        utPltOutToHtml(iFd, psMsgHead, psDbHead, "mac/datamining/bab/maccountdetail.htm");
+        return -1;
+    }
+    if(strlen(caCid) == 0)
+    {
+        utPltPutVar(psDbHead, "retcode", "2");
+        utPltPutVar(psDbHead, "retmsg", "cid不能为空");
+        utPltOutToHtml(iFd, psMsgHead, psDbHead, "mac/datamining/bab/maccountdetail.htm");
+        return -1;
+    }
+    if(strlen(caMac) != 17)
+    {
+        utPltPutVar(psDbHead, "retcode", "3");
+        utPltPutVar(psDbHead, "retmsg", "mac地址长度不为17");
+        utPltOutToHtml(iFd, psMsgHead, psDbHead, "mac/datamining/bab/maccountdetail.htm");
+        return -1;
+    }
+    if((strlen(caTimePeriod1) != TIMESTR_LENGTH) && (strlen(caTimePeriod1) != 0))
+    {
+        utPltPutVar(psDbHead, "retcode", "3");
+        utPltPutVar(psDbHead, "retmsg", "起始时间段不足12位");
+        utPltOutToHtml(iFd, psMsgHead, psDbHead, "mac/datamining/bab/maccountdetail.htm");
+        return -1;
+    }
+    if((strlen(caTimePeriod2) != TIMESTR_LENGTH) && (strlen(caTimePeriod2) != 0))
+    {
+        utPltPutVar(psDbHead, "retcode", "4");
+        utPltPutVar(psDbHead, "retmsg", "结束时间段不足12位");
+        utPltOutToHtml(iFd, psMsgHead, psDbHead, "mac/datamining/bab/maccountdetail.htm");
+        return -1;
+    }
+    lStime = getUnixtimeByStr12(caTimePeriod1);
+    lEtime = getUnixtimeByStr12(caTimePeriod2) ;
+    lEtime += 60;
+
+    //统计该mac出现的时间数
+    memset(sql, 0, sizeof(sql));
+    if((strlen(caTimePeriod1) == TIMESTR_LENGTH) && (TIMESTR_LENGTH == strlen(caTimePeriod2)))
+        snprintf(sql, sizeof(sql), "select starttime,endtime from ncbabplacetimemac where cid=%s and servicecode='%s' and mac='%s' and starttime>=%llu and endtime<=%llu", caCid, caServicecode, caMac, lStime, lEtime);
+        else
+            snprintf(sql, sizeof(sql), "select starttime,endtime from ncbabplacetimemac where cid=%s and servicecode='%s' and mac='%s'", caCid, caServicecode, caMac);
+            macPrint(babDebug, "========bab detail sql=[%s]==========\n", sql);
+            psCur = pasDbOpenSqlF(sql);
+            if(psCur)
+        {
+            lStime = 0;
+            lEtime = 0;
+            iReturn = pasDbFetchInto(psCur,
+                                     UT_TYPE_LONG8, 8, &lStime,
+                                     UT_TYPE_LONG8, 8, &lEtime);
+                iNum = 0;
+                while(iReturn == 0 || iReturn == 1405)
+                {
+                    iNum++;
+                    if(iNum > 1)
+                    {
+                        utPltPutLoopVar(psDbHead, "dh", iNum, ",");
+                    }
+                    utPltPutLoopVarF(psDbHead, "stime", iNum, "%llu", lStime);
+                    utPltPutLoopVarF(psDbHead, "etime", iNum, "%llu", lEtime);
+                    lStime = 0;
+                    lEtime = 0;
+                    iReturn = pasDbFetchInto(psCur,
+                                             UT_TYPE_LONG8, 8, &lStime,
+                                             UT_TYPE_LONG8, 8, &lEtime);
+                }
+                pasDbCloseCursor(psCur);
+            }
+
+    utPltPutVarF(psDbHead, "totalcount", "%lu", iNum);
+    utPltPutVar(psDbHead, "cid", caCid);
+    utPltPutVar(psDbHead, "servicecode", caServicecode);
+    utPltPutVar(psDbHead, "retcode", "0");
+    utPltPutVar(psDbHead, "retmsg", "成功");
+    utPltOutToHtml(iFd, psMsgHead, psDbHead, "mac/datamining/bab/maccountdetail.htm");
+    return 0;
+}
+
+
+
+int macGetBabPartnerRank(utShmHead *psShmHead, int iFd, utMsgHead *psMsgHead)
+{
+    long babDebug = utComGetVar_ld(psShmHead, "BabDebug", 0);
+    if(babDebug)
+    {
+        utMsgPrintMsg(psMsgHead);
+    }
+    utPltDbHead *psDbHead = utPltInitDb();
+
+    char caCid[8] = "";
+    int iReturn, iNum;
+    pasDbCursor *psCur;
+    long lCount = 0;
+    char caMac[20] = "";
+    char sql[2048] = "";
+
+    iReturn = utMsgGetSomeNVar(psMsgHead, 1,
+                               "cid",  UT_TYPE_STRING, sizeof(caCid) - 1, caCid);
+
+    if(strlen(caCid) == 0)
+    {
+        utPltPutVar(psDbHead, "retcode", "2");
+        utPltPutVar(psDbHead, "retmsg", "cid不能为空");
+        utPltOutToHtml(iFd, psMsgHead, psDbHead, "mac/datamining/bab/macpartnerrank.htm");
+        return -1;
+    }
+
+    //统计每个mac出现的次数
+    memset(sql, 0, sizeof(sql));
+    snprintf(sql, sizeof(sql), "select mac,ifnull(count(mac),0) bb from(select mac,starttime from ncbabplacetimemac where cid=%s group by mac,starttime)aa group by mac order by bb desc limit 5", caCid);
+    macPrint(babDebug, "========bab sql=[%s]==========\n", sql);
+    psCur = pasDbOpenSqlF(sql);
+    if(psCur)
+    {
+        iReturn = 0;
+        lCount = 0;
+        memset(caMac, 0, sizeof(caMac));
+        iReturn = pasDbFetchInto(psCur,
+                                 UT_TYPE_STRING, 17, caMac,
+                                 UT_TYPE_LONG, 4, &lCount);
+        iNum = 0;
+        while(iReturn == 0 || iReturn == 1405)
+        {
+            iNum++;
+            if(iNum > 1)
+            {
+                utPltPutLoopVar(psDbHead, "dh", iNum, ",");
+            }
+            utPltPutLoopVarF(psDbHead, "maccount", iNum, "%lu", lCount);
+            utPltPutLoopVarF(psDbHead, "mac", iNum, "%s", caMac);
+
+            memset(caMac, 0, sizeof(caMac));
+            iReturn = pasDbFetchInto(psCur,
+                                     UT_TYPE_STRING, 17, caMac,
+                                     UT_TYPE_LONG, 4, &lCount);
+        }
+        pasDbCloseCursor(psCur);
+    }
+
+    utPltPutVarF(psDbHead, "totalcount", "%lu", iNum);
+    utPltPutVar(psDbHead, "cid", caCid);
+    utPltPutVar(psDbHead, "retcode", "0");
+    utPltPutVar(psDbHead, "retmsg", "成功");
+    utPltOutToHtml(iFd, psMsgHead, psDbHead, "mac/datamining/bab/macpartnerrank.htm");
+    return 0;
+}
+
+
+static int insertToDB(long lDebug, struct s_macinfo* pInfoNode)
+{
+    char sql[2048] = "";
+    if(((strlen(pInfoNode->mac) > 0) && (strlen(pInfoNode->servicecode) > 0)))
+    {
+        memset(sql, 0, sizeof(sql));
+        sprintf(sql, "insert into ncbabplacetimemac(cid,mac,servicecode,starttime,endtime) \
+        	 values(%lu,'%s','%s',%llu,%llu) ", pInfoNode->cid,
+                pInfoNode->mac, pInfoNode->servicecode, pInfoNode->starttime, pInfoNode->endtime);
+        macPrint(lDebug, "insert db sql=%s", sql);
+        int iReturn = pasDbExecSqlF(sql);
+        macPrint(lDebug, "insert db sql = %s\n", sql);
+    }
+    return 0;
+}
+
+static int deleteSameRule(long lDebug, uint4 cid)
+{
+    char sql[1024] = "";
+    sprintf(sql, "delete from ncbabplacetimemac where cid=%lu", cid);
+    macPrint(lDebug, "delete db sql = %s\n", sql);
+    return pasDbExecSqlF(sql);
+}
+
+static int updateReportTime(long lDebug, uint4 cid)
+{
+    char sql[1024] = "";
+    sprintf(sql, "update ncbabtask set reoporttime=%lu where cid=%lu", time(0), cid);
+
+    macPrint(lDebug, "update db sql = %s\n", sql);
+
+    return pasDbExecSqlF(sql);
+}
+
+static void doDbSearchMacs(long lDebug,  unsigned char* pHash_onePointMacs, s_eachpoint* pTmpNode,
+                           unsigned char* pHash_macCount)
+{
+    struct s_macinfo* psMacInfo = NULL;
+    struct s_maccount* psMacCount = NULL;
+    char sql[8023] = "";
+    int iReturn = 0;
+    pasDbCursor *psCur;
+    char caMac[20] = "";
+    memset(sql, 0, sizeof(sql));
+
+    sprintf(sql, "select distinct(mac) from ncmactermatt_if_%s where servicecode='%s' and mac!='%s' and stime>=%llu and stime<=%llu",
+            utTimFormat("%Y%m", time(0)), pTmpNode->servicecode, pTmpNode->mac, pTmpNode->starttime, pTmpNode->endtime);
+
+
+    macPrint(lDebug, "get diff mac sql = %s\n", sql);
+    psCur = pasDbOpenSql(sql, 0);
+    if(psCur)
+    {
+        memset(caMac, 0, sizeof(caMac));
+        iReturn = pasDbFetchInto(psCur, UT_TYPE_STRING, 17, caMac);
+        while((iReturn == 0) || (iReturn == 1405))
+        {
+            //统计信息
+            psMacCount = (struct s_maccount*)pasLHashLookA(pHash_macCount, (char*)&caMac);
+            if(psMacCount)
+            {
+                memcpy(psMacCount->mac, caMac, sizeof(psMacCount->mac));
+                psMacCount->count++;
+            }
+            //详细信息
+            psMacInfo = (struct s_macinfo*)pasLHashLookA(pHash_onePointMacs, (char*)&caMac);
+            if(psMacInfo)
+            {
+                // DO: 拷贝数据
+                memcpy(psMacInfo->mac, caMac, sizeof(psMacInfo->mac));
+                memcpy(psMacInfo->servicecode, pTmpNode->servicecode, sizeof(psMacInfo->servicecode));
+                psMacInfo->starttime = pTmpNode->starttime;
+                psMacInfo->endtime =  pTmpNode->endtime;
+                psMacInfo->cid = pTmpNode->cid;
+            }
+            memset(caMac, 0, sizeof(caMac));
+            iReturn = pasDbFetchInto(psCur, UT_TYPE_STRING, 17, caMac);
+        }
+        pasDbCloseCursor(psCur);
+    }
+    else
+    {
+        macPrint(lDebug, "sql=[%s],cur is null\n", sql);
+    }
+}
+
+static int isInRankArray(struct s_maccount* rankArray, ulong arrayLen, char* mac)
+{
+    ulong i = 0;
+    for(i = 0; i < arrayLen; i++)
+    {
+        if(strcmp(rankArray[i].mac, mac) == 0)
+            return 1;
+    }
+    return 0;
+}
+
+static int deleteHashNotInRankArray(long babDebug, struct s_maccount* rankArray, ulong arrayLen, unsigned char* pHash_onePointMac)
+{
+    struct s_macinfo* psMacs = NULL;
+    pasLHashInfo sHashInfo;
+    psMacs = (struct s_macinfo*)pasLHashFirst(pHash_onePointMac, &sHashInfo);
+    while(psMacs)
+    {
+        if(!isInRankArray(rankArray, arrayLen, psMacs->mac))
+        {
+            pasLHashDel(pHash_onePointMac, psMacs->mac);
+            macPrint(babDebug, "delete mac=[%s],servicode=[%s] from hash\n", psMacs->mac, psMacs->servicecode);
+        }
+        psMacs = (struct s_macinfo*)pasLHashNext(&sHashInfo);
+    }
+    return 0;
+
+
+
+}
+
+static int doDbInsertMacs(long lDebug, unsigned char* pHash_onePointMac)
+{
+    struct s_macinfo* psMacs = NULL;
+    pasLHashInfo sHashInfo;
+    psMacs = (struct s_macinfo*)pasLHashFirst(pHash_onePointMac, &sHashInfo);
+    while(psMacs)
+    {
+        insertToDB(lDebug, psMacs);
+        psMacs = (struct s_macinfo*)pasLHashNext(&sHashInfo);
+    }
+    return 0;
+}
+
+static int InsertToRankList(struct s_maccount* rankArray, ulong arrayLen, struct s_maccount* pMacCount)
+{
+    //从大到小排序前20名存到里面
+    ulong i = 0;
+    ulong lIndex = -1;
+    for(i = 0; i < arrayLen; i++)
+    {
+        if(pMacCount->count > rankArray[i].count)
+        {
+            //当前序号后面的数据整体往后移
+            lIndex = i;
+            break;
+        }
+    }
+    if(lIndex > -1)
+    {
+        for(i = arrayLen - 1; i > lIndex; i--)
+        {
+            memcpy(&rankArray[i], &rankArray[i - 1], sizeof(struct s_maccount));
+        }
+        memcpy(&rankArray[lIndex], pMacCount, sizeof(struct s_maccount));
+    }
+
+    return 0;
+}
+
+int ncsStatMacBab(utShmHead *psShmHead)
+{
+    pasDbCursor *psCur;
+    char sql[2048] = "";
+    long lSumTask = 0, taskCount = 0;
+    unsigned char* pHash_task = NULL;
+    unsigned char** pHash_allMacs = NULL;
+    unsigned char* pHash_macCount = NULL;
+
+    struct s_babtask tmpTask;
+    s_eachpoint tmpPoint;
+    struct s_babtask* psTask = NULL;
+    struct s_maccount* psMacCount = NULL;
+    pasLHashInfo sHashInfo;
+    char caServerlist[8024] = "";
+    long babDebug = utComGetVar_ld(psShmHead, "BabDebug", 0);
+    int iReturn = pasConnect(psShmHead);
+    if(iReturn < 0)
+    {
+        printf("conn psShmHead fail iReturn=%d\n", iReturn);
+        sleep(60);
+        return 0;
+    }
+    while(1)
+    {
+        //1、统计总共有多少条规则
+        memset(sql, 0, sizeof(sql));
+        sprintf(sql, "select count(cid) from ncbabtask where length(mac)>0");
+        iReturn = pasDbOneRecord(sql, 0, UT_TYPE_LONG, 4, &lSumTask);
+        macPrint(babDebug, "iReturn=%d,lSumTask=%d\n", iReturn, lSumTask);
+        if(iReturn != 0 || lSumTask == 0)
+        {
+            macPrint(babDebug, "不进入后面过程，休眠一段时间后继续\n\n");
+            sleep(3 * 60);
+            continue;
+            //return 0;
+        }
+        //2、取出所有规则的明细信息装入哈希
+        pHash_task = (unsigned char *)pasLHashInit(5000, 5000, sizeof(struct s_babtask), 0, 4);
+        if(pHash_task == NULL)
+        {
+            printf("分配内存出错\n");
+            return 0;
+        }
+        memset(sql, 0, sizeof(sql));
+        sprintf(sql, "select cid,groupid,starttime,endtime,dids,mac from ncbabtask");
+        psCur = pasDbOpenSql(sql, 0);
+        if(psCur)
+        {
+            memset(&tmpTask, 0, sizeof(tmpTask));
+            iReturn = pasDbFetchInto(psCur,
+                                     UT_TYPE_LONG, 4, &tmpTask.cid,
+                                     UT_TYPE_LONG, 4, &tmpTask.groupid,
+                                     UT_TYPE_LONG8, 8, &tmpTask.starttime,
+                                     UT_TYPE_LONG8, 8, &tmpTask.endtime,
+                                     UT_TYPE_STRING, 250, tmpTask.dids,
+                                     UT_TYPE_STRING, 18, tmpTask.mac);
+
+            macPrint(babDebug, "first sql=[%s],fetchinto ret=%d\n", sql, iReturn);
+
+            while((iReturn == 0) || (iReturn == 1405))
+            {
+                macPrint(babDebug, "fetch into ret=%d,cid=%d,mac=%s\n", iReturn, tmpTask.cid, tmpTask.mac);
+                if(strlen(tmpTask.mac) == 17)
+                {
+                    psTask = (struct s_babtask *)pasLHashLookA(pHash_task, (char*)&tmpTask.cid);
+                    if(psTask)
+                    {
+                        psTask->cid = tmpTask.cid;
+                        psTask->groupid = tmpTask.groupid;
+                        psTask->starttime = tmpTask.starttime;
+                        psTask->endtime = tmpTask.endtime;
+                        strcpy(psTask->dids, tmpTask.dids);
+                        strcpy(psTask->mac, tmpTask.mac);
+                        macPrint(babDebug, "insert to hash cid=%lu, starttime=%llu, endtime=%llu\n",
+                                 psTask->cid, psTask->starttime, psTask->endtime);
+                    }
+                }
+                else
+                {
+                    macPrint(babDebug, "主mac不为17位, mac=[%s]\n", tmpTask.mac);
+                }
+
+                memset(&tmpTask, 0, sizeof(tmpTask));
+                iReturn = pasDbFetchInto(psCur,
+                                         UT_TYPE_LONG, 4, &tmpTask.cid,
+                                         UT_TYPE_LONG, 4, &tmpTask.groupid,
+                                         UT_TYPE_LONG8, 8, &tmpTask.starttime,
+                                         UT_TYPE_LONG8, 8, &tmpTask.endtime,
+                                         UT_TYPE_STRING, 250, tmpTask.dids,
+                                         UT_TYPE_STRING, 18, tmpTask.mac);
+            }
+            pasDbCloseCursor(psCur);
+        }
+        else
+        {
+            printf("error sql=[%s],cur is null\n", sql);
+        }
+        //3、遍历哈希表做任务对应的统计
+        psTask = (struct s_babtask*)pasLHashFirst(pHash_task, &sHashInfo);
+        taskCount = 0;
+        while(psTask)
+        {
+            deleteSameRule(babDebug, psTask->cid);
+            memset(caServerlist, 0, sizeof(caServerlist));
+            // DO:根据dids获取servicecode的列表
+            strcpy(caServerlist, getServicecodesByDids(psShmHead, psTask->dids));
+            macPrint(babDebug, "finish get servicecode list %s\n", caServerlist);
+            //创建一个单链表用于存放时间段+servicecode组合
+            s_eachpoint* pPointList = createPointList();  //用于存放时间点+地点的单链表
+            memset(sql, 0, sizeof(sql));
+            //e.g. select mac,servicecode,from_unixtime(stime) from ncmactermatt_if_201508 where mac='20-02-AF-C5-43-AC' group by stime
+            if(strlen(caServerlist) > 0)
+            {
+                sprintf(sql, "select servicecode,stime from ncmactermatt_if_%s where mac='%s' and stime>%llu and stime<%llu and servicecode in (%s) group by stime", utTimFormat("%Y%m", time(0)), psTask->mac, psTask->starttime, psTask->endtime, caServerlist);
+            }
+            else
+            {
+                sprintf(sql, "select servicecode,stime from ncmactermatt_if_%s where mac='%s' and stime>%llu and stime<%llu group by stime", utTimFormat("%Y%m", time(0)), psTask->mac, psTask->starttime, psTask->endtime);
+            }
+            macPrint(babDebug, "get time list sql=%s\n", sql);
+            psCur = pasDbOpenSql(sql, 0);
+            if(psCur)
+            {
+                memset(&tmpPoint, 0, sizeof(tmpPoint));
+                tmpPoint.cid = psTask->cid;
+                memcpy(tmpPoint.mac, psTask->mac, sizeof(tmpPoint.mac));
+                iReturn = pasDbFetchInto(psCur,
+                                         UT_TYPE_STRING, 16, tmpPoint.servicecode,
+                                         UT_TYPE_LONG8, 8, &tmpPoint.starttime);
+                tmpPoint.endtime = tmpPoint.starttime + 3600;//离开时间默认为起始时间+1小时
+                while((iReturn == 0) || (iReturn == 1405))
+                {
+                    macPrint(babDebug, "========add pair<starttime=%llu, servicecode=%s>=======\n\n", tmpPoint.starttime, tmpPoint.servicecode);
+                    addToPointList(pPointList, &tmpPoint);
+                    memset(&tmpPoint, 0, sizeof(tmpPoint));
+                    tmpPoint.cid = psTask->cid;
+                    memcpy(tmpPoint.mac, psTask->mac, sizeof(tmpPoint.mac));
+                    iReturn = pasDbFetchInto(psCur,
+                                             UT_TYPE_STRING, 16, tmpPoint.servicecode,
+                                             UT_TYPE_LONG8, 8, &tmpPoint.starttime);
+                    tmpPoint.endtime = tmpPoint.starttime + 3600;
+                }
+                pasDbCloseCursor(psCur);
+            }
+
+            //整理列表里相隔时间过近的点,合并为一个点
+            reOrganizePointList(pPointList);
+            ulong lPointCount = getPointListLength(pPointList);
+            if(lPointCount > 0)
+            {
+                pHash_allMacs = (unsigned char**)malloc(sizeof(unsigned char*)*lPointCount);
+                pHash_macCount = (unsigned char *)pasLHashInit(1000, 1000, sizeof(struct s_maccount), 0, 17);
+                if(pHash_macCount == NULL)
+                {
+                    printf("分配pHash_macCount内存出错\n");
+                    return 0;
+                }
+                ulong lIndex = 0;
+                s_eachpoint* pTmpNode = pPointList->pNext;
+                //统计所有的mac地址
+                while(pTmpNode)
+                {
+                    pHash_allMacs[lIndex] = (unsigned char *)pasLHashInit(5000, 5000, sizeof(struct s_macinfo), 0, 17);
+                    if(pHash_allMacs[lIndex] == NULL)
+                    {
+                        printf("分配内存出错\n");
+                        return 0;
+                    }
+                    macPrint(babDebug, "before search pair<starttime=%llu, servicecode=%s>\n", pTmpNode->starttime, pTmpNode->servicecode);
+                    doDbSearchMacs(babDebug, pHash_allMacs[lIndex], pTmpNode, pHash_macCount);
+                    pTmpNode = pTmpNode->pNext;
+                    lIndex ++;
+                }
+                //统计得到前20名的mac
+                struct s_maccount rankArray[20];
+                for(lIndex = 0; lIndex < 20; lIndex++)
+                {
+                    memset(&rankArray[lIndex], 0, sizeof(struct s_maccount));
+                }
+
+                psMacCount = (struct s_maccount*)pasLHashFirst(pHash_macCount, &sHashInfo);
+                taskCount = 0;
+                while(psMacCount)
+                {
+                    InsertToRankList(rankArray, 20, psMacCount);
+                    psMacCount = (struct s_maccount*)pasLHashNext(&sHashInfo);
+                }
+                //将所有的hash存到数据库并释放hash
+                for(lIndex = 0; lIndex < lPointCount; lIndex++)
+                {
+                    if(pHash_allMacs[lIndex])
+                    {
+                        //删除哈希表里不在前二十的mac
+                        deleteHashNotInRankArray(babDebug, rankArray, 20, pHash_allMacs[lIndex]);
+                        //遍历pHash_allPoints，将所有的点存入数据库
+                        doDbInsertMacs(babDebug, pHash_allMacs[lIndex]);
+                        free(pHash_allMacs[lIndex]);
+                    }
+                }
+                if(pHash_macCount)
+                    free(pHash_macCount);
+                if(pHash_allMacs)
+                    free(pHash_allMacs);
+            }
+            //释放内存
+            destroyPointList(pPointList);
+            updateReportTime(babDebug, psTask->cid);
+            psTask = (struct s_babtask*)pasLHashNext(&sHashInfo);
+            macPrint(babDebug, "====================finish %d task, total %d=================== \n", (++taskCount), lSumTask);
+            sleep(2);
+        }
+        if(pHash_task)
+            free(pHash_task);
+        macPrint(babDebug, "\n================finish one round, will start in 3*60s...===========\n\n");
+        sleep(3 * 60);
+    }
+}
 
 
 int procapFrontpageSetFun(utShmHead * psShmHead)
@@ -2703,6 +3656,14 @@ int procapFrontpageSetFun(utShmHead * psShmHead)
     iReturn = pasSetTcpFunName("macFrontPageRange", macFrontPageRange, 0);
     iReturn = pasSetTcpFunName("ncsTreeUser_v9", ncsTreeUser_v9, 0);
     iReturn = pasSetTcpFunName("ncsWebClientAdd_wif_v9", ncsWebClientAdd_wif_v9, 0);
+    iReturn = pasSetTcpFunName("macGetBabDeviceInfo", macGetBabDeviceInfo, 0);
+    iReturn = pasSetTcpFunName("macGetBabMacCount", macGetBabMacCount, 0);
+    iReturn = pasSetTcpFunName("macGetBabMacDetail", macGetBabMacDetail, 0);
+    iReturn = pasSetTcpFunName("macGetBabPartnerRank", macGetBabPartnerRank, 0);
+    iReturn = pasSetTcpFunName("macGetBabPlaceMacCount", macGetBabPlaceMacCount, 0);
+    iReturn = pasSetTcpFunName("macGetBabMacPlaceCount", macGetBabMacPlaceCount, 0);
+    iReturn = pasSetTcpFunName("macGetBabMacTimeCount", macGetBabMacTimeCount, 0);
+    iReturn = pasSetTcpFunName("macGetBabMacTimeDetail", macGetBabMacTimeDetail, 0);
     return 0;
 }
 

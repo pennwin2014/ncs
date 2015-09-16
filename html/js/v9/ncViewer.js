@@ -1,4 +1,3 @@
-
 var bInfoquery = true;
 var bAlarm = false;
 var bDm = false;
@@ -8,6 +7,23 @@ var bMyaccount = false;
 var globalSelectId = "";
 var globalSelectGroupId = "itm_infoquery";
 var DEFAULT_SEARCH_TEXT = "MAC/手机号/场所名称";
+/*
+	Date.prototype.Format = function (fmt) { //author: meizz 
+		var o = {
+			"M+": this.getMonth() + 1, //月份 
+			"d+": this.getDate(), //日 
+			"h+": this.getHours(), //小时 
+			"m+": this.getMinutes(), //分 
+			"s+": this.getSeconds(), //秒 
+			"q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+			"S": this.getMilliseconds() //毫秒 
+		};
+		if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+		for (var k in o)
+			if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+		return fmt;
+	}
+*/
 function f_MacGlobalContext(){
 //私有变量
 	this.id_operation_status = -1;
@@ -40,10 +56,70 @@ function f_MacGlobalContext(){
 	this.setPhoneNumber = function(number){
 		this.phoneNumber = number;
 	}
+//工具方法
+    this.isInFocus = function(itmid){
+		var tabs_center=Ext.getCmp("layout_center");
+		var activeTab = tabs_center.getActiveTab();
+		//if (activeTab || (typeof activeTab == "undefined")){
+		if (!activeTab || typeof(activeTab)=="undefined" || activeTab==0){
+			if(tabs_center.items.length>0){
+				activeTab = tabs_center.items.items[0];
+			}else{
+				return false;
+			}
+		}
+		if(activeTab.id == itmid){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	this.getLocalTime = function(tm) {
+		var unixTimestamp = new Date(parseInt(tm) * 1000);
+		commonTime = unixTimestamp.toLocaleString();
+		return commonTime;
+	}
+//校验的方法
+	this.CheckMail = function (mail){
+		var filter  = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+		if (filter.test(mail)) 
+			return true;
+		else {
+			alert('您的电子邮件格式不正确');
+			return false;
+		}
+	}
+	this.CheckPhone = function(Phone) {
+		var filter=/^1\d{10}$|^(0\d{2,3}-?|\(0\d{2,3}\))?[1-9]\d{4,7}(-\d{1,8})?$/;
+		if (filter.test(Phone)){
+			return true;
+		}
+		else {
+			alert('您的电话格式不正确');
+			return false;}
+	}
+
 }
 
 var macGlobalCtx = new f_MacGlobalContext(); 
-
+function isInFocus(itmid){
+	var tabs_center=Ext.getCmp("layout_center");
+	var activeTab = tabs_center.getActiveTab();
+	//if (activeTab || (typeof activeTab == "undefined")){
+	if (!activeTab || typeof(activeTab)=="undefined" || activeTab==0){
+		if(tabs_center.items.length>0){
+			activeTab = tabs_center.items.items[0];
+		}else{
+			return false;
+		}
+	}
+	if(activeTab.id == itmid){
+		return true;
+	}else{
+		return false;
+	}
+}
 var mapInfoquery = {
 	'id_infoquery_mac':['itm_infoquery_mac','MAC日志查询','mac_infoquery_mac'], 
 	'id_infoquery_hotspot':['itm_infoquery_hotspot','热点查询','mac_infoquery_hotspot'], 
@@ -80,7 +156,6 @@ var mapSystemset = {
 	'id_systemset_preferences':['itm_systemset_preferences','权限管理','mac_systemset_preferences'],
 	'id_systemset_log':['itm_systemset_log','操作员日志','mac_systemset_log'],
 	'id_systemset_para':['itm_systemset_para','系统参数配置','mac_systemset_para']
-	
 };
 var mapMyaccount = {
 	'id_myaccount_username':['itm_myaccount_username','修改密码','mac_myaccount_username'],
@@ -89,23 +164,6 @@ var mapMyaccount = {
 var listAllMap = [mapInfoquery, mapAlarm, mapDm, mapOperation, mapSystemset,mapMyaccount];
 var left_tabs_glob='';
 
-function isInFocus(itmid){
-	var tabs_center=Ext.getCmp("layout_center");
-	var activeTab = tabs_center.getActiveTab();
-	//if (activeTab || (typeof activeTab == "undefined")){
-	if (!activeTab || typeof(activeTab)=="undefined" || activeTab==0){
-		if(tabs_center.items.length>0){
-			activeTab = tabs_center.items.items[0];
-		}else{
-			return false;
-		}
-	}
-	if(activeTab.id == itmid){
-		return true;
-	}else{
-		return false;
-	}
-}
 
 function searchMouseDown(){
 	document.getElementById("imgbtn_search").src="/images/mac/top_icon/btn_search_click.png";
@@ -215,8 +273,6 @@ function jumpToDestPage(resultId, mac){
 		title: title,
 		items:[grid]
 	}).show();
-	//eval("lan_itm_infoquery_mac_s").setFieldMac(mac);
-	//eval("lan_itm_infoquery_mac_s").setFieldVname(mac);
 }
 
 
@@ -727,8 +783,6 @@ function toggleMyaccount(bVisible){
 		}	
 	}
 }
-
-
 Ext.Loader.setConfig({enabled: true,paths:{'ncViewer':'/js/v9'}});
 Ext.define('ncViewer.App', {
     extend: 'Ext.container.Viewport',    
@@ -2019,7 +2073,7 @@ Ext.define('ncViewer.App', {
 		var tab_id=item.itemid;
 		var tabs_center=Ext.getCmp("layout_center");
 		var tab_len=tabs_center.items.length;
-		tabs_center.items.each(function(item) { 
+		tabs_center.items.each(function(item){
 	     	if(item.id==tab_id)
 	     	{ 
 				i++;
