@@ -33,6 +33,7 @@ function f_MacGlobalContext(){
 	this.phoneNumber = ""; 
 	this.placeData = [];
 	this.placeName = "";
+
 //公共接口
 	this.getPlaceName = function(){
         return this.placeName;
@@ -59,10 +60,10 @@ function f_MacGlobalContext(){
 		return this.globalInfoTime;
 	}
 	this.setGlobalInfoMac = function(mac){
-		this.globalInfoMac = mac;
+		this.globalInfoMac = mac;		
 	}
 	this.setGlobalInfoTime = function(tm){
-		this.globalInfoTime = tm;
+		this.globalInfoTime = tm;		
 	}
 	this.getPhoneNumber = function(){
 		return this.phoneNumber;
@@ -192,6 +193,30 @@ function f_MacGlobalContext(){
 	}
 }
 
+    var sellAction = Ext.create('Ext.Action', {
+	    //iconCls   : 'maps',  
+	    text: '特征分析',	    
+	    handler: function() {
+	       
+	    	alert("查看信息");        
+	    }
+  	});
+  	var buyAction = Ext.create('Ext.Action', {
+      //iconCls: 'buhege',
+      text: '其他',      
+      handler: function() {
+         
+      	//Ext.example.msg('Buy', 'Buy ');       
+      	alert("其他信息");
+      }
+    });
+
+    var contextMenu = Ext.create('Ext.menu.Menu', {
+        items: [
+            sellAction,
+            buyAction            
+        ]
+    });
 var macGlobalCtx = new f_MacGlobalContext(); 
 function isInFocus(itmid){
 	var tabs_center=Ext.getCmp("layout_center");
@@ -2105,8 +2130,25 @@ Ext.define('ncViewer.App', {
         text: 'Ready',
 		style: 'background:#00B1F1 !important;',
         iconCls: 'x-status-valid',
-        items: [
-			{
+        items: [{
+				xtype:'button',
+				text:'',
+				html:'&nbsp;<img src="/images/mac/alarm3.png" style="margin:0 0px 0 0px;" width="15" height="15"/><a id = "alarm3"></a>',
+				handler:function(){
+				}
+			},{
+				xtype:'button',
+				text:'',
+				html:'&nbsp;<img src="/images/mac/alarm2.jpg" style="margin:0 0px 0 0px;" width="15" height="15"/><a id = "alarm2"></a>',
+				handler:function(){
+				}
+			},{
+				xtype:'button',
+				text:'',
+				html:'&nbsp;<img src="/images/mac/alarm1.jpg" style="margin:0 0px 0 0px;" width="15" height="15"/><a id = "alarm1"></a>',
+				handler:function(){
+				}
+			},{
 				xtype: 'button',
 				text: '',
 				cls:"sqlButton", 
@@ -2324,6 +2366,42 @@ Ext.define('ncViewer.App', {
     refreshComTree: function(){
       Ext.getCmp('treeBtn').fireEvent('click');
     }
-
- 
 });
+
+
+setInterval("getAlarmNum()", 50000);
+function getAlarmNum(){
+	var ClientAlarmNum =0;
+	var ApAlarmNum =0;
+	var record;
+	Ext.Ajax.Request({
+		url: '/pronline/Msg?FunName@getAlarmNum', 
+		method:'GET',
+		success:function(res,opt){
+			try{
+				var resRecord = res.responseText();
+				record = eval("("+resRecord+")");	//字符串转成结构体	
+				ClientAlarmNum = record.ClientAlarmNum;
+				ApAlarmNum = record.ApAlarmNum;
+				document.getElementById('alarm1').innerHTML = "<font color=red"+ApAlarmNum+"</font>";
+				document.getElementById('alarm2').innerHTML = "<font color=red"+ApAlarmNum+"</font>";
+			}catch(error){
+				
+			}
+		},
+		failure:function(){
+			
+		}
+	})
+}
+
+
+
+
+
+
+
+
+
+
+
