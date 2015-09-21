@@ -1237,6 +1237,36 @@ int macFrontPageLeftBlocks(utShmHead *psShmHead, int iFd, utMsgHead *psMsgHead)
         utPltOutToHtml(iFd, psMsgHead, psDbHead, "mac/frontPage/leftBlock.htm");
         return -1;
     }
+    //设备离线告警数量
+    long iApAlarmCount = 0;
+    // unsigned char* pHash = NULL;
+    ncApSrvOnline *psDevOnline;
+    pasHashInfo sHashInfo;
+    long lTime = 0;
+    long  maxTimeoutSeconds = utComGetVar_ld(psShmHead, "MaxTimeoutSecs", MAX_TIMEOUT_SECONDS);
+
+    pHash = utShmHashHead(psShmHead, NC_LNK_APSRVONLINE);
+    if(pHash == NULL)
+    {
+        printf("NC_LNK_APSRVONLINE Memory Error \n");
+        return (-1);
+    }
+    lTime = time(0);
+    psDevOnline = (ncApSrvOnline *)pasHashFirst(pHash, &sHashInfo);
+    while(psDevOnline)
+    {
+        if(lTime - psDevOnline->lasttime > maxTimeoutSeconds)
+        {
+            //离线数
+            iApAlarmCount++;
+        }
+        else
+        {
+            //在线数
+        }
+        psDevOnline = (ncApSrvOnline *)pasHashNextS(&sHashInfo);
+    }
+    utPltPutVarF(psDbHead, "ApAlarmCount", "%lu", iApAlarmCount);
     //布控告警待处理数
     memset(sql, 0, sizeof(sql));
     /*
@@ -1938,9 +1968,99 @@ int ncsStatMacFront(utShmHead *psShmHead)
 
 int ncsStatMacDevWarn(utShmHead *psShmHead)
 {
+    struct s_ncscasetermlim
+    {
+        int sid;
+        int cid;
+        int level;
+        int dateid;
+        int countlimit;
+        char apname[21];
+        int flags;
+        int lasttime;
+        char servicecode[14];
+        char groupid[6];
+    };
+
+    unsigned char* pHash_lim = NULL;
+    struct s_ncscasetermlim* psTasklim = NULL;
+    struct s_ncscasetermlim templim ;
+    pasLHashInfo sHashInfoLim;
     char sql[2048] = "";
+    char caGroupid[6];
+    pasDbCursor *psCur;
+    //1、统计总数
+    int iCountlim = 0;
+    int iReturn = pasDbOneRecord("select count(*) from ncscasetermlim ", 0, UT_TYPE_LONG, 4, &iCountlim);
+    if(iReturn != 0 || iCountlim == 0)
+    {
+        sleep(60);
+        return 0;
+    }
+
+    //2、创建hash
+    pHash_lim = (unsigned char *)pasLHashInit(5000, 5000, sizeof(struct s_ncscasetermlim), 0, 10);
+    if(pHash_lim == NULL)
+    {
+        printf("分配内存出错\n");
+    }
+    strcpy(sql, "select ncscasetermlim.sid,ncscasetermlim.cid,level,dateid,countlimit,apname,ncscasetermlim.flags,lasttime,servicecode from ncscasetermlim,ncscasemacwarnlog where ncscasetermlim.sid = ncscasemacwarnlog.sid"); //warnlog 前6
+    psCur = pasDbOpenSql(sql, 0);
+    if(psCur == NULL)
+    {
+        printf("psCur 出错");
+    }
+
+    memset(&templim, 0, sizeof(struct s_ncscasetermlim));
+    iReturn = pasDbFetchInto(psCur, UT_TYPE_LONG, 10, &templim.sid,
+                             UT_TYPE_LONG, 10, &templim.cid,
+                             UT_TYPE_LONG, 10, &templim.level,
+                             UT_TYPE_LONG, 11, &templim.dateid,
+                             UT_TYPE_LONG, 10, &templim.countlimit,
+                             UT_TYPE_STRING, 21, templim.apname,
+                             UT_TYPE_LONG, 11, &templim.flags,
+                             UT_TYPE_LONG, 10, &templim.lasttime,
+                             UT_TYPE_STRING, 21, templim.servicecode);
+    strncpy(caGroupid , templim.servicecode, 6);
+
+    while(iReturn == 0 || iReturn == 1405)
+    {
+        psTasklim = (struct s_ncscasetermlim *)pasLHashLookA(pHash_lim, (char*)&templim.sid);
+
+        if(psTasklim)
+        {
+            psTasklim->sid = templim.sid;
+            psTasklim->cid = templim.cid;
+            psTasklim->level = templim.level;
+            psTasklim->dateid = templim.dateid;
+            psTasklim->countlimit = templim.countlimit;
+            strcpy(psTasklim->apname, templim.apname);
+            psTasklim->flags = templim.flags;
+            psTasklim->lasttime = templim.lasttime;
+            strcpy(psTasklim->servicecode, templim.servicecode);
+            strcpy(psTasklim->groupid, caGroupid);
+
+        }
+        memset(caGroupid, 0, 6);
+        memset(&templim, 0, sizeof(struct s_ncscasetermlim));
+        iReturn = pasDbFetchInto(psCur, UT_TYPE_LONG, 10, &templim.sid,
+                                 UT_TYPE_LONG, 10, &templim.cid,
+                                 UT_TYPE_LONG, 10, &templim.level,
+                                 UT_TYPE_LONG, 11, &templim.dateid,
+                                 UT_TYPE_LONG, 10, &templim.countlimit,
+                                 UT_TYPE_STRING, 21, templim.apname,
+                                 UT_TYPE_LONG, 11, &templim.flags,
+                                 UT_TYPE_LONG, 10, &templim.lasttime,
+                                 UT_TYPE_STRING, 21, templim.servicecode);
+        strncpy(caGroupid , templim.servicecode, 6);
+
+    }
+    pasDbCloseCursor(psCur);
+
+
+
     long lTime = 0;
-    int iReturn = pasConnect(psShmHead);
+    iReturn = pasConnect(psShmHead);
     if(iReturn < 0)
     {
         printf("conn psShmHead fail iReturn=%d\n", iReturn);
@@ -1957,6 +2077,28 @@ int ncsStatMacDevWarn(utShmHead *psShmHead)
     ncDeptinfo      *psDept;
     uint4 lBase;
     uchar *pHash;
+
+    struct s_alarmtask
+    {
+        char caDescription[128];
+        char caDevType[32];
+        int alarmtime;
+    };
+
+
+
+    //判断场所离线恢复
+    char caDevType[32];
+    int alarmtime;
+
+    char caDescription[128];
+    unsigned char* pHash_alarm = NULL;
+
+    struct s_alarmtask* psTask = NULL;
+    pasLHashInfo sHashInfoTask;
+
+
+
     while(1)
     {
         //查出离线场所并加入告警表
@@ -1986,9 +2128,145 @@ int ncsStatMacDevWarn(utShmHead *psShmHead)
                 else
                 {
                     // printf("%s is online\n", psClient[i].username);
+                    int iCount = 0;
+                    psTasklim = (struct s_ncscasetermlim*)pasLHashFirst(pHash_lim, &sHashInfoLim);
+                    while(psTasklim)
+                    {
+                        char caUser[6];
+                        strncpy(caUser, psClient[i].username, 6);
+                        if(strlen(psTasklim->groupid) && strcmp(caUser , psTasklim->groupid) == 0)
+                        {
+                            iCount++;
+                        }
+
+                        if(iCount > psTasklim->countlimit)
+                        {
+                            //插入 ncscasemacwarnlog
+                            char caDispname[255] = "";
+                            int iRuleId = 0;
+                            int msid = 0;
+                            char  year[10];
+                            char  mon[10];
+
+                            memset(year, 0, sizeof(year));
+                            memset(mon, 0 , sizeof(mon));
+                            time_t now;
+                            time(&now);
+                            timeToStringEx(now, year, mon);
+                            int syear = atoi(year);
+                            int smonth = atoi(mon);
+                            memset(sql, 0, sizeof(sql));
+                            //关联ncsuser,获取dispname
+                            sprintf(sql, "select dispname from ncsuser where username ='%s'", psTasklim->servicecode);
+                            iReturn = pasDbOneRecord(sql, 0, UT_TYPE_STRING, sizeof(caDispname) - 1, caDispname);
+                            memset(sql, 0, sizeof(sql));
+                            //ncmactermatt_if_,获取msid,日志id
+                            sprintf(sql, "select sid from ncmactermatt_if_%4u%02u where servicecode ='%s'", syear, smonth, psTasklim->servicecode);
+                            iReturn = pasDbOneRecord(sql, 0, UT_TYPE_LONG, 8, msid);
+                            memset(sql, 0, sizeof(sql));
+                            //关联ncsuser,获取sid，规则id
+                            sprintf(sql, "select sid from ncscasmac where macgroupid ='%lu'", psTasklim->groupid);
+                            iReturn = pasDbOneRecord(sql, 0, UT_TYPE_LONG, 8, iRuleId);
+                            memset(sql, 0, sizeof(sql));
+
+                            char caMessage[1024];
+                            memset(caMessage, 0, sizeof(caMessage));
+                            snprintf(caMessage + strlen(caMessage), sizeof(caMessage), "场所");
+                            snprintf(caMessage + strlen(caMessage), sizeof(caMessage), "%s", caDispname);
+                            snprintf(caMessage + strlen(caMessage), sizeof(caMessage), "告警数已经超过阈值");
+                            snprintf(caMessage + strlen(caMessage), sizeof(caMessage), "%d", psTasklim->countlimit);
+
+                            // ncsuser：servicecode,dispname,
+                            iReturn = pasDbExecSqlF("insert into ncscasemacwarnlog(servicecode,udisp,mac,stime,ruleid,msid,cid,message,flags) "
+                                                    "values('%s','%s','%lu','%lu','%lu','%lu','%lu','%s','0')",
+                                                    psTasklim->servicecode, caDispname, iCount, time(0), iRuleId, msid, psTasklim->cid, caMessage);
+                        }
+                        psTasklim = (struct s_ncscasetermlim*)pasLHashNext(&sHashInfoLim);
+                    }
+                    free(pHash_lim);
                 }
             }
         }
+
+
+
+        //1、统计alarmcode ='10007'告警总数 iSumalarm
+        int iSumalarm = 0;
+        iReturn = pasDbOneRecord("select count(*) from nctermsysalarm where alarmcode='10007'", 0, UT_TYPE_LONG, 4, &iSumalarm);
+        if(iReturn != 0 || iSumalarm == 0)
+        {
+            sleep(60);
+            return 0;
+        }
+        //2、pas hash
+        pHash_alarm = (unsigned char *)pasLHashInit(5000, 5000, sizeof(struct s_alarmtask), 0, 14);
+        if(pHash_alarm == NULL)
+        {
+            printf("分配内存出错\n");
+            return 0;
+        }
+
+        strcpy(sql, "select description,devtype,alarmtime from nctermsysalarm where alarmcode ='10007'");
+        pasDbCursor *psCur;
+        psCur = pasDbOpenSql(sql, 0);
+        if(psCur == NULL)
+        {
+            return 0;
+        }
+        iReturn = pasDbFetchInto(psCur, UT_TYPE_STRING, sizeof(caDescription) - 1, caDescription,
+                                 UT_TYPE_STRING, 31, caDevType,
+                                 UT_TYPE_LONG, 11, &alarmtime);
+        while(iReturn == 0 || iReturn == 1405)
+        {
+            psTask = (struct s_alarmtask *)pasLHashLookA(pHash_alarm, caDescription);
+
+            if(psTask)
+            {
+                strcpy(psTask->caDescription, caDescription);
+                strcpy(psTask->caDevType, caDevType);
+                psTask->alarmtime = alarmtime;
+            }
+            memset(caDescription, 0, sizeof(caDescription));
+            memset(caDevType, 0, sizeof(caDevType));
+
+            iReturn = pasDbFetchInto(psCur, UT_TYPE_STRING, sizeof(caDescription) - 1, caDescription,
+                                     UT_TYPE_STRING, 31, caDevType,
+                                     UT_TYPE_LONG, 11, &alarmtime);
+        }
+        pasDbCloseCursor(psCur);
+        //3、遍历hash
+        psTask = (struct s_alarmtask*)pasLHashFirst(pHash_alarm, &sHashInfoTask);
+        int icount = 0;
+        while(psTask)
+        {
+            if(isInOnlinePlaceMemory(psShmHead, psTask->caDescription))
+            {
+                int iRes = pasDbOneRecord("select count(*) from nctermsysalarm where alarmcode='10008' and description='%s'", 1,
+                                          UT_TYPE_STRING, sizeof(caDescription) - 1, psTask->caDescription,
+                                          UT_TYPE_LONG, 4, icount);
+                if(iRes)
+                {
+                    if(icount == 0)
+                    {
+                        pasDbExecSqlF("insert into nctermsysalarm(description,alarmcode,devtype,status,alarmlevel,alarmtime,updatetime)"
+                                      "values('%s','10008','%s','1','3','%s','%s')",
+                                      psTask->caDescription, psTask->caDevType, psTask->alarmtime, time(0));
+                    }
+                    else
+                    {
+                        pasDbExecSqlF("update nctermsysalarm set alarmlevel='3',updatetime='%s',status='1' where description='%s' and alarmcode='10008'", time(0), psTask->caDescription);
+                    }
+                }
+            }
+            else
+            {
+            }
+            psTask = (struct s_alarmtask*)pasLHashNext(&sHashInfoTask);
+        }
+        free(pHash_alarm);
+
+
+
         //查出离线设备插入告警表
         lBase = utShmGetBaseAddr(psShmHead);
         pHash = utShmHashHead(psShmHead, NC_LNK_APSRVONLINE);
@@ -3757,6 +4035,170 @@ int ncsStatMacBab(utShmHead *psShmHead)
     }
 }
 
+typedef struct
+{
+    char tableName[30];
+    char tableDesc[1024];
+} s_tableInfo;
+
+int getSqlQueryTableList(utShmHead *psShmHead, int iFd, utMsgHead *psMsgHead)
+{
+    long sqlDebug = utComGetVar_ld(psShmHead, "SqlDebug", 0);
+    utPltDbHead *psDbHead;
+    char sql[1024] = "";
+    char sTableDate[9] = "";
+    int iReturn = 0;
+    pasDbCursor *psCur;
+    if(sqlDebug)
+    {
+        utMsgPrintMsg(psMsgHead);
+    }
+    psDbHead = utPltInitDb();
+    /*
+    iReturn = utMsgGetSomeNVar(psMsgHead, 2,
+                               "groupid",  UT_TYPE_STRING, sizeof(groupid) - 1, groupid,
+                               "range_type", UT_TYPE_STRING, sizeof(range_type) - 1, range_type);
+    macPrint(sqlDebug, "[groupid=%s,range_type=%s]\n", groupid, range_type);
+    */
+    //获取当前的年月
+    snprintf(sTableDate, sizeof(sTableDate) - 1, "%s", utTimFormat("%Y%m", time(0)));
+    s_tableInfo tables[3];
+    memset(tables, 0, 3 * sizeof(s_tableInfo));
+    snprintf(tables[0].tableName, 29, "ncmactermatt_if_%s", sTableDate);
+    snprintf(tables[0].tableDesc + strlen(tables[0].tableDesc), sizeof(tables[0].tableDesc) - 1, "+-------------+------------+------+-----+---------+-------+");
+    snprintf(tables[0].tableDesc + strlen(tables[0].tableDesc), sizeof(tables[0].tableDesc) - 1, "| Field       | Type       | Null | Key | Default | Extra |");
+    snprintf(tables[0].tableDesc + strlen(tables[0].tableDesc), sizeof(tables[0].tableDesc) - 1, "+-------------+------------+------+-----+---------+-------+");
+    snprintf(tables[0].tableDesc + strlen(tables[0].tableDesc), sizeof(tables[0].tableDesc) - 1, "| mac         | char(17)   | NO   |     | NULL    |       |");
+    snprintf(tables[0].tableDesc + strlen(tables[0].tableDesc), sizeof(tables[0].tableDesc) - 1, "| termtype    | char(128)  | YES  |     |         |       |");
+    snprintf(tables[0].tableDesc + strlen(tables[0].tableDesc), sizeof(tables[0].tableDesc) - 1, "| servicecode | char(14)   | NO   |     | NULL    |       |");
+    snprintf(tables[0].tableDesc + strlen(tables[0].tableDesc), sizeof(tables[0].tableDesc) - 1, "| servicename | char(128)  | YES  |     |         |       |");
+    snprintf(tables[0].tableDesc + strlen(tables[0].tableDesc), sizeof(tables[0].tableDesc) - 1, "| address     | char(128)  | YES  |     |         |       |");
+    snprintf(tables[0].tableDesc + strlen(tables[0].tableDesc), sizeof(tables[0].tableDesc) - 1, "| stime       | bigint(20) | NO   |     | NULL    |       |");
+    snprintf(tables[0].tableDesc + strlen(tables[0].tableDesc), sizeof(tables[0].tableDesc) - 1, "| rssi        | char(8)    | NO   |     | NULL    |       |");
+    snprintf(tables[0].tableDesc + strlen(tables[0].tableDesc), sizeof(tables[0].tableDesc) - 1, "| vtype       | int(1)     | YES  |     | 0       |       |");
+    snprintf(tables[0].tableDesc + strlen(tables[0].tableDesc), sizeof(tables[0].tableDesc) - 1, "| vname       | char(64)   | YES  |     |         |       |");
+    snprintf(tables[0].tableDesc + strlen(tables[0].tableDesc), sizeof(tables[0].tableDesc) - 1, "| ssid        | char(255)  | YES  |     |         |       |");
+    snprintf(tables[0].tableDesc + strlen(tables[0].tableDesc), sizeof(tables[0].tableDesc) - 1, "| apname      | char(21)   | NO   |     | NULL    |       |");
+    snprintf(tables[0].tableDesc + strlen(tables[0].tableDesc), sizeof(tables[0].tableDesc) - 1, "| apmac       | char(17)   | NO   |     | NULL    |       |");
+    snprintf(tables[0].tableDesc + strlen(tables[0].tableDesc), sizeof(tables[0].tableDesc) - 1, "| channel     | char(3)    | YES  |     |         |       |");
+    snprintf(tables[0].tableDesc + strlen(tables[0].tableDesc), sizeof(tables[0].tableDesc) - 1, "| security    | char(2)    | YES  |     |         |       |");
+    snprintf(tables[0].tableDesc + strlen(tables[0].tableDesc), sizeof(tables[0].tableDesc) - 1, "| xpos        | char(8)    | YES  |     |         |       |");
+    snprintf(tables[0].tableDesc + strlen(tables[0].tableDesc), sizeof(tables[0].tableDesc) - 1, "| ypos        | char(8)    | YES  |     |         |       |");
+    snprintf(tables[0].tableDesc + strlen(tables[0].tableDesc), sizeof(tables[0].tableDesc) - 1, "| longitude   | char(11)   | NO   |     | NULL    |       |");
+    snprintf(tables[0].tableDesc + strlen(tables[0].tableDesc), sizeof(tables[0].tableDesc) - 1, "| latitude    | char(11)   | NO   |     | NULL    |       |");
+    snprintf(tables[0].tableDesc + strlen(tables[0].tableDesc), sizeof(tables[0].tableDesc) - 1, "| flags       | int(1)     | YES  |     | 0       |       |");
+    snprintf(tables[0].tableDesc + strlen(tables[0].tableDesc), sizeof(tables[0].tableDesc) - 1, "| assid       | char(255)  | YES  |     |         |       |");
+    snprintf(tables[0].tableDesc + strlen(tables[0].tableDesc), sizeof(tables[0].tableDesc) - 1, "| sid         | bigint(20) | YES  |     | 0       |       |");
+    snprintf(tables[0].tableDesc + strlen(tables[0].tableDesc), sizeof(tables[0].tableDesc) - 1, "+-------------+------------+------+-----+---------+-------+");
+    snprintf(tables[1].tableName, 29, "ncmachotinfo_if_%s", sTableDate);
+    snprintf(tables[1].tableDesc + strlen(tables[1].tableDesc), sizeof(tables[1].tableDesc) - 1, "+-------------+------------+------+-----+---------+-------+");
+    snprintf(tables[1].tableDesc + strlen(tables[1].tableDesc), sizeof(tables[1].tableDesc) - 1, "| Field       | Type       | Null | Key | Default | Extra |");
+    snprintf(tables[1].tableDesc + strlen(tables[1].tableDesc), sizeof(tables[1].tableDesc) - 1, "+-------------+------------+------+-----+---------+-------+");
+    snprintf(tables[1].tableDesc + strlen(tables[1].tableDesc), sizeof(tables[1].tableDesc) - 1, "| mac         | char(17)   | NO   |     | NULL    |       |");
+    snprintf(tables[1].tableDesc + strlen(tables[1].tableDesc), sizeof(tables[1].tableDesc) - 1, "| ssid        | char(64)   | YES  |     |         |       |");
+    snprintf(tables[1].tableDesc + strlen(tables[1].tableDesc), sizeof(tables[1].tableDesc) - 1, "| channel     | char(3)    | NO   |     | NULL    |       |");
+    snprintf(tables[1].tableDesc + strlen(tables[1].tableDesc), sizeof(tables[1].tableDesc) - 1, "| servicecode | char(14)   | NO   |     | NULL    |       |");
+    snprintf(tables[1].tableDesc + strlen(tables[1].tableDesc), sizeof(tables[1].tableDesc) - 1, "| servicename | char(128)  | YES  |     |         |       |");
+    snprintf(tables[1].tableDesc + strlen(tables[1].tableDesc), sizeof(tables[1].tableDesc) - 1, "| address     | char(128)  | YES  |     |         |       |");
+    snprintf(tables[1].tableDesc + strlen(tables[1].tableDesc), sizeof(tables[1].tableDesc) - 1, "| stime       | bigint(20) | NO   |     | NULL    |       |");
+    snprintf(tables[1].tableDesc + strlen(tables[1].tableDesc), sizeof(tables[1].tableDesc) - 1, "| rssi        | char(8)    | NO   |     | NULL    |       |");
+    snprintf(tables[1].tableDesc + strlen(tables[1].tableDesc), sizeof(tables[1].tableDesc) - 1, "| apname      | char(21)   | NO   |     | NULL    |       |");
+    snprintf(tables[1].tableDesc + strlen(tables[1].tableDesc), sizeof(tables[1].tableDesc) - 1, "| apmac       | char(17)   | NO   |     | NULL    |       |");
+    snprintf(tables[1].tableDesc + strlen(tables[1].tableDesc), sizeof(tables[1].tableDesc) - 1, "| security    | char(2)    | YES  |     |         |       |");
+    snprintf(tables[1].tableDesc + strlen(tables[1].tableDesc), sizeof(tables[1].tableDesc) - 1, "| xpos        | char(8)    | YES  |     |         |       |");
+    snprintf(tables[1].tableDesc + strlen(tables[1].tableDesc), sizeof(tables[1].tableDesc) - 1, "| ypos        | char(8)    | YES  |     |         |       |");
+    snprintf(tables[1].tableDesc + strlen(tables[1].tableDesc), sizeof(tables[1].tableDesc) - 1, "| longitude   | char(11)   | NO   |     | NULL    |       |");
+    snprintf(tables[1].tableDesc + strlen(tables[1].tableDesc), sizeof(tables[1].tableDesc) - 1, "| latitude    | char(11)   | NO   |     | NULL    |       |");
+    snprintf(tables[1].tableDesc + strlen(tables[1].tableDesc), sizeof(tables[1].tableDesc) - 1, "| flags       | int(1)     | YES  |     | 0       |       |");
+    snprintf(tables[1].tableDesc + strlen(tables[1].tableDesc), sizeof(tables[1].tableDesc) - 1, "| sid         | bigint(20) | YES  |     | 0       |       |");
+    snprintf(tables[1].tableDesc + strlen(tables[1].tableDesc), sizeof(tables[1].tableDesc) - 1, "+-------------+------------+------+-----+---------+-------+");
+    snprintf(tables[2].tableName, 29, "ncmacmobileap_if_%s", sTableDate);
+    snprintf(tables[2].tableDesc + strlen(tables[2].tableDesc), sizeof(tables[2].tableDesc) - 1, "+-------------+------------+------+-----+---------+-------+");
+    snprintf(tables[2].tableDesc + strlen(tables[2].tableDesc), sizeof(tables[2].tableDesc) - 1, "| Field       | Type       | Null | Key | Default | Extra |");
+    snprintf(tables[2].tableDesc + strlen(tables[2].tableDesc), sizeof(tables[2].tableDesc) - 1, "+-------------+------------+------+-----+---------+-------+");
+    snprintf(tables[2].tableDesc + strlen(tables[2].tableDesc), sizeof(tables[2].tableDesc) - 1, "| apname      | char(21)   | NO   |     | NULL    |       |");
+    snprintf(tables[2].tableDesc + strlen(tables[2].tableDesc), sizeof(tables[2].tableDesc) - 1, "| servicecode | char(14)   | NO   |     | NULL    |       |");
+    snprintf(tables[2].tableDesc + strlen(tables[2].tableDesc), sizeof(tables[2].tableDesc) - 1, "| servicename | char(255)  | YES  |     |         |       |");
+    snprintf(tables[2].tableDesc + strlen(tables[2].tableDesc), sizeof(tables[2].tableDesc) - 1, "| longitude   | char(11)   | NO   |     | NULL    |       |");
+    snprintf(tables[2].tableDesc + strlen(tables[2].tableDesc), sizeof(tables[2].tableDesc) - 1, "| latitude    | char(11)   | NO   |     | NULL    |       |");
+    snprintf(tables[2].tableDesc + strlen(tables[2].tableDesc), sizeof(tables[2].tableDesc) - 1, "| stime       | bigint(20) | NO   |     | NULL    |       |");
+    snprintf(tables[2].tableDesc + strlen(tables[2].tableDesc), sizeof(tables[2].tableDesc) - 1, "| sid         | bigint(20) | YES  |     | 0       |       |");
+    snprintf(tables[2].tableDesc + strlen(tables[2].tableDesc), sizeof(tables[2].tableDesc) - 1, "+-------------+------------+------+-----+---------+-------+");
+
+    int i = 0;
+    for(i = 1; i <= 3; i++)
+    {
+        utPltPutLoopVar(psDbHead, "tablename", i, tables[i - 1].tableName);
+        utPltPutLoopVar(psDbHead, "tabledesc", i, tables[i - 1].tableDesc);
+        if(i > 1)
+        {
+            utPltPutLoopVar(psDbHead, "dh", i, ",");
+        }
+    }
+    //返回数据给前端
+    utPltPutVar(psDbHead, "result", "1");
+    utPltPutVarF(psDbHead, "totalCount", "%lu", 3);
+    utPltOutToHtml(iFd, psMsgHead, psDbHead, "mac/sql/tablelist.htm");
+    return 0;
+}
+
+
+
+int doUserSql(utShmHead *psShmHead, int iFd, utMsgHead *psMsgHead)
+{
+    long sqlDebug = utComGetVar_ld(psShmHead, "SqlDebug", 0);
+    utPltDbHead *psDbHead;
+    char caSql[1024] = "";
+    char sql[2048] = "";
+    char fileName[128] = "";
+	char filePath[128]="";
+    int iReturn = 0;
+    if(sqlDebug)
+    {
+        utMsgPrintMsg(psMsgHead);
+    }
+    psDbHead = utPltInitDb();
+
+    iReturn = utMsgGetSomeNVar(psMsgHead, 1,
+                               "sql",  UT_TYPE_STRING, sizeof(caSql) - 1, caSql);
+    macPrint(sqlDebug, "[caSql=%s\n", caSql);
+	//system("chmod 777 dir && chgrp mysql dir");
+    snprintf(fileName, sizeof(fileName) - 1, "doUserSqlResult_%llu.csv", time(0));
+	snprintf(filePath, sizeof(filePath)-1, "/home/ncmysql/ncs/download/%s", fileName);
+	
+    snprintf(sql, sizeof(sql) - 1, "%s into outfile '%s' fields terminated by ',' escaped by '\\\\' lines terminated by '\\n'", caSql, filePath);
+    macPrint(sqlDebug, "sql=%s", sql);
+    iReturn = pasDbExecSqlF(sql);
+    //返回数据给前端
+    if(iReturn == 0)
+    {
+        utPltPutVar(psDbHead, "result", "1");
+        utPltPutVarF(psDbHead, "filename", "%s", fileName);
+		utPltPutVarF(psDbHead, "filepath", "%s", filePath);
+    }
+    else
+    {
+        utPltPutVar(psDbHead, "result", "0");
+    }
+    utPltOutToHtml(iFd, psMsgHead, psDbHead, "mac/sql/dosql.htm");
+    return 0;
+}
+
+
+int downloadSqlResult(utShmHead *psShmHead, int iFd, utMsgHead *psMsgHead)
+{
+    utPltDbHead *psDbHead = utPltInitDb();
+    char caPath[128] = "";
+    char caFileName[128] = "";
+    sprintf(caPath, "%s/download", "/home/ncmysql/ncs");
+    int iReturn = utMsgGetSomeNVar(psMsgHead, 1,
+                                   "filename",  UT_TYPE_STRING, sizeof(caFileName) - 1, caFileName);
+	macPrint(1, "%s,%s", caPath, caFileName);
+    utPltFileDownload(iFd, "application/text", caPath, caFileName, caFileName);
+    return 0;
+}
+
+
 
 int procapFrontpageSetFun(utShmHead * psShmHead)
 {
@@ -3775,6 +4217,10 @@ int procapFrontpageSetFun(utShmHead * psShmHead)
     iReturn = pasSetTcpFunName("macGetBabMacPlaceCount", macGetBabMacPlaceCount, 0);
     iReturn = pasSetTcpFunName("macGetBabMacTimeCount", macGetBabMacTimeCount, 0);
     iReturn = pasSetTcpFunName("macGetBabMacTimeDetail", macGetBabMacTimeDetail, 0);
+    iReturn = pasSetTcpFunName("getSqlQueryTableList", getSqlQueryTableList, 0);
+    iReturn = pasSetTcpFunName("doUserSql", doUserSql, 0);
+    iReturn = pasSetTcpFunName("downloadSqlResult", downloadSqlResult, 0);
+
     return 0;
 }
 

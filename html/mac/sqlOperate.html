@@ -9,38 +9,6 @@
 <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" /> 
 
 <title>自定义sql查询</title>
-<script type="text/javascript">
-	function showHintMsg(msg){
-		document.getElementById("ta_hint_area").style.color="green";
-		document.getElementById('ta_hint_area').value = msg;
-	}
-	
-	function showErrorMsg(msg){
-		document.getElementById("ta_hint_area").style.color="red";
-		document.getElementById('ta_hint_area').value = msg;
-	}
-	
-	function appendErrorMsg(msg){
-		oldMsg = document.getElementById('ta_hint_area').value;
-		document.getElementById('ta_hint_area').value = oldMsg + "\r\n" + msg;
-	}
-	
-	function appendHintMsg(msg){
-		document.getElementById("ta_hint_area").style.color="green";
-		document.getElementById('ta_hint_area').value = oldMsg + "\r\n" + msg;
-	}
-		
-	function doExport(){
-		document.getElementById("btnExport").disabled=true;
-		showHintMsg("导出成功!!");
-	}
-	
-	function doExcute(){
-		document.getElementById("btnExport").disabled=false;
-		showHintMsg("执行成功!!");
-	}
-	
-</script>
 <style>
 html,body{
     -webkit-text-size-adjust:none;
@@ -64,7 +32,7 @@ html,body{
 }
 
 .cls_input{
-	width: 55%;
+	width: 60%;
 	left: 25%;
 	position:absolute;
 }
@@ -81,6 +49,139 @@ html,body{
 	height:50px;
 }
 </style>
+<script type="text/javascript">
+	function showHintMsg(msg){
+		document.getElementById("ta_hint_area").style.color="green";
+		document.getElementById('ta_hint_area').value = msg;
+	}
+	
+	function showErrorMsg(msg){
+		document.getElementById("ta_hint_area").style.color="red";
+		document.getElementById('ta_hint_area').value = msg;
+	}
+	
+	function appendErrorMsg(msg){
+		oldMsg = document.getElementById('ta_hint_area').value;
+		document.getElementById('ta_hint_area').value = oldMsg + "\r\n" + msg;
+	}
+	
+	function appendHintMsg(msg){
+		document.getElementById("ta_hint_area").style.color="green";
+		document.getElementById('ta_hint_area').value = oldMsg + "\r\n" + msg;
+	}
+	var downLoadFile="";
+	function doExport(){
+	/*
+		Ext.Ajax.request({     
+			url: '/pronline/Msg?FunName@downloadSqlResult&filename@'+downLoadFile,  
+			method: 'GET',
+			success: function(resp,opts) {   
+				try{
+					var respText = resp.responseText; 
+					alert(respText);
+					var respRecord = eval("("+respText+")");
+					
+					document.getElementById("btnExport").disabled=true;
+					showHintMsg("导出成功!!");	
+				}catch(e){
+					//console.log(e.message);
+				}		
+			},   
+			failure: function(resp,opts) {   
+				var respText = eval("("+respText+")");
+				alert('错误', respText.error);   
+			}   				 
+		});	
+		*/
+		document.getElementById("i_filename").value = downLoadFile;
+		document.getElementById("formDownload").submit();
+		document.getElementById("btnExport").disabled=true;
+		showHintMsg("导出成功!!");	
+	}
+	
+	function doExcute(){
+		document.getElementById("btnExport").disabled=false;
+		var mySql = "select " + document.getElementById("i_select").value;
+		var fromOptions = document.getElementById("i_from");
+		mySql += " from " + fromOptions.options[fromOptions.selectedIndex].text;
+		mySql += " where " + document.getElementById("i_where").value;
+		mySql += " order by " + document.getElementById("i_order").value;
+		mySql += " limit " + document.getElementById("i_limit").value;
+		Ext.Ajax.request({     
+			url: '/pronline/Msg?FunName@doUserSql&sql@'+mySql,  
+			method: 'GET',
+			success: function(resp,opts) {   
+				try{
+					var respText = resp.responseText; 
+					var respRecord = eval("("+respText+")");
+					downLoadFile = respRecord.filename;
+					showHintMsg("执行成功!!保存在文件"+respRecord.filepath);
+				}catch(e){
+					//console.log(e.message);
+				}		
+			},   
+			failure: function(resp,opts) {   
+				var respText = eval("("+respText+")");
+				alert('错误', respText.error);   
+			}   				 
+		});
+		
+	}
+	
+	
+	function doDesc(){
+		var v = document.getElementById("i_from").value; 
+		showHintMsg(v);
+	}
+	
+	Ext.Loader.setConfig({enabled: true});
+		Ext.Loader.setPath('Ext.ux', '/newver/ux/');
+		Ext.require([
+			'Ext.form.*',
+			'Ext.window.*',
+			'Ext.grid.*',
+			'Ext.data.*',
+			'Ext.util.*',
+			'Ext.window.MessageBox',
+			'Ext.toolbar.Paging',
+			'Ext.ux.PreviewPlugin',
+			'Ext.tree.*'
+		]);
+		
+	function doInit(){
+		//获取默认可以查询的表列表
+		Ext.Ajax.request({     
+			url: '/pronline/Msg?FunName@getSqlQueryTableList',  
+			method: 'GET',
+			success: function(resp,opts) {   
+				try{
+					var respText = resp.responseText; 
+					var respRecord = eval("("+respText+")");
+					for(var i in respRecord.data){
+						//根据id查找对象，
+						var obj=document.getElementById('i_from');
+						//添加一个选项
+						//obj.add(new Option("文本","值")); //这个只能在IE中有效
+						obj.options.add(new Option(respRecord.data[i].tablename, respRecord.data[i].tabledesc)); //这个兼容IE与firefox 	
+						
+					}
+				}catch(e){
+					//console.log(e.message);
+				}		
+			},   
+			failure: function(resp,opts) {   
+				var respText = eval("("+respText+")");
+				alert('错误', respText.error);   
+			}   				 
+		});
+	}
+	
+	Ext.onReady(function(){
+		Ext.tip.QuickTipManager.init();
+		doInit();
+	});
+</script>
+
 </head>
 
 <body>	
@@ -92,24 +193,22 @@ html,body{
 	<div class="cls_input_div">
 		<label for="i_from">FROM</label>
 		<select id="i_from" class="cls_input">
-			<option value="ncsuser" selected>ncsuser</option>
-			<option value="ncsgroup">ncsgroup</option>
 		</select>
 	</div>
 	<br/>	
 	<div class="cls_input_div">
 		<label for="i_where">WHERE</label>
-		<input class="cls_input" type="text" id="i_where" value=""/> 
+		<input class="cls_input" type="text" id="i_where" value="1=1"/> 
 	</div>
 	<br />
 	<div class="cls_input_div">
 		<label for="i_order">ORDER BY</label>
-		<input class="cls_input" type="text" id="i_order" value=""/> 
+		<input class="cls_input" type="text" id="i_order" value="mac"/> 
 	</div>
 	<br />
 	<div class="cls_input_div">
 		<label for="i_limit">LIMIT</label>
-		<input class="cls_input" placeholder="最大5000条" type="text" id="i_limit" value=""/> 
+		<input class="cls_input" placeholder="最大5000条" type="text" id="i_limit" value="5"/> 
 	</div>
 	<br />
 	<div class="cls_hint_area_div">
@@ -119,10 +218,15 @@ html,body{
 	<div class="cls_right">
 		<input type="button" onclick="doExcute()" value="执行查询"/>
 		<br/>
-		<input type="button" value="查看表结构" />
+		<input type="button" onclick="doDesc()" value="查看表结构" />
 		<br/>
 		<input type="button" id="btnExport" disabled="true" onclick="doExport()" value="导出"/>
 	</div>
+	
+	<form name="formDownload" id="formDownload" action="/pronline/Msg">
+		<input type="hidden" name="FunName" value="downloadSqlResult"/>
+		<input type="hidden" id="i_filename" name="filename" value=""/>
+	</form>
 </body>
 
 </html>
