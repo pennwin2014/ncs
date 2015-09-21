@@ -330,7 +330,7 @@ static char *getDsGroupids()
     lId = 0;
 
     iReturn = dsCltGetMyInfo(1, "Userid", &lId);
-    //printf("dsiReturn=%d\n", iReturn);
+    printf("================frontpage dsiReturn=%d,lId=%d===============\n", iReturn, lId);
     if(iReturn != 0 || lId <= 0)
     {
         return &caReturn[0];
@@ -466,6 +466,10 @@ static char *getServicecodesByDids(utShmHead *psShmHead, char *caGroupids)
         }
     }
     pasDbCloseCursor(psCur);
+
+    if((strlen(caGroupids) > 0) && (strlen(caReturn) == 0))
+        strcpy(caReturn, "no data");
+
     return &caReturn[0];
 }
 
@@ -1124,7 +1128,8 @@ int macFrontPageLeftBlocks(utShmHead *psShmHead, int iFd, utMsgHead *psMsgHead)
     //strcpy(caGroupcodes, (char*)getDsGroupcode());
     strcpy(caGroupSql, (char*)getDsGroupcodeSql("servicecode"));
     strcpy(caServicecodes, getServicecodesByDids(psShmHead, getDsGroupids()));
-    //printf("caServicecodes=[%s]\n", caServicecodes);
+
+    printf("caServicecodes=[%s]\n", caServicecodes);
 
     iReturn = utMsgGetSomeNVar(psMsgHead, 1,
                                "groupid",  UT_TYPE_STRING, sizeof(groupid) - 1, groupid);
@@ -1391,7 +1396,50 @@ static int doSearchPlace(char* keyword, utShmHead *psShmHead, int iFd, utMsgHead
 {
     char sql[2048] = "";
     char strCondition[1024] = "";
+    long frontPageDebug = utComGetVar_ld(psShmHead, "FrontDebug", 0);
     utPltDbHead *psDbHead = utPltInitDb();
+    memset(sql, 0, sizeof(sql));
+    snprintf(sql, sizeof(sql), "select dispname,username from ncsuser where 1=1 ");
+    if(strlen(keyword) > 0)
+    {
+        sprintf(strCondition + strlen(strCondition),  " and dispname like ('%c%s%c') ", '%', keyword, '%');
+    }
+    snprintf(sql + strlen(sql), sizeof(sql) - strlen(sql), "%s limit 100", strCondition);
+    int iNum = 0;
+    int iret = 0;
+    pasDbCursor *psCur = NULL;
+
+    macPrint(frontPageDebug, "search place sql=[%s]\n", sql);
+
+    psCur = pasDbOpenSql(sql, 0);
+    if(psCur != NULL)
+    {
+        char caUsername[16] = "";
+        char caDispname[255] = "";
+        while(0 == (iret = pasDbFetchInto(psCur, UT_TYPE_STRING, sizeof(caDispname) - 1, caDispname, UT_TYPE_STRING, sizeof(caUsername) - 1, caUsername)) || 1405 == iret)
+        {
+            iNum++;
+            if(iNum > 1)
+            {
+                utPltPutLoopVar(psDbHead, "dh", iNum, ",");
+            }
+            utPltPutLoopVar(psDbHead, "username", iNum, caUsername);
+            utPltPutLoopVar(psDbHead, "dispname", iNum, caDispname);
+            memset(caDispname, 0, sizeof(caDispname));
+            memset(caUsername, 0, sizeof(caUsername));
+        }
+    }
+    else
+    {
+        return 1;
+    }
+    if(iNum < 1)
+        return 1;
+    pasDbCloseCursor(psCur);
+    utPltPutVarF(psDbHead, "totalCount", "%lu", iNum);
+    utPltPutVarF(psDbHead, "result", "%lu", 2);
+    utPltPutVarF(psDbHead, "itemid", "%s", "id_infoquery_mac");
+    utPltOutToHtml(iFd, psMsgHead, psDbHead, "mac/frontPage/placeSearch.htm");
 
     return 0;
 }
@@ -1520,22 +1568,25 @@ int macFrontPageSearch(utShmHead *psShmHead, int iFd, utMsgHead *psMsgHead)
     iReturn = utMsgGetSomeNVar(psMsgHead, 2,
                                "groupid",  UT_TYPE_STRING, sizeof(groupid) - 1, groupid,
                                "keyword", UT_TYPE_STRING, sizeof(keyword) - 1, keyword);
-    // DO: 根据keyword的值判断是什么类型的查询
-    switch(decideSearchType(keyword))
+    iReturn = doSearchPlace(keyword, psShmHead, iFd, psMsgHead);
+    if(iReturn == 1)
     {
-        case 0://查询mac地址
-            iReturn = doSearchMac(keyword, psShmHead, iFd, psMsgHead);
-            break;
-        case 1://查询手机号
-            iReturn = doSearchPhone(keyword, psShmHead, iFd, psMsgHead);
-            break;
-        case 2://查询场所
-            iReturn = doSearchPlace(keyword, psShmHead, iFd, psMsgHead);
-            break;
-        default:
-            break;
+        // DO: 根据keyword的值判断是什么类型的查询
+        switch(decideSearchType(keyword))
+        {
+            case 0://查询mac地址
+                iReturn = doSearchMac(keyword, psShmHead, iFd, psMsgHead);
+                break;
+            case 1://查询手机号
+                iReturn = doSearchPhone(keyword, psShmHead, iFd, psMsgHead);
+                break;
+            case 2://查询场所
+                iReturn = doSearchPlace(keyword, psShmHead, iFd, psMsgHead);
+                break;
+            default:
+                break;
+        }
     }
-
     return iReturn;
 }
 
@@ -2914,7 +2965,7 @@ int macGetBabMacTimeCount(utShmHead *psShmHead, int iFd, utMsgHead *psMsgHead)
     int iReturn, iNum = 0;
     pasDbCursor *psCur;
     long lCount = 0;
-    char caTime[16] = "";
+    char caTime[17] = "";
     char caStime[20] = "", caEtime[20] = "";
     char sql[2048] = "";
 
@@ -3118,7 +3169,7 @@ int macGetBabMacDetail(utShmHead *psShmHead, int iFd, utMsgHead *psMsgHead)
                                "cid",  UT_TYPE_STRING, sizeof(caCid) - 1, caCid,
                                "timeperiod1",  UT_TYPE_STRING, sizeof(caTimePeriod1) - 1, caTimePeriod1,
                                "timeperiod2",  UT_TYPE_STRING, sizeof(caTimePeriod2) - 1, caTimePeriod2);
-    
+
     if(strlen(caServicecode) < 7)
     {
         utPltPutVar(psDbHead, "retcode", "1");
@@ -3162,35 +3213,35 @@ int macGetBabMacDetail(utShmHead *psShmHead, int iFd, utMsgHead *psMsgHead)
     memset(sql, 0, sizeof(sql));
     if((strlen(caTimePeriod1) == TIMESTR_LENGTH) && (TIMESTR_LENGTH == strlen(caTimePeriod2)))
         snprintf(sql, sizeof(sql), "select starttime,endtime from ncbabplacetimemac where cid=%s and servicecode='%s' and mac='%s' and starttime>=%llu and endtime<=%llu", caCid, caServicecode, caMac, lStime, lEtime);
-        else
-            snprintf(sql, sizeof(sql), "select starttime,endtime from ncbabplacetimemac where cid=%s and servicecode='%s' and mac='%s'", caCid, caServicecode, caMac);
-            macPrint(babDebug, "========bab detail sql=[%s]==========\n", sql);
-            psCur = pasDbOpenSqlF(sql);
-            if(psCur)
+    else
+        snprintf(sql, sizeof(sql), "select starttime,endtime from ncbabplacetimemac where cid=%s and servicecode='%s' and mac='%s'", caCid, caServicecode, caMac);
+    macPrint(babDebug, "========bab detail sql=[%s]==========\n", sql);
+    psCur = pasDbOpenSqlF(sql);
+    if(psCur)
+    {
+        lStime = 0;
+        lEtime = 0;
+        iReturn = pasDbFetchInto(psCur,
+                                 UT_TYPE_LONG8, 8, &lStime,
+                                 UT_TYPE_LONG8, 8, &lEtime);
+        iNum = 0;
+        while(iReturn == 0 || iReturn == 1405)
         {
+            iNum++;
+            if(iNum > 1)
+            {
+                utPltPutLoopVar(psDbHead, "dh", iNum, ",");
+            }
+            utPltPutLoopVarF(psDbHead, "stime", iNum, "%llu", lStime);
+            utPltPutLoopVarF(psDbHead, "etime", iNum, "%llu", lEtime);
             lStime = 0;
             lEtime = 0;
             iReturn = pasDbFetchInto(psCur,
                                      UT_TYPE_LONG8, 8, &lStime,
                                      UT_TYPE_LONG8, 8, &lEtime);
-                iNum = 0;
-                while(iReturn == 0 || iReturn == 1405)
-                {
-                    iNum++;
-                    if(iNum > 1)
-                    {
-                        utPltPutLoopVar(psDbHead, "dh", iNum, ",");
-                    }
-                    utPltPutLoopVarF(psDbHead, "stime", iNum, "%llu", lStime);
-                    utPltPutLoopVarF(psDbHead, "etime", iNum, "%llu", lEtime);
-                    lStime = 0;
-                    lEtime = 0;
-                    iReturn = pasDbFetchInto(psCur,
-                                             UT_TYPE_LONG8, 8, &lStime,
-                                             UT_TYPE_LONG8, 8, &lEtime);
-                }
-                pasDbCloseCursor(psCur);
-            }
+        }
+        pasDbCloseCursor(psCur);
+    }
 
     utPltPutVarF(psDbHead, "totalcount", "%lu", iNum);
     utPltPutVar(psDbHead, "cid", caCid);
@@ -3315,9 +3366,8 @@ static void doDbSearchMacs(long lDebug,  unsigned char* pHash_onePointMacs, s_ea
     pasDbCursor *psCur;
     char caMac[20] = "";
     memset(sql, 0, sizeof(sql));
-
     sprintf(sql, "select distinct(mac) from ncmactermatt_if_%s where servicecode='%s' and mac!='%s' and stime>=%llu and stime<=%llu",
-            utTimFormat("%Y%m", time(0)), pTmpNode->servicecode, pTmpNode->mac, pTmpNode->starttime, pTmpNode->endtime);
+            utTimFormat("%Y%m", pTmpNode->starttime), pTmpNode->servicecode, pTmpNode->mac, pTmpNode->starttime, pTmpNode->endtime);
 
 
     macPrint(lDebug, "get diff mac sql = %s\n", sql);
@@ -3378,7 +3428,7 @@ static int deleteHashNotInRankArray(long babDebug, struct s_maccount* rankArray,
         if(!isInRankArray(rankArray, arrayLen, psMacs->mac))
         {
             pasLHashDel(pHash_onePointMac, psMacs->mac);
-            macPrint(babDebug, "delete mac=[%s],servicode=[%s] from hash\n", psMacs->mac, psMacs->servicecode);
+            //macPrint(babDebug, "delete mac=[%s],servicode=[%s] from hash\n", psMacs->mac, psMacs->servicecode);
         }
         psMacs = (struct s_macinfo*)pasLHashNext(&sHashInfo);
     }
@@ -3427,6 +3477,102 @@ static int InsertToRankList(struct s_maccount* rankArray, ulong arrayLen, struct
     return 0;
 }
 
+int incMonth(int* iYear, int* iMonth)
+{
+    int tYear = *iYear;
+    int tMonth = (*iMonth) + 1;
+    if(tMonth > 12)
+    {
+        tYear += 1;
+        tMonth = 1;
+    }
+    *iYear = tYear;
+    *iMonth = tMonth;
+    return 0;
+}
+
+int doQueryDbInPeriod(long babDebug, struct s_babtask* psTask,  s_eachpoint* pPointList, char* caServerlist)
+{
+    if(psTask->starttime > psTask->endtime)
+    {
+        macPrint(babDebug, "starttime is larger\n");
+        return 1;
+    }
+    char sql[2048] = "";
+    pasDbCursor *psCur;
+    int iReturn = 0;
+    s_eachpoint tmpPoint;
+    char caSyear[5] = "", caSmonth[3] = "";
+    char caEyear[5] = "", caEmonth[3] = "";
+    int iSyear = 0, iSmonth = 0;
+    int iNyear = 0, iNmonth = 0;
+    int iEyear = 0, iEmonth = 0;
+    //超过六个月则只统计最近六个月
+    if(psTask->endtime - psTask->starttime > 3600 * 24 * 30 * 6)
+    {
+        psTask->starttime = psTask->endtime - 3600 * 24 * 30 * 6;
+    }
+    //1 得到stime对应的年月
+    snprintf(caSyear, sizeof(caSyear), "%s", utTimFormat("%Y", psTask->starttime));
+    snprintf(caSmonth, sizeof(caSmonth), "%s", utTimFormat("%m", psTask->starttime));
+    iSyear = atoi(caSyear);
+    iSmonth = atoi(caSmonth);
+    macPrint(babDebug, "starttime to [%s,%s,%d,%d]\n", caSyear, caSmonth, iSyear, iSmonth);
+    //2 得到etime对应的年月
+    snprintf(caEyear, sizeof(caEyear), "%s", utTimFormat("%Y", psTask->endtime));
+    snprintf(caEmonth, sizeof(caEmonth), "%s", utTimFormat("%m", psTask->endtime));
+    iEyear = atoi(caEyear);
+    iEmonth = atoi(caEmonth);
+    macPrint(babDebug, "endtime to [%s,%s,%d,%d]\n", caEyear, caEmonth, iEyear, iEmonth);
+    //依次递增计算表名
+    iNyear = iSyear;
+    iNmonth = iSmonth;
+    while(1)
+    {
+        memset(sql, 0, sizeof(sql));
+        //e.g. select mac,servicecode,from_unixtime(stime) from ncmactermatt_if_201508 where mac='20-02-AF-C5-43-AC' group by stime
+        if(strlen(caServerlist) > 0)
+        {
+            sprintf(sql, "select servicecode,stime from ncmactermatt_if_%04d%02d where mac='%s' and stime>%llu and stime<%llu and servicecode in (%s) group by stime", iNyear, iNmonth, psTask->mac, psTask->starttime, psTask->endtime, caServerlist);
+        }
+        else
+        {
+            sprintf(sql, "select servicecode,stime from ncmactermatt_if_%04d%02d where mac='%s' and stime>%llu and stime<%llu group by stime", iNyear, iNmonth, psTask->mac, psTask->starttime, psTask->endtime);
+        }
+        macPrint(babDebug, "get time list sql=%s\n", sql);
+        psCur = pasDbOpenSql(sql, 0);
+        if(psCur)
+        {
+            memset(&tmpPoint, 0, sizeof(tmpPoint));
+            tmpPoint.cid = psTask->cid;
+            memcpy(tmpPoint.mac, psTask->mac, sizeof(tmpPoint.mac));
+            iReturn = pasDbFetchInto(psCur,
+                                     UT_TYPE_STRING, 16, tmpPoint.servicecode,
+                                     UT_TYPE_LONG8, 8, &tmpPoint.starttime);
+            tmpPoint.endtime = tmpPoint.starttime + 3600;//离开时间默认为起始时间+1小时
+            while((iReturn == 0) || (iReturn == 1405))
+            {
+                macPrint(babDebug, "========add pair<starttime=%llu, servicecode=%s>=======\n\n", tmpPoint.starttime, tmpPoint.servicecode);
+                addToPointList(pPointList, &tmpPoint);
+                memset(&tmpPoint, 0, sizeof(tmpPoint));
+                tmpPoint.cid = psTask->cid;
+                memcpy(tmpPoint.mac, psTask->mac, sizeof(tmpPoint.mac));
+                iReturn = pasDbFetchInto(psCur,
+                                         UT_TYPE_STRING, 16, tmpPoint.servicecode,
+                                         UT_TYPE_LONG8, 8, &tmpPoint.starttime);
+                tmpPoint.endtime = tmpPoint.starttime + 3600;
+            }
+            pasDbCloseCursor(psCur);
+        }
+        macPrint(babDebug, "N[%d,%d],E[%d,%d]\n", iNyear, iNmonth, iEyear, iEmonth);
+        if((iNyear >= iEyear) && (iNmonth >= iEmonth))
+            break;
+        incMonth(&iNyear, &iNmonth);
+    }
+    return 0;
+}
+
+
 int ncsStatMacBab(utShmHead *psShmHead)
 {
     pasDbCursor *psCur;
@@ -3440,7 +3586,7 @@ int ncsStatMacBab(utShmHead *psShmHead)
     s_eachpoint tmpPoint;
     struct s_babtask* psTask = NULL;
     struct s_maccount* psMacCount = NULL;
-    pasLHashInfo sHashInfo;
+    pasLHashInfo sHashInfo, sHashInfoTask;
     char caServerlist[8024] = "";
     long babDebug = utComGetVar_ld(psShmHead, "BabDebug", 0);
     int iReturn = pasConnect(psShmHead);
@@ -3526,7 +3672,7 @@ int ncsStatMacBab(utShmHead *psShmHead)
             printf("error sql=[%s],cur is null\n", sql);
         }
         //3、遍历哈希表做任务对应的统计
-        psTask = (struct s_babtask*)pasLHashFirst(pHash_task, &sHashInfo);
+        psTask = (struct s_babtask*)pasLHashFirst(pHash_task, &sHashInfoTask);
         taskCount = 0;
         while(psTask)
         {
@@ -3537,42 +3683,8 @@ int ncsStatMacBab(utShmHead *psShmHead)
             macPrint(babDebug, "finish get servicecode list %s\n", caServerlist);
             //创建一个单链表用于存放时间段+servicecode组合
             s_eachpoint* pPointList = createPointList();  //用于存放时间点+地点的单链表
-            memset(sql, 0, sizeof(sql));
-            //e.g. select mac,servicecode,from_unixtime(stime) from ncmactermatt_if_201508 where mac='20-02-AF-C5-43-AC' group by stime
-            if(strlen(caServerlist) > 0)
-            {
-                sprintf(sql, "select servicecode,stime from ncmactermatt_if_%s where mac='%s' and stime>%llu and stime<%llu and servicecode in (%s) group by stime", utTimFormat("%Y%m", time(0)), psTask->mac, psTask->starttime, psTask->endtime, caServerlist);
-            }
-            else
-            {
-                sprintf(sql, "select servicecode,stime from ncmactermatt_if_%s where mac='%s' and stime>%llu and stime<%llu group by stime", utTimFormat("%Y%m", time(0)), psTask->mac, psTask->starttime, psTask->endtime);
-            }
-            macPrint(babDebug, "get time list sql=%s\n", sql);
-            psCur = pasDbOpenSql(sql, 0);
-            if(psCur)
-            {
-                memset(&tmpPoint, 0, sizeof(tmpPoint));
-                tmpPoint.cid = psTask->cid;
-                memcpy(tmpPoint.mac, psTask->mac, sizeof(tmpPoint.mac));
-                iReturn = pasDbFetchInto(psCur,
-                                         UT_TYPE_STRING, 16, tmpPoint.servicecode,
-                                         UT_TYPE_LONG8, 8, &tmpPoint.starttime);
-                tmpPoint.endtime = tmpPoint.starttime + 3600;//离开时间默认为起始时间+1小时
-                while((iReturn == 0) || (iReturn == 1405))
-                {
-                    macPrint(babDebug, "========add pair<starttime=%llu, servicecode=%s>=======\n\n", tmpPoint.starttime, tmpPoint.servicecode);
-                    addToPointList(pPointList, &tmpPoint);
-                    memset(&tmpPoint, 0, sizeof(tmpPoint));
-                    tmpPoint.cid = psTask->cid;
-                    memcpy(tmpPoint.mac, psTask->mac, sizeof(tmpPoint.mac));
-                    iReturn = pasDbFetchInto(psCur,
-                                             UT_TYPE_STRING, 16, tmpPoint.servicecode,
-                                             UT_TYPE_LONG8, 8, &tmpPoint.starttime);
-                    tmpPoint.endtime = tmpPoint.starttime + 3600;
-                }
-                pasDbCloseCursor(psCur);
-            }
-
+            //遍历表里的每一个在时间段范围内的月
+            doQueryDbInPeriod(babDebug, psTask, pPointList, caServerlist);
             //整理列表里相隔时间过近的点,合并为一个点
             reOrganizePointList(pPointList);
             ulong lPointCount = getPointListLength(pPointList);
@@ -3609,7 +3721,6 @@ int ncsStatMacBab(utShmHead *psShmHead)
                 }
 
                 psMacCount = (struct s_maccount*)pasLHashFirst(pHash_macCount, &sHashInfo);
-                taskCount = 0;
                 while(psMacCount)
                 {
                     InsertToRankList(rankArray, 20, psMacCount);
@@ -3635,7 +3746,7 @@ int ncsStatMacBab(utShmHead *psShmHead)
             //释放内存
             destroyPointList(pPointList);
             updateReportTime(babDebug, psTask->cid);
-            psTask = (struct s_babtask*)pasLHashNext(&sHashInfo);
+            psTask = (struct s_babtask*)pasLHashNext(&sHashInfoTask);
             macPrint(babDebug, "====================finish %d task, total %d=================== \n", (++taskCount), lSumTask);
             sleep(2);
         }

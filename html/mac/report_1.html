@@ -147,6 +147,8 @@ html,body{
 		var ph = parent.window.innerHeight ? parent.window.innerHeight : parent.document.body.clientHeight;
 
 		$(".main_content").height(ph-131);
+		
+			
 
 	}
 
@@ -177,6 +179,8 @@ html,body{
 	var chart5;
 
 	var chart6;
+	var chart7;
+	var chart8;
 
 	function doSth(mac){
 
@@ -241,7 +245,7 @@ html,body{
 	            enabled: false
 
 	        },
-
+            colors:['#03999a','#CCCCCC'],
 	        title: { 
 
 	            text: '' 
@@ -264,9 +268,7 @@ html,body{
 					},
 
 					dataLabels: {
-
 						enabled: true,
-
 						format: '<b>{point.name}</b>: {point.percentage:.1f} %',
 
 						style: {
@@ -416,7 +418,22 @@ html,body{
 		setRangeDataByType(chart6, 'warn');
 
 	}
-
+	
+	function getChartData7(){
+		var tmpData = []; 
+		tmpData.push({x:1, y:34, name:"上海新网程"});
+		tmpData.push({x:2, y:33, name:"云南盈资科技"});
+		tmpData.push({x:3, y:33, name:"蓝盾公司"});
+		chart7.series[0].setData(tmpData);	
+	}
+	
+	function getChartData8(){
+		var tmpData = []; 
+		tmpData.push({x:1, y:66, name:"上海新网程"});
+		tmpData.push({x:2, y:21, name:"云南盈资科技"});
+		tmpData.push({x:3, y:13, name:"蓝盾公司"});
+		chart8.series[0].setData(tmpData);	
+	}
 	
 
 	function getStdValue(str){
@@ -440,15 +457,14 @@ html,body{
 	function createChart3(){
 
 		chart3 = new Highcharts.Chart({ 
-
+      colors: ['#4f9094', '#bb4b3c', '#009899', '#fb8f35', '#514a44'],
 			chart: { 
-
+      
 				type: 'column',
 
 				renderTo: 'container3'  
 
 			}, 
-
 			exporting:{
 
                 enabled:false
@@ -597,7 +613,7 @@ html,body{
 	function createChart5(){
 
 		chart5 = new Highcharts.Chart({ 
-
+		colors: ['#4f9094', '#bb4b3c', '#009899', '#fb8f35', '#514a44'],
 			chart: { 
 
 				type: 'column',
@@ -748,16 +764,290 @@ html,body{
 
 	}
 
-	
+	function createChart7(){
 
-	
+		chart7 = new Highcharts.Chart({ 
+			colors: ['#4f9094', '#bb4b3c', '#009899', '#fb8f35', '#514a44'],
+			chart: { 
+
+				type: 'column',
+
+				renderTo: 'container7'  
+
+			}, 
+
+			exporting:{
+
+                enabled:false
+
+            },
+
+			credits: {
+
+				enabled:false
+
+			},
+
+			title: { 
+
+				text: '' 
+
+			}, 
+
+			subtitle: {
+
+				text: ''
+
+			},
+
+			plotOptions: {
+
+				bar: {
+
+					dataLabels: {
+
+						enabled: true
+
+					},
+			
+					enableMouseTracking: false
+
+				},
+
+				series: {
+
+                    borderWidth: 0,
+                    events: {
+                        click: function (event) {
+                        }
+
+                    },
+                    dataLabels: {
+
+                        enabled: true,
+
+                        format: '{point.y:.1f}%'
+
+                    }
+
+                }
+
+			},
+
+			xAxis: { 
+
+				type: 'category',
+
+				labels: { 
+
+					//rotation: -45,
+
+					formatter: function() { 
+
+						return getStdValue(this.value);
+
+					} 
+
+				} 
+
+			}, 
+
+			yAxis: { 
+
+				title: { 
+
+					text: '来源百分比前5'
+				}, 
+
+				min: 0 
+
+			}, 
+
+			tooltip: { 
+
+			//这种模式下，每点的tooltip单独显示 
+
+				shared: false, 
+
+				formatter: function() { 
+
+					var s = '<b>'+ this.point.name +'</b>'+'<br/>   占'+this.point.y +'%<br/>'; 
+
+					return s; 
+
+				} 
+
+			}, 
+
+			legend: {
+
+				enabled: false
+
+			},
+
+			series: [{ 
+
+				name: '安全厂商在线率统计', 
+
+				colorByPoint: true,
+
+				data: [ ] 
+
+			}] 
+
+		}); 
+
+		getChartData7();
+
+		setInterval("getChartData7()", 10000);
+
+	}
+
+	function createChart8(){
+
+		chart8 = new Highcharts.Chart({ 
+			colors: ['#4f9094', '#bb4b3c', '#009899', '#fb8f35', '#514a44'],
+			chart: { 
+
+				type: 'column',
+
+				renderTo: 'container8'  
+
+			}, 
+
+			exporting:{
+
+                enabled:false
+
+            },
+
+			credits: {
+
+				enabled:false
+
+			},
+
+			title: { 
+
+				text: '' 
+
+			}, 
+
+			subtitle: {
+
+				text: ''
+
+			},
+
+			plotOptions: {
+
+				bar: {
+
+					dataLabels: {
+
+						enabled: true
+
+					},
+			
+					enableMouseTracking: false
+
+				},
+
+				series: {
+
+                    borderWidth: 0,
+                    events: {
+                        click: function (event) {
+                        }
+
+                    },
+                    dataLabels: {
+
+                        enabled: true,
+
+                        format: '{point.y:.1f}%'
+
+                    }
+
+                }
+
+			},
+
+			xAxis: { 
+
+				type: 'category',
+
+				labels: { 
+
+					//rotation: -45,
+
+					formatter: function() { 
+
+						return getStdValue(this.value);
+
+					} 
+
+				} 
+
+			}, 
+
+			yAxis: { 
+
+				title: { 
+
+					text: '来源百分比前5'
+				}, 
+
+				min: 0 
+
+			}, 
+
+			tooltip: { 
+
+			//这种模式下，每点的tooltip单独显示 
+
+				shared: false, 
+
+				formatter: function() { 
+
+					var s = '<b>'+ this.point.name +'</b>'+'<br/>   占'+this.point.y +'%<br/>'; 
+
+					return s; 
+
+				} 
+
+			}, 
+
+			legend: {
+
+				enabled: false
+
+			},
+
+			series: [{ 
+
+				name: '安全厂商采集率统计', 
+
+				colorByPoint: true,
+
+				data: [ ] 
+
+			}] 
+
+		}); 
+
+		getChartData8();
+
+		setInterval("getChartData8()", 10000);
+
+	}
 
 	function createChart4(){
 
 		chart4 = new Highcharts.Chart({ 
-
+     colors: ['#008AA4'],
 			chart: { 
-
+       
 				type: 'column',
 
 				renderTo: 'container4'  
@@ -871,11 +1161,7 @@ html,body{
 				enabled: false
 
 			},
-
 			series: [{ 
-
-
-
 				colorByPoint: true,
 
 				data: [] 
@@ -895,9 +1181,9 @@ html,body{
 	function createChart6(){
 
 		chart6 = new Highcharts.Chart({ 
-
+         colors: ['#4f9094', '#bb4b3c', '#009899', '#fb8f35', '#514a44'],
 			chart: { 
-
+      
 				type: 'column',
 
 				renderTo: 'container6'  
@@ -937,9 +1223,20 @@ html,body{
 						enabled: true
 
 					},
-
+					
 					enableMouseTracking: false
 
+				},
+				series: {
+
+				    borderWidth: 0,
+				    events: {
+				        click: function (event) {
+				            parent.macGlobalCtx.setIdOperationStatus(event.point.name);
+				            jumpToDetail('id_systemset_alarm');
+				        }
+				    }
+				  
 				}
 
 			},
@@ -984,7 +1281,8 @@ html,body{
 
 				formatter: function() { 
 
-					var s = '<b>'+ this.point.name +'</b>'+'<br/>   有'+this.point.y +'个<br/>'; 
+				    var s = '<b>' + this.point
+             .name + '</b>' + '<br/>   有' + this.point.y + '个<br/>';
 
 					return s; 
 
@@ -1022,7 +1320,7 @@ html,body{
 
 
 
-		if(!parent.isInFocus("itm_frontPage")){
+		if(!parent.macGlobalCtx.isInFocus("itm_frontPage")){
 
 			return ;
 
@@ -1278,7 +1576,8 @@ html,body{
 
 				name: '终端采集数量', 
 
-				data: [] 
+				data: [],
+				color:"#0c96d4" 
 
 			}] 
 
@@ -1399,6 +1698,12 @@ html,body{
 		//第六个chart
 
 		createChart6();
+		//第七个chart
+
+		createChart7();
+		//第八个chart
+
+		createChart8();
 
 		//获取左边的块的数据
 
@@ -1411,13 +1716,6 @@ html,body{
 	
 
 	function getChart1Data(request_type){
-
-		
-
-			
-
-		
-
 		current_chart_type = request_type;
 
 		Ext.Ajax.request({     
@@ -1649,6 +1947,21 @@ html,body{
 		$("#info_"+tid).css("left", 0); 
 
 	}
+	function openmap()
+	{
+		var  win = new Ext.Window({  
+                title: '在线场所查看',  
+                width: 700,  
+                height: 500,  
+                modal:true,
+                closeAction:'hide',
+               
+                resizable: false,
+                html:'<iframe id="new_list" name="new_list" src="/mac/showPlace.htm" scrolling="no" width=700 height=500 FrameBorder=0 ></iframe>' 
+
+            });  
+			win .show();
+	}
 
 </script>
 
@@ -1750,7 +2063,7 @@ html,body{
 
 				</div>
 
-				<div class="info_block" id="info_6" onmouseover="focusBlock(6)" onmouseout="unfocusBlock(6)" style="cursor:hand;cursor: pointer;background-color:#ECEDE8;">
+				<div class="info_block" id="info_6" onclick="openmap()" onmouseover="focusBlock(6)" onmouseout="unfocusBlock(6)" style="cursor:hand;cursor: pointer;background-color:#ECEDE8;">
 
 					<img class="info_logo" src="/images/mac/chart/logo6.png"/>
 
@@ -1867,6 +2180,22 @@ html,body{
 						<div id="container5" class="cls_chart_rect"></div>
 
 					</div>
+					
+					
+					<div id="hchart7" class="cls_tab_normal">
+
+						<div class="tab_top">
+
+							<span>安全厂商在线率统计</span>
+
+							<img onclick="charthide(7)" src="/images/mac/exit.png" />
+
+						</div>
+
+						<div id="container7" class="cls_chart_rect"></div>
+
+					</div>
+					
 
 				</div>
 
@@ -1917,6 +2246,20 @@ html,body{
 						</div>
 
 						<div id="container6" class="cls_chart_rect"></div>
+
+					</div>  
+					
+					<div id="hchart8" class="cls_tab_normal">
+
+						<div class="tab_top">
+
+							<span>安全厂商采集率统计</span>
+
+							<img onclick="charthide(8)" src="/images/mac/exit.png" />
+
+						</div>
+
+						<div id="container8" class="cls_chart_rect"></div>
 
 					</div>  
 
@@ -2040,7 +2383,19 @@ html,body{
 
 							<span style="display:block; color:#55AC60;float:left;">&radic;</span><p>告警数量排行</p>
 
-						</div>	  
+						</div>	 
+						<div class="cls_listitem2" id="right7" onclick="selectlist(7);"  onmouseover="showbg(this.id);" onmouseout="hidebg(this.id);">
+
+							<span style="display:block; color:#55AC60;float:left;">&radic;</span><p>安全厂商在线率统计</p>
+
+						</div>	
+						<div class="cls_listitem2" id="right8" onclick="selectlist(8);"  onmouseover="showbg(this.id);" onmouseout="hidebg(this.id);">
+
+							<span style="display:block; color:#55AC60;float:left;">&radic;</span><p>安全厂商采集率统计</p>
+
+						</div>	
+						
+						
 
 					</div>
 

@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<!--script type="text/javascript" src="/newver/jquery/jquery-1.8.2.min.js"></script-->
+<script type="text/javascript" src="/newver/jquery/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+<script type="text/javascript" src="/newver/chart/highcharts.js"></script>
+<link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" /> 
+
+<title>自定义sql查询</title>
+<script type="text/javascript">
+	function showHintMsg(msg){
+		document.getElementById("ta_hint_area").style.color="green";
+		document.getElementById('ta_hint_area').value = msg;
+	}
+	
+	function showErrorMsg(msg){
+		document.getElementById("ta_hint_area").style.color="red";
+		document.getElementById('ta_hint_area').value = msg;
+	}
+	
+	function appendErrorMsg(msg){
+		oldMsg = document.getElementById('ta_hint_area').value;
+		document.getElementById('ta_hint_area').value = oldMsg + "\r\n" + msg;
+	}
+	
+	function appendHintMsg(msg){
+		document.getElementById("ta_hint_area").style.color="green";
+		document.getElementById('ta_hint_area').value = oldMsg + "\r\n" + msg;
+	}
+		
+	function doExport(){
+		document.getElementById("btnExport").disabled=true;
+		showHintMsg("导出成功!!");
+	}
+	
+	function doExcute(){
+		document.getElementById("btnExport").disabled=false;
+		showHintMsg("执行成功!!");
+	}
+	
+</script>
+<style>
+html,body{
+    -webkit-text-size-adjust:none;
+	font-family: 微软雅黑;
+}
+.cls_hint_area_div{
+	margin-top:2%;
+	left:5%;
+	width:100%;
+	position:relative;
+}
+
+
+.cls_input_div{
+	margin-top: 1%;
+	font-size:11pt;
+	color:#00237e;
+	left: 20%;
+	width : 50%;
+	position : relative;
+}
+
+.cls_input{
+	width: 55%;
+	left: 25%;
+	position:absolute;
+}
+
+.cls_right{
+	top:0%;
+	left:70%;    
+	position:absolute;
+}
+.cls_right input{
+	position:relative;
+	margin-top:5%;
+	width:120px;
+	height:50px;
+}
+</style>
+</head>
+
+<body>	
+	<div class="cls_input_div">
+		<label for="i_select">SELECT</label>
+		<input class="cls_input" type="text" id="i_select" value="*"/> 
+	</div>
+	<br />
+	<div class="cls_input_div">
+		<label for="i_from">FROM</label>
+		<select id="i_from" class="cls_input">
+			<option value="ncsuser" selected>ncsuser</option>
+			<option value="ncsgroup">ncsgroup</option>
+		</select>
+	</div>
+	<br/>	
+	<div class="cls_input_div">
+		<label for="i_where">WHERE</label>
+		<input class="cls_input" type="text" id="i_where" value=""/> 
+	</div>
+	<br />
+	<div class="cls_input_div">
+		<label for="i_order">ORDER BY</label>
+		<input class="cls_input" type="text" id="i_order" value=""/> 
+	</div>
+	<br />
+	<div class="cls_input_div">
+		<label for="i_limit">LIMIT</label>
+		<input class="cls_input" placeholder="最大5000条" type="text" id="i_limit" value=""/> 
+	</div>
+	<br />
+	<div class="cls_hint_area_div">
+		<textarea id="ta_hint_area" class="cls_hint_area" rows="9" cols="120" readonly="true">
+		</textarea>
+	</div>
+	<div class="cls_right">
+		<input type="button" onclick="doExcute()" value="执行查询"/>
+		<br/>
+		<input type="button" value="查看表结构" />
+		<br/>
+		<input type="button" id="btnExport" disabled="true" onclick="doExport()" value="导出"/>
+	</div>
+</body>
+
+</html>
+

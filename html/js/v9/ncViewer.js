@@ -4,6 +4,7 @@ var bDm = false;
 var bOperation = false;
 var bSystemset = false;
 var bMyaccount = false;
+var bAudit = false;
 var globalSelectId = "";
 var globalSelectGroupId = "itm_infoquery";
 var DEFAULT_SEARCH_TEXT = "MAC/手机号/场所名称";
@@ -30,14 +31,27 @@ function f_MacGlobalContext(){
 	this.globalInfoMac = "";
 	this.globalInfoTime = "";
 	this.phoneNumber = ""; 
+	this.placeData = [];
+	this.placeName = "";
 //公共接口
+	this.getPlaceName = function(){
+        return this.placeName;
+    }
+	this.setPlaceName = function(data){
+		this.placeName = data;
+	}
+	this.getPlaceData = function(){
+        return this.placeData;
+    }
+	this.setPlaceData = function(data){
+		this.placeData = data;
+	}
 	this.getIdOperationStatus = function(){
         return this.id_operation_status;
     }
 	this.setIdOperationStatus = function(status){
 		this.id_operation_status = status;
 	}
-
 	this.getGlobalInfoMac = function(){
 		return this.globalInfoMac;
 	}
@@ -55,6 +69,13 @@ function f_MacGlobalContext(){
 	}
 	this.setPhoneNumber = function(number){
 		this.phoneNumber = number;
+	}
+	this.notExists = function(value){
+		if (!value || typeof(value)=="undefined" || value==0){
+			return true;
+		}else{
+			return false;
+		}
 	}
 //工具方法
     this.isInFocus = function(itmid){
@@ -99,7 +120,76 @@ function f_MacGlobalContext(){
 			alert('您的电话格式不正确');
 			return false;}
 	}
-
+	this.searchPlaceWindow = "";
+	this.showSearchPlaceWindow = function(placeData){
+		this.placeData = placeData;
+		var tabPaneledit = new Ext.Panel({
+				frame: false,
+				layout: 'form',
+				activeTab: 0,
+				items:[{
+					html: '<iframe src="/mac/placeResult.html" frameborder="no" style="width:100%;height:900px;"></iframe>'
+				}]			
+			});
+			
+		var h = window.innerHeight ? window.innerHeight : document.body.clientHeight;	
+		h = h / 2;
+		var w = window.innerWidth ? window.innerWidth : document.body.clientWidth;	
+		w = w / 2;
+		this.searchPlaceWindow = new Ext.Window ({
+				title:"场所列表",
+				x:w-250,
+				y:h-200,
+				width:500,
+				height:400,
+				bodyPadding: 0,
+				modal:true,
+				resizable:false,
+				//draggable:false,
+				items: tabPaneledit                                               
+			});
+		this.searchPlaceWindow.show();  
+	}
+	
+	this.hideSearchPlaceWindow = function(){
+		if(""!=this.searchPlaceWindow)
+			this.searchPlaceWindow.hide();
+	}
+//公共界面
+	this.sqlWindow = "";	
+	this.showSqlWindow = function(){
+		var tabPaneledit = new Ext.Panel({
+				frame: false,
+				layout: 'form',
+				activeTab: 0,
+				items:[{
+					html: '<iframe src="/mac/sqlOperate.html" frameborder="no" style="width:100%;height:900px;"></iframe>'
+				}]			
+			});
+			
+		var h = window.innerHeight ? window.innerHeight : document.body.clientHeight;	
+		h = h / 2;
+		var w = window.innerWidth ? window.innerWidth : document.body.clientWidth;	
+		w = w / 2;
+		this.sqlWindow = new Ext.Window ({
+				title:"自定义sql查询",
+				x:w-350,
+				y:h-200,
+				width:700,
+				height:400,
+				bodyPadding: 0,
+				modal:true,
+				resizable:false,
+				//draggable:false,
+				items: tabPaneledit                                               
+			});
+		this.sqlWindow.show();  
+	}
+	
+	this.hideSqlWindow = function(){
+		if(""!=this.sqlWindow)
+			this.sqlWindow.hide();
+	}
 }
 
 var macGlobalCtx = new f_MacGlobalContext(); 
@@ -161,7 +251,11 @@ var mapMyaccount = {
 	'id_myaccount_username':['itm_myaccount_username','修改密码','mac_myaccount_username'],
 	'id_myaccount_toolbar':['itm_myaccount_toolbar','我的工具栏','mac_myaccount_toolbar']
 };
-var listAllMap = [mapInfoquery, mapAlarm, mapDm, mapOperation, mapSystemset,mapMyaccount];
+var mapAudit = {
+	'id_audit_onlinelog':['itm_audit_onlinelog','上下线日志','mac_audit_onlinelog'],
+	'id_audit_linklog':['itm_audit_linklog','连接日志','mac_audit_linklog']	
+};
+var listAllMap = [mapInfoquery, mapAlarm, mapDm, mapOperation, mapSystemset,mapMyaccount, mapAudit];
 var left_tabs_glob='';
 
 
@@ -188,6 +282,8 @@ function getItemShowCount(itmid){
 		myMap = mapSystemset;
 	}else if("itm_myaccount" == itmid){
 		myMap = mapMyaccount;
+	}else if("itm_audit" == itmid){
+		myMap = mapAudit;
 	}
 	for(var i in myMap){
 		if(Ext.getCmp(i).menustatus == 1){
@@ -240,6 +336,11 @@ function jumpToDestPage(resultId, mac){
 		
 		try{
 			eval("lan_"+itemid+"_s").id_operation_tabload();
+		}catch(e){
+			
+		}
+		try{
+			eval("lan_"+itemid+"_s").doSearchServicecode();
 		}catch(e){
 			
 		}
@@ -308,7 +409,7 @@ function showMacWindow(mac, tm){
         layout: 'form',
         activeTab: 0,
         items: [{
-			html: '<iframe src="/mac/datamining/track/track.htm" frameborder="no" style="width:100%;height:500px;"></iframe>'			
+			html: '<iframe src="/mac/datamining/track/track1.htm" frameborder="no" style="width:100%;height:500px;"></iframe>'			
         }]
     });
 	var tabPaneledit = new Ext.Panel({
@@ -530,8 +631,15 @@ function doSearchByKeyword(tKeyword)
 						showSearchResult();
 					}	
 				}else if(respRecord.result == "1"){
-					macGlobalCtx.setPhoneNumber(respRecord.data[0].mac);
-					jumpToDestPage(respRecord.itemid, respRecord.data[0].mac);
+					var pNumber = respRecord.data[0].mac;
+					if(pNumber.indexOf(",")>0)
+					{
+						pNumber = pNumber.substr(0, pNumber.indexOf(","));
+					}
+					macGlobalCtx.setPhoneNumber(tKeyword);
+					jumpToDestPage(respRecord.itemid, tKeyword);
+				}else if(respRecord.result == "2"){
+					macGlobalCtx.showSearchPlaceWindow(respRecord.data);
 				}else{
 					alert("类型错误");
 				}
@@ -589,9 +697,9 @@ function setItemStatById(id, isNormal){
 			if(key == id){
 				hasFound = true;
 				if(isNormal){
-					Ext.getCmp(key).setText('<font style="font-size : 12px !important;color:#828282;margin-left: 24px !important;">☆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+listAllMap[i][key][1]+'</font>');
+					Ext.getCmp(key).setText('<font style="font-size : 12px !important;color:#DDDDDD;margin-left: 24px !important;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆&nbsp;&nbsp;&nbsp;'+listAllMap[i][key][1]+'</font>');
 				}else{
-					Ext.getCmp(key).setText('<font style="font-size : 12px !important;color:#0D3967;margin-left: 24px !important;">★&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+listAllMap[i][key][1]+'</font>');
+					Ext.getCmp(key).setText('<font style="font-size : 12px !important;color:#FEC56B;margin-left: 24px !important;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;★&nbsp;&nbsp;&nbsp;'+listAllMap[i][key][1]+'</font>');
 				}
 				break;
 			}
@@ -673,6 +781,16 @@ function getIdByItemid(itemid){
 		for(var i in mapMyaccount){
 			if(mapMyaccount[i][0] == itemid){
 				tmpGroupId = "itm_myaccount";
+				resultId = i;
+				hasFound = true;
+				break;
+			}
+		}
+	}
+	if(hasFound == false){
+		for(var i in mapAudit){
+			if(mapAudit[i][0] == itemid){
+				tmpGroupId = "itm_audit";
 				resultId = i;
 				hasFound = true;
 				break;
@@ -771,6 +889,17 @@ function toggleSystemset(bVisible){
 		}	
 	}
 }
+function toggleAudit(bVisible){
+	bAudit = bVisible;
+	setGroupHeader(bAudit, "id_audit");
+	var itm;
+	for (key in mapAudit){
+		itm=Ext.getCmp(key);
+		if(itm.menustatus == 1){
+			itm.setVisible(bVisible);
+		}	
+	}
+}
 
 function toggleMyaccount(bVisible){
 	bMyaccount = bVisible;
@@ -811,12 +940,12 @@ Ext.define('ncViewer.App', {
 			
         var right_fun_s=right_fun;
 
-    	var tb = Ext.create('Ext.toolbar.Toolbar',{ style: 'background:#00B1F1 !important;',id: "maintab"});
+    	var tb = Ext.create('Ext.toolbar.Toolbar',{ style: 'background:#282c36 !important;',id: "maintab"});
         tb.add({
 	    	    itemid:'logo',
 				//title:'',
 				xtype:'label',
-        		html:'&nbsp;<img src="/images/mac/banner_logo.png" style="margin:0 30px 0 30px;" width="125" height="40">'
+        		html:'&nbsp;<img src="/images/mac/banner_logo.png" style="margin:0 0px 0 0px;" width="210" height="60">'
          	},'-',{
 				text: '<font style="font-size : 12px !important; color:#FFF;">首页</font>',
 				title: '首页',
@@ -1066,6 +1195,31 @@ Ext.define('ncViewer.App', {
 				iconCls:'icon_operation_terminal',
 				handler: this.onItemClick 
 			},'-',{
+				text: '<font style="font-size : 12px !important;color:#FFF;">上下线日志</font>',
+				title : '上下线日志',
+				itemid:'itm_audit_onlinelog',
+				menustatus:1,
+				//id:'id_operation_terminal',
+				srcurl:'ncViewer.mac_audit_onlinelog', 
+				scale:'large',
+				hidden:true,
+				iconAlign: 'top',
+				iconCls:'icon_operation_terminal',
+				handler: this.onItemClick 
+			},'-',{
+				text: '<font style="font-size : 12px !important;color:#FFF;">上下线日志</font>',
+				title : '连接日志',
+				itemid:'itm_audit_linklog',
+				menustatus:1,
+				//id:'id_operation_terminal',
+				srcurl:'ncViewer.mac_audit_linklog', 
+				scale:'large',
+				hidden:true,
+				iconAlign: 'top',
+				iconCls:'icon_operation_terminal',
+				handler: this.onItemClick 
+			},	
+			'-',{
 				text: '<font style="font-size : 12px !important;color:#FFF;">管理员账号</font>',
 				title : '管理员账号',
 				itemid:'itm_systemset_admin',
@@ -1183,8 +1337,9 @@ Ext.define('ncViewer.App', {
             id: 'header',
             margins: '0 2 0 2',
             border: true,
+			autoScroll:false,
             region: 'north',   
-			bodyStyle: 'background:#00B1F1 !important;',
+			bodyStyle: 'background:#2A2D37 !important;',
             items:[tb]
         });
         return this.toolPanel;
@@ -1220,11 +1375,12 @@ Ext.define('ncViewer.App', {
     },
 	createNcLeft:function(){  
 		var leftMenu=Ext.create(Ext.panel.Panel, {
-			margins: '0 0 0 0',          
+			margins: '0 0 0 0',  
+            frame:false,			
 			// layout: 'border',
 			id:'leftMenu',
-			height:1100,
-			autoScroll: true,
+			height:645,
+			autoScroll:false,
 			animCollapse: true,
 			layout: "column",  //设置为手风琴布局
 			layoutConfig: {
@@ -1232,9 +1388,9 @@ Ext.define('ncViewer.App', {
 			},  
 			defaults:{                     
 				layout: 'anchor', 
-				defaults: {   anchor: '100%'  } 
+				defaults: {anchor: '100%'  } 
 			},  
-			bodyStyle: 'background:#ECFAFF !important;',
+			bodyStyle: 'background:#232432 !important;',
 			cls:'cls_menu_panel',
 			//split:true,
 			width: 210,
@@ -1248,7 +1404,7 @@ Ext.define('ncViewer.App', {
 				{
 					xtype : 'button',
 					cls:"bkmenuf_id_infoquery", 
-					text : '<font style="font-size : 14px !important;color:#0D3967;margin:13px 0 0 60px !important;">信息查询</font>',
+					text : '<font style="font-size : 14px !important;color:#42D5C9;margin:13px 0 0 60px !important;">信息查询</font>',
 					id : 'id_infoquery',
 					itemid : 'itm_infoquery',
 					menustatus:0,
@@ -1259,7 +1415,7 @@ Ext.define('ncViewer.App', {
 					xtype : 'button',
 					hidden  : false,
 					cls:"cls_menu_second_normal", 
-					text : '<font style="font-size : 12px !important;color:#828282;margin-left: 24px !important;">☆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MAC日志查询</font>',
+					text : '<font style="font-size : 12px !important;color:#EEEEEE;margin-left: 24px !important;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆&nbsp;&nbsp;&nbsp;MAC日志查询</font>',
 					title : 'MAC日志查询',
 					itemid:'itm_infoquery_mac',
 					menustatus:1,
@@ -1274,7 +1430,7 @@ Ext.define('ncViewer.App', {
 					xtype : 'button',
 					hidden  : false,
 					cls:"cls_menu_second_normal", 
-					text : '<font style="font-size : 12px !important;color:#828282;margin-left: 24px !important;">☆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;热点查询</font>',
+					text : '<font style="font-size : 12px !important;color:#EEEEEE;margin-left: 24px !important;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆&nbsp;&nbsp;&nbsp;热点查询</font>',
 					title : '热点查询',
 					itemid:'itm_infoquery_hotspot',
 					menustatus:1,
@@ -1290,7 +1446,7 @@ Ext.define('ncViewer.App', {
 					hidden  : false,
 					cls:"cls_menu_second_normal", 
 					style: 'text-align: left !important;',
-					text : '<font style="font-size : 12px !important;color:#828282;margin-left: 24px !important;">☆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;场所信息查询</font>',
+					text : '<font style="font-size : 12px !important;color:#EEEEEE;margin-left: 24px !important;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆&nbsp;&nbsp;&nbsp;场所信息查询</font>',
 					title : '场所信息查询',
 					id:'id_infoquery_place',
 					itemid:'itm_infoquery_place',
@@ -1305,7 +1461,7 @@ Ext.define('ncViewer.App', {
 					xtype : 'button',
 					hidden  : false,
 					cls:"cls_menu_second_normal", 
-					text : '<font style="font-size : 12px !important;color:#828282;margin-left: 24px !important;">☆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;移动采集设备</font>',
+					text : '<font style="font-size : 12px !important;color:#EEEEEE;margin-left: 24px !important;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆&nbsp;&nbsp;&nbsp;移动采集设备</font>',
 					title:'移动采集设备',
 					itemid:'itm_infoquery_move',
 					menustatus:1,
@@ -1321,7 +1477,7 @@ Ext.define('ncViewer.App', {
 					hidden  : false,
 					cls:"cls_menu_second_normal", 
 					//overCls : 'clsListItemOver',
-					text : '<font style="font-size : 12px !important;color:#828282;margin-left: 24px !important;">☆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;实时信息</font>',
+					text : '<font style="font-size : 12px !important;color:#EEEEEE;margin-left: 24px !important;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆&nbsp;&nbsp;&nbsp;实时信息</font>',
 					title : '实时信息',
 					itemid:'itm_infoquery_id',
 					menustatus:1,
@@ -1337,7 +1493,7 @@ Ext.define('ncViewer.App', {
 					hidden  : false,
 					cls:"cls_menu_second_normal", 
 					//overCls : 'clsListItemOver',
-					text : '<font style="font-size : 12px !important;color:#828282;margin-left: 24px !important;">☆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;虚拟身份日志</font>',
+					text : '<font style="font-size : 12px !important;color:#EEEEEE;margin-left: 24px !important;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆&nbsp;&nbsp;&nbsp;虚拟身份日志</font>',
 					title : '虚拟身份日志',
 					itemid:'itm_infoquery_vid',
 					menustatus:1,
@@ -1354,7 +1510,7 @@ Ext.define('ncViewer.App', {
 					cls:"bkmenun_id_alarm", 
 					//bodyStyle: 'background:#F0F3F8;',
 					//style: 'border-radius:0;background:#D5DDF0 !important; margin:1px 0 0px 0px;',
-					text : '<font style="font-size : 14px !important;color:#0D3967;margin:13px 0 0 60px !important;">布控告警</font>',
+					text : '<font style="font-size : 14px !important;color:#42D5C9;margin:13px 0 0 60px !important;">布控告警</font>',
 					id : 'id_alarm',
 					itemid : 'itm_alarm',
 					menustatus:0,
@@ -1366,7 +1522,7 @@ Ext.define('ncViewer.App', {
 					hidden  : true,
 					cls:"cls_menu_second_normal", 
 					//overCls : 'clsListItemOver',
-					text : '<font style="font-size : 12px !important;color:#828282;margin-left: 24px !important;">☆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;布控管理</font>',
+					text : '<font style="font-size : 12px !important;color:#EEEEEE;margin-left: 24px !important;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆&nbsp;&nbsp;&nbsp;布控管理</font>',
 					title : '布控管理',
 					itemid:'itm_alarm_controlmanage',
 					menustatus:1,
@@ -1382,7 +1538,7 @@ Ext.define('ncViewer.App', {
 					hidden  : true,
 					cls:"cls_menu_second_normal", 
 					//overCls : 'clsListItemOver',
-					text : '<font style="font-size : 12px !important;color:#828282;margin-left: 24px !important;">☆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;告警信息查询</font>',
+					text : '<font style="font-size : 12px !important;color:#EEEEEE;margin-left: 24px !important;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆&nbsp;&nbsp;&nbsp;告警信息查询</font>',
 					title : '告警信息查询',
 					itemid:'itm_alarm_warnlog',
 					id:'id_alarm_warnlog',
@@ -1397,7 +1553,7 @@ Ext.define('ncViewer.App', {
 					hidden  : true,
 					cls:"cls_menu_second_normal", 
 					//overCls : 'clsListItemOver',
-					text : '<font style="font-size : 12px !important;color:#828282;margin-left: 24px !important;">☆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;接警人员管理</font>',
+					text : '<font style="font-size : 12px !important;color:#EEEEEE;margin-left: 24px !important;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆&nbsp;&nbsp;&nbsp;接警人员管理</font>',
 					title : '接警人员管理',
 					itemid:'itm_alarm_peoplecalled',
 					menustatus:1,
@@ -1414,7 +1570,7 @@ Ext.define('ncViewer.App', {
 					cls:"bkmenun_id_dm", 
 					//bodyStyle: 'background:#F0F3F8;',
 					//style: 'border-radius:0;background:#D5DDF0; margin:1px 0 0px 0px;',
-					text : '<font style="font-size : 14px !important;color:#0D3967;margin:13px 0 0 60px !important;">数据挖掘</font>',
+					text : '<font style="font-size : 14px !important;color:#42D5C9;margin:13px 0 0 60px !important;">数据挖掘</font>',
 					itemid : 'itm_dm',
 					menustatus:0,
 					id:'id_dm',
@@ -1426,7 +1582,7 @@ Ext.define('ncViewer.App', {
 					hidden  : true,
 					cls:"cls_menu_second_normal", 
 					//overCls : 'clsListItemOver',
-					text : '<font style="font-size : 12px !important;color:#828282;margin-left: 24px !important;">☆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;伴随行为分析</font>',
+					text : '<font style="font-size : 12px !important;color:#EEEEEE;margin-left: 24px !important;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆&nbsp;&nbsp;&nbsp;伴随行为分析</font>',
 					title : '伴随行为分析',
 					itemid:'itm_dm_bab',
 					menustatus:1,
@@ -1442,7 +1598,7 @@ Ext.define('ncViewer.App', {
 					hidden  : true,
 					cls:"cls_menu_second_normal", 
 					//overCls : 'clsListItemOver',
-					text : '<font style="font-size : 12px !important;color:#828282;margin-left: 24px !important;">☆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;抽样分析</font>',
+					text : '<font style="font-size : 12px !important;color:#EEEEEE;margin-left: 24px !important;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆&nbsp;&nbsp;&nbsp;抽样分析</font>',
 					title : '抽样分析',
 					itemid:'itm_dm_sample',
 					menustatus:1,
@@ -1458,7 +1614,7 @@ Ext.define('ncViewer.App', {
 					hidden  : true,
 					cls:"cls_menu_second_normal", 
 					//overCls : 'clsListItemOver',
-					text : '<font style="font-size : 12px !important;color:#828282;margin-left: 24px !important;">☆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;高频次分析</font>',
+					text : '<font style="font-size : 12px !important;color:#EEEEEE;margin-left: 24px !important;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆&nbsp;&nbsp;&nbsp;高频次分析</font>',
 					title : '高频次分析',
 					itemid:'itm_dm_freCharact',
 					menustatus:1,
@@ -1474,7 +1630,7 @@ Ext.define('ncViewer.App', {
 					hidden  : true,
 					cls:"cls_menu_second_normal", 
 					//overCls : 'clsListItemOver',
-					text : '<font style="font-size : 12px !important;color:#828282;margin-left: 24px !important;">☆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;轨迹分析</font>',
+					text : '<font style="font-size : 12px !important;color:#EEEEEE;margin-left: 24px !important;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆&nbsp;&nbsp;&nbsp;轨迹分析</font>',
 					title : '轨迹分析',
 					itemid:'itm_dm_track',
 					menustatus:1,
@@ -1490,7 +1646,7 @@ Ext.define('ncViewer.App', {
 					hidden  : true,
 					cls:"cls_menu_second_normal", 
 					//overCls : 'clsListItemOver',
-					text : '<font style="font-size : 12px !important;color:#828282;margin-left: 24px !important;">☆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;可疑热点分析</font>',
+					text : '<font style="font-size : 12px !important;color:#EEEEEE;margin-left: 24px !important;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆&nbsp;&nbsp;&nbsp;可疑热点分析</font>',
 					title : '可疑热点分析',
 					itemid:'itm_dm_sus',
 					menustatus:1,
@@ -1506,7 +1662,7 @@ Ext.define('ncViewer.App', {
 					hidden  : true,
 					cls:"cls_menu_second_normal", 
 					//overCls : 'clsListItemOver',
-					text : '<font style="font-size : 12px !important;color:#828282;margin-left: 24px !important;">☆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;人流分析</font>',
+					text : '<font style="font-size : 12px !important;color:#EEEEEE;margin-left: 24px !important;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆&nbsp;&nbsp;&nbsp;人流分析</font>',
 					title : '人流分析',
 					itemid:'itm_dm_crowd',
 					menustatus:1,
@@ -1523,7 +1679,7 @@ Ext.define('ncViewer.App', {
 					cls:"bkmenun_id_operation", 
 					//bodyStyle: 'background:#F0F3F8;',
 					//style: 'border-radius:0;background:#D5DDF0; margin:1px 0 0px 0px;',
-					text : '<font style="font-size : 14px !important;color:#0D3967;margin:13px 0 0 60px !important;">业务配置</font>',
+					text : '<font style="font-size : 14px !important;color:#42D5C9;margin:13px 0 0 60px !important;">业务配置</font>',
 					id : 'id_operation',
 					itemid : 'itm_operation',
 					menustatus:0,
@@ -1535,7 +1691,7 @@ Ext.define('ncViewer.App', {
 					hidden  : true,
 					cls:"cls_menu_second_normal", 
 					//overCls : 'clsListItemOver',
-					text : '<font style="font-size : 12px !important;color:#828282;margin-left: 24px !important;">☆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;场所管理</font>',
+					text : '<font style="font-size : 12px !important;color:#EEEEEE;margin-left: 24px !important;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆&nbsp;&nbsp;&nbsp;场所管理</font>',
 					title : '场所管理',
 					itemid:'itm_operation_place',
 					menustatus:1,
@@ -1551,7 +1707,7 @@ Ext.define('ncViewer.App', {
 					hidden  : true,
 					cls:"cls_menu_second_normal", 
 					//overCls : 'clsListItemOver',
-					text : '<font style="font-size : 12px !important;color:#828282;margin-left: 24px !important;">☆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;设备管理</font>',
+					text : '<font style="font-size : 12px !important;color:#EEEEEE;margin-left: 24px !important;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆&nbsp;&nbsp;&nbsp;设备管理</font>',
 					title : '设备管理',
 					itemid:'itm_operation_equipment',
 					menustatus:1,
@@ -1566,7 +1722,7 @@ Ext.define('ncViewer.App', {
 					xtype : 'button',
 					hidden  : true,
 					cls:"cls_menu_second_normal", 
-					text : '<font style="font-size : 12px !important;color:#828282;margin-left: 24px !important;">☆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;单位属组</font>',
+					text : '<font style="font-size : 12px !important;color:#EEEEEE;margin-left: 24px !important;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆&nbsp;&nbsp;&nbsp;单位属组</font>',
 					title : '单位属组',
 					itemid:'itm_operation_dwsz',
 					menustatus:1,
@@ -1582,7 +1738,7 @@ Ext.define('ncViewer.App', {
 					hidden  : true,
 					cls:"cls_menu_second_normal", 
 					//overCls : 'clsListItemOver',
-					text : '<font style="font-size : 12px !important;color:#828282;margin-left: 24px !important;">☆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;安全厂商管理</font>',
+					text : '<font style="font-size : 12px !important;color:#EEEEEE;margin-left: 24px !important;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆&nbsp;&nbsp;&nbsp;安全厂商管理</font>',
 					title : '安全厂商管理',
 					itemid:'itm_operation_safety',
 					id:'id_operation_safety',
@@ -1597,7 +1753,7 @@ Ext.define('ncViewer.App', {
 					hidden  : true,
 					cls:"cls_menu_second_normal", 
 					//overCls : 'clsListItemOver',
-					text : '<font style="font-size : 12px !important;color:#828282;margin-left: 24px !important;">☆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;热点管理</font>',
+					text : '<font style="font-size : 12px !important;color:#EEEEEE;margin-left: 24px !important;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆&nbsp;&nbsp;&nbsp;热点管理</font>',
 					title : '热点管理',
 					itemid:'itm_operation_normally',
 					menustatus:1,
@@ -1613,7 +1769,7 @@ Ext.define('ncViewer.App', {
 					hidden  : true,
 					cls:"cls_menu_second_normal", 
 					//overCls : 'clsListItemOver',
-					text : '<font style="font-size : 12px !important;color:#828282;margin-left: 24px !important;">☆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;终端信息分组</font>',
+					text : '<font style="font-size : 12px !important;color:#EEEEEE;margin-left: 24px !important;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆&nbsp;&nbsp;&nbsp;终端信息分组</font>',
 					title : '终端信息分组',
 					itemid:'itm_operation_terminal',
 					id:'id_operation_terminal',
@@ -1629,7 +1785,54 @@ Ext.define('ncViewer.App', {
 					cls:"bkmenun_id_systemset", 
 					//bodyStyle: 'background:#F0F3F8;',
 					//style: 'border-radius:0;background:#D5DDF0; margin:1px 0 0px 0px;',
-					text : '<font style="font-size : 14px !important;color:#0D3967;margin:13px 0 0 60px !important;">系统配置</font>',
+					text : '<font style="font-size : 14px !important;color:#42D5C9;margin:13px 0 0 60px !important;">上网审计</font>',
+					id : 'id_audit',
+					itemid : 'itm_audit',
+					menustatus:0,
+					listeners:{
+						click:this.onToggleFirst
+					}
+				},{
+					xtype : 'button',
+					hidden  : true,
+					cls:"cls_menu_second_normal", 
+					//overCls : 'clsListItemOver',
+					text : '<font style="font-size : 12px !important;color:#EEEEEE;margin-left: 24px !important;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆&nbsp;&nbsp;&nbsp;上下线日志</font>',
+					title : '上下线日志',
+					menustatus:1,
+					itemid:'itm_audit_onlinelog',
+					id:'id_audit_onlinelog',
+					srcurl:'ncViewer.mac_audit_onlinelog',  
+					listeners:{
+						mouseover:this.changeOnOver,
+						mouseout:this.changeOnOut,
+						click:this.onItemClick
+					}
+				},
+				{
+					xtype : 'button',
+					hidden  : true,
+					cls:"cls_menu_second_normal", 
+					//overCls : 'clsListItemOver',
+					text : '<font style="font-size : 12px !important;color:#EEEEEE;margin-left: 24px !important;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆&nbsp;&nbsp;&nbsp;连接日志</font>',
+					title : '连接日志',
+					menustatus:1,
+					itemid:'itm_audit_linklog',
+					id:'id_audit_linklog',
+					srcurl:'ncViewer.mac_audit_linklog',  
+					listeners:{
+						mouseover:this.changeOnOver,
+						mouseout:this.changeOnOut,
+						click:this.onItemClick
+					}
+				},
+				{
+					xtype : 'button',
+					//iconCls: "mi_systemset", 
+					cls:"bkmenun_id_systemset", 
+					//bodyStyle: 'background:#F0F3F8;',
+					//style: 'border-radius:0;background:#D5DDF0; margin:1px 0 0px 0px;',
+					text : '<font style="font-size : 14px !important;color:#42D5C9;margin:13px 0 0 60px !important;">系统配置</font>',
 					id : 'id_systemset',
 					itemid : 'itm_systemset',
 					menustatus:0,
@@ -1641,7 +1844,7 @@ Ext.define('ncViewer.App', {
 					hidden  : true,
 					cls:"cls_menu_second_normal", 
 					//overCls : 'clsListItemOver',
-					text : '<font style="font-size : 12px !important;color:#828282;margin-left: 24px !important;">☆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;管理员账号</font>',
+					text : '<font style="font-size : 12px !important;color:#EEEEEE;margin-left: 24px !important;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆&nbsp;&nbsp;&nbsp;管理员账号</font>',
 					title : '管理员账号',
 					itemid:'itm_systemset_admin',
 					id:'id_systemset_admin',
@@ -1656,7 +1859,7 @@ Ext.define('ncViewer.App', {
 					hidden  : true,
 					cls:"cls_menu_second_normal", 
 					//overCls : 'clsListItemOver',
-					text : '<font style="font-size : 12px !important;color:#828282;margin-left: 24px !important;">☆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;系统运维告警</font>',
+					text : '<font style="font-size : 12px !important;color:#EEEEEE;margin-left: 24px !important;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆&nbsp;&nbsp;&nbsp;系统运维告警</font>',
 					title : '系统运维告警',
 					itemid:'itm_systemset_alarm',
 					menustatus:1,
@@ -1672,7 +1875,7 @@ Ext.define('ncViewer.App', {
 					hidden  : true,
 					cls:"cls_menu_second_normal", 
 					//overCls : 'clsListItemOver',
-					text : '<font style="font-size : 12px !important;color:#828282;margin-left: 24px !important;">☆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;权限管理</font>',
+					text : '<font style="font-size : 12px !important;color:#EEEEEE;margin-left: 24px !important;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆&nbsp;&nbsp;&nbsp;权限管理</font>',
 					title : '权限管理',
 					itemid:'itm_systemset_preferences',
 					id:'id_systemset_preferences',
@@ -1687,7 +1890,7 @@ Ext.define('ncViewer.App', {
 					hidden  : true,
 					cls:"cls_menu_second_normal", 
 					//overCls : 'clsListItemOver',
-					text : '<font style="font-size : 12px !important;color:#828282;margin-left: 24px !important;">☆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;操作员日志</font>',
+					text : '<font style="font-size : 12px !important;color:#EEEEEE;margin-left: 24px !important;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆&nbsp;&nbsp;&nbsp;操作员日志</font>',
 					title : '操作员日志',
 					itemid:'itm_systemset_log',
 					menustatus:1,
@@ -1703,7 +1906,7 @@ Ext.define('ncViewer.App', {
 					hidden  : true,
 					cls:"cls_menu_second_normal", 
 					//overCls : 'clsListItemOver',
-					text : '<font style="font-size : 12px !important;color:#828282;margin-left: 24px !important;">☆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;系统参数配置</font>',
+					text : '<font style="font-size : 12px !important;color:#EEEEEE;margin-left: 24px !important;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆&nbsp;&nbsp;&nbsp;系统参数配置</font>',
 					title : '系统参数配置',
 					itemid:'itm_systemset_para',
 					menustatus:1,
@@ -1719,7 +1922,7 @@ Ext.define('ncViewer.App', {
 					cls:"bkmenun_id_myaccount", 
 					//bodyStyle: 'background:#F0F3F8;',
 					//style: 'border-radius:0;background:#D5DDF0; margin:1px 0 0px 0px;',
-					text : '<font style="font-size : 14px !important;color:#0D3967;margin:13px 0 0 60px !important;">我的账户</font>',
+					text : '<font style="font-size : 14px !important;color:#42D5C9;margin:13px 0 0 60px !important;">我的账户</font>',
 					id : 'id_myaccount',
 					itemid : 'itm_myaccount',
 					menustatus:0,
@@ -1731,7 +1934,7 @@ Ext.define('ncViewer.App', {
 					hidden  : true,
 					cls:"cls_menu_second_normal", 
 					//overCls : 'clsListItemOver',
-					text : '<font style="font-size : 12px !important;color:#828282;margin-left: 24px !important;">☆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;修改密码</font>',
+					text : '<font style="font-size : 12px !important;color:#EEEEEE;margin-left: 24px !important;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆&nbsp;&nbsp;&nbsp;修改密码</font>',
 					title : '修改密码',
 					itemid:'itm_myaccount_username',
 					menustatus:1,
@@ -1746,7 +1949,7 @@ Ext.define('ncViewer.App', {
 					xtype : 'button',
 					hidden  : true,
 					cls:"cls_menu_second_normal", 
-					text : '<font style="font-size : 12px !important;color:#828282;margin-left: 24px !important;">☆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我的工具栏</font>',
+					text : '<font style="font-size : 12px !important;color:#EEEEEE;margin-left: 24px !important;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆&nbsp;&nbsp;&nbsp;我的工具栏</font>',
 					title : '我的工具栏',
 					itemid:'itm_myaccount_toolbar',
 					menustatus:1,
@@ -1757,9 +1960,10 @@ Ext.define('ncViewer.App', {
 						mouseout:this.changeOnOut,
 						click:this.onItemClick
 					}
-				}        
+				}
 			]
 		});	
+
 		var right_fun_s = right_fun;
 		leftMenu.items.each(function(item){
 			if(item.menustatus != 0){
@@ -1786,14 +1990,16 @@ Ext.define('ncViewer.App', {
 
 		this.left_tabs=Ext.createWidget('tabpanel', {
 			width: 210,
+			frame:false,
 			border:false,
+			autoScroll:false,
 			margins: '0 2 0 2',
 			id: 'left',
 			layout: 'border',
 			title:'当前位置：全部区域',
 			collapsible: true,
 			region: 'west',
-			height:700,
+			height:520,
 			tabPosition: 'bottom',
 			id:'treetab',    
 			activeTab: 0,
@@ -1811,8 +2017,8 @@ Ext.define('ncViewer.App', {
 			}
 		});
 
-		this.left_tabs.add({ closable: false,border:false,items:[leftMenu],title: '切换回菜单'});   
-		this.left_tabs.add({closable: false, border:false, items:[Ext.create(ncViewer.lanGroupTree)],title: '切换到场所'});
+		this.left_tabs.add({closable: false, border:false, autoScroll:true, items:[leftMenu],title: '切换回菜单'});   
+		this.left_tabs.add({closable: false, border:false, autoScroll:true, items:[Ext.create(ncViewer.lanGroupTree)],title: '切换到场所'});
 		left_tabs_glob=this.left_tabs;
 		return this.left_tabs;
     },
@@ -1884,79 +2090,10 @@ Ext.define('ncViewer.App', {
             tabchange:function(tp,p){
 				console.log(p.id);
 				toggleClickItem(p.id);
-				/*
-            	grid_height=Ext.getCmp('layout_center').getHeight()-36;
-            	grid_width=Ext.getCmp('layout_center').getWidth()-56;
-				var tabs_center=Ext.getCmp("layout_center");
-        	    var active = tabs_center.getActiveTab();
-				var frame1 = Ext.get(active.el).frame();
-				var childComp = frame1.getCmp("keyword"); //取得控件
-				childComp.setText("success");
-				
-				console.log(active.getId());
-        	    
-              //console.log(active.getId());
-		        	var active_id='lan_'+active.id;
-		        	if(active_id=='lan_hotinfo'||active_id=='itm_infoquery_mac'||active_id=='itm_infoquery_move'){
-		        		return;
-		        	}
-	    
-		        	var tabs_if=Ext.getCmp(active_id).getActiveTab();
-		        	if(tabs_if){
-			          if(tabs_if.id=='immon'){
-			           	bStartcomp=0;
-			           	bStartim=1;
-			          }
-			          else if(tabs_if.id=='sjcomputer'){
-			          	bStartcomp=1;
-			          	bStartim=0;
-			          }
-          		  else if(tabs_if.id=='sspm'){
-          		 	  bStartcomp=0;
-			          	bStartim=0;
-          		  }
-          		  var vframe= active_id+"_"+tabs_if.getId()
-          		  //alert(vframe);
-          		  try{
-            		  eval(vframe).reflash();
-            		}catch(e){}
-          		}
-			*/
           	}
          }
                 
-       });
-
-//     console.log(right_fun); 
-      
-       var right_fun_s=right_fun;
-       var item2 = Ext.getCmp("maintab").items.items;
-//console.info(right_fun_s);  
-
-
-
-   /*
-      for(var i=0;i<item2.length;i++){
-   //   alert(right_fun_s);
-      	
-        //console.log(item2[i]);
-        try{
-          if((right_fun_s.indexOf(item2[i].text)!=-1)){
-        	  if(item2[i].itemid=="jcxxgl"){
-        	    continue;
-        	  }
-        	  
-    if(item2[i].itemid=='dwgl'){
-          this.onItemClick(item2[i]);
-            break;
-          }
-        	}
-        }catch(e){}  
-  	
-      }
-       
-       */
-       
+       });       
        return this.centerPanel;
     },
     createNcStatus:function(){   	
@@ -1971,7 +2108,13 @@ Ext.define('ncViewer.App', {
         items: [
 			{
 				xtype: 'button',
-				text: ''
+				text: '',
+				cls:"sqlButton", 
+				//xtype:'label',
+        		//html:'&nbsp;<img src="/images/mac/banner_logo.png" style="margin:0 0px 0 0px;" width="15" height="15">'
+				handler:function(){
+					macGlobalCtx.showSqlWindow();
+				}
 			},{
 				xtype: 'button',
 				text: '上海新网程信息技术股份有限公司&nbsp;&nbsp;',
@@ -1995,6 +2138,7 @@ Ext.define('ncViewer.App', {
 			toggleOperation(false);
 			toggleSystemset(false);
 			toggleMyaccount(false);
+			toggleAudit(false);
 		}else if('itm_alarm' == item.itemid){
 			toggleInfoquery(false);
 			toggleAlarm(!bAlarm);
@@ -2002,6 +2146,7 @@ Ext.define('ncViewer.App', {
 			toggleOperation(false);
 			toggleSystemset(false);
 			toggleMyaccount(false);
+			toggleAudit(false);
 		}else if('itm_dm' == item.itemid){
 			toggleInfoquery(false);
 			toggleAlarm(false);
@@ -2009,6 +2154,7 @@ Ext.define('ncViewer.App', {
 			toggleOperation(false);
 			toggleSystemset(false);
 			toggleMyaccount(false);
+			toggleAudit(false);
 		}else if('itm_operation' == item.itemid){
 			toggleInfoquery(false);
 			toggleAlarm(false);
@@ -2016,6 +2162,7 @@ Ext.define('ncViewer.App', {
 			toggleOperation(!bOperation);
 			toggleSystemset(false);
 			toggleMyaccount(false);
+			toggleAudit(false);
 		}else if('itm_systemset' == item.itemid){
 			toggleInfoquery(false);
 			toggleAlarm(false);
@@ -2023,20 +2170,30 @@ Ext.define('ncViewer.App', {
 			toggleOperation(false);
 			toggleSystemset(!bSystemset);
 			toggleMyaccount(false);
+			toggleAudit(false);
 		}else if('itm_myaccount' == item.itemid){
 			toggleInfoquery(false);
 			toggleAlarm(false);
 			toggleDm(false);
 			toggleOperation(false);
 			toggleSystemset(false);
+			toggleAudit(false);
 			toggleMyaccount(!bMyaccount);
+		}else if('itm_audit' == item.itemid){
+			toggleInfoquery(false);
+			toggleAlarm(false);
+			toggleDm(false);
+			toggleOperation(false);
+			toggleSystemset(false);
+			toggleMyaccount(false);
+			toggleAudit(!bAudit);
 		}
 		
 	},
 	changeOnOut:function(item){
 		if(item.id != globalSelectId){
 			try{
-				Ext.getCmp(item.id).setText('<font style="font-size : 12px !important;color:#828282;margin-left: 24px !important;">☆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+item.title+'</font>');
+				Ext.getCmp(item.id).setText('<font style="font-size : 12px !important;color:#EEEEEE;margin-left: 24px !important;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆&nbsp;&nbsp;&nbsp;'+item.title+'</font>');
 			}catch(e){
 				alert(e.message);
 			}
@@ -2045,7 +2202,7 @@ Ext.define('ncViewer.App', {
 	changeOnOver:function(item){	
 		if(item.id != globalSelectId){
 			try{
-				Ext.getCmp(item.id).setText('<font style="font-size : 12px !important;color:#328BE4;margin-left: 24px !important;">★&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+item.title+'</font>');
+				Ext.getCmp(item.id).setText('<font style="font-size : 12px !important;color:#A9FF96;margin-left: 24px !important;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆&nbsp;&nbsp;&nbsp;'+item.title+'</font>');
 			}catch (e) {
 				alert(e.message);
 			}

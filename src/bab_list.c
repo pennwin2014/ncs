@@ -126,30 +126,30 @@ int reOrganizePointList(s_eachpoint* pFirstNode)
         pNextNode = pNode->pNext;
         if(!pNextNode)
             return 0;
-        printf("next stime=%llu, current stime=%llu", pNextNode->starttime, pNode->starttime);
+        //printf("next stime=%llu, current stime=%llu", pNextNode->starttime, pNode->starttime);
         if(pNextNode->starttime - pNode->starttime < 3600)
         {
             if(strcmp(pNextNode->servicecode, pNode->servicecode) == 0)
             {
-            	printf(",合并\n");
+            	//printf(",合并\n");
 				if(pNextNode->starttime>pNode->endtime)
                 	pNode->endtime = pNextNode->starttime;
                 pNode->pNext = pNextNode->pNext;
                 free(pNextNode);
                 continue;
             }else{
-				printf(",场所切换不合并\n");
-				printf("my etime=%llu, next stime=%llu\n", pNode->endtime, pNextNode->starttime);
+				//printf(",场所切换不合并\n");
+				//printf("my etime=%llu, next stime=%llu\n", pNode->endtime, pNextNode->starttime);
 				pNode->endtime = pNextNode->starttime;
 				
 			}
         }
         else
         {
-            printf(",不合并\n");
+            //printf(",不合并\n");
 			if(pNode->endtime>pNextNode->starttime)
 			{
-				printf("but etime=%llu, next stime=%llu\n", pNode->endtime, pNextNode->starttime);
+				//printf("but etime=%llu, next stime=%llu\n", pNode->endtime, pNextNode->starttime);
 				pNode->endtime = pNextNode->starttime;				
 			}
         }

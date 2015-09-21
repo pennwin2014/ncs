@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<title>搜索结果</title>
+    <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css" />     
+	<script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+    <style>
+		.tbPlace{
+			width:100%;
+			height:100%;
+			font-size:11pt;
+		}
+	</style>
+	<script>
+		function clickServicecode(s){
+			alert(s);
+		}
+		function clickPlace(s){
+			alert(s);
+		}
+		function doInsertTable()
+		{
+			var tb = document.getElementById("tbPlace");
+			var data = parent.macGlobalCtx.getPlaceData();
+			var rowsNum;
+			var row;
+			var cell0;
+			var cell1;
+			for(i in data){
+				rowsNum = tb.length;
+				row = tb.insertRow(rowsNum-1);
+				cell0 = row.insertCell(0);
+				cell0.innerHTML = data[i].username;
+				cell1 = row.insertCell(1);
+				cell1.innerHTML =data[i].dispname;
+			}
+			rowsNum = tb.length;
+			row = tb.insertRow(rowsNum-1);
+			cell0 = row.insertCell(0);
+			cell0.innerHTML = "<h2>servicecode</h2>";
+			cell1 = row.insertCell(1);
+			cell1.innerHTML = "<h2>场所名</h2>";
+			//$('#table1 tbody').append('<tr><td>5</td></tr>');
+			init();			
+		}
+		
+		function highlightKeyword(value, p, record){
+			var mKeyword = parent.searchKeyword.toUpperCase();
+			var mValue = value.toUpperCase();
+			var str = Ext.String.format('<a style="color:red")">{0}</a>', mKeyword);
+			var valueIndex = mValue.indexOf(mKeyword);
+			var value1 = mValue.substr(0, valueIndex);
+			var value2 = mValue.substr(valueIndex+mKeyword.length, mValue.length - valueIndex-mKeyword.length);
+			return value1+str+value2;
+		}	
+		Ext.Loader.setConfig({enabled: true});
+		Ext.Loader.setPath('Ext.ux', '/newver/ux/');
+		Ext.require([
+			'Ext.form.*',
+			'Ext.window.*',
+			'Ext.grid.*',
+			'Ext.data.*',
+			'Ext.util.*',
+			'Ext.window.MessageBox',
+			'Ext.toolbar.Paging',
+			'Ext.ux.PreviewPlugin',
+			'Ext.tree.*'
+		]);
+		Ext.onReady(function(){
+			Ext.tip.QuickTipManager.init();
+			doInsertTable();
+		});
+
+		function init(){
+			
+			var trs=document.getElementsByTagName('TR');
+			for(var i=0;i<trs.length;i++){
+				trs[i].onclick=doclick;
+				trs[i].onmouseover=doover;
+				trs[i].onmouseout=doout;
+				trs[i].style.cursor="pointer";
+			}
+				
+			
+			/*
+			var tds = document.getElementsByTagName('td');
+			for(var i=0;i<tds.length;i++){
+				tds[i].onclick=doclick;
+				tds[i].style.cursor="pointer";
+			}*/
+				
+		}
+		function doout(){
+			this.style.background="";
+			//this.style.color="black";
+		}
+		function doover(){
+			//this.style.color="red";
+			this.style.background="url(/images/mac/menu_bk/bkN_second.png)";
+		}
+
+		function doclick(){
+			parent.macGlobalCtx.setPlaceName(this.childNodes[0].innerHTML);
+			parent.jumpToDestPage("id_infoquery_place","");
+		}
+		
+	</script>
+</head>
+<body>
+	<table id="tbPlace" class="tbPlace" border="2">
+
+	</table>
+</body>
+</html>

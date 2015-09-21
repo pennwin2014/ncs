@@ -75,6 +75,7 @@ function setGlobalUserName(name){
 			store: store_corp,
 			autoScroll: true,
 			border:false,
+			scroll:true,
 			forceFit: true,
 			rootVisible: true,
 	   //     width: 110,
