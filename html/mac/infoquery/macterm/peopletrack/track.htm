@@ -449,10 +449,10 @@ function getLocalTime(tm) {
         });
         
         try{
-						mac_value = parent.getGlobalInfoMac(); 	 						 					
+						mac_value = parent.macGlobalCtx.getGlobalInfoMac(); 	 						 					
 						
 				}catch(e){
-						mac_value = parent.parent.getGlobalInfoMac(); 	 	
+						mac_value = parent.parent.macGlobalCtx.getGlobalInfoMac(); 	 	
 	 					
 				}
 

@@ -22,9 +22,6 @@ var g_macGroupInfo = [];
 /* 函数：获取后台数据--MAC组标签、MAC组描述 */
 function getMacGroupInfo(){
 
-	//获取 parent 对象中输入框的内容(mac地址)
-	var macValue = parent.Ext.getCmp('keyword_mobileaccount').value;	 
-		
 	Ext.Ajax.request({			
 		url: '/pronline/Msg?FunName@ncsMacLog_ChosenMac_GetMacGroupInfo', 
 		method: 'GET',		
@@ -82,7 +79,7 @@ function selectMacGroup(){
 	/* MAC分组 */
 	var labelgroup = new Ext.form.Label({
 		text: 'MAC分组：',
-		style: 'font-size: 20px',
+		style: 'font-size: 15px',
     x: 80,
 		y: 20  
 	});
@@ -128,7 +125,7 @@ function selectMacGroup(){
 	/* MAC组描述 */
 	var labeldescribe = new Ext.form.Label({
 		text: '分组描述：',
-		style: 'font-size: 20px',
+		style: 'font-size: 16px',
     x: 80,
 		y: 140  
 	});
@@ -166,14 +163,14 @@ function selectMacGroup(){
 				modelsCbx = Ext.getCmp('grouplabel');
 				modelsCbx.clearValue();
 				modelsCbx.setValue(this.getValue());	
-				Ext.getCmp('id_btnsubmit').setDisabled(false);			
+				Ext.getCmp('id_btnsubmit').setDisabled(false);	
 			}
 		}
   });
 		 
 	//提交按钮
 	var btnsubmit = new Ext.Button({
-		text:'<font style="font-size: 25px; color: black;">提交</font>',
+		text:'<font style=" color: black;">提交</font>',
 		scale:'large',				
 		disabled: true,
 		id:'id_btnsubmit',
@@ -214,11 +211,8 @@ function joinMacGroup(){
 	}
 	//alert(macInfo);
 				
-	macGroupId += g_macGroupInfo[0][0];		
-				
-	//alert(macGroupId);
-	
-	//return;
+	macGroupId += g_macGroupInfo[0][0];						
+		
 	Ext.Ajax.request({			
 		url: '/pronline/Msg?FunName@ncsMacLog_ChosenMac_JoinMacGroup&mac@' 
 					+ macInfo + '&groupid@' + macGroupId, 

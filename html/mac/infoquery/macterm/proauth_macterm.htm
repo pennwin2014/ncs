@@ -4,10 +4,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
   <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css">
   <script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
- <script type="text/javascript" src="/newver/resources/locale/ext-lang-zh_CN.js"></script>
-  <script type="text/javascript" src="app.js"></script>
+	<script type="text/javascript" src="/newver/resources/locale/ext-lang-zh_CN.js"></script>
+	
+	 	
+ 	<script type="text/javascript" src="/mac/infoquery/macterm/app/zeroclipboard/ZeroClipboard.js" ></script>
+ 	
+  <script type="text/javascript" src="app.js"></script> 
+  
+  <!-- 工具条第一行区域、场所下拉树菜单 -->
+  <script type="text/javascript" src="areaTree.js"></script>
+    
 
-    <style type="text/css">
+  <style type="text/css">
         .icon-grid {
             background-image:url(/newver/resources/themes/images/share/grid.png) !important;
         }
@@ -26,34 +34,40 @@
         .accept {
             background-image:url(/newver/resources/themes/images/share/accept.png) !important;
         }
-		.exportimg {
+				.exportimg {
             background-image:url(/newver/resources/themes/images/share/exportimg.png) !important;
         }
 		
-		.renyuanguiji {
+				.renyuanguiji {
             background-image:url(/newver/resources/themes/images/share/renyuanguiji.png) !important;
         }
-		.tezhengfenxi {
+				.tezhengfenxi {
             background-image:url(/newver/resources/themes/images/share/tezhengfenxi.png) !important;
         }
-		.shenfenchakan {
+				.shenfenchakan {
             background-image:url(/newver/resources/themes/images/share/shenfenchakan.png) !important;
         }
-		.jiarufenzu {
+				.jiarufenzu {
             background-image:url(/newver/resources/themes/images/share/jiarufenzu.png) !important;
         }
+    		.electricmap {
+            background-image:url(/newver/resources/themes/images/share/maps.png) !important;
+        }  
+        .relateid {
+            background-image:url(/newver/resources/themes/images/share/user.png) !important;
+        }  
 		
      .x-tab-default-top button, .x-tab-default-top.x-tab-inner {
 		  height: 16px !important;
 		  line-height: 16px;
 	    }
 
-    </style>
+  </style>
 <style type="text/css">   
-   .x-selectable, .x-selectable * {   
-    -moz-user-select: text!important;   
+	.x-selectable, .x-selectable * {   
+  	-moz-user-select: text!important;   
     -khtml-user-select: text!important;   
-}   
+	}   
 </style>
   
   
@@ -68,6 +82,8 @@
        proauthRzAuthlog.controller.Procy.loadProcyListStore();
        proauthRzAuthlog.controller.Procy.setTitle(parent.dxtitle);
     }
+        
+    
   </script>
 </head>
 <body>

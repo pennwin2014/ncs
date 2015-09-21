@@ -28,10 +28,10 @@ var g_chart = [];
 function drawchart(){
 	var mac_value = "";
 	try{
-		mac_value = parent.getGlobalInfoMac(); 
+		mac_value = parent.macGlobalCtx.getGlobalInfoMac(); 
 	}
 	catch(e){
-		mac_value = parent.parent.getGlobalInfoMac(); 
+		mac_value = parent.parent.macGlobalCtx.getGlobalInfoMac(); 
 	}
 	
 	chart = new Highcharts.Chart({	
@@ -111,17 +111,16 @@ function GetDrawData(){
 	var mac_value = "";
 	var time_flag = "";
 	try{
-		mac_value = parent.getGlobalInfoMac(); 
-	 	time_flag = parent.getGlobalInfoTime();
+		mac_value = parent.macGlobalCtx.getGlobalInfoMac(); 
+	 	time_flag = parent.macGlobalCtx.getGlobalInfoTime();
 	 	parent.showWaitDialog();	
 	}catch(e){
-		mac_value = parent.parent.getGlobalInfoMac(); 
-	 	time_flag = parent.parent.getGlobalInfoTime();
+		mac_value = parent.parent.macGlobalCtx.getGlobalInfoMac(); 
+	 	time_flag = parent.parent.macGlobalCtx.getGlobalInfoTime();
 	 	parent.parent.showWaitDialog();	
 	}
 
-
-
+	
 	Ext.Ajax.request({		
 					
 		url: '/pronline/Msg?FunName@ncsMacLog_ChosenMac_PlaceOftenCount&timevalue@' + time_flag + '&mac@' + mac_value, 
@@ -182,10 +181,10 @@ Ext.onReady(function(){
 </head>
 <body>
    
-  <!-- <div id="mygrid" style = "position:absolute; top:0px; left:670px" ></div> -->
+  <!-- <div id="mygrid" style = "position:absolute; top:0px; left:670px" ></div> -->  
+  <!-- <div id="container" style = "width:850px; height:450px" ></div>  -->
   
-  <div id="container" style = "width:850px; height:450px" ></div>
-
+  <div id="container" style = "width: parent.parent.grid_width/5,; parent.parent.grid_height/5" ></div>
   
 <!-- <script src="/mac/infoquery/place/checkgraph/js/highcharts.js"></script>
 <script src="/mac/infoquery/place/checkgraph/js/highcharts-more.js"></script>

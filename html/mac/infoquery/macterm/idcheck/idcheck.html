@@ -23,9 +23,9 @@ function getDrawData(){
 	
 	var mac_value = "";
 	try{
-		mac_value = parent.getGlobalInfoMac(); 
+		mac_value = parent.macGlobalCtx.getGlobalInfoMac(); 
 	}catch(e){
-		mac_value = parent.parent.getGlobalInfoMac(); 
+		mac_value = parent.parent.macGlobalCtx.getGlobalInfoMac(); 
 	}
 	
 	Ext.Ajax.request({			
@@ -68,16 +68,14 @@ function showMACPersonInfo(){
 	var vstore = new Ext.data.ArrayStore({data:data, fields:["idtype", "idcontent"]});
     var mygrid = new Ext.grid.GridPanel({
 				store: vstore,
-				frame: true,
-				width: 950,
-				height: 480,								
-				//left: 200px,
-				columnLines: true,	
-				autoScroll:true,
+				//frame: true,
+				width: '100%',
+				height: 900,												
+				columnLines: true,					
 				//style: 'margin-left:105px ',	
 				renderTo: 'mygrid',
-				columns:[{header: "虚拟身份类型", dataIndex: "idtype", width:450},
-						 {header: "上网认证账号", dataIndex: "idcontent", width:460 
+				columns:[{header: "虚拟身份类型", dataIndex: "idtype", width: parent.parent.grid_width/4},
+						 {header: "上网认证账号", dataIndex: "idcontent", width: parent.parent.grid_width/4 
 						 }
 						]			
 

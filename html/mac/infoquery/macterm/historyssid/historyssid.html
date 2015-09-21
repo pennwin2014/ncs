@@ -87,14 +87,13 @@ function showMACPersonInfo(){
     var mygrid = new Ext.grid.GridPanel({
 				store: vstore,
 				frame: true,
-				width: 950,
-				height: 480,								
+				width: '100%',
+				height: 900,								
 				//left: 200px,
-				columnLines: true,	
-				autoScroll:true,				
+				columnLines: true,								
 				renderTo: 'mygrid',
-				columns:[{header: "接入热点ssid", dataIndex: "idssid", width:450},
-						 {header: "场所名称", dataIndex: "idservicename", width:460 
+				columns:[{header: "接入热点ssid", dataIndex: "idssid", width: parent.parent.grid_width/4},
+						 {header: "场所名称", dataIndex: "idservicename", width: parent.parent.grid_width/4
 						 }
 						]			
 
