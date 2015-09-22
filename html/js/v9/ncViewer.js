@@ -25,6 +25,39 @@ var DEFAULT_SEARCH_TEXT = "MAC/手机号/场所名称";
 		return fmt;
 	}
 */
+function getAlarmNum(){
+		var currentRealAlarms =0;
+		var ApAlarmCount =0;
+		var record;
+		Ext.Ajax.request({     
+						url: '/pronline/Msg?FunName@macFrontPageLeftBlocks&groupid@1&askApAlarmCount@1',  
+						method: 'GET',
+						success: function(res,opts) {   
+
+							try{
+								var resRecord = res.responseText;
+								record = eval("("+resRecord+")");	//字符串转成结构体	
+								currentRealAlarms = record.currentRealAlarms;
+								ApAlarmCount = record.ApAlarmCount;
+								
+								document.getElementById('alarm1').innerHTML = "<font color=red>"+currentRealAlarms+"&nbsp;</font>";
+								document.getElementById('alarm2').innerHTML = "<font color=red>"+ApAlarmCount+"&nbsp;</font>";
+							}catch(error){
+								console.log(error.message);
+							}						
+
+						},   
+
+						failure: function(resp,opts) {   
+
+							var respText = eval("("+respText+")");
+
+							alert('错误', respText.error);   
+
+						}   				 
+
+		});		
+	}
 function f_MacGlobalContext(){
 //私有变量
 	this.id_operation_status = -1;
@@ -191,6 +224,36 @@ function f_MacGlobalContext(){
 		if(""!=this.sqlWindow)
 			this.sqlWindow.hide();
 	}
+	
+	this.getAlarmNum = function(){
+		var currentRealAlarms =0;
+		var ApAlarmCount =0;
+		var record;
+		Ext.Ajax.Request({
+			url: '/pronline/Msg?FunName@macFrontPageLeftBlocks&groupid@1&askApAlarmCount@1',  
+			method:'GET',
+			success:function(res,opt){
+				try{
+					var resRecord = res.responseText;
+					record = eval("("+resRecord+")");	//字符串转成结构体	
+					currentRealAlarms = record.currentRealAlarms;
+					ApAlarmCount = record.ApAlarmCount;
+					
+					document.getElementById('alarm1').innerHTML = "<font color=red>"+currentRealAlarms+"</font>";
+					document.getElementById('alarm2').innerHTML = "<font color=red>"+ApAlarmCount+"</font>";
+				}catch(error){
+					console.log(error.message);
+				}
+			},
+			failure:function(error){
+				console.log(error.message);
+			}
+		})
+	}
+	
+	this.startAlarmBeat = function(){
+		setInterval("getAlarmNum()", 5000);
+	}
 }
 
     var sellAction = Ext.create('Ext.Action', {
@@ -217,6 +280,7 @@ function f_MacGlobalContext(){
             buyAction            
         ]
     });
+
 var macGlobalCtx = new f_MacGlobalContext(); 
 function isInFocus(itmid){
 	var tabs_center=Ext.getCmp("layout_center");
@@ -953,7 +1017,8 @@ Ext.define('ncViewer.App', {
             },
             items: [this.createNcTb(),this.createNcLeft(),this.createNcCenter(),this.createNcStatus()]
         });
-       
+		//开启获取警告进程
+		macGlobalCtx.startAlarmBeat();
         this.callParent(arguments);
         
     },
@@ -2133,20 +2198,21 @@ Ext.define('ncViewer.App', {
         items: [{
 				xtype:'button',
 				text:'',
-				html:'&nbsp;<img src="/images/mac/alarm3.png" style="margin:0 0px 0 0px;" width="15" height="15"/><a id = "alarm3"></a>',
+				html:'&nbsp;<img src="/images/mac/alarm3.png" style="margin:0 0px 0 0px;" width="15" height="15"/><b id = "alarm3">--</b>',
 				handler:function(){
 				}
 			},{
 				xtype:'button',
 				text:'',
-				html:'&nbsp;<img src="/images/mac/alarm2.jpg" style="margin:0 0px 0 0px;" width="15" height="15"/><a id = "alarm2"></a>',
+				html:'&nbsp;<img src="/images/mac/alarm2.jpg" style="margin:0 0px 0 0px;" width="15" height="15"/><b id = "alarm2">---</b>',
 				handler:function(){
 				}
 			},{
 				xtype:'button',
 				text:'',
-				html:'&nbsp;<img src="/images/mac/alarm1.jpg" style="margin:0 0px 0 0px;" width="15" height="15"/><a id = "alarm1"></a>',
+				html:'&nbsp;<img src="/images/mac/alarm1.jpg" style="margin:0 0px 0 0px;" width="15" height="15"/><b id = "alarm1">---</b>',
 				handler:function(){
+					
 				}
 			},{
 				xtype: 'button',
@@ -2369,31 +2435,9 @@ Ext.define('ncViewer.App', {
 });
 
 
-setInterval("getAlarmNum()", 50000);
-function getAlarmNum(){
-	var ClientAlarmNum =0;
-	var ApAlarmNum =0;
-	var record;
-	Ext.Ajax.Request({
-		url: '/pronline/Msg?FunName@getAlarmNum', 
-		method:'GET',
-		success:function(res,opt){
-			try{
-				var resRecord = res.responseText();
-				record = eval("("+resRecord+")");	//字符串转成结构体	
-				ClientAlarmNum = record.ClientAlarmNum;
-				ApAlarmNum = record.ApAlarmNum;
-				document.getElementById('alarm1').innerHTML = "<font color=red"+ApAlarmNum+"</font>";
-				document.getElementById('alarm2').innerHTML = "<font color=red"+ApAlarmNum+"</font>";
-			}catch(error){
-				
-			}
-		},
-		failure:function(){
-			
-		}
-	})
-}
+
+
+
 
 
 

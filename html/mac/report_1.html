@@ -143,13 +143,8 @@ html,body{
 <script>
 
 	function doOnResize(){
-
 		var ph = parent.window.innerHeight ? parent.window.innerHeight : parent.document.body.clientHeight;
-
 		$(".main_content").height(ph-131);
-		
-			
-
 	}
 
 /*
@@ -169,53 +164,36 @@ html,body{
 */
 
 	var chart1;
-
 	var chart2;
-
 	var chart3;
-
 	var chart4;
-
 	var chart5;
-
 	var chart6;
 	var chart7;
 	var chart8;
 
 	function doSth(mac){
-
 		alert("get mac="+mac);
-
 	}
 
 	
 
 	function getRandom(n){
-
 		return Math.floor(Math.random()*n+1);
-
 	}
 
 		
 
 	function setChartData2(online_number, total_number){
-
 		if(total_number == 0){
-
 			total_number = 2;
-
 			online_number = 1;
-
 		}
 
 		var data = [];
-
 		data.push({x:0, y:online_number, name:'在线'});
-
-		data.push({x:1, y:(total_number-online_number), name:'离线'});		
-
+		data.push({x:1, y:(total_number-online_number), name:'离线'});	
 		chart2.series[0].setData(data);
-
 	}
 
     
@@ -223,84 +201,49 @@ html,body{
 
 
 	function createChart2(){
-
 	    chart2 = new Highcharts.Chart({ 
-
 	        chart: { 
-
 	            type: 'pie',
-
 	            renderTo: 'container2'  
-
 	        }, 
-
 	        exporting:{
-
 	            enabled:false
-
 	        },
-
 	        credits: {
-
 	            enabled: false
-
 	        },
             colors:['#03999a','#CCCCCC'],
 	        title: { 
-
 	            text: '' 
-
 	        }, 
-
 	        plotOptions: {
-
 	            pie: {
-
 	                allowPointSelect: true,
-
 	                cursor: 'pointer',
 	                events: {
 	                    click: function (event) {
 	                        parent.macGlobalCtx.setIdOperationStatus(event.point.x);
 	                        jumpToDetail('id_operation_equipment');
-	                    }
-                        
+	                    }                        
 					},
-
 					dataLabels: {
 						enabled: true,
 						format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-
 						style: {
-
 							color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-
 						}
-
 					}
-
 				}
-
 			},
-
 			tooltip: {
-
 				pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-
 			},
-
 			series: [{
-
 				type: 'pie',
-
 				name: '比例',
-
 				data: []
-
 			}]
-
 		}); 
-
 	}
 
 	
@@ -310,79 +253,44 @@ html,body{
 	
 
 	function setRangeDataByType(tChart, reqType){
-
 		if(!parent.isInFocus("itm_frontPage")){
-
 			return;
-
 		}
 
-		Ext.Ajax.request({     
-
+		Ext.Ajax.request({    
 			url: '/pronline/Msg?FunName@macFrontPageRange&groupid=1&range_type='+reqType,  
-
 			method: 'GET',
-
-			success: function(resp,opts) {   
-
+			success: function(resp,opts) {  
 				try{
-
 					var respText = resp.responseText; 
-
 					var respRecord = eval("("+respText+")");
-
 					var tmpData = [];
-
 					var colNum = 0;
-
 					var colValue = 0;
-
 					var sumCount = parseFloat(respRecord.sumCount);
-
 					for(var i in respRecord.data){
-
 						colNum = parseInt(respRecord.data[i].collect_number);
-
 						colValue = respRecord.data[i].collect_name;
-
 						if((reqType == 'factory')||(reqType == 'warn')){
-
 							tmpData.push({x:i, y:colNum, name:colValue});
-
 						}else{
-
 							tmpData.push({x:i, y:(Math.round(colNum*10000.0/sumCount)/100), name:colValue});
-
 						}
-
 					}
 
 					if(tmpData.length == 0){
-
 						tmpData.push({x:0, y:0, name:"无数据"});
-
 					}
-
 					tChart.series[0].setData(tmpData);	
-
 				}catch(e){
-
 					//console.log(e.message);
-
-				}
-
-						
-
+				}				
 			},   
 
 			failure: function(resp,opts) {   
-
 				var respText = eval("("+respText+")");
-
 				alert('错误', respText.error);   
-
 			}   				 
-
 		});
 
 	}
@@ -390,33 +298,25 @@ html,body{
 	
 
 	function getChartData3(){
-
 		setRangeDataByType(chart3, 'service');	
-
 	}
 
 	
 
 	function getChartData4(){
-
 		setRangeDataByType(chart4, 'factory');
-
 	}
 
 	
 
 	function getChartData5(){
-
 		setRangeDataByType(chart5, 'device');
-
 	}
 
 	
 
 	function getChartData6(){
-
 		setRangeDataByType(chart6, 'warn');
-
 	}
 	
 	function getChartData7(){
@@ -437,74 +337,43 @@ html,body{
 	
 
 	function getStdValue(str){
-
 		var totalLen = str.length;
-
 		var resultStr = str;
-
 		if(totalLen > 5){
-
 			resultStr = str.substr(0, 5)+"..";
-
 		}
-
 		return resultStr;
-
 	}
 
 	
 
 	function createChart3(){
-
 		chart3 = new Highcharts.Chart({ 
-      colors: ['#4f9094', '#bb4b3c', '#009899', '#fb8f35', '#514a44'],
-			chart: { 
-      
+		colors: ['#4f9094', '#bb4b3c', '#009899', '#fb8f35', '#514a44'],
+			chart: {       
 				type: 'column',
-
-				renderTo: 'container3'  
-
+				renderTo: 'container3'
 			}, 
 			exporting:{
-
                 enabled:false
-
             },
-
 			credits: {
-
 				enabled:false
-
 			},
-
 			title: { 
-
 				text: '' 
-
 			}, 
-
 			subtitle: {
-
 				text: ''
-
 			},
-
 			plotOptions: {
-
 				bar: {
-
 					dataLabels: {
-
 						enabled: true
-
 					},
-
 					enableMouseTracking: false
-
 				},
-
 				series: {
-
                     borderWidth: 0,
                     events: {
                         click: function (event) {
@@ -513,97 +382,51 @@ html,body{
                         }
                     },
                     dataLabels: {
-
                         enabled: true,
-
                         format: '{point.y:.1f}%'
-
                     }
-
                 }
-
 			},
-
 			xAxis: { 
-
 				type: 'category',
-
 				labels: { 
-
 					//rotation: -45,
-
 					formatter: function() { 
-
 						return getStdValue(this.value);
-
 					} 
-
 				} 
-
 			}, 
-
 			yAxis: { 
-
 				title: { 
-
 					text: '来源百分比前5'
-
 					/*
-
 					text: '<b>'+'来源百分比前5'+'</b>',
-
 						style: {
-
 							color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-
 						}	
-
 					*/
-
 				}, 
-
 				min: 0 
-
 			}, 
-
 			tooltip: { 
-
 			//这种模式下，每点的tooltip单独显示 
-
 				shared: false, 
-
 				formatter: function() { 
-
 					var s = '<b>'+ this.point.name +'</b>'+'<br/>   占'+this.point.y +'%<br/>'; 
-
 					return s; 
-
 				} 
-
 			}, 
-
 			legend: {
-
 				enabled: false
-
 			},
-
 			series: [{ 
-
 				name: '场所采集排行', 
-
 				colorByPoint: true,
-
 				data: [] 
-
 			}] 
-
 		}); 
-
 		getChartData3();
-
 		setInterval("getChartData3()", 50000);
-
 	}
 
 	
@@ -611,101 +434,57 @@ html,body{
 	
 
 	function createChart5(){
-
 		chart5 = new Highcharts.Chart({ 
 		colors: ['#4f9094', '#bb4b3c', '#009899', '#fb8f35', '#514a44'],
 			chart: { 
-
 				type: 'column',
-
 				renderTo: 'container5'  
-
 			}, 
-
 			exporting:{
-
                 enabled:false
-
             },
-
 			credits: {
-
 				enabled:false
-
 			},
-
 			title: { 
-
 				text: '' 
-
 			}, 
-
 			subtitle: {
-
 				text: ''
-
 			},
-
 			plotOptions: {
-
 				bar: {
-
 					dataLabels: {
-
 						enabled: true
-
-					},
-			
+					},			
 					enableMouseTracking: false
-
 				},
-
 				series: {
-
                     borderWidth: 0,
                     events: {
                         click: function (event) {
                             parent.macGlobalCtx.setIdOperationStatus(event.point.name);
                             jumpToDetail('id_operation_equipment');
                         }
-
                     },
                     dataLabels: {
-
                         enabled: true,
-
                         format: '{point.y:.1f}%'
-
                     }
-
                 }
-
 			},
-
 			xAxis: { 
-
 				type: 'category',
-
 				labels: { 
-
 					//rotation: -45,
-
 					formatter: function() { 
-
 						return getStdValue(this.value);
-
 					} 
-
 				} 
-
 			}, 
-
 			yAxis: { 
-
 				title: { 
-
 					text: '来源百分比前5'
-
 				/*
 
 						text: '<b>'+'来源百分比前5'+'</b>',
@@ -717,463 +496,246 @@ html,body{
 						}
 
 				*/
-
 				}, 
-
 				min: 0 
-
 			}, 
-
 			tooltip: { 
-
 			//这种模式下，每点的tooltip单独显示 
-
 				shared: false, 
-
 				formatter: function() { 
-
 					var s = '<b>'+ this.point.name +'</b>'+'<br/>   占'+this.point.y +'%<br/>'; 
-
 					return s; 
-
 				} 
-
 			}, 
-
 			legend: {
-
 				enabled: false
-
 			},
-
 			series: [{ 
-
 				name: '设备采集排行', 
-
 				colorByPoint: true,
-
 				data: [ ] 
-
 			}] 
-
 		}); 
-
 		getChartData5();
-
 		setInterval("getChartData5()", 10000);
-
 	}
 
 	function createChart7(){
-
 		chart7 = new Highcharts.Chart({ 
 			colors: ['#4f9094', '#bb4b3c', '#009899', '#fb8f35', '#514a44'],
 			chart: { 
-
 				type: 'column',
-
 				renderTo: 'container7'  
-
 			}, 
-
 			exporting:{
-
                 enabled:false
-
             },
-
 			credits: {
-
 				enabled:false
-
 			},
-
 			title: { 
-
 				text: '' 
-
 			}, 
-
 			subtitle: {
-
 				text: ''
-
 			},
-
 			plotOptions: {
-
 				bar: {
-
 					dataLabels: {
-
 						enabled: true
-
-					},
-			
+					},			
 					enableMouseTracking: false
-
 				},
-
 				series: {
-
                     borderWidth: 0,
                     events: {
                         click: function (event) {
                         }
-
                     },
                     dataLabels: {
-
                         enabled: true,
-
                         format: '{point.y:.1f}%'
-
                     }
-
                 }
-
 			},
-
 			xAxis: { 
-
 				type: 'category',
-
 				labels: { 
-
 					//rotation: -45,
-
 					formatter: function() { 
-
 						return getStdValue(this.value);
-
 					} 
-
 				} 
-
 			}, 
-
 			yAxis: { 
-
 				title: { 
-
 					text: '来源百分比前5'
 				}, 
-
 				min: 0 
-
 			}, 
-
 			tooltip: { 
-
 			//这种模式下，每点的tooltip单独显示 
-
-				shared: false, 
-
+				shared: false,
 				formatter: function() { 
-
 					var s = '<b>'+ this.point.name +'</b>'+'<br/>   占'+this.point.y +'%<br/>'; 
-
 					return s; 
-
 				} 
-
 			}, 
-
 			legend: {
-
 				enabled: false
-
 			},
-
 			series: [{ 
-
 				name: '安全厂商在线率统计', 
-
 				colorByPoint: true,
-
 				data: [ ] 
-
 			}] 
-
 		}); 
-
 		getChartData7();
-
 		setInterval("getChartData7()", 10000);
-
 	}
 
 	function createChart8(){
-
 		chart8 = new Highcharts.Chart({ 
 			colors: ['#4f9094', '#bb4b3c', '#009899', '#fb8f35', '#514a44'],
 			chart: { 
-
 				type: 'column',
-
 				renderTo: 'container8'  
-
 			}, 
-
 			exporting:{
-
                 enabled:false
-
             },
-
 			credits: {
-
 				enabled:false
-
 			},
-
 			title: { 
-
 				text: '' 
-
 			}, 
-
 			subtitle: {
-
 				text: ''
-
 			},
-
 			plotOptions: {
-
 				bar: {
-
 					dataLabels: {
-
 						enabled: true
-
-					},
-			
+					},			
 					enableMouseTracking: false
-
 				},
-
 				series: {
-
                     borderWidth: 0,
                     events: {
                         click: function (event) {
                         }
-
                     },
                     dataLabels: {
-
                         enabled: true,
-
                         format: '{point.y:.1f}%'
-
                     }
-
                 }
-
 			},
-
 			xAxis: { 
-
 				type: 'category',
-
 				labels: { 
-
 					//rotation: -45,
-
 					formatter: function() { 
-
 						return getStdValue(this.value);
-
 					} 
-
 				} 
-
 			}, 
-
 			yAxis: { 
-
 				title: { 
-
 					text: '来源百分比前5'
 				}, 
-
 				min: 0 
-
 			}, 
-
 			tooltip: { 
-
 			//这种模式下，每点的tooltip单独显示 
-
 				shared: false, 
-
 				formatter: function() { 
-
 					var s = '<b>'+ this.point.name +'</b>'+'<br/>   占'+this.point.y +'%<br/>'; 
-
 					return s; 
-
 				} 
-
 			}, 
-
 			legend: {
-
 				enabled: false
-
 			},
-
 			series: [{ 
-
 				name: '安全厂商采集率统计', 
-
 				colorByPoint: true,
-
 				data: [ ] 
-
 			}] 
-
 		}); 
-
 		getChartData8();
-
 		setInterval("getChartData8()", 10000);
-
 	}
 
 	function createChart4(){
-
 		chart4 = new Highcharts.Chart({ 
-     colors: ['#008AA4'],
-			chart: { 
-       
+		colors: ['#008AA4'],
+			chart: {        
 				type: 'column',
-
 				renderTo: 'container4'  
-
 			}, 
-
 			title: { 
-
 				text: '' 
-
 			},
-
 			exporting:{
-
                 enabled:false
-
             },
-
 			credits: {
-
 				enabled:false
-
 			},			
-
 			subtitle: {
-
 				text: ''
-
 			},
-
 			plotOptions: {
-
 				bar: {
-
 					dataLabels: {
-
 						enabled: true
-
 					},
-
 					enableMouseTracking: false
-
 				},
-
 				series: {
-
                     borderWidth: 0,
-
                     dataLabels: {
-
                         enabled: true,
-
                         format: '{point.y}'
-
                     }
-
                 }
-
 			},
-
 			xAxis: { 
-
 				type: 'category',
-
 				labels: { 
-
 					//rotation: -45,
-
 					formatter: function() { 
-
 						var s = getStdValue(this.value);
-
 						return s;
-
 					} 
-
 				} 
-
 			}, 
-
 			yAxis: { 
-
 				title: { 
-
 					text: '设备数量' 
-
 				}, 
-
 				min: 0 
-
 			}, 
-
 			tooltip: { 
-
 			//这种模式下，每点的tooltip单独显示 
-
 				shared: false, 
-
 				formatter: function() { 
-
 					var s = '<b>'+ this.point.name +'</b>'+'<br/>   有'+this.point.y +'个<br/>'; 
-
 					return s; 
-
 				} 
-
 			}, 
-
 			legend: {
-
 				enabled: false
-
 			},
 			series: [{ 
 				colorByPoint: true,
-
 				data: [] 
-
 			}] 
-
 		}); 
-
 		getChartData4();
-
 		setInterval("getChartData4()", 10000);
-
 	}
 
 	
@@ -1443,9 +1005,7 @@ html,body{
 			}, 
 
 			exporting:{
-
                 enabled:false
-
             },
 
 			credits: {

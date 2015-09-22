@@ -32,16 +32,23 @@ int dataMiningFun(utShmHead * psShmHead);
 int procap_myaccount_setfun(utShmHead * psShmHead);
 int procapAlarmSetFun(utShmHead * psShmHead);
 int procapImportSetFun(utShmHead *psShmHead);
+int procapAuditSetFun(utShmHead * psShmHead);
+int procapOfflineSetFun(utShmHead * psShmHead);
+
+
+
 int procapWeb001Fun(utShmHead * psShmHead)
 {
     int iReturn;
-	iReturn = procapAlarmSetFun(psShmHead);
-	iReturn = procapFrontpageSetFun(psShmHead);
-	iReturn = procapWeb001Fun_infoquery(psShmHead);
-	iReturn = dataMiningFun(psShmHead);
-	iReturn = procap_myaccount_setfun(psShmHead);
-	iReturn =procapAlarmSetFun_L(psShmHead);
-	iReturn =procapImportSetFun(psShmHead);
+    iReturn = procapAlarmSetFun(psShmHead);
+    iReturn = procapFrontpageSetFun(psShmHead);
+    iReturn = procapWeb001Fun_infoquery(psShmHead);
+    iReturn = dataMiningFun(psShmHead);
+    iReturn = procap_myaccount_setfun(psShmHead);
+    iReturn = procapAlarmSetFun_L(psShmHead);
+    iReturn = procapImportSetFun(psShmHead);
+    iReturn = procapAuditSetFun(psShmHead);
+	iReturn = procapOfflineSetFun(psShmHead);
     return 0;
 
 }
