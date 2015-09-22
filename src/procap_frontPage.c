@@ -1130,9 +1130,65 @@ int macFrontPageLeftBlocks(utShmHead *psShmHead, int iFd, utMsgHead *psMsgHead)
     strcpy(caServicecodes, getServicecodesByDids(psShmHead, getDsGroupids()));
 
     printf("caServicecodes=[%s]\n", caServicecodes);
-
-    iReturn = utMsgGetSomeNVar(psMsgHead, 1,
-                               "groupid",  UT_TYPE_STRING, sizeof(groupid) - 1, groupid);
+	char askApAlarmCount[2] ="";
+    iReturn = utMsgGetSomeNVar(psMsgHead, 2,
+                               "groupid",  UT_TYPE_STRING, sizeof(groupid) - 1, groupid,
+							   "askApAlarmCount",UT_TYPE_STRING,sizeof(askApAlarmCount)-1,askApAlarmCount);
+	if(strcmp(askApAlarmCount,"1")==0)
+	{
+		//获取设备离线告警数量:			
+		long iApAlarmCount = 0;	
+		unsigned char* pHash=NULL;
+		ncApSrvOnline *psDevOnline;
+		pasHashInfo sHashInfo;
+		long lTime=0;
+		long  maxTimeoutSeconds = utComGetVar_ld(psShmHead, "MaxTimeoutSecs", MAX_TIMEOUT_SECONDS);
+		
+		pHash = utShmHashHead(psShmHead, NC_LNK_APSRVONLINE);
+		if(pHash == NULL)
+		{
+			printf("NC_LNK_APSRVONLINE Memory Error \n");
+			return (-1);
+		}
+		lTime = time(0);
+		psDevOnline = (ncApSrvOnline *)pasHashFirst(pHash, &sHashInfo);
+		while(psDevOnline)
+		{
+			if(lTime - psDevOnline->lasttime > maxTimeoutSeconds)
+			{
+				//离线设备
+				iApAlarmCount++;
+			}
+			else
+			{
+				//在线设备
+			}
+			psDevOnline = (ncApSrvOnline *)pasHashNextS(&sHashInfo);
+		}
+		utPltPutVarF(psDbHead,"ApAlarmCount","%lu",iApAlarmCount);
+		
+		//当前实时离线告警数量
+		memset(sql, 0, sizeof(sql));	
+		if(strlen(caGroupSql) > 0)
+		{
+			snprintf(sql, sizeof(sql), "select count(*) from (select description from ncsuser,nctermsysalarm where ncsuser.username=nctermsysalarm.description and  alarmcode='10007' and status=0 and %s) as aa", getDsGroupcodeSql("description"));
+		}
+		else
+		{
+			snprintf(sql, sizeof(sql), "select count(*) from (select description from ncsuser,nctermsysalarm where ncsuser.username=nctermsysalarm.description and  alarmcode='10007' and status=0) as aa");
+			
+		}
+	
+		iReturn = pasDbOneRecord(sql, 0, UT_TYPE_LONG, 4, &currentRealAlarms);
+		utPltPutVarF(psDbHead,"currentRealAlarms","%lu",currentRealAlarms);
+		utPltPutVar(psDbHead, "result", "0");
+        utPltOutToHtml(iFd, psMsgHead, psDbHead, "mac/frontPage/leftBlock.htm");
+		printf("&groupid@1&askApAlarmCount@1...........\n");
+		return -1;
+	}
+	else
+	{
+		
     //在线终端数
     onlineTerms = getMacOnlineCount(psShmHead, caServicecodes);
     //1、根据当前年月生成表名
@@ -1237,7 +1293,8 @@ int macFrontPageLeftBlocks(utShmHead *psShmHead, int iFd, utMsgHead *psMsgHead)
         utPltOutToHtml(iFd, psMsgHead, psDbHead, "mac/frontPage/leftBlock.htm");
         return -1;
     }
-    //设备离线告警数量
+   
+   //设备离线告警数量
     long iApAlarmCount = 0;
     // unsigned char* pHash = NULL;
     ncApSrvOnline *psDevOnline;
@@ -1267,6 +1324,8 @@ int macFrontPageLeftBlocks(utShmHead *psShmHead, int iFd, utMsgHead *psMsgHead)
         psDevOnline = (ncApSrvOnline *)pasHashNextS(&sHashInfo);
     }
     utPltPutVarF(psDbHead, "ApAlarmCount", "%lu", iApAlarmCount);
+	
+	
     //布控告警待处理数
     memset(sql, 0, sizeof(sql));
     /*
@@ -1363,6 +1422,7 @@ int macFrontPageLeftBlocks(utShmHead *psShmHead, int iFd, utMsgHead *psMsgHead)
     utPltPutVarF(psDbHead, "illegalSpots", "%lu", illegalSpots);
     utPltPutVarF(psDbHead, "totalSpots", "%lu", totalSpots);
     utPltOutToHtml(iFd, psMsgHead, psDbHead, "mac/frontPage/leftBlock.htm");
+	}
     return 0;
 }
 

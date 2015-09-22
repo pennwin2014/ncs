@@ -71,28 +71,6 @@ html,body{
 	}
 	var downLoadFile="";
 	function doExport(){
-	/*
-		Ext.Ajax.request({     
-			url: '/pronline/Msg?FunName@downloadSqlResult&filename@'+downLoadFile,  
-			method: 'GET',
-			success: function(resp,opts) {   
-				try{
-					var respText = resp.responseText; 
-					alert(respText);
-					var respRecord = eval("("+respText+")");
-					
-					document.getElementById("btnExport").disabled=true;
-					showHintMsg("导出成功!!");	
-				}catch(e){
-					//console.log(e.message);
-				}		
-			},   
-			failure: function(resp,opts) {   
-				var respText = eval("("+respText+")");
-				alert('错误', respText.error);   
-			}   				 
-		});	
-		*/
 		document.getElementById("i_filename").value = downLoadFile;
 		document.getElementById("formDownload").submit();
 		document.getElementById("btnExport").disabled=true;
@@ -107,11 +85,13 @@ html,body{
 		mySql += " where " + document.getElementById("i_where").value;
 		mySql += " order by " + document.getElementById("i_order").value;
 		mySql += " limit " + document.getElementById("i_limit").value;
+		parent.showWaitDialog();
 		Ext.Ajax.request({     
 			url: '/pronline/Msg?FunName@doUserSql&sql@'+mySql,  
 			method: 'GET',
 			success: function(resp,opts) {   
 				try{
+					parent.closeWaitDialog();
 					var respText = resp.responseText; 
 					var respRecord = eval("("+respText+")");
 					downLoadFile = respRecord.filename;
