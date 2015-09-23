@@ -239,8 +239,8 @@ function f_MacGlobalContext(){
 					currentRealAlarms = record.currentRealAlarms;
 					ApAlarmCount = record.ApAlarmCount;
 					
-					document.getElementById('alarm1').innerHTML = "<font color=red>"+currentRealAlarms+"</font>";
-					document.getElementById('alarm2').innerHTML = "<font color=red>"+ApAlarmCount+"</font>";
+					document.getElementById('alarm1').innerHTML = "<font color=red>"+currentRealAlarms+"&nbsp;</font>";
+					document.getElementById('alarm2').innerHTML = "<font color=red>"+ApAlarmCount+"&nbsp;</font>";
 				}catch(error){
 					console.log(error.message);
 				}
@@ -1872,7 +1872,7 @@ Ext.define('ncViewer.App', {
 				},{
 					xtype : 'button',
 					//iconCls: "mi_systemset", 
-					cls:"bkmenun_id_systemset", 
+					cls:"bkmenun_id_audit", 
 					//bodyStyle: 'background:#F0F3F8;',
 					//style: 'border-radius:0;background:#D5DDF0; margin:1px 0 0px 0px;',
 					text : '<font style="font-size : 14px !important;color:#42D5C9;margin:13px 0 0 60px !important;">上网审计</font>',
@@ -1922,7 +1922,7 @@ Ext.define('ncViewer.App', {
 					cls:"bkmenun_id_systemset", 
 					//bodyStyle: 'background:#F0F3F8;',
 					//style: 'border-radius:0;background:#D5DDF0; margin:1px 0 0px 0px;',
-					text : '<font style="font-size : 14px !important;color:#42D5C9;margin:13px 0 0 60px !important;">系统配置</font>',
+					text : '<font style="font-size : 14px !important;color:#42D5C9;margin:13px 0 0 60px !important;">系统管理</font>',
 					id : 'id_systemset',
 					itemid : 'itm_systemset',
 					menustatus:0,
@@ -2198,21 +2198,22 @@ Ext.define('ncViewer.App', {
         items: [{
 				xtype:'button',
 				text:'',
-				html:'&nbsp;<img src="/images/mac/alarm3.png" style="margin:0 0px 0 0px;" width="15" height="15"/><b id = "alarm3">--</b>',
+				html:'&nbsp;<img src="/images/mac/alarm3.png" style="margin:0 0px 0 0px;" width="15" height="15"/>消息通知：<b id = "alarm3">0</b>',
 				handler:function(){
 				}
 			},{
 				xtype:'button',
 				text:'',
-				html:'&nbsp;<img src="/images/mac/alarm2.jpg" style="margin:0 0px 0 0px;" width="15" height="15"/><b id = "alarm2">---</b>',
+				html:'&nbsp;<img src="/images/mac/alarm2.png" style="margin:0 0px 0 0px;" width="15" height="15"/>设备告警总数：<b id = "alarm2"> 0</b>',
 				handler:function(){
+					jumpToDestPage("id_systemset_alarm");
 				}
 			},{
 				xtype:'button',
 				text:'',
-				html:'&nbsp;<img src="/images/mac/alarm1.jpg" style="margin:0 0px 0 0px;" width="15" height="15"/><b id = "alarm1">---</b>',
+				html:'&nbsp;<img src="/images/mac/alarm1.png" style="margin:0 0px 0 0px;" width="15" height="15"/>场所告警总数：<b id = "alarm1">0</b>',
 				handler:function(){
-					
+					jumpToDestPage("id_systemset_alarm");
 				}
 			},{
 				xtype: 'button',
