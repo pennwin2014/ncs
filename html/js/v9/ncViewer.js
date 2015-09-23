@@ -1442,26 +1442,21 @@ Ext.define('ncViewer.App', {
     	self.location='/pronline/Msg?FunName@proauthExit';
     },
     onItemReflash:function(){
-          var fp=Ext.create('Ext.FormPanel');
-               fp.form.doAction('submit',{
-               url:'/pronline/Msg',
-                method:'POST',
-                waitMsg:'正在重新加载配置, 请稍候...', 
-				        waitTitle:'提示', 
-               params:{FunName:'ncsSysReflesh_v4'},
-                 
-                success:function(form,action){ 
-           					Ext.Msg.alert('操作',"加载完成!");
-                 },
-             		 failure:function(form,action){        		 
-                    Ext.Msg.alert('操作',"系统正忙,稍候重试!");
-                   
-            		 }
-                }
-             )
-					  
-	//				    loadFn('win-button', 'win-statusbar');
-    
+        var fp=Ext.create('Ext.FormPanel');
+        fp.form.doAction('submit',{
+				url:'/pronline/Msg',
+				method:'POST',
+				waitMsg:'正在重新加载配置, 请稍候...', 
+				waitTitle:'提示', 
+				params:{FunName:'ncsSysReflesh_v9'}, 
+				success:function(form,action){ 
+					Ext.Msg.alert('操作',"加载完成!");
+				},
+				failure:function(form,action){        		 
+					Ext.Msg.alert('操作',"系统正忙,稍候重试!");   
+				}
+            });
+	//	loadFn('win-button', 'win-statusbar');    
     },
 	createNcLeft:function(){  
 		var leftMenu=Ext.create(Ext.panel.Panel, {
@@ -2431,7 +2426,7 @@ Ext.define('ncViewer.App', {
   
     },
     refreshComTree: function(){
-      Ext.getCmp('treeBtn').fireEvent('click');
+		Ext.getCmp('treeBtn').fireEvent('click');
     }
 });
 

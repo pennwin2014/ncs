@@ -2175,7 +2175,7 @@ int ncsStatMacDevWarn(utShmHead *psShmHead)
             for(i = 0; i < lSumUser; i++)
             {
                 psOnline = (ncsOnline *)ncsUtlGetOnlineById(psShmHead, psClient[i].userid);
-                if(!isInOnlinePlaceMemory(psShmHead, psClient[i].username))     
+                if(!isInOnlinePlaceMemory(psShmHead, psClient[i].username))
                 {
                     //printf("%s is offline\n", psClient[i].username);
                     memset(&tmpPlaceData, 0, sizeof(tmpPlaceData));
@@ -2201,8 +2201,8 @@ int ncsStatMacDevWarn(utShmHead *psShmHead)
                         {
                             iCount++;
                         }
-                        printf("===============iCount=%d\n", iCount);
-                        if(iCount > psTasklim->countlimit)      
+                        // printf("===============iCount=%d\n", iCount);
+                        if(iCount > psTasklim->countlimit)
                         {
                             //插入 ncscasemacwarnlog
                             char caDispname[255] = "";
@@ -2285,10 +2285,10 @@ int ncsStatMacDevWarn(utShmHead *psShmHead)
         iReturn = pasDbFetchInto(pCur, UT_TYPE_STRING, sizeof(caDescription) - 1, caDescription,
                                  UT_TYPE_STRING, sizeof(caDevType) - 1, caDevType,
                                  UT_TYPE_LONG, 4, &alarmtime);
-        printf("===1111111111111===iReturn====%d\n", iReturn); //..
+        // printf("===1111111111111===iReturn====%d\n", iReturn); //..
         while(iReturn == 0 || iReturn == 1405)
         {
-        	printf("caDescription=%s\n", caDescription);
+            //printf("caDescription=%s\n", caDescription);
             psTask = (struct s_alarmtask *)pasLHashLookA(pHash_alarm, caDescription);
             if(psTask)
             {
@@ -2312,26 +2312,26 @@ int ncsStatMacDevWarn(utShmHead *psShmHead)
         {
             if(isInOnlinePlaceMemory(psShmHead, psTask->caDescription))
             {
-            	memset(sql, 0, sizeof(sql));
-				snprintf(sql, sizeof(sql)-1, "select count(*) from nctermsysalarm where alarmcode='10008' and description='%s'", psTask->caDescription);
+                memset(sql, 0, sizeof(sql));
+                snprintf(sql, sizeof(sql) - 1, "select count(*) from nctermsysalarm where alarmcode='10008' and description='%s'", psTask->caDescription);
                 int iRes = pasDbOneRecord(sql, 0, UT_TYPE_LONG, 4, &icount);
-				printf("sql=%s,icount=%lu\n", sql, icount);
+                //printf("sql=%s,icount=%lu\n", sql, icount);
                 if(iRes)
                 {
-                	memset(sql, 0, sizeof(sql));
+                    memset(sql, 0, sizeof(sql));
                     if(icount == 0)
                     {
-                        snprintf(sql, sizeof(sql)-1, "insert into nctermsysalarm(description,alarmcode,devtype,status,alarmlevel,alarmtime,updatetime)"
-                                      "values('%s','10008','%s','1','3','%llu','%llu')",
-                                      psTask->caDescription, psTask->caDevType, psTask->alarmtime, time(0));
+                        snprintf(sql, sizeof(sql) - 1, "insert into nctermsysalarm(description,alarmcode,devtype,status,alarmlevel,alarmtime,updatetime)"
+                                 "values('%s','10008','%s','1','3','%llu','%llu')",
+                                 psTask->caDescription, psTask->caDevType, psTask->alarmtime, time(0));
                     }
                     else
                     {
-                    	snprintf(sql, sizeof(sql)-1, "update nctermsysalarm set alarmlevel='3',updatetime='%llu',status='1' where description='%s' and alarmcode='10008'", time(0), psTask->caDescription);
+                        snprintf(sql, sizeof(sql) - 1, "update nctermsysalarm set alarmlevel='3',updatetime='%llu',status='1' where description='%s' and alarmcode='10008'", time(0), psTask->caDescription);
                     }
-					printf("excute sql=%s\n", sql);
-					pasDbExecSqlF(sql);
-					
+                    //printf("excute sql=%s\n", sql);
+                    pasDbExecSqlF(sql);
+
                 }
             }
             else
@@ -2339,10 +2339,8 @@ int ncsStatMacDevWarn(utShmHead *psShmHead)
             }
             psTask = (struct s_alarmtask*)pasLHashNext(&sHashInfoTask);
         }
-		if(pHash_alarm)
-        	free(pHash_alarm);
-		printf("before init pHash\n");
-
+        if(pHash_alarm)
+            free(pHash_alarm);
         //查出离线设备插入告警表
         pHash = utShmHashHead(psShmHead, NC_LNK_APSRVONLINE);
         if(pHash == NULL)
@@ -2350,7 +2348,6 @@ int ncsStatMacDevWarn(utShmHead *psShmHead)
             printf("NC_LNK_APSRVONLINE Memory Error \n");
             return (-1);
         }
-		printf("after init pHash\n");
         lTime = time(0);
         psDevOnline = (ncApSrvOnline *)pasHashFirst(pHash, &sHashInfo);
         while(psDevOnline)
@@ -2368,10 +2365,10 @@ int ncsStatMacDevWarn(utShmHead *psShmHead)
                 tmpPlaceData.alarmtime = lTime;
                 insertOperationAlarmToDB(&tmpPlaceData);
             }
-            printf("in while\n");
+            // printf("in while\n");
             psDevOnline = (ncApSrvOnline *)pasHashNextS(&sHashInfo);
         }
-		printf("完成一次任务，休息60s\n");
+        //printf("完成一次任务，休息60s\n");
         sleep(60);
 
     }
@@ -4278,6 +4275,31 @@ int downloadSqlResult(utShmHead *psShmHead, int iFd, utMsgHead *psMsgHead)
     utPltFileDownload(iFd, "application/text", caPath, caFileName, caFileName);
     return 0;
 }
+//系统刷新
+int ncsSysReflesh_v9(utShmHead *psShmHead, int iFd, utMsgHead *psMsgHead)
+{
+    utPltDbHead *psDbHead;
+    int iReturn;
+
+    utMsgPrintMsg(psMsgHead);
+    psDbHead = utPltInitDb();
+
+    iReturn = 0;
+    if(iReturn == 0)
+    {
+        utPltPutVar(psDbHead, "mesg", "true");
+    }
+    else
+    {
+        utPltPutVar(psDbHead, "mesg", "false");
+    }
+
+    utPltOutToHtml(iFd, psMsgHead, psDbHead, "v4/ncs_msg.htm");
+    iReturn = ncsResetSystem(psShmHead);
+    iReturn = ncUtlFileServerReset(psShmHead);
+    return 0;
+}
+
 
 
 
@@ -4301,7 +4323,7 @@ int procapFrontpageSetFun(utShmHead * psShmHead)
     iReturn = pasSetTcpFunName("getSqlQueryTableList", getSqlQueryTableList, 0);
     iReturn = pasSetTcpFunName("doUserSql", doUserSql, 0);
     iReturn = pasSetTcpFunName("downloadSqlResult", downloadSqlResult, 0);
-
+    iReturn = pasSetTcpFunName("ncsSysReflesh_v9", ncsSysReflesh_v9, 0);
     return 0;
 }
 

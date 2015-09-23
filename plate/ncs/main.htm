@@ -574,7 +574,7 @@
 		'Ext.grid.*',
 		'Ext.data.*',
 		'Ext.tree.*',
-		 'Ext.panel.*',
+		'Ext.panel.*',
 		'Ext.toolbar.*',
 		'Ext.button.*',
 		'Ext.selection.*',
@@ -616,32 +616,30 @@
         win.show(); 
 	} 
           
-      function _showmapinfo(obj,title,store,record,apname,sdate_cx,edate_cx,stime_cx,etime_cx,field8)
-    	{
+    function _showmapinfo(obj,title,store,record,apname,sdate_cx,edate_cx,stime_cx,etime_cx,field8)
+    {
 
-         	var win = Ext.create(obj,{
-					        title: title,
-					        field1: store,
-					        field2:record,
-					        field3:apname,
-					        field4:sdate_cx,
-					        field5:edate_cx,
-					        field6:stime_cx,
-					        field7:etime_cx,
-					        field8:field8,
-							    layout:'fit',
-							    viewConfig:{
-								  forceFit:true,
-								  scrollOffset:0
+     	var win = Ext.create(obj,{
+				        title: title,
+				        field1: store,
+				        field2:record,
+				        field3:apname,
+				        field4:sdate_cx,
+				        field5:edate_cx,
+				        field6:stime_cx,
+				        field7:etime_cx,
+				        field8:field8,
+						    layout:'fit',
+						    viewConfig:{
+							  forceFit:true,
+							  scrollOffset:0
 							}		
-		        });
-		  
-				
-			      win.showAt(200,50); 	
-
-        
-    	}           
-        
+					});
+	  
+			
+		win.showAt(200,50);    
+    }           
+    
     var store_status;    	
     var fptest = Ext.create('Ext.FormPanel', { 
 
@@ -709,7 +707,7 @@
 
                  
            		}
-        })
+        });
           
 	}
    
@@ -719,44 +717,43 @@
         ncapp = new ncViewer.App();
         setInterval('testright()',20000);
 		store_status=Ext.create('Ext.data.Store', 
-		{
-			pageSize: 40,  
-			fields: ['licuser', 'zccompute','psn','onuser','nwversion'],
-        	autoLoad:true,
-        	proxy: 
-        	{
-				type: 'ajax',
-       			url: '/pronline/Msg?FunName@lan_showstatus',
-        		reader: {
-                	type:'json',
-                	root: 'eimdata',
-					totalProperty: 'totalCount'
-            	},         
-            	simpleSortMode: true
-        	},
-			listeners:{
-				'load':function(){  
-					store_status.each(function(record){  
-						var cpsn=record.get('psn');  
-						var licuser=record.get('licuser');
-						var zccompute=record.get('zccompute');
-						var onuser=record.get('onuser');
-						var nwversion=record.get('nwversion');
-						var temp_status='&nbsp;&nbsp;产品序列号：'+'<font color=red>'+cpsn+'</font>';
-						temp_status=temp_status+'&nbsp;&nbsp;版本号：'+'<font color=red>'+ 'V1.6'+'</font>';
-						var sb=Ext.getCmp('statusbar');
-						sb.setStatus({
-							text:temp_status,
-							iconCls:'',
-							clear:false
-						});     	     
-					});
-				}
-			} 
-		});
+			{
+				pageSize: 40,  
+				fields: ['licuser', 'zccompute','psn','onuser','nwversion'],
+				autoLoad:true,
+				proxy: 
+				{
+					type: 'ajax',
+					url: '/pronline/Msg?FunName@lan_showstatus',
+					reader: {
+						type:'json',
+						root: 'eimdata',
+						totalProperty: 'totalCount'
+					},         
+					simpleSortMode: true
+				},
+				listeners:{
+					'load':function(){  
+						store_status.each(function(record){  
+							var cpsn=record.get('psn');  
+							var licuser=record.get('licuser');
+							var zccompute=record.get('zccompute');
+							var onuser=record.get('onuser');
+							var nwversion=record.get('nwversion');
+							var temp_status='&nbsp;&nbsp;产品序列号：'+'<font color=red>'+cpsn+'</font>';
+							temp_status=temp_status+'&nbsp;&nbsp;版本号：'+'<font color=red>'+ 'V1.6'+'</font>';
+							var sb=Ext.getCmp('statusbar');
+							sb.setStatus({
+								text:temp_status,
+								iconCls:'',
+								clear:false
+							});     	     
+						});
+					}
+				} 
+			});
         grid_height=Ext.getCmp('layout_center').getHeight()-56;
         grid_width=Ext.getCmp('layout_center').getWidth()-56;
-    
     });
 </script>
 

@@ -311,7 +311,7 @@ html,body{
 
 	function setRangeDataByType(tChart, reqType){
 
-		if(!parent.isInFocus("itm_frontPage")){
+		if(!parent.macGlobalCtx.isInFocus("itm_frontPage")){
 
 			return;
 
@@ -1816,38 +1816,28 @@ html,body{
 	
 
 	function charthide(tabid){
-
 		var mySpan = $("#right"+tabid).find('span');//.toggle();	
-
 		if(mySpan.css("display")=="block"){
-
 			mySpan.css("display","none");
-
 		}
-
 		else{
-
 			mySpan.css("display","block");
-
-		}	
-
-		
-
+		}
 		var id = "hchart"+tabid;
-
 		$("#"+id).animate({
-
-            height:'toggle' 	 
-
-		});				
-
+            height:'toggle' 
+		});
+		/*
+		var divcss ={ "position":"relative","background-color":"#FFF","border": "solid 1px #00B1F1", "width":"98%","height":"220px","margin-top":"20px","border-radius":"0px 0px 15px 15px"};
+		$("#"+id).css(divcss);
+		*/
 	}
 
 	
 
 	function showbg(tid){
 
-		var divcss ={ "background-color":"#BEBEBE","color":"#FFF"}
+		var divcss ={ "background-color":"#BEBEBE","color":"#FFF"};
 
 		$("#right"+tid).css(divcss);		
 
@@ -1857,7 +1847,7 @@ html,body{
 
 	function hidebg(tid){
 
-		var divcss1 = { "background-color":"#F0F3F8","color":"#000"}
+		var divcss1 = { "background-color":"#F0F3F8","color":"#000"};
 
 		$("#right"+tid).css(divcss1);	
 
@@ -1866,57 +1856,33 @@ html,body{
 		
 
 	function selectlist(tid){	
-
 		var mySpan = $("#right"+tid).find('span');//.toggle();	
-
 		if(mySpan.css("display")=="block"){
-
 			mySpan.css("display","none");
-
 		}
-
 		else{
-
 			mySpan.css("display","block");
-
 		}	
-
 	//	$("#right"+tid).find('span').toggle();
-
 		var id = "hchart"+tid;
-
 		$("#"+id).animate({
-
-             height:'toggle' 	 
-
+             height:'toggle' 
 		});
-
 	}	
 
 		
 
 	function selectmode(tid){
-
 		//$("#left"+tid).find('span').toggle();
-
 		var mySpan = $("#left"+tid).find('span');//.toggle();	
-
 		if(mySpan.css("display")=="block"){
-
 			mySpan.css("display","none");
-
 		}
-
 		else{
-
 			mySpan.css("display","block");
-
 		}	
-
 		$("#info_"+tid).animate({
-
              height:'toggle' 
-
     	});
 
 	}	
@@ -1928,15 +1894,10 @@ html,body{
 	}
 
 	function focusBlock(tid){
-
 		var txtop = $("#info_"+tid).css('top');
-
 		var txleft = $("#info_"+tid).css('left');
-
 		$("#info_"+tid).css("top", -5);
-
 		$("#info_"+tid).css("left", 5); 
-		//alert("1");
 		var html ="";
 		var target="";
 		switch(tid){
@@ -1988,16 +1949,12 @@ html,body{
 	}
 
 	function unfocusBlock(tid){
-
 		var txtop = $("#info_"+tid).css('top');
-
 		var txleft = $("#info_"+tid).css('left');
-
 		$("#info_"+tid).css("top", 0);
-
 		$("#info_"+tid).css("left", 0); 
-
 	}
+	
 	function openmap()
 	{
 		var  win = new Ext.Window({  
@@ -2005,13 +1962,12 @@ html,body{
                 width: 700,  
                 height: 500,  
                 modal:true,
-                closeAction:'hide',
-               
+                closeAction:'hide',               
                 resizable: false,
                 html:'<iframe id="new_list" name="new_list" src="/mac/showPlace.htm" scrolling="no" width=700 height=500 FrameBorder=0 ></iframe>' 
 
             });  
-			win .show();
+		win .show();
 	}
 
 </script>
@@ -2025,55 +1981,30 @@ html,body{
 
 
 	<div class="device_main">
-
 		<div class="main_content">
-
 			<div class="main_left">
-
 				<div class="info_block" id="info_0" onclick="jumpToDetail('id_infoquery_id')" onmouseover="focusBlock(0)" onmouseout="unfocusBlock(0)" style="cursor:hand;cursor: pointer;background-color:#FAEFF3;">
-
 					<img class="info_logo" src="/images/mac/chart/logo0.png"/>
-
 					<span class="info_text_single" id="id_info01">在线数:</span>		
-
 					<span class="info_number_single" id="id_number01">500</span>
-
-			<!--		<span class="info_title">在线终端统计</span>				-->			
-
+			<!--		<span class="info_title">在线终端统计</span>				-->		
 				</div>
-
 				<div class="info_block" id="info_1" onmouseover="focusBlock(1)" onmouseout="unfocusBlock(1)" style="cursor:hand;cursor: pointer;background-color:#ECEDE8;">
-
 					<img class="info_logo" src="/images/mac/chart/logo1.png"/>
-
 			<!--		<span class="info_title">MAC库统计</span>		-->
-
 					<span class="info_text_first" id="id_info11">今日新增数:</span>
-
 					<span class="info_number_first" id="id_number11" style="color:#FF8000">100</span>
-
 					<span class="info_text_second" id="id_info12">采集总数:</span>
-
 					<span class="info_number_second" id="id_number12" style="color:#FF8000">1000</span>
-
 				</div>
-
 				<div class="info_block" id="info_2" onmouseover="focusBlock(2)" onmouseout="unfocusBlock(2)" style="cursor:hand;cursor: pointer;background-color:#DDF0EE;">
-
 					<img class="info_logo" src="/images/mac/chart/logo2.png"/>
-
 			<!--		<span class="info_title">设备安装统计</span>		-->
-
 					<span class="info_text_first" id="id_info21" >在线设备数:</span>
-
 					<span class="info_number_first" id="id_number21" style="color:#007F00">100</span>
-
 					<span class="info_text_second" id="id_info22" >总数:</span>
-
 					<span class="info_number_second" id="id_number22" style="color:#007F00">1000</span>
-
 				</div>	
-
 				<div class="info_block" id="info_3" onmouseover="focusBlock(3)" onmouseout="unfocusBlock(3)" style="cursor:hand;cursor: pointer;background-color:#EAE1F7;display:none;">
 
 					<img class="info_logo" src="/images/mac/chart/logo3.png"/>
