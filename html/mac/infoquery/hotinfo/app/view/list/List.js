@@ -295,7 +295,13 @@ Ext.define('proauthRzAuthlog.view.list.List1', {
   	}    	  	
 	},
 	'-',
-	{			
+	{
+		id:'keyword_mobileaccount',
+		title:'',
+		xtype:'label',
+        html:'<input id="id_keyword_mobileaccount" type="text" value="请输入热点名称"/>'
+	},	
+	/*{			
     xtype:'textfield',
     id:'keyword_mobileaccount',
     width:160,
@@ -314,7 +320,7 @@ Ext.define('proauthRzAuthlog.view.list.List1', {
              }
          }
     }
-  },
+  },*/
   '-',
   {
     text:'查询',

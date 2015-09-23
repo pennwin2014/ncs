@@ -1,17 +1,19 @@
 <html>
 <head>
-  <link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css">
-  <script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
+	<link rel="stylesheet" type="text/css" href="/newver/resources/css/ext-all.css">
+	<script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
 	<!-- <script type="text/javascript" src="/newver/resources/locale/ext-lang-zh_CN.js"></script> -->
-  <script type="text/javascript" src="app.js"></script>
-  <script type="text/javascript" src="areaTree.js"></script>
-
+	<script type="text/javascript" src="app.js"></script>
+	<script type="text/javascript" src="areaTree.js"></script>
     <style type="text/css">
-		.x-form-field-my, .pickerButton{
+		.x-form-field, .pickerButton{
 			background: url("/newver/resources/themes/images/share/add.gif") no-repeat !important;
 			width:100px;
 			height:25px;
 			border: 0 !important;
+		}
+		.x-form-trigger{
+			background: url("/newver/resources/themes/images/share/add.gif") no-repeat !important;
 		}
         .icon-grid {
             background-image:url(/newver/resources/themes/images/share/grid.png) !important;
@@ -31,16 +33,16 @@
         .accept {
             background-image:url(/newver/resources/themes/images/share/accept.png) !important;
         }
-				.exportimg {
+		.exportimg {
             background-image:url(/newver/resources/themes/images/share/exportimg.png) !important;
         }
-				.hege {
+		.hege {
             background-image:url(/newver/resources/themes/images/share/hege.png) !important;
         }
-				.buhege {
+		.buhege {
             background-image:url(/newver/resources/themes/images/share/buhege.png) !important;
         }
-				.maps {
+		.maps {
             background-image:url(/newver/resources/themes/images/share/maps.png) !important;
         }
         .jiarufenzu {
@@ -48,53 +50,47 @@
         }
         .electricmap {
             background-image:url(/newver/resources/themes/images/share/maps.png) !important;
-        }
-		
-     .x-tab-default-top button, .x-tab-default-top.x-tab-inner {
-		  height: 16px !important;
-		  line-height: 16px;
+        }		
+		.x-tab-default-top button, .x-tab-default-top.x-tab-inner {
+			height: 16px !important;
+			line-height: 16px;
 	    }
-
     </style>
-<style type="text/css">   
-   .x-selectable, .x-selectable * {   
-    -moz-user-select: text!important;   
-    -khtml-user-select: text!important;   
-}   
-</style>
+	<style type="text/css">   
+		.x-selectable, .x-selectable * {   
+			-moz-user-select: text!important;   
+			-khtml-user-select: text!important;   
+		}   
+	</style>
   
   
-  <script>
+	<script>
   
-    function SetPage(){
+		function SetPage(){
 
-    	proauthRzAuthlog.controller.Procy.SetPage(1);
-    }
-    function reflash(){
+			proauthRzAuthlog.controller.Procy.SetPage(1);
+		}
+		function reflash(){
 
-       proauthRzAuthlog.controller.Procy.loadProcyListStore();
-       proauthRzAuthlog.controller.Procy.setTitle(parent.dxtitle);
-    }
+		   proauthRzAuthlog.controller.Procy.loadProcyListStore();
+		   proauthRzAuthlog.controller.Procy.setTitle(parent.dxtitle);
+		}
+		
+		//网页宽度调整时，重绘去重按钮(id_distinctmac)的显示位置
+		function doOnResize(){
+			var mwidth = parent.window.innerWidth ? parent.window.innerWidth : parent.document.body.clientWidth;
+			
+			Ext.getCmp("id_distinctmac").setPosition(mwidth - 400, 0, true);
+		}
+		window.onresize=doOnResize;
     
-    //网页宽度调整时，重绘去重按钮(id_distinctmac)的显示位置
-    function doOnResize(){
-    	var mwidth = parent.window.innerWidth ? parent.window.innerWidth : parent.document.body.clientWidth;
-    	
-    	Ext.getCmp("id_distinctmac").setPosition(mwidth - 400, 0, true);
-    }
-    window.onresize=doOnResize;
-    
-  </script>
+	</script>
 </head>
 <body>
-
 	<form name="form11" id="form1" action="/pronline/Msg">
-	
-	<input type="hidden" name="FunName" 			value="ncsHotSpot_infolist_v4">
-	<input type="hidden" name="hotinfoexport" 	value="">
-	<input type="hidden" name="time_flag"			value="">
-
+		<input type="hidden" name="FunName" value="ncsHotSpot_infolist_v4">
+		<input type="hidden" name="hotinfoexport" value="">
+		<input type="hidden" name="time_flag" value="">
 	</form>	
-	
-	</body>
+</body>
 </html>

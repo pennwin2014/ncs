@@ -34,7 +34,7 @@ int procapAlarmSetFun(utShmHead * psShmHead);
 int procapImportSetFun(utShmHead *psShmHead);
 int procapAuditSetFun(utShmHead * psShmHead);
 int procapOfflineSetFun(utShmHead * psShmHead);
-
+int procapTreeSetFun(utShmHead * psShmHead);
 
 
 int procapWeb001Fun(utShmHead * psShmHead)
@@ -49,6 +49,7 @@ int procapWeb001Fun(utShmHead * psShmHead)
     iReturn = procapImportSetFun(psShmHead);
     iReturn = procapAuditSetFun(psShmHead);
 	iReturn = procapOfflineSetFun(psShmHead);
+	iReturn = procapTreeSetFun(psShmHead);
     return 0;
 
 }
