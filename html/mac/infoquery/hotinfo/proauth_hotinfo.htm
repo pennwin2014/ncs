@@ -4,8 +4,15 @@
   <script type="text/javascript" src="/newver/resources/js/ext-all.js"></script>
 	<!-- <script type="text/javascript" src="/newver/resources/locale/ext-lang-zh_CN.js"></script> -->
   <script type="text/javascript" src="app.js"></script>
+  <script type="text/javascript" src="areaTree.js"></script>
 
     <style type="text/css">
+		.x-form-field, .pickerButton{
+			background: url("/newver/resources/themes/images/share/add.gif") no-repeat !important;
+			width:100px;
+			height:25px;
+			border: 0 !important;
+		}
         .icon-grid {
             background-image:url(/newver/resources/themes/images/share/grid.png) !important;
         }
@@ -62,6 +69,15 @@
        proauthRzAuthlog.controller.Procy.loadProcyListStore();
        proauthRzAuthlog.controller.Procy.setTitle(parent.dxtitle);
     }
+    
+    //网页宽度调整时，重绘去重按钮(id_distinctmac)的显示位置
+    function doOnResize(){
+    	var mwidth = parent.window.innerWidth ? parent.window.innerWidth : parent.document.body.clientWidth;
+    	
+    	Ext.getCmp("id_distinctmac").setPosition(mwidth - 400, 0, true);
+    }
+    window.onresize=doOnResize;
+    
   </script>
 </head>
 <body>
