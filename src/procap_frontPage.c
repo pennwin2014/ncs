@@ -2175,9 +2175,9 @@ int ncsStatMacDevWarn(utShmHead *psShmHead)
             for(i = 0; i < lSumUser; i++)
             {
                 psOnline = (ncsOnline *)ncsUtlGetOnlineById(psShmHead, psClient[i].userid);
-                if(isInOnlinePlaceMemory(psShmHead, psClient[i].username))      //...........................  !!
+                if(!isInOnlinePlaceMemory(psShmHead, psClient[i].username))     
                 {
-                    //printf("%s is offline\n", psClient[i].username);//---
+                    //printf("%s is offline\n", psClient[i].username);
                     memset(&tmpPlaceData, 0, sizeof(tmpPlaceData));
                     strcpy(tmpPlaceData.alarmcode, "10007");
                     strcpy(tmpPlaceData.alarmlevel, "1");
@@ -2190,7 +2190,7 @@ int ncsStatMacDevWarn(utShmHead *psShmHead)
                 }
                 else
                 {
-                    printf("%s is online\n", psClient[i].username);
+                    //printf("%s is online\n", psClient[i].username);
                     int iCount = 0;
                     psTasklim = (struct s_ncscasetermlim*)pasLHashFirst(pHash_lim, &sHashInfoLim);
                     while(psTasklim)
@@ -2202,9 +2202,8 @@ int ncsStatMacDevWarn(utShmHead *psShmHead)
                             iCount++;
                         }
                         printf("===============iCount=%d\n", iCount);
-                        if(iCount < psTasklim->countlimit)      ///........................  >
+                        if(iCount > psTasklim->countlimit)      
                         {
-                            //-------- do
                             //插入 ncscasemacwarnlog
                             char caDispname[255] = "";
                             int iRuleId = 0;
@@ -2223,31 +2222,31 @@ int ncsStatMacDevWarn(utShmHead *psShmHead)
                             //关联ncsuser,获取dispname
                             sprintf(sql, "select dispname from ncsuser where username ='%s'", psTasklim->servicecode);
                             iReturn = pasDbOneRecord(sql, 0, UT_TYPE_STRING, sizeof(caDispname) - 1, caDispname);
-                            printf("caDispname====%s\n", caDispname);
+                            //printf("caDispname====%s\n", caDispname);
                             memset(sql, 0, sizeof(sql));
                             //ncmactermatt_if_,获取msid,日志id
                             sprintf(sql, "select sid from ncmactermatt_if_%4u%02u where servicecode ='%s'", syear, smonth, psTasklim->servicecode);
                             iReturn = pasDbOneRecord(sql, 0, UT_TYPE_LONG, 4, msid);
-                            printf("msid====%d\n", msid);
+                            //printf("msid====%d\n", msid);
                             memset(sql, 0, sizeof(sql));
 
                             //关联ncsuser,获取sid，规则id
                             sprintf(sql, "select sid from ncscasmac where macgroupid ='%lu'", psTasklim->groupid);
                             iReturn = pasDbOneRecord(sql, 0, UT_TYPE_LONG, 4, iRuleId);
                             memset(sql, 0, sizeof(sql));
-                            printf("iRuleId====%d\n", iRuleId);
+                            //printf("iRuleId====%d\n", iRuleId);
                             char caMessage[1024];
                             memset(caMessage, 0, sizeof(caMessage));
                             snprintf(caMessage + strlen(caMessage), sizeof(caMessage), "场所");
                             snprintf(caMessage + strlen(caMessage), sizeof(caMessage), "%s", caDispname);
                             snprintf(caMessage + strlen(caMessage), sizeof(caMessage), "告警数已经超过阈值");
                             snprintf(caMessage + strlen(caMessage), sizeof(caMessage), "%d", psTasklim->countlimit);
-                            printf("caMessage====%s\n", caMessage);
+                            //printf("caMessage====%s\n", caMessage);
                             // ncsuser：servicecode,dispname,
                             iReturn = pasDbExecSqlF("insert into ncscasemacwarnlog(servicecode,udisp,mac,stime,ruleid,msid,cid,message,flags) "
                                                     "values('%s','%s','%lu','%lu','%lu','%lu','%lu','%s','0')",
                                                     psTasklim->servicecode, caDispname, iCount, time(0), iRuleId, msid, psTasklim->cid, caMessage);
-                            printf("===iReturn====%d\n", iReturn);
+                            //printf("===iReturn====%d\n", iReturn);
                         }
                         psTasklim = (struct s_ncscasetermlim*)pasLHashNext(&sHashInfoLim);
                     }
@@ -2317,7 +2316,6 @@ int ncsStatMacDevWarn(utShmHead *psShmHead)
 				snprintf(sql, sizeof(sql)-1, "select count(*) from nctermsysalarm where alarmcode='10008' and description='%s'", psTask->caDescription);
                 int iRes = pasDbOneRecord(sql, 0, UT_TYPE_LONG, 4, &icount);
 				printf("sql=%s,icount=%lu\n", sql, icount);
-                //0
                 if(iRes)
                 {
                 	memset(sql, 0, sizeof(sql));
