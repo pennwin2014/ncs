@@ -1,0 +1,53 @@
+<!Doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>插件</title>
+
+    <script src='ZeroClipboard.js'></script>
+    <script>
+
+        function setCopyClip(id) 
+        { 
+            clip = new ZeroClipboard.Client(); //初始化对象  
+            ZeroClipboard.setMoviePath("ZeroClipboard.swf");
+            clip.setHandCursor( true );   //设置手型
+            var oA   = document.getElementById(id);
+            var code = oA.getAttribute('data-code');
+            clip.setText(code); 
+            clip.addEventListener('complete', function (client) {  //创建监听事件  
+            alert('复制成功!');
+            });  
+            clip.glue(id); //将flash覆盖至指定ID的DOM上  
+        }  
+
+        window.onload=function()
+        {
+            var aA = document.getElementsByTagName('a');
+            for (var i = 0; i < aA.length; i++) 
+            {
+                aA[i].onclick=function()
+                {
+                   setCopyClip(this.id)
+                }
+            }
+        }           
+</script>
+</head>
+
+<body>
+    <p class="intro">券号：BBBzc1234567A473D00051
+    <br>
+    <a href="javascript:;" class="hdl-copymemcode" id='BBBzc1234567A473D00051' data-code="BBBzc1234567A473D00051">复制券号</a>         
+    <br>使用状况：还未开始或已过期                       
+    </p>
+
+    <p class="intro">券号：AAAzc1234567A473D00051
+    <br>
+    <a href="javascript:;" class="hdl-copymemcode"  id='AAAzc1234567A473D00051' data-code="AAAzc1234567A473D00051">复制券号</a>
+    <br> 使用状况：还未开始或已过期                       
+   </p>
+</body>
+
+</html>
+

@@ -80,11 +80,22 @@ html,body{
 	function doExcute(){
 		document.getElementById("btnExport").disabled=false;
 		var mySql = "select " + document.getElementById("i_select").value;
+		var tValue = "";
 		var fromOptions = document.getElementById("i_from");
 		mySql += " from " + fromOptions.options[fromOptions.selectedIndex].text;
-		mySql += " where " + document.getElementById("i_where").value;
-		mySql += " order by " + document.getElementById("i_order").value;
-		mySql += " limit " + document.getElementById("i_limit").value;
+		//增加附属条件
+		tValue = document.getElementById("i_where").value;
+		if(tValue.length>0)
+			mySql += " where " + tValue;		
+		tValue = document.getElementById("i_order").value;
+		if(tValue.length>0)
+			mySql += " order by " + tValue;
+		tValue=document.getElementById("i_limit").value;
+		if(tValue.length>0)
+			mySql += " limit " + tValue;
+		else
+			mySql += " limit 5000";
+		console.log(mySql);
 		parent.showWaitDialog();
 		Ext.Ajax.request({     
 			url: '/pronline/Msg?FunName@doUserSql&sql@'+mySql,  
@@ -101,6 +112,7 @@ html,body{
 				}		
 			},   
 			failure: function(resp,opts) {   
+				parent.closeWaitDialog();
 				var respText = eval("("+respText+")");
 				alert('错误', respText.error);   
 			}   				 
@@ -115,19 +127,19 @@ html,body{
 	}
 	
 	Ext.Loader.setConfig({enabled: true});
-		Ext.Loader.setPath('Ext.ux', '/newver/ux/');
-		Ext.require([
-			'Ext.form.*',
-			'Ext.window.*',
-			'Ext.grid.*',
-			'Ext.data.*',
-			'Ext.util.*',
-			'Ext.window.MessageBox',
-			'Ext.toolbar.Paging',
-			'Ext.ux.PreviewPlugin',
-			'Ext.tree.*'
-		]);
-		
+	Ext.Loader.setPath('Ext.ux', '/newver/ux/');
+	Ext.require([
+		'Ext.form.*',
+		'Ext.window.*',
+		'Ext.grid.*',
+		'Ext.data.*',
+		'Ext.util.*',
+		'Ext.window.MessageBox',
+		'Ext.toolbar.Paging',
+		'Ext.ux.PreviewPlugin',
+		'Ext.tree.*'
+	]);
+	
 	function doInit(){
 		//获取默认可以查询的表列表
 		Ext.Ajax.request({     
@@ -160,6 +172,19 @@ html,body{
 		Ext.tip.QuickTipManager.init();
 		doInit();
 	});
+	function isNumber(v){
+		var reg = new RegExp("^[0-9]*$");   
+		return reg.test(v);
+	}
+	
+	function checkLimit(){
+		var iLim = document.getElementById("i_limit");
+		if(!isNumber(iLim.value))
+			iLim.value=0;
+		if(parseInt(iLim.value)>5000){
+			iLim.value = 5000;
+		}
+	}
 </script>
 
 </head>
@@ -188,7 +213,7 @@ html,body{
 	<br />
 	<div class="cls_input_div">
 		<label for="i_limit">LIMIT</label>
-		<input class="cls_input" placeholder="最大5000条" type="text" id="i_limit" value="5"/> 
+		<input class="cls_input" placeholder="最大5000条" onblur="checkLimit()" type="text" id="i_limit" value="5"/> 
 	</div>
 	<br />
 	<div class="cls_hint_area_div">
