@@ -58,7 +58,174 @@ function jmpPage(mac){
 
 }
 
-//获取时间下拉框 Text 对应的 value
+
+/* 超链接：场所名称 */
+function ghostServicename(value, p, record){
+	
+	//var str = Ext.String.format('<a href="#" style="color:blue" onclick="checkMacInfo(\'{1}\')">{0}</a>', value, value);
+	
+	var str = Ext.String.format('<a href="#" style="color:blue" onclick="(\'{1}\')">{0}</a>', value, value);	
+	return str;
+}
+
+//全局函数：点击场所名称，查看场所明细、电子地图
+function funPlaceDetail(){
+	//获取参数：
+	// FunName : ncsSysystem_alarmOne&sid@'sid'
+	// plate : /home/ncmysql/ncs/plate/normally/proauth_system_alarmOne.htm
+	
+	var value = clickRecord.data.servicename;
+	var itemRush=[];
+	var username = "";			//场所编码
+	var userDispname = "" ;		//场所名
+	var groupname = "";			//行政区域
+	var address = "";			//场所地址
+	var totalCount = 0;			//设备总数
+	var data =[] ;
+	var jyxz;					//经营性质
+	var groupcode ="";			//1->经营性、 2->非经营性、 3->无线采集前端
+	var status;					//在线、离线
+	var statuscode;				//1->在线、 2->离线
+
+	Ext.Ajax.request({
+			url: '/pronline/Msg?FunName@ncsSysystem_alarmOne&dispname@'+value, 
+			method: 'GET',
+			success: function(resp,opts) {
+				try{
+					var respRecord =  resp.responseText;
+					var record = eval("("+respRecord+")");	//字符串转成结构体	
+									
+					
+					username = record.username;
+					userDispname = record.userDispname;
+					groupname = record.groupname;
+					address = record.address;
+					groupcode = username[6];
+					
+					totalCount = record.totalCount;
+					data = record.data;
+					//判断经营性质
+					
+					switch(groupcode){
+						case "1":
+							jyxz = "经营性";
+							break;
+						case "2":
+							jyxz = "非经营性";
+							break;
+						case "3":
+							jyxz = "无线采集前端";
+							break;
+						default:
+							jyxz = "其他";
+							break;
+					}
+					if(address==""){
+						address='无';
+					}
+					
+					itemRush.push(
+						{html:'<a align="left"><b>行政区域：</b></a>' + '<a align="right">'+ groupname+'</a>'},
+						{html:'<a align="left"><b>经营性质：</b></a>' + '<a align="right">' + jyxz+'</a>'},
+						{html:'<a align="left"><b>场所名称：</b></a>' + '<a align="right">'+ userDispname+'</a>'},
+						{html:'<a align="left"><b>场所编码：</b></a>' + '<a align="right">' + username+'</a>'},
+						{html:'<a align="left"><b>场所地址：</b></a>'},{html:'<a align="left">'+address+'</a>'},
+						{html:'<a align="left"><b>关联设备列表：</b></a>'},{html:'<a align="left">'+totalCount+'</a>'}
+					);
+		
+					for( var i=0; i< totalCount; i++){
+						statuscode = data[i].statuscode;
+						if(statuscode =='1'){
+							status ='<font color=green>在线</font>';
+						}else if(statuscode =='2'){
+							status ='<font color=red>离线</font>';
+						}
+						itemRush.push({html:'<a align="left">'+data[i]['aplistDispname']+'</a>'}, 
+							{html:'<a align="left">'+status+'</a>'}
+						);
+					}
+					createDetailWin(itemRush);
+				}
+				catch(e){
+					//console.log(e.message);
+				}	
+			},   
+			failure: function(resp,opts) {   
+				var respText = eval("("+respText+")");
+				alert('错误', respText.error);   
+			}   				 
+		});
+		
+	function createDetailWin(itemRush){	
+		//创建弹窗
+		var mytable = Ext.create('Ext.panel.Panel', {
+			//title: '基础信息',
+			layout: {
+				type: 'table',
+				columns: 2,		//列数
+				tableAttrs:{
+					width:'100%'
+				}
+			},
+			defaults: {
+				bodyStyle: 'padding:5px',			
+			},
+			items:itemRush
+		});
+		
+		var mywin = Ext.create('Ext.window.Window',{
+			title:'基础信息',
+			x:parent.grid_width/5,
+		  y:parent.grid_height/5,
+		  width: parent.grid_width/2,
+			height: parent.grid_height/4,
+			autoScroll: true,  
+			resizable:false,
+			items:mytable
+		});
+		mywin.show();
+	}
+}	
+
+
+//全局函数：点击场所名称，查看电子地图
+function funElectricMap(){
+	var servicecodevalue; 						       
+	servicecodevalue = clickRecord.data.servicecode;
+	
+			
+	var paraTrack = '<iframe src="/mac/datamining/map/place.htm?servicecode=' + servicecodevalue + '" frameborder="no" style="width:100%;height:500px;"></iframe>';
+	//alert(paraTrack);
+		
+	var tabPanel = new Ext.TabPanel({           
+		frame: true,
+    layout: 'form',
+    activeTab: 0,
+    items: [{
+      html: paraTrack
+    }]
+  });
+	
+	var winPeopleTrack = Ext.widget('window', {
+    title: '电子地图',			
+    x:parent.grid_width/7,
+	  y:parent.grid_height/7,
+	  width: parent.grid_width/2,
+		height: parent.grid_height - 120,
+    resizable: false,
+    draggable:true,
+    modal:true,
+    items: tabPanel
+  });
+     
+  winPeopleTrack.show();
+
+}	
+	
+
+
+
+//功能封装：获取时间下拉框 Text 对应的 value
 function getTimeFlag(){
 	
 	var timeFlagText = Ext.getCmp('time_flag').getText(); 
@@ -175,7 +342,7 @@ Ext.define('proauthRzAuthlog.view.list.List1', {
 	{
 	 	xtype:'button',						
 		id:'id_distinctmac',
-		text:'',
+		text:'',		
 		focusCls:'',
 		handleMouseEvents:false						
 	}]
@@ -239,46 +406,45 @@ Ext.define('proauthRzAuthlog.view.list.List' ,{
       	{xtype:'label', html:'<span id="titledx"></span>'}
       ]
    	});			
-			
-		/*var sellAction = Ext.create('Ext.Action', {
-	    //iconCls   : 'maps',  
-	    text: '查看',	    
-	    handler: function() {
-	       
-	    	alert("查看信息");        
-	    }
-  	});
-    
-  	var buyAction = Ext.create('Ext.Action', {
-      //iconCls: 'buhege',
-      text: '其他',      
+		
+		/* 点击场所名称工具条：场所明细、电子地图 */
+    var placeDetail = Ext.create('Ext.Action', {
+      iconCls: 'jiarufenzu',
+      text: '场所明细',      
       handler: function() {
-         
-      	//Ext.example.msg('Buy', 'Buy ');       
-      	alert("其他信息");
+      	funPlaceDetail();        	            	
       }
     });
-
-    var contextMenu = Ext.create('Ext.menu.Menu', {
-        items: [
-            sellAction,
-            buyAction            
-        ]
+    
+    var electricMap = Ext.create('Ext.Action', {
+      iconCls: 'electricmap',
+      text: '电子地图',      
+      handler: function() {
+      	funElectricMap();       	            	
+      }
     });
     
+    //场所名称菜单选项
+    var contextServicenameMenu = Ext.create('Ext.menu.Menu', {
+        items: [
+            placeDetail,
+            electricMap           
+        ]
+    });	
+		    
     this.viewConfig = {
         stripeRows: true,
         listeners: {
             cellclick: function (table, td, cellIndex, record, tr, rowIndex, e, eOpts) {
                 e.stopEvent();
-                if(cellIndex == 2){
-                	contextMenu.showAt(e.getXY());
-                	clickRecord = record;
-                }
+                if(cellIndex == 3){
+			          	contextServicenameMenu.showAt(e.getX(), e.getY());                	
+			          	clickRecord = record;
+			          }
                 return false;
             }
         }
-   	};*/
+   	};
             
 		/* 添加复选框 */
 		var sm = Ext.create('Ext.selection.CheckboxModel',{
@@ -316,7 +482,9 @@ Ext.define('proauthRzAuthlog.view.list.List' ,{
       }},
       {header: '热点SSID', dataIndex: 'ssid', width:110, sortable: true,
 				renderer: ghostsearch},
-			{header: '场所名称', dataIndex: 'servicename', width:90},			
+			{header: '场所名称', dataIndex: 'servicename', width:90,
+				renderer: ghostServicename
+			},			
       {header: '热点频道', dataIndex: 'channel', width:70},
 			{header: '热点加密类型', dataIndex: 'security', width:80,
 		  	renderer:function(value,metaData,record){
