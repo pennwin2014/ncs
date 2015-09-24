@@ -38,15 +38,17 @@
 #define  NCS_LNK_ENDUSER     66                      /* 在线最终用户            */
 #define  NCS_LNK_DOWNCOM     67                      /* 下发命令                */
 #define  NCS_LNK_MYSTATUS    68                      /* 客户端信息                */
-#define  NCS_LNK_INDCLIENT    69                      /* 目录同步客户端信息             */
+#define  NCS_LNK_INDCLIENT    69                     /* 目录同步客户端信息             */
 #define  NCS_LNK_SMSMODEN    70                      /* 短信猫短信队列             */
 #define  NCS_LNK_SMSNO    71                         /* 新网互联手机号             */
-#define  NCS_LNK_SMSONLINE    72                  /* 短信场所发送在线信息             */
-#define  NCS_LNK_CLINTCODETOID    73                /* 场所端代码到ID   */
+#define  NCS_LNK_SMSONLINE    72                     /* 短信场所发送在线信息             */
+#define  NCS_LNK_CLINTCODETOID    73                 /* 场所端代码到ID   */
 
-#define  NCS_LNK_MACPROCYOBJ    74                /* MAC布控策略布控场所 */
-#define  NCS_LNK_BABPROCYOBJ    75                /* 伴随行为分析 */
-#define  NCS_LNK_FRONTPAGE      76                /*首页数据*/
+#define  NCS_LNK_MACPROCYOBJ    74                   /* MAC布控策略布控场所   */
+#define  NCS_LNK_BABPROCYOBJ    75                   /* 伴随行为分析          */
+#define  NCS_LNK_FRONTPAGE      76                   /*首页数据              */
+#define  NCS_LNK_PLACEINFO      77                   /*场所信息查询           */
+
 
 
 #define  NCS_MAX_CLIENT      100
@@ -782,13 +784,35 @@ typedef struct ncsBabProcyObj_s {
     char   code[32];                  // cid_type_did           type_id值为9_9 时代表
     unsigned long id;               //ID  部门，或单位ID 0 代表全部    
 } ncsBabProcyObj; 
+typedef struct
+{
+    char servicecode[36];
+    long number;    int flag;
+} s_serviceData;
 typedef struct ncsMacFrontpageObj_s {           
     uint8 userId;                      //用户id
     ulong lastAskTime;                 //最新请求时间
     ulong lastModTime;                 //最新更新时间
     ulong todayMacCount;               //今日新增mac数
-    ulong totalMacCount;               // 总mac数
-} ncsMacFrontpageObj; 
-
+    ulong totalMacCount;               // 总mac数    s_serviceData sdataList[5];        // 场所采集排行
+} ncsMacFrontpageObj;
+ 
+typedef struct ncsPlace_s { //场所信息查询
+	int macNum;             //MAC数量
+	int macSum;             //MAC日志数量
+	int apmacNum;              //AP数量
+}ncsPlace;
+typedef struct ncsMacPlaceInfo_s {
+	char code[20];
+	char name[128];
+	ncsPlace oneDay;        //一天内数据
+	/*
+	ncsPlace threeDay;      //三天内数据
+	ncsPlace week;          //一周内数据
+	ncsPlace month;         //一个月数据
+	ncsPlace threeMonth;    //三个月数据
+	ncsPlace sixMonth;      //六个月数据
+	*/
+}ncsMacPlaceInfo;
 
 #endif

@@ -6,6 +6,7 @@ Ext.define('proauthApset.view.list.List' ,{
   width:parent.grid_width,
   autoScroll: true,
   title:'',
+  id:'id_store_list',
   columnLines: true,
   initComponent: function() {
     var sm = Ext.create('Ext.selection.CheckboxModel',{
@@ -17,7 +18,7 @@ Ext.define('proauthApset.view.list.List' ,{
              // grid.down('#shButton').setDisabled(selections.length == 0);
                 
             }
-        }
+        }	
     
     });
     this.selModel=sm;
@@ -81,8 +82,8 @@ Ext.define('proauthApset.view.list.List' ,{
                         fields : ['name', 'value'],
                         data   : 
                         [
-						     {name : '全部',  value: '3'},  
-                           // {name : '设备离线',  value: '1'},
+						    {name : '全部',  value: '3'},  
+                            {name : '设备离线',  value: '1'},
                             {name : '场所离线',  value: '2'}
                            
                         ]
@@ -91,8 +92,9 @@ Ext.define('proauthApset.view.list.List' ,{
 					allowBlank:true,
 					listeners: {
 					'change':function(){
-			        document.getElementById('form1').Alarm_reason.value=this.value;
-                      reflash();
+						document.getElementById('form1').Alarm_reason.value=this.value;
+						SetPage();
+						reflash();
 					}
 					}
                 },'-',
@@ -125,10 +127,10 @@ Ext.define('proauthApset.view.list.List' ,{
                     emptyText:'全部',
 					allowBlank:true,
 					listeners: {
-					'change':function(){
-			        document.getElementById('form1').isAlarm.value=this.value;
-                      reflash();
-					}
+						'change':function(){
+							document.getElementById('form1').isAlarm.value=this.value;
+							reflash();
+						}
 					}
                 }, {
                xtype:'textfield',
@@ -211,7 +213,7 @@ Ext.define('proauthApset.view.list.List' ,{
 			width:170,
 			sortable:true,
 			hidden:true,
-			value:'暂时为空'
+			//value:'暂时为空'
 		},{
 			header:"是否确认告警",
 			dataIndex: 'status',
@@ -225,13 +227,15 @@ Ext.define('proauthApset.view.list.List' ,{
 				}					
             }			
 		},
+	/*修改时间：2015-9-15 10:16:31			
 		{
 			header: '告警类型', 
 			dataIndex: 'alarmcode',
 			width:170,sortable: true,
 			value:'暂时为空'
 		},
-		{header: '告警名称',
+		*/
+		{header: '告警类型',	//告警名称
 		dataIndex: 'alarmcode',
 		width:170, 
 		sortable: true,
@@ -256,8 +260,9 @@ Ext.define('proauthApset.view.list.List' ,{
 				else {return '<font color=black>一般</font>'}
 			}
 		},
-        {
-			header: '告警来源',   
+		/*
+		{
+			header: '告警来源',  		
 			dataIndex: 'devtype',
 			width:170, 
 			sortable: false,
@@ -268,9 +273,10 @@ Ext.define('proauthApset.view.list.List' ,{
 				else if(value=='3'){return '<font color=black>管理中心</font>'}
 				else if(value=='4'){return '<font color=black>上级平台</font>'}
 				else {return '<font color=black>其他</font>'}
-			}
-		},
-	    {header: '告警描述', dataIndex: 'description',  width:170},
+			}		
+		},*/
+		
+	    {header: '告警来源', dataIndex: 'description',  width:170,renderer:descripwin1},		//告警描述
        {header: '告警上报时间', dataIndex: 'alarmtime',   width:170},
        {header: '告警更新时间',dataIndex: 'updatetime',width:170, sortable: false}
 		
@@ -278,5 +284,129 @@ Ext.define('proauthApset.view.list.List' ,{
 
     this.callParent(arguments);
   }
-    
-});
+});  
+
+function descripwin1(value, p, record){
+	//var sid=record.get('sid');
+	var str = Ext.String.format('<a href="#" style="color:blue" onclick="detailWin(\'{1}\')">{0}</a>',value,value);
+	
+	return str;
+}
+
+function detailWin(value){
+	//获取参数：
+	//var rows = Ext.getCmp('id_store_list').getSelectionModel();
+	//var sid = rows.selected.items[0].data.sid;
+
+	
+	var itemRush=[];
+	var username = "";			//场所编码
+	var userDispname = "" ;		//场所名
+	var groupname = "";			//行政区域
+	var address = "";			//场所地址
+	var totalCount = 0;			//设备总数
+	var data =[] ;
+	var jyxz;					//经营性质
+	var groupcode ="";			//1->经营性、 2->非经营性、 3->无线采集前端
+	var status;					//在线、离线
+	var statuscode;				//1->在线、 2->离线
+
+	Ext.Ajax.request({
+			url: '/pronline/Msg?FunName@ncsSysystem_alarmOne&dispname@'+value, 
+			method: 'GET',
+			success: function(resp,opts) {
+				try{
+					var respRecord =  resp.responseText;
+					var record = eval("("+respRecord+")");	//字符串转成结构体	
+									
+					
+					username = record.username;
+					userDispname = record.userDispname;
+					groupname = record.groupname;
+					address = record.address;
+					groupcode = username[6];
+					
+					totalCount = record.totalCount;
+					data = record.data;
+					//判断经营性质
+					
+					switch(groupcode){
+						case "1":
+							jyxz = "经营性";
+							break;
+						case "2":
+							jyxz = "非经营性";
+							break;
+						case "3":
+							jyxz = "无线采集前端";
+							break;
+						default:
+							jyxz = "其他";
+							break;
+					}
+					if(address==""){
+						address='无';
+					}
+					
+					itemRush.push(
+						{html:'<a align="left"><b>行政区域：</b></a>' + '<a align="right">'+ groupname+'</a>'},
+						{html:'<a align="left"><b>经营性质：</b></a>' + '<a align="right">' + jyxz+'</a>'},
+						{html:'<a align="left"><b>场所名称：</b></a>' + '<a align="right">'+ userDispname+'</a>'},
+						{html:'<a align="left"><b>场所编码：</b></a>' + '<a align="right">' + username+'</a>'},
+						{html:'<a align="left"><b>场所地址：</b></a>'},{html:'<a align="left">'+address+'</a>'},
+						{html:'<a align="left"><b>关联设备列表：</b></a>'},{html:'<a align="left">'+totalCount+'</a>'}
+					);
+		
+					for( var i=0; i< totalCount; i++){
+						statuscode = data[i].statuscode;
+						if(statuscode =='1'){
+							status ='<font color=green>在线</font>';
+						}else if(statuscode =='2'){
+							status ='<font color=red>离线</font>';
+						}
+						itemRush.push({html:'<a align="left">'+data[i]['aplistDispname']+'</a>'}, 		//设备名称
+							{html:'<a align="left">'+status+'</a>'}
+						);
+					}
+					createDetailWin(itemRush);
+				}catch(e){
+					//console.log(e.message);
+				}	
+			},   
+			failure: function(resp,opts) {   
+				var respText = eval("("+respText+")");
+				alert('错误', respText.error);   
+			}   				 
+		});
+	function createDetailWin(itemRush){	
+		//创建弹窗
+		var mytable = Ext.create('Ext.panel.Panel', {
+			//title: '基础信息',
+			layout: {
+				type: 'table',
+				columns: 2,		//列数
+				tableAttrs:{
+					width:'100%'
+				}
+			},
+			defaults: {
+				bodyStyle: 'padding:5px',			
+			},
+			items:itemRush
+		});
+		
+		var mywin = Ext.create('Ext.window.Window',{
+			title:'基础信息',
+			height:mytable.height,
+			width:350,
+			x:30,
+			y:30,
+			resizable:false,
+			items:mytable
+		});
+		mywin.show();
+	}
+}
+	
+
+   

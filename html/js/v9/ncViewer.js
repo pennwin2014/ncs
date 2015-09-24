@@ -66,8 +66,15 @@ function f_MacGlobalContext(){
 	this.phoneNumber = ""; 
 	this.placeData = [];
 	this.placeName = "";
+	this.alarmReason = -1;
 
 //公共接口
+	this.setAlarmReason = function(v){
+		this.alarmReason = v;
+	}
+	this.getAlarmReason = function(){
+		return this.alarmReason;
+	}
 	this.getPlaceName = function(){
         return this.placeName;
     }
@@ -1294,10 +1301,10 @@ Ext.define('ncViewer.App', {
 				scale:'large',
 				hidden:true,
 				iconAlign: 'top',
-				iconCls:'icon_operation_terminal',
+				iconCls:'icon_audit_onlinelog',
 				handler: this.onItemClick 
 			},'-',{
-				text: '<font style="font-size : 12px !important;color:#FFF;">上下线日志</font>',
+				text: '<font style="font-size : 12px !important;color:#FFF;">连接日志</font>',
 				title : '连接日志',
 				itemid:'itm_audit_linklog',
 				menustatus:1,
@@ -1306,7 +1313,7 @@ Ext.define('ncViewer.App', {
 				scale:'large',
 				hidden:true,
 				iconAlign: 'top',
-				iconCls:'icon_operation_terminal',
+				iconCls:'icon_audit_linklog',
 				handler: this.onItemClick 
 			},	
 			'-',{
@@ -2201,6 +2208,7 @@ Ext.define('ncViewer.App', {
 				text:'',
 				html:'&nbsp;<img src="/images/mac/alarm2.png" style="margin:0 0px 0 0px;" width="15" height="15"/>设备告警总数：<b id = "alarm2"> 0</b>',
 				handler:function(){
+					macGlobalCtx.setAlarmReason(1);
 					jumpToDestPage("id_systemset_alarm");
 				}
 			},{
@@ -2208,6 +2216,7 @@ Ext.define('ncViewer.App', {
 				text:'',
 				html:'&nbsp;<img src="/images/mac/alarm1.png" style="margin:0 0px 0 0px;" width="15" height="15"/>场所告警总数：<b id = "alarm1">0</b>',
 				handler:function(){
+					macGlobalCtx.setAlarmReason(2);
 					jumpToDestPage("id_systemset_alarm");
 				}
 			},{

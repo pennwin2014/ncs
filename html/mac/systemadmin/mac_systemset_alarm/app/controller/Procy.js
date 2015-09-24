@@ -21,8 +21,8 @@
     });
     
 Ext.define('proauthApset.controller.Procy', {
-  extend: 'Ext.app.Controller',  
-  stores: ['List'],
+	extend: 'Ext.app.Controller',  
+	stores: ['List'],
 	models: ['List'],  
   views: ['list.List','common.AddWin'],
   init: function() {
@@ -39,28 +39,47 @@ Ext.define('proauthApset.controller.Procy', {
   },
   
   showRender: function(){
-  var store = Ext.ComponentQuery.query('apsetlist')[0].getStore();
-  store.on('beforeload', function (store, options) {
+	var store = Ext.ComponentQuery.query('apsetlist')[0].getStore();
+	
+	store.on('beforeload', function (store, options) {
   	//调整视图高度
         var qgrid=Ext.ComponentQuery.query('apsetlist')[0];
-    	  parent.grid_height=parent.Ext.getCmp('layout_center').getHeight()-56;
-        qgrid.setHeight(parent.grid_height);
-	  /*var keyword=Ext.getCmp('keyword_dwgl').value;*/
-	  var groupid=parent.ncsgroupid;
-	  var did=parent.corpdid;
-	
+    	parent.grid_height=parent.Ext.getCmp('layout_center').getHeight()-56;
+    	qgrid.setHeight(parent.grid_height);
+    	/*
+		var id_operation_status = parent.macGlobalCtx.getIdOperationStatus();
+    	if (id_operation_status != '-1') {
+    	    Ext.getCmp('keyword_ywgj').setValue(id_operation_status);
+    	}
+		*/
+    	var keyword = Ext.getCmp('keyword_ywgj').value;
+		var groupid=parent.ncsgroupid;
+		var did=parent.corpdid;
 	    if(did){
-       groupid = "";
-     }
+			groupid = "";
+		}
 //    var mark=parent.gmark;
-
-     store_fac.load();
-
-	  var new_params={groupid:groupid,did:did};
-     Ext.apply(store.proxy.extraParams,new_params);
-       });	
+		store_fac.load();
+		var TTAlarm_reason=3;
+		if(parent.macGlobalCtx.getAlarmReason()!=-1){
+			TTAlarm_reason = parent.macGlobalCtx.getAlarmReason();
+		}			
+		else
+			TTAlarm_reason=document.getElementById("form1").Alarm_reason.value;
+		var new_params = { groupid: groupid, did: did, keyword: keyword, Alarm_reason:TTAlarm_reason};
+		Ext.apply(store.proxy.extraParams,new_params);
+	});
+	store.on('load', function (store, options) {
+		parent.macGlobalCtx.setAlarmReason(-1);
+		/*
+		var id_operation_status = parent.macGlobalCtx.getIdOperationStatus();
+		if (id_operation_status != '-1') {
+			Ext.getCmp('keyword_ywgj').setValue(id_operation_status);
+            parent.macGlobalCtx.setIdOperationStatus('-1');
+		}*/
+	});
    
-   proauthApset.controller.Procy.loadProcyListStore();
+	proauthApset.controller.Procy.loadProcyListStore();
  //   proauthApset.controller.Procy.setTitle(parent.dxtitle);
   },
   //关键字查询

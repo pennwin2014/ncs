@@ -491,7 +491,7 @@ var ary_type;
 	
 		var i = 0;
 		var check = document.getElementsByName("ch"+j);
-		for(var j = 0 ; j<25 ; j++)
+		for(var j = 0 ; j<27 ; j++)
 		{
 			if(document.getElementsByName("ch"+j)[0].checked){
 				i++;
@@ -540,7 +540,7 @@ function hqcheck(){
                     			ary_type[k] = records[k].get("caName");
 						
 						
-						for(var j=0;j<25;j++)
+						for(var j=0;j<27;j++)
 						{
 							if(document.getElementsByName("ch"+j)[0].value==records[k].get("caName"))
 							{	
@@ -656,9 +656,24 @@ function hqcheck(){
     			  	  </table>
     		</tr>
            
-    		
+    		    		<tr height="40px"><td width="20px" >&nbsp;</td>
+    		<td colspan="2"><b>上网审计</b></td>
+    		</tr>
+    		  
     		<tr height="40px"><td width="20px" >&nbsp;</td>
-    		<td colspan="2"><b>系统配置</b></td>
+    			  <td width="20px" >&nbsp;</td>
+    			  <td><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+    			  	  <tr>
+    			  	  	<td width="130"><input type='checkbox' name='ch25' value='上下线日志' >上下线日志&nbsp;</td>
+    			  	  	<td width="130"><input type='checkbox' name='ch26' value='连接日志' >连接日志&nbsp;</td>
+    			  	  	    			  	  	<td width="130">&nbsp;</td>
+    			  	  	<td>&nbsp;</td>
+    			  	  </tr>
+    			  	  </table>
+    		</tr>
+
+    		<tr height="40px"><td width="20px" >&nbsp;</td>
+    		<td colspan="2"><b>系统管理</b></td>
     		</tr>
     		  
     		<tr height="40px"><td width="20px" >&nbsp;</td>

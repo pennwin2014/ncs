@@ -306,11 +306,6 @@ int getDispnameByServicecode(utShmHead *psShmHead, char* servicecode, char dispn
     return 0;
 }
 
-typedef struct
-{
-    char servicecode[36];
-    long number;
-} s_serviceData;
 
 typedef struct
 {
@@ -507,7 +502,7 @@ int macFrontPageRange(utShmHead *psShmHead, int iFd, utMsgHead *psMsgHead)
     //场所采集排行
     if(strcmp(range_type, "service") == 0)
     {
-        memset(sql, 0, sizeof(sql));
+        //memset(sql, 0, sizeof(sql));
         psDbHead = utPltInitDb();
         /*
         char table_name[1024] = "";
@@ -531,52 +526,115 @@ int macFrontPageRange(utShmHead *psShmHead, int iFd, utMsgHead *psMsgHead)
             snprintf(sql, sizeof(sql), "select  ifnull(count(*),0) as nn, servicecode from %s  where servicecode !=\'\' group by servicecode order by nn desc limit 5", table_name);
         }
         */
-        if(strlen(caGroupSql) > 0)
-        {
-            snprintf(sql, sizeof(sql), "select  ifnull(sum(lcount),0) as nn, servicecode from ncmactermcount where %s group by servicecode order by nn desc limit 5", caGroupSql);
-        }
-        else
-        {
-            snprintf(sql, sizeof(sql), "select  ifnull(sum(lcount),0) as nn, servicecode from ncmactermcount group by servicecode order by nn desc limit 5");
-        }
-        //printf("place sql=[%s]\n", sql);
-        psCur = pasDbOpenSql(sql, 0);
-        /*
-        //统计所有的
-        psCur = pasDbOpenSql("select  ifnull(sum(lcount),0) as nn, servicecode from ncmactermcount group by servicecode order by nn desc limit 5", 0);
+        /*       if(strlen(caGroupSql) > 0)
+               {
+                   snprintf(sql, sizeof(sql), "select  ifnull(sum(lcount),0) as nn, servicecode from ncmactermcount where %s group by servicecode order by nn desc limit 5", caGroupSql);
+               }
+               else
+               {
+                   snprintf(sql, sizeof(sql), "select  ifnull(sum(lcount),0) as nn, servicecode from ncmactermcount group by servicecode order by nn desc limit 5");
+               }
+               //printf("place sql=[%s]\n", sql);
+               psCur = pasDbOpenSql(sql, 0);
+               /*
+               //统计所有的
+               psCur = pasDbOpenSql("select  ifnull(sum(lcount),0) as nn, servicecode from ncmactermcount group by servicecode order by nn desc limit 5", 0);
+               */
+        /*       s_serviceData sdataList[5];
+               memset(sdataList, 0, sizeof(s_serviceData) * 5);
+               iReturn = pasDbFetchInto(psCur,
+                                        UT_TYPE_LONG, 4, &sdataList[0].number,
+                                        UT_TYPE_STRING, 31, sdataList[0].servicecode);
+               int iNum = 0;
+
+               while((iReturn == 0) || (iReturn == 1405))
+               {
+                   sumCount += sdataList[iNum].number;
+                   iNum++;
+                   iReturn = pasDbFetchInto(psCur,
+                                            UT_TYPE_LONG, 4, &sdataList[iNum].number,
+                                            UT_TYPE_STRING, 31, sdataList[iNum].servicecode);
+               }
+               int lastINum = iNum;
+               //printf("lastINum=%d\n", lastINum);
+               pasDbCloseCursor(psCur);
         */
-        s_serviceData sdataList[5];
-        memset(sdataList, 0, sizeof(s_serviceData) * 5);
-        iReturn = pasDbFetchInto(psCur,
-                                 UT_TYPE_LONG, 4, &sdataList[0].number,
-                                 UT_TYPE_STRING, 31, sdataList[0].servicecode);
-        int iNum = 0;
 
-        while((iReturn == 0) || (iReturn == 1405))
+
+        uint8 lUserId = 0;
+
+
+        int iReturn = dsCltGetMyInfo(1, "Userid", &lUserId);
+
+
+
+        if(iReturn == 0 && lUserId > 0)
+
+
         {
-            sumCount += sdataList[iNum].number;
-            iNum++;
-            iReturn = pasDbFetchInto(psCur,
-                                     UT_TYPE_LONG, 4, &sdataList[iNum].number,
-                                     UT_TYPE_STRING, 31, sdataList[iNum].servicecode);
-        }
-        int lastINum = iNum;
-        //printf("lastINum=%d\n", lastINum);
-        pasDbCloseCursor(psCur);
-        char dispname[64] = "";
-        for(iNum = 1; iNum <= lastINum; iNum++)
-        {
-            utPltPutLoopVarF(psDbHead, "collect_number", iNum, "%lu", sdataList[iNum - 1].number);
-            memset(dispname, 0, sizeof(dispname));
-            getDispnameByServicecode(psShmHead, sdataList[iNum - 1].servicecode, dispname);
 
-            utPltPutLoopVar(psDbHead, "collect_name", iNum, dispname);
 
-            //getServiceNameByCode(psShmHead, servicecode));
-            // printf("iNum=%d,servicecode=%s\n", iNum, servicecode);
-            if(iNum > 1)
+            ncsMacFrontpageObj* psData = (ncsMacFrontpageObj *)utShmHashLookA(psShmHead, NCS_LNK_FRONTPAGE, (char*)(&lUserId));
+
+
+            if(psData)
+
+
             {
-                utPltPutLoopVar(psDbHead, "dh", iNum, ",");
+
+
+                char dispname[64] = "";
+                int iNum = 0;
+
+
+                for(iNum = 1; iNum <= 5; iNum++)
+
+
+                {
+                    if(psData->sdataList[iNum - 1].flag)
+                    {
+                        sumCount += psData->sdataList[iNum - 1].number;
+
+                        utPltPutLoopVarF(psDbHead, "collect_number", iNum, "%lu", psData->sdataList[iNum - 1].number);
+
+
+                        memset(dispname, 0, sizeof(dispname));
+
+
+                        getDispnameByServicecode(psShmHead, psData->sdataList[iNum - 1].servicecode, dispname);
+
+
+
+
+                        utPltPutLoopVar(psDbHead, "collect_name", iNum, dispname);
+
+
+
+
+                        //getServiceNameByCode(psShmHead, servicecode));
+
+
+                        // printf("iNum=%d,servicecode=%s\n", iNum, servicecode);
+
+
+                        if(iNum > 1)
+
+
+                        {
+
+
+                            utPltPutLoopVar(psDbHead, "dh", iNum, ",");
+
+
+                        }
+
+
+                    }
+
+
+                }
+
+
             }
         }
         //printf("service sumcount=%lu\n", sumCount);
@@ -2011,6 +2069,79 @@ int ncsStatMacFront(utShmHead *psShmHead)
                         printf("errsql=%s,iRet=%d\n", sql, iReturn);
                     }
                     //printf("totay=%lu, total=%lu\n\n", psData->todayMacCount, psData->totalMacCount);
+
+                    //统计场所采集排行
+                    memset(sql, 0, sizeof(sql));
+
+                    if(strlen(caGroupSql) > 0)
+
+
+                    {
+
+
+                        snprintf(sql, sizeof(sql), "select  ifnull(sum(lcount),0) as nn, servicecode from ncmactermcount where %s group by servicecode order by nn desc limit 5", caGroupSql);
+
+
+                    }
+
+
+                    else
+
+
+                    {
+
+
+                        snprintf(sql, sizeof(sql), "select  ifnull(sum(lcount),0) as nn, servicecode from ncmactermcount group by servicecode order by nn desc limit 5");
+
+
+                    }
+                    printf("tongji sql=%s\n", sql);
+                    psCur = pasDbOpenSql(sql, 0);
+
+
+                    memset(psData->sdataList, 0, sizeof(s_serviceData) * 5);
+
+
+                    iReturn = pasDbFetchInto(psCur,
+
+
+                                             UT_TYPE_LONG, 4, &psData->sdataList[0].number,
+
+
+                                             UT_TYPE_STRING, 31, psData->sdataList[0].servicecode);
+
+                    psData->sdataList[0].flag = 1;
+
+                    int iNum = 0;
+
+
+
+
+
+                    while((iReturn == 0) || (iReturn == 1405))
+
+
+                    {
+                        printf("number=%lu, scode=%s\n", psData->sdataList[iNum].number, psData->sdataList[iNum].servicecode);
+
+                        iNum++;
+
+
+                        iReturn = pasDbFetchInto(psCur,
+
+
+                                                 UT_TYPE_LONG, 4, &psData->sdataList[iNum].number,
+
+
+                                                 UT_TYPE_STRING, 31, psData->sdataList[iNum].servicecode);
+                        psData->sdataList[iNum].flag = 1;
+
+
+
+
+                    }
+                    pasDbCloseCursor(psCur);
+
                 }
             }
             psUser = (struct s_userInfo*)pasLHashNext(&sHashInfo);
