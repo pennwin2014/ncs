@@ -179,6 +179,14 @@
 	background: url(/images/mac/top_icon/operation_terminal.png) 20px 0 no-repeat !important;
 	width:52px !important;
 }
+.icon_audit_onlinelog{
+	background: url(/images/mac/top_icon/audit_onlinelog.png) 20px 0 no-repeat !important;
+	width:52px !important;
+}
+.icon_audit_linklog{
+	background: transparent url("/images/mac/top_icon/audit_linklog.png") no-repeat scroll 10px 0px !important;
+	width:42px !important;
+}
 
 .icon_systemset_admin{
 	background: url(/images/mac/top_icon/systemset_admin.png) 17px 0 no-repeat !important;
@@ -341,7 +349,7 @@
 	-moz-background-size:100% 100% !important;  
     background-size:100% 100% !important;  
 	margin:0px 0 0px 0px !important;	
-	border-bottom:1px solid #00B1F1 !important;
+	border-bottom:0px solid #00B1F1 !important;
 	border-radius:0 !important;
 }
 
@@ -741,7 +749,7 @@
 							var onuser=record.get('onuser');
 							var nwversion=record.get('nwversion');
 							var temp_status='&nbsp;&nbsp;产品序列号：'+'<font color=red>'+cpsn+'</font>';
-							temp_status=temp_status+'&nbsp;&nbsp;版本号：'+'<font color=red>'+ 'V1.6'+'</font>';
+							temp_status=temp_status+'&nbsp;&nbsp;版本号：'+'<font color=red>'+ 'V1.7'+'</font>';
 							var sb=Ext.getCmp('statusbar');
 							sb.setStatus({
 								text:temp_status,
