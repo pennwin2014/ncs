@@ -8,56 +8,7 @@ var bAudit = false;
 var globalSelectId = "";
 var globalSelectGroupId = "itm_infoquery";
 var DEFAULT_SEARCH_TEXT = "MAC/手机号/场所名称";
-/*
-	Date.prototype.Format = function (fmt) { //author: meizz 
-		var o = {
-			"M+": this.getMonth() + 1, //月份 
-			"d+": this.getDate(), //日 
-			"h+": this.getHours(), //小时 
-			"m+": this.getMinutes(), //分 
-			"s+": this.getSeconds(), //秒 
-			"q+": Math.floor((this.getMonth() + 3) / 3), //季度 
-			"S": this.getMilliseconds() //毫秒 
-		};
-		if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
-		for (var k in o)
-			if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
-		return fmt;
-	}
-*/
-function getAlarmNum(){
-		var currentRealAlarms =0;
-		var ApAlarmCount =0;
-		var record;
-		Ext.Ajax.request({     
-						url: '/pronline/Msg?FunName@macFrontPageLeftBlocks&groupid@1&askApAlarmCount@1',  
-						method: 'GET',
-						success: function(res,opts) {   
 
-							try{
-								var resRecord = res.responseText;
-								record = eval("("+resRecord+")");	//字符串转成结构体	
-								currentRealAlarms = record.currentRealAlarms;
-								ApAlarmCount = record.ApAlarmCount;
-								
-								document.getElementById('alarm1').innerHTML = "<font color=red>"+currentRealAlarms+"&nbsp;</font>";
-								document.getElementById('alarm2').innerHTML = "<font color=red>"+ApAlarmCount+"&nbsp;</font>";
-							}catch(error){
-								console.log(error.message);
-							}						
-
-						},   
-
-						failure: function(resp,opts) {   
-
-							var respText = eval("("+respText+")");
-
-							alert('错误', respText.error);   
-
-						}   				 
-
-		});		
-	}
 function f_MacGlobalContext(){
 //私有变量
 	this.id_operation_status = -1;
@@ -119,6 +70,25 @@ function f_MacGlobalContext(){
 		}
 	}
 //工具方法
+	this.doJumpFunctionsByItemid = function(itemid, value){
+		try{
+			eval("lan_"+itemid+"_s").jumpPageFunc1(value);
+		}catch(e){
+			
+		}
+		try{
+			eval("lan_"+itemid+"_s").jumpPageFunc2(value);
+		}catch(e){
+			
+		}
+		try{
+			eval("lan_"+itemid+"_s").jumpPageFunc3(value);
+		}catch(e){
+			
+		}
+		
+	}
+	
     this.isInFocus = function(itmid){
 		var tabs_center=Ext.getCmp("layout_center");
 		var activeTab = tabs_center.getActiveTab();
@@ -204,7 +174,7 @@ function f_MacGlobalContext(){
 				layout: 'form',
 				activeTab: 0,
 				items:[{
-					html: '<iframe src="/mac/sqlOperate.html" frameborder="no" style="width:100%;height:900px;"></iframe>'
+					html: '&nbsp;<iframe src="/mac/sqlOperate.html" frameborder="no" style="width:100%;height:900px;"></iframe>'
 				}]			
 			});
 			
@@ -236,30 +206,37 @@ function f_MacGlobalContext(){
 		var currentRealAlarms =0;
 		var ApAlarmCount =0;
 		var record;
-		Ext.Ajax.Request({
-			url: '/pronline/Msg?FunName@macFrontPageLeftBlocks&groupid@1&askApAlarmCount@1',  
-			method:'GET',
-			success:function(res,opt){
-				try{
-					var resRecord = res.responseText;
-					record = eval("("+resRecord+")");	//字符串转成结构体	
-					currentRealAlarms = record.currentRealAlarms;
-					ApAlarmCount = record.ApAlarmCount;
-					
-					document.getElementById('alarm1').innerHTML = "<font color=red>"+currentRealAlarms+"&nbsp;</font>";
-					document.getElementById('alarm2').innerHTML = "<font color=red>"+ApAlarmCount+"&nbsp;</font>";
-				}catch(error){
-					console.log(error.message);
-				}
-			},
-			failure:function(error){
-				console.log(error.message);
-			}
-		})
+		Ext.Ajax.request({     
+					url: '/pronline/Msg?FunName@macFrontPageLeftBlocks&groupid@1&askApAlarmCount@1',  
+					method: 'GET',
+					success: function(res,opts) {   
+
+						try{
+							var resRecord = res.responseText;
+							record = eval("("+resRecord+")");	//字符串转成结构体	
+							currentRealAlarms = record.currentRealAlarms;
+							ApAlarmCount = record.ApAlarmCount;
+							document.getElementById('alarm1').innerHTML = "<font color=red>"+currentRealAlarms+"&nbsp;&nbsp;</font>";
+							document.getElementById('alarm2').innerHTML = "<font color=red>"+ApAlarmCount+"&nbsp;&nbsp;</font>";
+						}catch(error){
+							console.log(error.message);
+						}						
+
+					},   
+
+					failure: function(resp,opts) {   
+
+						var respText = eval("("+respText+")");
+
+						alert('错误', respText.error);   
+
+					}   				 
+
+		});		
 	}
 	
 	this.startAlarmBeat = function(){
-		setInterval("getAlarmNum()", 5000);
+		setInterval("macGlobalCtx.getAlarmNum();", 5000);
 	}
 }
 
@@ -363,6 +340,7 @@ function searchMouseUp(){
 	document.getElementById("imgbtn_search").src="/images/mac/top_icon/btn_search_normal.png";
 }
 
+//得到该一级菜单需要显示的个数
 function getItemShowCount(itmid){
 	var myMap = {};
 	var count = 0;
@@ -389,6 +367,7 @@ function getItemShowCount(itmid){
 	return count;
 }
 
+//根据id获取到结构体
 function getRecordById(id){
 	for(var i in listAllMap){
 		for(var j in listAllMap[i]){
@@ -399,6 +378,8 @@ function getRecordById(id){
 	}
 }
 
+//作用：跳转到指定页面
+//参数：  mac--参数，可不传
 function jumpToDestPage(resultId, mac){
 	var recordClt = getRecordById(resultId);
 	var itemid = recordClt[0];
@@ -419,6 +400,8 @@ function jumpToDestPage(resultId, mac){
 	);   
 	if(i>0){
 		tabs_center.setActiveTab(m);
+		//调用该页面预留三个函数
+		macGlobalCtx.doJumpFunctionsByItemid(itemid, mac);
 		try{
 			eval("lan_itm_infoquery_mac_s").setFieldMac(mac);
 		}catch(e){
@@ -434,29 +417,7 @@ function jumpToDestPage(resultId, mac){
 			eval("lan_"+itemid+"_s").id_operation_tabload();
 		}catch(e){
 			
-		}
-		try{
-			eval("lan_"+itemid+"_s").doSearchServicecode();
-		}catch(e){
-			
-		}
-		/*
-		try{
-			eval("lan_itm_operation_equipment_s").id_operation_tabload();
-		}catch(e){
-			
 		}	
-		try{
-			eval("lan_itm_infoquery_mac_s").id_operation_tabload();			
-		}catch(e){
-			
-		}
-		try{
-			eval("lan_itm_systemset_alarm_s").id_operation_tabload();			
-		}catch(e){
-			
-		}	
-		*/		
 		return;
     } 
 	if(tab_len>5){
@@ -785,7 +746,9 @@ function doKeyPress(e){
 	}	
 }
 
-
+//作用：根据id设置该项二级菜单的样式 
+//参数：isNormal  true--普通
+//                false--点击
 function setItemStatById(id, isNormal){
 	var hasFound = false;
 	for(i in listAllMap){
@@ -805,6 +768,7 @@ function setItemStatById(id, isNormal){
 	}
 }
 
+//根据groupid改变一级菜单下二级菜单的显示和隐藏
 function toggleFirstByGroupId(itemid, isVisible){
 	if(itemid == "itm_infoquery"){
 		toggleInfoquery(isVisible);
@@ -821,6 +785,7 @@ function toggleFirstByGroupId(itemid, isVisible){
 	}
 }
 
+//根据itemid获取在大map中的id，方便取该结构
 function getIdByItemid(itemid){
 	var tmpGroupId = globalSelectGroupId;
 	var hasFound = false;
@@ -902,6 +867,7 @@ function getIdByItemid(itemid){
 	return resultId;
 }
 
+//改变点击项样式
 function toggleClickItem(itemid){
 	//把旧的改为普通样式
 	if(globalSelectId != ""){
@@ -911,6 +877,7 @@ function toggleClickItem(itemid){
 	setItemStatById(globalSelectId, false);
 }
 
+//改变一级菜单样式
 function setGroupHeader(isExpand, groupId){
 	var groupHeader = Ext.getCmp(groupId);
 	if(isExpand){
@@ -1398,9 +1365,6 @@ Ext.define('ncViewer.App', {
 				handler: this.onItemClose
 			}     
         ); 
-
-			
-        
         //console.info(right_tool);
         var isep=0;
 		var right_tool_s = right_tool;
@@ -2219,6 +2183,8 @@ Ext.define('ncViewer.App', {
 					macGlobalCtx.setAlarmReason(2);
 					jumpToDestPage("id_systemset_alarm");
 				}
+			},{
+				html:"&nbsp;&nbsp;"
 			},{
 				xtype: 'button',
 				text: '',

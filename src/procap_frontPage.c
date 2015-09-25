@@ -692,7 +692,7 @@ int macFrontPageRange(utShmHead *psShmHead, int iFd, utMsgHead *psMsgHead)
     }
     else if(strcmp(range_type, "device") == 0)
     {
-        char apmac[36] = "";
+        /*char apmac[36] = "";
         memset(sql, 0, sizeof(sql));
         psDbHead = utPltInitDb();
         memset(sql, 0, sizeof(sql));
@@ -702,6 +702,7 @@ int macFrontPageRange(utShmHead *psShmHead, int iFd, utMsgHead *psMsgHead)
             sprintf(sql, "select  ifnull(sum(lcount), 0) as nn, right(apname,12) from ncmactermcount where apname!=\'\' and servicecode in (%s) group by right(apname,12) order by nn desc limit 5", caServicecodes);
         }
         */
+        /*
         if(strlen(caGroupSql) > 0)
         {
             sprintf(sql, "select  ifnull(sum(lcount), 0) as nn, right(apname,12) from ncmactermcount where apname!=\'\' and %s group by right(apname,12) order by nn desc limit 5", caGroupSql);
@@ -734,7 +735,58 @@ int macFrontPageRange(utShmHead *psShmHead, int iFd, utMsgHead *psMsgHead)
                                      UT_TYPE_LONG, 4, &collect_number,
                                      UT_TYPE_STRING, 31, apmac);
         }
-        pasDbCloseCursor(psCur);
+        pasDbCloseCursor(psCur);*/
+
+        psDbHead = utPltInitDb();
+        uint8 lUserId = 0;
+
+        int iReturn = dsCltGetMyInfo(1, "Userid", &lUserId);
+
+        if(iReturn == 0 && lUserId > 0)
+        {
+
+
+            ncsMacFrontpageObj* psData = (ncsMacFrontpageObj *)utShmHashLookA(psShmHead, NCS_LNK_FRONTPAGE, (char*)(&lUserId));
+
+            if(psData)
+            {
+
+
+                char dispname[64] = "";
+                int iNum = 0;
+
+
+                for(iNum = 1; iNum <= 5; iNum++)
+                {
+                    if(psData->deviceList[iNum - 1].flag)
+                    {
+
+                        sumCount += psData->deviceList[iNum - 1].number;
+
+                        utPltPutLoopVarF(psDbHead, "collect_number", iNum, "%lu", psData->deviceList[iNum - 1].number);
+
+
+                        memset(dispname, 0, sizeof(dispname));
+
+
+                        getDispnameByServicecode(psShmHead, psData->deviceList[iNum - 1].servicecode, dispname);
+
+                        utPltPutLoopVar(psDbHead, "collect_name", iNum, dispname);
+
+                        if(iNum > 1)
+                        {
+                            utPltPutLoopVar(psDbHead, "dh", iNum, ",");
+                        }
+
+
+                    }
+
+
+                }
+
+
+            }
+        }
 
     }
     else if(strcmp(range_type, "warn") == 0)
@@ -2074,72 +2126,85 @@ int ncsStatMacFront(utShmHead *psShmHead)
                     memset(sql, 0, sizeof(sql));
 
                     if(strlen(caGroupSql) > 0)
-
-
                     {
-
-
                         snprintf(sql, sizeof(sql), "select  ifnull(sum(lcount),0) as nn, servicecode from ncmactermcount where %s group by servicecode order by nn desc limit 5", caGroupSql);
 
-
                     }
-
-
                     else
-
-
                     {
-
-
                         snprintf(sql, sizeof(sql), "select  ifnull(sum(lcount),0) as nn, servicecode from ncmactermcount group by servicecode order by nn desc limit 5");
-
-
                     }
                     printf("tongji sql=%s\n", sql);
                     psCur = pasDbOpenSql(sql, 0);
-
-
                     memset(psData->sdataList, 0, sizeof(s_serviceData) * 5);
-
-
                     iReturn = pasDbFetchInto(psCur,
-
-
                                              UT_TYPE_LONG, 4, &psData->sdataList[0].number,
-
-
                                              UT_TYPE_STRING, 31, psData->sdataList[0].servicecode);
 
                     psData->sdataList[0].flag = 1;
 
                     int iNum = 0;
 
-
-
-
-
                     while((iReturn == 0) || (iReturn == 1405))
-
-
                     {
                         printf("number=%lu, scode=%s\n", psData->sdataList[iNum].number, psData->sdataList[iNum].servicecode);
 
                         iNum++;
+                        iReturn = pasDbFetchInto(psCur,
+                                                 UT_TYPE_LONG, 4, &psData->sdataList[iNum].number,
+                                                 UT_TYPE_STRING, 31, psData->sdataList[iNum].servicecode);
+                        psData->sdataList[iNum].flag = 1;
+                    }
+                    pasDbCloseCursor(psCur);
 
+                    //设备采集排行
+                    memset(sql, 0, sizeof(sql));
+
+                    if(strlen(caGroupSql) > 0)
+
+                    {
+
+                        sprintf(sql, "select  ifnull(sum(lcount), 0) as nn, right(apname,12) from ncmactermcount where apname!=\'\' and %s group by right(apname,12) order by nn desc limit 5", caGroupSql);
+
+                    }
+
+                    else
+
+                    {
+
+                        sprintf(sql, "select  ifnull(sum(lcount), 0) as nn, right(apname,12) from ncmactermcount where apname!=\'\'  group by right(apname,12) order by nn desc limit 5");
+
+                    }
+
+                    psCur = pasDbOpenSql(sql, 0);
+
+                    memset(psData->deviceList, 0, sizeof(s_serviceData) * 5);
+
+                    iReturn = pasDbFetchInto(psCur,
+
+                                             UT_TYPE_LONG, 4, &psData->deviceList[0].number,
+
+                                             UT_TYPE_STRING, 31, psData->deviceList[0].servicecode);
+
+                    psData->deviceList[0].flag = 1;
+
+                    iNum = 0;
+
+                    while((iReturn == 0) || (iReturn == 1405))
+
+                    {
+                        iNum++;
 
                         iReturn = pasDbFetchInto(psCur,
 
+                                                 UT_TYPE_LONG, 4, &psData->deviceList[iNum].number,
 
-                                                 UT_TYPE_LONG, 4, &psData->sdataList[iNum].number,
+                                                 UT_TYPE_STRING, 31, psData->deviceList[iNum].servicecode);
 
-
-                                                 UT_TYPE_STRING, 31, psData->sdataList[iNum].servicecode);
-                        psData->sdataList[iNum].flag = 1;
-
-
-
+                        psData->deviceList[iNum].flag = 1;
 
                     }
+
                     pasDbCloseCursor(psCur);
 
                 }
@@ -2154,26 +2219,8 @@ int ncsStatMacFront(utShmHead *psShmHead)
     return 0;
 }
 
-
-
 int ncsStatMacDevWarn(utShmHead *psShmHead)
 {
-
-
-    struct s_ncscasetermlim
-    {
-        int sid;
-        int cid;
-        int level;
-        int dateid;
-        int countlimit;
-        char apname[22];
-        int flags;
-        uint4 lasttime;
-        char servicecode[15];
-        char groupid[7];
-    };
-
     struct s_alarmtask
     {
         char caDescription[128];
@@ -2181,18 +2228,11 @@ int ncsStatMacDevWarn(utShmHead *psShmHead)
         uint8 alarmtime;
     };
 
-    unsigned char* pHash_lim = NULL;
-    struct s_ncscasetermlim* psTasklim = NULL;
-    struct s_ncscasetermlim templim ;
     struct db_nctermsysalarm tmpPlaceData;
 
-    pasLHashInfo sHashInfoLim;
     pasLHashInfo sHashInfoTask;
-
-    char sql[2048] = "";
     char caGroupid[6];
-    pasDbCursor *psCur;
-    pasDbCursor *pCur;
+
     long lTime = 0;
 
 
@@ -2222,81 +2262,8 @@ int ncsStatMacDevWarn(utShmHead *psShmHead)
     }
     while(1)
     {
-        //1、统计总数
-        long iCountlim = 0;
-
-
-        iReturn = pasDbOneRecord("select count(*) from ncscasetermlim", 0, UT_TYPE_LONG, 4, &iCountlim);
-        if(iReturn != 0 || iCountlim == 0)
-        {
-            sleep(3 * 60);
-            continue;
-        }
-
-        //2、创建hash
-        pHash_lim = (unsigned char *)pasLHashInit(5000, 5000, sizeof(struct s_ncscasetermlim), 0, 4);
-        if(pHash_lim == NULL)
-        {
-            printf("分配内存出错\n");
-            return -1;
-        }
-        memset(sql, 0, sizeof(sql));
-        strcpy(sql, "select ncscasetermlim.sid,ncscasetermlim.cid,level,dateid,countlimit,apname,ncscasetermlim.flags,lasttime,servicecode from ncscasetermlim,ncscasemacwarnlog where ncscasetermlim.sid = ncscasemacwarnlog.sid"); //warnlog 前6
-        psCur = pasDbOpenSql(sql, 0);
-        if(psCur == NULL)
-        {
-            printf("psCur 出错");
-            return -1;
-        }
-
-        memset(&templim, 0, sizeof(struct s_ncscasetermlim));
-        iReturn = pasDbFetchInto(psCur, UT_TYPE_LONG, 4, &templim.sid,
-                                 UT_TYPE_LONG, 4, &templim.cid,
-                                 UT_TYPE_LONG, 4, &templim.level,
-                                 UT_TYPE_LONG, 4, &templim.dateid,
-                                 UT_TYPE_LONG, 4, &templim.countlimit,
-                                 UT_TYPE_STRING, 21, templim.apname,
-                                 UT_TYPE_LONG, 4, &templim.flags,
-                                 UT_TYPE_LONG, 4, &templim.lasttime,
-                                 UT_TYPE_STRING, 14, templim.servicecode);
-        strncpy(caGroupid , templim.servicecode, 6);
-
-        while(iReturn == 0 || iReturn == 1405)
-        {
-            psTasklim = (struct s_ncscasetermlim *)pasLHashLookA(pHash_lim, (char*)&templim.sid);
-
-            if(psTasklim)
-            {
-                psTasklim->sid = templim.sid;
-                psTasklim->cid = templim.cid;
-                psTasklim->level = templim.level;
-                psTasklim->dateid = templim.dateid;
-                psTasklim->countlimit = templim.countlimit;
-                strcpy(psTasklim->apname, templim.apname);
-                psTasklim->flags = templim.flags;
-                psTasklim->lasttime = templim.lasttime;
-                strcpy(psTasklim->servicecode, templim.servicecode);
-                strcpy(psTasklim->groupid, caGroupid);
-
-            }
-            memset(caGroupid, 0, 6);
-            memset(&templim, 0, sizeof(struct s_ncscasetermlim));
-            iReturn = pasDbFetchInto(psCur, UT_TYPE_LONG, 4, &templim.sid,
-                                     UT_TYPE_LONG, 4, &templim.cid,
-                                     UT_TYPE_LONG, 4, &templim.level,
-                                     UT_TYPE_LONG, 4, &templim.dateid,
-                                     UT_TYPE_LONG, 4, &templim.countlimit,
-                                     UT_TYPE_STRING, 21, templim.apname,
-                                     UT_TYPE_LONG, 4, &templim.flags,
-                                     UT_TYPE_LONG, 4, &templim.lasttime,
-                                     UT_TYPE_STRING, 14, templim.servicecode);
-            strncpy(caGroupid , templim.servicecode, 6);
-        }
-        pasDbCloseCursor(psCur);
-
-        //查出离线场所并加入告警表
+        //任务1：查出离线场所并加入告警表
         psClient = (ncsClient *)utShmArray(psShmHead, NCS_LNK_CLIENT);
-
         if(psClient)
         {
             int lSumUser;
@@ -2321,75 +2288,104 @@ int ncsStatMacDevWarn(utShmHead *psShmHead)
                 }
                 else
                 {
-                    //printf("%s is online\n", psClient[i].username);
-                    int iCount = 0;
-                    psTasklim = (struct s_ncscasetermlim*)pasLHashFirst(pHash_lim, &sHashInfoLim);
-                    while(psTasklim)
-                    {
-                        char caUser[6];
-                        strncpy(caUser, psClient[i].username, 6);
-                        if(strlen(psTasklim->groupid) && strcmp(caUser , psTasklim->groupid) == 0)
-                        {
-                            iCount++;
-                        }
-                        // printf("===============iCount=%d\n", iCount);
-                        if(iCount > psTasklim->countlimit)
-                        {
-                            //插入 ncscasemacwarnlog
-                            char caDispname[255] = "";
-                            int iRuleId = 0;
-                            int msid = 0;
-                            char  year[10];
-                            char  mon[10];
-
-                            memset(year, 0, sizeof(year));
-                            memset(mon, 0 , sizeof(mon));
-                            time_t now;
-                            time(&now);
-                            timeToStringEx(now, year, mon);
-                            int syear = atoi(year);
-                            int smonth = atoi(mon);
-                            memset(sql, 0, sizeof(sql));
-                            //关联ncsuser,获取dispname
-                            sprintf(sql, "select dispname from ncsuser where username ='%s'", psTasklim->servicecode);
-                            iReturn = pasDbOneRecord(sql, 0, UT_TYPE_STRING, sizeof(caDispname) - 1, caDispname);
-                            //printf("caDispname====%s\n", caDispname);
-                            memset(sql, 0, sizeof(sql));
-                            //ncmactermatt_if_,获取msid,日志id
-                            sprintf(sql, "select sid from ncmactermatt_if_%4u%02u where servicecode ='%s'", syear, smonth, psTasklim->servicecode);
-                            iReturn = pasDbOneRecord(sql, 0, UT_TYPE_LONG, 4, msid);
-                            //printf("msid====%d\n", msid);
-                            memset(sql, 0, sizeof(sql));
-
-                            //关联ncsuser,获取sid，规则id
-                            sprintf(sql, "select sid from ncscasmac where macgroupid ='%lu'", psTasklim->groupid);
-                            iReturn = pasDbOneRecord(sql, 0, UT_TYPE_LONG, 4, iRuleId);
-                            memset(sql, 0, sizeof(sql));
-                            //printf("iRuleId====%d\n", iRuleId);
-                            char caMessage[1024];
-                            memset(caMessage, 0, sizeof(caMessage));
-                            snprintf(caMessage + strlen(caMessage), sizeof(caMessage), "场所");
-                            snprintf(caMessage + strlen(caMessage), sizeof(caMessage), "%s", caDispname);
-                            snprintf(caMessage + strlen(caMessage), sizeof(caMessage), "告警数已经超过阈值");
-                            snprintf(caMessage + strlen(caMessage), sizeof(caMessage), "%d", psTasklim->countlimit);
-                            //printf("caMessage====%s\n", caMessage);
-                            // ncsuser：servicecode,dispname,
-                            iReturn = pasDbExecSqlF("insert into ncscasemacwarnlog(servicecode,udisp,mac,stime,ruleid,msid,cid,message,flags) "
-                                                    "values('%s','%s','%lu','%lu','%lu','%lu','%lu','%s','0')",
-                                                    psTasklim->servicecode, caDispname, iCount, time(0), iRuleId, msid, psTasklim->cid, caMessage);
-                            //printf("===iReturn====%d\n", iReturn);
-                        }
-                        psTasklim = (struct s_ncscasetermlim*)pasLHashNext(&sHashInfoLim);
-                    }
-
                 }
             }
         }
-        if(pHash_lim)
-            free(pHash_lim);
+
+        //任务2：查出每个场所在线设备总数，统计count，若超过阈值，warnlog插入数据
+        char sql[10240] = "";
+        char cDid[11] = "";
+        int countlimit = 0 ;
+        int sid = 0;
+
+        int iR = 0;
+        char cServiceCodes[8024] = "";
+
+        sprintf(sql, "select ncscaseobj.did,ncscasetermlim.countlimit,ncscasetermlim.sid from ncscasetermlim,ncscaseobj where ncscaseobj.cid = ncscasetermlim.cid");
+        pasDbCursor *myCur = NULL;
+        myCur = pasDbOpenSqlF(sql, 0);
+        if(myCur == NULL)
+        {
+            printf("myCur error!\n");
+            return -1;
+        }
+        iR = pasDbFetchInto(myCur, UT_TYPE_STRING, sizeof(cDid) - 1, cDid,
+                            UT_TYPE_LONG, 4, &countlimit,
+                            UT_TYPE_LONG, 4, &sid);
+        //遍历规则
+        while(iR == 0 || iR == 1405)
+        {
+            strcpy(cServiceCodes, getServicecodesByDids(psShmHead, cDid));
+            printf("=======countlimit=%d\n", countlimit);
+            printf("=======cDid=%s\n", cDid);
+            printf("=======cServiceCodes=%s\n", cServiceCodes);
+            int i = 0;
+            char *servicecode = NULL;
+            servicecode = strtok(cServiceCodes, ",");
+            printf("=======servicecode=%s\n", servicecode);
+            while(servicecode != NULL)
+            {
+                int myApCount = 0;
+                uchar * myHash;
+                myHash = utShmHashHead(psShmHead, NC_LNK_APSRVONLINE);
+                if(myHash == NULL)
+                {
+                    printf("NC_LNK_APSRVONLINE Memory Error \n");
+                    return -1;
+                }
+                ncApSrvOnline * myApOnline;
+                myApOnline = (ncApSrvOnline *)pasHashFirst(pHash, &sHashInfo);
+                while(myApOnline)
+                {
+                    if(strlen(myApOnline->servicecode) > 0 && strcmp(myApOnline->servicecode, servicecode) == 0)
+                    {
+                        if(time(0) - myApOnline->lasttime < maxTimeoutSeconds)
+                        {
+                            //设备在线
+                            myApCount ++ ;
+                        }
+                        else
+                        {
+                            //设备离线
+                        }
+                    }
+                    myApOnline = (ncApSrvOnline *)pasHashFirst(pHash, &sHashInfo);
+                }
+
+                printf("=======countlimit=%d\n", countlimit);
+                printf("=======myApCount=%d\n", myApCount);
+                if(myApCount > countlimit)
+                {
+                    //告警：设备在线数超过阈值
+                    //已知 cDid servicecode,
+                    char caMessage[1024];
+                    memset(caMessage, 0, sizeof(caMessage));
+                    snprintf(caMessage , sizeof(caMessage), "该场所下的设备总数已经超过阈值");
+                    snprintf(caMessage + strlen(caMessage), sizeof(caMessage), "%d", countlimit);
+                    printf("=======caMessage=%s\n", caMessage);
+                    iReturn = pasDbExecSqlF("insert into ncscasemacwarnlog(servicecode,mac,stime,ruleid,cid,message,flags) "
+                                            "values('%s','%lu','%lu','%lu','%lu','%s','0')",
+                                            servicecode,  myApCount, time(0), sid,  cDid, caMessage);
+                    printf("=======iReturn=%d\n", iReturn);
+                }
+                else
+                {
+
+                }
+                servicecode = strtok(NULL, ",");
+            }
 
 
-        //1、统计alarmcode ='10007'告警总数 iSumalarm
+            //重置参数
+            memset(cDid, 0, sizeof(cDid));
+            countlimit = 0;
+            iR = pasDbFetchInto(myCur, UT_TYPE_STRING, sizeof(cDid) - 1, cDid,
+                                UT_TYPE_LONG, 4, &countlimit);
+        }
+        pasDbCloseCursor(myCur);
+
+
+        //任务3：统计alarmcode ='10007'告警总数 iSumalarm
         int iSumalarm = 0;
         iReturn = pasDbOneRecord("select count(*) from nctermsysalarm where alarmcode='10007'", 0, UT_TYPE_LONG, 4, &iSumalarm);
         if(iReturn != 0 || iSumalarm == 0)
@@ -2407,7 +2403,7 @@ int ncsStatMacDevWarn(utShmHead *psShmHead)
         }
         memset(sql, 0, sizeof(sql));
         strcpy(sql, "select description,devtype,alarmtime from nctermsysalarm where alarmcode ='10007'");
-
+        pasDbCursor *pCur = NULL;
         pCur = pasDbOpenSql(sql, 0);
         if(pCur == NULL)
         {
@@ -2472,7 +2468,7 @@ int ncsStatMacDevWarn(utShmHead *psShmHead)
         }
         if(pHash_alarm)
             free(pHash_alarm);
-        //查出离线设备插入告警表
+        //任务4：查出离线设备插入告警表
         pHash = utShmHashHead(psShmHead, NC_LNK_APSRVONLINE);
         if(pHash == NULL)
         {
@@ -2501,11 +2497,11 @@ int ncsStatMacDevWarn(utShmHead *psShmHead)
         }
         //printf("完成一次任务，休息60s\n");
         sleep(60);
-
     }
-
     return 0;
 }
+
+
 
 //自定义区域树
 int ncsTreeUser_v9(utShmHead *psShmHead, int iFd, utMsgHead *psMsgHead)
