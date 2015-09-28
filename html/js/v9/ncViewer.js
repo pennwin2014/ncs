@@ -208,6 +208,7 @@ function f_MacGlobalContext(){
 	this.getAlarmNum = function(){
 		var currentRealAlarms =0;
 		var ApAlarmCount =0;
+		var existflag =0;
 		var record;
 		Ext.Ajax.request({     
 					url: '/pronline/Msg?FunName@macFrontPageLeftBlocks&groupid@1&askApAlarmCount@1',  
@@ -219,6 +220,14 @@ function f_MacGlobalContext(){
 							record = eval("("+resRecord+")");	//字符串转成结构体	
 							currentRealAlarms = record.currentRealAlarms;
 							ApAlarmCount = record.ApAlarmCount;
+							existflag = record.existflag;
+							if(existflag == 1){
+								macGlobalCtx.setMapOnlineFlag(true);
+							}
+							else{
+								
+							}
+							
 							document.getElementById('alarm1').innerHTML = "<font color=red>"+currentRealAlarms+"&nbsp;&nbsp;</font>";
 							document.getElementById('alarm2').innerHTML = "<font color=red>"+ApAlarmCount+"&nbsp;&nbsp;</font>";
 						}catch(error){
