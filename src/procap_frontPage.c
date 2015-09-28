@@ -2262,7 +2262,7 @@ int ncsStatMacDevWarn(utShmHead *psShmHead)
 
     struct s_alarmtask* psTask = NULL;
     int iReturn = pasConnect(psShmHead);
-    printf("\n\n*********************************************************************\n\n");
+    //printf("\n\n*********************************************************************\n\n");
     if(iReturn < 0)
     {
         printf("conn psShmHead fail iReturn=%d\n", iReturn);
@@ -2316,7 +2316,7 @@ int ncsStatMacDevWarn(utShmHead *psShmHead)
             sleep(3 * 60);
             continue;
         }
-        printf("=====num=%d\n==========", num);
+        //printf("=====num=%d\n==========", num);
         //2、创建规则hash
         pHash_lim = (unsigned char *)pasLHashInit(5000, 5000, sizeof(struct s_ncscasetermlim), 0, 4);
         if(pHash_lim == NULL)
@@ -2352,10 +2352,10 @@ int ncsStatMacDevWarn(utShmHead *psShmHead)
                 psTasklim->sid = templim.sid;
                 psTasklim->did = templim.did;
             }
-            printf("=====templim.cid=%d\n==========", templim.cid);
-            printf("=====templim.countlimit=%d\n==========", templim.countlimit);
-            printf("=====templim.sid=%d\n==========", templim.sid);
-            printf("=====templim.did=%d\n==========", templim.did);
+            //printf("=====templim.cid=%d\n==========", templim.cid);
+            //printf("=====templim.countlimit=%d\n==========", templim.countlimit);
+            //printf("=====templim.sid=%d\n==========", templim.sid);
+            //printf("=====templim.did=%d\n==========", templim.did);
 
             memset(&templim, 0, sizeof(struct s_ncscasetermlim));
             iR = pasDbFetchInto(myCur, UT_TYPE_LONG, 4, &templim.cid,
@@ -2369,24 +2369,25 @@ int ncsStatMacDevWarn(utShmHead *psShmHead)
         //printf("=====11111111111111\n==========");
         while(psTasklim)
         {
-            printf("=====psTasklim->did=%d\n==========", psTasklim->did);
+            //printf("=====psTasklim->did=%d\n==========", psTasklim->did);
             //遍历一条规则，已知cid,sid,did,countlimit
             char cServiceCodes[8024] = "";
             char cDid[15];
             sprintf(cDid, "%d", psTasklim->did);
-            printf("=====cDid=%s\n====", cDid);
+            //printf("=====cDid=%s\n====", cDid);
             strcpy(cServiceCodes, getServicecodesByDids(psShmHead, cDid));
-            printf("=======cid=%d\n", psTasklim->cid);
-            printf("=======countlimit=%d\n", psTasklim->countlimit);
-            printf("=======sid=%d\n", psTasklim->sid);
-            printf("=======did=%d\n", psTasklim->did);
-            printf("=======cServiceCodes=%s\n", cServiceCodes);
+            //printf("=======cid=%d\n", psTasklim->cid);
+            //printf("=======countlimit=%d\n", psTasklim->countlimit);
+            //printf("=======sid=%d\n", psTasklim->sid);
+            //printf("=======did=%d\n", psTasklim->did);
+            //printf("=======cServiceCodes=%s\n", cServiceCodes);
 
             char *servicecode = NULL;
             servicecode = strtok(cServiceCodes, ",");
-            while(servicecode != NULL)
+            while(servicecode != NULL && strlen(servicecode) > 0)
             {
-                printf("=======servicecode=%s\n", servicecode);
+                //printf("=======servicecode=%s\n", servicecode);
+                /*
                 uchar * myHash;
                 myHash = utShmHashHead(psShmHead, NC_LNK_APSRVONLINE);
                 if(myHash == NULL)
@@ -2400,6 +2401,7 @@ int ncsStatMacDevWarn(utShmHead *psShmHead)
                 }
                 ncApSrvOnline * myApOnline;
                 pasHashInfo     sHashInfoAp;
+                ///psMacLoc = (ncLbsMacLocation *)pasHashFirst(pHash,&sHashInfos);
                 myApOnline = (ncApSrvOnline *)pasHashFirst(myHash, &sHashInfoAp);
                 int myApCount = 0;
                 while(myApOnline)
@@ -2417,14 +2419,23 @@ int ncsStatMacDevWarn(utShmHead *psShmHead)
                             //设备离线
                         }
                     }
+                    else{
+                        printf("====else==else======else===else== \n");
+                    }
                     myApOnline = (ncApSrvOnline *)pasHashNextS(&sHashInfoAp);
                 }
+
                 printf("myHash 释放前 psTasklim = %p, %d\n", psTasklim, psTasklim->countlimit);
 
                 printf(" 释放后 psTasklim = %p, %d\n", psTasklim, psTasklim->countlimit);
 
                 printf("=======countlimit=%d\n", psTasklim->countlimit);
                 printf("=======myApCount=%d=====servicecode=%s\n", myApCount, servicecode);
+
+                */
+                int myApCount = 0;
+                myApCount = getMacOnlineCount(psShmHead, servicecode);
+                //printf("=======myApCount=%d=====servicecode=%s\n", myApCount, servicecode);
                 if(myApCount > psTasklim->countlimit)
                 {
                     //告警：设备在线数超过阈值
@@ -2434,27 +2445,26 @@ int ncsStatMacDevWarn(utShmHead *psShmHead)
                     sprintf(sql, "select dispname from ncsuser where username =%s", servicecode);
                     iReturn = pasDbOneRecord(sql, 0, UT_TYPE_STRING, 62, dispname);
 
-                    printf("sql = %s, 场所编码为 %s, 场所名称为 %s\n ", sql, servicecode, dispname);
+                    //printf("sql = %s, 场所编码为 %s, 场所名称为 %s\n ", sql, servicecode, dispname);
                     char caMessage[1024];
                     memset(caMessage, 0, sizeof(caMessage));
                     snprintf(caMessage , sizeof(caMessage) - 1, "%s", "场所[");
                     snprintf(caMessage + strlen(caMessage), sizeof(caMessage) - 1, "%s", dispname);
                     snprintf(caMessage + strlen(caMessage) , sizeof(caMessage) - 1, "%s", "]下的设备在线总数已经超过阈值");
                     snprintf(caMessage + strlen(caMessage), sizeof(caMessage) - 1, "%d", psTasklim->countlimit);
-                    printf("=======caMessage=%s\n", caMessage);
-                    iReturn = pasDbExecSqlF("insert into ncscasemacwarnlog(servicecode,mac,stime,ruleid,cid,message,flags) "
-                                            " values('%s','%lu','%lu','%lu','%lu','%s','0')",
-                                            servicecode,  myApCount, time(0), psTasklim->sid,  psTasklim->cid, caMessage);
-                    printf("=======iReturn=%d\n", iReturn);
+                    //printf("=======caMessage=%s\n", caMessage);
+                    memset(sql, 0, sizeof(sql));
+                    sprintf(sql, "insert into ncscasemacwarnlog(servicecode,mac,stime,ruleid,cid,message,flags) values(%s,'%lu','%lu','%lu','%lu','%s','0')",
+                            servicecode,  myApCount, time(0), psTasklim->sid,  psTasklim->cid, caMessage);
+                    //printf("======sqlsqlsql====%s\n",sql);
+                    iReturn = pasDbExecSqlF(sql);
+                    //printf("=======iReturn=%d\n", iReturn);
                 }
                 else
                 {
 
                 }
-                if(myHash != NULL)
-                {
-                    free(myHash);
-                }
+
                 servicecode = strtok(NULL, ",");
             }
             psTasklim = (struct s_ncscasetermlim*)pasLHashNext(&sHashInfoLim);
@@ -2550,6 +2560,8 @@ int ncsStatMacDevWarn(utShmHead *psShmHead)
         }
         if(pHash_alarm)
             free(pHash_alarm);
+
+
         //任务4：查出离线设备插入告警表
         pHash = utShmHashHead(psShmHead, NC_LNK_APSRVONLINE);
         if(pHash == NULL)
@@ -2580,7 +2592,7 @@ int ncsStatMacDevWarn(utShmHead *psShmHead)
         //printf("完成一次任务，休息60s\n");
         sleep(60);
     }
-    printf("\n\n*************************************************************************\n\n");
+    //printf("\n\n*************************************************************************\n\n");
     return 0;
 }
 
@@ -4454,7 +4466,7 @@ int doUserSql(utShmHead *psShmHead, int iFd, utMsgHead *psMsgHead)
     {
         if(mkdir("/home/ncmysql/ncs/download", 555) != 0)
         {
-        	utPltPutVar(psDbHead, "result", "0");
+            utPltPutVar(psDbHead, "result", "0");
             utPltOutToHtml(iFd, psMsgHead, psDbHead, "mac/sql/dosql.htm");
             return 0;
         }
@@ -4487,15 +4499,15 @@ int downloadSqlResult(utShmHead *psShmHead, int iFd, utMsgHead *psMsgHead)
 {
     utPltDbHead *psDbHead = utPltInitDb();
     char caPath[128] = "";
-	char caDeleteCmd[256] = "";
+    char caDeleteCmd[256] = "";
     char caFileName[128] = "";
     sprintf(caPath, "%s/download", "/home/ncmysql/ncs");
     int iReturn = utMsgGetSomeNVar(psMsgHead, 1,
                                    "filename",  UT_TYPE_STRING, sizeof(caFileName) - 1, caFileName);
 
     snprintf(caDeleteCmd, sizeof(caDeleteCmd), "rm -rf %s/%s", caPath, caFileName);
-	macPrint(1, "%s,%s[%s]", caPath, caFileName,caDeleteCmd);
-	system(caDeleteCmd);
+    macPrint(1, "%s,%s[%s]", caPath, caFileName, caDeleteCmd);
+    system(caDeleteCmd);
     utPltFileDownload(iFd, "application/text", caPath, caFileName, caFileName);
     return 0;
 }
