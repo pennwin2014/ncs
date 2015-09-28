@@ -4450,7 +4450,17 @@ int doUserSql(utShmHead *psShmHead, int iFd, utMsgHead *psMsgHead)
     iReturn = utMsgGetSomeNVar(psMsgHead, 1,
                                "sql",  UT_TYPE_STRING, sizeof(caSql) - 1, caSql);
     macPrint(sqlDebug, "[caSql=%s\n", caSql);
-    //system("chmod 777 dir && chgrp mysql dir");
+    if(!utFileIsExist("/home/ncmysql/ncs/download"))
+    {
+        if(mkdir("/home/ncmysql/ncs/download", 555) != 0)
+        {
+        	utPltPutVar(psDbHead, "result", "0");
+            utPltOutToHtml(iFd, psMsgHead, psDbHead, "mac/sql/dosql.htm");
+            return 0;
+        }
+    }
+
+    system("chmod 777 /home/ncmysql/ncs/download && chgrp mysql  /home/ncmysql/ncs/download");
     snprintf(fileName, sizeof(fileName) - 1, "doUserSqlResult_%llu.csv", time(0));
     snprintf(filePath, sizeof(filePath) - 1, "/home/ncmysql/ncs/download/%s", fileName);
 
@@ -4477,11 +4487,15 @@ int downloadSqlResult(utShmHead *psShmHead, int iFd, utMsgHead *psMsgHead)
 {
     utPltDbHead *psDbHead = utPltInitDb();
     char caPath[128] = "";
+	char caDeleteCmd[256] = "";
     char caFileName[128] = "";
     sprintf(caPath, "%s/download", "/home/ncmysql/ncs");
     int iReturn = utMsgGetSomeNVar(psMsgHead, 1,
                                    "filename",  UT_TYPE_STRING, sizeof(caFileName) - 1, caFileName);
-    macPrint(1, "%s,%s", caPath, caFileName);
+
+    snprintf(caDeleteCmd, sizeof(caDeleteCmd), "rm -rf %s/%s", caPath, caFileName);
+	macPrint(1, "%s,%s[%s]", caPath, caFileName,caDeleteCmd);
+	system(caDeleteCmd);
     utPltFileDownload(iFd, "application/text", caPath, caFileName, caFileName);
     return 0;
 }

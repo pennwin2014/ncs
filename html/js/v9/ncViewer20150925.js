@@ -1,11 +1,9 @@
 
-
+var globalSelectId = "";
+var globalSelectGroupId = "itm_infoquery";
 var DEFAULT_SEARCH_TEXT = "MAC/手机号/场所名称";
 
 function f_MacGlobalContext(){
-//公有变量
-	var globalSelectId = "";
-	var globalSelectGroupId = "itm_infoquery";
 //私有变量
 	this.id_operation_status = -1;
 	this.globalInfoMac = "";
@@ -14,15 +12,8 @@ function f_MacGlobalContext(){
 	this.placeData = [];
 	this.placeName = "";
 	this.alarmReason = -1;
-	this.mapOnlineFlag = false;
 
 //公共接口
-	this.setMapOnlineFlag = function(v){
-		this.mapOnlineFlag = v;
-	}
-	this.getMapOnlineFlag = function(){
-		return this.mapOnlineFlag;
-	}
 	this.setAlarmReason = function(v){
 		this.alarmReason = v;
 	}
@@ -269,7 +260,23 @@ function f_MacGlobalContext(){
     });
 
 var macGlobalCtx = new f_MacGlobalContext(); 
-
+function isInFocus(itmid){
+	var tabs_center=Ext.getCmp("layout_center");
+	var activeTab = tabs_center.getActiveTab();
+	//if (activeTab || (typeof activeTab == "undefined")){
+	if (!activeTab || typeof(activeTab)=="undefined" || activeTab==0){
+		if(tabs_center.items.length>0){
+			activeTab = tabs_center.items.items[0];
+		}else{
+			return false;
+		}
+	}
+	if(activeTab.id == itmid){
+		return true;
+	}else{
+		return false;
+	}
+}
 var mapInfoquery = {
 	'id_infoquery_mac':['itm_infoquery_mac','MAC日志查询','mac_infoquery_mac'], 
 	'id_infoquery_hotspot':['itm_infoquery_hotspot','热点查询','mac_infoquery_hotspot'], 
@@ -317,13 +324,13 @@ var mapAudit = {
 };
 
 var listAllMap = {	
-	'id_infoquery':[true, mapInfoquery,"itm_infoquery"], 
-	'id_alarm':[false, mapAlarm,"itm_alarm"],
-	'id_dm':[false, mapDm,"itm_dm"], 
-	'id_operation':[false, mapOperation,"itm_operation"], 
-	'id_systemset':[false, mapSystemset,"itm_systemset"],
-	'id_myaccount':[false, mapMyaccount,"itm_myaccount"], 
-	'id_audit':[false, mapAudit,"itm_audit"]
+	'itm_infoquery':[true, mapInfoquery], 
+	'itm_alarm':[false, mapAlarm],
+	'itm_dm':[false, mapDm], 
+	'itm_operation':[false, mapOperation], 
+	'itm_systemset':[false, mapSystemset],
+	'itm_myaccount':[false, mapMyaccount], 
+	'itm_audit':[false, mapAudit]
 }
 var left_tabs_glob='';
 
@@ -337,9 +344,9 @@ function searchMouseUp(){
 }
 
 //得到该一级菜单需要显示的个数
-function getItemShowCount(id){
+function getItemShowCount(itmid){
 	var count = 0;
-	var myMap = listAllMap[id][1];
+	var myMap = listAllMap[itmid][1];
 	for(var i in myMap){
 		if(Ext.getCmp(i).menustatus == 1){
 			count ++;
@@ -350,10 +357,10 @@ function getItemShowCount(id){
 
 //根据id获取到结构体
 function getRecordById(id){
-	for(var kId in listAllMap){
-		for(var j in listAllMap[kId][1]){
+	for(var i in listAllMap){
+		for(var j in listAllMap[i][1]){
 			if(j == id){
-				return listAllMap[kId][1][j];
+				return listAllMap[i][1][j];
 			}
 		}
 	}
@@ -365,14 +372,14 @@ function getRecordById(id){
 //                false--点击
 function setItemStatById(id, isNormal){
 	var hasFound = false;
-	for(kId in listAllMap){
-		for(key in listAllMap[kId][1]){
+	for(i in listAllMap){
+		for(key in listAllMap[i][1]){
 			if(key == id){
 				hasFound = true;
 				if(isNormal){
-					Ext.getCmp(key).setText('<font style="font-size : 12px !important;color:#DDDDDD;margin-left: 24px !important;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆&nbsp;&nbsp;&nbsp;'+listAllMap[kId][1][key][1]+'</font>');
+					Ext.getCmp(key).setText('<font style="font-size : 12px !important;color:#DDDDDD;margin-left: 24px !important;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆&nbsp;&nbsp;&nbsp;'+listAllMap[i][key][1]+'</font>');
 				}else{
-					Ext.getCmp(key).setText('<font style="font-size : 12px !important;color:#FEC56B;margin-left: 24px !important;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;★&nbsp;&nbsp;&nbsp;'+listAllMap[kId][1][key][1]+'</font>');
+					Ext.getCmp(key).setText('<font style="font-size : 12px !important;color:#FEC56B;margin-left: 24px !important;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;★&nbsp;&nbsp;&nbsp;'+listAllMap[i][key][1]+'</font>');
 				}
 				break;
 			}
@@ -383,51 +390,48 @@ function setItemStatById(id, isNormal){
 }
 
 //根据groupid改变一级菜单下二级菜单的显示和隐藏
-function toggleFirstByGroupId(id){
-	for(var kId in listAllMap){
-		if(kId == id){
-			toggleChildren(true, kId);
+function toggleFirstByGroupId(itemid){
+	for(var i in listAllMap){
+		if(i == itemid){
+			toggleChildren(true, i);
 		}else{
-			toggleChildren(false, kId);
+			toggleChildren(false, i);
 		}
 	}
 }
 
 //根据itemid获取在大map中的id，方便取该结构
 function getIdByItemid(itemid){
-	var tmpGroupId = macGlobalCtx.globalSelectGroupId;
+	var tmpGroupId = globalSelectGroupId;
 	var hasFound = false;
 	var resultId = "id_frontPage";
 	
-	for(var kId in listAllMap){
-		for(var i in listAllMap[kId][1]){
-			if(listAllMap[kId][1][i][0] == itemid){
-				tmpGroupId = kId;
+	for(var kItemid in listAllMap){
+		for(var i in listAllMap[1]){
+			if(listAllMap[1][i][0] == itemid){
+				tmpGroupId = kItemid;
 				resultId = i;
 				hasFound = true;
 				break;
 			}
-		}	
-		if(hasFound == true){
-			break;
-		}
+		}		
 	}
-	if(macGlobalCtx.globalSelectGroupId!=tmpGroupId){
+	if(globalSelectGroupId!=tmpGroupId){
 		//改变一级菜单的显隐
 		toggleFirstByGroupId(tmpGroupId);
-		macGlobalCtx.globalSelectGroupId = tmpGroupId;
+		globalSelectGroupId = tmpGroupId;
 	}
 	return resultId;
 }
 
 //改变点击项样式
-function toggleClickItem(itemId){
+function toggleClickItem(itemid){
 	//把旧的改为普通样式
-	if(macGlobalCtx.globalSelectId != ""){
-		setItemStatById(macGlobalCtx.globalSelectId, true);
+	if(globalSelectId != ""){
+		setItemStatById(globalSelectId, true);
 	}
-	macGlobalCtx.globalSelectId = getIdByItemid(itemId);//item.id;
-	setItemStatById(macGlobalCtx.globalSelectId, false);
+	globalSelectId = getIdByItemid(itemid);//item.id;
+	setItemStatById(globalSelectId, false);
 }
 
 //改变一级菜单样式
@@ -446,12 +450,12 @@ function setGroupHeader(isExpand, groupId){
 	}
 }
 
-function toggleChildren(bVisible, gid){
-	listAllMap[gid][0] = bVisible;
-	setGroupHeader(bVisible, gid);
+function toggleChildren(bVisible, itemid){
+	listAllMap[itemid][0] = bVisible;
+	setGroupHeader(bVisible, itemid);
 	var itm;
-	for (id in listAllMap[gid][1]){
-		itm=Ext.getCmp(id);
+	for (i in listAllMap[itemid][1]){
+		itm=Ext.getCmp(i);
 		if(itm.menustatus == 1){
 			itm.setVisible(bVisible);
 		}	
@@ -1890,7 +1894,7 @@ Ext.define('ncViewer.App', {
 		//判断是否隐藏一级菜单
 		leftMenu.items.each(function(item){
 			if(item.menustatus == 0){
-				if(getItemShowCount(item.id)>0){
+				if(getItemShowCount(item.itemid)>0){
 					item.hidden = false;
 				}else{
 					item.hidden = true;
@@ -2064,16 +2068,16 @@ Ext.define('ncViewer.App', {
       return this.ncstatus;
     },
 	onToggleFirst:function(item){
-		for(var kId in listAllMap){
-			if(kId == item.id){
-				toggleChildren(!listAllMap[kId][0], kId);
+		for(var kItemid in listAllMap){
+			if(kItemid == item.itemid){
+				toggleChildren(!listAllMap[kItemid][0], kItemid);
 			}else{
-				toggleChildren(false, kId);
+				toggleChildren(false, kItemid);
 			}
 		}		
 	},
 	changeOnOut:function(item){
-		if(item.id != macGlobalCtx.globalSelectId){
+		if(item.id != globalSelectId){
 			try{
 				Ext.getCmp(item.id).setText('<font style="font-size : 12px !important;color:#EEEEEE;margin-left: 24px !important;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆&nbsp;&nbsp;&nbsp;'+item.title+'</font>');
 			}catch(e){
@@ -2082,7 +2086,7 @@ Ext.define('ncViewer.App', {
 		}		
 	},
 	changeOnOver:function(item){	
-		if(item.id != macGlobalCtx.globalSelectId){
+		if(item.id != globalSelectId){
 			try{
 				Ext.getCmp(item.id).setText('<font style="font-size : 12px !important;color:#A9FF96;margin-left: 24px !important;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆&nbsp;&nbsp;&nbsp;'+item.title+'</font>');
 			}catch (e) {

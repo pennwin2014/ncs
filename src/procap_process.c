@@ -25,6 +25,7 @@ int ncsStatMacWarn(utShmHead *psShmHead);
 int ncsStatMacBab(utShmHead *psShmHead);
 int ncsStatMacDevWarn(utShmHead *psShmHead);
 int ncsStatMacFront(utShmHead *psShmHead);
+int ncsStatMacPlace(utShmHead *psShmHead);
 static int ncsStartOnTimeDo(utShmHead *psShmHead)
 {
     /* 设置定时进程  */
@@ -68,8 +69,8 @@ int ncsStatMaccount(utShmHead *psShmHead)
     char caNoWH[16], caSdate[20];
     long lDid;
     long long lSid;
-     char caYM[12];
-     char caTemp[2048];
+    char caYM[12];
+    char caTemp[2048];
     iReturn = pasConnect(psShmHead);
     if(iReturn < 0)
     {
@@ -100,32 +101,34 @@ int ncsStatMaccount(utShmHead *psShmHead)
             }
 
         }
-//Mac入库
-       //获取最大的ID
+        //Mac入库
+        //获取最大的ID
         strcpy(caYM, utTimFormat("%Y%m", time(0)));
         unsigned long long lLastId;
-       ncsUtlGetLastInfo_v4("TermmacStatMac",&lLastId);
-       sprintf(caTemp,"select max(sid) from ncmactermatt_if_%s where sid>=%llu ",caYM,lLastId );
-       lSid=0;
-       pasDbOneRecord(caTemp,0,UT_TYPE_LONG8,8,&lSid);
-       sprintf(caTemp,"insert into nctermmacs(mac,servicecode,username,starttime,moditime) select mac,servicecode,vname,min(stime),max(stime)  from  ncmactermatt_if_%s where sid>=%llu and sid<=%llu group by mac,servicecode  ON DUPLICATE KEY UPDATE moditime=values(moditime) ",caYM,lLastId,lSid);
-       printf("caTemp=%s\n",caTemp);
-       iReturn=pasDbExecSql(caTemp,0);
-       if(iReturn==0){
-       	ncsUtlSetLastInfo_v4("TermmacStatMac", lSid);
-       }
+        ncsUtlGetLastInfo_v4("TermmacStatMac", &lLastId);
+        sprintf(caTemp, "select max(sid) from ncmactermatt_if_%s where sid>=%llu ", caYM, lLastId);
+        lSid = 0;
+        pasDbOneRecord(caTemp, 0, UT_TYPE_LONG8, 8, &lSid);
+        sprintf(caTemp, "insert into nctermmacs(mac,servicecode,username,starttime,moditime) select mac,servicecode,vname,min(stime),max(stime)  from  ncmactermatt_if_%s where sid>=%llu and sid<=%llu group by mac,servicecode  ON DUPLICATE KEY UPDATE moditime=values(moditime) ", caYM, lLastId, lSid);
+        printf("caTemp=%s\n", caTemp);
+        iReturn = pasDbExecSql(caTemp, 0);
+        if(iReturn == 0)
+        {
+            ncsUtlSetLastInfo_v4("TermmacStatMac", lSid);
+        }
 
-        ncsUtlGetLastInfo_v4("TermmacStatMacAp",&lLastId);
-       sprintf(caTemp,"select max(sid) from ncmactermatt_if_%s where sid>=%llu ",caYM,lLastId );
-       lSid=0;
-       pasDbOneRecord(caTemp,0,UT_TYPE_LONG8,8,&lSid);
-       sprintf(caTemp,"insert into nctermmacs_ap(mac,apname,starttime,moditime) select mac,apname,min(stime),max(stime)  from  ncmactermatt_if_%s where sid>=%llu and sid<=%llu group by apname,mac  ON DUPLICATE KEY UPDATE moditime=values(moditime) ",caYM,lLastId,lSid);
-       printf("caTemp=%s\n",caTemp);
-       iReturn=pasDbExecSql(caTemp,0);
-       if(iReturn==0){
-       	ncsUtlSetLastInfo_v4("TermmacStatMacAp", lSid);
-       }    
-       
+        ncsUtlGetLastInfo_v4("TermmacStatMacAp", &lLastId);
+        sprintf(caTemp, "select max(sid) from ncmactermatt_if_%s where sid>=%llu ", caYM, lLastId);
+        lSid = 0;
+        pasDbOneRecord(caTemp, 0, UT_TYPE_LONG8, 8, &lSid);
+        sprintf(caTemp, "insert into nctermmacs_ap(mac,apname,starttime,moditime) select mac,apname,min(stime),max(stime)  from  ncmactermatt_if_%s where sid>=%llu and sid<=%llu group by apname,mac  ON DUPLICATE KEY UPDATE moditime=values(moditime) ", caYM, lLastId, lSid);
+        printf("caTemp=%s\n", caTemp);
+        iReturn = pasDbExecSql(caTemp, 0);
+        if(iReturn == 0)
+        {
+            ncsUtlSetLastInfo_v4("TermmacStatMacAp", lSid);
+        }
+
         sleep(600);
     }
 }
@@ -151,8 +154,10 @@ int ncsStartSomeProcess_mac(utShmHead *psShmHead)
     pasUtlSetProcessName(psShmHead, "MacBab", ncsStatMacBab, 68400L, 0);
     //启动运维告警进程
     pasUtlSetProcessName(psShmHead, "MacDevWarn", ncsStatMacDevWarn, 68400L, 0);
-	//启动首页数据统计进程
+    //启动首页数据统计进程
     pasUtlSetProcessName(psShmHead, "MacFront", ncsStatMacFront, 68400L, 0);
+    //启动场所数据统计进程
+    pasUtlSetProcessName(psShmHead, "MacPlace", ncsStatMacPlace, 68400L, 0);
     iReturn = pasUtlStartProcess(psShmHead);
     return iReturn;
 }
