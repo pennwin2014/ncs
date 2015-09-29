@@ -2018,8 +2018,8 @@ int ncsStatMacFront(utShmHead *psShmHead)
         printf("conn psShmHead fail iReturn=%d\n", iReturn);
         sleep(60);
         return 0;
-    }
-
+    }    
+long askTimeout= utComGetVar_ld(psShmHead, "AskTimeout", 30);
     utShmFreeHash(psShmHead, NCS_LNK_FRONTPAGE);
     utShmHashInit(psShmHead, NCS_LNK_FRONTPAGE, 2000, 2000, sizeof(ncsMacFrontpageObj), 0, 8);
     while(1)
@@ -2085,7 +2085,7 @@ int ncsStatMacFront(utShmHead *psShmHead)
             {
                 psData->lastModTime = letime;
                 //printf("\n====userid=%llu====asktime=%lu\n\n", psUser->userId, psData->lastAskTime);
-                if(letime - psData->lastAskTime < 30)
+                if(letime - psData->lastAskTime < askTimeout)
                 {
                     memset(caGroupSql, 0, sizeof(caGroupSql));
                     strcpy(caGroupSql, (char*)getDsGroupcodeSqlByUserId("servicecode", psUser->userId));
@@ -2443,8 +2443,12 @@ int ncsStatMacDevWarn(utShmHead *psShmHead)
                     memset(sql, 0, sizeof(sql));
                     char dispname[64] = "";
                     sprintf(sql, "select dispname from ncsuser where username =%s", servicecode);
-                    iReturn = pasDbOneRecord(sql, 0, UT_TYPE_STRING, 62, dispname);
-
+                    iReturn = pasDbOneRecord(sql, 0, UT_TYPE_STRING, sizeof(dispname), dispname);
+	
+					memset(sql, 0, sizeof(sql));
+                    char opname[32] = "";
+                    sprintf(sql, "select name from ncscasewarn,ncscasetermlim where ncscasewarn.cid = ncscasetermlim.cid where ncscasetermlim.cid=%s", psTasklim->cid);
+                    iReturn = pasDbOneRecord(sql, 0, UT_TYPE_STRING, sizeof(opname), opname);
                     //printf("sql = %s, 场所编码为 %s, 场所名称为 %s\n ", sql, servicecode, dispname);
                     char caMessage[1024];
                     memset(caMessage, 0, sizeof(caMessage));
@@ -2454,8 +2458,8 @@ int ncsStatMacDevWarn(utShmHead *psShmHead)
                     snprintf(caMessage + strlen(caMessage), sizeof(caMessage) - 1, "%d", psTasklim->countlimit);
                     //printf("=======caMessage=%s\n", caMessage);
                     memset(sql, 0, sizeof(sql));
-                    sprintf(sql, "insert into ncscasemacwarnlog(servicecode,mac,stime,ruleid,cid,message,flags) values(%s,'%lu','%lu','%lu','%lu','%s','0')",
-                            servicecode,  myApCount, time(0), psTasklim->sid,  psTasklim->cid, caMessage);
+                    sprintf(sql, "insert into ncscasemacwarnlog(servicecode,mac,stime,ruleid,cid,message,flags,opname) values(%s,'%lu','%lu','%lu','%lu','%s','%s','%s')",
+                            servicecode,  myApCount, time(0), psTasklim->sid,  psTasklim->cid, caMessage,'0',opname);
                     //printf("======sqlsqlsql====%s\n",sql);
                     iReturn = pasDbExecSqlF(sql);
                     //printf("=======iReturn=%d\n", iReturn);
@@ -4502,12 +4506,13 @@ int downloadSqlResult(utShmHead *psShmHead, int iFd, utMsgHead *psMsgHead)
     char caDeleteCmd[256] = "";
     char caFileName[128] = "";
     sprintf(caPath, "%s/download", "/home/ncmysql/ncs");
+	utMsgPrintMsg(psMsgHead);
     int iReturn = utMsgGetSomeNVar(psMsgHead, 1,
                                    "filename",  UT_TYPE_STRING, sizeof(caFileName) - 1, caFileName);
 
     snprintf(caDeleteCmd, sizeof(caDeleteCmd), "rm -rf %s/%s", caPath, caFileName);
     macPrint(1, "%s,%s[%s]", caPath, caFileName, caDeleteCmd);
-    system(caDeleteCmd);
+    //system(caDeleteCmd);
     utPltFileDownload(iFd, "application/text", caPath, caFileName, caFileName);
     return 0;
 }

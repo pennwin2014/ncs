@@ -116,7 +116,20 @@ int ncsStatMaccount(utShmHead *psShmHead)
         {
             ncsUtlSetLastInfo_v4("TermmacStatMac", lSid);
         }
-
+		//Ssid入库
+        //获取最大的ID
+        ncsUtlGetLastInfo_v4("TermmacStatSsids", &lLastId);
+        sprintf(caTemp, "select max(sid) from ncmachotinfo_if_%s where sid>=%llu ", caYM, lLastId);
+        lSid = 0;
+        pasDbOneRecord(caTemp, 0, UT_TYPE_LONG8, 8, &lSid);
+        sprintf(caTemp, "insert into nctermssid(ssid,servicecode,starttime,moditime) select ssid,servicecode,min(stime),max(stime)  from ncmachotinfo_if_%s where sid>=%llu and sid<=%llu and servicecode!='' and ssid!='' group by ssid,servicecode  ON DUPLICATE KEY UPDATE moditime=values(moditime) ", caYM, lLastId, lSid);
+        printf("caTemp=%s\n", caTemp);
+        iReturn = pasDbExecSql(caTemp, 0);
+        if(iReturn == 0)
+        {
+            ncsUtlSetLastInfo_v4("TermmacStatSsids", lSid);
+        }
+		//其他
         ncsUtlGetLastInfo_v4("TermmacStatMacAp", &lLastId);
         sprintf(caTemp, "select max(sid) from ncmactermatt_if_%s where sid>=%llu ", caYM, lLastId);
         lSid = 0;
